@@ -1,0 +1,190 @@
+# 课程概述
+
+---
+
+## 评分标准
+
+| 项目     | 内容 |
+| -------- | ---- |
+| 出勤表现 | 40%  |
+| 课后作业 | 60%  |
+
+---
+
+## 为什么学习<br/>网页设计与制作?
+
+- H5 广告
+- 数据新闻
+- 个人站点
+- 网页游戏
+- 以及一切现代数字化展示
+
+---
+
+## 课程目标
+
+1. 掌握 HTML / CSS / JavaScript “三剑客”。
+2. 学会独立制作专业相关的作品。
+3. 成为一名业余程序员。
+
+---
+
+## 课程主要内容
+
+1. 开发环境介绍
+2. HTML / CSS / JavaScript
+3. 项目实践
+
+---
+
+## 在线开发环境
+
+<p style='text-align:left;'>直接可以在线编写 HTML / CSS / JavaScript 并预览。</p>
+
+- [国外 jsfiddle.net](https://jsfiddle.net/)
+- [国外 codepen.io](https://codepen.io)
+- [国内 jsrun.pro](http://jsrun.pro/new)
+
+---
+
+## 本地开发环境
+
+| 软件类型 | 软件名称 |
+| -------- | -------- |
+| 编辑器   | VSCode   |
+| 浏览器   | Chrome   |
+
+--
+
+### VSCode
+
+<p style='text-align:left;'>微软出品的一款编辑器，具备代码高亮，语法检查，自动格式化代码等多种功能，并有成熟的社区提供大量插件来提高编写代码的效率。</p>
+
+--
+
+### Chrome
+
+<p style='text-align:left;'>谷歌出品的一款浏览器，自带的开发者工具在前端开发过程中提供丰富的辅助功能。</p>
+
+---
+
+## 认识 Web 服务
+
+![Web Server](/img/webserver.jpg)
+
+---
+
+## 初识 HTML
+
+一份简历。
+
+```html
+<html>
+  <head>
+    <title>简历</title>
+  </head>
+  <body>
+    <h1>Dr.Jan</h1>
+    <h2>教育经历</h2>
+    <p>20XX年毕业于CUC。</p>
+    <h2>自我介绍</h2>
+    <p>学！习！能！力！强！</p>
+  </body>
+</html>
+```
+
+---
+
+## HTML - <b style='color:red'>H</b>yper<b style='color:red'>T</b>ext <b style='color:red'>M</b>arkup <b style='color:red'>L</b>anguage
+
+<p style='text-align:left;'>超文本标记语言，是一种用于创建网页的标准标记语言。它定义了页面的基本结构和内容，可以被浏览器渲染成俗称的“网页”。</p>
+
+<p style='text-align:left;'>HTML 的标准由 W3C（万维网联盟）维护，目前我们所见的大多数网站都是 HTML 4.01 版，而移动互联网时代口头常说的 H5 实际上是 HTML 标准的 5.0 版本。</p>
+
+--
+
+### HTML 元素
+
+- HTML 元素以**开始标签**起始，以**结束标签**中止。
+- 元素的内容是**开始标签**与**结束标签**之间的内容。
+- 有一种元素为**空元素**，在**开始标签**中进行关闭。
+- 大多数 HTML 元素可拥有**属性**，如 style。
+
+--
+
+### HTML 标签
+
+<p style='text-align:left;'>HTML 文件中，为了区分内容和描述HTML文档结构的**标记**，定义了很多**标签**，**标签**由尖括号包裹，分为**开始标签**、**结束标签**以及空标签三种。</p>
+
+```html
+<h1></h1>
+<p></p>
+<br />
+```
+
+--
+
+### HTML 设计与构建
+
+<p style='text-align:left;'>就像设计新闻稿件或者海报。</p>
+
+1. 先在草稿纸上画出自己想要制作的网页的大概布局结构。
+2. 判断一下各个位置的内容属于 HTML 结构中的什么元素。
+3. 查找恰当的标签来填写清楚，构建好自己想要的页面。
+
+--
+
+### 图片与超链接
+
+<p style='text-align:left;'>在 HTML 中可以随时添加 `<img/>` 图片元素来加载一幅图片，也可以添加 `<a></a>` 超链接元素来跳转到新的页面。</p>
+
+<p style='text-align:left;'>改进你的简历。</p>
+
+--
+
+### 更多的 HTML 元素
+
+<p style='text-align:left;'>还有更多种类的 HTML 元素和响应的标签需要扩展学习。</p>
+
+<p style='text-align:left;'>更多元素标签，可参考 https://www.w3school.com.cn/html/html_jianjie.asp 。</p>
+
+--
+
+### HTML 样式
+
+<p style='text-align:left;'>可以通过 HTML 元素的 style 属性改变元素的表现形式，如颜色、字体、位置等等。</p>
+
+---
+
+## CSS - <b style='color:red'>C</b>ascading <b style='color:red'>S</b>tyle <b style='color:red'>S</b>heets
+
+- 脱胎于 HTML 4 引入的 style 属性。
+- 使得内容和表现形式能够分离，模块化。
+- 外部样式表一般是一个 CSS 文件。
+- 样式层层叠加定义元素最终的样式。
+
+---
+
+## 联系方式
+
+微信: dr_jan
+
+--
+
+### 提问的智慧
+
+![提问](/img/asking.jpg)
+
+<p style='text-align:left;font-size:0.6em;'>source: https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md</p>
+
+---
+
+## 实践环节
+
+1. 本地下载好 VSCode 和 Chrome，准备开发；
+2. 尝试构建一个单页面的 HTML 简历；
+3. 尝试结合样式、图片、超链接丰富你的简历。
+
+---
+
+## Q & A

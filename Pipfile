@@ -1,0 +1,12 @@
+[[source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+mkdocs = "*"
+
+[requires]
+python_version = "3.7"

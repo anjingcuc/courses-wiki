@@ -1,0 +1,22 @@
+site_name: 课程资料
+nav:
+  - "首页": "index.md"
+  - "网页设计与制作": web.md
+  - "网页设计与制作":
+    - "课程概述": "web/introduction.md"
+  - "数字媒体安全应用与实践": "apdms.md"
+
+theme:
+  name: null
+  custom_dir: "material"
+  language: "zh"
+  palette:
+    primary: "white"
+    accent: "red"
+  logo:
+    icon: "school"
+  feature:
+    tabs: true
+  font:
+    text: "Fira Sans"
+    code: "Fira Mono"

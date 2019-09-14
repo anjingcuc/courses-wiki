@@ -6,6 +6,10 @@ nav:
     - "课程概述": "web/introduction.md"
   - "数字媒体安全应用与实践": "apdms.md"
 
+# Repository
+repo_name: 'anjingcuc/courses-wiki'
+repo_url: 'https://github.com/anjingcuc/courses-wiki'
+
 theme:
   name: null
   custom_dir: "material"

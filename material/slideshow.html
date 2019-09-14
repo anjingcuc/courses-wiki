@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link rel="stylesheet" href="/assets/reveal/css/reveal.css">
-  <link rel="stylesheet" href="/assets/reveal/css/theme/Moon.css" id="theme">
+  <link rel="stylesheet" href="{{ 'assets/reveal/css/reveal.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/reveal/css/Moon.css' | url }}" id="theme">
 
   <!-- For syntax highlighting -->
-  <link rel="stylesheet" href="/assets/reveal/lib/css/Zenburn.css">
+  <link rel="stylesheet" href="{{ 'assets/reveal/lib/css/Zenburn.css' | url }}">
 
   <style type="text/css">
     @page {
@@ -27,8 +27,8 @@
     </div>
   </div>
 
-  <script src="/assets/reveal/lib/js/head.min.js"></script>
-  <script src="/assets/reveal/js/reveal.js"></script>
+  <script src="{{ 'assets/reveal/lib/js/head.min.js' | url }}"></script>
+  <script src="{{ 'assets/reveal/js/reveal.js' | url }}"></script>
 
   <script>
     function extend() {
@@ -45,43 +45,43 @@
     }
     // Optional libraries used to extend on reveal.js
     var deps = [{
-        src: '/assets/reveal/lib/js/classList.js',
+        src: "{{ 'assets/reveal/lib/js/classList.js' | url }}",
         condition: function () {
           return !document.body.classList;
         }
       },
       {
-        src: '/assets/reveal/plugin/markdown/marked.js',
+        src: "{{ 'assets/reveal/plugin/markdown/marked.js' | url }}",
         condition: function () {
           return !!document.querySelector('[data-markdown]');
         }
       },
       {
-        src: '/assets/reveal/plugin/markdown/markdown.js',
+        src: "{{ 'assets/reveal/plugin/markdown/markdown.js' | url }}",
         condition: function () {
           return !!document.querySelector('[data-markdown]');
         }
       },
       {
-        src: '/assets/reveal/plugin/highlight/highlight.js',
+        src: "{{ 'assets/reveal/plugin/highlight/highlight.js' | url }}",
         async: true,
         callback: function () {
           hljs.initHighlightingOnLoad();
         }
       },
       {
-        src: '/assets/reveal/plugin/notes/notes.js',
+        src: "{{ 'assets/reveal/plugin/notes/notes.js' | url }}",
         async: true,
         condition: function () {
           return !!document.body.classList;
         }
       },
       {
-        src: '/assets/reveal/plugin/math/math.js',
+        src: "{{ 'assets/reveal/plugin/math/math.js' | url }}",
         async: true
       },
       {
-        src: '/assets/reveal/plugin/zoom-js/zoom.js',
+        src: "{{ 'assets/reveal/plugin/zoom-js/zoom.js' | url }}",
         async: true
       }
     ];

@@ -8,11 +8,11 @@ notifications:
     on_success: never
 
 install:
-  - pip install mkdocs mkdocs-material
+  - pip install mkdocs
   - echo -e "machine github.com\n  login ${GITHUB_API_KEY}" > ~/.netrc
 
 script:
-  - sed -e 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
+  - sed -i 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
   - mkdocs gh-deploy --force --clean
 
 branches:

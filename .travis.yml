@@ -12,6 +12,7 @@ install:
   - echo -e "machine github.com\n  login ${GITHUB_API_KEY}" > ~/.netrc
 
 script:
+  - sed -e 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
   - mkdocs gh-deploy --force --clean
 
 branches:

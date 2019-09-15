@@ -1,0 +1,167 @@
+# Jinja2 模板
+
+---
+
+## 分离逻辑与显示
+
+* app.py 来实例化 WSGI 对象并处理运算逻辑；
+* templates 文件夹中的 index.html 来显示。
+
+--
+
+### app.py
+
+```python
+#!/bin/python
+# -*- coding=utf8 -*-
+from flask import Flask, render_template
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    # 调用内置的datetime.now函数获取当前时间。
+    now_datetime = datetime.now()
+
+    # 将datetime对象格式化为2018-01-01 12:12:12格式的日期字符串。
+    now_string = now_datetime.strftime('%Y-%m-%d %H:%M:%S')
+
+    # 调用flask库中的render_template函数渲染模板，并将now_string命名为变量now传给模板。
+    return render_template('index.html', now=now_string)
+
+
+if __name__ == '__main__':
+    app.run()
+```
+
+--
+
+### templates/index.html
+
+```html+jinja
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn flask the hard way</title>
+</head>
+<body>
+<h1>Learn flask the hard way</h1>
+<p>Today is {{ now }}.</p>
+</body>
+</html>
+```
+
+---
+
+## Jinja2 语句
+
+### 控制语句
+
+```jinja
+{% for x in [1, 2] %}
+{% endfor %}
+```
+
+```jinja
+{% if name %}
+{% elif %}
+{% else %}
+{% endif %}
+```
+
+--
+
+### 表达式
+
+```jinja
+{{ name }}
+```
+
+```jinja
+{{ 2+3 }}
+```
+
+```jinja
+{{ current_time() }}
+```
+
+--
+
+### flask 标准上下文
+
+* config
+* request
+* session
+* url_for
+* get_flashed_messages
+
+--
+
+### 过滤器
+
+* Upper
+* Lower
+* Trim
+* Reverse
+* Round
+* Sort
+
+--
+
+### 条件判断（测试器）
+
+* is upper
+* is lower
+* is defined
+
+---
+
+## Jinja2 模板与继承
+
+### blocks 概念
+
+* Jinja2 模板中，将一个内容区域称为一个 blocks，形如：
+
+```jinja
+{% block title %} 首页 {% endblock title %}
+```
+
+--
+
+### 基础模板
+
+* 具备独立 HTML 页面结构的都可以当成基础模板。
+
+```html
+<html>
+...
+<body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2008 by <a href="http://cuc.edu.cn/">A.J.</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>
+```
+
+--
+
+### 子模板
+
+```html+jinja
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>首页</h1>
+    <p class="important">
+      欢迎.
+    </p>
+{% endblock %}
+```
+
+---
+
+## Q & A

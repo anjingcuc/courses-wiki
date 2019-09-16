@@ -84,7 +84,7 @@
     <title>简历</title>
   </head>
   <body>
-    <h1>Dr.Jan</h1>
+    <h1>anjingcuc</h1>
     <h2>教育经历</h2>
     <p>20XX年毕业于CUC。</p>
     <h2>自我介绍</h2>
@@ -165,15 +165,7 @@
 
 ---
 
-## 联系方式
-
-微信: dr_jan
-
---
-
-### 提问的智慧
-
-![提问](/img/asking.jpg)
+## 提问的智慧
 
 <p style='text-align:left;font-size:0.6em;'>source: https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md</p>
 

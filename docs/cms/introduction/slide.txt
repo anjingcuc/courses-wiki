@@ -1,0 +1,157 @@
+# 课程概述
+
+---
+
+## 为什么学习信息安全？
+
+![v](/img/v.jpg)
+<!-- .element: style="width:85%;" -->
+
+--
+
+### 善用搜索引擎
+
+* 学习高级搜索
+* 社交网络搜索
+
+--
+
+### 避免重复劳动
+
+* 各类爬虫程序
+* 批量文档处理
+* 自动聊天机器人
+
+--
+
+### 好玩的 CTF
+
+--
+
+### PWN Everything
+
+Badbarcode 视频。
+
+--
+
+### 保护自己
+
+* 隐私保护
+* 密码设计
+
+---
+
+## 信息安全需要学什么？
+
+* [信息安全思维导图](https://github.com/SecWiki/sec-chart)
+* [知道创宇技能树](http://blog.knownsec.com/Knownsec_RD_Checklist/index.html)
+
+---
+
+## 课程主要目标
+
+* 学会使用Windows，包括装机、软件等
+* 了解计算机相关专业基本系统配置
+* 熟悉常见Windows安全相关组件
+* 了解计算机病毒原理、查杀过程
+
+---
+
+## 计算机安全与维护
+
+--
+
+* 你学计算机的？我家电脑坏了你帮我修修吧！
+
+* 你学信息安全？我家电脑特卡你帮我修修吧！
+
+--
+
+### 过去
+
+1. 制作启动盘；
+2. 准备驱动工具；
+3. 确认硬件是否有问题；
+4. 尝试维修。
+
+--
+
+### 现在
+
+1. 重启
+2. 重装
+3. 重买？？？？
+4. 装个安全官家或电脑城小哥50块。
+
+--
+
+大部分普通用户都使用Windows，本课程聚焦Windows系统。
+
+---
+
+## 计算机硬件
+
+![硬件](/img/hardware.png)
+<!-- .element: style="width:65%;" -->
+
+参考: https://www.chiphell.com
+
+---
+
+## Windows
+
+![Windows 进化史](/img/windows-evolution.png)
+<!-- .element: style="width:85%;" -->
+
+--
+
+![Windows 发展](/img/windows-history.png)
+
+--
+
+![Windows XP 已死](/img/winxp-is-dead.png)
+
+Windows 7 将在 <b style="color:red;">2020</b> 年终止支持。
+
+---
+
+## Windows版本及命名
+
+* 按家族里程碑/产品内核版本分类
+  * XP / 7 / 8 / 10
+* 按支持的CPU类型分类
+  * x86 / x64
+* 按销售渠道类型分类
+  * MSDN / OEM / RTM / VOL
+* 按产品功能类型分类
+  * 家庭版 / 专业版 /旗舰版 / 企业版
+* 按产品语言支持分类
+  * 简体中文 / 英文
+
+---
+
+## 常用软件推荐
+
+* Office
+* Acrobat / Adobe Reader / Sumatra PDF
+* VSCode / SublimeText / Atom
+* 7-Zip
+* Chrome
+* foobar2000
+* mpv
+* wox
+* everything
+* 微信 / TIM
+* CCleaner / MSE /火绒 
+
+--
+
+### 推荐站点
+
+* https://msdn.itellyou.cn
+* https://chocolatey.org/
+* https://alternativeto.net/
+
+---
+
+## Q & A

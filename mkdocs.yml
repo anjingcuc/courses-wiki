@@ -1,22 +1,24 @@
 site_name: 课程资料
 nav:
   - 首页: index.md
+  - 计算机安全与维护: cms.md
+  - 计算机安全与维护:
+      - 课程概述: cms/introduction.md
   - 网页设计与制作: web.md
-  - 网页设计与制作: 
-    - 课程概述: web/introduction.md
-    - HTML 元素详解: web/html-elements.md
+  - 网页设计与制作:
+      - 课程概述: web/introduction.md
+      - HTML 元素详解: web/html-elements.md
   - 数字媒体安全应用与实践: apdms.md
   - 数字媒体安全应用与实践:
-    - 课程概述: apdms/introduction.md
-    - Flask 简介: apdms/flask-intro.md
-    - Flask 初探: apdms/flask-getting-start.md
-    - Jinja2 模板: apdms/jinja2.md
-    - WTForms 表单: apdms/wtforms.md
-
+      - 课程概述: apdms/introduction.md
+      - Flask 简介: apdms/flask-intro.md
+      - Flask 初探: apdms/flask-getting-start.md
+      - Jinja2 模板: apdms/jinja2.md
+      - WTForms 表单: apdms/wtforms.md
 
 # Repository
-repo_name: 'anjingcuc/courses-wiki'
-repo_url: 'https://github.com/anjingcuc/courses-wiki'
+repo_name: "anjingcuc/courses-wiki"
+repo_url: "https://github.com/anjingcuc/courses-wiki"
 
 theme:
   name: null

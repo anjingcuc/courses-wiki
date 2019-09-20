@@ -95,7 +95,7 @@
 
 CSRF, <b style="color:red;">C</b>ross-<b style="color:red;">S</b>ite <b style="color:red;">R</b>equest <b style="color:red;">F</b>orgery。跨站请求伪造。
 
-![CSRF](images/2_csrf.jpg)
+![CSRF](/img/csrf.jpg)
 
 --
 

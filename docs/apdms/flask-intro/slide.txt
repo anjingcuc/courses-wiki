@@ -15,7 +15,7 @@
 
 ### Web Server
 
-![Web 服务器](img/webserver.jpg)
+![Web 服务器](/img/webserver.jpg)
 
 --
 
@@ -84,7 +84,7 @@
 
 ## 全局图
 
-![Python 全栈](img/fullstackpythonmap.jpg)
+![Python 全栈](/img/fullstackpythonmap.jpg)
 
 ---
 

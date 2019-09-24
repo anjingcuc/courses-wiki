@@ -1,0 +1,165 @@
+# CSS 样式表
+
+---
+
+## CSS - <b style='color:red'>C</b>ascading <b style='color:red'>S</b>tyle <b style='color:red'>S</b>heets
+
+- 脱胎于 HTML 4 引入的 style 属性。
+- 使得内容和表现形式能够分离，模块化。
+- 外部样式表一般是一个 CSS 文件。
+- 样式层层叠加定义元素最终的样式。
+
+---
+
+## CSS 语法
+
+CSS 通过一系列的语法规则来定义网页的外观、布局等样式。
+
+```CSS
+h1 {
+    color: red;
+    font-size: 5em;
+}
+```
+
+---
+
+## 加入样式的三种方式
+
+1. 外部样式
+2. 内部样式
+3. 内联样式
+
+<p style="text-align:left;font-size:0.6em;">示例详见本网页内容。</p>
+
+---
+
+## CSS 解析过程
+
+![渲染](/img/rendering.svg)
+
+---
+
+## CSS 选择器
+
+<p style="text-align:left;font-size:0.8em;">CSS 选择器是一条 CSS 规则中首先出现的部分，它表示这条规则将被应用到哪些/哪个 HTML 元素上，也就是这条规则**选择**了哪些/哪个 HTML 元素。选择器可以有多个：</p>
+
+```CSS
+h1 {
+  color: red;
+}
+
+h1,h2,h3 {
+  color: red;
+}
+```
+
+---
+
+## CSS 选择器类型
+
+--
+
+### 标签/class/id
+
+```CSS
+h1 {}
+.box {}
+#unique {}
+```
+
+--
+
+### 属性
+
+```CSS
+a[title] {}
+a[href="hobbies.html"] {}
+```
+
+--
+
+### 伪类或伪元素
+
+```CSS
+a:hover {}
+p::first-line {}
+```
+
+--
+
+### 组合
+
+```CSS
+article > p {}
+```
+
+---
+
+## CSS 冲突规则
+
+--
+
+### 层叠
+
+```CSS
+h1 {
+    color: red;
+}
+h1 {
+    color: blue;
+}
+```
+
+--
+
+### 优先级
+
+```CSS
+.main-heading {
+    color: red;
+}
+
+h1 {
+    color: blue;
+}
+```
+
+--
+
+### 继承
+
+```CSS
+body {
+    color: blue;
+}
+
+span {
+    color: black;
+}
+```
+
+---
+
+## CSS 盒模式
+
+--
+
+### 块状盒子 - block
+
+1. 行内方向(横向)扩充自身占据父容器的所有可用空间；
+2. 每个盒子都会自动换行；
+3. width / height 可以定义宽和高；
+4. padding / margin / border 会将其他盒子推开。
+
+--
+
+### 行内盒子 - inline
+
+1. 盒子不会换行；
+2. width / height 不起作用；
+3. padding / margin / border 不会将其他行内盒子推开。
+
+---
+
+## Q & A

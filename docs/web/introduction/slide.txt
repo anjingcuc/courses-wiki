@@ -156,15 +156,6 @@
 
 ---
 
-## CSS - <b style='color:red'>C</b>ascading <b style='color:red'>S</b>tyle <b style='color:red'>S</b>heets
-
-- 脱胎于 HTML 4 引入的 style 属性。
-- 使得内容和表现形式能够分离，模块化。
-- 外部样式表一般是一个 CSS 文件。
-- 样式层层叠加定义元素最终的样式。
-
----
-
 ## 提问的智慧
 
 <p style='text-align:left;font-size:0.6em;'>source: https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md</p>

@@ -4,6 +4,7 @@ nav:
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课程概述: cms/introduction.md
+      - Virtualbox: cms/virtualbox.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
       - 课程概述: web/introduction.md

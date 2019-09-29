@@ -24,7 +24,6 @@ title: CSS 文本样式
 * 居中页面顶级标题。
 * 为标题设置 letter-spacing 避免字间太过拥挤。
 * 为 body 文本设置合适的 letter-spacing 和 word-spacing。
-* 在 `<section>` 元素中，每个标题后的第一段文字设置 20px 的文本缩进。
 
 ### 链接
 

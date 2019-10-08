@@ -11,3 +11,5 @@ title: 计算机安全与维护
 ### [00-课程概述](cms/introduction.md)
 
 ### [01-Virtualbox](cms/virtualbox.md)
+
+### [02-Windows 安装](cms/windows-install.md)

@@ -1,0 +1,176 @@
+# Windows 进程线程
+
+---
+
+## 任务栏管理器
+
+<p style="text-align:left;">通过右键Windows任务栏，可以打开任务栏管理器，可以查看进程。</p>
+
+![任务栏管理器](/img/task-manager.png)
+
+--
+
+### 查看当前计算机状态
+
+* 查看CPU使用情况；
+* 查看内存使用情况；
+* 根据需要结束进程。
+
+--
+
+### 使用命令行tasklist
+
+<p style="text-align:left;">WIN键+R键打开运行窗口，输入`cmd`回车打开命令行窗口，输入`tasklist`来查看进程。</p>
+
+```
+tasklist
+
+映像名称                       PID 会话名              会话#       内存使用
+========================= ======== ================ =========== ============
+System Idle Process              0 Services                   0         12 K
+System                           4 Services                   0      2,928 K
+smss.exe                       264 Services                   0        732 K
+csrss.exe                      336 Services                   0      4,384 K
+wininit.exe                    384 Services                   0      3,856 K
+csrss.exe                      396 Console                    1     11,944 K
+winlogon.exe                   436 Console                    1      5,204 K
+services.exe                   480 Services                   0      6,836 K
+lsass.exe                      492 Services                   0      7,372 K
+lsm.exe                        500 Services                   0      2,800 K
+svchost.exe                    604 Services                   0      6,808 K
+VBoxService.exe                668 Services                   0      4,152 K
+svchost.exe                    720 Services                   0      5,000 K
+svchost.exe                    776 Services                   0     12,768 K
+svchost.exe                    896 Services                   0     34,848 K
+svchost.exe                    936 Services                   0     36,100 K
+svchost.exe                   1104 Services                   0      7,140 K
+svchost.exe                   1228 Services                   0     15,456 K
+spoolsv.exe                   1328 Services                   0      8,288 K
+svchost.exe                   1364 Services                   0      9,160 K
+svchost.exe                   1464 Services                   0      6,564 K
+svchost.exe                   1780 Services                   0     48,636 K
+taskhost.exe                   920 Console                    1      6,976 K
+dwm.exe                       1284 Console                    1      3,704 K
+explorer.exe                  1448 Console                    1     39,372 K
+VBoxTray.exe                  1936 Console                    1      5,832 K
+SearchIndexer.exe             2120 Services                   0     17,328 K
+wmpnetwk.exe                  2232 Services                   0      2,628 K
+wuauclt.exe                   1964 Console                    1      4,836 K
+WmiPrvSE.exe                  3684 Services                   0      4,488 K
+audiodg.exe                   2836 Services                   0     13,704 K
+Procmon.exe                   4024 Console                    1      7,684 K
+Procmon.exe                   1996 Console                    1     25,872 K
+cmd.exe                       3704 Console                    1      2,480 K
+conhost.exe                   1376 Console                    1      4,692 K
+tasklist.exe                  3728 Console                    1      4,048 K
+WmiPrvSE.exe                  1164 Services                   0      4,616 K
+```
+
+---
+
+## 进程/线程
+
+--
+
+### 进程
+
+* “可执行程序”不等于“进程”
+* “可执行程序”是静态的文件
+* “进程”则是操作系统加载可执行程序后管理的对象
+
+--
+
+### 线程
+
+* 线程包含于进程中
+  * Windows操作系统的指令执行最小调度单位
+  * 线程唯一标识（TID）
+* 同一进程内的多个线程可以实现数据共享
+  * 多线程间执行切换需要系统内核调度
+
+---
+
+## 常见进程作用 (1/4)
+
+* System 进程
+  * 进程名称：Windows 内存处理系统进程
+  * 描述：Windows页面内存管理进程，最高优先级
+* alg 进程
+  * 进程名称：应用层网关服务
+  * 描述：这是一个应用层网关服务，用于网络共享。
+* csrss进程
+  * 进程名称：客户端服务子系统（Client/Server Runtime Subsystem）
+  * 描述：用以控制Windows图形相关子系统
+
+--
+
+## 常见进程作用 (2/4)
+
+* System Idle Process进程
+  * 进程名称：Windows 空闲进程
+  * 描述：表示CPU的空闲率
+* Lsass进程
+  * 进程名称：本地安全权限服务
+  * 描述：本地安全权限服务控制Windows安全机制
+* Services进程
+  * 进程名称：Windows服务控制
+  *描述：管理Windows服务
+
+--
+
+## 常见进程作用 (3/4)
+
+* Smss进程
+  * 进程名称：会话管理子系统
+  * 描述：该进程为会话管理子系统用以初始化系统变量，调用win32子程序在登录过程中运行。
+* Spoolsv进程
+  * 进程名称：打印机服务
+  * 描述：用于使打印机就绪
+* Svchost进程
+  * 进程名称：主机服务程序
+  * 描述：标准的动态链接库主机处理服务
+
+--
+
+## 常见进程作用 (4/4)
+
+* Winlogon进程
+  * 进程名称：Windows登陆进程
+  * 描述：Windows用户的登陆程序
+* Taskmgr进程
+  * 进程名称：Windows任务管理器
+  * 描述：执行Windows的任务
+* Explorer进程
+  * 进程名称：Windows资源管理器
+  * 描述：管理Windows图形壳，包括开始菜单，任务栏，桌面和文件管理
+
+---
+
+## 进程查看进阶工具
+
+--
+
+### Process Explorer
+
+<p style="text-align:left;">找出进程打开了哪些文件、注册表项和其他对象以及已加载哪些 DLL 等信息。</p>
+
+![PE](/img/procexp.png)
+
+--
+
+### Process Monitor
+
+<p style="text-align:left;">实时监视文件系统、注册表、进程、线程和 DLL 活动。</p>
+
+![PM](/img/procmon.png)
+
+--
+
+### 实验
+
+1. 用Process Explorer查看进程加载的DLL。
+2. 用Process Monitor观察cmd.exe进入目录过程或者notepad.exe运行读取文件过程。
+
+---
+
+## Q & A

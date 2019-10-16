@@ -6,6 +6,13 @@ nav:
       - 课程概述: cms/introduction.md
       - Virtualbox: cms/virtualbox.md
       - Windows 安装: cms/windows-install.md
+      - Windows 用户账户: cms/windows-accounts.md
+      - Windows 进程线程: cms/windows-process-thread.md
+      - Windows 服务: cms/windows-service.md
+      - 恶意代码简介: cms/malware-introduction.md
+      - 恶意代码分析: cms/malware-analysis.md
+      - 数据恢复: cms/data-recovery.md
+      - 自动化与脚本: cms/cmd-scripts.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
       - 课程概述: web/introduction.md

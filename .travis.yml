@@ -13,6 +13,7 @@ install:
 
 script:
   - find docs/ -name *.txt -exec sed -i 's/\/img\//\/courses-wiki\/img\//g' {} \;
+  - find docs/ -name *.md -exec sed -i 's/\/img\//\/courses-wiki\/img\//g' {} \;
   - sed -i 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
   - mkdocs gh-deploy --force --clean
 

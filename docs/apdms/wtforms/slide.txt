@@ -4,9 +4,9 @@
 
 ## 表单
 
-* 用于收集用户输入；
-* 常见登录 / 注册框；
-* 多种元素实现多种输入。
+- 用于收集用户输入；
+- 常见登录 / 注册框；
+- 多种元素实现多种输入。
 
 --
 
@@ -14,9 +14,9 @@
 
 ```html
 <form action="/upload" method="post">
-<!-- ... -->
-<!-- form element-->
-<!-- ... -->
+  <!-- ... -->
+  <!-- form element-->
+  <!-- ... -->
 </form>
 ```
 
@@ -31,18 +31,18 @@
 <p style="text-align:left; font-size: 32px">定义一个输入元素。
 
 ```html
-<input type="text">
+<input type="text" />
 ```
 
 --
 
 ### input type
 
-* password
-* file
-* checkbox
-* radio
-* email
+- password
+- file
+- checkbox
+- radio
+- email
 
 --
 
@@ -52,8 +52,8 @@
 
 ```html
 <form action="/login" method="post">
-  <input type="text" name="username">
-  <input type="password" name="password">
+  <input type="text" name="username" />
+  <input type="password" name="password" />
 
   <button type="submit">登录</button>
 </form>
@@ -104,17 +104,21 @@ CSRF, <b style="color:red;">C</b>ross-<b style="color:red;">S</b>ite <b style="c
 <p style="text-align:left; font-size: 32px">STP, Synchronizer token pattern，服务端为每一次表单提交生成一个独一无二的 token 嵌入到表单中，实现防御。
 
 ```html
-<input type="hidden" name="csrfmiddlewaretoken" value="KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt" />
+<input
+  type="hidden"
+  name="csrfmiddlewaretoken"
+  value="KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt"
+/>
 ```
 
 ---
 
 ## WTForms
 
-* 简化表单创建过程
-* 便于实现表单验证
-* 加固表单提交安全
-* 实现同一表单复用
+- 简化表单创建过程
+- 便于实现表单验证
+- 加固表单提交安全
+- 实现同一表单复用
 
 ---
 
@@ -144,13 +148,13 @@ class LoginForm(FlaskForm):
 
 ### 模板中使用
 
-```jinja
+```html
 <form action="/signin" method="post">
-  <legend>Sign In: </legend>
+  <legend>Sign In:</legend>
   <p>{{ form.email(placeholder='yourname@email.com') }}</p>
   <p>{{ form.password }}</p>
 
-  <p><input type="submit" value="Sign In"></p>
+  <p><input type="submit" value="Sign In" /></p>
 </form>
 ```
 
@@ -158,10 +162,10 @@ class LoginForm(FlaskForm):
 
 ## 表单验证
 
-* 使用内置验证器
-  * DataRequired
-  * Email
-  * EqualTo
+- 使用内置验证器
+  - DataRequired
+  - Email
+  - EqualTo
 
 --
 
@@ -178,22 +182,22 @@ def validate_password(self, field):
 
 ## 结合 Jinja2 的宏
 
-```python
+```html
 {% macro render_field(field) %}
-  <dt>{{ field.label }}</dt>
-  <dd>{{ field(**kwargs) | safe }}
-  {% if field.errors %}
-    <ul class="error">
-      {% for error in field.errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
+<dt>{{ field.label }}</dt>
+<dd>
+  {{ field(**kwargs) | safe }} {% if field.errors %}
+  <ul class="error">
+    {% for error in field.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
   {% endif %}
-  </dd>
+</dd>
 {% endmacro %}
 ```
 
-```python
+```html
 {% from "_formhelpers.html" import render_field %}
 <form action="/register" method="post">
   <dl>

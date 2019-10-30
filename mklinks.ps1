@@ -1,3 +1,5 @@
+$root = Resolve-Path -Path .\
+
 Get-ChildItem -Path .\docs\*\* -Recurse -Directory -Force -ErrorAction SilentlyContinue |
     ForEach-Object {
         $link = Join-Path -Path $_.FullName -ChildPath "slideshow.html"
@@ -5,3 +7,5 @@ Get-ChildItem -Path .\docs\*\* -Recurse -Directory -Force -ErrorAction SilentlyC
         cd $_.FullName
         cmd /c "mklink slideshow.html ..\..\..\material\slideshow.html"
     }
+
+cd $root

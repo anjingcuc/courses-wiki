@@ -184,7 +184,7 @@ h1 {
 
 ### 文本对齐-行高
 
-<p style="text-align:left;">`line-height` 设置行高。</p>
+<p style="text-align:left;"> `line-height` 设置行高。</p>
 
 ```CSS
 line-height: 1.5
@@ -213,7 +213,7 @@ p {
 
 ## 文本样式-列表样式
 
-<p style="text-align:left;">`<ul>` / `<ol>` 元素设置 `margin` 的顶部/底部为: `16px(1em)` / `0`; 和 `padding-left: 40px(2.5em);`（在这里注意的是浏览器默认字体大小为16px）。
+<p style="text-align:left;"> `<ul>` / `<ol>` 元素设置 `margin` 的顶部/底部为: `16px(1em)` / `0`; 和 `padding-left: 40px(2.5em);`（在这里注意的是浏览器默认字体大小为16px）。
 <br> `<li>` 默认是没有设置间距的。</p>
 
 --

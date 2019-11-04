@@ -21,3 +21,5 @@ title: 网页设计与制作
 ### [05-CSS 布局](web/css-layout.md)
 
 ### [06-JavaScript 初探](web/javascript-introduction.md)
+
+### [07-JavaScript 基础](web/javascript-basic.md)

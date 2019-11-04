@@ -22,6 +22,7 @@ nav:
       - CSS 盒子样式: web/css-box.md
       - CSS 布局: web/css-layout.md
       - JavaScript 初探: web/javascript-introduction.md
+      - JavaScript 基础: web/javascript-basic.md
   - 数字媒体安全应用与实践: apdms.md
   - 数字媒体安全应用与实践:
       - 课程概述: apdms/introduction.md

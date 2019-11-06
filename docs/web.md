@@ -23,3 +23,5 @@ title: 网页设计与制作
 ### [06-JavaScript 初探](web/javascript-introduction.md)
 
 ### [07-JavaScript 基础](web/javascript-basic.md)
+
+### [08-JavaScript 结构化代码](web/javascript-blocks.md)

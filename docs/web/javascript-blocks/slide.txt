@@ -2,4 +2,495 @@
 
 ---
 
+## 基础指南
+
+<p style="text-align:left;font-size:0.8em">JavaScript 中有多种结构化的代码块，通过组合使用这些代码块我们能很好的划分和组织程序逻辑，包括：</p>
+
+- 分支
+- 循环
+- 函数
+- 事件
+
+---
+
+## 分支条件
+
+<p style="text-align:left;font-size:0.8em">通过对特定条件进行判断，JavaScript 中可以控制程序走向不同的分支运行。</p>
+
+![分支](/img/cookie-choice-small.png)<!-- .element: style="width:70%;" -->
+
+--
+
+### if ... else
+
+<p style="text-align:left;font-size:0.8em">JavaScript 中最常见的是使用 `if ... else` 语句来实现分支控制。</p>
+
+```javascript
+if (condition) {
+  // condition 为 true 或者 false
+  // 如果 condition 是 true 则执行这里
+} else {
+  // 如果 condition 是 false 则执行这里
+}
+
+if (condition) {
+  // condition 是 true 执行这里，如果 false 则什么都不做
+}
+
+if (condition) {
+  // 如果 condition 是 true 则执行这里
+} else if (anotherCondition) {
+  // 如果 condition 是 false，
+  // 同时 anotherCondition 是 true 执行这里
+} else {
+  // condition 和 anotherCondition 都是 false
+}
+```
+
+--
+
+### 真实例子
+
+<p style="text-align:left;font-size:0.8em">真实的双十一“剁手”。</p>
+
+```javascript
+let balance = 1.0;
+if (balance === 100000000.0) {
+  clearAllStudentCart(); // 如果我实现了一个"小目标"我就清空大家的购物车
+} else {
+  cry(); // 痛哭在梦醒时分
+}
+```
+
+--
+
+### 结合 HTML 的例子
+
+<p style="text-align:left;font-size:0.8em">结合 HTML 上的输入元素来使用分支条件做出响应。</p>
+
+```html
+<label for="profession">选择你的英雄: </label>
+<select id="profession">
+  <option value="">--下拉选择--</option>
+  <option value="gangplank">船长</option>
+  <option value="leesin">盲僧</option>
+  <option value="galio">加里奥</option>
+  <option value="xayah">霞</option>
+  <option value="thresh">锤石</option>
+</select>
+
+<p></p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```javascript
+let select = document.querySelector("select");
+let para = document.querySelector("p");
+
+select.addEventListener("change", setHero);
+
+function setHero() {
+  let choice = select.value;
+
+  if (choice === "gangplank") {
+    para.textContent =
+      "诡计多端、心狠手辣的普朗克是被废黜的强盗之王，他令人恐惧的名号广达远至。他一度是港口城市比尔吉沃特的统治者。虽然现在他的威权已经不再，但人们相信这只会让他变得更加可怖。普朗克若是知道有人要从他手中抢走比尔吉沃特，必然会大肆血洗这座城市。而如今有了火枪、弯刀，还有一桶桶的火药，他决心要夺回自己失去的东西。";
+  } else if (choice === "leesin") {
+    para.textContent =
+      "李青是艾欧尼亚古老武术的大师，讲原则、重信义的他能将神龙之灵的精粹运用自如，助他面对任何挑战。虽然他多年前便已双目失明，但这位武僧依然献出自己的全部力量，用生命捍卫家园，抵御任何胆敢打破这里神圣均衡的人。所有因他安静冥想的举动而掉以轻心的敌人都将品尝他燃烧的拳头和炽烈的回旋踢。";
+  } else if (choice === "galio") {
+    para.textContent =
+      "光彩熠熠的德玛西亚城外，石巨像加里奥始终如一地守望着。他被创造出来是为了抵挡来犯的法师，但却经常要一动不动地矗立数十年，只有当强大的魔法力量出现时，他才会激活。而只要加里奥活动起来，他便会充分利用每一刻，品味荡气回肠的战斗和来之不易的守护人民的荣耀。可惜，他的胜利永远都喜忧参半，因为消灭魔法的同时，也消灭了他活跃力量的源泉。每一次胜利都会使他再次进入不知世事的休眠。";
+  } else if (choice === "xayah") {
+    para.textContent =
+      "身为瓦斯塔亚的志士，霞要掀起一场革命来拯救她的族群。她身法敏捷又慧心独具，凭借锋芒逼人的羽刃，扫除任何异己。霞与她的灵魂伴侣洛并肩作战，共同守护他们日渐衰落的部族，同时韬光养晦，希望终有一天能率领全族重夺昔日荣光。";
+  } else if (choice === "thresh") {
+    para.textContent =
+      "暴虐又狡猾的锤石是一个来自暗影岛的亡灵，野心勃勃、不知疲倦。他曾经是无数奥秘的看守，在一种超越生死的力量下骨肉瓦解，而现在他则使用自己独创的钻心痛苦缓慢地折磨并击溃其他人，以此作为自己存在下去的手段。被他迫害的人需要承受远超死亡的痛苦，因为锤石会让他们的灵魂也饱尝剧痛，将他们的灵魂囚禁在自己的灯笼中，经受永世的折磨。";
+  } else {
+    para.textContent = "";
+  }
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 比较运算符
+
+<p style="text-align:left;font-size:0.8em">上面两个例子都使用了 `if ... else` 语句，一般在分支条件中，常常使用我们上节课讲到的比较运算符来表示分支条件。详见[JavaScript 基础](../javascript-basic)的比较运算符部分。</p>
+
+--
+
+### 分支嵌套
+
+<p style="text-align:left;font-size:0.8em">大部分高级编程语言中都支持分支的嵌套，也就是分支里面还有分支，JavaScript 也是如此。</p>
+
+```javascript
+if (choice === "leesin") {
+  if (player === "Tian") {
+    para.textContent = "战斗力爆表";
+  } else {
+    para.textContent = "玩玩得了";
+  }
+}
+```
+
+--
+
+### 逻辑运算符
+
+<p style="text-align:left;font-size:0.8em">除了使用一个包含`比较运算符`的`条件表达式`来作为分支条件，还可以使用`逻辑运算符`来组合多个`条件表达式`作为分支条件。<p>
+
+| 逻辑运算符   | 作用                                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| `&&`         | 逻辑与; 使得并列两个或者更多的表达式成为可能，只有当这些表达式每一个都返回 true 时，整个表达式才会返回 true |
+| &#124;&#124; | 逻辑或; 当两个或者更多表达式当中的任何一个返回 true 则整个表达式将会返回 true.                              |
+| `!`          | 逻辑非; 对一个布尔值取反, 非 true 返回 false,非 false 返回 true.                                            |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 逻辑运算符示例
+
+```javascript
+let boyLoveGirl = true;
+let girlLoveBoy = false;
+
+if (boyLoveGirl && girlLoveBoy) {
+  console.log("真爱");
+} else if (boyLoveGirl || girlLoveBoy) {
+  console.log("备胎");
+} else {
+  console.log("路人");
+}
+
+let girlHasBoyfriend = false;
+
+if (!girlHasBoyfriend) {
+  console.log("You can you up.");
+} else {
+  console.log("Bless them.");
+}
+```
+
+---
+
+## switch 语句
+
+<p style="text-align:left;font-size:0.8em">处理多种情况组合时，`if ... else` 分支可能特别多，写出来特别长；这种情况下，应该使用 `switch` 语句来实现分支。<p>
+
+```javascript
+switch (expression) {
+  case choice1:
+    // code for choice1
+    break;
+  case choice2:
+    // code for choice2
+    break;
+
+  // more choices
+
+  default:
+  // code for default
+}
+```
+
+--
+
+### switch 示例
+
+<p style="text-align:left;font-size:0.8em">本节开头的例子可以用 `switch` 改造成更合理的结构。<p>
+
+```javascript
+function setHero() {
+  let choice = select.value;
+
+  switch (choice) {
+    case "gangplank":
+      para.textContent =
+        "诡计多端、心狠手辣的普朗克是被废黜的强盗之王，他令人恐惧的名号广达远至。他一度是港口城市比尔吉沃特的统治者。虽然现在他的威权已经不再，但人们相信这只会让他变得更加可怖。普朗克若是知道有人要从他手中抢走比尔吉沃特，必然会大肆血洗这座城市。而如今有了火枪、弯刀，还有一桶桶的火药，他决心要夺回自己失去的东西。";
+      break;
+    case "leesin":
+      para.textContent =
+        "李青是艾欧尼亚古老武术的大师，讲原则、重信义的他能将神龙之灵的精粹运用自如，助他面对任何挑战。虽然他多年前便已双目失明，但这位武僧依然献出自己的全部力量，用生命捍卫家园，抵御任何胆敢打破这里神圣均衡的人。所有因他安静冥想的举动而掉以轻心的敌人都将品尝他燃烧的拳头和炽烈的回旋踢。";
+      break;
+    case "galio":
+      para.textContent =
+        "光彩熠熠的德玛西亚城外，石巨像加里奥始终如一地守望着。他被创造出来是为了抵挡来犯的法师，但却经常要一动不动地矗立数十年，只有当强大的魔法力量出现时，他才会激活。而只要加里奥活动起来，他便会充分利用每一刻，品味荡气回肠的战斗和来之不易的守护人民的荣耀。可惜，他的胜利永远都喜忧参半，因为消灭魔法的同时，也消灭了他活跃力量的源泉。每一次胜利都会使他再次进入不知世事的休眠。";
+      break;
+    case "xayah":
+      para.textContent =
+        "身为瓦斯塔亚的志士，霞要掀起一场革命来拯救她的族群。她身法敏捷又慧心独具，凭借锋芒逼人的羽刃，扫除任何异己。霞与她的灵魂伴侣洛并肩作战，共同守护他们日渐衰落的部族，同时韬光养晦，希望终有一天能率领全族重夺昔日荣光。";
+      break;
+    case "thresh":
+      para.textContent =
+        "暴虐又狡猾的锤石是一个来自暗影岛的亡灵，野心勃勃、不知疲倦。他曾经是无数奥秘的看守，在一种超越生死的力量下骨肉瓦解，而现在他则使用自己独创的钻心痛苦缓慢地折磨并击溃其他人，以此作为自己存在下去的手段。被他迫害的人需要承受远超死亡的痛苦，因为锤石会让他们的灵魂也饱尝剧痛，将他们的灵魂囚禁在自己的灯笼中，经受永世的折磨。";
+      break;
+    default:
+      para.textContent = "";
+  }
+}
+```
+
+---
+
+## 三元/条件运算符
+
+<p style="text-align:left;font-size:0.8em">三元/条件运算符是一种简化的分支条件形式，可以很方便的根据条件给变量赋不同值。<p>
+
+```javascript
+(condition) ? code for true : code for false
+```
+
+--
+
+### 三元/条件运算符示例
+
+```html
+<label for="gender">选择你的性别: </label>
+<select id="gender">
+  <option value="male">男</option>
+  <option value="female">女</option>
+</select>
+
+<p></p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```javascript
+let select = document.querySelector("select");
+let para = document.querySelector("p");
+
+select.addEventListener("change", setGender);
+
+function setGender() {
+  let choice = select.value == "male" ? "男士商品" : "女士商品";
+
+  para.textContent = choice;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+---
+
+## 循环
+
+<p style="text-align:left;font-size:0.8em">循环是日常生活中很常见的状态，在程序中，我们也可以使用循环来实现一些重复的动作。<p>
+
+![循环](/img/loop_js-02-farm-cn.png)<!-- .element: style="width:70%;" -->
+
+--
+
+### 循环的形式
+
+<p style="text-align:left;font-size:0.8em">循环可以包括以下部分的一个或多个：开始条件、结束条件、迭代器，伪代码形式的循环如下：<p>
+
+```javascript
+loop(food = 0; foodNeeded = 10) {
+  if (food = foodNeeded) {
+    exit loop;
+    // 我们有足够的食物了，回家吧。
+  } else {
+    food += 2; // 花一个小时多收集两个食物。
+    // 循环将会继续执行。
+  }
+}
+```
+
+--
+
+### 循环例子-数数
+
+<p style="text-align:left;font-size:0.8em">我们知道 `console.log(1);` 这一语句可以在浏览器控制台中输出数字1，假设我们需要实现从一数到100，那么，就可以用到循环。<p>
+
+```javascript
+for (let i = 1; i <= 100; i++) {
+  console.log(i);
+}
+```
+
+--
+
+### for 语句
+
+<p style="text-align:left;font-size:0.8em">上面的例子用到了第一种 JavaScript 中常见的循环写法——`for` 语句。<p>
+
+* 关键词 `for` 后面接一个括号 `()`；
+* 括号中包含以下三个部分，并用 `;` 分隔：
+  * `初始条件`，包含循环开始时的一些初始化变量和初始操作；
+  * `循环条件`，只有满足该条件，循环才会继续执行；
+  * `最终操作`，每次循环后要执行该操作；
+* 然后紧跟括号的是 `{}` 包含每次循环要执行的代码。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### break 退出循环
+
+<p style="text-align:left;font-size:0.8em">在循环过程中，即使没有满足循环的退出条件，我们仍然可以在循环操作的过程中退出循环。比如我们看一个查找个人信息的例子。<p>
+
+```html
+<label for="name">请输入姓名: </label>
+<input id="name" type="text">
+<button>查找</button>
+
+<p></p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```javascript
+let students = ['小白:18岁，呆萌', '小红:17岁，美丽', '小明:18岁，开朗'，'小南:17岁，聪慧']
+
+const paragraph = document.querySelector('p');
+const input = document.querySelector('input');
+const button = document.querySelector('button');
+
+button.addEventListener('click', findStudent);
+
+function findStudent() {
+  let searchName = input.value;
+
+  let found = false;
+
+  for (let i = 0; i < students.length; i++) {
+    let splitStudentInfo = students.split(':');
+    let currentName = splitStudentInfo[0];
+    let info = splitStudentInfo[1];
+    if (currentName === searchName) {
+      paragraph.textContent = info;
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    paragraph.textContent = "查无此人";
+  }
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### continue 跳过循环中部分操作
+
+<p style="text-align:left;font-size:0.8em">在循环过程中，还可以使用 `continue` 来跳过本次循环的后续操作，进入下一次循环，常常在筛选过程中使用，比如显示特定性别的同学。<p>
+
+```html
+<label for="gender">选择显示的性别: </label>
+<select id="gender">
+  <option value="male">男</option>
+  <option value="female">女</option>
+</select>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```javascript
+let students = [
+  { name: "小白", gender: "female", age: 18 },
+  { name: "小明", gender: "male", age: 17 },
+  { name: "小红", gender: "female", age: 16 },
+  { name: "小北", gender: "male", age: 18 }
+];
+
+const paragraph = document.querySelector("p");
+const select = document.querySelector("select");
+
+select.addEventListener("change", filter);
+
+function filter() {
+  let gender = select.value;
+
+  for (let i = 0; i < students.length; i++) {
+    let student = students[i];
+
+    if (student.gender != gender) {
+      continue;
+    }
+
+    let para = document.createElement("p");
+    para.textContent = student.name + "，今年" + student.age + "岁";
+    document.body.appendChild(para);
+  }
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### while 与 do ... while
+
+<p style="text-align:left;font-size:0.8em">除了 `for` 循环以外还有其他常见的循环是 `while` 和 `do ... while`循环。我们将上面的查找个人信息的循环改为 while 循环。<p>
+
+```javascript
+function findStudent_while() {
+  let searchName = input.value;
+
+  let found = false;
+
+  let i = 0;   // 初始条件
+  while (i < students.length) { //  循环条件
+    let splitStudentInfo = students.split(':');
+    let currentName = splitStudentInfo[0];
+    let info = splitStudentInfo[1];
+    if (currentName === searchName) {
+      paragraph.textContent = info;
+      found = true;
+      break;
+    }
+
+    i++;      // 最终操作
+  }
+
+  if (!found) {
+    paragraph.textContent = "查无此人";
+  }
+}
+
+function findStudent_do_while() {
+  let searchName = input.value;
+
+  let found = false;
+
+  let i = 0;   // 初始条件
+  do {
+    let splitStudentInfo = students.split(':');
+    let currentName = splitStudentInfo[0];
+    let info = splitStudentInfo[1];
+    if (currentName === searchName) {
+      paragraph.textContent = info;
+      found = true;
+      break;
+    }
+
+    i++;      // 最终操作
+  } while (i < students.length) //  循环条件
+
+  if (!found) {
+    paragraph.textContent = "查无此人";
+  }
+}
+```
+
+---
+
+## 函数
+
+---
+
+## 事件
+
+---
+
 ## Q & A

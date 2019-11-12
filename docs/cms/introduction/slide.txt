@@ -4,8 +4,7 @@
 
 ## 为什么学习信息安全？
 
-![v](/img/v.jpg)
-<!-- .element: style="width:85%;" -->
+![v](/img/v.jpg)<!-- .element: style="width:85%;" -->
 
 --
 
@@ -91,8 +90,7 @@ Badbarcode 视频。
 
 ## 计算机硬件
 
-![硬件](/img/hardware.png)
-<!-- .element: style="width:65%;" -->
+![硬件](/img/hardware.png)<!-- .element: style="width:65%;" -->
 
 参考: https://www.chiphell.com
 
@@ -100,8 +98,7 @@ Badbarcode 视频。
 
 ## Windows
 
-![Windows 进化史](/img/windows-evolution.png)
-<!-- .element: style="width:85%;" -->
+![Windows 进化史](/img/windows-evolution.png)<!-- .element: style="width:85%;" -->
 
 --
 

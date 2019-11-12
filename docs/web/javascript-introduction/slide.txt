@@ -14,9 +14,7 @@
 
 <p style='text-align:left;'>通过调用应用程序接口（Application Programming Interfaces（API））实现复杂的页面功能。</p>
 
-![浏览器](/img/browser.png)
-
-<!-- .element: style="width:70%;" -->
+![浏览器](/img/browser.png)<!-- .element: style="width:70%;" -->
 
 --
 

@@ -6,6 +6,8 @@ title: Windows 组件
 
 本节主要分为三个阶段：作业回顾、视频难点分析、实验。
 
+C 语言中引入头文件需要使用 `#include <stdio.h>`
+
 ## 作业回顾
 
 上次作业的主要难点在于提交需要使用 git 并学会配置 Github 账号。
@@ -43,13 +45,13 @@ title: Windows 组件
 
 | 元素              | 语法                                                                                                           |
 | ----------------- | -------------------------------------------------------------------------------------------------------------- |
-| 表格            | `| Syntax | Description |`<br>`| ----------- | ----------- |`<br>`| Header | Title |`<br>`|Paragraph | Text |` |
+| 表格              | `| Syntax | Description |`<br>`| ----------- | ----------- |`<br>`| Header | Title |`<br>`|Paragraph | Text |` |
 | Fenced Code Block | \`\`\`<br>`{`<br>`" firstName": "John",`<br>`"lastName": "Smith",`<br>`"age": 25`<br>`}`<br>\`\`\`             |
-| 脚注          | `Here's a sentence with a footnote. [^1]`<br>`[^1]: This is the footnote.`                                     |
-| 标题 id        | `### My Great Heading {#custom-id}`                                                                            |
-| 定义列表 | `term`<br>`: definition`                                                                                       |
-| 划掉     | `~~The world is flat.~~`                                                                                       |
-| 任务列表         | `- [x] Write the press release`<br>`- [ ] Update the website`<br>`- [ ] Contact the media`                     |
+| 脚注              | `Here's a sentence with a footnote. [^1]`<br>`[^1]: This is the footnote.`                                     |
+| 标题 id           | `### My Great Heading {#custom-id}`                                                                            |
+| 定义列表          | `term`<br>`: definition`                                                                                       |
+| 划掉              | `~~The world is flat.~~`                                                                                       |
+| 任务列表          | `- [x] Write the press release`<br>`- [ ] Update the website`<br>`- [ ] Contact the media`                     |
 
 ## 视频难点分析
 
@@ -64,21 +66,21 @@ Windows 服务也是一个有同学提出来的难点，同样我们解释一下
 ## 实验
 
 1. 用户账户：界面管理用户，命令行管理用户，绕过用户登录。
-2. 进程线程：主要是使用两个工具查看进程，尤其是Process Monitor。
+2. 进程线程：主要是使用两个工具查看进程，尤其是 Process Monitor。
 3. 注册表自启动：利用注册表实现开机自动启动记事本或者自己想要启动的程序。
 
 ## 作业
 
 <b style="color:red;">请点击[作业链接](https://classroom.github.com/a/ApKvSHAu)</b>
 
-使用Process Monitor观察 homework.exe 的文件操作过程，找到对应的 jpg 文件。
+使用 Process Monitor 观察 homework.exe 的文件操作过程，找到对应的 jpg 文件。
 
 将找到的图片上传到作业仓库，并使用 Markdown 撰写实验报告。
 
 ## 附件
 
-[点击下载ProcessExplorer](ProcessExplorer.zip)
+[点击下载 ProcessExplorer](ProcessExplorer.zip)
 
-[点击下载ProcessMonitor](ProcessMonitor.zip)
+[点击下载 ProcessMonitor](ProcessMonitor.zip)
 
-[点击下载homework](homework.zip)
+[点击下载 homework](homework.zip)

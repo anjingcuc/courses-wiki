@@ -321,12 +321,12 @@ for (let i = 1; i <= 100; i++) {
 
 <p style="text-align:left;font-size:0.8em">上面的例子用到了第一种 JavaScript 中常见的循环写法——`for` 语句。<p>
 
-* 关键词 `for` 后面接一个括号 `()`；
-* 括号中包含以下三个部分，并用 `;` 分隔：
-  * `初始条件`，包含循环开始时的一些初始化变量和初始操作；
-  * `循环条件`，只有满足该条件，循环才会继续执行；
-  * `最终操作`，每次循环后要执行该操作；
-* 然后紧跟括号的是 `{}` 包含每次循环要执行的代码。
+- 关键词 `for` 后面接一个括号 `()`；
+- 括号中包含以下三个部分，并用 `;` 分隔：
+  - `初始条件`，包含循环开始时的一些初始化变量和初始操作；
+  - `循环条件`，只有满足该条件，循环才会继续执行；
+  - `最终操作`，每次循环后要执行该操作；
+- 然后紧跟括号的是 `{}` 包含每次循环要执行的代码。
 
 <!-- .element: style="font-size:70%;" -->
 
@@ -338,7 +338,7 @@ for (let i = 1; i <= 100; i++) {
 
 ```html
 <label for="name">请输入姓名: </label>
-<input id="name" type="text">
+<input id="name" type="text" />
 <button>查找</button>
 
 <p></p>
@@ -439,9 +439,10 @@ function findStudent_while() {
 
   let found = false;
 
-  let i = 0;   // 初始条件
-  while (i < students.length) { //  循环条件
-    let splitStudentInfo = students.split(':');
+  let i = 0; // 初始条件
+  while (i < students.length) {
+    //  循环条件
+    let splitStudentInfo = students.split(":");
     let currentName = splitStudentInfo[0];
     let info = splitStudentInfo[1];
     if (currentName === searchName) {
@@ -450,7 +451,7 @@ function findStudent_while() {
       break;
     }
 
-    i++;      // 最终操作
+    i++; // 最终操作
   }
 
   if (!found) {
@@ -463,9 +464,9 @@ function findStudent_do_while() {
 
   let found = false;
 
-  let i = 0;   // 初始条件
+  let i = 0; // 初始条件
   do {
-    let splitStudentInfo = students.split(':');
+    let splitStudentInfo = students.split(":");
     let currentName = splitStudentInfo[0];
     let info = splitStudentInfo[1];
     if (currentName === searchName) {
@@ -474,8 +475,8 @@ function findStudent_do_while() {
       break;
     }
 
-    i++;      // 最终操作
-  } while (i < students.length) //  循环条件
+    i++; // 最终操作
+  } while (i < students.length); //  循环条件
 
   if (!found) {
     paragraph.textContent = "查无此人";
@@ -487,9 +488,414 @@ function findStudent_do_while() {
 
 ## 函数
 
+<p style="text-align:left;font-size:0.8em">函数是一段能够被反复调用的代码块，我们可以利用函数来使得程序结构更加清洗，模块化，减少重复性的代码。<p>
+
+```javascript
+function setGameOver() {
+  // disabled 属性设置为 true 使得按钮和输入框都不能使用。
+  guessField.disabled = true;
+  guessSubmit.disabled = true;
+
+  // 新增一个重置按钮，按钮上的内容为 '开始新游戏'
+  resetButton = document.createElement("button");
+  resetButton.textContent = "开始新游戏";
+  document.body.appendChild(resetButton);
+
+  // 为重置按钮添加点击事件监听器和相应的事件处理器也就是函数resetGame
+  resetButton.addEventListener("click", resetGame);
+}
+
+function checkGuess() {
+  // 获取用户输入的内容，并用Number函数转化为数字，保存在userGuess变量中。
+  let userGuess = Number(guessField.value);
+
+  // 条件代码块，如果guessCount的值是1，那么这个条件为true，执行花括号内部代码。
+  // 否则就不执行花括号中的代码，这样来判断玩家是不是第一次猜数字。
+  if (guessCount === 1) {
+    guesses.textContent = "上次猜的数：";
+  }
+  // 将用户猜测的内容后面加上一个空格，并追加到 guesses 的文本内容中。
+  guesses.textContent += userGuess + " ";
+
+  // 用户猜对了，则输出提示信息，并调用一个结束游戏的函数。
+  if (userGuess === randomNumber) {
+    lastResult.textContent = "恭喜你！猜对了";
+    lastResult.style.backgroundColor = "green";
+    lowOrHi.textContent = "";
+    setGameOver();
+  } else if (guessCount === 10) {
+    // 用户猜了十次还没有对，则提示挂掉。
+    lastResult.textContent = "!!!GAME OVER!!!";
+    setGameOver();
+  } else {
+    // 猜错了，但还没有到十次，则提示用户数字高还是低。
+    lastResult.textContent = "你猜错了！";
+    lastResult.style.backgroundColor = "red";
+    if (userGuess < randomNumber) {
+      lowOrHi.textContent = "你猜低了！";
+    } else if (userGuess > randomNumber) {
+      lowOrHi.textContent = "你猜高了";
+    }
+  }
+
+  // 清空用户输入内容并且增加一次猜测计数器。
+  guessCount++;
+  guessField.value = "";
+  guessField.focus();
+}
+```
+
+--
+
+### 浏览器内置函数
+
+<p style="text-align:left;font-size:0.8em">浏览器以及 JavaScript 内置了一些函数来帮助提供一些常见的功能，比如我们之前用过的 `console.log()` 可以在浏览器控制台中输入一段文本，以此来观察程序的运行状态，还可以使用 `Math.random()` 来随机生成一个数字。<p>
+
+```javascript
+let name = "anjing";
+let age = 18;
+
+console.log("My name is" + name + ", " + "I'm " + age + "years old.");
+```
+
+--
+
+### 函数和方法
+
+<p style="text-align:left;font-size:0.8em">JavaScript 是一种面向对象的编程语言，每个对象内部的函数叫做这个对象的"方法"，上一页说到的 `console.log()` 实际上是 `console` 对象的 `log()` 方法，而我们第一个猜数字游戏中的 `setGameOver()` 不属于某个对象，是函数。我们将在对象一节中详细介绍。<p>
+
+--
+
+### 函数调用
+
+<p style="text-align:left;font-size:0.8em">函数可以在其他的函数里面被调用或者直接调用，或者作为某个事件触发后的处理函数调用。<p>
+
+```javascript
+function callee() {
+  alert("Call me maybe.");
+}
+
+function caller() {
+  callee();
+}
+
+caller();
+```
+
+--
+
+### 匿名函数
+
+<p style="text-align:left;font-size:0.8em">一般情况下，我们需要给每个函数起名，帮助自己或者其他合作程序员理解函数的功能并且调用，但对于部分函数比如事件触发函数来说，频繁的起名字可能特别伤脑筋，这时我们可以使用匿名函数直接省略函数名。<p>
+
+```javascript
+const btn = document.querySelector("button");
+
+btn.onclick = function() {
+  alert("你好我的朋友。");
+};
+
+// 与上面的代码实现了一样的效果
+btn.addEventListner("click", function() {
+  alert("你好我的朋友。");
+});
+```
+
+--
+
+### 函数参数
+
+<p style="text-align:left;font-size:0.8em">函数在不同的地方被调用，可能需要处理不同的数据，我们可以通过参数来将数据传递给函数。<p>
+
+```javascript
+function greeting(name, age) {
+  console.log("My name is" + name + ", " + "I'm " + age + "years old.");
+}
+
+let students = [
+  { name: "小明", age: 18 },
+  { name: "小红", age: 17 }
+];
+
+for (let i = 0; i < students.length; i++) {
+  greeting(students[i].name, students[i].age);
+}
+```
+
+--
+
+### 函数的返回值
+
+<p style="text-align:left;font-size:0.8em">函数除了能够接受不同的参数来进行处理，还能够将处理的结果返回给调用者，返回的结果叫做"返回值"。<p>
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+let c = sum(1, 2); // a + b 即 1 + 2 的结果会赋值给c
+console.log(c); // 3
+```
+
+--
+
+### 作用域
+
+<p style="text-align:left;font-size:0.8em">不论是函数还是变量都有作用域的概念，函数名和变量都只能在它们自己的作用域中起作用，这样才能避免程序混乱。<p>
+
+```html
+<script src="first.js"></script>
+<script src="second.js"></script>
+<script>
+  greeting();
+</script>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;" -->
+
+```javascript
+// first.js
+var name = "Chris";
+function greeting() {
+  alert("Hello " + name + ": welcome to our company.");
+}
+
+// second.js
+var name = "Zaptec";
+function greeting() {
+  alert("Our company is called " + name + ".");
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;" -->
+
 ---
 
 ## 事件
+
+<p style="text-align:left;font-size:0.8em">"事件"是一个专业术语，系统会在特定事情发生的时候发出某种信号，我们收到这种信号就可以对做出相应的反应。这种机制我们叫做"事件"。常见事件举例如下，详细的事件列表请参考[事件参考](https://developer.mozilla.org/zh-CN/docs/Web/Events)。<p>
+
+| 事件    | 发生的事情           |
+| ------- | -------------------- |
+| click   | 用户点击了某个元素   |
+| submit  | 用户提交了表单       |
+| resize  | 用户调整了浏览器大小 |
+| keydown | 用户按下了某个键     |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 简单示例
+
+<p style="text-align:left;font-size:0.8em">回顾我们之前点击按钮的例子。<p>
+
+```javascript
+const para = document.querySelector("p");
+
+para.addEventListener("click", updateName);
+
+function updateName() {
+  let name = prompt("输入一个新的名字：");
+  para.textContent = "玩家1：" + name;
+}
+```
+
+--
+
+### 事件的不同处理方式
+
+<p style="text-align:left;font-size:0.8em">可以用三种不同的机制来对特定事件做出响应。<p>
+
+```html
+<button onclick="doit()">点我呀</button>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;" -->
+
+```javascript
+function doit() {
+  alert("Just do it.");
+}
+
+let btn = document.querySelector("button");
+
+// 早期常见方式，支持绝大多数浏览器
+btn.onclick = doit;
+
+// 现代的方式，支持新的浏览器
+btn.addEventListener("click", doit);
+```
+
+<!-- .element: style="float:right;width:48%;padding:1%;" -->
+
+--
+
+### 事件对象参数-示例
+
+<p style="text-align:left;font-size:0.65em">事件被出发时，我们可以通过给处理函数传递一个"事件对象"作为其参数，这样可以在处理函数内部知道一些额外的信息，比如是哪个元素触发了这个事件。<p>
+
+<iframe frameborder="0" height="450" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events$samples/Hidden_example?revision=1588610" width="100%"></iframe>
+
+--
+
+### 事件对象参数-代码
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Useful event target example</title>
+    <style>
+      div {
+        background-color: red;
+        height: 100px;
+        width: 25%;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      for (var i = 1; i <= 16; i++) {
+        var myDiv = document.createElement("div");
+        document.body.appendChild(myDiv);
+      }
+      function random(number) {
+        return Math.floor(Math.random() * number);
+      }
+      function bgChange() {
+        var rndCol =
+          "rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
+        return rndCol;
+      }
+      var divs = document.querySelectorAll("div");
+      for (var i = 0; i < divs.length; i++) {
+        divs[i].onclick = function(e) {
+          e.target.style.backgroundColor = bgChange();
+        };
+      }
+    </script>
+  </body>
+</html>
+```
+
+--
+
+### 阻止默认行为
+
+<p style="text-align:left;font-size:0.65em">一些特定情况下，我们可能需要阻止默认的事件处理流程，来完成一些额外的操作。比如用户提交一个表单的时候，点击提交按钮出发了 `submit` 事件，浏览器会自动将用户填写的信息发给服务器并跳转到完成页面。但如果我们希望能再提交数据之前做一些检查，就需要阻止这个默认的行为。<p>
+
+```html
+<form>
+  <div>
+    <label for="fname">First name: </label>
+    <input id="fname" type="text" />
+  </div>
+  <div>
+    <label for="lname">Last name: </label>
+    <input id="lname" type="text" />
+  </div>
+  <div>
+    <input id="submit" type="submit" />
+  </div>
+</form>
+<p></p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;" -->
+
+```javascript
+var form = document.querySelector("form");
+var fname = document.getElementById("fname");
+var lname = document.getElementById("lname");
+var submit = document.getElementById("submit");
+var para = document.querySelector("p");
+
+form.onsubmit = function(e) {
+  if (fname.value === "" || lname.value === "") {
+    e.preventDefault();
+    para.textContent = "You need to fill in both names!";
+  }
+};
+```
+
+<!-- .element: style="float:right;width:48%;padding:1%;" -->
+
+--
+
+### 难点-事件的捕获及冒泡
+
+<iframe frameborder="0" height="500" id="frame_Hidden_video_example" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events$samples/Hidden_video_example?revision=1588610" width="100%"></iframe>
+
+--
+
+### 难点-事件的捕获及冒泡
+
+<p style="text-align:left;font-size:0.65em">这个例子的源代码可以右键[show-video-box.html](show-video-box.html)另存。关键问题在于：我们为 `video` 元素以及它的父元素 `videoBox` 都绑定了 `onclick` 事件，当你点击 `video` 的时候 `videoBox` 本身也被点击了，所以同时触发了播放和隐藏两个动作。<p>
+
+```html
+<button>Display video</button>
+
+<div class="hidden">
+  <video>
+    <source src="rabbit320.mp4" type="video/mp4">
+    <source src="rabbit320.webm" type="video/webm">
+    <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
+  </video>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;" -->
+
+```javascript
+btn.onclick = function() {
+  videoBox.setAttribute('class', 'showing');
+}
+
+videoBox.onclick = function() {
+  videoBox.setAttribute('class', 'hidden');
+};
+
+video.onclick = function() {
+  video.play();
+};
+```
+
+<!-- .element: style="float:right;width:48%;padding:1%;" -->
+
+--
+
+### 难点-事件的捕获及冒泡
+
+<p style="text-align:left;font-size:0.65em">浏览器在处理嵌套的元素上发生的事件时，经过两个主要阶段：捕获阶段，先处理父元素的事件再处理子元素的事件；冒泡阶段，先处理子元素的事件再处理父元素的事件。<p>
+
+![冒泡捕获](/img/bubbling-capturing.png)
+
+--
+
+### 难点-事件的捕获及冒泡
+
+<p style="text-align:left;font-size:0.8em">在现代浏览器中，默认情况下，所有事件处理程序都在冒泡阶段进行注册。因此，在我们当前的示例中，用户单击视频时，这个单击事件从 `<video>` 元素向外冒泡直到 `<html>` 元素。沿着这个事件冒泡线路：<p>
+
+- 它发现了 `video.onclick...` 事件处理器并且运行它，因此这个视频 `<video>` 第一次开始播放。
+- 接着它发现了（往外冒泡找到的） `videoBox.onclick...` 事件处理器并且运行它，父元素隐藏后子元素 `<video>` 也隐藏起来了。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 难点-事件的捕获及冒泡解决方案
+
+<p style="text-align:left;font-size:0.8em">使用 `stopPropagation()` 终止冒泡的过程，修复示例的问题。<p>
+
+```javascript
+video.onclick = function(e) {
+  e.stopPropagation();
+  video.play();
+};
+```
 
 ---
 

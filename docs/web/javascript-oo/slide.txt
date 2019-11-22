@@ -288,6 +288,8 @@ JavaScript 中的继承是一种基于原型的继承，要理解继承，需要
 
 在 JavaScript 中，继承关系是通过 `prototype` 来实现的，`Obejct` 构造函数实际上由非常多的[属性和方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)，但只有一部分被继承了——那些在 `prototype` 中定义的属性和方法会被继承。
 
+<!-- .element style="font-size:80%"-->
+
 ```javascript
 Person.prototype;
 
@@ -328,6 +330,8 @@ person1.farewell();
 ### 定义构造函数的最佳实践
 
 一般来说，在定义构造函数时，会将属性都直接定义在构造函数中，然后通过对构造函数的 `prototype` 属性赋予新的方法的形式来定义方法。
+
+<!-- .element style="font-size:80%"-->
 
 ```javascript
 function Person(first, last, age, gender, interests) {
@@ -375,6 +379,8 @@ Person.prototype.greeting = function() {
 
 第一件事是添加一个 Teacher 构造函数。创建的时候，利用 Person 的 call() 方法来从 Person 的构造函数中继承所有的属性。
 
+<!-- .element style="font-size:80%"-->
+
 ```javascript
 // 不合理的写法
 function Teacher(first, last, age, gender, interests, subject) {
@@ -402,6 +408,8 @@ function Teacher(first, last, age, gender, interests, subject) {
 
 完成上面的工作以后，在开发者工具中访问 Teacher.prototype 发现没有 Person.prototype 中包含的方法，所以我们要为其赋值。赋值后还要将 Teacher.prototype.constructor 修订成正确的构造函数 Teacher 。
 
+<!-- .element style="font-size:80%"-->
+
 ```javascript
 Teacher.prototype = Object.create(Person.prototype);
 
@@ -413,6 +421,8 @@ Teacher.prototype.constructor = Teacher;
 ### 修改 greeting 函数
 
 接下来就可以为 Teacher 编写新的 greeting 函数了。
+
+<!-- .element style="font-size:80%"-->
 
 ```javascript
 Teacher.prototype.greeting = function() {
@@ -454,6 +464,8 @@ Teacher.prototype.greeting = function() {
 
 你已经从 Person 中继承了一个 Teacher 类，可以开始玩耍了。
 
+<!-- .element style="font-size:80%"-->
+
 ```javascript
 var teacher1 = new Teacher(
   "An",
@@ -473,6 +485,8 @@ teacher1.subject;
 ## JSON
 
 JSON (JavaScript Object Notation) 是一种参考了 JavaScript 的对象语法的数据格式，广泛用于网络中传递数据。
+
+<!-- .element style="font-size:80%"-->
 
 ```json
 {
@@ -522,6 +536,8 @@ JSON (JavaScript Object Notation) 是一种参考了 JavaScript 的对象语法�
 
 我们将 JSON 赋值给一个变量后可以通过分析这个 JSON 的内容，动态的创建一个页面来介绍这些英雄。
 首先创建一个包含 `<section>` 元素的页面，然后在 JavaScript 中获取该元素并执行以下代码来完成英雄技能展示。
+
+<!-- .element style="font-size:80%"-->
 
 ```javascript
 function showHeroes(jsonObj) {

@@ -25,3 +25,5 @@ title: 网页设计与制作
 ### [07-JavaScript 基础](web/javascript-basic.md)
 
 ### [08-JavaScript 结构化代码](web/javascript-blocks.md)
+
+### [09-面向对象的 JavaScript](web/javascript-oo.md)

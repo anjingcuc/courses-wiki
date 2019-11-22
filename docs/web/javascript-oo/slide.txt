@@ -1,0 +1,554 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 面向对象的 JavaScript
+
+---
+
+## 对象基础
+
+JavaScript 是一种面向对象的语言，同时，在 JavaScript 中实际上所有类型都是一种对象。
+
+```javascript
+let person = {};
+
+typeof person;
+```
+
+--
+
+### 对象实例
+
+完善上面的这个对象如下。
+
+```javascript
+let person = {
+  // 属性
+  name: ["An", "Jing"],
+  age: 32,
+  gender: "male",
+  interests: ["gaming", "skiing"],
+
+  // 方法
+  bio: function() {
+    alert(
+      this.name[0] +
+        " " +
+        this.name[1] +
+        " is " +
+        this.age +
+        " years old. He likes " +
+        this.interests[0] +
+        " and " +
+        this.interests[1] +
+        "."
+    );
+  },
+  greeting: function() {
+    alert("Hi! I'm " + this.name[0] + ".");
+  }
+};
+```
+
+--
+
+### 对象成员的访问
+
+对象中的成员包括两大类，属性和方法。属性实际上就是对象中的一些变量，而方法实际上就是对象中的一些函数。访问这些成员我们一般有两种访问形式，点表示法和括号表示法，常用的是点表示法
+
+```javascript
+person.name;
+person.bio();
+
+person["name"];
+person["bio"]();
+```
+
+--
+
+### 子命名空间
+
+属性的值可以是任意类型，包括对象，也就是说某个属性的值可以是一个新的对象，这个时候我们可以把这个属性叫做一个子命名空间(namespace)来访问这个子对象内部的属性，比如：
+
+```javascript
+person = {
+  name: { first: "AN", last: "JING" }
+};
+
+person.name.first;
+person["name"]["first"];
+```
+
+--
+
+### 设置成员
+
+在对象中，我们不仅可以更新属性和方法的内容，还可以新增成员。
+
+```javascript
+person.name.first = "Steve";
+person.name.last = "Jobs";
+
+person.hairColor = "Red";
+
+person.talk = function() {
+  alert("Stay hungry. Stay foolish.");
+};
+```
+
+--
+
+## "this" 的作用
+
+在对象的方法中，如果想访问对象本身的其他属性或者方法，需要使用 "this" 这个关键词。
+
+```javascript
+person = {
+  greeting: function() {
+    alert("Hi! I\'m " + this.name + ".");
+  };
+}
+```
+
+--
+
+### 全是对象？
+
+之前我们提到，所有的数据类型都是一种对象。
+
+```javascript
+let students = "小明,小红";
+
+students.split(","); // 调用了字符串对象的 split 方法来分割字符串得到一个数组。
+
+document.querySelector("p"); // 调用了文档对象的选择元素方法来选中 p 元素。
+
+let age = 18;
+age.isNumber();
+```
+
+---
+
+## 面向对象基础
+
+面向对象是一种编程思想，大部分高级语言都支持面向对象的编程方法。对于统一类型的对象，面向对象的编程语言都需要一个模板来定义这些对象拥有哪些属性和方法，比如说，所有的 person 对象都得有名字有年龄等等，我们把这样的模板叫做类 (Class)。
+
+![类](/img/person-diagram.png)
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 类的实例化
+
+我们根据一个模板也就是类创建出一个新的对象的过程，就叫做的实例化的过程，这样我们可以根据一个叫做 Person 的 Class 实例化出非常多不同的 person，他们拥有相同的构造，但是名字等等属性又有所区别。
+
+<!-- .element style="font-size:60%"-->
+
+![实例化](/img/MDN-Graphics-instantiation-2.png)<!-- .element style="width:70%;"-->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 构建函数和对象
+
+在 JavaScript 中，没有 Class 关键字来定义一个新的类，我们直接使用构建函数或叫构造函数来初始化一个对象。
+
+```javascript
+// 一个普通函数
+function createNewPerson(name) {
+  var obj = {};
+  obj.name = name;
+  obj.greeting = function() {
+    alert("Hi! I'm " + this.name + ".");
+  };
+  return obj;
+}
+
+// 构造函数
+function Person(name) {
+  this.name = name;
+  this.greeting = function() {
+    alert("Hi! I'm " + this.name + ".");
+  };
+}
+
+let teacher = createNewPerson("anjing");
+
+let student = new Person("anjing");
+```
+
+--
+
+### 正式的构造函数
+
+我们可以根据本节开头的 person 对象写出一个完整的构造函数 Person。
+
+```javascript
+function Person(first, last, age, gender, interests) {
+  this.name = {
+    first: first,
+    last: last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+  this.bio = function() {
+    alert(
+      this.name.first +
+        " " +
+        this.name.last +
+        " is " +
+        this.age +
+        " years old. He likes " +
+        this.interests[0] +
+        " and " +
+        this.interests[1] +
+        "."
+    );
+  };
+  this.greeting = function() {
+    alert("Hi! I'm " + this.name.first + ".");
+  };
+}
+
+var person1 = new Person("An", "Jing", 32, "male", ["gaming", "skiing"]);
+```
+
+--
+
+### 另一种方便的创建对象的方法
+
+使用 Object.create() 方法可以快速的创建根据一个已经存在的对象创建一个新的对象。
+
+```javascript
+let person2 = Object.create(person1);
+```
+
+---
+
+### 一般面型对象中的继承
+
+在其他的面向对象编程语言中，类与类之间有一种关系叫做继承，比如我们人还可以按照职业细分，比如教师，那么我们可以在 Person 的基础上创建一个 Teacher 类。
+
+<!-- .element style="font-size:60%"-->
+
+![继承](/img/MDN-Graphics-inherited-3.png)<!-- .element style="width:70%;"-->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 原型链
+
+JavaScript 中的继承是一种基于原型的继承，要理解继承，需要先理解原型。每个对象都有一个原型，原型，原型又有原型，这种层层传递的关系叫做原型链。
+
+1. 构造函数有一个属性叫做 `prototype` 对应一个原型；
+2. 通过这个构造函数实例化的对象有一个属性叫做 `__proto__` 和构造函数的 `prototype` 指向同一个原型；
+3. 这个原型也有自己的 `__proto__` 属性指向它的原型。
+
+<!-- .element style="font-size:60%"-->
+
+--
+
+### 原型链示例
+
+以我们之前的 Person 构造函数为例，我们来看看它的原型链是什么样的。我们可以在浏览器开发者工具中实例化一个 person1 然后分析 `person1.__proto__` 和 `Person.prototype` 的关系，并查看这个原型的原型是谁。
+
+![原型链](/img/MDN-Graphics-person-person-object-2.png)
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 对象成员的搜索顺序
+
+对象的成员中包含了自己的所有上级原型的成员。他们按照特定的顺序向上搜索。假如我们输入 `person1.valueOf()`，那么浏览器按照以下顺序搜索：
+
+1. 首先检查 `person1` 对象是否具有可用的 `valueOf()` 方法。
+2. 如果没有，则浏览器检查 `person1` 对象的原型，即 `person1.__proto__` 或 `Person.prototype` 指向的那个原型，否具有可用的 `valueof()` 方法。
+3. 如果也没有，则浏览器检查第 2 步中的原型的原型，即 `person1.__proto__.__proto__` 或 `Person.prototype.__proto__`，实际上就是 `Object构造函数` 的 `prototype` 属性所指向的对象是否具有可用的 `valueOf()` 方法。
+4. 这里有这个方法，于是该方法被调用。
+
+<!-- .element style="font-size:60%"-->
+
+--
+
+### 利用 prototype 实现继承
+
+在 JavaScript 中，继承关系是通过 `prototype` 来实现的，`Obejct` 构造函数实际上由非常多的[属性和方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)，但只有一部分被继承了——那些在 `prototype` 中定义的属性和方法会被继承。
+
+```javascript
+Person.prototype;
+
+Object.prototype;
+```
+
+--
+
+### constructor 属性
+
+每个实例对象都要从原型中继承一个 construtor 属性，这个属性指向了构造该实例对象的构造函数。
+
+```javascript
+person1.constructor;
+
+let person2 = new person1.constructor("Bill", "Gates", 64, "male", [
+  "Money",
+  "Charity"
+]);
+```
+
+--
+
+### 修改原型
+
+右键另存[oojs-class-further-exercises.html](oojs-class-further-exercises.html)并打开开发者工具的 Console 标签，对原型进行修改并观察结果。
+
+```javascript
+Person.prototype.farewell = function() {
+  alert(this.name.first + " has left the building. Bye for now!");
+};
+
+person1.farewell();
+```
+
+--
+
+### 定义构造函数的最佳实践
+
+一般来说，在定义构造函数时，会将属性都直接定义在构造函数中，然后通过对构造函数的 `prototype` 属性赋予新的方法的形式来定义方法。
+
+```javascript
+function Person(first, last, age, gender, interests) {
+  this.name = {
+    first: first,
+    last: last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+}
+
+Person.prototype.bio = function() {
+  alert(
+    this.name.first +
+      " " +
+      this.name.last +
+      " is " +
+      this.age +
+      " years old. He likes " +
+      this.interests[0] +
+      " and " +
+      this.interests[1] +
+      "."
+  );
+};
+
+Person.prototype.greeting = function() {
+  alert("Hi! I'm " + this.name.first + ".");
+};
+```
+
+---
+
+## 继承实例
+
+我们在学习了原型的基础上，来利用原型的机制，实现我们前面提到的 Teacher 这个构造函数。右键另存[oojs-class-inheritance-start.html](oojs-class-inheritance-start.html)开始实验。
+
+1. Teacher 类包含一个新的属性，subject——这个属性包含了教师教授的学科。
+2. 一个新的 greeting()方法，这个方法听起来比原来的更加正式一些。
+
+--
+
+### 定义 Teacher 构造函数
+
+第一件事是添加一个 Teacher 构造函数。创建的时候，利用 Person 的 call() 方法来从 Person 的构造函数中继承所有的属性。
+
+```javascript
+// 不合理的写法
+function Teacher(first, last, age, gender, interests, subject) {
+  this.name = {
+    first,
+    last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+  this.subject = subject;
+}
+
+// 正确的写法，使用了 Person.call() 这个方法来将所有 Person 中的属性继承过来。
+function Teacher(first, last, age, gender, interests, subject) {
+  Person.call(this, first, last, age, gender, interests);
+
+  this.subject = subject;
+}
+```
+
+--
+
+### 设置 Teacher 的原型和 constructor
+
+完成上面的工作以后，在开发者工具中访问 Teacher.prototype 发现没有 Person.prototype 中包含的方法，所以我们要为其赋值。赋值后还要将 Teacher.prototype.constructor 修订成正确的构造函数 Teacher 。
+
+```javascript
+Teacher.prototype = Object.create(Person.prototype);
+
+Teacher.prototype.constructor = Teacher;
+```
+
+--
+
+### 修改 greeting 函数
+
+接下来就可以为 Teacher 编写新的 greeting 函数了。
+
+```javascript
+Teacher.prototype.greeting = function() {
+  var prefix;
+
+  if (
+    this.gender === "male" ||
+    this.gender === "Male" ||
+    this.gender === "m" ||
+    this.gender === "M"
+  ) {
+    prefix = "Mr.";
+  } else if (
+    this.gender === "female" ||
+    this.gender === "Female" ||
+    this.gender === "f" ||
+    this.gender === "F"
+  ) {
+    prefix = "Mrs.";
+  } else {
+    prefix = "Mx.";
+  }
+
+  alert(
+    "Hello. My name is " +
+      prefix +
+      " " +
+      this.name.last +
+      ", and I teach " +
+      this.subject +
+      "."
+  );
+};
+```
+
+--
+
+### 恭喜
+
+你已经从 Person 中继承了一个 Teacher 类，可以开始玩耍了。
+
+```javascript
+var teacher1 = new Teacher(
+  "An",
+  "Jing",
+  32,
+  "male",
+  ["gaming", "skiing"],
+  "computer"
+);
+
+teacher1.greeting();
+teacher1.subject;
+```
+
+---
+
+## JSON
+
+JSON (JavaScript Object Notation) 是一种参考了 JavaScript 的对象语法的数据格式，广泛用于网络中传递数据。
+
+```json
+{
+  "game": "英雄联盟",
+  "company": "Riot Games",
+  "heroes": [
+    {
+      "name": "加里奥",
+      "skills": ["巨像重击", "战争罡风", "杜朗护盾", "正义冲拳", "英雄登场"]
+    },
+    {
+      "name": "霞",
+      "skills": ["锐切", "双刃", "致死羽衣", "倒钩", "暴风羽刃"]
+    },
+    {
+      "name": "锤石",
+      "skills": [
+        "地狱诅咒",
+        "死亡判决",
+        "魂引之灯",
+        "厄运钟摆",
+        "幽冥监牢",
+        "集魂者"
+      ]
+    },
+    {
+      "name": "盲僧",
+      "skills": [
+        "疾风骤雨",
+        "天音波/回音击",
+        "金钟罩/铁布衫",
+        "天雷破/摧筋断骨",
+        "猛龙摆尾"
+      ]
+    },
+    {
+      "name": "船长",
+      "skills": ["烈火审讯", "枪火谈判", "坏血病疗法", "火药桶", "加农炮幕"]
+    }
+  ]
+}
+```
+
+--
+
+### 通过 JSON 动态的构建页面
+
+我们将 JSON 赋值给一个变量后可以通过分析这个 JSON 的内容，动态的创建一个页面来介绍这些英雄。
+首先创建一个包含 `<section>` 元素的页面，然后在 JavaScript 中获取该元素并执行以下代码来完成英雄技能展示。
+
+```javascript
+function showHeroes(jsonObj) {
+  var heroes = jsonObj["heroes"];
+
+  for (i = 0; i < heroes.length; i++) {
+    var myArticle = document.createElement("article");
+    var myH2 = document.createElement("h2");
+    var myList = document.createElement("ul");
+
+    myH2.textContent = heroes[i].name;
+
+    var skills = heroes[i].skills;
+    for (j = 0; j < skills.length; j++) {
+      var listItem = document.createElement("li");
+      listItem.textContent = skills[j];
+      myList.appendChild(listItem);
+    }
+
+    myArticle.appendChild(myH2);
+    myArticle.appendChild(myList);
+
+    section.appendChild(myArticle);
+  }
+}
+```
+
+---
+
+## Q & A

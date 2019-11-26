@@ -17,6 +17,7 @@ nav:
       - JavaScript 基础: web/javascript-basic.md
       - JavaScript 结构化代码: web/javascript-blocks.md
       - 面向对象的 JavaScript: web/javascript-oo.md
+      - JavaScript API: web/javascript-API.md
   - 数字媒体安全应用与实践: apdms.md
   - 数字媒体安全应用与实践:
       - 课程概述: apdms/introduction.md

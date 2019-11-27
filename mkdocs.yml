@@ -4,7 +4,9 @@ nav:
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md
-      - 实验一: cms/windows-install-homework.md
+      - Windows 安装实验: cms/windows-install-homework.md
+      - Windows 组件实验: cms/windows-components.md
+      - 恶意代码实验: cms/malware.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
       - 课程概述: web/introduction.md

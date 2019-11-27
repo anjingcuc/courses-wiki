@@ -8,6 +8,8 @@ title: 计算机安全与维护
 
 ## [00-课件](cms/slides.md)
 
-## [01-实验一](cms/windows-install-homework.md)
+## [01-Windows 安装实验](cms/windows-install-homework.md)
 
-## [02-实验二](cms/windows-components.md)
+## [02-Windows 组件实验](cms/windows-components.md)
+
+## [03-恶意软件实验](cms/malware.md)

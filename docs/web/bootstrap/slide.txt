@@ -1,0 +1,380 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Bootstrap
+
+---
+
+## Bootstrap 简介
+
+Bootstrap 是 Twitter 的两位设计师发起的一个开源项目，2011 年开始在 GitHub 上开源，现在有一个专门的团队维护，非常流行。它是一款响应式、移动优先的前端组件库。
+
+- [官方文档](https://getbootstrap.com/)
+
+---
+
+## 现在开始
+
+直接使用以下模板来作为你的页面，即可在其中尽情地使用 Bootstrap 提供的各种样式和功能。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+```
+
+--
+
+### viewport
+
+`viewport` 这一 `meta` 元素是用来使得页面宽度与设备宽度一致而设计的，其中 `width=device-width` 使得页面宽度与设备宽度一致，`initial-scale=1` 使得默认元素缩放为 100%，`shrink-to-fit=no` 是为了兼容 Safari 9 设计的。
+
+--
+
+### 安全机制
+
+在 `link` 与 `script` 中引入了两个属性来提升页面加载的安全性，`integrity` 是文件的校验和用来避免引入被人篡改过的文件，`crossorigin` 则是跨站安全领域的设置，此处不做展开。
+
+---
+
+## 布局
+
+Bootstrap 的布局包括一个 container 一个网格系统以及一些实用的布局组件。
+
+--
+
+### Container
+
+Container 是指在 Bootstrap 的 CSS 中预定义的一系列的类，它们确定了内容区域的宽度。
+
+|                  | Extra small<br><576px | Small<br>≥576px | Medium<br>≥768px | Large<br>≥992px | Extra large<br>≥1200px |
+| ---------------- | --------------------- | --------------- | ---------------- | --------------- | ---------------------- |
+| .container       | 100%                  | 540px           | 720px            | 960px           | 1140px                 |
+| .container-sm    | 100%                  | 540px           | 720px            | 960px           | 1140px                 |
+| .container-md    | 100%                  | 100%            | 720px            | 960px           | 1140px                 |
+| .container-lg    | 100%                  | 100%            | 100%             | 960px           | 1140px                 |
+| .container-xl    | 100%                  | 100%            | 100%             | 100%            | 1140px                 |
+| .container-fluid | 100%                  | 100%            | 100%             | 100%            | 100%                   |
+
+<!-- .element style="font-size:60%"-->
+
+--
+
+### Grid
+
+在 CSS 布局中我们提到了网格系统，Bootstrap 基于 flexbox 实现了一套非常完善的网格系统。行的 `class` 为 `row`，列则根据宽度 `col`/`col-sm`/`col-md`/`col-lg`/`col-xl` 几种，每行宽度为 12 列。
+
+```html
+<div class="container">
+  <div class="row">
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## 内容样式
+
+Bootstrap 为大部分元素都定义了对应的 class 来使得页面元素样式美观一致。
+
+--
+
+### 标题
+
+`<h1>` 到 `<h6>` 在引入 Bootstrap 样式以后都有统一的样式，如果你想让正文的段落看起来像不同的标题级别，可以为它们添加 class 为 `h1` 到 `h6`。
+
+```html
+<p class="h1">h1. Bootstrap heading</p>
+<p class="h2">h2. Bootstrap heading</p>
+<p class="h3">h3. Bootstrap heading</p>
+<p class="h4">h4. Bootstrap heading</p>
+<p class="h5">h5. Bootstrap heading</p>
+<p class="h6">h6. Bootstrap heading</p>
+```
+
+--
+
+### 文本/图像/表格等
+
+针对文本/图像/表格等元素，Bootstrap 提供了大量的样式来帮助调整对齐、颜色等样式。
+
+- [文本](https://getbootstrap.com/docs/4.4/utilities/text/)
+- [图像](https://getbootstrap.com/docs/4.4/content/images/)
+- [表格](https://getbootstrap.com/docs/4.4/content/tables/)
+
+<!-- .element style="font-size:60%"-->
+
+---
+
+## 组件
+
+Bootstrap 非常重要的一个优势就是提供了大量视觉设计统一，响应式的组件，能够帮助用户快速的构建自己的站点。
+
+--
+
+### 导航-介绍
+
+Navbar 是 Bootstrap 提供的响应式导航栏，它可以固定在页面上方，为用户提供快速在页面中跳转的能力，且能够在屏幕宽度变化是折叠展开。
+
+- 导航栏使用 .navbar 以及 .navbar-expand{-sm|-md|-lg|-xl} 来包裹。
+- 导航栏的宽度默认是占满整个页面宽度的，类似 .container-fluid 。
+- 导航栏应该使用 `<nav>` 元素进行创建。
+
+<!-- .element style="font-size:60%"-->
+
+--
+
+### 导航-实例
+
+```html
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+          >Disabled</a
+        >
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+```
+
+--
+
+### 导航-样式
+
+导航栏可以引用不同的颜色样式，常见的有三种。
+
+```html
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+</nav>
+
+<nav class="navbar navbar-dark bg-primary">
+  <!-- Navbar content -->
+</nav>
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <!-- Navbar content -->
+</nav>
+```
+
+--
+
+### 表单
+
+Bootstrap 对表单也进行了风格统一和美化，提供了表单布局以及样式方面的类来帮助用户快速构建现在风格的页面。
+
+--
+
+### 表单-实例
+
+```html
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+    />
+    <small id="emailHelp" class="form-text text-muted"
+      >We'll never share your email with anyone else.</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" />
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+--
+
+### 表单-布局
+
+可以使用 .form-group 来对表单进行分组，然后结合表单网格 .form-row 来实现各种自定义的布局。
+
+```html
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="1234 Main St"
+    />
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress2"
+      placeholder="Apartment, studio, or floor"
+    />
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" />
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck" />
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+```
+
+---
+
+## 总结
+
+Bootstrap 提供了一套完成自洽且能够快速开发的前端库，我们可以在其[官网](https://getbootstrap.com/)找到相关资料并开发自己的站点。
+
+---
+
+## Q & A

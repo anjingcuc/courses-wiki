@@ -7,6 +7,7 @@ nav:
       - Windows 安装实验: cms/windows-install-homework.md
       - Windows 组件实验: cms/windows-components.md
       - 恶意代码实验: cms/malware.md
+      - 数据恢复实验: cms/data-recovery-homework.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
       - 作业: web/homework.md

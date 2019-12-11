@@ -1,0 +1,138 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# jQuery
+
+---
+
+## 说明
+
+内容主要参考 [w3school 中文](https://www.w3school.com.cn/jquery/)
+
+--
+
+### 简介
+
+jQuery 是 JavaScript 中流传最广的函数库。jQuery 旨在简化 JavaScript 的编写，使得程序更加简洁。不过……实际上没有到预期的效果，慢慢地被现代的框架替代了。但现在的大多数网站还是离不开这个库，所以你会常常看到它。
+
+```html
+<!-- 从官网下载 jquery.js 并引用。-->
+<script type="text/javascript" src="jquery.js"></script>
+
+<!-- 从 CDN 服务器直接加载 jQuery。-->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"
+></script>
+```
+
+---
+
+## jQuery 基本语法
+
+jQuery 将对 HTML 元素的相关操作统一成了一种模式，`$(selector).action()` 也就是 `$(元素的CSS选择器).动作()` 这种模式。
+
+```js
+// 原生 JavaScript
+window.onload = function() {};
+
+// jQuery
+$(document).ready(function() {});
+
+// 原生 JavaScript
+button.onclick = function() {};
+
+// jQuery
+$("button").click(function() {});
+```
+
+---
+
+## 页面元素操作
+
+之前的 JavaScript 的实例都可以使用 jQuery 进行改写，使得代码更简短。
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>购物车</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>购物车</h1>
+
+    <div>
+      <label for="item">输入你想买的物品:</label>
+      <input type="text" name="item" id="item" />
+      <button>添加</button>
+    </div>
+
+    <ul></ul>
+
+    <script>
+      const list = document.querySelector("ul");
+      const input = document.querySelector("input");
+      const button = document.querySelector("button");
+
+      button.onclick = function() {
+        let myItem = input.value;
+        input.value = "";
+
+        const listItem = document.createElement("li");
+        const listText = document.createElement("span");
+        const listBtn = document.createElement("button");
+
+        listItem.appendChild(listText);
+        listText.textContent = myItem;
+        listItem.appendChild(listBtn);
+        listBtn.textContent = "删除";
+        list.appendChild(listItem);
+
+        listBtn.onclick = function(e) {
+          list.removeChild(listItem);
+        };
+
+        input.focus();
+      };
+    </script>
+  </body>
+</html>
+```
+
+---
+
+### AJAX
+
+同样，jQuery 将 AJAX 的一系列 API 进行了改写，使其更易于理解。我们可以改写之前 [API](javascript-API.md) 一节的 demo 。
+
+---
+
+## 实例分析
+
+我们一起来分析简历模板。
+
+---
+
+## Q & A

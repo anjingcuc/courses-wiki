@@ -22,6 +22,7 @@ nav:
       - 面向对象的 JavaScript: web/javascript-oo.md
       - JavaScript API: web/javascript-API.md
       - Bootstrap: web/bootstrap.md
+      - jQuery: web/jQuery.md
   - 数字媒体安全应用与实践: apdms.md
   - 数字媒体安全应用与实践:
       - 课程概述: apdms/introduction.md

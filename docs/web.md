@@ -33,3 +33,5 @@ title: 网页设计与制作
 ### [10-JavaScript API](web/javascript-API.md)
 
 ### [11-Bootstrap](web/bootstrap.md)
+
+### [12-jQuery](web/jQuery.md)

@@ -1,0 +1,35 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# JavaScript 库与框架
+
+---
+
+## jQuery
+
+--
+
+### 简介
+
+jQuery 是 JavaScript 中流传最广的函数库。jQuery 旨在简化 JavaScript 的编写，使得程序更加简洁。不过……实际上没有到预期的效果，慢慢地被现代的框架替代了。
+
+--
+
+### 
+
+---
+
+## vuejs
+
+---
+
+## Q & A

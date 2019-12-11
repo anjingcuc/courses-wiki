@@ -13,3 +13,5 @@ title: 计算机安全与维护
 ## [02-Windows 组件实验](cms/windows-components.md)
 
 ## [03-恶意软件实验](cms/malware.md)
+
+## [04-数据恢复实验](cms/data-recovery-homework.md)

@@ -9,6 +9,7 @@ nav:
       - 恶意代码实验: cms/malware.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
+      - 作业: web/homework.md
       - 课程概述: web/introduction.md
       - HTML 元素详解: web/html-elements.md
       - CSS 样式表: web/css-first-steps.md

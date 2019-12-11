@@ -16,3 +16,5 @@ title: WinDBG 脚本
 - [Windows 7 SDK 在线安装程序](https://www.microsoft.com/en-us/download/details.aspx?id=8279)
 
 请修改 32 位 Windows 7 下的计算器的显示过程，使得当你输入的内容是特定数字如 "999" 的时候通过调试器脚本自动改为 "666"。
+
+校园网查看视频请点击[此处](http://202.205.24.235/ftp/WinDBG/WinDBG.mp4)。

@@ -6,5 +6,4 @@ title: 课程简介
 
 <iframe src="./slideshow.html" frameborder=0 width=800 height=450></iframe>
 
-
 作业请发到 anjingcuc@vip.qq.com 文件名为 `学号-姓名.zip`。

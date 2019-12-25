@@ -15,3 +15,5 @@ title: 计算机安全与维护
 ## [03-恶意软件实验](cms/malware.md)
 
 ## [04-数据恢复实验](cms/data-recovery-homework.md)
+
+## [05-脚本实验](cms/scripts-homework.md)

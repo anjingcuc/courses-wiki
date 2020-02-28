@@ -1,0 +1,49 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 课程概述
+
+---
+
+## Python 简介
+
+Python 是一种易于学习又功能强大的编程语言。它提供了高效的高级数据结构，还能简单有效地面向对象编程。Python 优雅的语法和动态类型，以及解释型语言的本质，使它成为多数平台上写脚本和快速开发应用的理想语言。
+
+source: https://docs.python.org/zh-cn/3/tutorial/index.html
+
+---
+
+## 实例-人生苦短，快用 Python
+
+详见下方的实例代码。
+
+---
+
+## 课程结构
+
+![课程结构](/img/course.svg)
+
+---
+
+## 学习建议
+
+1. 多练习、多练习、多练习。
+2. 看直播时尝试同步操作。
+3. 结合多款线上视频。
+4. 微信积极提问。
+
+参考：https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md
+
+---
+
+## Q & A

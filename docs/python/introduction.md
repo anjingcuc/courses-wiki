@@ -49,7 +49,7 @@ t.goto(0, -50)
 t.pendown()
 t.color('red', 'red')
 
-# 花心型并填充
+# 画心型并填充
 t.begin_fill()
 t.left(140)
 t.forward(111.65)

@@ -11,3 +11,5 @@ title: Python 程序设计
 <a href='/img/course.svg'>![课程结构](/img/course.svg)</a>
 
 [00-课程概述](python/introduction.md)
+
+[01-基本概念](python/basic.md)

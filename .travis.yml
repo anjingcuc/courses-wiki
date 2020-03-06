@@ -9,6 +9,7 @@ notifications:
 
 install:
   - pip install mkdocs
+  - pip install pygments
   - echo -e "machine github.com\n  login ${GITHUB_API_KEY}" > ~/.netrc
 
 script:

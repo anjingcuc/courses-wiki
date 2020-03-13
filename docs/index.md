@@ -30,4 +30,3 @@ title: 首页
 
 课程资料请点击[数字媒体安全应用与实践](apdms.md).
 
-## [临时代课](substitute.md)

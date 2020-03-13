@@ -80,190 +80,48 @@ t.hideturtle()
 w.mainloop()
 ```
 
-## 日常数据处理
+## 网络爬虫
 
-二维码识别学号实现自动考勤打卡，学期结束后使用 pandas 自动生成 excel 来统计大家的出勤情况。
-
-### 考勤部分
+批量获取喜欢的图片。
 
 ```python
-from datetime import datetime, date
-import os, sys
-import atexit
-import argparse
-
-import pyzbar.pyzbar as pyzbar
-import numpy as np
-import cv2
+from pathlib import Path
 import time
 
-folder_path = os.path.dirname(os.path.realpath(__file__))
+import requests
+from bs4 import BeautifulSoup
 
+# 添加 HTTP header 通过修改User-Agent字段伪装成Chrome
+headers = {
+    'User-Agent':
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
+}
 
-def get_students(course):
-  students = dict()
-  with open(folder_path + '/students@' + course, encoding='utf-8') as fptr:
-    student_file = fptr.read().split('\n')
-    for student in student_file:
-      if student.strip():
-        student = student.split(',')
-        # 0 => student_id, 1 => name
-        students[student[0]] = {'id': student[0], 'name': student[1]}
-  return students
+r = requests.get("https://www.zhihu.com/question/33797069/answer/961097566",
+                 headers=headers)
 
+# 用 BeautifulSoup 解析返回的 HTML
+soup = BeautifulSoup(r.text, 'html.parser')
 
-def speak(msg):
-  if sys.platform == 'darwin':
-    os.system('say ' + msg)
-  elif sys.platform == 'linux':
-    # sudo apt-get install espeak
-    os.system('espeak -vzh ' + msg)
-  elif sys.platform == 'win32':
-    import win32com.client
+images = soup.select('div.RichContent-inner > span > figure > img')
 
-    speaker = win32com.client.Dispatch('SAPI.SpVoice')
-    speaker.Speak(msg)
-  else:
-    print(sys.platform)
+image_number = 1
+for image in images:
+    image_url = image['data-actualsrc']
 
+    image_path = str(image_number) + Path(image_url).suffix
 
-def show_absence(s, a):
-  absences = list(set(s.keys()).difference(set(a.keys())))
-  print('==============================================')
-  print('未签到统计：', len(absences), '人')
-  for member in absences:
-    print(s[member]['name'])
+    # 下载文件
+    r = requests.get(image_url)
+    f = open(image_path, 'wb')
+    for chunk in r.iter_content(chunk_size=512 * 1024):
+        if chunk:  # filter out keep-alive new chunks
+            f.write(chunk)
+    f.close()
 
-
-def exit_shell(s, a):
-  show_absence(s, a)
-
-
-if __name__ == '__main__':
-  parser = argparse.ArgumentParser(description='签到系统:')
-  parser.add_argument('course', metavar='course', type=str, help='课程名称')
-
-  args = parser.parse_args()
-
-  print('欢迎来到 SecCUC 课程签到系统')
-  print('==============================================')
-  print('请扫描虚拟校园卡二维码')
-
-  if not os.path.exists(folder_path + '/students@' + args.course):
-    print('输入错误，没有该课程学生资料。')
-    exit()
-
-  attendance = {}
-  students = get_students(args.course)
-
-  atexit.register(exit_shell, students, attendance)
-
-  # 使用笔记本内置摄像头直接使用参数 int: 0
-  # 使用 IP 摄像头等远程设备使用 str: 'http://username:password@ip:port'
-  cap = cv2.VideoCapture(0)
-  cap.set(3, 640)
-  cap.set(4, 480)
-
-  already_scanned = []
-  with open(folder_path + './signin.log', 'a', encoding='utf-8') as logger:
-    while (cap.isOpened()):
-      ret, frame = cap.read()
-      im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-      decodedObjects = pyzbar.decode(im)
-      for decodedObject in decodedObjects:
-        student_id = decodedObject.data.decode('utf8')
-        if not student_id.isnumeric() and student_id.startswith('http'):
-          student_id = student_id.split('/')[-1]
-        print(student_id)
-        if student_id in already_scanned:
-          continue
-
-        log_string = '课程：{}, 学号：{}, 姓名：{}, 时间：{}\n'
-        checkin_time = datetime.now()
-        if student_id in students.keys():
-          student = students[student_id]
-
-          attendance[student_id] = str(checkin_time)
-          logger.write(
-              log_string.format(args.course, student['id'], student['name'],
-                                str(checkin_time)))
-          logger.flush()
-          speak('{},签到成功!'.format(student['name']))
-
-          already_scanned.append(student_id)
-        else:
-          logger.write(
-              log_string.format(args.course, student_id, str(checkin_time)))
-          logger.flush()
-          speak('查无此人!')
-
-      cv2.imshow('scaner', frame)
-      key = cv2.waitKey(1)
-      if key & 0xFF == ord('q'):
-        break
-
-    cap.release()
-    cv2.destroyAllWindows()
-```
-
-### 表格生成部分
-
-```python
-from datetime import datetime, date
-import os
-import pandas as pd
-import numpy as np
-
-def get_records(path):
-  records = {}
-  with open(path, 'r', encoding='utf8') as f:
-    for line in f.readlines():
-      student_id = line.split(',')[2].strip()
-      student_id = student_id.split('：')[1]
-
-      dt = line.split(',')[3].strip()
-      dt = dt.split('：')[1]
-      record = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S.%f')
-
-      if student_id not in records.keys():
-        records[student_id] = {}
-
-      records[student_id][record.strftime('%Y-%m-%d')] = record.strftime('%H:%M:%S')
-  return records
-
-
-def get_students(path):
-  students = []
-  with open(path, 'r', encoding='utf8') as f:
-    for line in f.readlines():
-      student_id = line.split(',')[1].strip()
-      students.append(student_id)
-  return students
-
-
-r = get_records('signin.log')
-
-for course in ['python']:
-  students = get_students('students@'+course)
-
-  date_list = []
-  for student in students:
-    if student not in r.keys():
-      continue
-
-    date_list = list(set(date_list+list(r[student].keys())))
-
-  df = pd.DataFrame(index=students, columns=date_list)
-
-  for student in students:
-    if student not in r.keys():
-      continue
-
-    for k, v in r[student].items():
-      df.loc[student, k] = 1
-
-  df.to_excel(course+'.xlsx')
+    # 有礼貌地间隔5秒获取一个文件
+    time.sleep(5)
+    image_number += 1
 ```
 
 ## 人工智能-换脸

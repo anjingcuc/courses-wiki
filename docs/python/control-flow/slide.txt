@@ -86,7 +86,7 @@ else:
 
 ### while
 
-![循环示例](/img/Python_while_loop.gif)<!-- .element: style="width:45%;" -->
+![循环示例](/img/python_while_loop.gif)<!-- .element: style="width:45%;" -->
 
 <!-- .element style="text-align:center"-->
 

@@ -8,7 +8,7 @@ title: Python 程序设计
 
 课程结构如下：
 
-<a href='/img/course.svg'>![课程结构](/img/course.svg)</a>
+<a href='/img/python.png'>![课程结构](/img/python.png)</a>
 
 [00-课程概述](python/introduction.md)
 

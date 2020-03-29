@@ -17,3 +17,5 @@ title: Python 程序设计
 [02-数据类型基础](python/data-types-basic.md)
 
 [03-程序结构](python/control-flow.md)
+
+[04-数据类型进阶](python/data-types-advanced.md)

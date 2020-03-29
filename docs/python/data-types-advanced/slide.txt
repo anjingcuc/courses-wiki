@@ -1,0 +1,247 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 数据类型进阶
+
+---
+
+## 列表进阶操作
+
+列表除了之前学习的取值、拼接、切片等运算符或方法，还有不少更加复杂的运算符或方法来对其进行增加、更新、查找及其他操作。
+
+下面我们按照这四个方面来介绍：
+
+--
+
+### 增加内容
+
+| 操作                  | 返回值                           |
+| --------------------- | -------------------------------- |
+| L \*= n               | 序列重放 n 次并存入原序列        |
+| L.append(x)           | 将 x 元素追加到序列尾部          |
+| L.extend(t) 或 L += t | 列表 L 后面追加 t 输出的所有项   |
+| L.insert(i, x)        | 在列表 L 的索引 i 处插入新元素 x |
+
+<!-- .element: style="font-size:70%;" -->
+
+_注： t 必须为可迭代对象 (iterable)_
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 更新内容
+
+| 操作                            | 返回值                                               |
+| ------------------------------- | ---------------------------------------------------- |
+| L[start:end] = t                | 将 start:end 部分替换成 t                            |
+| L[start:end:step] = t           | 按步长 step 替换 start:end 为 t                      |
+| L.sort(key=None, reverse=False) | 对列表 L 进行排序，可以通过 key 来指定确定顺序的键值 |
+| L.reverse()                     | 反转列表 L 中元素的顺序                              |
+
+<!-- .element: style="font-size:70%;" -->
+
+_注： t 必须为可迭代对象 (iterable)_
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 查找内容
+
+| 操作                       | 返回值                                                        |
+| -------------------------- | ------------------------------------------------------------- |
+| x in L                     | True / False                                                  |
+| x not in L                 | True / False                                                  |
+| min(L)                     | 返回 L 中的最小值                                             |
+| max(L)                     | 返回 L 中的最大值                                             |
+| L.index(x[, start[, end]]) | 返回 x 在 L 中的第一次出现的下标，可指定查找范围 [start, end) |
+| L.count(x)                 | 返回 x 在 L 中出现的次数                                      |
+
+<!-- .element: style="font-size:70%;" -->
+
+_注： t 必须为可迭代对象 (iterable)_
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 其他操作
+
+| 操作                                  | 返回值                                              |
+| ------------------------------------- | --------------------------------------------------- |
+| L.copy() 或 L[:]                      | 返回一个与 L 内容完全一致的新列表                   |
+| L \* n                                | 列表 L 重复 n 次                                    |
+| L.pop([i])                            | 删除索引为 i 的元素并返回，无参数时返回最后一个元素 |
+| L.remove(x)                           | 删除第一个值为 x 的元素                             |
+| L.clear()                             | 删除列表 L 中所有元素，即 L 变成一个空列表          |
+| del L[start:end] 或 l[start:end] = [] | 删除相应部分                                        |
+| del L[start:end:step]                 | 删除相应部分                                        |
+| del L                                 | 删除列表 L                                          |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 元组 - tuple
+
+元组是不可变序列，同样可以用多种方式构建元组：
+
+- 使用一对圆括号来表示空元组: ()。
+- 使用一个后缀的逗号来表示单元组: a, 或 (a,)。
+- 使用以逗号分隔的多个项: a, b, c or (a, b, c)。
+- 使用内置的 tuple(): tuple() 或 tuple(iterable)。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 元组的操作
+
+元组和列表实际上都属于一种`序列`，它支持那些没有改变自身内容的`序列`操作。但元组作为不可变`序列`，支持 `hash()` 函数得到一个哈希值。
+
+| 操作    | 返回值         |
+| ------- | -------------- |
+| hash(s) | 返回整形哈希值 |
+
+<!-- .element: style="font-size:70%;" -->
+
+_注：可变序列不能作为字典的 key，不可变序列可以，也就是元组可以作为字典的 key_
+
+<!-- .element: style="font-size:50%;" -->
+
+---
+
+## range
+
+range 也属于不可变的`序列`，最大的作用就是用来 `for` 循环，好处是占用空间小。
+
+_注：与列表不同，并不实际分配空间，而是生成一个可迭代的 range 对象_
+
+<!-- .element: style="font-size:50%;" -->
+
+---
+
+## 几种序列支持的操作对比
+
+| 操作类型 | 列表 | 元组                                     | range                                    |
+| -------- | ---- | ---------------------------------------- | ---------------------------------------- |
+| 取值     | 支持 | 支持                                     | 支持                                     |
+| 切片     | 支持 | 支持                                     | 支持                                     |
+| 查找     | 支持 | 不支持                                   | 不支持                                   |
+| 增加     | 支持 | 不支持                                   | 不支持                                   |
+| 更新     | 支持 | 不支持                                   | 不支持                                   |
+| 删除     | 支持 | 部分支持<sup style="color:red;">\*</sup> | 部分支持<sup style="color:red;">\*</sup> |
+
+<!-- .element: style="font-size:70%;" -->
+
+_注: 部分支持是指它们都可以整体删除（变量会变成 `undefined`），不支持删除其中部分内容。_
+
+<!-- .element: style="font-size:50%;" -->
+
+---
+
+## 集合
+
+集合中无序地保存不重复的元素，也就是说集合中的元素是唯一的，经常用来去重。
+
+- set() 来创建空集合。
+- 集合也可以用大括号符号，但是 `{}` 是一个空的字典，而不是集合。
+
+<!-- .element: style="font-size:70%;" -->
+
+_注: 为了避免代码出现歧义，建议大家都用 set() 来表示集合。_
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 集合操作
+
+| 操作                                          | 返回值                              |
+| --------------------------------------------- | ----------------------------------- |
+| x in s                                        | x 存在于集合 s 中                   |
+| x not in s                                    | x 不在集合 s 中                     |
+| len(s)                                        | 集合元素个数                        |
+| s.isdisjoint(t)                               | s t 是否有交集，交集为空则返回 True |
+| union(\*others) 或 set &#124; other           | 并集                                |
+| intersection(\*others) 或 set & other         | 交集                                |
+| difference(\*others) 或 set - other           | 差集                                |
+| symmetric_difference(\*others) 或 set ^ other | 对称差集                            |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 字典 - dict
+
+一个可哈希的值映射到任意值。
+
+```python
+teacher = {
+  # 'key': 'value',
+  'name': 'anjing',
+  'age': 18
+}
+
+a = dict(one=1, two=2, three=3)
+b = {'one': 1, 'two': 2, 'three': 3}
+c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))
+d = dict([('two', 2), ('one', 1), ('three', 3)])
+e = dict({'three': 3, 'one': 1, 'two': 2})
+```
+
+--
+
+### 字典操作 (1/3)
+
+| 操作                  | 返回值                                                      |
+| --------------------- | ----------------------------------------------------------- |
+| len(d)                | 键值对的数目                                                |
+| d[key]                | 获得键 key 对应的值 value                                   |
+| d.get(key[, default]) | 获取某个 key 的值，如果不存在 key 则返回 None               |
+| d.pop(key[, default]) | 获取某个 key 的值并从字典中删除，如果不存在 key 则返回 None |
+| d.popitem()           | 取出最后进入的一对键值对                                    |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字典操作 (2/3)
+
+| 操作           | 返回值                           |
+| -------------- | -------------------------------- |
+| d[key] = value | 修改/新建一个 key , 并复制 value |
+| del d[key]     | 删除某个 key 以及对应 value      |
+| key in d       | d 存在键 key                     |
+| key not in d   | d 不存在键 key                   |
+| d.clear()      | 清空 d 剩下一个空字典            |
+| d.copy()       | 复制一个 d                       |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字典操作 (3/3)
+
+| 操作       | 返回值                                      |
+| ---------- | ------------------------------------------- |
+| d.keys()   | 返回一个可迭代的对象, 包含所有 key          |
+| d.items()  | 返回一个可迭代的 view, 包含所有(key, value) |
+| d.values() | 返回一个可迭代的 view, 包含所有 value       |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## Q & A

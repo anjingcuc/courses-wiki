@@ -9,6 +9,7 @@ nav:
       - 程序结构: python/control-flow.md
       - 数据类型进阶: python/data-types-advanced.md
       - 输入输出: python/io-file.md
+      - 文件与目录: python/file-and-path.md
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md

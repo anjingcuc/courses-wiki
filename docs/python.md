@@ -21,3 +21,5 @@ title: Python 程序设计
 [04-数据类型进阶](python/data-types-advanced.md)
 
 [05-输入输出](python/io-file.md)
+
+[06-文件与目录](python/file-and-path.md)

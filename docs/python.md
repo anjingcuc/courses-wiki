@@ -23,3 +23,5 @@ title: Python 程序设计
 [05-输入输出](python/io-file.md)
 
 [06-文件与目录](python/file-and-path.md)
+
+[07-模块与包](python/lib-and-packages.md)

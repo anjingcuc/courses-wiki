@@ -10,6 +10,7 @@ nav:
       - 数据类型进阶: python/data-types-advanced.md
       - 输入输出: python/io-file.md
       - 文件与目录: python/file-and-path.md
+      - 模块与包: python/lib-and-packages.md
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md

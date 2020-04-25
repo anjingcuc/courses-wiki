@@ -23,6 +23,22 @@ Python 中可以将函数、变量以及类等放在一个文件中，并在另�
 
 --
 
+### 模块导入的 N 种写法
+
+在 `main.py` 中，第一种会将 `calc` 作为`main.py`的全局变量，且通过`module.itemname` 类似的语法来访问其中的函数和变量；第二种方式类似于第一种，但此时将使用 `cc` 作为模块名字；第三种方式则会直接将模块中的函数或者变量导入 `main.py` 中，而不导入 `calc` ，此时在 `main.py` 中访问 `calc` 会报错，但可以直接使用 `sum` 等函数，而不用加 `calc.` ；第四种方式和第三种类似，但会导入所有内容，不推荐。
+
+```python
+import calc           # 导入名为 calc 的模块
+
+import calc as cc     # 导入 calc 模块并命名为 cc
+
+from calc import sum  # 从 calc 模块中单独导入 sum
+
+from calc import *    # 导入所有符号，可以不用 modname. 直接使用
+```
+
+--
+
 ### 模块的符号表
 
 一个模块可以包含直接执行的语句以及函数定义，还可以包含一些变量，用于初始化这个模块。这些内容在第一次 `import` 被执行。 开发者可以通过 `dir(modname)` 来得到一个模块的符号列表，然后可以通过 `modname.itemname` 来访问这个符号（函数或者变量）。
@@ -82,22 +98,6 @@ Python 系统相关参数和函数。
 | sys.argv      | 列表，包含元素为字符串，存储了被空格分割的参数 |
 
 <!-- .element: style="font-size:70%;" -->
-
---
-
-### 模块导入的 N 种写法
-
-在 `main.py` 中，第一种会将 `calc` 作为`main.py`的全局变量，且通过`module.itemname` 类似的语法来访问其中的函数和变量；第二种方式类似于第一种，但此时将使用 `cc` 作为模块名字；第三种方式则会直接将模块中的函数或者变量导入 `main.py` 中，而不导入 `calc` ，此时在 `main.py` 中访问 `calc` 会报错，但可以直接使用 `sum` 等函数，而不用加 `calc.` ；第四种方式和第三种类似，但会导入所有内容，不推荐。
-
-```python
-import calc           # 导入名为 calc 的模块
-
-import calc as cc     # 导入 calc 模块并命名为 cc
-
-from calc import sum  # 从 calc 模块中单独导入 sum
-
-from calc import *    # 导入所有符号，可以不用 modname. 直接使用
-```
 
 ---
 

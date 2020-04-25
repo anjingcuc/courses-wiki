@@ -214,25 +214,38 @@ os 的 path 子模块是基于字符串来对路径实现操作的，并没有�
 
 ### 常见目录操作
 
-| 操作                                                    | 功能                                                         |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `Path.glob('**/*')`                                     | 返回一个包含子目录/文件的 list(**包含**子目录中的内容)       |
-| `Path.iterdir()`                                        | 一个包含子目录/文件的生成器(**包含**子目录中的内容)          |
-| `Path.mkdir(mode=0o777, parents=False, exist_ok=False)` | 新建文件夹                                                   |
-| `Path.stat()`                                           | 获取文件信息                                                 |
-| `Path.unlink(missing_ok=False)`                         | 删除文件                                                     |
-| `Path.rmdir()`                                          | 删除目录                                                     |
-| `Path.rename(target)`                                   | 重命名目录或者文件，相当于剪切并黏贴                         |
-| `/`                                                     | 运算符，自动拼接路径，兼容多种操作系统                       |
-| `Path.is_dir()`                                         | 路径是否为目录                                               |
-| `Path.is_file()`                                        | 路径是否为文件                                               |
-| `Path.exsists()`                                        | 目录/文件是否存在                                            |
-| `PurePath.parent`                                       | 获取一个路径中目录的部分                                     |
-| `PurePath.name`                                         | 获取一个路径中文件名的部分                                   |
-| `PurePath.stem`                                         | 直接获取文件名的部分，不包含后缀，`os.path` 模块没有此类方法 |
-| `PurePath.suffix`                                       | 将一个路径分割成扩展名和非扩展名两个部分                     |
+| 操作                                                    | 功能                                                                                |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Path.glob('**/*')`                                     | 返回包含子目录/文件的生成器<sup style='color:red'>\*</sup> (**包含**子目录中的内容) |
+| `Path.iterdir()`                                        | 返回包含子目录/文件的生成器<sup style='color:red'>\*</sup> (**包含**子目录中的内容) |
+| `Path.mkdir(mode=0o777, parents=False, exist_ok=False)` | 新建文件夹                                                                          |
+| `Path.stat()`                                           | 获取文件信息                                                                        |
+| `Path.unlink(missing_ok=False)`                         | 删除文件                                                                            |
+| `Path.rmdir()`                                          | 删除目录                                                                            |
+| `Path.rename(target)`                                   | 重命名目录或者文件，相当于剪切并黏贴                                                |
+
+<!-- .element: style="font-size:60%;" -->
+
+_<sup style='color:red'>\*</sup>: 生成器 generator , 可用 `for x in <generator>:` 的语法进行遍历，或用列表推导式 `[x for x in <generator>]` 展开成列表；后续课程会介绍。_
 
 <!-- .element: style="font-size:50%;" -->
+
+--
+
+### 路径相关处理
+
+| 操作              | 功能                                               |
+| ----------------- | -------------------------------------------------- |
+| `/`               | 运算符，自动拼接路径，兼容多种操作系统             |
+| `Path.is_dir()`   | 路径是否为目录                                     |
+| `Path.is_file()`  | 路径是否为文件                                     |
+| `Path.exsists()`  | 目录/文件是否存在                                  |
+| `PurePath.parent` | 获取一个路径中目录的部分                           |
+| `PurePath.name`   | 获取一个路径中文件名的部分                         |
+| `PurePath.stem`   | 获取不包含后缀的文件名，`os.path` 模块没有此类方法 |
+| `PurePath.suffix` | 将一个路径分割成扩展名和非扩展名两个部分           |
+
+<!-- .element: style="font-size:60%;" -->
 
 --
 

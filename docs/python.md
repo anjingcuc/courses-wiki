@@ -25,3 +25,5 @@ title: Python 程序设计
 [06-文件与目录](python/file-and-path.md)
 
 [07-模块与包](python/lib-and-packages.md)
+
+[08-第三方库与虚拟环境](python/virtualenvs.md)

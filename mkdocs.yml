@@ -12,6 +12,7 @@ nav:
       - 文件与目录: python/file-and-path.md
       - 模块与包: python/lib-and-packages.md
       - 第三方库与虚拟环境: python/virtualenvs.md
+      - 函数进阶与类: python/class.md
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md

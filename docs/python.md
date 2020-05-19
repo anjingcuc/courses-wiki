@@ -27,3 +27,5 @@ title: Python 程序设计
 [07-模块与包](python/lib-and-packages.md)
 
 [08-第三方库与虚拟环境](python/virtualenvs.md)
+
+[09-函数进阶与类](python/class.md)

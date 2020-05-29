@@ -1,0 +1,243 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Web 开发
+
+---
+
+## Web 基本概念
+
+![Web 服务器](/img/browser_web.jpg)<!-- .element: style="width:100%;border-style: none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 流程概览
+
+![页面获取流程](/img/MDN_get_a_page.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## Web 发展演变
+
+1. 静态网页
+2. 动态网页
+   1. Web 框架
+   2. AJAX (<b style="color:red;">A</b>synchronous <b style="color:red;">J</b>avaScript <b style="color:red;">a</b>nd <b style="color:red;">X</b>ML)
+3. 前端框架
+
+--
+
+### 静态网页
+
+一般是指直接以文件形式存放在服务器上的 HTML / CSS / JavaScript 组成的网页。这类页面生成后不会根据用户交互发生内容上的改变。
+
+--
+
+### 动态网页 (1/4)
+
+CGI - <b style="color:red;">C</b>ommon <b style="color:red;">G</b>ateway <b style="color:red;">I</b>nterface
+
+- 通用网关接口；
+- 定义了一系列环境变量和接口；
+- 实现与其他程序对接，提供更加复杂的在线服务。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 动态网页 (2/4)
+
+FastCGI 在 CGI 基础上进行了优化：
+
+- 一个守护进程处理多个请求；
+- 现在的主流对接方式；
+- 支持绝大多数服务器；
+- 支持绝大多数语言。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 动态网页 (3/4)
+
+WSGI - <b style="color:red;">W</b>eb <b style="color:red;">S</b>erver <b style="color:red;">G</b>ateway <b style="color:red;">I</b>nterface，Python 实现的与 Web 服务器通信的接口标准。
+
+- 专门为 Python 提供的接口；
+- 可使用 FastCGI 与 Web 服务器通信；
+- 多种实现: uWSGI / Gunicorn。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 动态网页 (4/4)
+
+Web 开发者们提出一种新的更新网页内容的方法，叫做 Asynchronous JavaScript and XML，简称 AJAX。虽然发展到今天已经不光请求 XML 还会请求 JSON 等其他格式文件，但是 AJAX 这个名字还是保存了下来。
+
+![AJAX](/img/moderne-web-site-architechture.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 前端框架
+
+移动终端爆发使得现在前端已经不能满足于仅仅浏览器看看网页，还进一步希望能提供一个完整的应用体验给用户，于是出现了前端框架 Vue / React / Angular 等。
+
+--
+
+### 参考代码
+
+https://github.com/CUCSec/simple-flask-website
+
+---
+
+## Flask 简介
+
+Flask 是一个微型 Web 框架，它基于 Werkzeug / Jinja2 开发。Werkzeug 实现 WSGI 和一个简单的 Web 服务器，Jinja2 模板引擎渲染 HTML 模板。
+
+![全栈](/img/fullstackpythonmap.jpg)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 环境配置
+
+```bash
+# 创建一个叫 blog 的文件夹作为项目文件夹并进入
+mkdir blog
+cd blog
+
+# 初始化虚拟环境
+pipenv install
+
+# 这里改一下 Pipfile 里面的源
+# https://mirrors.aliyun.com/pypi/simple
+
+# 安装 flask
+pipenv install flask
+
+# 激活虚拟环境
+pipenv shell
+```
+
+--
+
+### 最小化 Flask 应用
+
+```python
+# app.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+--
+
+### 装饰器
+
+Python 中有一种特殊的函数叫做装饰器。装饰器本质上是函数，返回值为另一个函数，通常使用 @wrapper 语法形式来进行函数变换。
+
+```python
+# 看看是周几
+def check_time_alarm(f):
+    import datetime
+
+    def wrapper():
+        d = datetime.datetime.now()
+        weekday = d.weekday()
+        if weekday < 6:
+            f()
+        return
+
+    return wrapper
+
+###########################################
+
+# 闹钟
+def alarm():
+    print('Good good study, Day day up!')
+
+my_alarm = check_time_alarm(alarm)
+my_alarm()
+
+##################上下二选一#################
+
+# 闹钟
+@check_time_alarm
+def alarm():
+    print('Good good study, Day day up!')
+
+alarm()
+
+###########################################
+```
+
+--
+
+### 运行 flask
+
+```bash
+# 方法 0
+python app.py
+
+# 方法 1
+# Windows 下 cmd 里面应该是 set FLASK_APP=app.py
+# Windows 下 powershell 里面应该是 $env:FLASK_APP = "hello.py"
+export FLASK_APP=app.py
+flask run
+
+# 方法 2
+# Windows 下 cmd 里面应该是 set FLASK_APP=app.py
+# Windows 下 powershell 里面应该是 $env:FLASK_APP = "hello.py"
+export FLASK_APP=app.py
+python -m flask run
+```
+
+---
+
+## MVC 设计模式
+
+MVC - <b style="color:red;">M</b>odel <b style="color:red;">V</b>iew <b style="color:red;">C</b>ontroller 是一种软件设计模式，常常在各种 Web 框架中看到。
+
+![MVC](/img/mvc.png)<!-- .element: style="width:100%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### Flask 与 MVC
+
+Flask 是一个微型框架，实际上并不符合 MVC 模型，但是可以通过插件进行扩展，比如 flask-sqlalchemy 来实现数据库的对接和 model 的功能；还有人会提 Flask 是 MTV 模型的框架，但这种说法接受度不高。
+
+---
+
+### 代码示例分析
+
+https://github.com/anjingcuc/learn_flask_the_hard_way
+
+---
+
+## Q & A

@@ -29,3 +29,5 @@ title: Python 程序设计
 [08-第三方库与虚拟环境](python/virtualenvs.md)
 
 [09-函数进阶与类](python/class.md)
+
+[10-Web 开发](python/web.md)

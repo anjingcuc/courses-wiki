@@ -1,0 +1,31 @@
+# Web 爬虫
+
+---
+
+## 静态网站抓取
+
+可回顾 [06-实验\_网页抓取](http://sec.cuc.edu.cn/anjing/wiki/python/06-crawler.html)
+
+示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/tree/master/static_website_spider)
+
+---
+
+## 动态网站
+
+--
+
+### JavaScript 渲染
+
+采用 Web 自动化测试工具 selenium 搭配各类浏览器驱动工具来实现 JavaScript 渲染。
+
+[selenium 官方文档](https://selenium-python.readthedocs.io/)
+
+示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_selenium.py)
+
+--
+
+### API 数据获取
+
+通过对目标网站的通信过程进行分析，来找到其前端和后端的数据交互接口（一般称为 HTTP API）来实现数据获取。
+
+示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_api.py)

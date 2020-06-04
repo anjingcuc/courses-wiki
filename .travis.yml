@@ -13,10 +13,10 @@ install:
   - echo -e "machine github.com\n  login ${GITHUB_API_KEY}" > ~/.netrc
 
 script:
-  - find docs/ -name *.txt -exec sed -i 's/\/img\//\/courses-wiki\/img\//g' {} \;
+  - find docs/ -type f -name "*.txt" -print0 | xargs -0 sed -i 's/\/img\//\/courses-wiki\/img\//g' {};
   # 批量将 txt 都改为 xml 避免 gitee pages 不支持访问
   - find docs/ -type f -name "*.txt" -print0 | xargs -0 rename "s/\.txt/\.xml/g" {};
-  - find docs/ -name *.md -exec sed -i 's/\/img\//\/courses-wiki\/img\//g' {} \;
+  - find docs/ -type f -name "*.md" -print0 | xargs -0 sed -i 's/\/img\//\/courses-wiki\/img\//g' {};
   - sed -i 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
   - mkdocs gh-deploy --force --clean
 

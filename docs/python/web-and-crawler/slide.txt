@@ -1,31 +1,125 @@
-# Web 爬虫
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Web 分析<br/>与爬虫
 
 ---
 
-## 静态网站抓取
+## 爬虫的逻辑
 
-可回顾 [06-实验\_网页抓取](http://sec.cuc.edu.cn/anjing/wiki/python/06-crawler.html)
+![爬虫](/img/python_web.jpg)<!-- .element: style="width:100%;border-style:none" -->
 
-示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/tree/master/static_website_spider)
-
----
-
-## 动态网站
+<!-- .element style="text-align:center"-->
 
 --
 
-### JavaScript 渲染
+## 关键词-对抗
 
-采用 Web 自动化测试工具 selenium 搭配各类浏览器驱动工具来实现 JavaScript 渲染。
+这三节课程的核心关键词就是对抗，针对不同的 Web 开发技术或者说网站架构，爬虫开发者可以从不同的途径来获取到有效数据：
+
+1. 页面分析
+   1. 静态网站抓取。
+   2. 动态网站抓取。
+2. 数据接口
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 页面分析
+
+页面分析的基本思想是：利用浏览器开发者工具对 HTML 页面结构进行分析，需要用到 CSS 选择器 / XPath（XML 路径语言）来取得页面内容。
+
+参考课件下方的 CSS 选择器表。
+
+--
+
+### 静态页面及后端渲染的动态页面
+
+这两种页面都可以直接获取到页面的完整 HTML 内容，通过开发者工具进行分析。
+
+示例详见 [CUCSec/spiders 的静态网站](https://github.com/CUCSec/spiders/tree/master/static_website_spider)
+
+--
+
+### 前端渲染的动态页面
+
+无法直接获取完整 HTML，需要下载完整的 JavaScript 后在浏览器环境中运行代码，获取到完整的内容。这种情况需要采用 Web 自动化测试工具 selenium 搭配各类浏览器驱动工具来实现 JavaScript 渲染。
 
 [selenium 官方文档](https://selenium-python.readthedocs.io/)
 
-示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_selenium.py)
+示例详见 [CUCSec/spiders 的 selenium 部分](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_selenium.py)
+
+---
+
+## 数据接口
+
+利用浏览器开发者工具 / 抓包器等工具对页面加载过程中的 HTTP 请求/响应进行分析，直接获取 HTTP 接口的返回数据。
 
 --
 
-### API 数据获取
+### JSON
 
-通过对目标网站的通信过程进行分析，来找到其前端和后端的数据交互接口（一般称为 HTTP API）来实现数据获取。
+JSON (JavaScript Object Notation) 是一种参考了 JavaScript 的对象语法的数据格式，广泛用于网络中传递数据。JSON 格式与 Python 中字典对应，可以通过内置的 json 库来转换。
 
-示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_api.py)
+```json
+{
+  "game": "英雄联盟",
+  "company": "Riot Games",
+  "heroes": [
+    {
+      "name": "加里奥",
+      "skills": ["巨像重击", "战争罡风", "杜朗护盾", "正义冲拳", "英雄登场"]
+    },
+    {
+      "name": "霞",
+      "skills": ["锐切", "双刃", "致死羽衣", "倒钩", "暴风羽刃"]
+    },
+    {
+      "name": "锤石",
+      "skills": [
+        "地狱诅咒",
+        "死亡判决",
+        "魂引之灯",
+        "厄运钟摆",
+        "幽冥监牢",
+        "集魂者"
+      ]
+    },
+    {
+      "name": "盲僧",
+      "skills": [
+        "疾风骤雨",
+        "天音波/回音击",
+        "金钟罩/铁布衫",
+        "天雷破/摧筋断骨",
+        "猛龙摆尾"
+      ]
+    },
+    {
+      "name": "船长",
+      "skills": ["烈火审讯", "枪火谈判", "坏血病疗法", "火药桶", "加农炮幕"]
+    }
+  ]
+}
+```
+
+--
+
+### 示例
+
+示例详见 [CUCSec/spiders 的 API 部分](https://github.com/CUCSec/spiders/blob/master/dynamic_website_spider/spider_with_api.py)
+
+---
+
+## Q & A

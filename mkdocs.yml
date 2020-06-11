@@ -15,6 +15,7 @@ nav:
       - 函数进阶与类: python/class.md
       - Web 开发: python/web.md
       - Web 分析与爬虫: python/web-and-crawler.md
+      - 爬虫: python/crawler.md
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md

@@ -115,6 +115,6 @@ print(data)
 
 ## 项目 2 - 爬虫
 
-抓取自己感兴趣的站点，保存数据到 csv 中。
+用 Scrapy 抓取自己感兴趣的站点，保存数据到 csv 中。
 
 作业链接: https://classroom.github.com/a/J2oRPdWD

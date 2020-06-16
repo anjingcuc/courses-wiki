@@ -35,3 +35,5 @@ title: Python 程序设计
 [11-Web 分析与爬虫](python/web-and-crawler.md)
 
 [12-爬虫](python/crawler.md)
+
+[13-数据处理与可视化](python/data-process-and-visualization.md)

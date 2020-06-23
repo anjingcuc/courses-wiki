@@ -6,7 +6,9 @@ title: 数据处理与可视化
 
 <iframe src="slideshow.html" frameborder=0 width=800 height=450></iframe>
 
-## csv 用法示例
+## 代码示例
+
+### csv 用法示例
 
 [点击此处下载示例 csv 文件。](biostats.csv)
 
@@ -27,7 +29,7 @@ with open('biostats.csv', newline='') as csvfile:
         print(row)
 ```
 
-## openpyxl 示例
+### openpyxl 示例
 
 [点击此处下载示例 xlsx 文件。](biostats.xlsx)
 
@@ -45,9 +47,9 @@ for row in ws.values:
     print(row)
 ```
 
-## pandas
+### pandas
 
-### 读取文件
+#### 读取文件
 
 pandas 专门有一套完整的 IO tools 来处理各种数据的读取。
 
@@ -61,7 +63,7 @@ df1 = pd.read_excel('biostats.xlsx')
 print(df1)
 ```
 
-### Series
+#### Series
 
 Series 类似于一维数组，但是包含一组与之关联的数据标签，当我们仅指定一组数据，没有给出数据标签时，Series 自动将其索引所谓数据标签。
 
@@ -86,7 +88,7 @@ s1 = pd.Series([1, 2, 3, 4, 5], index=['a', 'b', 'c', 'd', 'e'])
 s2 = pd.Series({'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5})
 ```
 
-### DataFrame
+#### DataFrame
 
 DataFrame 是一个表格型数据，非常符合用户日常使用 Excel 处理数据的逻辑，DataFrame 可以看成一组由多个共用一组数据标签/索引的 Series 组成，并且除了 Series 自带的行索引，还为每一个 Series 提供了列索引。
 
@@ -172,7 +174,7 @@ df1.dropna() # 返回去除所有包含 NaN 的行之后的内容
 df1.fillna(value=5) # 将所有 NaN 填充为数字 5 （会自动转化数据类型，比如转化为 float64
 ```
 
-## matplotlib
+### matplotlib
 
 matplotlib 提供了面向对象的接口，即将图表中各个部分都抽象为一个一个对象，然后提供相应的属性和方法来操作。
 
@@ -184,3 +186,14 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # 分别为 x y 轴赋值来画出一系列
 
 plt.show() # 需要调用 plt.show() 才会显示出界面
 ```
+
+## 项目 3 - 数据处理与可视化
+
+在项目 2 爬虫获取的数据基础上使用 pandas 及其他第三方库进行数据处理及可视化，方案可从下面选择或者自定：
+
+1. 对采集的数据进行可视化排序，如点赞数 / 评论数 / 评分 等以柱状图折线图或自定形式展示。
+2. 对采集的数据进行关键词提取（jieba TF-IDF）并结合 wordcloud 实现词云效果。
+
+作业链接: [https://classroom.github.com/a/b86H2DFN](https://classroom.github.com/a/b86H2DFN)
+
+截止时间为: 2020-07-05 20:00 。

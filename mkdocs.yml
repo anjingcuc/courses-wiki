@@ -17,6 +17,7 @@ nav:
       - Web 分析与爬虫: python/web-and-crawler.md
       - 爬虫: python/crawler.md
       - 数据处理与可视化: python/data-process-and-visualization.md
+      - 数据处理与可视化实例: python/data-process-and-visualization-example.md
   - 计算机安全与维护: cms.md
   - 计算机安全与维护:
       - 课件: cms/slides.md

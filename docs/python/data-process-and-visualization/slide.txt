@@ -33,7 +33,7 @@ csv 是一种以特定字符作为分隔值的纯文本文件格式，存储内�
 
 pandas 是一个 Python 数据处理常见库，能够很方便地完成数据的清洗、转换、合并、分析等处理。pandas 提供多种方法载入各种数据。pandas 中有两个常用数据结构：Series 和 DataFrame 。
 
-_注：参考 https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html_
+_注: 参考 https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html _
 
 <!-- .element: style="font-size:60%;" -->
 
@@ -47,7 +47,7 @@ Series 是一个带索引的序列。
 
 <!-- .element style="text-align:center"-->
 
-_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-series/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/series.html 。_
+_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-series/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/series.html _
 
 <!-- .element: style="font-size:60%;" -->
 
@@ -61,7 +61,7 @@ DataFrame 是一个类似表格的结构，包含一组有序的列。
 
 <!-- .element style="text-align:center"-->
 
-_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-dataframe/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/frame.html 。_
+_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-dataframe/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/frame.html _
 
 <!-- .element: style="font-size:60%;" -->
 

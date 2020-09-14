@@ -1,6 +1,26 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # Jinja2 模板
 
 ---
+
+## 认识模板
+
+* 模板/模板引擎是在 Web 前端发展过程中兴起的技术；
+* 使得开发者能够动态的生成不同的 HTML 页面来展示；
+* 不同语言或框架使用的模板引擎/语法都不相同。
+
+--
 
 ## 分离逻辑与显示
 
@@ -54,7 +74,28 @@ if __name__ == '__main__':
 
 ---
 
-## Jinja2 语句
+## Jinja2 
+
+Python 专用的现代化模板语言以及引擎。
+
+```jinja
+<title>{% block title %}{% endblock %}</title>
+<ul>
+{% for user in users %}
+  <li><a href="{{ user.url }}">{{ user.username }}</a></li>
+{% endfor %}
+</ul>
+```
+
+--
+
+### Jinja2 符号
+
+* {{ }} - 表达式
+* {% %} - 控制语句
+* {# #} - 注释
+
+--
 
 ### 控制语句
 

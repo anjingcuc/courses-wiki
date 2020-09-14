@@ -10,10 +10,8 @@ title: 数字媒体安全应用与实践
 
 [00-课程概述](apdms/introduction.md)
 
-[01-Flask 简介](apdms/flask-intro.md)
+[01-Flask 初探](apdms/flask-getting-start.md)
 
-[02-Flask 初探](apdms/flask-getting-start.md)
+[02-Jinja2 模板](apdms/jinja2.md)
 
-[03-Jinja2 模板](apdms/jinja2.md)
-
-[04-WTForms 表单](apdms/wtforms.md)
+[03-WTForms 表单](apdms/wtforms.md)

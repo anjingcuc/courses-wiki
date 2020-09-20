@@ -1,6 +1,9 @@
 site_name: 课程资料
 nav:
   - 首页: index.md
+  - 计算机安全与维护: cms.md
+  - 计算机安全与维护:
+      - 课程概述: cms/introduction.md
   - Python 程序设计: python.md
   - Python 程序设计:
       - 课程概述: python/introduction.md
@@ -18,9 +21,6 @@ nav:
       - 爬虫: python/crawler.md
       - 数据处理与可视化: python/data-process-and-visualization.md
       - 数据处理与可视化实例: python/data-process-and-visualization-example.md
-  - 计算机安全与维护: cms.md
-  - 计算机安全与维护:
-      - 课程概述: cms/introduction.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
       - 课程概述: web/introduction.md

@@ -1,0 +1,79 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Windows 基础
+
+---
+
+## 计算机组成与操作系统
+
+--
+
+### 台式机硬件
+
+硬件组成基本如图，来源: [BV1jE411e7hw](https://www.bilibili.com/video/BV1jE411e7hw):
+
+![计算机组成](/img/main_devices.png)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 笔记本硬件
+
+硬件组成基本如图，来源: [BV1Tt411Q7z7](https://www.bilibili.com/video/BV1Tt411Q7z7):
+
+![计算机组成](/img/notebook_devices.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 硬件与操作系统
+
+操作系统通过硬件虚拟化层配合操作系统内核中的驱动程序，将硬件提供给上层应用程序使用。
+
+| 硬件 | 功能                                                         | 影响                   | 一般描述                         |
+| ---- | ------------------------------------------------------------ | ---------------------- | -------------------------------- |
+| 硬盘 | 持久化存储，存放文件，读写速度 400-600MB/s                   | 文件读写速度及存储空间 | 256GB / 1TB                      |
+| 内存 | CPU 与硬盘的桥梁，临时存储 CPU 计算中间结果，读写速度 20GB/s | 计算机运行速度         | 8GB / 16GB                       |
+| CPU  | 中央处理器，负责执行各种指令实现数据处理                     | 计算机运行速度         | i5 / i7 / 2.80GHz                |
+| 显卡 | 驱动显示器显示，还常用于并行计算                             | 游戏或并行计算性能     | 集成显卡 / 独立显卡 / GPU / 显存 |
+
+<!-- .element style="font-size: 70%"-->
+
+--
+
+### 操作系统查看硬件信息
+
+以上硬件信息可以在 Windows 中使用`任务栏管理器`的`性能`标签页进行查看。
+
+![硬件信息](/img/devices_info.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 专业相关硬件参数
+
+对于不同专业方向的用途，硬件选购时侧重的参数不太一样:
+
+- 信息安全专业，常用虚拟机等各种内存占用大户软件，内存一定要大，推荐 16GB，可以不考虑独立显卡；
+- 如果涉及人工智能相关的兴趣，那可能需要用到 GPU 来实现并行，一般推荐采购 NVIDIA 的独立显卡；
+- 对于媒体编辑，vLog 爱好者，需要进行视频剪辑等操作，则同样需要采购 NVIDIA 的独立显卡，但侧重显存大小。
+
+<!-- .element style="font-size: 70%"-->
+
+---
+
+## Q & A

@@ -1,153 +1,164 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # 课程概述
+
+---
+
+## 课程定位
+
+计算机安全与维护主要目标是帮助信息安全专业的学生了解 Windows 系统的日常使用及相关安全知识，同时也可以帮助计算机相关专业的学生了解信息安全；课程侧重于工具的使用与讲解，也涉及少部分技术和原理。
+
+---
+
+## 什么是信息安全
+
+提到信息安全就绕不开黑客。
+
+--
+
+### 黑客是什么
+
+<b style="color: red;">广义上的黑客文化</b>起源于 1960s 麻省理工学院的“铁路模型技术俱乐部”，他们把难题的解法技巧称为 `hack`。
+
+<b style="color: red;">狭义上的黑客称谓</b>起源于电话“飞客”，是一群研究如何入侵电话系统免费打电话的人。
+
+![嘎吱船长](/img/john_draper.jpg)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+## 黑客干什么
+
+狭义上的黑客主要研究以下内容：
+
+- 软硬件系统的设计缺陷，或者良好的设计在实现过程中不完善导致的缺陷；
+- 研究人的心理盲点，以人作为突破口获取信息或计算机系统的权限。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 黑客与程序员的区别
+
+更多的逆向思维和心理揣摩。
+
+```python
+import os
+
+host = input('请输入要检测的 IP : ')
+result = os.popen('ping -n 1 %s' % (host)).read()
+
+if 'TTL' in result:
+  print('IP 在线')
+else:
+  print('IP 不在线')
+```
+
+来源: [Soptq @ 知乎](https://www.zhihu.com/question/340229645/answer/791552302)
+
+<!-- .element style="font-size:50%;"-->
 
 ---
 
 ## 为什么学习信息安全？
 
-![v](/img/v.jpg)<!-- .element: style="width:85%;" -->
+信息安全，怎么学，能学会什么？
+
+![v](/img/v.jpg)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
 
 --
 
-### 善用搜索引擎
+### 信息收集
 
-* 学习高级搜索
-* 社交网络搜索
+学习丰富的搜索技巧。
 
---
+- 高级搜索
+- 社工搜索
 
-### 避免重复劳动
-
-* 各类爬虫程序
-* 批量文档处理
-* 自动聊天机器人
+<!-- .element style="font-size:70%"-->
 
 --
 
 ### 好玩的 CTF
 
+CTF, Capture The Flag, 全称夺旗赛，以游戏比赛的形式进行学习。
+
+![Def CON CTF](/img/def_con.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
 --
 
 ### PWN Everything
 
-Badbarcode 视频。
+进行各种奇怪的操作(腾讯玄武实验室)。
+
+<video src="badbarcode.mp4" controls="controls">
+  你的浏览器不支持 video 标签。
+</video>
 
 --
 
-### 保护自己
+### 守护网络空间
 
-* 隐私保护
-* 密码设计
+成为白帽子，守护网络空间安全。
+
+- 病毒查杀
+- 漏洞分析
+- 网络攻防
+
+<!-- .element style="font-size:70%"-->
 
 ---
 
-## 信息安全需要学什么？
+## 课程主要内容
 
-* [信息安全思维导图](https://github.com/SecWiki/sec-chart)
-* [知道创宇技能树](http://blog.knownsec.com/Knownsec_RD_Checklist/index.html)
-
----
-
-## 课程主要目标
-
-* 学会使用Windows，包括装机、软件等
-* 了解计算机相关专业基本系统配置
-* 熟悉常见Windows安全相关组件
-* 了解计算机病毒原理、查杀过程
+详见[思维导图](/cms)。
 
 ---
 
-## 计算机安全与维护
+## 学习提示
 
---
+学习信息安全的一些小建议:
 
-* 你学计算机的？我家电脑坏了你帮我修修吧！
+- 信息安全是一个强实践的工科专业，多动手；
+- 积极提问，单刀直入，学习如何清晰地提问<sup>1</sup>；
+- 学习过程注意抽象，不要陷入具体细节推导<sup>2</sup>。
 
-* 你学信息安全？我家电脑特卡你帮我修修吧！
+<!-- .element style="font-size:70%"-->
 
---
+注<sup>1</sup>: [提问的智慧](https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way)
 
-### 过去
+<!-- .element style="font-size:50%"-->
 
-1. 制作启动盘；
-2. 准备驱动工具；
-3. 确认硬件是否有问题；
-4. 尝试维修。
+注<sup>2</sup>: [知乎回答-抽象](https://www.zhihu.com/question/278682736/answer/1475861843)
 
---
-
-### 现在
-
-1. 重启
-2. 重装
-3. 重买？？？？
-4. 装个安全官家或电脑城小哥50块。
-
---
-
-大部分普通用户都使用Windows，本课程聚焦Windows系统。
+<!-- .element style="font-size:50%"-->
 
 ---
 
-## 计算机硬件
+## 课程安排
 
-![硬件](/img/hardware.png)<!-- .element: style="width:65%;" -->
+混合式教学，考查课。
 
-参考: https://www.chiphell.com
+- 上课方式
+- 考核方式
 
----
-
-## Windows
-
-![Windows 进化史](/img/windows-evolution.png)<!-- .element: style="width:85%;" -->
-
---
-
-![Windows 发展](/img/windows-history.png)
-
---
-
-![Windows XP 已死](/img/winxp-is-dead.png)
-
-Windows 7 将在 <b style="color:red;">2020</b> 年终止支持。
-
----
-
-## Windows版本及命名
-
-* 按家族里程碑/产品内核版本分类
-  * XP / 7 / 8 / 10
-* 按支持的CPU类型分类
-  * x86 / x64
-* 按销售渠道类型分类
-  * MSDN / OEM / RTM / VOL
-* 按产品功能类型分类
-  * 家庭版 / 专业版 /旗舰版 / 企业版
-* 按产品语言支持分类
-  * 简体中文 / 英文
-
----
-
-## 常用软件推荐
-
-* Office
-* Acrobat / Adobe Reader / Sumatra PDF
-* VSCode / SublimeText / Atom
-* 7-Zip
-* Chrome
-* foobar2000
-* mpv
-* wox
-* everything
-* 微信 / TIM
-* CCleaner / MSE /火绒 
-
---
-
-### 推荐站点
-
-* https://msdn.itellyou.cn
-* https://chocolatey.org/
-* https://alternativeto.net/
+<!-- .element style="font-size:70%"-->
 
 ---
 

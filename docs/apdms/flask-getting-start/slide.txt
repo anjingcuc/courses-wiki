@@ -16,8 +16,8 @@
 
 ## 简介
 
-* 微型 Web 框架；
-* 基于 Werkzeug / Jinja2。
+- 微型 Web 框架；
+- 基于 Werkzeug / Jinja2。
 
 ---
 
@@ -33,33 +33,33 @@
 
 ### CGI - <b style="color:red;">C</b>ommon <b style="color:red;">G</b>ateway <b style="color:red;">I</b>nterface
 
-* 通用网关接口；
-* 定义了一系列变量和接口；
-* 实现与其他程序对接，提供更加复杂的在线服务。
+- 通用网关接口；
+- 定义了一系列变量和接口；
+- 实现与其他程序对接，提供更加复杂的在线服务。
 
 --
 
 ### FastCGI
 
-* 一个守护进程处理多个请求；
-* 现在的主流对接方式；
-* 支持绝大多数服务器；
-* 支持绝大多数语言。
+- 一个守护进程处理多个请求；
+- 现在的主流对接方式；
+- 支持绝大多数服务器；
+- 支持绝大多数语言。
 
 --
 
 ### WSGI
 
-* 专门为 Python 提供的接口；
-* 可使用 FastCGI 与 Web 服务器通信；
-* 多种实现: uWSGI / Gunicorn。
+- 专门为 Python 提供的接口；
+- 可使用 FastCGI 与 Web 服务器通信；
+- 多种实现: uWSGI / Gunicorn。
 
 --
 
 ### Werkzeug
 
-* Python 模块实现 WSGI 和 HTTP 处理工具；
-* 是 flask 框架内置的服务器的底层支持。
+- Python 模块实现 WSGI 和 HTTP 处理工具；
+- 是 flask 框架内置的服务器的底层支持。
 
 ---
 
@@ -126,7 +126,7 @@ python -m flask run
 
 ## Refs
 
-* http://flask.pocoo.org/docs/1.0/quickstart/
+- http://flask.pocoo.org/docs/1.0/quickstart/
 
 ---
 

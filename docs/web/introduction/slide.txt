@@ -1,3 +1,15 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # 课程概述
 
 ---
@@ -13,37 +25,51 @@
 
 ## 为什么学习<br/>网页设计与制作?
 
+应用领域：
+
 - H5 广告
 - 数据新闻
 - 个人站点
 - 网页游戏
 - 以及一切现代数字化展示
 
+<!-- .element: style="font-size:70%;" -->
+
 ---
 
 ## 课程目标
+
+学完这门课，希望大家能够：
 
 1. 掌握 HTML / CSS / JavaScript “三剑客”。
 2. 学会独立制作专业相关的作品。
 3. 成为一名业余程序员。
 
+<!-- .element: style="font-size:70%;" -->
+
 ---
 
 ## 课程主要内容
+
+三方面内容：
 
 1. 开发环境介绍
 2. HTML / CSS / JavaScript
 3. 项目实践
 
+<!-- .element: style="font-size:70%;" -->
+
 ---
 
 ## 在线开发环境
 
-<p style='text-align:left;'>直接可以在线编写 HTML / CSS / JavaScript 并预览。</p>
+直接可以在线编写 HTML / CSS / JavaScript 并预览。
 
 - [国外 jsfiddle.net](https://jsfiddle.net/)
 - [国外 codepen.io](https://codepen.io)
 - [国内 jsrun.pro](http://jsrun.pro/new)
+
+<!-- .element: style="font-size:70%;" -->
 
 ---
 
@@ -58,19 +84,21 @@
 
 ### VSCode
 
-<p style='text-align:left;'>微软出品的一款编辑器，具备代码高亮，语法检查，自动格式化代码等多种功能，并有成熟的社区提供大量插件来提高编写代码的效率。</p>
+微软出品的一款编辑器，具备代码高亮，语法检查，自动格式化代码等多种功能，并有成熟的社区提供大量插件来提高编写代码的效率。
 
 --
 
 ### Chrome
 
-<p style='text-align:left;'>谷歌出品的一款浏览器，自带的开发者工具在前端开发过程中提供丰富的辅助功能。</p>
+谷歌出品的一款浏览器，自带的开发者工具在前端开发过程中提供丰富的辅助功能。
 
 ---
 
 ## 认识 Web 服务
 
-![Web Server](/img/webserver.jpg)
+![Web Server](/img/webserver.jpg)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
 
 ---
 
@@ -97,24 +125,28 @@
 
 ## HTML - <b style='color:red'>H</b>yper<b style='color:red'>T</b>ext <b style='color:red'>M</b>arkup <b style='color:red'>L</b>anguage
 
-<p style='text-align:left;'>超文本标记语言，是一种用于创建网页的标准标记语言。它定义了页面的基本结构和内容，可以被浏览器渲染成俗称的“网页”。</p>
+超文本标记语言，是一种用于创建网页的标准标记语言。它定义了页面的基本结构和内容，可以被浏览器渲染成俗称的“网页”。
 
-<p style='text-align:left;'>HTML 的标准由 W3C（万维网联盟）维护，目前我们所见的大多数网站都是 HTML 4.01 版，而移动互联网时代口头常说的 H5 实际上是 HTML 标准的 5.0 版本。</p>
+HTML 的标准由 W3C（万维网联盟）维护，目前我们所见的大多数网站都是 HTML 4.01 版，而移动互联网时代口头常说的 H5 实际上是 HTML 标准的 5.0 版本。
 
 --
 
 ### HTML 元素
+
+相关定义如下：
 
 - HTML 元素以**开始标签**起始，以**结束标签**中止。
 - 元素的内容是**开始标签**与**结束标签**之间的内容。
 - 有一种元素为**空元素**，在**开始标签**中进行关闭。
 - 大多数 HTML 元素可拥有**属性**，如 style。
 
+<!-- .element: style="font-size:70%;" -->
+
 --
 
 ### HTML 标签
 
-<p style='text-align:left;'>HTML 文件中，为了区分内容和描述HTML文档结构的**标记**，定义了很多**标签**，**标签**由尖括号包裹，分为**开始标签**、**结束标签**以及空标签三种。</p>
+HTML 文件中，为了区分内容和描述HTML文档结构的**标记**，定义了很多**标签**，**标签**由尖括号包裹，分为**开始标签**、**结束标签**以及空标签三种。
 
 ```html
 <h1></h1>
@@ -126,47 +158,47 @@
 
 ### HTML 设计与构建
 
-<p style='text-align:left;'>就像设计新闻稿件或者海报。</p>
+就像设计新闻稿件或者海报。
 
 1. 先在草稿纸上画出自己想要制作的网页的大概布局结构。
 2. 判断一下各个位置的内容属于 HTML 结构中的什么元素。
 3. 查找恰当的标签来填写清楚，构建好自己想要的页面。
 
+<!-- .element: style="font-size:70%;" -->
+
 --
 
 ### 图片与超链接
 
-<p style='text-align:left;'>在 HTML 中可以随时添加 `<img/>` 图片元素来加载一幅图片，也可以添加 `<a></a>` 超链接元素来跳转到新的页面。</p>
+在 HTML 中可以随时添加 `<img/>` 图片元素来加载一幅图片，也可以添加 `<a></a>` 超链接元素来跳转到新的页面。
 
-<p style='text-align:left;'>改进你的简历。</p>
+改进你的简历。
 
 --
 
 ### 更多的 HTML 元素
 
-<p style='text-align:left;'>还有更多种类的 HTML 元素和响应的标签需要扩展学习。</p>
+还有更多种类的 HTML 元素和响应的标签需要扩展学习。
 
-<p style='text-align:left;'>更多元素标签，可参考 https://www.w3school.com.cn/html/html_jianjie.asp 。</p>
+更多元素标签，可参考 https://www.w3school.com.cn/html/html_jianjie.asp 。
 
 --
 
 ### HTML 样式
 
-<p style='text-align:left;'>可以通过 HTML 元素的 style 属性改变元素的表现形式，如颜色、字体、位置等等。</p>
-
----
-
-## 提问的智慧
-
-<p style='text-align:left;font-size:0.6em;'>source: https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md</p>
+可以通过 HTML 元素的 style 属性改变元素的表现形式，如颜色、字体、位置等等。
 
 ---
 
 ## 实践环节
 
+完成以下任务：
+
 1. 本地下载好 VSCode 和 Edge / Chrome，准备开发；
 2. 尝试构建一个单页面的 HTML 简历；
 3. 尝试结合样式、图片、超链接丰富你的简历。
+
+<!-- .element: style="font-size:70%;" -->
 
 ---
 

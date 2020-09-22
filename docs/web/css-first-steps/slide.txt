@@ -1,13 +1,29 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # CSS 样式表
 
 ---
 
 ## CSS - <b style='color:red'>C</b>ascading <b style='color:red'>S</b>tyle <b style='color:red'>S</b>heets
 
+CSS 介绍：
+
 - 脱胎于 HTML 4 引入的 style 属性。
 - 使得内容和表现形式能够分离，模块化。
 - 外部样式表一般是一个 CSS 文件。
 - 样式层层叠加定义元素最终的样式。
+
+<!-- .element style="font-size: 70%"-->
 
 ---
 
@@ -24,13 +40,19 @@ h1 {
 
 ---
 
-## 加入样式的三种方式
+## 三种方式
+
+加入 CSS 的三种方式：
 
 1. 外部样式
 2. 内部样式
 3. 内联样式
 
-<p style="text-align:left;font-size:0.6em;">示例详见本网页内容。</p>
+<!-- .element style="font-size: 70%"-->
+
+示例详见本网页内容。
+
+<!-- .element style="font-size: 50%"-->
 
 ---
 
@@ -38,17 +60,21 @@ h1 {
 
 ![渲染](/img/rendering.svg)
 
+<!-- .element style="text-align:center"-->
+
 ---
 
 ## CSS 选择器
 
-<p style="text-align:left;font-size:0.8em;">CSS 选择器是一条 CSS 规则中首先出现的部分，它表示这条规则将被应用到哪些/哪个 HTML 元素上，也就是这条规则**选择**了哪些/哪个 HTML 元素。选择器可以有多个：</p>
+CSS 选择器是一条 CSS 规则中首先出现的部分，它表示这条规则将被应用到哪些/哪个 HTML 元素上，也就是这条规则**选择**了哪些/哪个 HTML 元素。选择器可以有多个：
 
 ```CSS
+/* 选择器为标签选择器 h1 */
 h1 {
   color: red;
 }
 
+/* 选择器为多个标签选择器 h1 h2 h3*/
 h1,h2,h3 {
   color: red;
 }
@@ -62,9 +88,17 @@ h1,h2,h3 {
 
 ### 标签/class/id
 
+三种主要的选择器：
+
 ```CSS
+/* 元素选择器，选中页面中的所有 h1 元素 */
 h1 {}
+/*
+类选择器或者class选择器，
+选中页面中的属性 class 的值为 box 的元素
+*/
 .box {}
+/* id 选择器，选中页面中的属性 id 的值为 unique 的元素 */
 #unique {}
 ```
 
@@ -72,25 +106,27 @@ h1 {}
 
 ### 属性
 
+还可以元素结合属性来实现选择：
+
 ```CSS
+/* 选中具有 title 属性的所有 a 元素 */
 a[title] {}
+/*
+选中具有 href 属性
+且值为 "hobbies.html" 的
+所有 a 元素
+*/
 a[href="hobbies.html"] {}
-```
-
---
-
-### 伪类或伪元素
-
-```CSS
-a:hover {}
-p::first-line {}
 ```
 
 --
 
 ### 组合
 
+多个选择器可以进行组合：
+
 ```CSS
+/* 选中 article 元素下一级的所有 p 元素 */
 article > p {}
 ```
 
@@ -102,10 +138,13 @@ article > p {}
 
 ### 层叠
 
+新的样式会覆盖旧的样式：
+
 ```CSS
 h1 {
     color: red;
 }
+
 h1 {
     color: blue;
 }
@@ -113,7 +152,9 @@ h1 {
 
 --
 
-### 优先级
+### 专一性
+
+越具体的规则会覆盖通用性的规则：
 
 ```CSS
 .main-heading {
@@ -129,6 +170,8 @@ h1 {
 
 ### 继承
 
+子元素中的节点会继承祖先元素的规则：
+
 ```CSS
 body {
     color: blue;
@@ -141,24 +184,22 @@ span {
 
 ---
 
-## CSS 盒模式
+## 实践部分
 
---
+学习以下规则，灵活地美化你的网页：
 
-### 块状盒子 - block
+- [font-family](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-family), 字体
+- [color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color), 文字颜色
+- [border-bottom](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom), 底部边框
+- [font-weight](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-weight), 字体粗细
+- [font-size](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-size), 字体大小
+- [text-decoration](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-decoration), 文字方向
 
-1. 行内方向(横向)扩充自身占据父容器的所有可用空间；
-2. 每个盒子都会自动换行；
-3. width / height 可以定义宽和高；
-4. padding / margin / border 会将其他盒子推开。
+<!-- .element style="font-size: 70%"-->
 
---
+参考: https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference
 
-### 行内盒子 - inline
-
-1. 盒子不会换行；
-2. width / height 不起作用；
-3. padding / margin / border 不会将其他行内盒子推开。
+<!-- .element style="font-size: 50%"-->
 
 ---
 

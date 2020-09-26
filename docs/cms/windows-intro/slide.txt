@@ -78,13 +78,139 @@
 
 ## Windows 操作系统历史
 
+--
+
+### Windows 年表
+
+![Windows 年表](/img/windows-history.png)<!-- .element: style="width:90%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+参考：[Windows 年表](https://zh.wikipedia.org/wiki/Microsoft_Windows) / [Windows 3.1 在线试用](https://archive.org/details/win3_stock) / [Windows 95 在线试用](https://archive.org/details/win3_W95DEMO)
+
+<!-- .element style="font-size: 50%;"-->
+
+--
+
+### 市场占有情况
+
+Windows XP 之前为旧版本，该表格引自[维基百科](https://zh.wikipedia.org/wiki/Microsoft_Windows)。
+
+| 操作系统                             | Net Applications | StatCounter |
+| ------------------------------------ | ---------------- | ----------- |
+| 旧版本                               | 0.00%            | 0.06%       |
+| <b style="color:red;">Windows XP</b> | 1.68%            | 1.28%       |
+| Windows Vista                        | 0.15%            | 0.46%       |
+| <b style="color:red;">Windows 7</b>  | 31.83%           | 24.23%      |
+| Windows 8                            | 0.63%            | 1.75%       |
+| Windows 8.1                          | 5.29%            | 4.34%       |
+| <b style="color:red;">Windows 10</b> | 48.86%           | 45.50%      |
+| **所有版本**                         | **88.44%**       | **77.61%**  |
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 现状总结
+
+Windows XP 已停止支持于 2014/4/8 但仍有少部分用户，Windows 7 已停止支持于 2020/1/14 但和 Windows 10 分庭抗礼，Windows 10 为`最后一代` Windows。
+
+--
+
+### Windows 10 版本号
+
+| 版号 | 官方代号    | 市场代号             | Build | 发行日期   |
+| ---- | ----------- | -------------------- | ----- | ---------- |
+| 1507 | Threshold 1 | 不适用               | 10240 | 2015/07/29 |
+| 1511 | Threshold 2 | November Update      | 10586 | 2015/11/10 |
+| 1607 | Redstone 1  | Anniversary Update   | 14393 | 2016/08/02 |
+| 1703 | Redstone 2  | Creators Update      | 15063 | 2017/04/05 |
+| 1709 | Redstone 3  | Fall Creators Update | 16299 | 2017/10/17 |
+| 1803 | Redstone 4  | April 2018 Update    | 17134 | 2018/04/30 |
+| 1809 | Redstone 5  | October 2018 Update  | 17763 | 2018/11/13 |
+| 1903 | 19H1        | May 2019 Update      | 18362 | 2019/05/21 |
+| 1909 | 19H2        | November 2019 Update | 18363 | 2019/11/12 |
+| 2004 | 20H1        | May 2020 Update      | 19041 | 2020/05/27 |
+
+<!-- .element style="font-size: 70%;"-->
+
+注：该表格引自[维基百科](https://zh.wikipedia.org/wiki/Windows_10%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2)
+
+<!-- .element style="font-size: 50%;"-->
+
+--
+
+### Windows 10 版本划分
+
+针对不同市场和用户类型，划分了商业版本(Business Editions)/消费者版本(Consumer Editions)两大类，用户版本又根据不同用户需求划分为 `家庭版` / `家庭版单语言版` / `教育版` / `专业版` / `专业教育版` / `专业工作站版` 。由于 `家庭版` 中<b style="color:red;">虚拟化</b>、<b style="color:red;">远程桌面</b>、<b style="color:red;">组策略</b>等功能缺失或未开启，<b style="color:red;">推荐安装专业版</b>。
+
+<!-- .element style="font-size: 60%;"-->
+
+![Window消费者版本选择](/img/Windows_Consumer_Editions.png)<!-- .element: style="width:65%;border:none;margin:0px;-->
+
+<!-- .element style="text-align:center"-->
+
 ---
 
 ## Windows 10 常见组件
 
+--
+
+### 总体布局
+
+Windows 启动后进入资源管理器程序，俗称“桌面”。桌面包含了多个组成部分，提供一些常见功能。
+
+![总体布局](/img/windows_layout.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 任务栏
+
+默认情况下任务栏从左至右包含`开始菜单按钮`，`搜索`，`Cortana`，`任务视图`，`任务栏快捷图标`，`任务栏`，`托盘区`，`时间日期`，`通知`，`显示桌面按钮`这些区域。在任务栏上点击鼠标右键，可以打开任务栏配置菜单对任务栏进行配置。
+
+--
+
+### 任务管理器
+
+任务管理器主要提供 Windows 当前运行状态和相关硬件情况，此外还能够提供启动、服务等信息，是非常重要的日常维护组件。
+
+![任务管理器](/img/task_manager.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 文件资源管理器
+
+文件资源管理器主要用于管理用户的文件，还能通过查看标签页来**显示隐藏文件**和**文件扩展名**。
+
+![文件资源管理器](/img/file_manager.png)
+
+--
+
+### 开始菜单
+
+开始菜单按钮是访问程序，访问高级配置的入口；左键任务栏上最左侧的按钮即可打开开始菜单，查看或访问应用程序，右键该按钮则可以访问 Windows 部分高级配置。
+
+![开始菜单](/img/startup.png)
+
 ---
 
 ## 日常及专业软件
+
+推荐一些日常及专业软件:
+
+| 软件类型 | 软件名称              | 推荐理由                 |
+| -------- | --------------------- | ------------------------ |
+| 浏览器   | 新版 Edge / Chrome    | 开发者工具神器，扩展丰富 |
+| 压缩软件 | 7-Zip                 | 开源免费，无任何干扰     |
+| 编辑器   | VSCode                | 日常使用方便，扩展多样   |
+| 搜索     | 自带搜索 / everything | 找文件快人一步           |
+| 杀毒     | MSE / 火绒            | 简洁有效                 |
+
+<!-- .element style="font-size: 70%;"-->
 
 ---
 

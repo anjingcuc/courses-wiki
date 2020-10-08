@@ -11,3 +11,5 @@ title: 计算机安全与维护
 ### [00-课程概述](cms/introduction.md)
 
 ### [01-Windows 基础](cms/windows-intro.md)
+
+### [02-系统维护](cms/maintain.md)

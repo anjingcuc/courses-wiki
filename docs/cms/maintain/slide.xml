@@ -1,0 +1,109 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 系统维护
+
+---
+
+## 路径与文件
+
+--
+
+### 概述
+
+Windows 中大体可以分为 `驱动器` / `目录` / `文件` 三个层级来组织管理系统及用户的文件。目录 (directory) 也可以称为文件夹，本课统一称之为目录。目录可以嵌套，文件可以直接放在驱动器根目录中，或者是任意子目录中，每一个目录或文件通过路径 (path) 来进行定位和访问。
+
+--
+
+### 绝对路径
+
+又称完整路径，完整的唯一的定位某目录或文件的路径，必须包含驱动器根目录。绝对路径由驱动器根目录开始，逐级包含各层目录，最终指向某个文件或目录。
+
+![绝对路径](/img/path.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 相对路径
+
+以当前目录为基点，利用 `.` 和 `..` 两个特殊目录为途径访问其他文件或目录的方法。文件或目录的相对路径随着当前目录变化而变化，并不唯一，但优势在于能够适用于程序在不同计算机上访问的情况。
+
+![相对路径](/img/relation_path.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 路径切换
+
+在 cmd 或者 powershell 终端中可以使用 `cd` 命令加上目录的路径来切换当前目录：
+
+```bat
+:: 切换到 C:\Windows 目录
+cd C:\Windows
+
+:: 切换到当前驱动器根目录
+cd \
+
+:: 切换到上一级目录
+cd ..\
+```
+
+---
+
+## 磁盘管理
+
+--
+
+### 驱动器
+
+Windows 下将磁盘划分为不同区域进行管理，并为每个分区分配驱动器号，常说的“C 盘”实际上是驱动器号为 "C:" 的分区。在安装系统或者笔记本出厂时，会设置一些用于系统恢复的数据分区，不分配驱动器号，避免用户误操作破坏数据。
+
+<!-- .element style="font-size: 70%;"-->
+
+![驱动器](/img/drive.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 分区大小调整
+
+在磁盘管理工具中，可以捅过扩展卷或者压缩卷的功能来对卷（分区）大小进行调整。
+
+![调整分区大小](/img/adjust_partitions.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 格式化
+
+在磁盘工具或者文件资源管理器中，还可以对分区进行格式化。
+
+![格式化](/img/format.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 文件系统
+
+---
+
+## 网络维护
+
+---
+
+## Q & A

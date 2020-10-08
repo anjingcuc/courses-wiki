@@ -5,6 +5,7 @@ nav:
   - 计算机安全与维护:
       - 课程概述: cms/introduction.md
       - Windows 基础: cms/windows-intro.md
+      - 系统维护: cms/maintain.md
   - Python 程序设计: python.md
   - Python 程序设计:
       - 课程概述: python/introduction.md

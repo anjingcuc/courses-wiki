@@ -13,3 +13,7 @@ title: 计算机安全与维护
 ### [01-Windows 基础](cms/windows-intro.md)
 
 ### [02-系统维护](cms/maintain.md)
+
+### [03-虚拟机](cms/virtualbox.md)
+
+### [04-系统安装](cms/windows-install.md)

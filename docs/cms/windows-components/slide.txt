@@ -1,0 +1,30 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Windows 组件
+
+---
+
+## 用户与账户
+
+---
+
+## 进程与线程
+
+---
+
+## 服务与设备
+
+---
+
+## Q & A

@@ -1,3 +1,16 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # CSS 盒子样式
 
 ---
@@ -8,33 +21,47 @@
 
 ### 块状盒子 - block
 
-1. 行内方向(横向)扩充自身占据父容器的所有可用空间；
-2. 每个盒子都会自动换行；
-3. width / height 可以定义宽和高；
-4. padding / margin / border 会将其他盒子推开。
+块状盒子有以下特点：
+
+— 行内方向(横向)扩充自身占据父容器的所有可用空间；
+— 每个盒子都会自动换行；
+— width / height 可以定义宽和高；
+— padding / margin / border 会将其他盒子推开。
+
+<!-- .element: style="font-size:70%;" -->
 
 --
 
 ### 行内盒子 - inline
 
-1. 盒子不会换行；
-2. width / height 不起作用；
-3. padding / margin / border 不会将其他行内盒子推开。
+行内盒子有以下特点：
+
+- 盒子不会换行；
+- width / height 不起作用；
+- padding / margin / border 不会将其他行内盒子推开。
+
+<!-- .element: style="font-size:70%;" -->
 
 ---
 
 ## 盒子样式
 
-1. 基本样式
-2. 背景边界
-3. 表格样式
-4. 高级样式
+盒子样式分为四个部分进行介绍：
+
+- 基本样式
+- 背景边界
+- 表格样式
+- 高级样式
+
+<!-- .element: style="font-size:70%;" -->
 
 ---
 
 ## 盒子样式-基本样式
 
-<p style="text-align:left;font-size:0.7em;">复习，盒子分为块状盒子 (block) 和内联盒子 (inline) ，两种盒子会在页面流 (page flow) 和元素之间的关系方面表现出不同行为。</p>
+复习，盒子分为块状盒子 (block) 和内联盒子 (inline) ，两种盒子会在页面流 (page flow) 和元素之间的关系方面表现出不同行为。
+
+<!-- .element: style="font-size:70%;" -->
 
 | 行为                         | 块状盒子         | 内联盒子 |
 | ---------------------------- | ---------------- | -------- |
@@ -48,7 +75,9 @@
 
 ### 基本样式-内部/外部
 
-<p style="text-align:left;font-size:0.7em;">块状与内联都是盒子在页面上对外展示出来的样式，盒子内部也有样式。`display: flex` 可以使得盒子内容采用弹性盒子 (flexbox) 进行布局，该内容将在布局一节展开介绍。</p>
+块状与内联都是盒子在页面上对外展示出来的样式，盒子内部也有样式。`display: flex` 可以使得盒子内容采用弹性盒子 (flexbox) 进行布局，该内容将在布局一节展开介绍。
+
+<!-- .element: style="font-size:70%;" -->
 
 ```css
 p,
@@ -93,7 +122,7 @@ ul {
 
 ### 基本样式-盒模型组成部分
 
-<p style="text-align:left;font-size:0.8em;">对于一个块状盒子来说，包括以下组成部分。</p>
+对于一个块状盒子来说，包括以下组成部分。
 
 | 部分 | 作用                               | CSS          |
 | ---- | ---------------------------------- | ------------ |
@@ -108,7 +137,7 @@ ul {
 
 ### 基本样式-标准/替代模型
 
-<p style="text-align:left;font-size:0.8em;">盒模型一共分为两种：标准盒子 / 替代盒子，现代浏览器默认使用标准盒子，如果要强制使用替代盒子，则使用`box-sizing: border-box;`。</p>
+盒模型一共分为两种：标准盒子 / 替代盒子，现代浏览器默认使用标准盒子，如果要强制使用替代盒子，则使用`box-sizing: border-box;`。
 
 ![标准](/img/standard-box-model.png)
 
@@ -154,7 +183,7 @@ ul {
 
 ### 基本样式-外边距塌陷
 
-<p style="text-align:left;font-size:0.8em;">如果你有两个外边距相接的元素，这些外边距将合并为一个外边距，即最大的单个外边距的大小。</p>
+如果你有两个外边距相接的元素，这些外边距将合并为一个外边距，即最大的单个外边距的大小。
 
 ```CSS
 .one {
@@ -181,7 +210,7 @@ ul {
 
 ### 基本样式-边框
 
-<p style="text-align:left;font-size:0.8em;">边框与 margin 类似，也可以对四周分别进行定义，同时，边框除了宽度以外还可以定义样式和颜色。</p>
+边框与 margin 类似，也可以对四周分别进行定义，同时，边框除了宽度以外还可以定义样式和颜色。
 
 ```CSS
 .container {
@@ -248,7 +277,7 @@ ul {
 
 ### 基本样式-内联盒子
 
-<p style="text-align:left;font-size:0.8em;">以上样式都可以应用于块状盒子，但是对于内联盒子，`width/height` 是无效的，`margin/border/padding` 虽然有效，但不会推开其他元素。</p>
+以上样式都可以应用于块状盒子，但是对于内联盒子，`width/height` 是无效的，`margin/border/padding` 虽然有效，但不会推开其他元素。
 
 ```CSS
 span {
@@ -280,7 +309,7 @@ span {
 
 ### 背景边框-背景颜色
 
-<p style="text-align:left;font-size:0.8em;">通过 `background-color` 可以改变盒子的背景颜色，值和字体的颜色值一样，可以采用多种形式。</p>
+通过 `background-color` 可以改变盒子的背景颜色，值和字体的颜色值一样，可以采用多种形式。
 
 ```CSS
 .box {
@@ -311,7 +340,7 @@ span {
 
 ### 背景边框-背景图片
 
-<p style="text-align:left;font-size:0.8em;">通过 `background-image` 可以指定背景图片，图片大小不一定与盒子大小一致。</p>
+通过 `background-image` 可以指定背景图片，图片大小不一定与盒子大小一致。
 
 ```CSS
 .a {
@@ -338,7 +367,7 @@ span {
 
 ### 背景边框-图片重复
 
-<p style="text-align:left;font-size:0.8em;">通过 `background-repeat` 可以指定背景图片是否重复以及重复方向。</p>
+通过 `background-repeat` 可以指定背景图片是否重复以及重复方向。
 
 | CSS                          | 作用                 |
 | ---------------------------- | -------------------- |
@@ -353,7 +382,7 @@ span {
 
 ### 背景边框-图片大小
 
-<p style="text-align:left;font-size:0.8em;">通过 `background-size` 可以指定背景图片大小。</p>
+通过 `background-size` 可以指定背景图片大小。
 
 | CSS                            | 作用                                     |
 | ------------------------------ | ---------------------------------------- |
@@ -367,7 +396,7 @@ span {
 
 ### 背景边框-图片位置
 
-<p style="text-align:left;font-size:0.8em;">通过 `background-position` 可以指定背景图片相对于左上角 (0,0) 的位置，以下方式可以自由组合。</p>
+通过 `background-position` 可以指定背景图片相对于左上角 (0,0) 的位置，以下方式可以自由组合。
 
 | CSS                                      | 作用                                                  |
 | ---------------------------------------- | ----------------------------------------------------- |
@@ -381,7 +410,7 @@ span {
 
 ## 背景边框-边框
 
-<p style="text-align:left;font-size:0.8em;">圆角矩形 `border-radius`。</p>
+圆角矩形 `border-radius`。
 
 ```CSS
 .box {
@@ -406,7 +435,7 @@ span {
 
 ## 盒子样式-表格样式
 
-<p style="text-align:left;font-size:0.8em;">尝试美化以下表格。</p>
+尝试美化以下表格。
 
 ```html
 <table>
@@ -457,7 +486,7 @@ span {
 
 ## 表格样式-间距和布局
 
-<p style="text-align:left;font-size:0.8em;">首先添加以下间距和布局来使得内容分布更加恰当。</p>
+首先添加以下间距和布局来使得内容分布更加恰当。
 
 ```CSS
 /* spacing */
@@ -494,7 +523,7 @@ th, td {                    /*所有标题和单元格都填空20px空白*/
 
 ### 表格样式-排版
 
-<p style="text-align:left;font-size:0.8em;">修改对齐和文字间距来排版。</p>
+修改对齐和文字间距来排版。
 
 ```CSS
 th {
@@ -518,7 +547,7 @@ tfoot th {
 
 ### 表格样式-图形和颜色
 
-<p style="text-align:left;font-size:0.8em;">添加背景图片和颜色来进一步美化。</p>
+添加背景图片和颜色来进一步美化。
 
 ```CSS
 thead, tfoot {
@@ -552,7 +581,7 @@ table {
 
 ### 表格样式-标题
 
-<p style="text-align:left;font-size:0.8em;">美化标题。</p>
+美化标题。
 
 ```CSS
 caption {
@@ -573,7 +602,7 @@ caption {
 
 ### 高级样式-阴影
 
-<p style="text-align:left;font-size:0.8em;">与文字阴影类似，添加一个盒子阴影。</p>
+与文字阴影类似，添加一个盒子阴影。
 
 ```CSS
 p {
@@ -609,7 +638,7 @@ article {
 
 ### 高级样式-多重阴影
 
-<p style="text-align:left;font-size:0.8em;">可以为同一个盒子添加不同得多个阴影，逗号分隔。</p>
+可以为同一个盒子添加不同得多个阴影，逗号分隔。
 
 ```CSS
 p {
@@ -644,7 +673,7 @@ article {
 
 ### 高级样式-内部阴影
 
-<p style="text-align:left;font-size:0.8em;">与文字不同之处在于，盒子还可以添加内部阴影。</p>
+与文字不同之处在于，盒子还可以添加内部阴影。
 
 ```CSS
 button {

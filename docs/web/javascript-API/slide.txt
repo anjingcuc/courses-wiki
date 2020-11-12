@@ -1,6 +1,6 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
     font-size: 0.8em;
   }
   .reveal ul {
@@ -19,7 +19,7 @@
 
 应用程序编程接口 (Application Programming Interface, API) 是大部分高级语言都具备的结构，编程语言的开发人员将一些基础功能封装起来，提供给编程者很方便的通过函数/对象方法等途径使用。
 
-![插座](/img/plug-socket.png)<!-- .element style="width:60%;" -->
+![插座](/img/plug-socket.png)<!-- .element style="width:60%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -31,7 +31,7 @@
 
 <!-- .element style="font-size:60%;" -->
 
-![浏览器](/img/browser.png)<!-- .element style="width:60%;" -->
+![浏览器](/img/browser.png)<!-- .element style="width:60%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -75,7 +75,7 @@ request.onload = function() {
 
 <!-- .element style="font-size:60%;" -->
 
-![浏览器相关API](/img/document-window-navigator.png)<!-- .element style="width:60%;" -->
+![浏览器相关API](/img/document-window-navigator.png)<!-- .element style="width:60%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -129,12 +129,6 @@ request.onload = function() {
 
 <!-- .element style="font-size:60%;" -->
 
---
-
-## 动手练习
-
-请参考课件下方的 DOM 操作进行练习。
-
 ---
 
 ## AJAX
@@ -143,7 +137,7 @@ request.onload = function() {
 
 <!-- .element style="font-size:60%;" -->
 
-![Web Server](/img/web-site-architechture.png)<!-- .element style="width:70%;" -->
+![Web Server](/img/web-site-architechture.png)<!-- .element style="width:70%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -155,7 +149,7 @@ request.onload = function() {
 
 <!-- .element style="font-size:60%;" -->
 
-![AJAX](/img/moderne-web-site-architechture.png)<!-- .element style="width:70%;" -->
+![AJAX](/img/moderne-web-site-architechture.png)<!-- .element style="width:70%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 

@@ -1,29 +1,46 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # JavaScript 结构化代码
 
 ---
 
 ## 基础指南
 
-<p style="text-align:left;font-size:0.8em">JavaScript 中有多种结构化的代码块，通过组合使用这些代码块我们能很好的划分和组织程序逻辑，包括：</p>
+JavaScript 中有多种结构化的代码块，通过组合使用这些代码块我们能很好的划分和组织程序逻辑，包括：
 
 - 分支
 - 循环
 - 函数
 - 事件
 
+<!-- .element: style="font-size:70%;" -->
+
 ---
 
 ## 分支条件
 
-<p style="text-align:left;font-size:0.8em">通过对特定条件进行判断，JavaScript 中可以控制程序走向不同的分支运行。</p>
+通过对特定条件进行判断，JavaScript 中可以控制程序走向不同的分支运行。
 
 ![分支](/img/cookie-choice-small.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element: style="text-align: center;" -->
 
 --
 
 ### if ... else
 
-<p style="text-align:left;font-size:0.8em">JavaScript 中最常见的是使用 `if ... else` 语句来实现分支控制。</p>
+JavaScript 中最常见的是使用 `if ... else` 语句来实现分支控制。
 
 ```javascript
 if (condition) {
@@ -51,7 +68,7 @@ if (condition) {
 
 ### 真实例子
 
-<p style="text-align:left;font-size:0.8em">真实的双十一“剁手”。</p>
+真实的双十一“剁手”。
 
 ```javascript
 let balance = 1.0;
@@ -66,7 +83,7 @@ if (balance === 100000000.0) {
 
 ### 结合 HTML 的例子
 
-<p style="text-align:left;font-size:0.8em">结合 HTML 上的输入元素来使用分支条件做出响应。</p>
+结合 HTML 上的输入元素来使用分支条件做出响应。
 
 ```html
 <label for="profession">选择你的英雄: </label>
@@ -78,8 +95,6 @@ if (balance === 100000000.0) {
   <option value="xayah">霞</option>
   <option value="thresh">锤石</option>
 </select>
-
-<p></p>
 ```
 
 <!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
@@ -120,13 +135,13 @@ function setHero() {
 
 ### 比较运算符
 
-<p style="text-align:left;font-size:0.8em">上面两个例子都使用了 `if ... else` 语句，一般在分支条件中，常常使用我们上节课讲到的比较运算符来表示分支条件。详见[JavaScript 基础](../javascript-basic)的比较运算符部分。</p>
+上面两个例子都使用了 `if ... else` 语句，一般在分支条件中，常常使用我们上节课讲到的比较运算符来表示分支条件。详见[JavaScript 基础](../javascript-basic)的比较运算符部分。
 
 --
 
 ### 分支嵌套
 
-<p style="text-align:left;font-size:0.8em">大部分高级编程语言中都支持分支的嵌套，也就是分支里面还有分支，JavaScript 也是如此。</p>
+大部分高级编程语言中都支持分支的嵌套，也就是分支里面还有分支，JavaScript 也是如此。
 
 ```javascript
 if (choice === "leesin") {
@@ -142,7 +157,7 @@ if (choice === "leesin") {
 
 ### 逻辑运算符
 
-<p style="text-align:left;font-size:0.8em">除了使用一个包含`比较运算符`的`条件表达式`来作为分支条件，还可以使用`逻辑运算符`来组合多个`条件表达式`作为分支条件。<p>
+除了使用一个包含`比较运算符`的`条件表达式`来作为分支条件，还可以使用`逻辑运算符`来组合多个`条件表达式`作为分支条件。
 
 | 逻辑运算符   | 作用                                                                                                        |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
@@ -181,7 +196,7 @@ if (!girlHasBoyfriend) {
 
 ## switch 语句
 
-<p style="text-align:left;font-size:0.8em">处理多种情况组合时，`if ... else` 分支可能特别多，写出来特别长；这种情况下，应该使用 `switch` 语句来实现分支。<p>
+处理多种情况组合时，`if ... else` 分支可能特别多，写出来特别长；这种情况下，应该使用 `switch` 语句来实现分支。
 
 ```javascript
 switch (expression) {
@@ -203,7 +218,7 @@ switch (expression) {
 
 ### switch 示例
 
-<p style="text-align:left;font-size:0.8em">本节开头的例子可以用 `switch` 改造成更合理的结构。<p>
+本节开头的例子可以用 `switch` 改造成更合理的结构。
 
 ```javascript
 function setHero() {
@@ -240,7 +255,7 @@ function setHero() {
 
 ## 三元/条件运算符
 
-<p style="text-align:left;font-size:0.8em">三元/条件运算符是一种简化的分支条件形式，可以很方便的根据条件给变量赋不同值。<p>
+三元/条件运算符是一种简化的分支条件形式，可以很方便的根据条件给变量赋不同值。
 
 ```javascript
 (condition) ? code for true : code for false
@@ -256,8 +271,6 @@ function setHero() {
   <option value="male">男</option>
   <option value="female">女</option>
 </select>
-
-<p></p>
 ```
 
 <!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
@@ -281,15 +294,17 @@ function setGender() {
 
 ## 循环
 
-<p style="text-align:left;font-size:0.8em">循环是日常生活中很常见的状态，在程序中，我们也可以使用循环来实现一些重复的动作。<p>
+循环是日常生活中很常见的状态，在程序中，我们也可以使用循环来实现一些重复的动作。
 
 ![循环](/img/loop_js-02-farm-cn.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element: style="text-align: center;" -->
 
 --
 
 ### 循环的形式
 
-<p style="text-align:left;font-size:0.8em">循环可以包括以下部分的一个或多个：开始条件、结束条件、迭代器，伪代码形式的循环如下：<p>
+循环可以包括以下部分的一个或多个：开始条件、结束条件、迭代器，伪代码形式的循环如下：
 
 ```javascript
 loop(food = 0; foodNeeded = 10) {
@@ -307,7 +322,7 @@ loop(food = 0; foodNeeded = 10) {
 
 ### 循环例子-数数
 
-<p style="text-align:left;font-size:0.8em">我们知道 `console.log(1);` 这一语句可以在浏览器控制台中输出数字1，假设我们需要实现从一数到100，那么，就可以用到循环。<p>
+我们知道 `console.log(1);` 这一语句可以在浏览器控制台中输出数字1，假设我们需要实现从一数到100，那么，就可以用到循环。
 
 ```javascript
 for (let i = 1; i <= 100; i++) {
@@ -319,7 +334,7 @@ for (let i = 1; i <= 100; i++) {
 
 ### for 语句
 
-<p style="text-align:left;font-size:0.8em">上面的例子用到了第一种 JavaScript 中常见的循环写法——`for` 语句。<p>
+上面的例子用到了第一种 JavaScript 中常见的循环写法——`for` 语句。
 
 - 关键词 `for` 后面接一个括号 `()`；
 - 括号中包含以下三个部分，并用 `;` 分隔：
@@ -334,14 +349,12 @@ for (let i = 1; i <= 100; i++) {
 
 ### break 退出循环
 
-<p style="text-align:left;font-size:0.8em">在循环过程中，即使没有满足循环的退出条件，我们仍然可以在循环操作的过程中退出循环。比如我们看一个查找个人信息的例子。<p>
+在循环过程中，即使没有满足循环的退出条件，我们仍然可以在循环操作的过程中退出循环。比如我们看一个查找个人信息的例子。
 
 ```html
 <label for="name">请输入姓名: </label>
 <input id="name" type="text" />
 <button>查找</button>
-
-<p></p>
 ```
 
 <!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
@@ -383,7 +396,7 @@ function findStudent() {
 
 ### continue 跳过循环中部分操作
 
-<p style="text-align:left;font-size:0.8em">在循环过程中，还可以使用 `continue` 来跳过本次循环的后续操作，进入下一次循环，常常在筛选过程中使用，比如显示特定性别的同学。<p>
+在循环过程中，还可以使用 `continue` 来跳过本次循环的后续操作，进入下一次循环，常常在筛选过程中使用，比如显示特定性别的同学。
 
 ```html
 <label for="gender">选择显示的性别: </label>
@@ -431,7 +444,7 @@ function filter() {
 
 ### while 与 do ... while
 
-<p style="text-align:left;font-size:0.8em">除了 `for` 循环以外还有其他常见的循环是 `while` 和 `do ... while`循环。我们将上面的查找个人信息的循环改为 while 循环。<p>
+除了 `for` 循环以外还有其他常见的循环是 `while` 和 `do ... while`循环。我们将上面的查找个人信息的循环改为 while 循环。
 
 ```javascript
 function findStudent_while() {
@@ -488,7 +501,7 @@ function findStudent_do_while() {
 
 ## 函数
 
-<p style="text-align:left;font-size:0.8em">函数是一段能够被反复调用的代码块，我们可以利用函数来使得程序结构更加清洗，模块化，减少重复性的代码。<p>
+函数是一段能够被反复调用的代码块，我们可以利用函数来使得程序结构更加清洗，模块化，减少重复性的代码。
 
 ```javascript
 function setGameOver() {
@@ -549,7 +562,7 @@ function checkGuess() {
 
 ### 浏览器内置函数
 
-<p style="text-align:left;font-size:0.8em">浏览器以及 JavaScript 内置了一些函数来帮助提供一些常见的功能，比如我们之前用过的 `console.log()` 可以在浏览器控制台中输入一段文本，以此来观察程序的运行状态，还可以使用 `Math.random()` 来随机生成一个数字。<p>
+浏览器以及 JavaScript 内置了一些函数来帮助提供一些常见的功能，比如我们之前用过的 `console.log()` 可以在浏览器控制台中输入一段文本，以此来观察程序的运行状态，还可以使用 `Math.random()` 来随机生成一个数字。
 
 ```javascript
 let name = "anjing";
@@ -562,13 +575,13 @@ console.log("My name is" + name + ", " + "I'm " + age + "years old.");
 
 ### 函数和方法
 
-<p style="text-align:left;font-size:0.8em">JavaScript 是一种面向对象的编程语言，每个对象内部的函数叫做这个对象的"方法"，上一页说到的 `console.log()` 实际上是 `console` 对象的 `log()` 方法，而我们第一个猜数字游戏中的 `setGameOver()` 不属于某个对象，是函数。我们将在对象一节中详细介绍。<p>
+JavaScript 是一种面向对象的编程语言，每个对象内部的函数叫做这个对象的"方法"，上一页说到的 `console.log()` 实际上是 `console` 对象的 `log()` 方法，而我们第一个猜数字游戏中的 `setGameOver()` 不属于某个对象，是函数。我们将在对象一节中详细介绍。
 
 --
 
 ### 函数调用
 
-<p style="text-align:left;font-size:0.8em">函数可以在其他的函数里面被调用或者直接调用，或者作为某个事件触发后的处理函数调用。<p>
+函数可以在其他的函数里面被调用或者直接调用，或者作为某个事件触发后的处理函数调用。
 
 ```javascript
 function callee() {
@@ -586,7 +599,7 @@ caller();
 
 ### 匿名函数
 
-<p style="text-align:left;font-size:0.8em">一般情况下，我们需要给每个函数起名，帮助自己或者其他合作程序员理解函数的功能并且调用，但对于部分函数比如事件触发函数来说，频繁的起名字可能特别伤脑筋，这时我们可以使用匿名函数直接省略函数名。<p>
+一般情况下，我们需要给每个函数起名，帮助自己或者其他合作程序员理解函数的功能并且调用，但对于部分函数比如事件触发函数来说，频繁的起名字可能特别伤脑筋，这时我们可以使用匿名函数直接省略函数名。
 
 ```javascript
 const btn = document.querySelector("button");
@@ -605,7 +618,7 @@ btn.addEventListner("click", function() {
 
 ### 函数参数
 
-<p style="text-align:left;font-size:0.8em">函数在不同的地方被调用，可能需要处理不同的数据，我们可以通过参数来将数据传递给函数。<p>
+函数在不同的地方被调用，可能需要处理不同的数据，我们可以通过参数来将数据传递给函数。
 
 ```javascript
 function greeting(name, age) {
@@ -626,7 +639,7 @@ for (let i = 0; i < students.length; i++) {
 
 ### 函数的返回值
 
-<p style="text-align:left;font-size:0.8em">函数除了能够接受不同的参数来进行处理，还能够将处理的结果返回给调用者，返回的结果叫做"返回值"。<p>
+函数除了能够接受不同的参数来进行处理，还能够将处理的结果返回给调用者，返回的结果叫做"返回值"。
 
 ```javascript
 function sum(a, b) {
@@ -641,7 +654,7 @@ console.log(c); // 3
 
 ### 作用域
 
-<p style="text-align:left;font-size:0.8em">不论是函数还是变量都有作用域的概念，函数名和变量都只能在它们自己的作用域中起作用，这样才能避免程序混乱。<p>
+不论是函数还是变量都有作用域的概念，函数名和变量都只能在它们自己的作用域中起作用，这样才能避免程序混乱。
 
 ```html
 <script src="first.js"></script>
@@ -673,7 +686,7 @@ function greeting() {
 
 ## 事件
 
-<p style="text-align:left;font-size:0.8em">"事件"是一个专业术语，系统会在特定事情发生的时候发出某种信号，我们收到这种信号就可以对做出相应的反应。这种机制我们叫做"事件"。常见事件举例如下，详细的事件列表请参考[事件参考](https://developer.mozilla.org/zh-CN/docs/Web/Events)。<p>
+"事件"是一个专业术语，系统会在特定事情发生的时候发出某种信号，我们收到这种信号就可以对做出相应的反应。这种机制我们叫做"事件"。常见事件举例如下，详细的事件列表请参考[事件参考](https://developer.mozilla.org/zh-CN/docs/Web/Events)。
 
 | 事件    | 发生的事情           |
 | ------- | -------------------- |
@@ -688,7 +701,7 @@ function greeting() {
 
 ### 简单示例
 
-<p style="text-align:left;font-size:0.8em">回顾我们之前点击按钮的例子。<p>
+回顾我们之前点击按钮的例子。
 
 ```javascript
 const para = document.querySelector("p");
@@ -705,7 +718,7 @@ function updateName() {
 
 ### 事件的不同处理方式
 
-<p style="text-align:left;font-size:0.8em">可以用三种不同的机制来对特定事件做出响应。<p>
+可以用三种不同的机制来对特定事件做出响应。
 
 ```html
 <button onclick="doit()">点我呀</button>
@@ -733,7 +746,7 @@ btn.addEventListener("click", doit);
 
 ### 事件对象参数-示例
 
-<p style="text-align:left;font-size:0.65em">事件被出发时，我们可以通过给处理函数传递一个"事件对象"作为其参数，这样可以在处理函数内部知道一些额外的信息，比如是哪个元素触发了这个事件。<p>
+<p style="text-align:left;font-size:0.65em">事件被出发时，我们可以通过给处理函数传递一个"事件对象"作为其参数，这样可以在处理函数内部知道一些额外的信息，比如是哪个元素触发了这个事件。
 
 <iframe frameborder="0" height="450" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events$samples/Hidden_example?revision=1588610" width="100%"></iframe>
 
@@ -779,122 +792,6 @@ btn.addEventListener("click", doit);
     </script>
   </body>
 </html>
-```
-
---
-
-### 阻止默认行为
-
-<p style="text-align:left;font-size:0.65em">一些特定情况下，我们可能需要阻止默认的事件处理流程，来完成一些额外的操作。比如用户提交一个表单的时候，点击提交按钮出发了 `submit` 事件，浏览器会自动将用户填写的信息发给服务器并跳转到完成页面。但如果我们希望能再提交数据之前做一些检查，就需要阻止这个默认的行为。<p>
-
-```html
-<form>
-  <div>
-    <label for="fname">First name: </label>
-    <input id="fname" type="text" />
-  </div>
-  <div>
-    <label for="lname">Last name: </label>
-    <input id="lname" type="text" />
-  </div>
-  <div>
-    <input id="submit" type="submit" />
-  </div>
-</form>
-<p></p>
-```
-
-<!-- .element: style="float:left;width:48%;padding:1%;" -->
-
-```javascript
-var form = document.querySelector("form");
-var fname = document.getElementById("fname");
-var lname = document.getElementById("lname");
-var submit = document.getElementById("submit");
-var para = document.querySelector("p");
-
-form.onsubmit = function(e) {
-  if (fname.value === "" || lname.value === "") {
-    e.preventDefault();
-    para.textContent = "You need to fill in both names!";
-  }
-};
-```
-
-<!-- .element: style="float:right;width:48%;padding:1%;" -->
-
---
-
-### 难点-事件的捕获及冒泡
-
-<iframe frameborder="0" height="500" id="frame_Hidden_video_example" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events$samples/Hidden_video_example?revision=1588610" width="100%"></iframe>
-
---
-
-### 难点-事件的捕获及冒泡
-
-<p style="text-align:left;font-size:0.65em">这个例子的源代码可以右键[show-video-box.html](show-video-box.html)另存。关键问题在于：我们为 `video` 元素以及它的父元素 `videoBox` 都绑定了 `onclick` 事件，当你点击 `video` 的时候 `videoBox` 本身也被点击了，所以同时触发了播放和隐藏两个动作。<p>
-
-```html
-<button>Display video</button>
-
-<div class="hidden">
-  <video>
-    <source src="rabbit320.mp4" type="video/mp4">
-    <source src="rabbit320.webm" type="video/webm">
-    <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
-  </video>
-</div>
-```
-
-<!-- .element: style="float:left;width:48%;padding:1%;" -->
-
-```javascript
-btn.onclick = function() {
-  videoBox.setAttribute('class', 'showing');
-}
-
-videoBox.onclick = function() {
-  videoBox.setAttribute('class', 'hidden');
-};
-
-video.onclick = function() {
-  video.play();
-};
-```
-
-<!-- .element: style="float:right;width:48%;padding:1%;" -->
-
---
-
-### 难点-事件的捕获及冒泡
-
-<p style="text-align:left;font-size:0.65em">浏览器在处理嵌套的元素上发生的事件时，经过两个主要阶段：捕获阶段，先处理父元素的事件再处理子元素的事件；冒泡阶段，先处理子元素的事件再处理父元素的事件。<p>
-
-![冒泡捕获](/img/bubbling-capturing.png)
-
---
-
-### 难点-事件的捕获及冒泡
-
-<p style="text-align:left;font-size:0.8em">在现代浏览器中，默认情况下，所有事件处理程序都在冒泡阶段进行注册。因此，在我们当前的示例中，用户单击视频时，这个单击事件从 `<video>` 元素向外冒泡直到 `<html>` 元素。沿着这个事件冒泡线路：<p>
-
-- 它发现了 `video.onclick...` 事件处理器并且运行它，因此这个视频 `<video>` 第一次开始播放。
-- 接着它发现了（往外冒泡找到的） `videoBox.onclick...` 事件处理器并且运行它，父元素隐藏后子元素 `<video>` 也隐藏起来了。
-
-<!-- .element: style="font-size:70%;" -->
-
---
-
-### 难点-事件的捕获及冒泡解决方案
-
-<p style="text-align:left;font-size:0.8em">使用 `stopPropagation()` 终止冒泡的过程，修复示例的问题。<p>
-
-```javascript
-video.onclick = function(e) {
-  e.stopPropagation();
-  video.play();
-};
 ```
 
 ---

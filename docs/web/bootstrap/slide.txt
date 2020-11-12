@@ -1,6 +1,7 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
+    font-size: 0.8em;
   }
   .reveal ul {
     display: block;
@@ -19,6 +20,8 @@
 Bootstrap 是 Twitter 的两位设计师发起的一个开源项目，2011 年开始在 GitHub 上开源，现在有一个专门的团队维护，非常流行。它是一款响应式、移动优先的前端组件库。
 
 - [官方文档](https://getbootstrap.com/)
+
+<!-- .element style="font-size:70%"-->
 
 ---
 
@@ -177,7 +180,7 @@ Navbar 是 Bootstrap 提供的响应式导航栏，它可以固定在页面上�
 - 导航栏的宽度默认是占满整个页面宽度的，类似 .container-fluid 。
 - 导航栏应该使用 `<nav>` 元素进行创建。
 
-<!-- .element style="font-size:60%"-->
+<!-- .element style="font-size:70%"-->
 
 --
 

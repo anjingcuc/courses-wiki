@@ -1,6 +1,7 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
+    font-size: 0.8em;
   }
   .reveal ul {
     display: block;
@@ -20,6 +21,8 @@
 | -------- | ---- |
 | 出勤表现 | 40%  |
 | 课后作业 | 60%  |
+
+<!-- .element: style="font-size:70%;" -->
 
 ---
 
@@ -80,6 +83,8 @@
 | 编辑器   | VSCode   |
 | 浏览器   | Edge / Chrome   |
 
+<!-- .element: style="font-size:70%;" -->
+
 --
 
 ### VSCode
@@ -96,7 +101,7 @@
 
 ## 认识 Web 服务
 
-![Web Server](/img/webserver.jpg)<!-- .element: style="width:90%;" -->
+![Web Server](/img/webserver.jpg)<!-- .element: style="width:90%;border:none;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -180,7 +185,9 @@ HTML 文件中，为了区分内容和描述HTML文档结构的**标记**，定�
 
 还有更多种类的 HTML 元素和响应的标签需要扩展学习。
 
-更多元素标签，可参考 https://www.w3school.com.cn/html/html_jianjie.asp 。
+更多元素标签，可参考:
+
+https://www.w3school.com.cn/html/html_jianjie.asp 。
 
 --
 

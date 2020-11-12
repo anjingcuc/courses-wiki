@@ -105,7 +105,3 @@ title: JavaScript 结构化代码
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-
-## 提交
-
-请完成上述四个小实验，并将代码和文档发送到 anjingcuc@vip.qq.com 文件名为 `学号-姓名.zip`。

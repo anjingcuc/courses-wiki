@@ -1,6 +1,7 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
+    font-size: 0.8em;
   }
   .reveal ul {
     display: block;

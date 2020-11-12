@@ -1,3 +1,16 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
 # JavaScript 基础
 
 ---
@@ -8,6 +21,8 @@
 
 - 语法错误
 - 逻辑错误
+
+<!-- .element: style="font-size:70%;" -->
 
 --
 
@@ -31,15 +46,17 @@
 
 ## 变量
 
-<p style="font-size:0.7em;text-align:left">变量是 JavaScript 中用来存放各种数字、字符串等各种数值的东西。变量中的值是可以改变的，所以叫做“变”量。</p>
+变量是 JavaScript 中用来存放各种数字、字符串等各种数值的东西。变量中的值是可以改变的，所以叫做“变”量。
 
-![变量](/img/boxes.png)
+![变量](/img/boxes.png)<!-- .element: style="width:70%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
 
 --
 
 ### 声明变量
 
-<p style="font-size:0.7em;text-align:left">声明一个变量可以在关键字 `let` 或者 `var` 后面接空格并加上变量的名字。</p>
+声明一个变量可以在关键字 `let` 或者 `var` 后面接空格并加上变量的名字。
 
 ```javascript
 let name;
@@ -50,7 +67,7 @@ var age;
 
 ### 变量初始化
 
-<p style="font-size:0.8em;text-align:left">定义变量后，可以使用赋值运算符 `=` 对变量赋予初始值，即初始化变量。良好的变成习惯来说，一般建议将声明和初始化同时进行。</p>
+定义变量后，可以使用赋值运算符 `=` 对变量赋予初始值，即初始化变量。良好的变成习惯来说，一般建议将声明和初始化同时进行。
 
 ```javascript
 name = "anjing"; // 初始化名字变量
@@ -64,7 +81,7 @@ let age = 18; // 声明同时初始化变量，推荐
 
 ### 更新变量
 
-<p style="font-size:0.8em;text-align:left">在声明、初始化变量之后，还可以使用 `=` 更新他们存储的值。</p>
+在声明、初始化变量之后，还可以使用 `=` 更新他们存储的值。
 
 ```javascript
 name = "teacher";
@@ -75,17 +92,19 @@ age = 32;
 
 ### 好的变量命名规则
 
-<p style="font-size:0.8em;text-align:left">程序员也有美感的需求（哈哈哈哈），尤其在开源社区中，为了统一大家的代码风格，往往采用统一的代码规范，比如 Google 代码规范。代码规范对变量的命名方式，缩进，注释等都有要求，其中变量推荐使用驼峰命名法。</p>
+程序员也有美感的需求（哈哈哈哈），尤其在开源社区中，为了统一大家的代码风格，往往采用统一的代码规范，比如 Google 代码规范。代码规范对变量的命名方式，缩进，注释等都有要求，其中变量推荐使用驼峰命名法。
 
 - camelCase
 - firstName
 - yourAge
 
+<!-- .element: style="font-size:70%;" -->
+
 ---
 
 ## 变量类型
 
-<p style="font-size:0.8em;text-align:left">在 JavaScirpt 中有五种不同类型的数据。</p>
+在 JavaScirpt 中有五种不同类型的数据。
 
 | 变量类型 | 说明                              |
 | -------- | --------------------------------- |
@@ -101,7 +120,7 @@ age = 32;
 
 ### Number
 
-<p style="font-size:0.8em;text-align:left">JavaScirpt 并不区分整数和小数，所有数字都属于 Number 类型。</p>
+JavaScirpt 并不区分整数和小数，所有数字都属于 Number 类型。</p>
 
 ```javascript
 let age = 17;
@@ -112,7 +131,7 @@ let balance = 6666666.66;
 
 ### String
 
-<p style="font-size:0.8em;text-align:left">用单引号 `'` 或者双引号 `"` 把字符包裹起来即可成为一个字符串，即使被包裹的内容是数字，当然也可以是其他字符，比如中英文等。</p>
+用单引号 `'` 或者双引号 `"` 把字符包裹起来即可成为一个字符串，即使被包裹的内容是数字，当然也可以是其他字符，比如中英文等。
 
 ```javascript
 let slogan = "在桎梏与训诫中寻求自由。";
@@ -123,7 +142,7 @@ let score = "100";
 
 ### Boolean
 
-<p style="font-size:0.8em;text-align:left">大部分编程语言都存在该类型，只能取真或假两种值，即 true / false。常常出现在分支判断或者循环条件中。</p>
+大部分编程语言都存在该类型，只能取真或假两种值，即 true / false。常常出现在分支判断或者循环条件中。
 
 ```javascript
 let test = 7 > 5;
@@ -133,7 +152,7 @@ let test = 7 > 5;
 
 ### Array
 
-<p style="font-size:0.8em;text-align:left">数组在实际编程中非常常见，可以保存多个不同值，用方括号 `[]` 括起来，逗号 `,` 分隔其中的值。</p>
+数组在实际编程中非常常见，可以保存多个不同值，用方括号 `[]` 括起来，逗号 `,` 分隔其中的值。
 
 ```javascript
 let ageArray = [17, 18, 17, 16];
@@ -147,7 +166,7 @@ console.log(students[1]); // 小红
 
 ### Object
 
-<p style="font-size:0.8em;text-align:left">定义一个现实生活中对应的物体的各种属性可以使用这个类型，用大括号 `{}` 括起来。</p>
+定义一个现实生活中对应的物体的各种属性可以使用这个类型，用大括号 `{}` 括起来。
 
 ```javascript
 let dog = { name: "doge", age: 1, breed: "Corgi" };
@@ -159,7 +178,7 @@ console.log(dog.name);
 
 ## 动态类型
 
-<p style="font-size:0.8em;text-align:left">JavaScript 是一种动态类型语言，所有的变量通过赋不同类型的值会改变他们的类型，变量类型可以用 `typeof` 操作符来查看他们的类型。</p>
+JavaScript 是一种动态类型语言，所有的变量通过赋不同类型的值会改变他们的类型，变量类型可以用 `typeof` 操作符来查看他们的类型。
 
 ```javascript
 let score = "100";
@@ -175,7 +194,7 @@ typeof score;
 
 ## Number 及 运算符
 
-<p style="font-size:0.8em;text-align:left">数字在 JavaScript 中的处理相对简单。</p>
+数字在 JavaScript 中的处理相对简单。
 
 | 运算符 | 名称       | 示例                                                  |
 | ------ | ---------- | ----------------------------------------------------- |
@@ -192,13 +211,13 @@ typeof score;
 
 ### 运算符优先级
 
-<p style="font-size:0.8em;text-align:left">基本和数学公式中的运算优先级一直，比如乘除优先于加减先计算，详细的优先级规则可以查阅[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7)。</p>
+基本和数学公式中的运算优先级一直，比如乘除优先于加减先计算，详细的优先级规则可以查阅[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7)。
 
 --
 
 ### 递增和递减运算
 
-<p style="font-size:0.8em;text-align:left">JavaScript 从其他高级语言中继承了一种特殊的运算符，常常出现在循环中，`++` 表示更新这个运算符前面的变量为它原来的值加 1，`--` 则表示减 1。</p>
+JavaScript 从其他高级语言中继承了一种特殊的运算符，常常出现在循环中，`++` 表示更新这个运算符前面的变量为它原来的值加 1，`--` 则表示减 1。
 
 ```javascript
 let count = 5;
@@ -210,7 +229,7 @@ count; // count 变成了 6
 
 ### 特别的赋值运算符
 
-<p style="font-size:0.8em;text-align:left">除了赋值运算符 `=` 以外，还有更复杂快捷的赋值运算符。</p>
+除了赋值运算符 `=` 以外，还有更复杂快捷的赋值运算符。
 
 | 运算符 | 名称     | 示例           | 等价于            |
 | ------ | -------- | -------------- | ----------------- |
@@ -225,7 +244,7 @@ count; // count 变成了 6
 
 ### 比较运算符
 
-<p style="font-size:0.8em;text-align:left">使用比较运算符来比较数字们的各种关系，返回一个Boolean值用于分支和循环。</p>
+使用比较运算符来比较数字们的各种关系，返回一个Boolean值用于分支和循环。
 
 | 运算符 | 名称       | 示例        |
 | ------ | ---------- | ----------- |
@@ -242,7 +261,7 @@ count; // count 变成了 6
 
 ## 字符串用法
 
-<p style="font-size:0.8em;text-align:left">字符串是另一种 JavaScript 中非常常见的类型。它需要用单引号或者双引号来创建，但不能一半单引号一半双引号。</p>
+字符串是另一种 JavaScript 中非常常见的类型。它需要用单引号或者双引号来创建，但不能一半单引号一半双引号。
 
 ```javascript
 let demoString = '我是个单引号括起来的字符串。';
@@ -256,7 +275,7 @@ let oneMoreWrong = '我还能犯一万种不同花式的错误;
 
 ### 字符转义
 
-<p style="font-size:0.8em;text-align:left">一些特殊字符直接包裹在字符串中会引起错误，需要用转义字符 `\` 来使得他们正常显示。</p>
+一些特殊字符直接包裹在字符串中会引起错误，需要用转义字符 `\` 来使得他们正常显示。
 
 ```javascript
 let whoAmI = 'I'm superman.';
@@ -268,7 +287,7 @@ let whoAmI = 'I\'m superman';
 
 ### 字符串拼接
 
-<p style="font-size:0.8em;text-align:left">字符串拼接非常简单，直接使用加号 `+` 就可以将两个字符串拼起来。</p>
+字符串拼接非常简单，直接使用加号 `+` 就可以将两个字符串拼起来。
 
 ```javascript
 let dragon = '来左边儿跟我一起画个龙，';
@@ -281,7 +300,7 @@ let wildWolfDisco = dragon + rainbow + '在你胸口上比划一个郭富城。'
 
 ### 字符串与数字转换
 
-<p style="font-size:0.8em;text-align:left">可以使用 Number 将字符串转化为数字，使用 .toString() 方法来讲数字转化为字符串。甚至如果直接把字符串和数字相加，浏览器会自动把数字转化成字符串并完成拼接。</p>
+可以使用 Number 将字符串转化为数字，使用 .toString() 方法来讲数字转化为字符串。甚至如果直接把字符串和数字相加，浏览器会自动把数字转化成字符串并完成拼接。
 
 ```javascript
 let score = 60;
@@ -300,7 +319,7 @@ newBalance = Number(balance) + 10000000000000;
 
 ### 字符串进阶-对象操作
 
-<p style="font-size:0.8em;text-align:left">JavaScript 中所有的东西不论是什么类型的都被当作对象来处理。因此我们可以调用对象的各种方法来操作字符串。比如获取字符串的长度。</p>
+JavaScript 中所有的东西不论是什么类型的都被当作对象来处理。因此我们可以调用对象的各种方法来操作字符串。比如获取字符串的长度。
 
 ```javascript
 let name = 'anjing';
@@ -311,7 +330,7 @@ name.length;
 
 ### 字符串进阶-取出任意字符
 
-<p style="font-size:0.8em;text-align:left">可以把字符串当成一个数组一样通过任意下标（从 0 开始）获取其中的字符。</p>
+可以把字符串当成一个数组一样通过任意下标（从 0 开始）获取其中的字符。
 
 ```javascript
 let name = 'anjing';
@@ -323,7 +342,7 @@ name[name.length - 1] // 'g'
 
 ### 字符串进阶-查找子串
 
-<p style="font-size:0.8em;text-align:left">可以查找某个字符串中是否存在一个字串并返回字串开始的位置，找不到则返回的位置为 -1。</p>
+可以查找某个字符串中是否存在一个字串并返回字串开始的位置，找不到则返回的位置为 -1。
 
 ```javascript
 let wildWolfDisco = '在你胸口上比划一个郭富城。';
@@ -335,7 +354,7 @@ wildWolfDisco.indexOf('学友');   // -1
 
 ### 字符串进阶-分割字符串
 
-<p style="font-size:0.8em;text-align:left">取出字符串的一部分成为一个新的字符串。</p>
+取出字符串的一部分成为一个新的字符串。
 
 ```javascript
 let mayunBaba = '放过我的钱包吧爸爸';
@@ -348,7 +367,7 @@ mayunBaba.slice(7);    // '爸爸'
 
 ### 字符串进阶-转换大小写
 
-<p style="font-size:0.8em;text-align:left">将字符串中的字符全大写或者全小写。</p>
+将字符串中的字符全大写或者全小写。
 
 ```javascript
 let laugh = 'HaHaHaHaHa';
@@ -361,7 +380,7 @@ let weakLaugh = laugh.toLowerCase();
 
 ### 字符串进阶-替换部分字符串
 
-<p style="font-size:0.8em;text-align:left">将指定的部分字符串替换为其他内容。</p>
+将指定的部分字符串替换为其他内容。
 
 ```javascript
 let greeting = '我爱网页设计与制作。';
@@ -374,7 +393,7 @@ greeting.replace('。', '才怪。');
 
 ## 数组
 
-<p style="font-size:0.8em;text-align:left">数组就像一个列表一样，有很多项内容，这些项可以是数字也可以是字符串，甚至可以是其他的数组。</p>
+数组就像一个列表一样，有很多项内容，这些项可以是数字也可以是字符串，甚至可以是其他的数组。
 
 ```javascript
 let shopping = ['iPhone 11 pro Max', 'ASUS PG279Q', 'Rossignol'];
@@ -384,7 +403,7 @@ let shopping = ['iPhone 11 pro Max', 'ASUS PG279Q', 'Rossignol'];
 
 ### 访问和修改元素
 
-<p style="font-size:0.8em;text-align:left">数组就像一个列表一样，有很多项内容，这些项可以是数字也可以是字符串，甚至可以是其他的数组。</p>
+数组就像一个列表一样，有很多项内容，这些项可以是数字也可以是字符串，甚至可以是其他的数组。
 
 ```javascript
 shopping[0];
@@ -396,7 +415,7 @@ shopping[0] = 'iPhone 11'; // 因为穷
 
 ### 获取数组长度
 
-<p style="font-size:0.8em;text-align:left">数组和字符串一样可以通过 `.length` 属性来获取其元素个数。</p>
+数组和字符串一样可以通过 `.length` 属性来获取其元素个数。
 
 ```javascript
 shopping.length; // 3
@@ -410,7 +429,7 @@ for (let i = 0; i < shopping.length; i++) {
 
 ### 数组进阶-字符串和数组转换
 
-<p style="font-size:0.8em;text-align:left">部分数组可以和字符串之间进行转换。</p>
+部分数组可以和字符串之间进行转换。
 
 ```javascript
 let students = '小红,小明,小新,小白';
@@ -423,7 +442,7 @@ studentsArray.join(';'); // '小红;小明;小新;小白'
 
 ### 数组进阶-添加删除数组项
 
-<p style="font-size:0.8em;text-align:left">数组中的项是可以添加或者删除的。</p>
+数组中的项是可以添加或者删除的。
 
 ```javascript
 shopping.pop();

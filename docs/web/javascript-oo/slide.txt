@@ -1,6 +1,7 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
+    font-size: 0.8em;
   }
   .reveal ul {
     display: block;
@@ -142,7 +143,7 @@ age.isNumber();
 
 面向对象是一种编程思想，大部分高级语言都支持面向对象的编程方法。对于统一类型的对象，面向对象的编程语言都需要一个模板来定义这些对象拥有哪些属性和方法，比如说，所有的 person 对象都得有名字有年龄等等，我们把这样的模板叫做类 (Class)。
 
-![类](/img/person-diagram.png)
+![类](/img/person-diagram.png)<!-- .element style="border:none;"-->
 
 <!-- .element style="text-align:center"-->
 
@@ -154,7 +155,7 @@ age.isNumber();
 
 <!-- .element style="font-size:60%"-->
 
-![实例化](/img/MDN-Graphics-instantiation-2.png)<!-- .element style="width:70%;"-->
+![实例化](/img/MDN-Graphics-instantiation-2.png)<!-- .element style="width:70%;border:none;"-->
 
 <!-- .element style="text-align:center;"-->
 
@@ -243,7 +244,7 @@ let person2 = Object.create(person1);
 
 <!-- .element style="font-size:60%"-->
 
-![继承](/img/MDN-Graphics-inherited-3.png)<!-- .element style="width:70%;"-->
+![继承](/img/MDN-Graphics-inherited-3.png)<!-- .element style="width:70%;border:none;"-->
 
 <!-- .element style="text-align:center;"-->
 
@@ -257,7 +258,7 @@ JavaScript 中的继承是一种基于原型的继承，要理解继承，需要
 2. 通过这个构造函数实例化的对象有一个属性叫做 `__proto__` 和构造函数的 `prototype` 指向同一个原型；
 3. 这个原型也有自己的 `__proto__` 属性指向它的原型。
 
-<!-- .element style="font-size:60%"-->
+<!-- .element style="font-size:70%"-->
 
 --
 
@@ -265,7 +266,7 @@ JavaScript 中的继承是一种基于原型的继承，要理解继承，需要
 
 以我们之前的 Person 构造函数为例，我们来看看它的原型链是什么样的。我们可以在浏览器开发者工具中实例化一个 person1 然后分析 `person1.__proto__` 和 `Person.prototype` 的关系，并查看这个原型的原型是谁。
 
-![原型链](/img/MDN-Graphics-person-person-object-2.png)
+![原型链](/img/MDN-Graphics-person-person-object-2.png)<!-- .element style="border:none;"-->
 
 <!-- .element style="text-align:center;"-->
 
@@ -280,7 +281,7 @@ JavaScript 中的继承是一种基于原型的继承，要理解继承，需要
 3. 如果也没有，则浏览器检查第 2 步中的原型的原型，即 `person1.__proto__.__proto__` 或 `Person.prototype.__proto__`，实际上就是 `Object构造函数` 的 `prototype` 属性所指向的对象是否具有可用的 `valueOf()` 方法。
 4. 这里有这个方法，于是该方法被调用。
 
-<!-- .element style="font-size:60%"-->
+<!-- .element style="font-size:70%"-->
 
 --
 
@@ -372,6 +373,8 @@ Person.prototype.greeting = function() {
 
 1. Teacher 类包含一个新的属性，subject——这个属性包含了教师教授的学科。
 2. 一个新的 greeting()方法，这个方法听起来比原来的更加正式一些。
+
+<!-- .element style="font-size:70%"-->
 
 --
 
@@ -537,7 +540,7 @@ JSON (JavaScript Object Notation) 是一种参考了 JavaScript 的对象语法�
 我们将 JSON 赋值给一个变量后可以通过分析这个 JSON 的内容，动态的创建一个页面来介绍这些英雄。
 首先创建一个包含 `<section>` 元素的页面，然后在 JavaScript 中获取该元素并执行以下代码来完成英雄技能展示。
 
-<!-- .element style="font-size:80%"-->
+<!-- .element style="font-size:70%"-->
 
 ```javascript
 function showHeroes(jsonObj) {

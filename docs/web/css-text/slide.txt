@@ -1,6 +1,7 @@
 <style type="text/css">
   .reveal p {
-    text-align: left;
+    text-align: justify;
+    font-size: 0.8em;
   }
   .reveal ul {
     display: block;
@@ -223,12 +224,6 @@ p {
 
 ---
 
-## 练习
-
-练习文本样式的各种用法。
-
----
-
 ## 文本样式-列表样式
 
 `<ul>` / `<ol>` 元素设置 `margin` 的顶部/底部为: `16px(1em)` / `0`; 和 `padding-left: 40px(2.5em);`（在这里注意的是浏览器默认字体大小为 16px）。
@@ -343,12 +338,6 @@ a:active {
 
 }
 ```
-
----
-
-## 练习
-
-练习链接样式的各种用法。
 
 ---
 

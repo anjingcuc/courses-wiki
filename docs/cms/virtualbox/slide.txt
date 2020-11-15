@@ -174,7 +174,6 @@ sudo mount -t vboxsf share_name /mnt/share
 安装客机增强件后还可以采用以下方法实现文件传输：
 
 - 开启拖放功能实现文件拖放
-- 开启复制功能实现文件复制
 - 使用 U 盘等设备实现文件复制
 
 <!-- .element style="font-size: 70%;"-->

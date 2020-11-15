@@ -75,7 +75,47 @@ title: Windows 安装
 
 使用 Markdown 记录安装 Windows 的过程，commit 并 push 到个人作业仓库即可。
 
+## 参考视频
+
+1. Github 配置部分
+
+<iframe src="//player.bilibili.com/player.html?aid=71899338&cid=124583059&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height=450px> </iframe>
+
+2. 编辑提交部分
+
+<iframe src="//player.bilibili.com/player.html?aid=71903458&cid=124590342&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height=450px> </iframe>
+
+### Markdown Cheet Sheet
+
+鉴于部分同学还是对 Markdown 不太熟悉，这里给大家推荐 [Markdown Guide](https://www.markdownguide.org/) 。这个网站是一个 Markdown 学习站点，大家可以上去学习一下语法。下面一小节就是参考他们的 [Markdown Cheet Sheet](https://www.markdownguide.org/cheat-sheet/) 翻译的。当然还有很多中文教程，大家可以自行补习。
+
+#### 基本语法
+
+| 元素       | 语法                                                   |
+| ---------- | ------------------------------------------------------ |
+| 标题       | `# H1`<br/>`## H2`<br>`### H3`                         |
+| 粗体       | `**bold text**`                                        |
+| 斜体       | `_italicized text_`                                    |
+| 引用       | `> blockquote`                                         |
+| 有序列表   | `1. First item`<br>`2. Second item`<br>`3. Third item` |
+| 无序列表   | `- First item`<br>`- Second item`<br>`- Third item`    |
+| 代码       | `code`                                                 |
+| 横向分割线 | `---`                                                  |
+| 超链接     | `[title](https://www.example.com)`                     |
+| 图片       | `![alt text](image.jpg)`                               |
+
+#### 扩展语法
+
+| 元素              | 语法                                                                                                           |
+| ----------------- | -------------------------------------------------------------------------------------------------------------- |
+| 表格            | `| Syntax | Description |`<br>`| ----------- | ----------- |`<br>`| Header | Title |`<br>`|Paragraph | Text |` |
+| Fenced Code Block | \`\`\`<br>`{`<br>`" firstName": "John",`<br>`"lastName": "Smith",`<br>`"age": 25`<br>`}`<br>\`\`\`             |
+| 脚注          | `Here's a sentence with a footnote. [^1]`<br>`[^1]: This is the footnote.`                                     |
+| 标题 id        | `### My Great Heading {#custom-id}`                                                                            |
+| 定义列表 | `term`<br>`: definition`                                                                                       |
+| 划掉     | `~~The world is flat.~~`                                                                                       |
+| 任务列表         | `- [x] Write the press release`<br>`- [ ] Update the website`<br>`- [ ] Contact the media`                     |
+
 ## 附加资料
 
 Git 官方视频中字 https://www.nowcoder.com/courses/2
-

@@ -17,13 +17,381 @@
 
 ## 用户与账户
 
+--
+
+### 设置
+
+![用户账户设置](/img/user-init.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### Windows 内置用户帐号
+
+Windows 默认内置了多个不同权限的账号。
+
+- <b style="color:red;">Administrator</b>用户，该帐号为系统默认的管理员帐号，该帐户具有 Windows 的最高管理权限，默认禁用。
+- <b style="color:red;">Guest</b>用户，来宾账户，可运行部分抵权限程序，查看部分文件，该类型用户无法永久地改变其桌面的工作环境。
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 用户组
+
+把类型相同的一些用户帐号放置在一个组群中，方便对其进行全局的权限和服务的设置管理。
+
+--
+
+### 内置用户组 (1/2)
+
+- Administrators
+  - 管理员组，该组用户对计算机/域有不受限制的完全访问权，分配给该组的默认权限允许对整个系统进行完全控制。
+- Power Users
+  - 高级用户组，Power Users 可以执行除了为 Administrators 组保留的任务外的其他任何操作系统任务。
+- Users
+  - 普通用户组，默认权限不允许成员修改操作系统的设置或用户资料。
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 内置用户组 (2/2)
+
+- Guests
+  - 来宾组，来宾组跟普通组 Users 的成员有同等访问权，但来宾帐户的限制更多。
+- Everyone
+  - 所有的用户，这个计算机上的所有用户都属于这个组。
+- SYSTEM
+  - 这个组拥有比 Administrators 更高的权限，这个组主要是保证了系统服务的正常运行，赋予系统及系统服务的权限。
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 命令行添加用户账户
+
+WIN + R 键打开命令行。
+
+```powershell
+net user /?
+此命令的语法是:
+
+NET USER
+[username [password | *] [options]] [/DOMAIN]
+         username {password | *} /ADD [options] [/DOMAIN]
+         username [/DELETE] [/DOMAIN]
+         username [/TIMES:{times | ALL}]
+         username [/ACTIVE: {YES | NO}]
+```
+
+--
+
+### 添加用户
+
+```powershell
+net user user_test mypassword /add
+```
+
+--
+
+### 查看用户
+
+```powershell
+net user
+```
+
+--
+
+### 删除用户
+
+```powershell
+net user user_test /delete
+```
+
+--
+
+### 用户组操作
+
+```powershell
+net localgroup /?
+此命令的语法是:
+
+NET LOCALGROUP
+[groupname [/COMMENT:"text"]] [/DOMAIN]
+              groupname {/ADD [/COMMENT:"text"] | /DELETE}  [/DOMAIN]
+              groupname name [...] {/ADD | /DELETE} [/DOMAIN]
+```
+
+--
+
+### 添加用户组
+
+```powershell
+net localgroup user_group /add
+```
+
+--
+
+### 查看用户组
+
+```powershell
+net localgroup
+```
+
+--
+
+### 删除用户组
+
+```powershell
+net localgroup user_group /delete
+```
+
+--
+
+### 将用户加入某组
+
+```powershell
+net localgroup user_group user_test /add
+```
+
 ---
 
 ## 进程与线程
 
+--
+
+### 任务栏管理器
+
+通过右键 Windows 任务栏，可以打开任务栏管理器，可以查看进程。
+
+![任务栏管理器](/img/task_manager.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 查看当前计算机状态
+
+可以使用任务栏管理器查看计算机状态。
+
+- 查看 CPU 使用情况；
+- 查看内存使用情况；
+- 根据需要结束进程。
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 使用命令行 tasklist
+
+WIN 键+R 键打开运行窗口，输入`cmd`回车打开命令行窗口，输入`tasklist`来查看进程。
+
+```
+tasklist
+
+映像名称                       PID 会话名              会话#       内存使用
+========================= ======== ================ =========== ============
+System Idle Process              0 Services                   0         12 K
+System                           4 Services                   0      2,928 K
+smss.exe                       264 Services                   0        732 K
+csrss.exe                      336 Services                   0      4,384 K
+wininit.exe                    384 Services                   0      3,856 K
+csrss.exe                      396 Console                    1     11,944 K
+winlogon.exe                   436 Console                    1      5,204 K
+services.exe                   480 Services                   0      6,836 K
+lsass.exe                      492 Services                   0      7,372 K
+lsm.exe                        500 Services                   0      2,800 K
+svchost.exe                    604 Services                   0      6,808 K
+VBoxService.exe                668 Services                   0      4,152 K
+svchost.exe                    720 Services                   0      5,000 K
+svchost.exe                    776 Services                   0     12,768 K
+svchost.exe                    896 Services                   0     34,848 K
+svchost.exe                    936 Services                   0     36,100 K
+svchost.exe                   1104 Services                   0      7,140 K
+svchost.exe                   1228 Services                   0     15,456 K
+spoolsv.exe                   1328 Services                   0      8,288 K
+svchost.exe                   1364 Services                   0      9,160 K
+svchost.exe                   1464 Services                   0      6,564 K
+svchost.exe                   1780 Services                   0     48,636 K
+taskhost.exe                   920 Console                    1      6,976 K
+dwm.exe                       1284 Console                    1      3,704 K
+explorer.exe                  1448 Console                    1     39,372 K
+VBoxTray.exe                  1936 Console                    1      5,832 K
+SearchIndexer.exe             2120 Services                   0     17,328 K
+wmpnetwk.exe                  2232 Services                   0      2,628 K
+wuauclt.exe                   1964 Console                    1      4,836 K
+WmiPrvSE.exe                  3684 Services                   0      4,488 K
+audiodg.exe                   2836 Services                   0     13,704 K
+Procmon.exe                   4024 Console                    1      7,684 K
+Procmon.exe                   1996 Console                    1     25,872 K
+cmd.exe                       3704 Console                    1      2,480 K
+conhost.exe                   1376 Console                    1      4,692 K
+tasklist.exe                  3728 Console                    1      4,048 K
+WmiPrvSE.exe                  1164 Services                   0      4,616 K
+```
+
+--
+
+### 进程
+
+进程与可执行程序的区别：
+
+- “可执行程序”不等于“进程”
+- “可执行程序”是静态的文件
+- “进程”则是操作系统加载可执行程序后管理的对象
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 线程
+
+线程的基本概念，在学习编程过程中可能遇到多线程问题。
+
+- 线程包含于进程中
+  - Windows 操作系统的指令执行最小调度单位
+  - 线程唯一标识（TID）
+- 同一进程内的多个线程可以实现数据共享
+  - 多线程间执行切换需要系统内核调度
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+## 常见进程作用 (1/4)
+
+常见进程介绍:
+
+- System 进程
+  - 进程名称：Windows 内存处理系统进程
+  - 描述：Windows 页面内存管理进程，最高优先级
+- alg 进程
+  - 进程名称：应用层网关服务
+  - 描述：这是一个应用层网关服务，用于网络共享。
+- csrss 进程
+  - 进程名称：客户端服务子系统（Client/Server Runtime Subsystem）
+  - 描述：用以控制 Windows 图形相关子系统
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+## 常见进程作用 (2/4)
+
+- System Idle Process 进程
+  - 进程名称：Windows 空闲进程
+  - 描述：表示 CPU 的空闲率
+- Lsass 进程
+  - 进程名称：本地安全权限服务
+  - 描述：本地安全权限服务控制 Windows 安全机制
+- Services 进程
+  - 进程名称：Windows 服务控制 \*描述：管理 Windows 服务
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+## 常见进程作用 (3/4)
+
+- Smss 进程
+  - 进程名称：会话管理子系统
+  - 描述：该进程为会话管理子系统用以初始化系统变量，调用 win32 子程序在登录过程中运行。
+- Spoolsv 进程
+  - 进程名称：打印机服务
+  - 描述：用于使打印机就绪
+- Svchost 进程
+  - 进程名称：主机服务程序
+  - 描述：标准的动态链接库主机处理服务
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+## 常见进程作用 (4/4)
+
+- Winlogon 进程
+  - 进程名称：Windows 登陆进程
+  - 描述：Windows 用户的登陆程序
+- Taskmgr 进程
+  - 进程名称：Windows 任务管理器
+  - 描述：执行 Windows 的任务
+- Explorer 进程
+  - 进程名称：Windows 资源管理器
+  - 描述：管理 Windows 图形壳，包括开始菜单，任务栏，桌面和文件管理
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+### 进程查看进阶工具
+
+--
+
+### Process Explorer
+
+找出进程打开了哪些文件、注册表项和其他对象以及已加载哪些 DLL 等信息。
+
+![PE](/img/procexp.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### Process Monitor
+
+实时监视文件系统、注册表、进程、线程和 DLL 活动。
+
+![PM](/img/procmon.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
 ---
 
-## 服务与设备
+## 注册表
+
+--
+
+## 简介
+
+注册表在 windows 系统的配置和控制方面扮演了一个非常关键的角色，它既是系统全局设置的存储仓库，也是每个用户的设置信息的存储仓库。
+
+--
+
+## 打开方式
+
+快捷键 Win + R 打开运行窗口，输入`regedit`并在弹出`UAC`对话框中选择允许。
+
+![注册表](/img/regedit.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+## 五个根节点
+
+Windows 下注册表是一个树状结构，主要包含 5 个根节点。
+
+- HKEY_CLASSES_ROOT，存储各类不同文件扩展名对应的默认打开程序。
+- HKEY_CURRENT_USER，当前用户的配置数据信息。
+- HKEY_LOCAL_MACHINE，硬件、计算机所有用户的配置数据信息。
+- HKEY_USERS，计算机默认用户的配置文件和已知用户的配置文件的子项。
+- HKEY_CURRENT_CONFIG，当前硬件配置信息。
+
+<!-- .element style="font-size:70%;"-->
+
+--
+
+## 注册表常见作用
+
+注册表的作用：
+
+- 记录各种软件的注册信息
+- 保存系统及软件配置
+- 保存系统自启动项
+
+<!-- .element style="font-size:70%;"-->
 
 ---
 

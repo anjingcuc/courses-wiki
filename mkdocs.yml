@@ -8,6 +8,7 @@ nav:
       - 系统维护: cms/maintain.md
       - 虚拟机: cms/virtualbox.md
       - 系统安装: cms/windows-install.md
+      - Windows 组件进阶: cms/windows-components.md
   - Python 程序设计: python.md
   - Python 程序设计:
       - 课程概述: python/introduction.md

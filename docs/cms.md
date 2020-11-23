@@ -17,3 +17,5 @@ title: 计算机安全与维护
 ### [03-虚拟机](cms/virtualbox.md)
 
 ### [04-系统安装](cms/windows-install.md)
+
+### [05-Windows 组件进阶](cms/windows-components.md)

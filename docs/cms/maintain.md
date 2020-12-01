@@ -106,7 +106,7 @@ source: https://docs.microsoft.com/en-us/windows/desktop/devnotes/file-record-se
 
 本次作业需要 winhex 来完成十六进制文件查看与内容提取。
 
-校园网访问: [校内 FTP 下载](http://202.205.24.235/ftp/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BB%B4%E6%8A%A4/software/winhex.zip)
+校园网访问: [校内 FTP 下载](http://10.48.5.5/homeworks/2-CTF-play-with-binary/winhex.zip)
 
 非校园网点击: [官网下载](http://www.x-ways.net/winhex.zip)
 

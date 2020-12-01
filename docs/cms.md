@@ -19,3 +19,8 @@ title: 计算机安全与维护
 ### [04-系统安装](cms/windows-install.md)
 
 ### [05-Windows 组件进阶](cms/windows-components.md)
+
+### [06-恶意代码介绍](cms/malware-introduction.md)
+
+### [07-恶意代码分析](cms/malware-analysis.md)
+

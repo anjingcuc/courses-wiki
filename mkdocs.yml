@@ -9,6 +9,8 @@ nav:
       - 虚拟机: cms/virtualbox.md
       - 系统安装: cms/windows-install.md
       - Windows 组件进阶: cms/windows-components.md
+      - 恶意代码介绍: cms/malware-introduction.md
+      - 恶意代码分析: cms/malware-analysis.md
   - Python 程序设计: python.md
   - Python 程序设计:
       - 课程概述: python/introduction.md

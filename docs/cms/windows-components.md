@@ -26,6 +26,6 @@ title: Windows 组件
 
 homework.exe 下载:
 
-- 校园网访问: [校内 FTP 下载](http://202.205.24.235/ftp/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BB%B4%E6%8A%A4/homework.zip)
+- 校园网访问: [校内 FTP 下载](http://10.48.5.5/homeworks/3-process-analysis/ProcessMonitor.zip)
 
 - 非校园网点击: [Github 下载](https://anjingcuc.github.io/courses-wiki/cms/windows-components/homework.zip)

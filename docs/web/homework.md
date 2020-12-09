@@ -29,7 +29,7 @@ title: 作业
 
 该作业在 [CSS 文本样式](css-text.md) 一节中出现，要求帮助一个网站进行样式的修改。
 
-请下载压缩包 [作业模板](css-text-homework.zip) 并完成以下任务：
+请下载压缩包 [作业模板](css-text/css-text-homework.zip) 并完成以下任务：
 
 你有一个虚构的社区大学主页的未处理 HTML 文件和一些 CSS 文件。这些 CSS 文件把网页分成两栏布局，提供了一些简单的样式化。你将在 CSS 文件底部的注释下面写你的 CSS，这样可以方便地标出你的工作。
 
@@ -66,13 +66,13 @@ title: 作业
 
 ### 作业参考
 
-如果实在无法完成，请参考 [作业参考](homeword_finished.zip)
+如果实在无法完成，请参考 [作业参考](css-text/homeword_finished.zip)
 
 ## 第三次作业要求
 
 该作业在 [JavaScript API](javascript-API.md) 一节中出现，要求实现一个 Tab 页面形式的图库。
 
-请下载压缩包 [作业模板](tab_gallery.zip) 并完成以下任务：
+请下载压缩包 [作业模板](javascript-API/tab_gallery.zip) 并完成以下任务：
 
 修改模板中的 CSS 和 JavaScript 实现一个图库功能。
 
@@ -98,7 +98,7 @@ title: 作业
 
 ### 提示
 
-遇到困难时，可下载 [提示](tab_gallery_tips.zip) 中的注释。
+遇到困难时，可下载 [提示](javascript-API/tab_gallery_tips.zip) 中的注释。
 
 ### 提交方式
 
@@ -106,7 +106,7 @@ title: 作业
 
 ### 作业参考
 
-如果实在无法完成，请参考 [作业参考](tab_gallery_finished.zip)
+如果实在无法完成，请参考 [作业参考](javascript-API/tab_gallery_finished.zip)
 
 ## 第四次作业要求
 

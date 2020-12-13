@@ -24,3 +24,4 @@ title: 计算机安全与维护
 
 ### [07-恶意代码分析](cms/malware-analysis.md)
 
+### [08-命令行与脚本](cms/cmd-scripts.md)

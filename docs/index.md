@@ -29,3 +29,7 @@ title: 首页
 本课程综合运用信息隐藏、Web 开发等知识，带领大家一起构建一个安全类的实践项目。
 
 课程资料请点击[数字媒体安全应用与实践](apdms.md).
+
+---
+
+## [Online Publishing](online-publishing.md)

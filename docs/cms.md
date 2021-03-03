@@ -8,8 +8,6 @@ title: 计算机安全与维护
 
 <a href='/img/cms.png'>![课程结构](/img/cms.png)</a>
 
-### [慕课分享](cms/ppt.md)
-
 ### [00-课程概述](cms/introduction.md)
 
 ### [01-Windows 基础](cms/windows-intro.md)

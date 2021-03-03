@@ -190,3 +190,9 @@ Markdown 扩展功能中比较重要的一个就是表格，在 Markdown 中可�
 ## 其他
 
 Markdown 可以支持多种扩展语法，包括任务列表、数学公式甚至流程图，而且 Markdown 支持直接使用 HTML 的标签。
+
+---
+
+## 进阶练习
+
+请使用 Typora 参考 [巴厘岛游记](巴厘岛游记.pdf) 编写一个 Markdown 文件。

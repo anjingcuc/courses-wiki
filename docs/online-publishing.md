@@ -9,3 +9,7 @@ title: Online Publishing
 [02-电子书](online-publishing/digital-book.md)
 
 [03-Web 服务](online-publishing/web.md)
+
+[04-Hexo](online-publishing/hexo.md)
+
+[05-版本控制与 Git](online-publishing/git.md)

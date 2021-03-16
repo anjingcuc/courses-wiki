@@ -1,0 +1,102 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 版本控制与 Git
+
+---
+
+## 版本控制
+
+--
+
+### 概念
+
+版本控制系统 (Version Control System) 起源于计算机行业，主要目的是通过控制文本文件的变化，来记录和管理软件开发过程中的代码变化，同时还提供了多人异地协作功能。实际上，对于现代的各种数字化作品，尤其是图文类作品，可以使用版本控制来帮助创作者更好地进行创作。
+
+--
+
+### 发展历程
+
+版本控制系统经历了几个不同的阶段，下图由左至右分别是本地管理、集中管理和分布式管理。
+
+![版本控制系统](/img/VCS.png)<!-- .element: style="padding:20px;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 工具
+
+著名的版本管理工具包括:
+
+- CVS
+- SVN
+- GIT
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## Git
+
+--
+
+### 简介
+
+Linus 开发的分布式版本控制软件，最初是为了管理 Linux 内核开发，后来被广泛使用，并催生出了 Github / 码云等国内外代码托管网站。官方网站是 <https://git-scm.com/> 。
+
+--
+
+### 原理
+
+版本控制系统将一个项目（软件、网站或者书籍）所在的文件夹称为“仓库 (repository) ”。
+
+![Git 快照](/img/git-snapshots.png)<!-- .element: style="width: 100%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 工具
+
+Git 既有面向专业用户的命令行终端软件，也有面向普通用户的 GUI 软件。官方网站 <https://git-scm.com/> 提供了命令行工具下载，普通用户推荐使用 <https://tortoisegit.org/> 小乌龟。课程中将结合命令行讲解 Git 的功能。
+
+--
+
+### 用法
+
+我们将参考 <https://git-scm.com/book/zh/v2/> 来熟悉 Git 的用法。
+
+![生命周期](/img/git-lifecycle.png)<!-- .element: style="width: 100%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## Github 与 Gitee
+
+--
+
+### 简介
+
+Git 作为一个分布式的版本控制系统，也可以将仓库放在一个所有参与协作的用户都能访问到的服务器上，这种形式的服务我们称之为托管。这个作为中转站的服务器在计算机术语中称为 `Hub` ，所以有一家公司推出了一个网站 `Github` 专门提供仓库托管服务，并开发了许多种额外的功能和服务，本课后半部分用到的 Pages 以及 Gitbook 都是在其中。国内也有类似的服务，就是码云 <https://gitee.com/> 。
+
+--
+
+### 用法
+
+我们可以参考课件下方的教程来进行配置和仓库创建。
+
+---
+
+## Q & A

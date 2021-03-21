@@ -13,3 +13,5 @@ title: Online Publishing
 [04-Hexo](online-publishing/hexo.md)
 
 [05-版本控制与 Git](online-publishing/git.md)
+
+[06-Github 与 Gitee](online-publishing/github-gitee.md)

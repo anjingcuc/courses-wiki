@@ -15,3 +15,5 @@ title: Online Publishing
 [05-版本控制与 Git](online-publishing/git.md)
 
 [06-Github 与 Gitee](online-publishing/github-gitee.md)
+
+[07-Gitbook](online-publishing/gitbook.md)

@@ -67,12 +67,11 @@ button.pack()  # 按钮位置
 window.mainloop()
 ```
 
+## 作业
 
-# 作业
+作业链接： <https://classroom.github.com/a/UKgkafDh>
 
-作业链接： https://classroom.github.com/a/D_m4Mzhb
-
-本次作业生成的是一个空的仓库，请自行编写 Base64 编解码代码并提交。
+本次作业生成的是一个空的仓库，请自行编写 Base64 *编码*和*解码*代码并提交。
 
 如果我没有明确说明，所有作业都**不必须**提交实验报告，但是代码请写好注释。
 

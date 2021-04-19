@@ -6,8 +6,8 @@ title: 结课作业
 
 请根据电脑所用系统下载依赖的软件，Windows 系统请下载 `Windows.zip`，苹果电脑默认的 macOS 请下载 `macOS.zip`。
 
-- [Windows.zip](Windows.zip)
-- [macOS.zip](macOS.zip)
+- [Windows.zip](https://gitee.com/anjingcuc/courses-wiki/raw/gh-pages/online-publishing/homework/Windows.zip)
+- [macOS.zip](https://gitee.com/anjingcuc/courses-wiki/raw/gh-pages/online-publishing/homework/macOS.zip)
 
 ## 作业要求
 

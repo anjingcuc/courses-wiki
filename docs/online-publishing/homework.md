@@ -4,10 +4,15 @@ title: 结课作业
 
 ## 依赖软件
 
-请根据电脑所用系统下载依赖的软件，Windows 系统请下载 `Windows.zip`，苹果电脑默认的 macOS 请下载 `macOS.zip`。
+请根据电脑所用系统下载依赖的软件，Windows 系统请下载:
 
-- [Windows.zip](https://gitee.com/anjingcuc/courses-wiki/raw/gh-pages/online-publishing/homework/Windows.zip)
-- [macOS.zip](https://gitee.com/anjingcuc/courses-wiki/raw/gh-pages/online-publishing/homework/macOS.zip)
+- [Nodejs v12.22.1](https://nodejs.org/dist/latest-v12.x/node-v12.22.1-x64.msi)
+- [Git for Windows](https://git-scm.com/download/win)
+
+
+苹果电脑默认的 macOS 请下载:
+
+- [Nodejs v12.22.1](https://nodejs.org/dist/latest-v12.x/node-v12.22.1.pkg)
 
 ## 作业要求
 

@@ -44,12 +44,6 @@ nav:
       - JavaScript API: web/javascript-API.md
       - Bootstrap: web/bootstrap.md
       - jQuery: web/jQuery.md
-  - 数字媒体安全应用与实践: apdms.md
-  - 数字媒体安全应用与实践:
-      - 课程概述: apdms/introduction.md
-      - Flask 初探: apdms/flask-getting-start.md
-      - Jinja2 模板: apdms/jinja2.md
-      - WTForms 表单: apdms/wtforms.md
 
 # Repository
 repo_name: "anjingcuc/courses-wiki"

@@ -176,6 +176,6 @@ for file in sorted_files.keys():
 
 ## 作业-猫鼠游戏
 
-作业链接: https://classroom.github.com/a/s2f5Vvvb
+作业链接: <https://classroom.github.com/a/7hEM9lgU>
 
 详细要求参考作业仓库的 README.md 。

@@ -30,4 +30,4 @@ _注 1: JavaScript 和 CSS 无特定要求。_
 
 _注 2: 可以用文本文件或者列表、字典直接内嵌文章等数据，不强制使用数据库，用了也没问题。_
 
-作业链接: [https://classroom.github.com/a/SCHj0TNk](https://classroom.github.com/a/SCHj0TNk)
+作业链接: <https://classroom.github.com/a/qKYn9KgF>

@@ -194,6 +194,4 @@ plt.show() # 需要调用 plt.show() 才会显示出界面
 1. 对采集的数据进行可视化排序，如点赞数 / 评论数 / 评分 等以柱状图折线图或自定形式展示。
 2. 对采集的数据进行关键词提取（jieba TF-IDF）并结合 wordcloud 实现词云效果。
 
-作业链接: [https://classroom.github.com/a/b86H2DFN](https://classroom.github.com/a/b86H2DFN)
-
-截止时间为: 2020-07-05 20:00 。
+作业链接: <https://classroom.github.com/a/INxJjf4R>

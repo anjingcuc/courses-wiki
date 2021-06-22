@@ -1,0 +1,245 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 程序结构
+
+---
+
+## 布尔逻辑
+
+在各类控制语句中，通过逻辑值检测来决定程序的执行流程。逻辑值检测或者叫真值检测 (Truth Value Testing)。
+
+1. 被定义为假值的常量: `None` 和 `False`
+2. 任何数值类型的零: `0`, `0.0`, `0j`
+3. 空的序列和多项集: `''`, `()`, `[]`, `range(0)`
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 布尔运算
+
+多个逻辑值可以通过布尔运算得到新的逻辑值。
+
+| 运算    | 结果                                                 |
+| ------- | ---------------------------------------------------- |
+| x or y  | 如果 `x` 为 `False`, 那么结果为 `y`, 否则 `x`        |
+| x and y | 如果 `x` 为 `False`, 那么结果为 `x`, 否则 `y`        |
+| not     | 如果 `x` 为 `False`, 那么结果为 `True`, 否则 `False` |
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### 比较
+
+其他数据类型则可以通过比较运算得到新的逻辑值。
+
+| 运算   | 含义         |
+| ------ | ------------ |
+| <      | 严格小于     |
+| <=     | 小于或等于   |
+| >      | 严格大于     |
+| >=     | 大于或等于   |
+| ==     | 等于         |
+| !=     | 不等于       |
+| is     | 对象标识     |
+| is not | 否定对象标识 |
+
+<!-- .element: style="font-size:60%;" -->
+
+---
+
+## 分支语句
+
+与其他语言一样，Python 可以使用 `if / else / elif` 关键字根据判断条件实现程序分支跳转。
+
+```python
+condition = input('请输入一个数字:')
+if condition == 1:
+    print("I'm one year old.")
+elif condition == 2:
+    print("I'm two years old.")
+else:
+    print("I'm a man now.")
+```
+
+--
+
+### 参考示例中的分支
+
+---
+
+## 循环语句
+
+--
+
+### while
+
+![循环示例](/courses-wiki/img/python_while_loop.gif)<!-- .element: style="width:45%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### for
+
+Python 中 `for` 的用法非常灵活，可以遍历任何序列。
+
+```python
+for char in "Python":
+    print(char) # P, y, t, h, o, n
+
+for i in [1, 2, 3]:
+    print(i) # 1, 2, 3
+
+for i in (1, 2, 3):
+    print(i) # 1, 2, 3
+
+for i in range(8):
+    print(i) # 0, 1, 2, 3, 4, 5, 6, 7
+
+for i in range(0, 10)
+    print(i) # 0, 1, 2, 3, 4, ,5, 6, 7, 8, 9
+
+for i in range(0, 10, 2)
+    print(i) # 0, 2, 4, 6, 8
+```
+
+--
+
+### break / continue / else
+
+`break` 用于跳出循环。`continue` 用于忽略当次循环剩下的语句直接进行下一次循环。Python 中循环也可以 `else`，在执行完整个循环以后会执行 `else`中的内容，如果 `break` 跳出循环，则不会执行。
+
+```python
+for n in range(2, 10):
+    for x in range(2, n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', n//x)
+            break
+    else:
+        print(n, 'is a prime number')
+```
+
+--
+
+### pass
+
+`pass` 什么都不做。但如果按 `CTRL+C` 会跳出循环或程序。经常用来占位，先留着一个空的位置以后再实现具体功能。
+
+---
+
+## 函数结构
+
+--
+
+### 函数的定义
+
+Python 中使用 `def` 关键字来定义函数，如下例：
+
+```python
+def sum(a, b):
+  c = a + b
+  return c
+```
+
+--
+
+### 递归
+
+函数除了能够很好的封装需要重复执行的代码，还可以实现递归调用。
+
+```python
+def fib_recursive(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  elif:
+    return fib_recursive(n-1) + fib_recursive(n-2)
+
+def fib_loop(n):    # write Fibonacci series up to n
+  """Print a Fibonacci series up to n."""
+  a, b = 0, 1
+  while a < n:
+      print(a, end=' ')
+      a, b = b, a+b
+  print()
+```
+
+_注：[斐波那契数列](https://www.bilibili.com/video/BV1rs411v7vK)，示例来自 [此处](https://github.com/qiwsir/algorithm/blob/master/fibonacci.md) 及 [官方文档](https://docs.python.org/zh-cn/3/tutorial/controlflow.html#defining-functions)_
+
+--
+
+### 参数默认值
+
+Python 中函数可以设置参数的默认值，具有默认值的参数在函数调用时可以不传值。没有默认值的参数为函数的必选参数。拥有默认值的参数为函数的可选参数。函数定义时，必须先写完所有必选参数才能写可选参数。
+
+```python
+def countdown(start=10):
+    while start:
+        start -= 1
+        print(start)
+
+
+if __name__ == "__main__":
+    countdown()
+    countdown(100)
+    countdown(start=5)
+```
+
+--
+
+### 任意个数参数
+
+Python 中在定义函数时，可以通过在参数前面加上 `*` 来表示任意个数的参数。
+
+```python
+def concat(*args, sep='\t'):
+  return sep.join(args)
+
+print(concat('abc', 'def')) # 'abc    def'
+```
+
+--
+
+### lamda 匿名函数
+
+Python 中可以使用 `lamda` 关键字来创建一个匿名函数，属于“语法糖”。
+
+```python
+pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
+pairs.sort(key=lambda p: p[1])
+print(pairs)
+```
+
+注：语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·蘭丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能没有影响，但是更方便程序员使用。
+
+<!-- .element style="font-size:0.6em;"-->
+
+---
+
+## 作业-硬核 Base64
+
+Base64 是最常见的编码之一，在电子邮件通信过程中大量使用。其原理是将二进制类型的数据每 3 个字节，即 24bits 重新分隔成 6bits 一组共 4 组，每组都能转换成一个 0-63 共 64 个数字，相当于 64 进制（base=64）。这 64 进制的符号用`A-Z` / `a-z` / `0-9` / `+/` 共 64 个符号来表示，将上一步的数字作为这个序列的索引即可得到 Base64 的结果。
+
+<!-- .element: style="font-size:70%;" -->
+
+![Base64示例](/courses-wiki/img/base64-example.png)
+
+_注：参考 https://zh.wikipedia.org/wiki/Base64_
+
+---
+
+## Q & A

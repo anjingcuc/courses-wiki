@@ -1,0 +1,171 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# JavaScript API
+
+---
+
+## 什么是 API
+
+应用程序编程接口 (Application Programming Interface, API) 是大部分高级语言都具备的结构，编程语言的开发人员将一些基础功能封装起来，提供给编程者很方便的通过函数/对象方法等途径使用。
+
+![插座](/courses-wiki/img/plug-socket.png)<!-- .element style="width:60%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 有哪些 API
+
+回顾我们开始学习的时候提到，API 分为 JavaScript 内置 API ，浏览器 API 和第三方 API ，实际上 JavaScript 还可以脱离浏览器在 Node 之类的环境中运行，那么这些环境也会给 JavaScript 提供 API 来方便大家编写程序，不过本节我们只关注浏览器和一些第三方的 API ，不会提到 Node 。
+
+<!-- .element style="font-size:60%;" -->
+
+![浏览器](/courses-wiki/img/browser.png)<!-- .element style="width:60%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### API 如何工作
+
+大部分 API 都是以对象的形式提供的，也就是它们也是基于对象的，比如我们之前例子中常用的 console.log() 实际上就是文档对象模型中的 Console 对象的一个方法；而 Math.random() 则是 JavaScript 内置的 Math 对象的一个方法。
+
+```js
+console.log("Hello, world.");
+
+Math.random();
+```
+
+--
+
+### API 与事件
+
+部分 API 包含对事件的处理与响应，能够通过上节课提到的事件机制来处理复杂的操作，比如非常常用的用于与服务器通讯的 API XMLHttpRequest 就使用事件机制处理收到的响应。
+
+```js
+var requestURL =
+  "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+var request = new XMLHttpRequest();
+request.open("GET", requestURL);
+request.responseType = "json";
+request.send();
+
+request.onload = function() {
+  var superHeroes = request.response;
+  console.log(superHeroes);
+};
+```
+
+---
+
+## 浏览器相关 API
+
+浏览器相关的 API 主要包括三个对象，通过访问这三个对象的属性和方法，我们可以完成绝大多数浏览器上的交互和功能。navigator 对象主要用来访问用户代理状态和标识，包括地理位置、摄像头、麦克风等辅助信息；window 对象则表示窗口相关的属性，包括当前窗口大小、当前 URL 等信息；document 对象则是最常用的对象，表示载入的页面内容。
+
+<!-- .element style="font-size:60%;" -->
+
+![浏览器相关API](/courses-wiki/img/document-window-navigator.png)<!-- .element style="width:60%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 文档对象模型
+
+浏览器载入一个 HTML 页面后，会将其转化为一个文档对象模型，
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+    <section>
+      <img
+        src="dinosaur.png"
+        alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth."
+      />
+      <p>
+        Here we will add a link to the
+        <a href="https://www.mozilla.org/">Mozilla homepage</a>
+      </p>
+    </section>
+  </body>
+</html>
+```
+
+<!-- .element: style="font-size:0.6em;float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+![DOM](/courses-wiki/img/dom-screenshot.png)
+
+<!-- .element: style="float:right;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 文档对象模型-节点
+
+文档对象模型中，每个 HTML 中的元素都可以找到对应的位置，可以很方便的访问。
+
+- 元素节点: 一个元素，存在于 DOM 中。
+- 根节点: 树中顶层节点，在 HTML 的情况下，总是一个 HTML 节点。
+- 子节点: 直接位于另一个节点内的节点。例如上面例子中，IMG 是 SECTION 的子节点。
+- 后代节点: 位于另一个节点内任意位置的节点。例如 上面例子中，IMG 是 SECTION 的子节点，也是一个后代节点。IMG 不是 BODY 的子节点，因为它在树中低了 BODY 两级，但它是 BODY 的后代之一。
+- 父节点: 里面有另一个节点的节点。例如上面的例子中 BODY 是 SECTION 的父节点。
+- 兄弟节点: DOM 树中位于同一等级的节点。例如上面例子中，IMG 和 P 是兄弟。
+- 文本节点: 包含文字串的节点
+
+<!-- .element style="font-size:60%;" -->
+
+---
+
+## AJAX
+
+回顾一下我们第一节课学习的 Web 服务器，工作的过程，发现一个问题，如果我们要更新页面的一部分，按照这个模型我们需要重新发起一个 HTTP GET 请求一个新的页面。这是不合理的，我也许只需要更新一个数值，没必要把整个页面重新获取一遍，效率太低了。
+
+<!-- .element style="font-size:60%;" -->
+
+![Web Server](/courses-wiki/img/web-site-architechture.png)<!-- .element style="width:70%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### AJAX 技术
+
+为了解决以上问题，结合我们前面提到的 XMLHttpRequest，Web 开发者们提出一种新的更新网页内容的方法，叫做 Asynchronous JavaScript and XML，简称 AJAX。虽然发展到今天已经不光请求 XML 还会请求 JSON 等其他格式文件，但是 AJAX 这个名字还是保存了下来。
+
+<!-- .element style="font-size:60%;" -->
+
+![AJAX](/courses-wiki/img/moderne-web-site-architechture.png)<!-- .element style="width:70%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### AJAX 请求
+
+我们使用 XMLHttpRequest 来请求一些在线的服务的例子来学习如何实现这种局部的页面更新过程。假设我们需要根据用户下拉选择的不同城市来显示相应的天气预报，其他的页面内容不变。
+
+- [HFS 服务器](hfs.exe)
+- [demo.zip](demo.zip)
+
+<!-- .element style="font-size:60%;" -->
+
+下载以上两个文件，解压 `demo.zip` 到 `demo` 文件夹，打开 `hfs.exe` 服务器并将 `demo` 文件夹加入到服务器中，使得该网站可以在你的电脑上访问。然后在地址栏中输入 `http://localhost/demo/` 来查看执行效果。
+
+---
+
+## Q & A

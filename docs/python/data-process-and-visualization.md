@@ -10,7 +10,7 @@ title: 数据处理与可视化
 
 ### csv 用法示例
 
-[点击此处下载示例 csv 文件。](biostats.csv)
+[点击此处下载示例 csv 文件。](./data-process-and-visualization/biostats.csv)
 
 ```python
 import csv
@@ -31,7 +31,7 @@ with open('biostats.csv', newline='') as csvfile:
 
 ### openpyxl 示例
 
-[点击此处下载示例 xlsx 文件。](biostats.xlsx)
+[点击此处下载示例 xlsx 文件。](./data-process-and-visualization/biostats.xlsx)
 
 ```python
 from openpyxl import load_workbook

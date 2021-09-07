@@ -18,7 +18,6 @@ script:
   - find docs/ -type f -name "*.txt" -print0 | xargs -0i rename "s/\.txt/\.xml/g" {};
   - find docs/ -type f -name "*.md" -print0 | xargs -0i sed -i 's/\/img\//\/courses-wiki\/img\//g' {};
   - sed -i 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
-  - for file in $(grep --include=\*.md -rl 'docs/' -e "iframe src=\"\.\/slideshow\.html\"");do name=$(echo $file | cut -d'/' -f 3 | cut -d'.' -f 1);sed -i "s/src=\"\.\/slideshow\.html\"/src=\"\.\/$name\/slideshow\.html\"/g" $file;done
   - mkdocs gh-deploy --force --clean
 
 branches:

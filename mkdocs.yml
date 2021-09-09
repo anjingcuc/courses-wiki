@@ -30,7 +30,6 @@ nav:
       - 数据处理与可视化实例: python/data-process-and-visualization-example.md
   - 网页设计与制作: web.md
   - 网页设计与制作:
-      - 课程作业: web/homework.md
       - 课程概述: web/introduction.md
       - HTML 元素详解: web/html-elements.md
       - CSS 样式表: web/css-first-steps.md
@@ -67,3 +66,11 @@ theme:
 markdown_extensions:
   - codehilite:
       linenums: true
+
+extra_css:
+  - stylesheets/jsmind.css
+  - stylesheets/custom.css
+
+extra_javascript:
+  - javascripts/jsmind.js
+  - javascripts/custom.js

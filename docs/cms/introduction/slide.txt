@@ -15,15 +15,70 @@
 
 ---
 
+## 课程安排
+
+--
+
+### 安排与考核
+
+混合式教学，考查课。
+
+- 上课方式
+- 考核方式
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 线上平台
+
+线上平台为中国大学慕课-<https://www.icourse163.org/>
+
+使用说明: [中国大学慕课学校云本校学生身份认证方法](./中国大学慕课学校云本校学生身份认证方法.pdf)
+
+---
+
 ## 课程定位
 
-计算机安全与维护主要目标是帮助信息安全专业的学生了解 Windows 系统的日常使用及相关安全知识，同时也可以帮助计算机相关专业的学生了解信息安全；课程侧重于工具的使用与讲解，也涉及少部分技术和原理。
+--
+
+### 定位
+
+计算机安全与维护主要目标是帮助学生了解 Windows 系统的日常使用并熟悉一些专业工具，另一方面也可以帮助学生了解信息安全；课程侧重于工具的使用与讲解，也涉及少部分技术和原理。
+
+补充: [计算机教育中缺失的一课](https://missing-semester-cn.github.io/)
+
+<!-- .element style="font-size:50%"-->
+
+--
+
+### 课程主要内容
+
+详见[思维导图](/cms)。
+
+--
+
+### 学习提示
+
+学习计算机相关知识的一些小建议:
+
+- 工科专业整体都偏向于实践，一定要多动手；
+- 积极提问，单刀直入，学习如何清晰地提问<sup>1</sup>；
+- 学习过程注意抽象，不要陷入具体细节推导<sup>2</sup>。
+
+<!-- .element style="font-size:70%"-->
+
+注<sup>1</sup>: [提问的智慧](https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way)
+
+<!-- .element style="font-size:50%"-->
+
+注<sup>2</sup>: [知乎回答-抽象](https://www.zhihu.com/question/278682736/answer/1475861843)
+
+<!-- .element style="font-size:50%"-->
 
 ---
 
 ## 什么是信息安全
-
-提到信息安全就绕不开黑客。
 
 --
 
@@ -31,11 +86,19 @@
 
 <b style="color: red;">广义上的黑客文化</b>起源于 1960s 麻省理工学院的“铁路模型技术俱乐部”，他们把难题的解法技巧称为 `hack`。
 
+<!-- .element style="font-size:70%"-->
+
 <b style="color: red;">狭义上的黑客称谓</b>起源于电话“飞客”，是一群研究如何入侵电话系统免费打电话的人。
 
-![嘎吱船长](/img/john_draper.jpg)<!-- .element: style="width:70%;" -->
+<!-- .element style="font-size:70%"-->
+
+![嘎吱船长](/img/john_draper.jpg)<!-- .element: style="width:60%;" -->
 
 <!-- .element style="text-align:center"-->
+
+补充: [柯学家](https://www.bilibili.com/video/BV1u4411q7sn)
+
+<!-- .element style="font-size:50%"-->
 
 --
 
@@ -70,7 +133,7 @@ else:
 
 <!-- .element style="font-size:50%;"-->
 
----
+--
 
 ## 为什么学习信息安全？
 
@@ -120,43 +183,6 @@ CTF, Capture The Flag, 全称夺旗赛，以游戏比赛的形式进行学习。
 - 病毒查杀
 - 漏洞分析
 - 网络攻防
-
-<!-- .element style="font-size:70%"-->
-
----
-
-## 课程主要内容
-
-详见[思维导图](/cms)。
-
----
-
-## 学习提示
-
-学习信息安全的一些小建议:
-
-- 信息安全是一个强实践的工科专业，多动手；
-- 积极提问，单刀直入，学习如何清晰地提问<sup>1</sup>；
-- 学习过程注意抽象，不要陷入具体细节推导<sup>2</sup>。
-
-<!-- .element style="font-size:70%"-->
-
-注<sup>1</sup>: [提问的智慧](https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way)
-
-<!-- .element style="font-size:50%"-->
-
-注<sup>2</sup>: [知乎回答-抽象](https://www.zhihu.com/question/278682736/answer/1475861843)
-
-<!-- .element style="font-size:50%"-->
-
----
-
-## 课程安排
-
-混合式教学，考查课。
-
-- 上课方式
-- 考核方式
 
 <!-- .element style="font-size:70%"-->
 

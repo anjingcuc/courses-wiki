@@ -58,7 +58,7 @@
 
 以上硬件信息可以在 Windows 中使用`任务栏管理器`的`性能`标签页进行查看。
 
-![硬件信息](/img/devices_info.png)<!-- .element: style="width:70%;" -->
+![硬件信息](/img/devices_info.png)<!-- .element: style="width:60%;" -->
 
 <!-- .element style="text-align:center"-->
 
@@ -96,16 +96,16 @@
 
 Windows XP 之前为旧版本，该表格引自[维基百科](https://zh.wikipedia.org/wiki/Microsoft_Windows)。
 
-| 操作系统                             | Net Applications | StatCounter |
-| ------------------------------------ | ---------------- | ----------- |
-| 旧版本                               | 0.00%            | 0.06%       |
-| <b style="color:red;">Windows XP</b> | 1.68%            | 1.28%       |
-| Windows Vista                        | 0.15%            | 0.46%       |
-| <b style="color:red;">Windows 7</b>  | 31.83%           | 24.23%      |
-| Windows 8                            | 0.63%            | 1.75%       |
-| Windows 8.1                          | 5.29%            | 4.34%       |
-| <b style="color:red;">Windows 10</b> | 48.86%           | 45.50%      |
-| **所有版本**                         | **88.44%**       | **77.61%**  |
+| 操作系统                             | StatCounter |
+| ------------------------------------ | ----------- |
+| 旧版本                               | 0.01%       |
+| <b style="color:red;">Windows XP</b> | 0.42%       |
+| Windows Vista                        | 0.16%       |
+| <b style="color:red;">Windows 7</b>  | 11.36%      |
+| Windows 8                            | 0.91%       |
+| Windows 8.1                          | 2.53%       |
+| <b style="color:red;">Windows 10</b> | 57.57%      |
+| **所有版本**                         | **72.98%**  |
 
 <!-- .element style="font-size: 70%;"-->
 
@@ -113,7 +113,7 @@ Windows XP 之前为旧版本，该表格引自[维基百科](https://zh.wikiped
 
 ### 现状总结
 
-Windows XP 已停止支持于 2014/4/8 但仍有少部分用户，Windows 7 已停止支持于 2020/1/14 但和 Windows 10 分庭抗礼，Windows 10 为`最后一代` Windows。
+Windows XP 已停止支持于 2014/4/8 但仍有少部分用户，Windows 7 已停止支持于 2020/1/14 但和 Windows 10 分庭抗礼，微软号称 Windows 10 为`最后一代` Windows，却在 2021 年推出了 Windows 11。
 
 --
 
@@ -131,8 +131,11 @@ Windows XP 已停止支持于 2014/4/8 但仍有少部分用户，Windows 7 已�
 | 1903 | 19H1        | May 2019 Update      | 18362 | 2019/05/21 |
 | 1909 | 19H2        | November 2019 Update | 18363 | 2019/11/12 |
 | 2004 | 20H1        | May 2020 Update      | 19041 | 2020/05/27 |
+| 20H2 | 20H2        | October 2020 Update      | 19042 | 2020/10/20 |
+| 21H1 | 21H1        | May 2021 Update	      | 19043 | 2021/05/18 |
+| 21H2 | 21H2        | 待定      | 19044 | 待定 |
 
-<!-- .element style="font-size: 70%;"-->
+<!-- .element style="font-size: 60%;"-->
 
 注：该表格引自[维基百科](https://zh.wikipedia.org/wiki/Windows_10%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2)
 

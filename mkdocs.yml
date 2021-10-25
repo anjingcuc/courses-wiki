@@ -36,12 +36,12 @@ nav:
       - CSS 文本样式: web/css-text.md
       - CSS 盒子样式: web/css-box.md
       - CSS 布局: web/css-layout.md
+      - Bootstrap: web/bootstrap.md
       - JavaScript 初探: web/javascript-introduction.md
       - JavaScript 基础: web/javascript-basic.md
       - JavaScript 结构化代码: web/javascript-blocks.md
       - 面向对象的 JavaScript: web/javascript-oo.md
       - JavaScript API: web/javascript-API.md
-      - Bootstrap: web/bootstrap.md
       - jQuery: web/jQuery.md
 
 # Repository

@@ -20,16 +20,16 @@ title: 网页设计与制作
 
 ### [05-CSS 布局](web/css-layout.md)
 
-### [06-JavaScript 初探](web/javascript-introduction.md)
+### [06-Bootstrap](web/bootstrap.md)
 
-### [07-JavaScript 基础](web/javascript-basic.md)
+### [07-JavaScript 初探](web/javascript-introduction.md)
 
-### [08-JavaScript 结构化代码](web/javascript-blocks.md)
+### [08-JavaScript 基础](web/javascript-basic.md)
 
-### [09-面向对象的 JavaScript](web/javascript-oo.md)
+### [09-JavaScript 结构化代码](web/javascript-blocks.md)
 
-### [10-JavaScript API](web/javascript-API.md)
+### [10-面向对象的 JavaScript](web/javascript-oo.md)
 
-### [11-Bootstrap](web/bootstrap.md)
+### [11-JavaScript API](web/javascript-API.md)
 
 ### [12-jQuery](web/jQuery.md)

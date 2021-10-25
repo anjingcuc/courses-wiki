@@ -194,7 +194,7 @@ span {
 - [border-bottom](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom), 底部边框
 - [font-weight](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-weight), 字体粗细
 - [font-size](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-size), 字体大小
-- [text-decoration](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-decoration), 文字方向
+- [text-decoration](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-decoration), 文本修饰
 
 <!-- .element style="font-size: 70%"-->
 

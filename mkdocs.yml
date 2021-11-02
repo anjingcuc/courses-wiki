@@ -7,6 +7,7 @@ nav:
       - Windows 基础: cms/windows-intro.md
       - 系统维护: cms/maintain.md
       - 虚拟机: cms/virtualbox.md
+      - 命令行与脚本: cms/cmd-scripts.md
       - 系统安装: cms/windows-install.md
       - Windows 组件进阶: cms/windows-components.md
       - 恶意代码介绍: cms/malware-introduction.md

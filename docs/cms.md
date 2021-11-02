@@ -14,14 +14,15 @@ title: 计算机安全与维护
 
 ### [02-系统维护](cms/maintain.md)
 
-### [03-虚拟机](cms/virtualbox.md)
+### [03-命令行与脚本](cms/cmd-scripts.md)
 
-### [04-系统安装](cms/windows-install.md)
+### [04-虚拟机](cms/virtualbox.md)
 
-### [05-Windows 组件进阶](cms/windows-components.md)
+### [05-系统安装](cms/windows-install.md)
 
-### [06-恶意代码介绍](cms/malware-introduction.md)
+### [06-Windows 组件进阶](cms/windows-components.md)
 
-### [07-恶意代码分析](cms/malware-analysis.md)
+### [07-恶意代码介绍](cms/malware-introduction.md)
 
-### [08-命令行与脚本](cms/cmd-scripts.md)
+### [08-恶意代码分析](cms/malware-analysis.md)
+

@@ -277,6 +277,23 @@ Windows 下常见的环境变量有:
 
 <!-- .element style="font-size:70%"-->
 
+--
+
+### CLI 下操作环境变量
+
+在 Powershell 中也可以访问和修改环境变量：
+
+```powershell
+# 显示所有环境变量
+dir env:
+
+# 显示环境变量 Path 的值
+$env:Path
+
+# 在 Path 后面追加一个目录
+$env:Path += ";C:\Temp"
+```
+
 ---
 
 ## 脚本初探

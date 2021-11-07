@@ -1,0 +1,324 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Shell 与脚本
+
+---
+
+## 图形用户界面<br>与<br>命令行界面
+
+--
+
+### 图形用户界面
+
+图形用户界面 (GUI, **G**raphical **U**ser **I**nterface) 是指采用图形方式显示的用户界面，图形用户界面的学习成本更低，用户可以使用鼠标及键盘与应用程序、操作系统进行交互。
+
+--
+
+### 命令行界面
+
+命令行界面 (CLI, **C**ommand **L**ine **I**nterface) 是早期电脑最广泛的用户界面，用户通过键盘出入指令，指令的执行结果往往也以文本的形式呈现给用户。
+
+![黑客与命令行界面](/img/hacker-with-CLI.jpg)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center;margin-bottom:10px;"-->
+
+© Sputnik / Vladimir Trefilov
+
+<!-- .element style="text-align:right;font-size:40%;margin-top:10px;"-->
+
+--
+
+### 为什么要讲 CLI
+
+CLI 相较于 GUI 的优势在于：
+
+- 更方便地进行批量任务；
+- 专业工具需要用到 CLI 。
+
+<!-- .element style="font-size:70%"-->
+
+---
+
+## CLI 相关概念及工具
+
+--
+
+### 终端与控制台
+
+早年的计算机像房子一样大，操作计算机的人们在另外一个房间里用终端 (Terminal) 机来与计算机进行交互，早期的终端一般叫做电传打字机 (Teletype，缩写为 tty) ；管理员用的与计算机主机一体的特殊终端叫做控制台 (Console) ；现代操作系统中用 GUI 类型的软件来模拟这种终端设备让用户进行交互，一般称之为终端模拟器 (Terminal Emulator)。
+
+<!-- .element style="font-size:70%"-->
+
+![电传打字机](/img/asr-33.jpg)<!-- .element: style="width:40%;" -->
+
+<!-- .element style="text-align:center;margin-bottom:10px;"-->
+
+参考: [printempw@segmentfault](https://segmentfault.com/a/1190000016129862)
+
+<!-- .element style="font-size:50%"-->
+
+--
+
+### 常见终端模拟器
+
+各个系统下常见的终端模拟器软件有：
+
+|         | 虚拟终端                  |
+| ------- | ------------------------- |
+| Windows | 控制台 / Windows Terminal |
+| Linux   | gnome-terminal / Konsole  |
+| macOS   | Terminal.app / iTerm2     |
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### Shell
+
+Shell（也称为壳层）则是指为用户提供用户“界面”的软件，这里的界面一般指 CLI 。当然也有 GUI 的 Shell 比如 `Windows Explorer` ，即 `Windows 资源管理器` 。一般来说计算机科学中提到 Shell 的时候都是指 CLI 类型的软件。
+
+|         | CLI Shell        | GUI Shell          |
+| ------- | ---------------- | ------------------ |
+| Windows | cmd / powershell | Windows 资源管理器 |
+| 类 Unix | bash / zsh       | GNOME / KDE        |
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 标准流
+
+终端和 Shell 之间通过标准流进行通信，标准流有三个:
+
+- `stdin` 即 `标准输入`。
+- `stdout` 即 `标准输出`。
+- `stderr` 即 `标准错误输出`。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 小结
+
+现代操作系统中，用户用到的看来是 CLI 形式的“命令行窗口”或“终端”往往包括两个部分：一个终端模拟器软件以及真正处理用户命令的 Shell 。比如 Windows 下常见的`命令提示符`运行后包含一个终端模拟器 `conhost.exe` 以及一个 Shell `cmd.exe` 。
+
+![](/img/conhost-cmd.png)<!-- .element: style="width:50%;" -->
+
+<!-- .element style="text-align:center;"-->
+
+---
+
+## Powershell 基本用法
+
+--
+
+### 运行
+
+在 Windows 10 上右键点击左下角的开始图标，在弹出菜单中选择 `Windows Powershell` 即可，如果需要更高权限，则选择 `Windows Powershell (管理员)` 。
+
+![运行 Powershell](/img/powershell-run.png)<!-- .element: style="width:50%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 管理员与非管理员
+
+管理员权限打开的和非管理员权限的 Powershell 可以通过窗口标题以及初始工作目录来区分。
+
+![管理员与非管理员](/img/admin-vs-noadmin.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### Powershell 默认终端的布局
+
+Windows 10 上为 Powershell 默认提供的终端布局如下：
+
+![终端的布局](/img/powershell-layout.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 指令
+
+Powershell 中采用 cmdlets 作为指令或命令来执行特定任务，以下内容截取自[Powershell-维基百科](https://zh.wikipedia.org/wiki/PowerShell)。
+
+| PowerShell（命令行） | PowerShell（别名）            | 命令提示符            | Unix shell   | 描述                       |
+| -------------------- | ----------------------------- | --------------------- | ------------ | -------------------------- |
+| Get-ChildItem        | gci, dir, ls                  | dir                   | ls           | 列出文件和文件夹           |
+| Test-Connection      | ping                          | ping                  | ping         | 发送 Ping                  |
+| Get-Help             | help, man                     | help                  | apropos, man | 查看文档                   |
+| Clear-Host           | cls, clear                    | cls                   | clear        | 清除屏幕[b]                |
+| Copy-Item            | cpi, copy, cp                 | copy, xcopy, robocopy | cp           | 复制文件或文件夹           |
+| Move-Item            | mi, move, mv                  | move                  | mv           | 移动文件或文件夹           |
+| Remove-Item          | ri, del, erase, rmdir, rd, rm | del, erase, rmdir, rd | rm, rmdir    | 删除文件或文件夹           |
+| Get-Location         | gl, cd, pwd                   | cd                    | pwd          | 显示工作路径（目前文件夹） |
+| Set-Location         | sl, cd, chdir                 | cd, chdir             | cd           | 改变工作路径               |
+
+<!-- .element style="font-size:50%"-->
+
+--
+
+### 查看命令的帮助
+
+对于内置的 cmdlet 指令，可以使用 `help` 或者 `man` 来查看指令的帮助文档。
+
+![命令帮助文档](/img/powershell-help-doc.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 快捷键
+
+有一些快捷键能极大地提升使用效率，供参考：
+
+- `Tab` 自动补全命令。
+- `↑↓` 方向键可以翻看命令历史记录。
+- `CTRL+C` 可以中断当前指令或脚本运行。
+- 非管理员权限的命令行支持直接拖放目录或文件。
+- 按住左键选中内容后点击右键可复制，直接点击右键可黏贴。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 重定向
+
+在 Powershell 或其他 Shell 中，可以从文件中读取想要输入的内容，也可以将指令执行的结果输出到文件中，甚至输出流之间也可以相互输出，我们称之为重定向。
+
+| 符号 | 作用                                                           |
+| ---- | -------------------------------------------------------------- |
+| <    | 重定向输入                                                     |
+| >    | 重定向输出并覆盖                                               |
+| >>   | 重定向输出并追加                                               |
+| 2>&1 | 2 代表`stderr`，1 代表`stdout`，即将`stderr`重定向到`stdout`中 |
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 管道
+
+在 Powershell 或其他 Shell 中，还可以将第一个指令的输出作为第二个指令的输入，来实现程序之间的互通，管道的符号是 `|` 。比如想要删除当前文件夹中，文件名包含 `<keyword>` 的所有文件。可以运行：
+
+```powershell
+dir -Name | grep <keyword> | rm
+```
+
+--
+
+### 参考资料
+
+想了解完整的 cmdlets 可以查阅微软官方文档，一般情况下 Windows 10 自带的 Powershell 5.1 核心功能文档链接请点击 [Microsoft.PowerShell.Core](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-5.1) 。
+
+---
+
+## 环境变量
+
+--
+
+### GUI 下设置环境变量
+
+Windows 10 下通过系统设置可以浏览及修改环境变量。
+
+![环境变量](/img/env-GUI.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### 影响范围
+
+不同类型的环境变量影响范围不同，用户变量只对特定用户生效，而系统变量则全局生效。
+
+- 系统变量，与 Windows 操作系统包括网络状况有关，由操作系统定义。管理员权限的用户可以添加添加、修改或删除；系统变量的作用域是全局的，对所有用户生效。
+- 用户变量，由操作系统、某些应用程序以及用户建立，相应的用户可以添加、修改或删除；用户变量只影响对应的用户。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 环境变量的作用
+
+环境变量在现代操作系统中几乎无处不在，常见作用有：
+
+- 为各个进程提供系统相关信息，比如 Windows 下环境变量 `TEMP` 对应临时文件夹。
+- `PATH` 环境变量存放一些目录，Shell 在执行指令时会试图从这些目录查找对应程序。
+- 脚本中可以用环境变量来存储一些必要的数据，甚至可以将这些数据传递给其他进程。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 常用环境变量
+
+Windows 下常见的环境变量有:
+
+- `Path`: 可执行文件搜索路径
+- `ProgramFiles`: 默认程序安装目录
+- `windir`: Windows 文件夹的路径
+- `APPDATA`: 当前用户程序数据存放路径
+- `TEMP` / `TMP`: 当前用户临时文件夹
+
+<!-- .element style="font-size:70%"-->
+
+---
+
+## 脚本初探
+
+--
+
+### 什么是脚本
+
+将多条 cmdles 集中在一个文件中，像编程一样自动化完成任务，这个文件我们称之为“脚本”。
+
+- cmd.exe 的脚本扩展名为 `.bat`，称之为批处理文件。
+- Powershell 的脚本扩展名为 `.ps1` 。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 脚本执行策略
+
+Windows 上出于安全考虑，默认脚本执行策略为 `Restricted` ，即阻止所有脚本运行。Powershell 执行策略包括以下几种：
+
+| 策略         | 作用                                                       |
+| ------------ | ---------------------------------------------------------- |
+| AllSigned    | 可以运行脚本，但要求数字签名，包括本地编写的脚本           |
+| Bypass       | 不阻止任何脚本运行                                         |
+| RemoteSigned | 可以运行脚本，远程下载的脚本需要数字签名，而本地编写的不用 |
+| Restricted   | 不允许运行脚本                                             |
+| Undefined    | 未定义                                                     |
+| Unrestricted | 不限制脚本运行但会对非本地脚本弹出警告                     |
+
+<!-- .element style="font-size:70%;margin-bottom:10px;"-->
+
+详见[about_Execution_Policies](https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.1)
+
+<!-- .element style="font-size:50%;margin-top:10px;"-->
+
+--
+
+### 脚本实例
+
+课件下方页面将通过一个实例来展示脚本的功能。
+
+---
+
+## Q & A

@@ -14,7 +14,7 @@ title: 计算机安全与维护
 
 ### [02-系统维护](cms/maintain.md)
 
-### [03-命令行与脚本](cms/cmd-scripts.md)
+### [03-Shell 与脚本初探](cms/shell.md)
 
 ### [04-虚拟机](cms/virtualbox.md)
 

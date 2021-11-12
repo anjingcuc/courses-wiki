@@ -216,8 +216,12 @@ Powershell 中采用 cmdlets 作为指令或命令来执行特定任务，以下
 在 Powershell 或其他 Shell 中，还可以将第一个指令的输出作为第二个指令的输入，来实现程序之间的互通，管道的符号是 `|` 。比如想要删除当前文件夹中，文件名包含 `<keyword>` 的所有文件。可以运行：
 
 ```powershell
-dir -Name | grep <keyword> | rm
+dir -Name | grep <keyword> | Select-Object -ExpandProperty Line | rm
 ```
+
+注: grep 是 Select-String 的别名；如果用 GNU 工具链中的 grep 程序，则不需要 Select-Object -ExpandProperty Line 直接 `dir -Name | grep <keyword> | rm` 即可。
+
+<!-- .element style="font-size:50%;margin-top:10px;"-->
 
 --
 
@@ -334,6 +338,10 @@ Windows 上出于安全考虑，默认脚本执行策略为 `Restricted` ，即�
 ### 脚本实例
 
 课件下方页面将通过一个实例来展示脚本的功能。
+
+参考: [Powershell 语法手册](https://docs.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-01?view=powershell-7.2)
+
+<!-- .element style="font-size:50%;margin-top:10px;"-->
 
 ---
 

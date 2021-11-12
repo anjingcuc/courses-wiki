@@ -38,12 +38,12 @@ screenshot $bounds "C:\screenshot.png"
 然后实现一个发邮件功能，能够发送邮件到指定邮箱。
 
 ```powershell
-$Username = "MyUserName";
-$Password = "MyPassword";
+$username = "MyUserName";
+$password = "MyPassword";
 $path = "C:\screenshot.png";
 
-function sendemail([string]$email, [string]$attachmentpath) {
-    $message = new-object Net.Mail.MailMessage
+function sendemail([String]$email, [String]$attachmentpath) {
+    $message = New-Object Net.Mail.MailMessage
     $message.From = $email
     $message.To.Add($email)
     $message.Subject = "截图"
@@ -51,9 +51,9 @@ function sendemail([string]$email, [string]$attachmentpath) {
     $attachment = New-Object Net.Mail.Attachment($attachmentpath)
     $message.Attachments.Add($attachment)
 
-    $smtp = new-object Net.Mail.SmtpClient("smtp.qq.com", "587")
+    $smtp = New-Object Net.Mail.SmtpClient("smtp.qq.com", "587")
     $smtp.EnableSSL = $true
-    $smtp.Credentials = New-Object System.Net.NetworkCredential($Username, $Password)
+    $smtp.Credentials = New-Object System.Net.NetworkCredential($username, $password)
     $smtp.send($message)
     echo "邮件已发送"
     $attachment.Dispose()

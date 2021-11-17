@@ -102,28 +102,20 @@ script.ps1 -UserName anjing -Password akldjfx8kq3jk24 -Mail admin@qq.com
 
 ## Git 与 Gitee 
 
-### 软件安装
-
-在进行作业仓库的获取、提交等操作之前，需要先安装两个软件：
-
-- [Git for Windows](https://git-scm.com/download/win)
-- [TortoiseGit](https://tortoisegit.org/download/)
-
-`Git for Windows` 是 `Windows` 下的命令行 `git` 工具，安装完成后，可以重启 `cmd` 并输入 `git`。如果正确输出命令帮助，则说明安装成功，且系统右键菜单会多出 `Git GUI Here` 以及 `Git Bash Here` 两个选项。
-
-为了使用图形化界面来使用 `git` ，我们可以安装俗称的“小乌龟”，即 `TortoiseGit`。安装完成后可使用系统右键菜单来运行实现各种 `git` 操作。
-
-以上两个软件的安装过程不在此赘述，需要注意的是，`TortoiseGit` 安装完成后，在其安装目录下的 `bin` 文件夹中有一个 `puttygen.exe` 可用于生成公私钥对，后面的步骤中会用到。
-
 ### 配置与使用
 
-1. Github 配置部分
+1. 软件配置
 
 <iframe src="//player.bilibili.com/player.html?aid=71899338&cid=124583059&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height=450px> </iframe>
 
 2. 编辑提交部分
 
 <iframe src="//player.bilibili.com/player.html?aid=71903458&cid=124590342&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100% height=450px> </iframe>
+
+软件链接:
+
+- [Git for Windows](https://git-scm.com/download/win)
+- [TortoiseGit](https://tortoisegit.org/download/)
 
 ### 附加资料
 

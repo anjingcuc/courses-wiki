@@ -8,13 +8,13 @@ title: Windows 组件
 
 ## 作业
 
-<b style='color:red;font-size:2em;'>[作业链接](https://classroom.github.com/a/hHQr2Y4l)</b>
+学习使用 Process Monitor 来观察进程的行为，主要是文件相关操作。
 
-### 所需工具下载
+### 文件下载
 
-本次作业需要 Process Monitor 来观察进程的行为。
+Process Monitor 下载:
 
-- 校园网访问: [校内 FTP 下载](http://202.205.24.235/ftp/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BB%B4%E6%8A%A4/software/ProcessMonitor.zip)
+- 校园网访问: [校内 FTP 下载](http://202.205.24.235/ftp/softwares/ProcessMonitor.zip)
 
 - 非校园网点击: [官网下载](https://download.sysinternals.com/files/ProcessMonitor.zip)
 
@@ -26,6 +26,6 @@ title: Windows 组件
 
 homework.exe 下载:
 
-- 校园网访问: [校内 FTP 下载](http://10.48.5.5/homeworks/3-process-analysis/ProcessMonitor.zip)
+- 校园网访问: [校内 FTP 下载](http://202.205.24.235/ftp/homework/homework.exe)
 
-- 非校园网点击: [Github 下载](https://anjingcuc.github.io/courses-wiki/cms/windows-components/homework.zip)
+- 非校园网点击: [当前站点下载](homework.exe)

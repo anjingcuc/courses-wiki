@@ -40,31 +40,14 @@ Windows 默认内置了多个不同权限的账号。
 
 ### 用户组
 
-把类型相同的一些用户帐号放置在一个组群中，方便对其进行全局的权限和服务的设置管理。
+把类型相同的一些用户帐号放置在一个组群中，方便对其进行全局的权限和服务的设置管理，Windows 设置了一些初始用户组:
 
---
-
-### 内置用户组 (1/2)
-
-- Administrators
-  - 管理员组，该组用户对计算机/域有不受限制的完全访问权，分配给该组的默认权限允许对整个系统进行完全控制。
-- Power Users
-  - 高级用户组，Power Users 可以执行除了为 Administrators 组保留的任务外的其他任何操作系统任务。
-- Users
-  - 普通用户组，默认权限不允许成员修改操作系统的设置或用户资料。
-
-<!-- .element style="font-size:70%;"-->
-
---
-
-### 内置用户组 (2/2)
-
-- Guests
-  - 来宾组，来宾组跟普通组 Users 的成员有同等访问权，但来宾帐户的限制更多。
-- Everyone
-  - 所有的用户，这个计算机上的所有用户都属于这个组。
-- SYSTEM
-  - 这个组拥有比 Administrators 更高的权限，这个组主要是保证了系统服务的正常运行，赋予系统及系统服务的权限。
+- Administrators，即管理员组，该组用户对计算机/域有不受限制的完全访问权，分配给该组的默认权限允许对整个系统进行完全控制。
+- Power Users，即高级用户组，Power Users 可以执行除了为 Administrators 组保留的任务外的其他任何操作系统任务。
+- Users，即普通用户组，默认权限不允许成员修改操作系统的设置或用户资料。
+- Guests，即来宾组，来宾组跟普通组 Users 的成员有同等访问权，但来宾帐户的限制更多。
+- Everyone，即所有的用户，这个计算机上的所有用户都属于这个组。
+- SYSTEM，即系统组，这个组拥有比 Administrators 更高的权限，这个组主要是保证了系统服务的正常运行，赋予系统及系统服务的权限。
 
 <!-- .element style="font-size:70%;"-->
 
@@ -88,31 +71,21 @@ NET USER
 
 --
 
-### 添加用户
+### 操作用户命令
+
+以下是一些操作用户的命令示例，请注意 `<>` 之间的内容需要替换成你需要的值：
 
 ```powershell
-net user user_test mypassword /add
-```
-
---
-
-### 查看用户
-
-```powershell
-net user
-```
-
---
-
-### 删除用户
-
-```powershell
-net user user_test /delete
+net user                              # 查看用户
+net user <username> <password> /add   # 添加用户
+net user <username> /delete           # 删除用户
 ```
 
 --
 
 ### 用户组操作
+
+同样可以对用户组进行操作。
 
 ```powershell
 net localgroup /?
@@ -126,34 +99,15 @@ NET LOCALGROUP
 
 --
 
-### 添加用户组
+### 操作用户组命令
+
+以下是一些操作用户组的命令示例，请注意 `<>` 之间的内容需要替换成你需要的值：
 
 ```powershell
-net localgroup user_group /add
-```
-
---
-
-### 查看用户组
-
-```powershell
-net localgroup
-```
-
---
-
-### 删除用户组
-
-```powershell
-net localgroup user_group /delete
-```
-
---
-
-### 将用户加入某组
-
-```powershell
-net localgroup user_group user_test /add
+net localgroup                              # 查看用户组
+net localgroup <groupname> /add             # 添加用户组
+net localgroup <groupname> /delete          # 删除用户组
+net localgroup <groupname> <username> /add  # 将用户加入某组
 ```
 
 ---
@@ -176,8 +130,8 @@ net localgroup user_group user_test /add
 
 可以使用任务栏管理器查看计算机状态。
 
-- 查看 CPU 使用情况；
-- 查看内存使用情况；
+- 查看 CPU 使用情况。
+- 查看内存使用情况。
 - 根据需要结束进程。
 
 <!-- .element style="font-size:70%;"-->
@@ -238,9 +192,9 @@ WmiPrvSE.exe                  1164 Services                   0      4,616 K
 
 进程与可执行程序的区别：
 
-- “可执行程序”不等于“进程”
-- “可执行程序”是静态的文件
-- “进程”则是操作系统加载可执行程序后管理的对象
+- “可执行程序”不等于“进程”。
+- “可执行程序”是静态的文件。
+- “进程”则是操作系统加载可执行程序后管理的对象。
 
 <!-- .element style="font-size:70%;"-->
 
@@ -250,78 +204,29 @@ WmiPrvSE.exe                  1164 Services                   0      4,616 K
 
 线程的基本概念，在学习编程过程中可能遇到多线程问题。
 
-- 线程包含于进程中
-  - Windows 操作系统的指令执行最小调度单位
-  - 线程唯一标识（TID）
-- 同一进程内的多个线程可以实现数据共享
-  - 多线程间执行切换需要系统内核调度
+- 线程包含于进程中，线程是 Windows 操作系统的指令执行最小调度单位，线程唯一标识为 TID。
+- 同一进程内的多个线程可以实现数据共享，多线程间执行切换需要系统内核调度。
 
 <!-- .element style="font-size:70%;"-->
 
 --
 
-## 常见进程作用 (1/4)
+## 常见进程简介
 
-常见进程介绍:
+Windows 正常运行需要多个系统进程实现基本功能，常见的系统有:
 
-- System 进程
-  - 进程名称：Windows 内存处理系统进程
-  - 描述：Windows 页面内存管理进程，最高优先级
-- alg 进程
-  - 进程名称：应用层网关服务
-  - 描述：这是一个应用层网关服务，用于网络共享。
-- csrss 进程
-  - 进程名称：客户端服务子系统（Client/Server Runtime Subsystem）
-  - 描述：用以控制 Windows 图形相关子系统
+- System 进程，Windows 内存处理系统进程；用于实现 Windows 页面内存管理的进程，最高优先级。
+- System Idle Process 进程，Windows 空闲进程；表示 CPU 的空闲率。
+- csrss 进程，客户端服务子系统（Client/Server Runtime Subsystem）；用以控制 Windows 图形相关子系统
+- Lsass 进程，本地安全权限服务；本地安全权限服务控制 Windows 安全机制。
+- Services 进程，Windows 服务控制；管理 Windows 服务。
+- Spoolsv 进程，打印机服务；用于使打印机就绪。
+- Svchost 进程，主机服务程序；标准的动态链接库主机处理服务。
+- Winlogon 进程，Windows 登陆进程；Windows 用户的登陆程序。
+- Taskmgr 进程，Windows 任务管理器；执行 Windows 的任务。
+- Explorer 进程，Windows 资源管理器；管理 Windows 图形 Shell，包括开始菜单，任务栏，桌面和文件管理。
 
-<!-- .element style="font-size:70%;"-->
-
---
-
-## 常见进程作用 (2/4)
-
-- System Idle Process 进程
-  - 进程名称：Windows 空闲进程
-  - 描述：表示 CPU 的空闲率
-- Lsass 进程
-  - 进程名称：本地安全权限服务
-  - 描述：本地安全权限服务控制 Windows 安全机制
-- Services 进程
-  - 进程名称：Windows 服务控制 \*描述：管理 Windows 服务
-
-<!-- .element style="font-size:70%;"-->
-
---
-
-## 常见进程作用 (3/4)
-
-- Smss 进程
-  - 进程名称：会话管理子系统
-  - 描述：该进程为会话管理子系统用以初始化系统变量，调用 win32 子程序在登录过程中运行。
-- Spoolsv 进程
-  - 进程名称：打印机服务
-  - 描述：用于使打印机就绪
-- Svchost 进程
-  - 进程名称：主机服务程序
-  - 描述：标准的动态链接库主机处理服务
-
-<!-- .element style="font-size:70%;"-->
-
---
-
-## 常见进程作用 (4/4)
-
-- Winlogon 进程
-  - 进程名称：Windows 登陆进程
-  - 描述：Windows 用户的登陆程序
-- Taskmgr 进程
-  - 进程名称：Windows 任务管理器
-  - 描述：执行 Windows 的任务
-- Explorer 进程
-  - 进程名称：Windows 资源管理器
-  - 描述：管理 Windows 图形壳，包括开始菜单，任务栏，桌面和文件管理
-
-<!-- .element style="font-size:70%;"-->
+<!-- .element style="font-size:60%;"-->
 
 --
 

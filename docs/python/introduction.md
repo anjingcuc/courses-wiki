@@ -128,6 +128,10 @@ for image in images:
 
 一键换装？参考 [萌新如何用 Python 实现人脸替换？](https://juejin.im/post/5ad60e19f265da239707600d) / [matthewearl/faceswap](https://github.com/matthewearl/faceswap) 。
 
+[Python 3.9 dlib whl 下载](dlib-19.23.0-cp39-cp39-win_amd64.whl)
+
+[Python 3.10 dlib whl 下载](dlib-19.23.0-cp310-cp310-win_amd64.whl)
+
 ```python
 import cv2
 import dlib

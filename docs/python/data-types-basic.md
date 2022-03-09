@@ -8,6 +8,4 @@ title: 数据类型基础
 
 # 作业
 
-请访问 [作业仓库](https://classroom.github.com/a/ECN0iHpt) 接受作业。
-
-请编写直男表白解码程序，能够将示例仓库中编码程序编码的内容转换成原始内容，Due in 7 days (Mar 23, 2021, 18:00 )。
+直男表白编码升级版。登录 gitee 访问 <https://e.gitee.com/anjingcuc/repos/anjingcuc/confession/sources>。

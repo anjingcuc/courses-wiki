@@ -176,7 +176,7 @@ _注：[详细格式化规则](https://docs.python.org/zh-cn/3/library/string.ht
 | chr(x)              | 将整数 x 转换为对应的单个字符                          |
 | complex(real, imag) | 返回 real + imag\*1j 的复数                            |
 
-<!-- .element: style="font-size:70%;" -->
+<!-- .element: style="font-size:60%;" -->
 
 ---
 
@@ -241,22 +241,6 @@ shop_cart = ['口罩', '洗手液']
 shop_cart = shop_cart + ['Switch', '口红'] # ['口罩', '洗手液', 'Switch', '口红']
 shop_cart.append('摄像头') # ['口罩', '洗手液', 'Switch', '口红', '摄像头']
 ```
-
----
-
-## 作业-直男表白生成器
-
-```python
-confession = 'xiaohong wo ai ni'
-
-message = ""
-for char in confession:
-  number = ord(char)
-  message += hex(number)[2:]
-print(message)
-```
-
-请破解以上生成器，将生成器生成的信息转换成 confession 内容。
 
 ---
 

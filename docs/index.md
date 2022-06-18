@@ -27,3 +27,7 @@ title: 首页
 ---
 
 ## [Online Publishing](online-publishing.md)
+
+---
+
+## [计算思维](ct.md)

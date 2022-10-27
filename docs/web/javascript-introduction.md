@@ -8,4 +8,4 @@ title: JavaScript 初探
 
 ## 猜数字游戏
 
-<iframe class="live-sample-frame hide-codepen-jsfiddle" frameborder="0" height="320" id="frame_Top_hidden_code" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/First_steps/A_first_splash$samples/Top_hidden_code?revision=1581990" width="100%"></iframe>
+<iframe class="live-sample-frame hide-codepen-jsfiddle" frameborder="0" height="320" id="frame_Top_hidden_code" src="https://mdn.github.io/learning-area/javascript/introduction-to-js-1/first-splash/number-guessing-game" width="100%"></iframe>

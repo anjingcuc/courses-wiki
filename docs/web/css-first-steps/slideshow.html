@@ -1,1 +1,153 @@
-../../../material/slideshow.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="/assets/reveal/css/reveal.css" />
+    <link rel="stylesheet" href="/assets/reveal/css/theme/simple.css" id="theme" />
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="/assets/reveal/lib/css/solarized-light.css" />
+
+    <style type="text/css">
+      @page {
+        margin: 0;
+        size: auto;
+      }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "/assets/reveal/css/print/pdf.css"
+        : "/assets/reveal/css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="slide.xml"
+          data-separator-vertical="^[\r\n?|\n]--[\r\n?|\n]$"
+        ></section>
+      </div>
+    </div>
+
+    <script src="/assets/reveal/lib/js/head.min.js"></script>
+    <script src="/assets/reveal/js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        {
+          src: "/assets/reveal/lib/js/classList.js",
+          condition: function() {
+            return !document.body.classList;
+          }
+        },
+        {
+          src: "/assets/reveal/plugin/markdown/marked.js",
+          condition: function() {
+            return !!document.querySelector("[data-markdown]");
+          }
+        },
+        {
+          src: "/assets/reveal/plugin/markdown/markdown.js",
+          condition: function() {
+            return !!document.querySelector("[data-markdown]");
+          }
+        },
+        {
+          src: "/assets/reveal/plugin/highlight/highlight.js",
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        },
+        {
+          src: "/assets/reveal/plugin/notes/notes.js",
+          async: true,
+          condition: function() {
+            return !!document.body.classList;
+          }
+        },
+        // {
+        //   src: "/assets/reveal/plugin/math/math.js",
+        //   async: true
+        // },
+        {
+          src: "/assets/reveal/plugin/zoom-js/zoom.js",
+          async: true
+        }
+      ];
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: "default",
+        dependencies: deps
+      };
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+      var options = {
+        notesSeparator: "note:",
+        separator: "^[\r\n?|\n]---[\r\n?|\n]$",
+        verticalSeparator: "^[\r\n?|\n]--[\r\n?|\n]$",
+        theme: "sky",
+        highlightTheme: "solarized-dark",
+        controls: true,
+        progress: true,
+        slideNumber: "c/t",
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        shuffle: false,
+        fragments: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoSlide: 0,
+        autoSlideStoppable: true,
+        mouseWheel: false,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: "default",
+        transitionSpeed: "default",
+        backgroundTransition: "default",
+        viewDistance: 3,
+        parallaxBackgroundImage: "",
+        parallaxBackgroundSize: "",
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null,
+        slideExplorerEnabled: true,
+        browserPath: null,
+        attributes: ""
+      };
+      options = extend(defaultOptions, options, queryOptions);
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

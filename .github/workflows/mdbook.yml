@@ -1,0 +1,30 @@
+name: ci 
+on:
+  push:
+    branches:
+      - master 
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.7
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs
+      - run: pip install pygments
+      - run: find docs/ -type f -name "*.txt" -print0 | xargs -0i sed -i 's/\/img\//\/courses-wiki\/img\//g' {};
+      - run: find docs/ -type f -name "*.txt" -print0 | xargs -0i rename "s/\.txt/\.xml/g" {};
+      - run: find docs/ -type f -name "*.md" -print0 | xargs -0i sed -i 's/\/img\//\/courses-wiki\/img\//g' {};
+      - run: sed -i 's/\/assets\//\/courses-wiki\/assets\//g' material/slideshow.html
+      - run: mkdocs gh-deploy --force

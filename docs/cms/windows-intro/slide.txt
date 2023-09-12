@@ -21,21 +21,25 @@
 
 ### 台式机硬件
 
-硬件组成基本如图，来源: [BV1jE411e7hw](https://www.bilibili.com/video/BV1jE411e7hw):
-
 ![计算机组成](/img/main_devices.png)<!-- .element: style="width:90%;" -->
 
 <!-- .element style="text-align:center"-->
+
+硬件组成基本如图，来源: [BV1jE411e7hw](https://www.bilibili.com/video/BV1jE411e7hw):
+
+<!-- .element style="font-size: 50%"-->
 
 --
 
 ### 笔记本硬件
 
-硬件组成基本如图，来源: [BV1Tt411Q7z7](https://www.bilibili.com/video/BV1Tt411Q7z7):
-
 ![计算机组成](/img/notebook_devices.png)<!-- .element: style="width:80%;" -->
 
 <!-- .element style="text-align:center"-->
+
+硬件组成基本如图，来源: [BV1Tt411Q7z7](https://www.bilibili.com/video/BV1Tt411Q7z7):
+
+<!-- .element style="font-size: 50%"-->
 
 --
 
@@ -50,7 +54,7 @@
 | CPU  | 中央处理器，负责执行各种指令实现数据处理                     | 计算机运行速度         | i5 / i7 / 2.80GHz                |
 | 显卡 | 驱动显示器显示，还常用于并行计算                             | 游戏或并行计算性能     | 集成显卡 / 独立显卡 / GPU / 显存 |
 
-<!-- .element style="font-size: 50%"-->
+<!-- .element style="font-size: 60%"-->
 
 视频：[走出这个视频时，你也可以【懂一点电脑】](https://www.bilibili.com/video/BV1vp4y1L7Yb)
 

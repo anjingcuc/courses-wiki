@@ -1,0 +1,9 @@
+#jsmind_container {
+  width: 100%;
+  height: 300px;
+}
+
+.jsmind-inner {
+  width: 100%;
+  height: 100%;
+}

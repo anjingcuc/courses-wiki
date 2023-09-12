@@ -52,6 +52,10 @@
 
 <!-- .element style="font-size: 70%"-->
 
+视频：[走出这个视频时，你也可以【懂一点电脑】](https://www.bilibili.com/video/BV1vp4y1L7Yb)
+
+<!-- .element style="font-size: 70%"-->
+
 --
 
 ### 操作系统查看硬件信息

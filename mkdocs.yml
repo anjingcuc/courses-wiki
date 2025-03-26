@@ -2,48 +2,11 @@ site_name: 课程资料
 nav:
   - 首页: index.md
   - 计算机安全与维护: cms.md
-  - 计算机安全与维护:
-      - 课程概述: cms/introduction.md
-      - Windows 基础: cms/windows-intro.md
-      - 系统维护: cms/maintain.md
-      - Shell 与脚本初探: cms/shell.md
-      - 虚拟机: cms/virtualbox.md
-      - 系统安装: cms/windows-install.md
-      - Windows 组件进阶: cms/windows-components.md
-      - 恶意代码介绍: cms/malware-introduction.md
-      - 恶意代码分析: cms/malware-analysis.md
   - Python 程序设计: python.md
-  - Python 程序设计:
-      - 课程概述: python/introduction.md
-      - 基本概念: python/basic.md
-      - 数据类型基础: python/data-types-basic.md
-      - 程序结构: python/control-flow.md
-      - 数据类型进阶: python/data-types-advanced.md
-      - 输入输出: python/io-file.md
-      - 文件与目录: python/file-and-path.md
-      - 模块与包: python/lib-and-packages.md
-      - 第三方库与虚拟环境: python/virtualenvs.md
-      - 函数进阶与类: python/class.md
-      - Web 开发: python/web.md
-      - Web 分析与爬虫: python/web-and-crawler.md
-      - 爬虫: python/crawler.md
-      - 数据处理与可视化: python/data-process-and-visualization.md
-      - 数据处理与可视化实例: python/data-process-and-visualization-example.md
+  - AI-WPS 辅助办公: wps.md
   - 网页设计与制作: web.md
-  - 网页设计与制作:
-      - 课程概述: web/introduction.md
-      - HTML 元素详解: web/html-elements.md
-      - CSS 样式表: web/css-first-steps.md
-      - CSS 文本样式: web/css-text.md
-      - CSS 盒子样式: web/css-box.md
-      - CSS 布局: web/css-layout.md
-      - Bootstrap: web/bootstrap.md
-      - JavaScript 初探: web/javascript-introduction.md
-      - JavaScript 基础: web/javascript-basic.md
-      - JavaScript 结构化代码: web/javascript-blocks.md
-      - 面向对象的 JavaScript: web/javascript-oo.md
-      - JavaScript API: web/javascript-API.md
-      - jQuery: web/jQuery.md
+  - 在线出版: online-publishing.md
+  - 计算思维: ct.md
 
 # Repository
 repo_name: "anjingcuc/courses-wiki"

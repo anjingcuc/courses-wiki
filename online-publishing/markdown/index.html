@@ -1,0 +1,914 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../..">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>Markdown</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts-gstatic.lug.ustc.edu.cn" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Fira+Sans:300,400,400i,700|Fira+Mono&display=fallback">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/jsmind.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#markdown" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="课程资料" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              课程资料
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Markdown
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="课程资料" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cms/" title="计算机安全与维护" class="md-nav__link">
+      计算机安全与维护
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" title="Python 程序设计" class="md-nav__link">
+      Python 程序设计
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../wps/introduction/" title="AI-WPS 辅助办公" class="md-nav__link">
+      AI-WPS 辅助办公
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../web/" title="网页设计与制作" class="md-nav__link">
+      网页设计与制作
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../" title="在线出版" class="md-nav__link">
+      在线出版
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ct/" title="计算思维" class="md-nav__link">
+      计算思维
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    简介
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    编辑器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_1" class="md-nav__link">
+    Markdown 标题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    标题语法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    替代语法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_2" class="md-nav__link">
+    Markdown 段落
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    段落语法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    换行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_3" class="md-nav__link">
+    Markdown 段落引用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_4" class="md-nav__link">
+    Markdown 文本样式
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    文本样式语法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_5" class="md-nav__link">
+    Markdown 列表
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    有序列表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    无序列表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_6" class="md-nav__link">
+    Markdown 链接
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_7" class="md-nav__link">
+    Markdown 图片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown_8" class="md-nav__link">
+    Markdown 表格
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    对齐
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    其他
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    进阶练习
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/anjingcuc/courses-wiki/edit/master/docs/online-publishing/markdown.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="markdown">Markdown</h1>
+<hr />
+<h2 id="_1">概述</h2>
+<h3 id="_2">简介</h3>
+<p>Markdown 是一种轻量级标记语言，使用纯文本格式编写文档，拥有一定的排版能力，多种格式输出兼容不同的发布渠道，在图文类媒体发布中非常好用。例如微信公众号、知乎、简书、reddit 等平台都支持 Markdown，还可以用 Markdown 写博客甚至 Gitbook 在线图书。</p>
+<h3 id="_3">编辑器</h3>
+<p>本课将使用 <a href="https://typora.io/">Typora</a> 编辑器作为主力工具来讲解 Markdown 的用法，并针对不同平台，介绍多种工具来实现对接，比如 <a href="https://www.mdnice.com/">mdnice</a> 来实现微信公众号排版。</p>
+<hr />
+<h2 id="markdown_1">Markdown 标题</h2>
+<h3 id="_4">标题语法</h3>
+<p>Markdown 标题分为 6 级，对应 HTML 中的 6 级标题，几级标题就用几个 <code>#</code> 号作为起始，跟上标题文字，比如一级标题就是 1 个 <code>#</code> 跟上文字。如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code># 一级标题</code></td>
+<td><code>&lt;h1&gt;一级标题&lt;/h1&gt;</code></td>
+<td><h1>一级标题</h1></td>
+</tr>
+<tr>
+<td><code>## 二级标题</code></td>
+<td><code>&lt;h2&gt;二级标题&lt;/h2&gt;</code></td>
+<td><h2>二级标题</h2></td>
+</tr>
+<tr>
+<td><code>### 三级标题</code></td>
+<td><code>&lt;h3&gt;三级标题&lt;/h3&gt;</code></td>
+<td><h3>三级标题</h3></td>
+</tr>
+<tr>
+<td><code>#### 四级标题</code></td>
+<td><code>&lt;h4&gt;四级标题&lt;/h4&gt;</code></td>
+<td><h4>四级标题</h4></td>
+</tr>
+<tr>
+<td><code>##### 五级标题</code></td>
+<td><code>&lt;h5&gt;五级标题&lt;/h5&gt;</code></td>
+<td><h5>五级标题</h5></td>
+</tr>
+<tr>
+<td><code>###### 六级标题</code></td>
+<td><code>&lt;h6&gt;六级标题&lt;/h6&gt;</code></td>
+<td><h6>六级标题</h6></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">替代语法</h3>
+<p>如果仅有两级标题则可以用 <code>=</code> 和 <code>-</code> 放在下一行分别表示一级标题和二级标题。如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>一级标题</code><br><code>=======</code></td>
+<td><code>&lt;h1&gt;一级标题&lt;/h1&gt;</code></td>
+<td><h1>一级标题</h1></td>
+</tr>
+<tr>
+<td><code>二级标题</code><br><code>-------</code></td>
+<td><code>&lt;h2&gt;二级标题&lt;/h2&gt;</code></td>
+<td><h2>二级标题</h2></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="markdown_2">Markdown 段落</h2>
+<h3 id="_6">段落语法</h3>
+<p>Markdown 中没有任何符号修饰的文本就是一个自然段落，值得注意的是 Markdown 中如果需要另起一段需要在两行文本中插入一个空行。如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>我是一个段落</code><br/><br/><code>另一个段落</code></td>
+<td><code>&lt;p&gt;我是一个段落&lt;/p&gt;</code><br/><br/><code>&lt;p&gt;另一个段落&lt;/p&gt;</code></td>
+<td><p>我是一个段落</p><p>另一个段落</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">换行</h3>
+<p>Markdown 中除了分段，还可以在段落内部实现换行，可以在段落最后空格 2 个以上再回车来实现。</p>
+<hr />
+<h2 id="markdown_3">Markdown 段落引用</h2>
+<p>在文章中引用别处的文字，或者引用别人的对话，可以使用引用段落。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt; 引用段落</code></td>
+<td><code>&lt;blockquote&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;p&gt;引用段落&lt;/p&gt;</code><br/><code>&lt;/blockquote&gt;</code></td>
+<td><blockquote><p>引用段落</p></blockquote></td>
+</tr>
+<tr>
+<td><code>&gt; 引用段落</code></td>
+<td><code>&lt;blockquote&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;p&gt;引用段落&lt;/p&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;blockquote&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;p&gt;嵌套引用 &lt;/p&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;/blockquote&gt;</code><br/><code>&lt;/blockquote&gt;</code></td>
+<td><blockquote><p>引用段落</p><blockquote><p>嵌套引用 </p></blockquote></blockquote></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="markdown_4">Markdown 文本样式</h2>
+<h3 id="_8">文本样式语法</h3>
+<p>文本样式是指在写文章的过程中，需要对部分文字进行强调或者应用不同风格的展示方法，比如<strong>加粗</strong>或者<em>斜体</em>等。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**粗体**</code></td>
+<td><code>&lt;strong&gt;粗体&lt;/strong&gt;</code></td>
+<td><strong>粗体</strong></td>
+</tr>
+<tr>
+<td><code>*斜体*</code></td>
+<td><code>&lt;em&gt;斜体&lt;/em&gt;</code></td>
+<td><em>斜体</em></td>
+</tr>
+<tr>
+<td><code>***粗斜体***</code></td>
+<td><code>&lt;strong&gt;&lt;em&gt;粗斜体&lt;/em&gt;&lt;/strong&gt;</code></td>
+<td><strong><em>粗斜体</em></strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="markdown_5">Markdown 列表</h2>
+<h3 id="_9">有序列表</h3>
+<p>有序列表会自动创建编号的列表来列出内容。如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1. 第一项</code><br/><code>2. 第二项</code></td>
+<td><code>&lt;ol&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第一项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第二项&lt;/li&gt;</code><br/><code>&lt;/ol&gt;</code></td>
+<td><ol><li>第一项</li><li>第二项</li></ol></td>
+</tr>
+<tr>
+<td><code>1. 第一项</code><br/><code>2. 第二项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>1. 第一子项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>2. 第二子项</code></td>
+<td><code>&lt;ol&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第一项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第二项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;ol&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第一子项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;第二子项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;/ol&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;/li&gt;</code><br/><code>&lt;/ol&gt;</code></td>
+<td><ol><li>第一项</li><li>第二项<ol><li>第一子项</li><li>第二子项</li></ol></li></ol></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">无序列表</h3>
+<p>无序列表会自动创建没有编号的列表来列出内容。如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML 语法</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>- 一项</code><br/><code>- 二项</code></td>
+<td><code>&lt;ul&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;一项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;二项&lt;/li&gt;</code><br/><code>&lt;/ul&gt;</code></td>
+<td><ul><li>一项</li><li>二项</li></ul></td>
+</tr>
+<tr>
+<td><code>- 一项</code><br/><code>- 二项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>- 一子项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>- 二子项</code></td>
+<td><code>&lt;ul&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;一项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;二项</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;ul&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;一子项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;li&gt;二子项&lt;/li&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;/ul&gt;</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;/li&gt;</code><br/><code>&lt;/ul&gt;</code></td>
+<td><ul><li>一项</li><li>二项<ul><li>一子项</li><li>二子项</li></ul></li></ul></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="markdown_6">Markdown 链接</h2>
+<p>在 Markdown 中可以增加其他页面的链接，链接可以指向其他网页，在部分工具中还可以指向其他由 Markdown 生成的文章页面。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>[<span class="nt">百度</span>](<span class="na">https://www.baidu.com</span>)
+</code></pre></div></td></tr></table></div>
+
+<p>上面的 Markdown 显示为 <a href="https://www.baidu.com">百度</a> 。</p>
+<p>对于链接，还可以增加显示鼠标悬浮式的提示信息，对应 HTML 中的 title 即标题。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>[<span class="nt">百度</span>](<span class="na">https://www.baidu.com &quot;中文搜索引擎&quot;</span>)
+</code></pre></div></td></tr></table></div>
+
+<p>这是一个带标题的链接 -&gt; <a href="https://www.baidu.com" title="中文搜索引擎">百度</a> 。</p>
+<p>如果不想起名字，想直接显示链接，则使用尖括号。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>&lt;https://www.baidu.com&gt;
+</code></pre></div></td></tr></table></div>
+
+<p>朴实无华的链接 -&gt; <a href="https://www.baidu.com">https://www.baidu.com</a> 。</p>
+<hr />
+<h2 id="markdown_7">Markdown 图片</h2>
+<p>图片与链接的添加方式非常相似，仅需要在链接的前面加入一个 <code>!</code> 号即可渲染为图片。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>![<span class="nt">赛博朋克</span>](<span class="na">http://qqpublic.qpic.cn/qq_public/0/0-2924823161-080E75AD27578A93D3DDDF29CB9C3E0C/0?fmt=jpg&amp;size=62&amp;h=470&amp;w=900&amp;ppv=1/0</span>)
+</code></pre></div></td></tr></table></div>
+
+<p><img alt="赛博朋克" src="http://qqpublic.qpic.cn/qq_public/0/0-2924823161-080E75AD27578A93D3DDDF29CB9C3E0C/0?fmt=jpg&amp;size=62&amp;h=470&amp;w=900&amp;ppv=1/0" /></p>
+<p>同样，如果你需要添加标题时，可以在链接后面空格加上一段文字。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>![<span class="nt">赛博朋克</span>](<span class="na">http://qqpublic.qpic.cn/qq_public/0/0-2924823161-080E75AD27578A93D3DDDF29CB9C3E0C/0?fmt=jpg&amp;size=62&amp;h=470&amp;w=900&amp;ppv=1/0 &quot;夜之城与 V 不得不说的故事&quot;</span>)
+</code></pre></div></td></tr></table></div>
+
+<p><img alt="赛博朋克" src="http://qqpublic.qpic.cn/qq_public/0/0-2924823161-080E75AD27578A93D3DDDF29CB9C3E0C/0?fmt=jpg&amp;size=62&amp;h=470&amp;w=900&amp;ppv=1/0" title="夜之城与 V 不得不说的故事" /></p>
+<hr />
+<h2 id="markdown_8">Markdown 表格</h2>
+<p>Markdown 扩展功能中比较重要的一个就是表格，在 Markdown 中可以组合使用 <code>|</code> / <code>-</code> / <code>:</code> 符号来定义表格，其中 <code>|</code> 用于分隔列，<code>-</code> 则用于分隔表格题目以及表格内容，<code>:</code> 则定义文本对齐。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>| 姓名 | 年龄 |
+| ---- | ---- |
+| 小白 | 18   |
+| 小红 | 17   |
+</code></pre></div></td></tr></table></div>
+
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小白</td>
+<td>18</td>
+</tr>
+<tr>
+<td>小红</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">对齐</h3>
+<p>在分隔表格题目和内容的 <code>-</code> 中加入 <code>:</code> 可以来定义不同的对齐。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>| 左对齐     |   局中对齐   |     右对齐 |
+| :--------- | :----------: | ---------: |
+| 左对齐内容 | 居中对齐内容 | 右对齐内容 |
+</code></pre></div></td></tr></table></div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">左对齐</th>
+<th style="text-align: center;">局中对齐</th>
+<th style="text-align: right;">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">左对齐内容</td>
+<td style="text-align: center;">居中对齐内容</td>
+<td style="text-align: right;">右对齐内容</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_12">其他</h2>
+<p>Markdown 可以支持多种扩展语法，包括任务列表、数学公式甚至流程图，而且 Markdown 支持直接使用 HTML 的标签。</p>
+<hr />
+<h2 id="_13">进阶练习</h2>
+<p>请使用 Typora 参考 <a href="巴厘岛游记.pdf">巴厘岛游记</a> 编写一个 Markdown 文件。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.6.1",url:{base:"../.."}})</script>
+      
+        <script src="../../javascripts/jsmind.js"></script>
+      
+        <script src="../../javascripts/custom.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,573 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../..">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>JavaScript 结构化代码</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts-gstatic.lug.ustc.edu.cn" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Fira+Sans:300,400,400i,700|Fira+Mono&display=fallback">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/jsmind.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="课程资料" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              课程资料
+            </span>
+            <span class="md-header-nav__topic">
+              
+                JavaScript 结构化代码
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="课程资料" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cms/" title="计算机安全与维护" class="md-nav__link">
+      计算机安全与维护
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" title="Python 程序设计" class="md-nav__link">
+      Python 程序设计
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../wps/introduction/" title="AI-WPS 辅助办公" class="md-nav__link">
+      AI-WPS 辅助办公
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../" title="网页设计与制作" class="md-nav__link">
+      网页设计与制作
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../online-publishing/" title="在线出版" class="md-nav__link">
+      在线出版
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ct/" title="计算思维" class="md-nav__link">
+      计算思维
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    分支实验
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ifelse" class="md-nav__link">
+    if...else
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    switch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    while
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while_1" class="md-nav__link">
+    while
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/anjingcuc/courses-wiki/edit/master/docs/web/javascript-blocks.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>JavaScript 结构化代码</h1>
+                
+                <p><strong>下方课件区域方向键控制翻页，<code>f</code> 键全屏。</strong></p>
+<iframe src="./slideshow.html" frameborder=0 width=800 height=450></iframe>
+
+<h2 id="_1">分支实验</h2>
+<h3 id="ifelse">if...else</h3>
+<p>在这个实验中，请完成一个简单的日历应用程序。在你的代码中：</p>
+<ul>
+<li>一个 <code>&lt;select&gt;</code> 元素，允许用户在不同月份之间进行选择。</li>
+<li><code>onchange</code> 检测 <code>&lt;select&gt;</code> 菜单中选择的值何时更改的事件处理程序。</li>
+<li>一个函数叫做 <code>createCalendar()</code> 绘制日历并在 <code>&lt;h1&gt;</code> 元素中显示正确的月份。</li>
+</ul>
+<p>在 onchange 处理函数中写一个条件语句，就在 <code>// ADD CONDITIONAL HERE</code> 的下面。功能包括：</p>
+<ul>
+<li>查看所选月份（存储在 choice 变量中，这将是 <code>&lt;select&gt;</code> 值更改后的元素值，例如 "1 月"）。</li>
+<li>设置一个被调用 days 为等于所选月份天数的变量，来实现查看一年中每个月的天数，可以忽略闰年。</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>建议使用逻辑或 <code>||</code> 将多个月组合成一个单一条件；他们中的许多人共享相同的天数。</li>
+<li>考虑最常用的天数，并将其用作默认值。</li>
+</ul>
+<p>可以随时使用 "Reset" 按钮重置该示例。 如果你真的卡住了，点 "Show solution" 来查看解决方案。</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="anjingcuc" data-slug-hash="NWWLKyK" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Calender for if..else">
+  <span>See the Pen <a href="https://codepen.io/anjingcuc/pen/NWWLKyK">
+  Calender for if..else</a> by anjing (<a href="https://codepen.io/anjingcuc">@anjingcuc</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="switch">switch</h3>
+<p>在这个实验中，你需要练习使用 <code>switch</code> 语句，这将允许我们对简单的网站应用更多的选择。看看 <code>&lt;select&gt;</code> - 一共有五个主题选项。你需要在 <code>// ADD SWITCH STATEMENT</code> 注释下面添加一个 <code>switch</code> 语句：</p>
+<ul>
+<li>它应该接受 choice 变量作为其输入表达式。</li>
+<li>对于每种情况，选择应该等于可以选择的可能值之一，即白色，黑色，紫色，黄色或迷幻色。</li>
+<li>对于每种情况，应运行 update()函数，并传递两个颜色值，第一个颜色值为背景颜色，第二个颜色值为文本颜色。请记住，颜色值是字符串，因此需要用引号括起来。</li>
+</ul>
+<p>可以随时使用 "Reset" 按钮重置该示例。 如果你真的卡住了，点 "Show solution" 来查看解决方案。</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="anjingcuc" data-slug-hash="QWWVLqW" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="More Color for switch">
+  <span>See the Pen <a href="https://codepen.io/anjingcuc/pen/QWWVLqW">
+  More Color for switch</a> by anjing (<a href="https://codepen.io/anjingcuc">@anjingcuc</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="while">while</h3>
+<p>在这个练习中，你需要打印出一个简单的启动倒计时到输出框，从 10 到关闭。</p>
+<p>具体来说，希望你：</p>
+<ul>
+<li>从 10 下降到 0，这里提供了初始代码 - <code>var i = 10</code>;</li>
+<li>对于每次迭代，创建一个新的段落并将其附加到输出 <code>&lt;div&gt;</code>，使用<code>var output = document.querySelector('.output');</code> 选中该 <code>&lt;div&gt;</code>，并在示例代码中已经写好了创建并附加段落的部分代码：</li>
+<li><code>var para = document.createElement('p');</code> — 新建一个段落。</li>
+<li><code>output.appendChild(para);</code> — 将段落附加到输出 <code>&lt;div&gt;</code> 中。</li>
+<li><code>para.textContent =</code> — <code>=</code> 号后面应该写上你需要输出的字符串或字符串变量并以分号结尾。</li>
+<li>不同的迭代数字需要将不同的文本放在该迭代的段落中（你需要一个条件语句和多个 <code>para.textContent = lines</code>）：</li>
+<li>如果数字是 10，段落内容显示 "Countdown 10"。</li>
+<li>如果数字为 0，段落内容显示 "Blast off!"。</li>
+<li>对于任何其他数字，段落内容只显示数字本身。</li>
+<li>记住要包括一个最终操作（或称为迭代器）！ 在这个例子中，程序的数字应该在每次迭代之后都减少，而不是增加，所以不能使用 <code>i++</code> - 应该用啥呢？</li>
+</ul>
+<p>可以随时使用 "Reset" 按钮重置该示例。 如果你真的卡住了，点 "Show solution" 来查看解决方案。</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="anjingcuc" data-slug-hash="WNNgMpB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Count down for while">
+  <span>See the Pen <a href="https://codepen.io/anjingcuc/pen/WNNgMpB">
+  Count down for while</a> by anjing (<a href="https://codepen.io/anjingcuc">@anjingcuc</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="while_1">while</h3>
+<p>在本练习中，你需要获取存储在数组中的名称列表，并将其放入来宾列表中。 但这不是那么容易 - 你需要排除菲尔和洛拉，因为他们是贪婪和粗鲁的，总是吃所有的食物！ 因此需要产生两个名单，一个是欢迎的客人名单，一个是拒绝的客人名单。</p>
+<p>具体来说，希望你：</p>
+<ul>
+<li>编写一个循环，它将从 0 迭代到 people 数组的长度。 你需要从一个初始化器 var i = 0 开始，但是你需要什么退出条件？</li>
+<li>在每个循环迭代期间，使用条件语句检查当前数组项是否等于“Phil”或“Lola”：</li>
+<li>如果是，则将数组项连接到拒绝段落的 textContent 的末尾，后跟逗号和空格。</li>
+<li>如果不是，则将数组项连接到接收段落的 textContent 的末尾，后跟逗号和空格。</li>
+</ul>
+<p>已提供的初始化代码包括：</p>
+<ul>
+<li><code>var i = 0;</code> — 你的初始化程序</li>
+<li><code>refused.textContent +=</code> - 将连接某些东西的行的开头，结束于 refused.textContent。</li>
+<li><code>admitted.textContent +=</code> - 将连接某些内容到一行的结尾的行的开始。</li>
+</ul>
+<p>额外要求 - 成功完成上述任务后，将留下两个名称列表，用逗号分隔，但它们将不整齐 - 每个结尾处都会有一个逗号。你需要思考并实现最后一个名字后面跟这一个句号。</p>
+<p>可以随时使用 "Reset" 按钮重置该示例。 如果你真的卡住了，点 "Show solution" 来查看解决方案。</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="anjingcuc" data-slug-hash="wvvEydN" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Guest List for while">
+  <span>See the Pen <a href="https://codepen.io/anjingcuc/pen/wvvEydN">
+  Guest List for while</a> by anjing (<a href="https://codepen.io/anjingcuc">@anjingcuc</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.6.1",url:{base:"../.."}})</script>
+      
+        <script src="../../javascripts/jsmind.js"></script>
+      
+        <script src="../../javascripts/custom.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

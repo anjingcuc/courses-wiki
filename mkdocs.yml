@@ -3,7 +3,7 @@ nav:
   - 首页: index.md
   - 计算机安全与维护: cms.md
   - Python 程序设计: python.md
-  - AI-WPS 辅助办公: wps.md
+  - AI-WPS 辅助办公: wps/introduction.md
   - 网页设计与制作: web.md
   - 在线出版: online-publishing.md
   - 计算思维: ct.md

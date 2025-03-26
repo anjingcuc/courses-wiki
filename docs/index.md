@@ -22,7 +22,7 @@ title: 首页
 
 ## [AI-WPS 辅助办公](wps.md)
 
-课程资料请点击[AI-WPS 辅助办公](wps.md).
+课程资料请点击[AI-WPS 辅助办公](wps/introduction.md).
 
 ---
 

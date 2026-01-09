@@ -97,18 +97,6 @@ Shell（也称为壳层）则是指为用户提供用户“界面”的软件，
 
 --
 
-### 标准流
-
-终端和 Shell 之间通过标准流进行通信，标准流有三个:
-
-- `stdin` 即 `标准输入`。
-- `stdout` 即 `标准输出`。
-- `stderr` 即 `标准错误输出`。
-
-<!-- .element style="font-size:70%"-->
-
---
-
 ### 小结
 
 现代操作系统中，用户用到的看来是 CLI 形式的“命令行窗口”或“终端”往往包括两个部分：一个终端模拟器软件以及真正处理用户命令的 Shell 。比如 Windows 下常见的`命令提示符`运行后包含一个终端模拟器 `conhost.exe` 以及一个 Shell `cmd.exe` 。
@@ -125,7 +113,7 @@ Shell（也称为壳层）则是指为用户提供用户“界面”的软件，
 
 ### 运行
 
-在 Windows 10 上右键点击左下角的开始图标，在弹出菜单中选择 `Windows Powershell` 即可，如果需要更高权限，则选择 `Windows Powershell (管理员)` 。
+在 Windows 11 上右键点击左下角的开始图标，在弹出菜单中选择 `终端` 即可。
 
 ![运行 Powershell](/img/powershell-run.png)<!-- .element: style="width:50%;" -->
 
@@ -133,19 +121,9 @@ Shell（也称为壳层）则是指为用户提供用户“界面”的软件，
 
 --
 
-### 管理员与非管理员
-
-管理员权限打开的和非管理员权限的 Powershell 可以通过窗口标题以及初始工作目录来区分。
-
-![管理员与非管理员](/img/admin-vs-noadmin.png)<!-- .element: style="width:80%;" -->
-
-<!-- .element style="text-align:center;"-->
-
---
-
 ### Powershell 默认终端的布局
 
-Windows 10 上为 Powershell 默认提供的终端布局如下：
+Windows 11 上为 Powershell 默认提供的终端布局如下：
 
 ![终端的布局](/img/powershell-layout.png)<!-- .element: style="width:80%;" -->
 
@@ -179,7 +157,7 @@ Windows 10 上为 Powershell 默认提供的终端布局如下：
 
 ### GUI 下设置环境变量
 
-Windows 10 下通过系统设置可以浏览及修改环境变量。
+Windows 11 下通过系统设置可以浏览及修改环境变量。
 
 ![环境变量](/img/env-GUI.png)<!-- .element: style="width:80%;" -->
 

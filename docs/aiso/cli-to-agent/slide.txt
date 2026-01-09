@@ -1,0 +1,134 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 从 CLI 到 Agent
+
+---
+
+## 运维模式的进化
+
+* **1.0 手工时代**：GUI 点击，学习成本低但重复性高。
+* **2.0 脚本时代**：CLI 指令，实现初步自动化。
+* **3.0 智能时代**：自然语言驱动 AI Agent，AI 自动操作 CLI。
+
+> **核心逻辑**：AI 时代，CLI 依然是运维的基石，它是 AI 操作系统的“手”。
+
+--
+
+## 为什么 AI 偏爱 CLI？
+
+| 特性          | GUI (图形界面)         | CLI (命令行界面)     |
+| :------------ | :--------------------- | :------------------- |
+| **交互媒介**  | 像素、图标             | 结构化文本           |
+| **AI 友好度** | 低（需复杂的视觉识别） | **极高（原生支持）** |
+| **效率**      | 难以并行               | 极易通过脚本扩展     |
+
+---
+
+## CLI 基础架构回顾
+
+在配置智能环境前，需分清两个核心概念：
+
+* **终端 (Terminal)**：外壳。负责文字显示与键盘输入。
+    * 推荐：Windows Terminal。
+* **Shell (解释器)**：大脑。负责理解并执行你的命令。
+    * 推荐：PowerShell (Windows 默认)。
+
+---
+
+## 实战：通过 CLI 安装 AI Agent
+
+我们将安装目前最先进的命令行 AI 助手：**Claude Code**。
+
+```powershell
+# 1. 检查运行环境
+node -v
+
+# 2. 全局安装客户端
+npm install -g @anthropic-ai/claude-code
+
+# 3. 尝试启动
+claude
+
+```
+
+--
+
+## 连接的桥梁：环境变量
+
+**环境变量**是系统层面的“全局配置键值对”。
+
+* **Path**：告诉系统去哪里找 `claude` 程序。
+* **Secrets**：用于存储 AI 模型的 API Key（身份凭证）。
+* **Endpoints**：用于指定 AI 模型的服务器地址。
+
+---
+
+## 接入智谱 GLM-4.7 (国产化适配)
+
+为了让工具更符合国内运维环境，我们将接入智谱 AI。
+
+**需要配置的两个关键变量：**
+
+1. **`ANTHROPIC_BASE_URL`**
+* 地址：`https://open.bigmodel.cn/api/anthropic`
+
+
+2. **`ANTHROPIC_AUTH_TOKEN`**
+* 值：`你的智谱API_Key`
+
+
+
+---
+
+## PowerShell 环境配置实操
+
+**临时生效（当前窗口）：**
+
+```powershell
+# 设置 API 地址
+$env:ANTHROPIC_BASE_URL = "[https://open.bigmodel.cn/api/anthropic](https://open.bigmodel.cn/api/anthropic)"
+
+# 设置 API Key
+$env:ANTHROPIC_AUTH_TOKEN = "your_key_here"
+
+```
+
+**永久生效（配置文件）：**
+编辑 `~/.claude/settings.json`：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.7"
+  }
+}
+
+```
+
+---
+
+## 智能运维场景演示
+
+配置完成后，输入 `claude` 开启对话：
+
+* **场景 1**：“分析当前文件夹中最近修改的 3 个日志文件，总结报错信息。”
+* **场景 2**：“帮我写一个 PowerShell 脚本，自动备份并压缩 `C:\data` 目录。”
+
+---
+
+## 小结
+
+1. **CLI** 是 AI 运维的交互标准。
+2. **Shell** 是指令执行的载体。
+3. **环境变量** 决定了 AI 工具连接哪一个“大脑”（模型）。

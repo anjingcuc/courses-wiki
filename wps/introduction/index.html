@@ -1,0 +1,900 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../..">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>AI-WPS 辅助办公</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts-gstatic.lug.ustc.edu.cn" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Fira+Sans:300,400,400i,700|Fira+Mono&display=fallback">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/jsmind.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="课程资料" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              课程资料
+            </span>
+            <span class="md-header-nav__topic">
+              
+                AI-WPS 辅助办公
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        首页
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="课程资料" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/anjingcuc/courses-wiki" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cms/" title="计算机安全与维护" class="md-nav__link">
+      计算机安全与维护
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" title="Python 程序设计" class="md-nav__link">
+      Python 程序设计
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        AI-WPS 辅助办公
+      </label>
+    
+    <a href="./" title="AI-WPS 辅助办公" class="md-nav__link md-nav__link--active">
+      AI-WPS 辅助办公
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    下载链接
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    提示词
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../web/" title="网页设计与制作" class="md-nav__link">
+      网页设计与制作
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../online-publishing/" title="在线出版" class="md-nav__link">
+      在线出版
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ct/" title="计算思维" class="md-nav__link">
+      计算思维
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    下载链接
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    提示词
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/anjingcuc/courses-wiki/edit/master/docs/wps/introduction.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>AI-WPS 辅助办公</h1>
+                
+                <p><strong>下方课件区域方向键控制翻页，<code>f</code> 键全屏。</strong></p>
+<iframe src="./slideshow.html" frameborder=0 width=800 height=450></iframe>
+
+<h2 id="_1">下载链接</h2>
+<p><a href="https://www.wps.cn/">官方 WPS 下载</a> (普通版-有灵犀按钮)</p>
+<p><a href="https://software.cuc.edu.cn/product.html?id=502">校内 WPS 下载</a> (教育版-无灵犀按钮)</p>
+<h2 id="_2">提示词</h2>
+<p>生成响应式 Web 页面。来自微博 <a href="https://weibo.com/u/6182606334">@歸藏的 AI 工具箱</a></p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code>我会给你一个文件，分析内容，并将其转化为美观漂亮的中文可视化网页：
+
+<span class="gu">## 内容要求</span>
+
+<span class="k">-</span><span class="w"> </span>所有页面内容必须为简体中文
+<span class="k">-</span><span class="w"> </span>保持原文件的核心信息，但以更易读、可视化的方式呈现
+<span class="k">-</span><span class="w"> </span>在页面底部添加作者信息区域，包含：
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>作者姓名: [作者姓名]
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>社交媒体链接: 至少包含 GitHub、Twitter/X、LinkedIn 等主流平台
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>版权信息和年份
+
+<span class="gu">## 设计风格</span>
+
+<span class="k">-</span><span class="w"> </span>整体风格参考 Linear App 的简约现代设计
+<span class="k">-</span><span class="w"> </span>使用清晰的视觉层次结构，突出重要内容
+<span class="k">-</span><span class="w"> </span>配色方案应专业、和谐，适合长时间阅读
+
+<span class="gu">## 技术规范</span>
+
+<span class="k">-</span><span class="w"> </span>使用 HTML5、TailwindCSS 3.0+（通过 CDN 引入）和必要的 JavaScript
+<span class="k">-</span><span class="w"> </span>实现完整的深色/浅色模式切换功能，默认跟随系统设置
+<span class="k">-</span><span class="w"> </span>代码结构清晰，包含适当注释，便于理解和维护
+
+<span class="gu">## 响应式设计</span>
+
+<span class="k">-</span><span class="w"> </span>页面必须在所有设备上（手机、平板、桌面）完美展示
+<span class="k">-</span><span class="w"> </span>针对不同屏幕尺寸优化布局和字体大小
+<span class="k">-</span><span class="w"> </span>确保移动端有良好的触控体验
+
+<span class="gu">## 图标与视觉元素</span>
+
+<span class="k">-</span><span class="w"> </span>使用专业图标库如 Font Awesome 或 Material Icons（通过 CDN 引入）
+<span class="k">-</span><span class="w"> </span>根据内容主题选择合适的插图或图表展示数据
+<span class="k">-</span><span class="w"> </span>避免使用 emoji 作为主要图标
+
+<span class="gu">## 交互体验</span>
+
+<span class="k">-</span><span class="w"> </span>添加适当的微交互效果提升用户体验：
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>按钮悬停时有轻微放大和颜色变化
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>卡片元素悬停时有精致的阴影和边框效果
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>页面滚动时有平滑过渡效果
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>内容区块加载时有优雅的淡入动画
+
+<span class="gu">## 性能优化</span>
+
+<span class="k">-</span><span class="w"> </span>确保页面加载速度快，避免不必要的大型资源
+<span class="k">-</span><span class="w"> </span>图片使用现代格式(WebP)并进行适当压缩
+<span class="k">-</span><span class="w"> </span>实现懒加载技术用于长页面内容
+
+<span class="gu">## 输出要求</span>
+
+<span class="k">-</span><span class="w"> </span>提供完整可运行的单一 HTML 文件，包含所有必要的 CSS 和 JavaScript
+<span class="k">-</span><span class="w"> </span>确保代码符合 W3C 标准，无错误警告
+<span class="k">-</span><span class="w"> </span>页面在不同浏览器中保持一致的外观和功能
+
+请根据上传文件的内容类型（文档、数据、图片等），创建最适合展示该内容的可视化网页。
+</code></pre></div></td></tr></table></div>
+
+<p>生成公众号封面。来自微博 <a href="https://weibo.com/u/6182606334">@歸藏的 AI 工具箱</a>，公众号<a href="https://mp.weixin.qq.com/s/OFCgFrXNQgIT2ho3V-4Oag">@歸藏的 AI 工具箱</a>。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gh"># 公众号封面提示词</span>
+
+你是一位优秀的网页和营销视觉设计师，具有丰富的 UI/UX 设计经验，曾为众多知名品牌打造过引人注目的营销视觉，擅长将现代设计趋势与实用营销策略完美融合。
+请使用 HTML 和 CSS 代码按照设计风格要求部分创建一个的微信公众号封面图片组合布局。我需要的设计应具有强烈的视觉冲击力和现代感。
+
+<span class="gu">## 基本要求：</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**尺寸与比例**</span>：
+<span class="k">-</span><span class="w"> </span>整体比例严格保持为 3.35:1
+<span class="k">-</span><span class="w"> </span>容器高度应随宽度变化自动调整，始终保持比例
+<span class="k">-</span><span class="w"> </span>左边区域放置 2.35:1 比例的主封面图
+<span class="k">-</span><span class="w"> </span>右边区域放置 1:1 比例的朋友圈分享封面
+<span class="k">-</span><span class="w"> </span><span class="gs">**布局结构**</span>：
+<span class="k">-</span><span class="w"> </span>朋友圈封面只需四个大字铺满整个区域（上面两个下面两个）
+<span class="k">-</span><span class="w"> </span>文字必须成为主封面图的视觉主体，占据页面至少 70%的空间
+<span class="k">-</span><span class="w"> </span>两个封面共享相同的背景色和点缀装饰元素
+<span class="k">-</span><span class="w"> </span>最外层卡片需要是直角
+<span class="k">-</span><span class="w"> </span><span class="gs">**技术实现**</span>：
+<span class="k">-</span><span class="w"> </span>使用纯 HTML 和 CSS 编写
+<span class="k">-</span><span class="w"> </span>如果用户给了背景图片的链接需要结合背景图片排版
+<span class="k">-</span><span class="w"> </span>严格实现响应式设计，确保在任何浏览器宽度下都保持 16:10 的整体比例
+<span class="k">-</span><span class="w"> </span>在线 CDN 引用 Tailwind CSS 来优化比例和样式控制
+<span class="k">-</span><span class="w"> </span>内部元素应相对于容器进行缩放，确保整体设计和文字排版比例一致
+<span class="k">-</span><span class="w"> </span>使用 Google Fonts 或其他 CDN 加载适合的现代字体
+<span class="k">-</span><span class="w"> </span>可引用在线图标资源（如 Font Awesome）
+<span class="k">-</span><span class="w"> </span>代码应可在现代浏览器中直接运行
+<span class="k">-</span><span class="w"> </span>提供完整 HTML 文档与所有必要的样式
+<span class="k">-</span><span class="w"> </span>最下方增加图片下载按钮，点击后下载整张图片
+
+<span class="gu">## 风格要求：软萌知识卡片风</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**设计风格**</span>：
+<span class="k">-</span><span class="w"> </span>柔和色彩基调：以粉色、米黄、淡紫等温和色调为主，营造轻松友好氛围
+<span class="k">-</span><span class="w"> </span>圆角卡片结构：所有内容采用大圆角矩形或椭圆形容器，没有尖锐边角
+<span class="k">-</span><span class="w"> </span>简约留白处理：适当留白增强可读性，避免视觉拥挤感
+<span class="k">-</span><span class="w"> </span>渐变色背景：部分卡片使用柔和渐变背景，增加层次感和温暖感
+<span class="k">-</span><span class="w"> </span>情感化设计：整体风格偏向亲和、轻松，不过分严肃正式
+<span class="k">-</span><span class="w"> </span>统一视觉语言：各卡片尽管内容不同，但维持一致的设计语言
+<span class="k">-</span><span class="w"> </span>轻量化边框：红色封面使用笔记本线条等轻量级边框元素增加趣味性
+<span class="k">-</span><span class="w"> </span><span class="gs">**文字排版风格**</span>：
+<span class="k">-</span><span class="w"> </span>大字号标题：标题文字加粗加大，吸引第一眼注意
+<span class="k">-</span><span class="w"> </span>紧凑段落布局：正文内容分段清晰，段落间距适中
+<span class="k">-</span><span class="w"> </span>感叹号点缀：频繁使用感叹号增强情感表达和亲近感
+<span class="k">-</span><span class="w"> </span>表情符号融入：在文字中加入&quot;」&quot;等特殊符号增加表现力
+<span class="k">-</span><span class="w"> </span>重点句加粗：关键信息或总结性内容加粗处理
+<span class="k">-</span><span class="w"> </span>自然语言表达：采用口语化、对话式的表达方式，降低阅读门槛
+<span class="k">-</span><span class="w"> </span>多层级排版：标题、副标题、正文、强调语等形成清晰的阅读层级
+<span class="k">-</span><span class="w"> </span><span class="gs">**视觉元素风格**</span>：
+<span class="k">-</span><span class="w"> </span>Q 版表情角色：底部配置可爱的 emoji 表情或形象，增加亲和力
+<span class="k">-</span><span class="w"> </span>表情丰富多样：使用惊讶、思考、无奈等多种表情，与文本内容情感呼应
+<span class="k">-</span><span class="w"> </span>场景化呈现：如电脑前工作的人物、阅读书本的角色等场景化表达
+<span class="k">-</span><span class="w"> </span>实物图融合：如猫咪真实照片与卡通风格的结合
+<span class="k">-</span><span class="w"> </span>点缀型装饰：适量使用小装饰元素，如笔记本边缘的圆点标记
+<span class="k">-</span><span class="w"> </span>形象位置统一：视觉元素多位于卡片底部，形成稳定的视觉期待
+<span class="k">-</span><span class="w"> </span>拟人化处理：将抽象概念通过卡通形象拟人化，增强理解和记忆
+
+<span class="gu">## 用户输入内容</span>
+
+<span class="k">-</span><span class="w"> </span>公众号标题为：[一套提示词帮你实现小红书、公众号封面自由，Deepseek V3 也能用！]
+<span class="k">-</span><span class="w"> </span>emoji 图片：https://s2.loli.net/2025/03/24/pBmlncEYkodSVA6.png
+</code></pre></div></td></tr></table></div>
+
+<p>生成小红书封面。来自微博 <a href="https://weibo.com/u/6182606334">@歸藏的 AI 工具箱</a>，公众号<a href="https://mp.weixin.qq.com/s/OFCgFrXNQgIT2ho3V-4Oag">@歸藏的 AI 工具箱</a>。</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gh"># 小红书封面生成提示词</span>
+
+你是一位优秀的网页和营销视觉设计师，具有丰富的 UI/UX 设计经验，曾为众多知名品牌打造过引人注目的营销视觉，擅长将现代设计趋势与实用营销策略完美融合。现在需要为我创建一张专业级小红书封面。请使用 HTML、CSS 和 JavaScript 代码实现以下要求：
+
+<span class="gu">## 基本要求</span>
+
+<span class="gs">**尺寸与基础结构**</span>
+
+<span class="k">-</span><span class="w"> </span>比例严格为 3:4（宽:高）
+<span class="k">-</span><span class="w"> </span>设计一个边框为 0 的 div 作为画布，确保生成图片无边界
+<span class="k">-</span><span class="w"> </span>最外面的卡片需要为直角
+<span class="k">-</span><span class="w"> </span>将我提供的文案提炼为 30-40 字以内的中文精华内容
+<span class="k">-</span><span class="w"> </span>文字必须成为视觉主体，占据页面至少 70%的空间
+<span class="k">-</span><span class="w"> </span>运用 3-4 种不同字号创造层次感，关键词使用最大字号
+<span class="k">-</span><span class="w"> </span>主标题字号需要比副标题和介绍大三倍以上
+<span class="k">-</span><span class="w"> </span>主标题提取 2-3 个关键词，使用特殊处理（如描边、高亮、不同颜色）
+  <span class="gs">**技术实现**</span>
+<span class="k">-</span><span class="w"> </span>使用现代 CSS 技术（如 flex/grid 布局、变量、渐变）
+<span class="k">-</span><span class="w"> </span>确保代码简洁高效，无冗余元素
+<span class="k">-</span><span class="w"> </span>添加一个不影响设计的保存按钮
+<span class="k">-</span><span class="w"> </span>使用 html2canvas 实现一键保存为图片功能
+<span class="k">-</span><span class="w"> </span>保存的图片应只包含封面设计，不含界面元素
+<span class="k">-</span><span class="w"> </span>使用 Google Fonts 或其他 CDN 加载适合的现代字体
+<span class="k">-</span><span class="w"> </span>可引用在线图标资源（如 Font Awesome）
+  <span class="gs">**专业排版技巧**</span>
+<span class="k">-</span><span class="w"> </span>运用设计师常用的&quot;反白空间&quot;技巧创造焦点
+<span class="k">-</span><span class="w"> </span>文字与装饰元素间保持和谐的比例关系
+<span class="k">-</span><span class="w"> </span>确保视觉流向清晰，引导读者目光移动
+<span class="k">-</span><span class="w"> </span>使用微妙的阴影或光效增加层次感
+
+<span class="gu">## 风格要求：软萌知识卡片风</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**设计风格**</span>：
+<span class="k">-</span><span class="w"> </span>柔和色彩基调：以粉色、米黄、淡紫等温和色调为主，营造轻松友好氛围
+<span class="k">-</span><span class="w"> </span>圆角卡片结构：所有内容采用大圆角矩形或椭圆形容器，没有尖锐边角
+<span class="k">-</span><span class="w"> </span>简约留白处理：适当留白增强可读性，避免视觉拥挤感
+<span class="k">-</span><span class="w"> </span>渐变色背景：部分卡片使用柔和渐变背景，增加层次感和温暖感
+<span class="k">-</span><span class="w"> </span>情感化设计：整体风格偏向亲和、轻松，不过分严肃正式
+<span class="k">-</span><span class="w"> </span>统一视觉语言：各卡片尽管内容不同，但维持一致的设计语言
+<span class="k">-</span><span class="w"> </span>轻量化边框：红色封面使用笔记本线条等轻量级边框元素增加趣味性
+<span class="k">-</span><span class="w"> </span><span class="gs">**文字排版风格**</span>：
+<span class="k">-</span><span class="w"> </span>大字号标题：标题文字加粗加大，吸引第一眼注意
+<span class="k">-</span><span class="w"> </span>紧凑段落布局：正文内容分段清晰，段落间距适中
+<span class="k">-</span><span class="w"> </span>感叹号点缀：频繁使用感叹号增强情感表达和亲近感
+<span class="k">-</span><span class="w"> </span>表情符号融入：在文字中加入&quot;」&quot;等特殊符号增加表现力
+<span class="k">-</span><span class="w"> </span>重点句加粗：关键信息或总结性内容加粗处理
+<span class="k">-</span><span class="w"> </span>自然语言表达：采用口语化、对话式的表达方式，降低阅读门槛
+<span class="k">-</span><span class="w"> </span>多层级排版：标题、副标题、正文、强调语等形成清晰的阅读层级
+<span class="k">-</span><span class="w"> </span><span class="gs">**视觉元素风格**</span>：
+<span class="k">-</span><span class="w"> </span>Q 版表情角色：底部配置可爱的 emoji 表情或形象，增加亲和力
+<span class="k">-</span><span class="w"> </span>表情丰富多样：使用惊讶、思考、无奈等多种表情，与文本内容情感呼应
+<span class="k">-</span><span class="w"> </span>场景化呈现：如电脑前工作的人物、阅读书本的角色等场景化表达
+<span class="k">-</span><span class="w"> </span>实物图融合：如猫咪真实照片与卡通风格的结合
+<span class="k">-</span><span class="w"> </span>点缀型装饰：适量使用小装饰元素，如笔记本边缘的圆点标记
+<span class="k">-</span><span class="w"> </span>形象位置统一：视觉元素多位于卡片底部，形成稳定的视觉期待
+<span class="k">-</span><span class="w"> </span>拟人化处理：将抽象概念通过卡通形象拟人化，增强理解和记忆
+
+<span class="gu">## 用户输入内容</span>
+
+<span class="k">-</span><span class="w"> </span>封面文案：[Andrej Karpathy 分享了他是如何只用一个文件做笔记的 非项目的日常笔记他只用一个苹果备忘录文件，这样非常方便在单个文件搜索内容 有任何想法或待办事项出现时，都会简单地以纯文本形式将它添加到笔记的顶部 只使用使用&quot;watch:&quot;（观看）、&quot;listen:&quot;（聆听）或&quot;read:&quot;（阅读）等标签 回顾的时候会不时向下滚动浏览笔记。如果发现任何值得持续关注的内容，会通过简单复制粘贴将其&quot;救回&quot;顶部。 值得记录的问题或者内容确实没有多少，这样很简单，项目类型的记录和文档他还是使用 Obsidian]
+<span class="k">-</span><span class="w"> </span>账号名称：[歸藏(guizang.ai)]
+<span class="k">-</span><span class="w"> </span>可选标语：[正儿八经学 AI]
+</code></pre></div></td></tr></table></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../python/" title="Python 程序设计" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python 程序设计
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../web/" title="网页设计与制作" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                网页设计与制作
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.6.1",url:{base:"../.."}})</script>
+      
+        <script src="../../javascripts/jsmind.js"></script>
+      
+        <script src="../../javascripts/custom.js"></script>
+      
+        <script src="../../search/main.js"></script>
+      
+    
+  </body>
+</html>

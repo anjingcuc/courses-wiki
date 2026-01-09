@@ -1,0 +1,92 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 数据处理与可视化
+
+---
+
+## 电子表格
+
+最常见的数据处理工具就是电子表格，比如 Excel ，无论是否从事计算机行业都大量使用电子表格进行数据处理。
+
+--
+
+### csv 与 openpyxl
+
+csv 是一种以特定字符作为分隔值的纯文本文件格式，存储内容是表格类型的数据。Python 中内置了同名模块来解析 csv 文件。openpyxl 则是 Python 能够直接处理 Excel 文件数据的第三方库。
+
+参考下方示例。
+
+---
+
+## 数据处理工具-pandas
+
+pandas 是一个 Python 数据处理常见库，能够很方便地完成数据的清洗、转换、合并、分析等处理。pandas 提供多种方法载入各种数据。pandas 中有两个常用数据结构：Series 和 DataFrame 。
+
+_注: 参考 https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html _
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### Series
+
+Series 是一个带索引的序列。
+
+![Series](/courses-wiki/img/dataSER-1.png)<!-- .element style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-series/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/series.html _
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### DataFrame
+
+DataFrame 是一个类似表格的结构，包含一组有序的列。
+
+![DataFrame](/courses-wiki/img/finallpandas.png)<!-- .element style="width:65%;" -->
+
+<!-- .element style="text-align:center"-->
+
+_注: 图片来源于 https://www.geeksforgeeks.org/python-pandas-dataframe/ ；文档参考: https://pandas.pydata.org/pandas-docs/stable/reference/frame.html _
+
+<!-- .element: style="font-size:60%;" -->
+
+---
+
+## 可视化-matplotlib
+
+matplotlib 是 Python 的全能图表库。
+
+可参考 https://matplotlib.org/gallery/index.html
+
+--
+
+### 结构说明
+
+![图表组成部分](/courses-wiki/img/anatomy.png)<!-- .element style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 数据处理与可视化结合
+
+pandas 依赖 matplotlib 提供了内置的绘图方法。
+
+---
+
+## Q & A

@@ -1,0 +1,222 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Windows 安装
+
+---
+
+## 启动过程
+
+--
+
+### 引导程序
+
+个人电脑启动时加载的第一个程序实际上存储在主板芯片中，早期该程序为 BIOS，2009 以后逐渐被 UEFI 取代。
+
+- BIOS (Basic Input/Output System) 即基本输入输出系统，负责检测硬件并加载启动设备上的引导程序。
+- UEFI (Unified Extensible Firmware Interface) 即统一可扩展固件接口，是 BIOS 的现代继任者。
+
+<!-- .element style="font-size: 70%;"-->
+
+扩展阅读: [BIOS](https://zh.wikipedia.org/wiki/BIOS) / [UEFI](https://zh.wikipedia.org/wiki/%E7%B5%B1%E4%B8%80%E5%8F%AF%E5%BB%B6%E4%BC%B8%E9%9F%8C%E9%AB%94%E4%BB%8B%E9%9D%A2)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### BIOS (Legacy) 启动程序
+
+BIOS 启动过程如下：
+
+![启动过程](/courses-wiki/img/boot-process.jpg)<!-- .element: style="width:70%;border:none;" -->
+
+<!-- .element style="text-align:center;"-->
+
+--
+
+### UEFI 启动程序
+
+UEFI 启动过程如下：
+
+![启动过程](/courses-wiki/img/uefi-process.jpg)<!-- .element: style="width:70%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### UEFI 的好处
+
+UEFI 之所以取代 BIOS 有以下好处。
+
+- 不依赖分区表，每个 UEFI App 都是文件；
+- 可以跳过设备自检阶段，启动速度更快；
+- 支持对引导代码的签命校验等安全处理；
+- 可开启 Secure Boot，即安全启动。
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 启动类型
+
+确定自己得启动类型，重新启动电脑，等待重启过程中快速点按快捷键，部分品牌快捷键如下。
+
+![POST Screen](/courses-wiki/img/POSTScreen.png)<!-- .element: style="width:100%;" -->
+
+<!-- .element style="width:50%;float:left;text-align:center;"-->
+
+| 品牌 | 配置程序      | 启动菜单 |
+| ---- | ------------- | -------- |
+| 华硕 | F2 / Del      | ESC      |
+| 戴尔 | F2            | F12      |
+| 联想 | F2 / F1 / Del | F12      |
+| 惠普 | F1 / F10      | ESC / F9 |
+
+<!-- .element style="width:50%;font-size: 70%;float:right;margin-top:10%;"-->
+
+--
+
+### BIOS 与 UEFI
+
+BIOS 设置界面（左）和 UEFI 设置界面（右）如下：
+
+![BIOS](/courses-wiki/img/bios.png)
+
+<!-- .element style="width:50%;float:left;margin-top:6%;text-align:center;"-->
+
+![UEFI](/courses-wiki/img/uefi.jpg)
+
+<!-- .element style="width:50%;float:right;text-align:center;"-->
+
+--
+
+### 判断引导方式
+
+可根据设置界面具体选项进行判断：
+
+- 在 BIOS/UEFI 设置界面的 BOOT 菜单查看；
+- 出现 UEFI Boot 或者 Legacy 字样就是 UEFI;
+- 反之就是 BIOS，目前大部分都是 UEFI。
+
+<!-- .element style="width:47%;font-size: 70%;float:left;margin-top:6%;"-->
+
+![判断](/courses-wiki/img/dellbios.png)<!-- .element: style="width:100%;" -->
+
+<!-- .element style="width:50%;float:left;text-align:center;margin-top:6%;"-->
+
+---
+
+## 环境确认
+
+--
+
+### 磁盘分区类型
+
+早年绝大多数磁盘都在 MBR 中分区表的部分记录分区，但 MBR 有诸多限制，后逐渐被 GPT 取代。
+
+- MBR (Master Boot Record) 即主引导记录，硬盘的首个扇区，存储引导程序和分区表。
+- GPT (GUID Partition Table) 即全局唯一标识分区表，在 MBR 基础上扩展，最多支持 128 个分区。
+- GPT 相较于 MBR 好处在于分区多，单个分区大等等。
+
+<!-- .element style="font-size: 70%;"-->
+
+扩展阅读: [MBR](https://zh.wikipedia.org/wiki/%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95) / [GPT](https://zh.wikipedia.org/wiki/GUID%E7%A3%81%E7%A2%9F%E5%88%86%E5%89%B2%E8%A1%A8)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### 启动程序与磁盘分区类型
+
+启动程序要与磁盘分区类型相对应才能正常启动。
+
+- BIOS 与 MBR 对应
+- UEFI 与 GPT 对应，但也兼容 MBR。
+
+<!-- .element style="font-size: 70%;"-->
+
+<b style="color:red;">注意：新版本的 Windows 10 仅支持 UEFI 启动与 GPT 分区。</b>
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 检查分区类型
+
+通过磁盘管理右键磁盘，以此点击“属性”->“卷”来查看某个磁盘的分区类型：
+
+![检查分区类型](/courses-wiki/img/check_partition_table.png)<!-- .element: style="width:100%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 制作安装 U 盘
+
+--
+
+### 所需材料
+
+安装 Windows 操作系统，需要先下载对应版本的光盘镜像，即 ISO 文件。推荐从[MSDNitellyou](https://next.itellyou.cn/)下载最新版 Windows 10 镜像。
+
+- ISO 镜像文件，包含安装 Windows 所需要的所有文件；
+- U 盘制作工具，能够将 ISO 镜像写入 U 盘并设置引导分区，推荐 [Rufus](https://rufus.ie/)；
+- U 盘，8G 以上，最好是 USB3.0 的 U 盘，读写较快。
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 操作步骤
+
+准备好制作安装 U 盘之后即可按照以下步骤创建一个可启动的 U 盘：
+
+1. 插上可用 U 盘（资料会被抹除）；
+2. 使用管理员权限运行 Rufus 程序；
+3. 选择操作系统镜像（ISO 文件）；
+4. 选择启动和分区方式，默认 GPT+UEFI；
+5. 点击“开始”并等待制作完成。
+
+<!-- .element style="width:47%;font-size: 70%;float:left;margin-top:6%;"-->
+
+![Rufus](/courses-wiki/img/rufus.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="width:50%;float:left;text-align:center;margin-top:-4%;""-->
+
+---
+
+## 重装电脑
+
+--
+
+### U 盘启动
+
+关闭安全启动后，重启通过启动设备菜单选择 U 盘启动即可开始安装：
+
+- 重启电脑；
+- 进入 BIOS/UEFI 设置关闭安全启动；
+- 再次重启；
+- 根据不同品牌按不同快捷键进行启动菜单；
+- 选择 U 盘上的启动项进行启动，进入安装。
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 安装演示
+
+进入安装流程后的过程，在虚拟机中演示。
+
+---
+
+## Q & A

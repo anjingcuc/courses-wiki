@@ -1,0 +1,189 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 基本概念
+
+---
+
+## 环境配置
+
+--
+
+### 下载 Python
+
+开始学习 Python 之前，我们需要先下载好 Python 的安装包，并配置好环境。官方网站: https://www.python.org/ 。下载页面: https://www.python.org/downloads/ 。
+
+<!-- .element: style="font-size:60%;" -->
+
+![下载 Python](/courses-wiki/img/python_download.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 安装 Python
+
+![安装 Python](/courses-wiki/img/python_install.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 编写代码
+
+Python 安装包默认提供一个集成开发学习环境 (Integrated Development and Learning Environment, IDLE) 我们可以用来编写、运行代码。
+
+![运行 Python](/courses-wiki/img/python_idle_edit.png)
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 运行程序
+
+在 IDLE 中编写完成代码后，我们可以保存为扩展名 `.py` 的文件，并按 `F5` 执行该文件或者在 IDLE 的菜单中选择 Run 来执行。
+
+![运行 Python](/courses-wiki/img/python_idle_run.png)
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 编译型与解释型语言
+
+- 为什么 Python 源代码不需要像 C 语言一样进行 Build 就能运行？
+- C 语言的源代码需要经过编译链接的过程，生成目标代码，C 语言编译后得到的目标代码是机器码，可以直接在 CPU 上执行。
+- Python 语言依赖解释器即 Python.exe 来解释执行源代码。
+
+--
+
+### 处理流程区别
+
+![编译型VS解释型](/courses-wiki/img/compile_vs_interpret.jpg)<!-- .element: style="width:85%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### Python 程序基本结构
+
+```python
+import random # 导入 random 库
+
+###############以上是所需模块导入过程###############
+
+def roll():
+    print(random.randrange(1,7))
+
+###############   以上是函数定义   ###############
+
+print("无论如何都会执行并打印")
+
+###############   以上是独立语句   ###############
+
+if __name__=="__main__":
+    roll()
+
+###############   以上是测试入口   ###############
+```
+
+---
+
+## Python 程序的运行
+
+--
+
+### 运行方式 1-交互式模式逐行输入
+
+1. 安装好 Python 开发环境后，直接在命令行中输入 `python` 回车来进入解释器的交互模式；或者在开始菜单中找到 Python 安装后自带的 IDLE 来进入交互模式。
+
+2. 逐行输入程序语句并观察输出。
+
+--
+
+### 运行方式 2-命令行中命令执行
+
+1. 新建文本文件。
+2. 修改后缀名为 `.py`, 即 Python 源代码文件。
+3. 将源代码写入该源代码文件并保存，假设为 `src.py`。
+4. 进入命令行切换到文件所在目录输入 `python src.py` 来运行该文件。
+
+--
+
+### 运行方式 3-集成开发环境中运行/调试
+
+1. 在 IDLE 等集成开发环境中，通过菜单或者软件提供的快捷键来执行程序。
+
+---
+
+## VSCode
+
+本课程推荐使用 Visual Studio Code 安装插件的方式来作为集成开发环境。
+
+1. 跨平台 Windows / macOS / Linux。
+2. 支持多种编程语言，装 1 个就够了。
+
+--
+
+### 下载 VSCode
+
+访问官方网站: https://code.visualstudio.com/ 下载安装包。
+
+![VSCode安装](/courses-wiki/img/vscode-download.png)
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 安装 VSCode
+
+运行安装程序并参考下图选择安装选项。
+
+![VSCode安装](/courses-wiki/img/vscode-install.png)<!-- .element: style="width:66%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 配置扩展
+
+安装并启动 VSCode 后配置扩展，首先安装中文语言包，即在 Extensions 页面搜索关键字 `Chinese` 安装 Microsoft 官方出的语言包，然后再安装 Python 扩展，同样在 Extensions 页面搜索关键字 `Python` 安装 Microsoft 官方出品的扩展。
+
+<!-- .element: style="font-size:0.6em;" -->
+
+![VSCode 扩展](/courses-wiki/img/vscode-extensions.png)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 编写并执行程序
+
+配置好 VSCode 以后，我们就可以使用 VSCode 运行刚才的小乌龟画图实例代码。
+
+![VSCode 扩展](/courses-wiki/img/vscode-run.png)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 本章小节
+
+1. 学习 Python 之前需要先下载安装 Python 。
+2. Python 是一种解释型语言，开发简单，运行效率有待提升。
+3. 有多种方式运行 Python 程序，我个人推荐命令行运行。
+4. 本课程使用 Python 3 并将 VSCode 作为集成开发环境。
+
+---
+
+## Q & A

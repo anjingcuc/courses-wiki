@@ -1,0 +1,191 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 课程概述
+
+---
+
+## 课程安排
+
+--
+
+### 安排与考核
+
+混合式教学，考查课。
+
+- 上课方式
+- 考核方式
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 线上平台
+
+线上平台为中国大学慕课-<https://www.icourse163.org/>
+
+使用说明: [中国大学慕课学校云本校学生身份认证方法](./中国大学慕课学校云本校学生身份认证方法.pdf)
+
+---
+
+## 课程定位
+
+--
+
+### 定位
+
+计算机安全与维护主要目标是帮助学生了解 Windows 系统的日常使用并熟悉一些专业工具，另一方面也可以帮助学生了解信息安全；课程侧重于工具的使用与讲解，也涉及少部分技术和原理。
+
+补充: [计算机教育中缺失的一课](https://missing-semester-cn.github.io/)
+
+<!-- .element style="font-size:50%"-->
+
+--
+
+### 课程主要内容
+
+详见[思维导图](/cms)。
+
+--
+
+### 学习提示
+
+学习计算机相关知识的一些小建议:
+
+- 工科专业整体都偏向于实践，一定要多动手；
+- 积极提问，单刀直入，学习如何清晰地提问<sup>1</sup>；
+- 学习过程注意抽象，不要陷入具体细节推导<sup>2</sup>。
+
+<!-- .element style="font-size:70%"-->
+
+注<sup>1</sup>: [提问的智慧](https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way)
+
+<!-- .element style="font-size:50%"-->
+
+注<sup>2</sup>: [知乎回答-抽象](https://www.zhihu.com/question/278682736/answer/1475861843)
+
+<!-- .element style="font-size:50%"-->
+
+---
+
+## 什么是信息安全
+
+--
+
+### 黑客是什么
+
+<b style="color: red;">广义上的黑客文化</b>起源于 1960s 麻省理工学院的“铁路模型技术俱乐部”，他们把难题的解法技巧称为 `hack`。
+
+<!-- .element style="font-size:70%"-->
+
+<b style="color: red;">狭义上的黑客称谓</b>起源于电话“飞客”，是一群研究如何入侵电话系统免费打电话的人。
+
+<!-- .element style="font-size:70%"-->
+
+![嘎吱船长](/courses-wiki/img/john_draper.jpg)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+补充: [柯学家](https://www.bilibili.com/video/BV1u4411q7sn)
+
+<!-- .element style="font-size:50%"-->
+
+--
+
+## 黑客干什么
+
+狭义上的黑客主要研究以下内容：
+
+- 软硬件系统的设计缺陷，或者良好的设计在实现过程中不完善导致的缺陷；
+- 研究人的心理盲点，以人作为突破口获取信息或计算机系统的权限。
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 黑客与程序员的区别
+
+更多的逆向思维和心理揣摩。
+
+```python
+import os
+
+host = input('请输入要检测的 IP : ')
+result = os.popen('ping -n 1 %s' % (host)).read()
+
+if 'TTL' in result:
+  print('IP 在线')
+else:
+  print('IP 不在线')
+```
+
+来源: [Soptq @ 知乎](https://www.zhihu.com/question/340229645/answer/791552302)
+
+<!-- .element style="font-size:50%;"-->
+
+--
+
+## 为什么学习信息安全？
+
+信息安全，怎么学，能学会什么？
+
+![v](/courses-wiki/img/v.jpg)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 信息收集
+
+学习丰富的搜索技巧。
+
+- 高级搜索
+- 社工搜索
+
+<!-- .element style="font-size:70%"-->
+
+--
+
+### 好玩的 CTF
+
+CTF, Capture The Flag, 全称夺旗赛，以游戏比赛的形式进行学习。
+
+![Def CON CTF](/courses-wiki/img/def_con.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### PWN Everything
+
+进行各种奇怪的操作(腾讯玄武实验室)。
+
+<video src="badbarcode.mp4" controls="controls">
+  你的浏览器不支持 video 标签。
+</video>
+
+--
+
+### 守护网络空间
+
+成为白帽子，守护网络空间安全。
+
+- 病毒查杀
+- 漏洞分析
+- 网络攻防
+
+<!-- .element style="font-size:70%"-->
+
+---
+
+## Q & A

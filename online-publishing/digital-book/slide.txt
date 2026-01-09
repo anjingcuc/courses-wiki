@@ -1,0 +1,123 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 电子书
+
+---
+
+## 概述
+
+--
+
+### 内容提要
+
+本节主要介绍主流电子书格式，介绍相关工具软件的使用，总结各个格式的优劣。
+
+- TXT
+- PDF
+- CHM
+- EPUB
+- MOBI
+- AZW3
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 格式简介
+
+--
+
+### TXT
+
+TXT 实际上代表了纯文本文件，可以不需要依赖任何第三方软件阅读，但功能有限。
+
+--
+
+### PDF
+
+PDF, <b style="color:red;">P</b>ortable <b style="color:red;">D</b>ocument <b style="color:red;">F</b>ormat 格式是由 Adobe 在 1993 年推出的一种电子文档格式，它从 Adobe 的工业印刷标准 PostScript 发展而来，是用途最广泛的电子文档格式。PDF 支持丰富的图文效果，并且提供内嵌字体功能，确保了在任意平台上都能得到统一的显示效果。
+
+--
+
+### CHM
+
+CHM, Microsoft <b style="color:red;">C</b>ompiled <b style="color:red;">H</b>T<b style="color:red;">M</b>L Help 格式是微软的 Windows 上最早作为帮助文件发布的一种文件格式，后来也被用于电子书的制作与分发。本质上 CHM 是由多个 HTML 文件组成的压缩包。
+
+--
+
+### EPUB
+
+EPUB, <b style="color:red;">E</b>lectronic <b style="color:red;">PUB</b>lication 格式是由国际数字出版论坛 (International Digital Publishing Forum) 提出个一个电子书格式。EPUB 同样是一种压缩格式，它包含多个 XHTML 文件。
+
+--
+
+### MOBI
+
+MOBI, <b style="color:red;">MOBI</b>pocket 格式是由一家法国公司为早期的智能手机以及个人数字助理（PDA）推出的一种电子书格式，同时推出的还有一款 MOBI 电子书阅读软件。同样是一种基于 XHTML 的电子书格式。在智能手机发展的初期特别常见，MOBI 电子书的阅读软件往往支持非常丰富的标注、编辑等功能。
+
+--
+
+### AZW3
+
+AZW 又称为 Kindle File Format ，是亚马逊随 Kindle 推出的一种基于 MOBI 的电子书格式，而 AZW3 则是在 AZW 基础上持续改进的一种电子书格式，加入了 HTML5 和 CSS 的支持。
+
+---
+
+## 工具软件
+
+--
+
+### PDF 工具
+
+PDF 受众广泛，工具众多，单独梳理工具软件如下表所示。
+
+| 软件名称           | 是否收费 | 是否可编辑 | 特点                               |
+| ------------------ | -------- | ---------- | ---------------------------------- |
+| Adobe Acrobat      | 是       | 是         | 功能最完善的 PDF 全能处理工具      |
+| 福昕阅读器 (Foxit) | 否       | 否         | 高级版收费且提供可编辑功能         |
+| Sumatra PDF        | 否       | 否         | 开源软件，且支持本节介绍的其他格式 |
+| ABBYY FineReader   | 是       | 是         | PDF 文本识别 (OCR) 领域最强软件    |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 电子书工具软件
+
+通用的电子书阅读、制作、编辑软件也为数众多，calibre 是其中受众较多的免费开源通用软件，支持多种格式，能阅读能制作还能实现格式转换。
+
+---
+
+## 格式对比汇总
+
+--
+
+### 功能支持比较
+
+本节介绍的几种格式在功能上有所差异，如下表所示。
+
+| 格式 | 版权保护 | 图片 | 注释标注   | 书签       |
+| ---- | -------- | ---- | ---------- | ---------- |
+| TXT  | 否       | 否   | 否         | 否         |
+| PDF  | 是       | 是   | 是         | 是         |
+| CHM  | 否       | 是   | 否         | 否         |
+| EPUB | 是       | 是   | 需软件支持 | 需软件支持 |
+| MOBI | 是       | 是   | 是         | 是         |
+| AZW3 | 是       | 是   | 是         | 是         |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+# Q & A

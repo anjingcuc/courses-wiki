@@ -8,22 +8,22 @@ title: 智能系统安全运维与实践
 
 <a href='/img/cms.png'>![课程结构](/img/cms.png)</a>
 
-### [试讲-从 CLI 到 Agent](aiso/cli-to-agent.md)
+### [试讲-从 CLI 到 Agent](aissop/cli-to-agent.md)
 
-### [00-课程概述](cms/introduction.md)
+### [00-课程概述](aissop/introduction.md)
 
-### [01-Windows 基础](cms/windows-intro.md)
+### [01-Windows 基础](aissop/windows-intro.md)
 
-### [02-系统维护](cms/maintain.md)
+### [02-系统维护](aissop/maintain.md)
 
-### [03-Shell 与脚本初探](cms/shell.md)
+### [03-Shell 与脚本初探](aissop/shell.md)
 
-### [04-虚拟机](cms/virtualbox.md)
+### [04-虚拟机](aissop/virtualbox.md)
 
-### [05-系统安装](cms/windows-install.md)
+### [05-系统安装](aissop/windows-install.md)
 
-### [06-Windows 组件进阶](cms/windows-components.md)
+### [06-Windows 组件进阶](aissop/windows-components.md)
 
-### [07-恶意代码介绍](cms/malware-introduction.md)
+### [07-恶意代码介绍](aissop/malware-introduction.md)
 
-### [08-恶意代码分析](cms/malware-analysis.md)
+### [08-恶意代码分析](aissop/malware-analysis.md)

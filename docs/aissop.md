@@ -8,7 +8,8 @@ title: 智能系统安全运维与实践
 
 <div id="mind_map_container" style="width: 100%; height: 500px;"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/simple-mind-map@0.12.2/dist/simpleMindMap.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/simple-mind-map@0.12.2/dist/simple-mind-map.css">
+<script src="https://unpkg.com/simple-mind-map@0.12.2/dist/simple-mind-map.umd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const { MindMap } = window.simpleMindMap;

@@ -1,2 +1,9 @@
 .vscode
 docs/python/charts/slideshow.html
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ENV/

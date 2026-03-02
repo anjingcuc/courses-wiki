@@ -1,0 +1,14 @@
+[project]
+name = "courses-wiki"
+version = "1.0.0"
+description = "在线课件网站，使用 MkDocs 和 reveal.js 构建课程内容"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "mkdocs>=1.6.1",
+    "pygments>=2.19.0",
+    "pyyaml>=6.0.0",
+]
+
+[tool.uv]
+index-url = "https://mirrors.aliyun.com/pypi/simple"

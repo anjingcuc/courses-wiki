@@ -6,8 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-mkdocs = "*"
-pygments = "*"
+mkdocs = ">=1.6.1"
+pygments = ">=2.19.0"
+pyyaml = ">=6.0.0"
 
 [requires]
-python_version = "3.12"
+python_version = "3.9"

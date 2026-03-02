@@ -12,7 +12,8 @@ title: 智能系统安全运维与实践
 <script src="https://unpkg.com/simple-mind-map@0.12.2/dist/simpleMindMap.umd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const { MindMap } = window.simpleMindMap;
+  // UMD 版本默认导出就是 MindMap 构造函数
+  const MindMap = window.simpleMindMap;
 
   const data = {
     "data": {

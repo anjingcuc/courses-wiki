@@ -6,191 +6,145 @@ title: 智能系统安全运维与实践
 
 课程旨在帮助学生在专业使用 Windows 操作系统的基础上，进一步掌握现代智能系统的运维机制与安全防护手段。课程核心内容涵盖四个维度：1. 智能运维环境：包含 Windows 的安装配置、虚拟机使用及 AI 开发环境的自动化部署。2. 安全威胁分析：深入讲解 Windows 恶意代码工作机制，并引入 AI 辅助恶意代码分析与生成式安全威胁识别。3. 自动化与 AI 实践：利用自动化脚本（Python/Batch）及大模型（LLM）工具提升系统维护效率。4. 数据安全与恢复：探讨智能系统下的数据保护、恢复技术及个人信息安全防护。本课程特色在于结合了信息安全专业的基本知识与人工智能前沿技术，帮助学生在复杂的信息环境下做到“知己知彼”，打下坚实的专业基础。
 
-<div id="g6_container" style="width: 100%; height: 500px;"></div>
+<div id="mind_map_container" style="width: 100%; height: 500px;"></div>
 
-<script src="https://unpkg.com/@antv/g6@5/dist/g6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-mind-map@0.12.2/dist/simpleMindMap.umd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const { Graph, treeToGraphData } = G6;
+  const { MindMap } = window.simpleMindMap;
 
   const data = {
-    id: "智能系统安全运维与实践",
-    children: [
-      {
-        id: "课程概述",
-        children: [
-          {
-            id: "课程主要内容",
-            children: [
-              { id: "专业地使用计算机" },
-              { id: "安全入门" }
-            ]
-          }
-        ]
-      },
-      {
-        id: "Windows基础",
-        children: [
-          { id: "计算机组成与操作系统" },
-          { id: "Windows操作系统历史" },
-          { id: "Windows 10常见组件" },
-          { id: "日常及专业软件" }
-        ]
-      },
-      {
-        id: "系统维护",
-        children: [
-          {
-            id: "路径与文件",
-            children: [
-              { id: "磁盘管理" },
-              { id: "文件系统" }
-            ]
-          },
-          { id: "计算机网络基础" }
-        ]
-      },
-      {
-        id: "自动化与脚本",
-        children: [
-          { id: "终端概述" },
-          { id: "环境变量" },
-          { id: "脚本编写" }
-        ]
-      },
-      {
-        id: "虚拟机",
-        children: [
-          {
-            id: "虚拟机简介",
-            children: [
-              { id: "虚拟机相关概念" },
-              { id: "安装及配置" },
-              { id: "操作系统安装" }
-            ]
-          }
-        ]
-      },
-      {
-        id: "Windows组件进阶",
-        children: [
-          { id: "用户账户" },
-          { id: "进程线程" },
-          { id: "注册表" }
-        ]
-      },
-      {
-        id: "恶意代码介绍",
-        children: [
-          { id: "恶意代码概念" },
-          { id: "恶意代码历史" },
-          { id: "恶意代码分类" },
-          { id: "恶意代码原理" }
-        ]
-      },
-      {
-        id: "恶意代码分析",
-        children: [
-          { id: "检测与分析" },
-          { id: "分析工具介绍" },
-          { id: "恶意代码分析实践" }
-        ]
-      },
-      {
-        id: "安全漫谈",
-        children: [
-          { id: "实例讲解" },
-          { id: "内容分析" }
-        ]
-      }
-    ]
+    "data": {
+      "text": "智能系统安全运维与实践",
+      "children": [
+        {
+          "text": "课程概述",
+          "children": [
+            {
+              "text": "课程主要内容",
+              "children": [
+                { "text": "专业地使用计算机" },
+                { "text": "安全入门" }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Windows基础",
+          "children": [
+            { "text": "计算机组成与操作系统" },
+            { "text": "Windows操作系统历史" },
+            { "text": "Windows 10常见组件" },
+            { "text": "日常及专业软件" }
+          ]
+        },
+        {
+          "text": "系统维护",
+          "children": [
+            {
+              "text": "路径与文件",
+              "children": [
+                { "text": "磁盘管理" },
+                { "text": "文件系统" }
+              ]
+            },
+            { "text": "计算机网络基础" }
+          ]
+        },
+        {
+          "text": "自动化与脚本",
+          "children": [
+            { "text": "终端概述" },
+            { "text": "环境变量" },
+            { "text": "脚本编写" }
+          ]
+        },
+        {
+          "text": "虚拟机",
+          "children": [
+            {
+              "text": "虚拟机简介",
+              "children": [
+                { "text": "虚拟机相关概念" },
+                { "text": "安装及配置" },
+                { "text": "操作系统安装" }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Windows组件进阶",
+          "children": [
+            { "text": "用户账户" },
+            { "text": "进程线程" },
+            { "text": "注册表" }
+          ]
+        },
+        {
+          "text": "恶意代码介绍",
+          "children": [
+            { "text": "恶意代码概念" },
+            { "text": "恶意代码历史" },
+            { "text": "恶意代码分类" },
+            { "text": "恶意代码原理" }
+          ]
+        },
+        {
+          "text": "恶意代码分析",
+          "children": [
+            { "text": "检测与分析" },
+            { "text": "分析工具介绍" },
+            { "text": "恶意代码分析实践" }
+          ]
+        },
+        {
+          "text": "安全漫谈",
+          "children": [
+            { "text": "实例讲解" },
+            { "text": "内容分析" }
+          ]
+        }
+      ]
+    }
   };
 
-  const getNodeSide = (graph, datum) => {
-    const parentData = graph.getParentData(datum.id, 'tree');
-    if (!parentData) return 'center';
-    return datum.style.x > parentData.style.x ? 'right' : 'left';
-  };
-
-  const graph = new Graph({
-    container: 'g6_container',
-    autoFit: 'view',
-    padding: 20,
-    data: treeToGraphData(data),
-    node: {
-      style: {
-        labelText: (d) => d.id,
-        labelFontSize: (d) => d.depth === 0 ? 18 : 13,
-        labelFontWeight: (d) => d.depth === 0 ? 'bold' : 'normal',
-        labelFill: '#333',
-        labelBackground: true,
-        labelBackgroundFill: '#fff',
-        labelBackgroundRadius: 6,
-        labelBackgroundOpacity: 0.9,
-        labelPlacement: function (d) {
-          const side = getNodeSide(this, d);
-          return side === 'center' ? 'right' : side;
-        },
-        labelOffsetX: (d) => {
-          const side = getNodeSide(this, d);
-          return side === 'left' ? -8 : 8;
-        },
-        size: (d) => d.depth === 0 ? 50 : 30,
-        fill: (d) => {
-          const colors = ['#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E86452', '#6DC8EC', '#945FB9', '#FF9D4D', '#FF99C3'];
-          return colors[d.depth % colors.length];
-        },
-        stroke: '#fff',
-        lineWidth: 3,
-        cursor: 'pointer',
-      },
-      state: {
-        hover: {
-          lineWidth: 4,
-          stroke: '#1890ff',
-          shadowColor: 'rgba(24, 144, 255, 0.4)',
-          shadowBlur: 10,
-        },
-        selected: {
-          fill: '#bae7ff',
-          stroke: '#1890ff',
-          lineWidth: 3,
-        },
-      },
-      animation: { enter: false },
-    },
-    edge: {
-      type: 'cubic-horizontal',
-      style: {
-        stroke: '#A3B1BF',
-        lineWidth: 2,
-      },
-      animation: { enter: false },
-    },
-    layout: {
-      type: 'mindmap',
-      direction: 'H',
-      getHeight: () => 30,
-      getWidth: (node) => {
-        const text = node.id || '';
-        return Math.max(80, text.length * 14);
-      },
-      getVGap: () => 16,
-      getHGap: () => 80,
-    },
-    behaviors: [
-      'drag-canvas',
-      'zoom-canvas',
-      {
-        type: 'hover-activate',
-        enable: (e) => e.targetType === 'node',
-        degree: 1,
-        inactiveState: 'dim',
-      },
-    ],
+  const mindMap = new MindMap({
+    el: document.getElementById('mind_map_container'),
+    data: data,
+    layout: 'mindMap',
+    theme: 'earth',
+    readonly: true,
+    fit: true,
+    view: true,
+    nodeTextEditZIndex: 1000,
+    scaleRatio: 1,
+    enableFreeDrag: false,
+    mousewheelAction: 'zoom',
+    mousewheelZoomActionReverse: true,
+    customHandleMousewheel: null,
+    mouseScaleCenterUseMousePosition: true,
+    defaultNodeBackgroundColor: 'transparent',
+    defaultNodeColor: '#333',
+    defaultLineColor: '#A3B1BF',
+    lineWidth: 2,
+    exportPadding: 20,
+    nodeUseLineStyle: false,
+    enableNodeCache: true,
+    expandBtnSize: 20,
+    showExpandBtn: true,
+    enableAutoEnterEditModeWhenNodeClick: false,
   });
 
-  graph.render();
+  // 自适应容器大小
+  const resizeHandler = () => {
+    mindMap.resize();
+  };
+  window.addEventListener('resize', resizeHandler);
+
+  // 初始自适应
+  setTimeout(() => {
+    mindMap.fit();
+  }, 100);
 });
 </script>
 

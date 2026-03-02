@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Slide } from '@/lib/slideParser';
 import { SlideRenderer } from './SlideRenderer';
-import { SlideNav } from './SlideNav';
 
 interface SlideContainerProps {
   slides: Slide[];
@@ -60,40 +59,58 @@ export function SlideContainer({ slides, globalStyle, fullscreen = false }: Slid
     return () => window.removeEventListener('keydown', handler);
   }, [navigate]);
 
-  // Calculate display slide number (accounting for vertical slides)
-  const getSlideNumber = () => {
-    return currentSlide + 1;
-  };
+  // Calculate display slide number
+  const getSlideNumber = () => currentSlide + 1;
 
   if (!slides.length) {
-    return <div className="p-8 text-center text-gray-500">没有幻灯片内容</div>;
+    return (
+      <div className="flex items-center justify-center h-full text-gray-400">
+        <p className="text-xl">没有幻灯片内容</p>
+      </div>
+    );
   }
 
   return (
-    <div className={`slide-container ${fullscreen ? 'fullscreen fixed inset-0 z-50 bg-white' : 'embedded relative rounded-lg border shadow-lg'}`}
-         style={fullscreen ? { height: '100vh' } : { height: '450px' }}>
+    <div
+      className={`slide-container ${fullscreen ? 'fullscreen' : 'embedded'}`}
+      style={fullscreen ? { height: '100vh' } : undefined}
+    >
       {globalStyle && <style>{globalStyle}</style>}
 
-      <div className="slide-content flex items-center justify-center h-full p-8 overflow-auto">
+      <div className="slide-content">
         {currentContent && <SlideRenderer content={currentContent.content} />}
       </div>
 
-      <SlideNav
-        current={getSlideNumber()}
-        total={slides.length}
-        onPrev={() => navigate('prev')}
-        onNext={() => navigate('next')}
-      />
+      {/* Navigation */}
+      <div className="slide-nav">
+        <button
+          onClick={() => navigate('prev')}
+          disabled={currentSlide === 0 && currentVertical === 0}
+          aria-label="上一页"
+        >
+          ← 上一页
+        </button>
+
+        <span className="slide-progress">
+          {getSlideNumber()} / {slides.length}
+        </span>
+
+        <button
+          onClick={() => navigate('next')}
+          disabled={currentSlide === slides.length - 1 && (!hasVertical || currentVertical === slide.children!.length - 1)}
+          aria-label="下一页"
+        >
+          下一页 →
+        </button>
+      </div>
 
       {/* Vertical slide indicator */}
       {hasVertical && slide.children && (
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-1">
+        <div className="vertical-indicator">
           {slide.children.map((_, idx) => (
-            <div
+            <span
               key={idx}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                idx === currentVertical ? 'bg-blue-600' : 'bg-gray-300'
-              }`}
+              className={idx === currentVertical ? 'active' : ''}
             />
           ))}
         </div>

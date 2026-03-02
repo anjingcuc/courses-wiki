@@ -9,12 +9,23 @@ interface SlideRendererProps {
   content: string;
 }
 
+// Get basePath from runtime config
+const getBasePath = () => {
+  if (typeof window !== 'undefined') {
+    // In browser, check if we're on GitHub Pages
+    if (window.location.pathname.startsWith('/courses-wiki')) {
+      return '/courses-wiki';
+    }
+  }
+  return '';
+};
+
 export function SlideRenderer({ content }: SlideRendererProps) {
-  // Process style markers
   const processed = processContent(content);
+  const basePath = getBasePath();
 
   return (
-    <div className="prose prose-lg max-w-none slide-content">
+    <div className="slide-markdown">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
@@ -24,11 +35,7 @@ export function SlideRenderer({ content }: SlideRendererProps) {
             const isInline = !match && !className?.includes('block');
 
             if (isInline) {
-              return (
-                <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
-                  {children}
-                </code>
-              );
+              return <code {...props}>{children}</code>;
             }
 
             return (
@@ -39,54 +46,37 @@ export function SlideRenderer({ content }: SlideRendererProps) {
             );
           },
           img({ src, alt, ...props }) {
+            // Add basePath to image URLs starting with /img/ only in production
+            const imageSrc = src?.startsWith('/img/') && basePath ? `${basePath}${src}` : src;
             return (
               <img
-                src={src}
+                src={imageSrc}
                 alt={alt || ''}
-                className="max-w-full h-auto mx-auto rounded-lg shadow-md"
                 loading="lazy"
                 {...props}
               />
             );
           },
           video({ src, ...props }) {
+            // Add basePath to video URLs starting with /courses/ only in production
+            const videoSrc = src?.startsWith('/courses/') && basePath ? `${basePath}${src}` : src;
             return (
               <video
-                src={src}
+                src={videoSrc}
                 controls
-                className="max-w-full h-auto rounded-lg"
                 {...props}
               />
             );
           },
-          h1: ({ children }) => (
-            <h1 className="text-4xl font-bold text-center mb-8">{children}</h1>
-          ),
-          h2: ({ children }) => (
-            <h2 className="text-3xl font-semibold mb-6">{children}</h2>
-          ),
-          h3: ({ children }) => (
-            <h3 className="text-2xl font-medium mb-4">{children}</h3>
-          ),
-          p: ({ children }) => (
-            <p className="text-lg leading-relaxed mb-4">{children}</p>
-          ),
-          ul: ({ children }) => (
-            <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
-          ),
-          ol: ({ children }) => (
-            <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
-          ),
-          li: ({ children }) => (
-            <li className="text-lg">{children}</li>
-          ),
+          h1: ({ children }) => <h1>{children}</h1>,
+          h2: ({ children }) => <h2>{children}</h2>,
+          h3: ({ children }) => <h3>{children}</h3>,
+          p: ({ children }) => <p>{children}</p>,
+          ul: ({ children }) => <ul>{children}</ul>,
+          ol: ({ children }) => <ol>{children}</ol>,
+          li: ({ children }) => <li>{children}</li>,
           a: ({ href, children }) => (
-            <a
-              href={href}
-              className="text-blue-600 hover:text-blue-800 underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={href} target="_blank" rel="noopener noreferrer">
               {children}
             </a>
           ),
@@ -99,6 +89,5 @@ export function SlideRenderer({ content }: SlideRendererProps) {
 }
 
 function processContent(content: string): string {
-  // Remove our style markers for now (could be enhanced later)
   return content.replace(/\{:style="[^"]+"\}/g, '');
 }

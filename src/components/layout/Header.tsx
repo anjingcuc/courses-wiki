@@ -5,19 +5,27 @@ import { courses } from '@/lib/courses';
 
 export function Header() {
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/80 border-b border-gray-100">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-gray-900">课程资料</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"
+                 style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)' }}>
+              课
+            </div>
+            <span className="text-lg font-semibold transition-colors group-hover:opacity-80"
+                  style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary)' }}>
+              课程资料
+            </span>
           </Link>
 
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-1">
             <Link
               href="/"
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+              className="px-4 py-2 text-sm font-medium rounded-lg transition-all hover:bg-gray-100"
+              style={{ color: 'var(--color-text-muted)' }}
             >
               首页
             </Link>
@@ -25,9 +33,10 @@ export function Header() {
               <Link
                 key={course.id}
                 href={`/courses/${course.id}`}
-                className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+                className="px-4 py-2 text-sm font-medium rounded-lg transition-all hover:bg-gray-100"
+                style={{ color: 'var(--color-text-muted)' }}
               >
-                {course.title}
+                {course.title.length > 8 ? course.title.slice(0, 8) + '...' : course.title}
               </Link>
             ))}
           </nav>
@@ -37,10 +46,12 @@ export function Header() {
             href="https://github.com/anjingcuc/courses-wiki"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900"
+            className="p-2 rounded-lg transition-all hover:bg-gray-100"
+            style={{ color: 'var(--color-text-muted)' }}
+            aria-label="GitHub"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="currentColor"
               viewBox="0 0 24 24"
             >

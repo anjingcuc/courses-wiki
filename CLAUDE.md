@@ -8,7 +8,7 @@
 
 - **MkDocs**: 静态网站生成框架
 - **reveal.js**: 幻灯片展示框架
-- **jsMind**: 思维导图展示
+- **ECharts Tree**: 思维导图展示（通过 CDN 引入）
 - **GitHub Pages**: 托管部署
 
 ## 目录结构
@@ -19,14 +19,12 @@ courses-wiki/
 │   ├── img/                   # 共享图片资源
 │   ├── javascripts/           # 自定义 JavaScript
 │   ├── stylesheets/           # 自定义 CSS
-│   ├── cms/                   # 计算机安全与维护
+│   ├── aissop/                # 智能系统安全运维与实践
 │   ├── python/                # Python 程序设计
 │   ├── web/                   # 网页设计与制作
 │   ├── online-publishing/     # 在线出版
 │   ├── apdms/                 # 数字媒体安全应用与实践
-│   ├── aiso/                  # 智能系统安全运维与实践
 │   ├── wps/                   # AI-WPS 辅助办公
-│   ├── ct/                    # 计算思维
 │   └── substitute/            # 临时代课内容
 ├── material/                  # 自定义 MkDocs 主题
 │   ├── assets/                # 静态资源
@@ -39,7 +37,7 @@ courses-wiki/
 │   └── mkdocs_theme.yml       # 主题配置
 ├── charts/                    # Visio 图表源文件
 ├── mkdocs.yml                 # MkDocs 主配置
-├── Pipfile                    # Python 依赖
+├── pyproject.toml             # Python 依赖（uv 包管理）
 └── .github/workflows/         # CI/CD 配置
 ```
 
@@ -47,14 +45,12 @@ courses-wiki/
 
 | 课程代码 | 课程名称 | 章节数 |
 |---------|---------|-------|
-| cms | 计算机安全与维护 | 10 |
+| aissop | 智能系统安全运维与实践 | 11 |
 | python | Python 程序设计 | 15 |
 | web | 网页设计与制作 | 13 |
-| online-publishing | 在线出版 | 9 |
+| online-publishing | 在线出版 | 7 |
 | apdms | 数字媒体安全应用与实践 | 4 |
-| aiso | 智能系统安全运维与实践 | 1 |
 | wps | AI-WPS 辅助办公 | 1 |
-| ct | 计算思维 | 1 |
 | substitute | 临时代课 | 2 |
 
 ## 课件结构
@@ -138,8 +134,11 @@ print("Hello, World!")
 ### 本地开发
 
 ```bash
-# 安装依赖
-pip install mkdocs pygments
+# 安装依赖（使用 uv）
+uv sync
+
+# 或使用 pip
+pip install mkdocs pygments pyyaml
 
 # 本地预览
 mkdocs serve
@@ -187,10 +186,8 @@ markdown_extensions:
   - codehilite:
       linenums: true
 extra_css:
-  - stylesheets/jsmind.css
   - stylesheets/custom.css
 extra_javascript:
-  - javascripts/jsmind.js
   - javascripts/custom.js
 ```
 
@@ -238,15 +235,23 @@ extra_javascript:
 1. **图片路径**: 本地使用 `/img/`，CI 会自动替换为 `/courses-wiki/img/`
 2. **中文支持**: 确保文件编码为 UTF-8
 3. **代码高亮**: 使用 Pygments，支持行号显示
-4. **思维导图**: jsMind 已集成（`docs/javascripts/jsmind.js`），支持滚轮缩放
+4. **思维导图**: 使用 ECharts Tree，通过 CDN 引入，在课程页面中嵌入
 5. **幻灯片导航**:
    - 方向键 / 空格：切换幻灯片
    - ESC：概览模式
    - S：演讲者模式
    - ?：帮助
+6. **大文件管理**: 使用 Git LFS 管理大型二进制文件
+
+## 技术演进历史
+
+项目经历以下技术栈演进：
+
+- **思维导图**: jsMind → AntV G6 → simple-mind-map → ECharts Tree
+- **包管理**: pipenv → uv
 
 ## 课件统计数据
 
-- 课件总数：54 个 slide.txt 文件
-- 课程数量：9 门
-- 图片资源：docs/img/ 目录
+- 课件总数：53 个 slide.txt 文件
+- 课程数量：7 门
+- 图片资源：183 个文件（docs/img/ 目录）

@@ -1,12 +1,11 @@
 site_name: 课程资料
 nav:
   - 首页: index.md
-  - 计算机安全与维护: cms.md
+  - 智能系统安全运维与实践: aissop.md
   - Python 程序设计: python.md
-  - AI-WPS 辅助办公: wps/introduction.md
   - 网页设计与制作: web.md
   - 在线出版: online-publishing.md
-  - 计算思维: ct.md
+  - AI-WPS 辅助办公: wps/introduction.md
 
 # Repository
 repo_name: "anjingcuc/courses-wiki"

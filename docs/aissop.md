@@ -14,106 +14,93 @@ document.addEventListener("DOMContentLoaded", function() {
   const { Graph, treeToGraphData } = G6;
 
   const data = {
-    id: "root",
-    value: "智能系统安全运维与实践",
+    id: "智能系统安全运维与实践",
     children: [
       {
-        id: "overview",
-        value: "课程概述",
+        id: "课程概述",
         children: [
           {
-            id: "overview_content",
-            value: "课程主要内容",
+            id: "课程主要内容",
             children: [
-              { id: "professional", value: "专业地使用计算机" },
-              { id: "security_intro", value: "安全入门" }
+              { id: "专业地使用计算机" },
+              { id: "安全入门" }
             ]
           }
         ]
       },
       {
-        id: "windows_basics",
-        value: "Windows基础",
+        id: "Windows基础",
         children: [
-          { id: "hw_os", value: "计算机组成与操作系统" },
-          { id: "win_history", value: "Windows操作系统历史" },
-          { id: "win10_components", value: "Windows 10常见组件" },
-          { id: "software", value: "日常及专业软件" }
+          { id: "计算机组成与操作系统" },
+          { id: "Windows操作系统历史" },
+          { id: "Windows 10常见组件" },
+          { id: "日常及专业软件" }
         ]
       },
       {
-        id: "maintenance",
-        value: "系统维护",
+        id: "系统维护",
         children: [
           {
-            id: "path_file",
-            value: "路径与文件",
+            id: "路径与文件",
             children: [
-              { id: "disk", value: "磁盘管理" },
-              { id: "filesystem", value: "文件系统" }
+              { id: "磁盘管理" },
+              { id: "文件系统" }
             ]
           },
-          { id: "network", value: "计算机网络基础" }
+          { id: "计算机网络基础" }
         ]
       },
       {
-        id: "automation",
-        value: "自动化与脚本",
+        id: "自动化与脚本",
         children: [
-          { id: "terminal", value: "终端概述" },
-          { id: "env_var", value: "环境变量" },
-          { id: "scripting", value: "脚本编写" }
+          { id: "终端概述" },
+          { id: "环境变量" },
+          { id: "脚本编写" }
         ]
       },
       {
-        id: "vm",
-        value: "虚拟机",
+        id: "虚拟机",
         children: [
           {
-            id: "vm_intro",
-            value: "虚拟机简介",
+            id: "虚拟机简介",
             children: [
-              { id: "vm_concepts", value: "虚拟机相关概念" },
-              { id: "vm_install", value: "安装及配置" },
-              { id: "os_install", value: "操作系统安装" }
+              { id: "虚拟机相关概念" },
+              { id: "安装及配置" },
+              { id: "操作系统安装" }
             ]
           }
         ]
       },
       {
-        id: "win_advanced",
-        value: "Windows组件进阶",
+        id: "Windows组件进阶",
         children: [
-          { id: "user_account", value: "用户账户" },
-          { id: "process_thread", value: "进程线程" },
-          { id: "registry", value: "注册表" }
+          { id: "用户账户" },
+          { id: "进程线程" },
+          { id: "注册表" }
         ]
       },
       {
-        id: "malware_intro",
-        value: "恶意代码介绍",
+        id: "恶意代码介绍",
         children: [
-          { id: "malware_concept", value: "恶意代码概念" },
-          { id: "malware_history", value: "恶意代码历史" },
-          { id: "malware_class", value: "恶意代码分类" },
-          { id: "malware_principle", value: "恶意代码原理" }
+          { id: "恶意代码概念" },
+          { id: "恶意代码历史" },
+          { id: "恶意代码分类" },
+          { id: "恶意代码原理" }
         ]
       },
       {
-        id: "malware_analysis",
-        value: "恶意代码分析",
+        id: "恶意代码分析",
         children: [
-          { id: "detect_analysis", value: "检测与分析" },
-          { id: "analysis_tools", value: "分析工具介绍" },
-          { id: "analysis_practice", value: "恶意代码分析实践" }
+          { id: "检测与分析" },
+          { id: "分析工具介绍" },
+          { id: "恶意代码分析实践" }
         ]
       },
       {
-        id: "security_talk",
-        value: "安全漫谈",
+        id: "安全漫谈",
         children: [
-          { id: "security_examples", value: "实例讲解" },
-          { id: "content_analysis", value: "内容分析" }
+          { id: "实例讲解" },
+          { id: "内容分析" }
         ]
       }
     ]
@@ -132,26 +119,43 @@ document.addEventListener("DOMContentLoaded", function() {
     data: treeToGraphData(data),
     node: {
       style: {
-        labelText: (d) => d.data.value,
-        labelFontSize: (d) => d.depth === 0 ? 16 : 12,
+        labelText: (d) => d.id,
+        labelFontSize: (d) => d.depth === 0 ? 18 : 13,
         labelFontWeight: (d) => d.depth === 0 ? 'bold' : 'normal',
         labelFill: '#333',
         labelBackground: true,
         labelBackgroundFill: '#fff',
-        labelBackgroundRadius: 4,
+        labelBackgroundRadius: 6,
+        labelBackgroundOpacity: 0.9,
         labelPlacement: function (d) {
           const side = getNodeSide(this, d);
           return side === 'center' ? 'right' : side;
         },
-        size: (d) => d.depth === 0 ? 40 : 24,
+        labelOffsetX: (d) => {
+          const side = getNodeSide(this, d);
+          return side === 'left' ? -8 : 8;
+        },
+        size: (d) => d.depth === 0 ? 50 : 30,
         fill: (d) => {
           const colors = ['#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E86452', '#6DC8EC', '#945FB9', '#FF9D4D', '#FF99C3'];
           return colors[d.depth % colors.length];
         },
         stroke: '#fff',
-        lineWidth: 2,
-        radius: 4,
+        lineWidth: 3,
         cursor: 'pointer',
+      },
+      state: {
+        hover: {
+          lineWidth: 4,
+          stroke: '#1890ff',
+          shadowColor: 'rgba(24, 144, 255, 0.4)',
+          shadowBlur: 10,
+        },
+        selected: {
+          fill: '#bae7ff',
+          stroke: '#1890ff',
+          lineWidth: 3,
+        },
       },
       animation: { enter: false },
     },
@@ -166,12 +170,24 @@ document.addEventListener("DOMContentLoaded", function() {
     layout: {
       type: 'mindmap',
       direction: 'H',
-      getHeight: () => 24,
-      getWidth: () => 100,
-      getVGap: () => 12,
-      getHGap: () => 60,
+      getHeight: () => 30,
+      getWidth: (node) => {
+        const text = node.id || '';
+        return Math.max(80, text.length * 14);
+      },
+      getVGap: () => 16,
+      getHGap: () => 80,
     },
-    behaviors: ['drag-canvas', 'zoom-canvas'],
+    behaviors: [
+      'drag-canvas',
+      'zoom-canvas',
+      {
+        type: 'hover-activate',
+        enable: (e) => e.targetType === 'node',
+        degree: 1,
+        inactiveState: 'dim',
+      },
+    ],
   });
 
   graph.render();

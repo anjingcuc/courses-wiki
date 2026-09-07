@@ -17,14 +17,14 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
 
 .askrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
 .askrow input[type=text] {
-  flex: 1; min-width: 260px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 10px;
-  color: #dff3ff; font-size: 14px; padding: 11px 15px; outline: none;
+  flex: 1; min-width: 260px; background: #ffffff; border: 1px solid var(--pyv2-border-2); border-radius: 10px;
+  color: #0f172a; font-size: 14px; padding: 11px 15px; outline: none;
 }
 .askrow input[type=text]:focus { border-color: var(--pyv2-sky); }
 .askrow .presets { display: flex; gap: 7px; flex-wrap: wrap; }
 .askrow .presets button {
   font-size: 12px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
-  background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25); color: #bae6fd;
+  background: rgba(2,132,199,.06); border: 1px solid rgba(2,132,199,.3); color: #075985;
 }
 .askrow .presets button:hover { background: var(--pyv2-grad); color: #071018; }
 .askrow .go {
@@ -51,7 +51,7 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
 }
 .pipe .st b { display: block; font-size: 15px; color: var(--pyv2-text); margin-bottom: 2px; }
 .pipe .st.on { border-color: var(--pyv2-sky); background: rgba(56,189,248,.08); box-shadow: 0 0 24px rgba(56,189,248,.15); }
-.pipe .st.on b { color: #7dd3fc; }
+.pipe .st.on b { color: #0369a1; }
 .pipe .st:not(:last-child)::after {
   content: "→"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); z-index: 2; color: var(--pyv2-sky); font-size: 13px;
 }
@@ -62,26 +62,26 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
 .panel { background: var(--pyv2-bg-soft); border: 1px solid var(--pyv2-border); border-radius: 14px; padding: 14px 16px; }
 .panel h3 { font-size: 13.5px; color: #cbd5e1; margin-bottom: 10px; font-weight: 600; }
 .panel h3 em { font-style: normal; color: var(--pyv2-sky); }
-#vecCanvas { width: 100%; border-radius: 10px; background: #0a0e1a; border: 1px solid var(--pyv2-border); display: block; }
+#vecCanvas { width: 100%; border-radius: 10px; background: #f8fafc; border: 1px solid var(--pyv2-border); display: block; }
 .legend { display: flex; gap: 14px; font-size: 11.5px; color: var(--pyv2-muted-2); margin-top: 8px; flex-wrap: wrap; }
 .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
 
-.promptbox { background: #070a12; border: 1px solid var(--pyv2-border); border-radius: 10px; padding: 12px 14px;
-  font-family: var(--pyv2-font-mono); font-size: 12.3px; line-height: 1.75; white-space: pre-wrap; color: #9db8d3; min-height: 150px; }
-.promptbox .hl { color: #7dd3fc; }
-.promptbox .q { color: #fbbf24; }
-.promptbox .chunk { color: #8fd6a8; }
+.promptbox { background: #f8fafc; border: 1px solid var(--pyv2-border); border-radius: 10px; padding: 12px 14px;
+  font-family: var(--pyv2-font-mono); font-size: 12.3px; line-height: 1.75; white-space: pre-wrap; color: #475569; min-height: 150px; }
+.promptbox .hl { color: #0369a1; }
+.promptbox .q { color: #b45309; }
+.promptbox .chunk { color: #047857; }
 .answer { margin-top: 12px; background: rgba(56,189,248,.05); border: 1px solid rgba(56,189,248,.2); border-radius: 10px; padding: 12px 14px;
-  font-size: 13.5px; line-height: 1.8; color: #d7ecff; min-height: 70px; }
-.answer .cite { font-family: var(--pyv2-font-mono); font-size: 11px; color: #7dd3fc; background: rgba(56,189,248,.12); padding: 1px 7px; border-radius: 999px; margin-right: 4px; }
-.answer.hallu { background: rgba(248,113,113,.05); border-color: rgba(248,113,113,.25); color: #ffd9d9; }
+  font-size: 13.5px; line-height: 1.8; color: #0c4a6e; min-height: 70px; }
+.answer .cite { font-family: var(--pyv2-font-mono); font-size: 11px; color: #0369a1; background: rgba(2,132,199,.1); padding: 1px 7px; border-radius: 999px; margin-right: 4px; }
+.answer.hallu { background: rgba(220,38,38,.04); border-color: rgba(220,38,38,.25); color: #7f1d1d; }
 .answer .warn { font-size: 11.5px; color: var(--pyv2-red); font-family: var(--pyv2-font-mono); }
 .caption { margin-top: 14px; min-height: 46px; font-size: 13.5px; line-height: 1.7; color: var(--pyv2-muted); }
-.caption b { color: #7dd3fc; }
+.caption b { color: #0369a1; }
 .docs-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .doc {
   font-size: 11.5px; padding: 5px 11px; border-radius: 8px;
-  background: rgba(167,139,250,.08); border: 1px solid rgba(167,139,250,.25); color: #ddd6fe;
+  background: rgba(124,58,237,.06); border: 1px solid rgba(124,58,237,.3); color: #6d28d9;
 }
 .doc.cut { border-style: dashed; }
 </style>
@@ -201,7 +201,7 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
   function draw() {
     ctx.clearRect(0, 0, W(), H());
     // 网格
-    ctx.strokeStyle = "rgba(148,163,184,.06)";
+    ctx.strokeStyle = "rgba(100,116,139,.14)";
     for (var gx = 0; gx <= W(); gx += 36) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H()); ctx.stroke(); }
     for (var gy = 0; gy <= H(); gy += 36) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W(), gy); ctx.stroke(); }
 
@@ -211,7 +211,7 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
       ctx.beginPath();
       ctx.moveTo(qPt.x * W(), qPt.y * H());
       ctx.lineTo(h.x * W(), h.y * H());
-      ctx.strokeStyle = "rgba(251,191,36,.55)";
+      ctx.strokeStyle = "rgba(217,119,6,.6)";
       ctx.setLineDash([5, 4]);
       ctx.lineWidth = 1.6;
       ctx.stroke();
@@ -225,16 +225,16 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
       var r = isHit ? 10 : 6;
       if (isHit) {
         var g = ctx.createRadialGradient(px, py, 1, px, py, 26);
-        g.addColorStop(0, "rgba(251,191,36,.5)"); g.addColorStop(1, "transparent");
+        g.addColorStop(0, "rgba(217,119,6,.3)"); g.addColorStop(1, "transparent");
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(px, py, 26, 0, 7); ctx.fill();
       }
       ctx.beginPath();
       ctx.arc(px, py, r, 0, 7);
-      ctx.fillStyle = isHit ? "#fbbf24" : "rgba(167,139,250,.85)";
+      ctx.fillStyle = isHit ? "#d97706" : "#8b5cf6";
       ctx.fill();
       ctx.font = "10.5px 'JetBrains Mono', monospace";
-      ctx.fillStyle = isHit ? "#fde68a" : "rgba(148,163,184,.75)";
+      ctx.fillStyle = isHit ? "#92400e" : "rgba(71,85,105,.85)";
       ctx.textAlign = "center";
       ctx.fillText("#" + p.c.id, px, py - r - 7);
     });
@@ -244,11 +244,11 @@ body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(-
       var qx = qPt.x * W(), qy = qPt.y * H();
       var pulse = 3 + Math.sin(Date.now() / 300) * 2;
       ctx.beginPath(); ctx.arc(qx, qy, 14 + pulse, 0, 7);
-      ctx.strokeStyle = "rgba(56,189,248,.5)"; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.strokeStyle = "rgba(2,132,199,.55)"; ctx.lineWidth = 1.5; ctx.stroke();
       ctx.beginPath(); ctx.arc(qx, qy, 7, 0, 7);
-      ctx.fillStyle = "#38bdf8"; ctx.fill();
+      ctx.fillStyle = "#0284c7"; ctx.fill();
       ctx.font = "600 11px 'Noto Sans SC'";
-      ctx.fillStyle = "#bae6fd"; ctx.textAlign = "center";
+      ctx.fillStyle = "#0369a1"; ctx.textAlign = "center";
       ctx.fillText("问题", qx, qy - 22);
     }
     requestAnimationFrame(draw);

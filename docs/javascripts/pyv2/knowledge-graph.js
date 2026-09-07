@@ -193,10 +193,10 @@
         ctx.quadraticCurveTo(mx, my, l.b.x, l.b.y);
         if (l.kind === "cross") {
           ctx.setLineDash([5, 5]);
-          ctx.strokeStyle = active ? "rgba(248,113,113,.8)" : "rgba(248,113,113,.16)";
+          ctx.strokeStyle = active ? "rgba(185,28,28,.85)" : "rgba(220,38,38,.3)";
         } else {
           ctx.setLineDash([]);
-          ctx.strokeStyle = active ? "rgba(56,189,248,.85)" : "rgba(148,163,184,.18)";
+          ctx.strokeStyle = active ? "rgba(2,132,199,.9)" : "rgba(100,116,139,.35)";
         }
         ctx.lineWidth = active ? 2 : 1;
         ctx.stroke();
@@ -218,7 +218,7 @@
         }
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = n.kind === "module" ? "rgba(10,14,26,.92)" : (active ? n.color : "rgba(13,19,38,.9)");
+        ctx.fillStyle = n.kind === "module" ? "rgba(255,255,255,.97)" : (active ? n.color : "#ffffff");
         ctx.fill();
         ctx.lineWidth = n.kind === "module" ? 2.4 : 1.4;
         ctx.strokeStyle = n.color;
@@ -228,14 +228,14 @@
         ctx.textAlign = "center";
         if (n.kind === "module") {
           ctx.font = "700 13px 'Noto Sans SC', sans-serif";
-          ctx.fillStyle = active ? "#f1f5f9" : "#dbe6f5";
+          ctx.fillStyle = active ? "#0f172a" : "#334155";
           ctx.fillText(n.label.split(" ")[0], n.x, n.y + 4);
           ctx.font = "11px 'Noto Sans SC', sans-serif";
-          ctx.fillStyle = "rgba(148,163,184,.95)";
+          ctx.fillStyle = "rgba(71,85,105,.95)";
           ctx.fillText(n.label.split(" ").slice(1).join(" ") || "", n.x, n.y + n.r + 15);
         } else if (n.big || active) {
           ctx.font = (n.big ? "600 " : "") + "11px 'Noto Sans SC', sans-serif";
-          ctx.fillStyle = active ? "#eaf4ff" : "rgba(148,163,184,.85)";
+          ctx.fillStyle = active ? "#0c4a6e" : "rgba(71,85,105,.85)";
           ctx.fillText(n.label, n.x, n.y - n.r - 6);
         }
       });

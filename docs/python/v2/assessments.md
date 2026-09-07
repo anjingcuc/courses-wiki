@@ -8,7 +8,7 @@ title: 作业与考核
     <b>作业与考核细则</b>
   </div>
   <div class="r">
-    <span>平时 <b>50%</b></span><span>期末 <b>50%</b></span><span style="color:#6ee7b7">无上机考试</span>
+    <span>平时 <b>50%</b></span><span>期末 <b>50%</b></span><span style="color:#047857">无上机考试</span>
   </div>
 </div>
 

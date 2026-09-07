@@ -10,7 +10,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: "Noto Sans SC", "PingFang SC", sans-serif;
-  background: #0c0f14; color: var(--pyv2-text); min-height: 100vh;
+  background: #ffffff; color: var(--pyv2-text); min-height: 100vh;
 }
 .top { display: flex; justify-content: space-between; align-items: center; padding: 13px 26px; border-bottom: 1px solid var(--pyv2-border); }
 .top h1 { font-size: 16px; }
@@ -21,21 +21,21 @@ body {
 .inrow { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
 .inrow label { font-size: 13.5px; color: var(--pyv2-muted); }
 .inrow input {
-  width: 150px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 9px;
-  color: #bae6fd; font-family: var(--pyv2-font-mono); font-size: 16px; font-weight: 700;
+  width: 150px; background: #ffffff; border: 1px solid var(--pyv2-border-2); border-radius: 9px;
+  color: #075985; font-family: var(--pyv2-font-mono); font-size: 16px; font-weight: 700;
   letter-spacing: 6px; padding: 8px 14px; text-align: center; outline: none; text-transform: none;
 }
 .inrow input:focus { border-color: var(--pyv2-sky); }
 .inrow .presets { display: flex; gap: 7px; }
 .inrow .presets button {
   font-size: 12px; padding: 5px 12px; border-radius: 999px; cursor: pointer;
-  background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25); color: #bae6fd;
+  background: rgba(2,132,199,.06); border: 1px solid rgba(2,132,199,.3); color: #075985;
 }
 .inrow .presets button:hover { background: var(--pyv2-grad); color: #071018; }
 
 .stagebox {
-  background: #11151c; border: 1px solid var(--pyv2-border); border-radius: 16px; overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,.4);
+  background: #ffffff; border: 1px solid var(--pyv2-border); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(15,23,42,.1);
 }
 svg { display: block; width: 100%; height: auto; }
 
@@ -43,7 +43,7 @@ svg { display: block; width: 100%; height: auto; }
   min-height: 58px; background: var(--pyv2-surface); border: 1px solid var(--pyv2-border);
   border-radius: 12px; padding: 11px 18px; font-size: 13.8px; line-height: 1.7; color: var(--pyv2-muted); margin-top: 14px;
 }
-.caption b { color: #7dd3fc; }
+.caption b { color: var(--pyv2-sky-deep); }
 .caption .idx { font-family: var(--pyv2-font-mono); font-size: 11px; color: var(--pyv2-muted-2); display: block; }
 
 .ctrl { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
@@ -57,10 +57,10 @@ svg { display: block; width: 100%; height: auto; }
 .prog i { display: block; height: 100%; width: 0; background: var(--pyv2-grad); }
 .stepno { font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-muted-2); }
 
-.code-ref { margin-top: 18px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 12px; overflow: hidden; }
+.code-ref { margin-top: 18px; background: #f8fafc; border: 1px solid var(--pyv2-border-2); border-radius: 12px; overflow: hidden; }
 .code-ref .bar { padding: 8px 14px; font-size: 11.5px; color: var(--pyv2-muted-2); font-family: var(--pyv2-font-mono); border-bottom: 1px solid var(--pyv2-border); }
-.code-ref pre { padding: 13px 16px; font-family: var(--pyv2-font-mono); font-size: 13px; line-height: 1.8; color: #c8d8ea; overflow-x: auto; }
-.code-ref .k { color: #c792ea; } .code-ref .s { color: #a5f3cf; } .code-ref .f { color: #82aaff; } .code-ref .c { color: #5b6b82; }
+.code-ref pre { padding: 13px 16px; font-family: var(--pyv2-font-mono); font-size: 13px; line-height: 1.8; color: #334155; overflow-x: auto; }
+.code-ref .k { color: #7c3aed; } .code-ref .s { color: #047857; } .code-ref .f { color: #2563eb; } .code-ref .c { color: #94a3b8; }
 </style>
 </head>
 <body>
@@ -112,7 +112,7 @@ svg { display: block; width: 100%; height: auto; }
 (function () {
   var SVGNS = "http://www.w3.org/2000/svg";
   var ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  var C = { blue: "#58c4dd", yellow: "#fce94f", white: "#e6edf3", grey: "#7f8ea3", green: "#8fd6a8", red: "#ef8a7a" };
+  var C = { blue: "#0284c7", yellow: "#b45309", white: "#1e293b", grey: "#94a3b8", green: "#047857", red: "#dc2626" };
   var svg = document.getElementById("stage");
 
   function el(tag, attrs, text) {
@@ -133,8 +133,8 @@ svg { display: block; width: 100%; height: auto; }
   function box(x, y, w, h, stroke, fill) {
     return el("rect", {
       x: x, y: y, width: w, height: h, rx: 7,
-      fill: fill || "rgba(255,255,255,.02)",
-      stroke: stroke || "rgba(255,255,255,.14)", "stroke-width": 1.4
+      fill: fill || "rgba(2,132,199,.03)",
+      stroke: stroke || "rgba(15,23,42,.15)", "stroke-width": 1.4
     });
   }
   function sectionLabel(x, y, text) {
@@ -188,7 +188,7 @@ svg { display: block; width: 100%; height: auto; }
     var startX = cx0 - totalW / 2;
     for (var i = 0; i < d.bytes.length; i++) {
       var x = startX + i * (charW + 14);
-      box(x, 46, charW, 74, "rgba(88,196,221,.5)");
+      box(x, 46, charW, 74, "rgba(2,132,199,.45)");
       var ch = d.bytes.length === TXT.length ? TXT[i] : "";
       charCells.push(mono(x + charW / 2, 84, 38, ch || "·", C.blue, 700));
     }
@@ -235,13 +235,13 @@ svg { display: block; width: 100%; height: auto; }
     var bitOwner = []; // 每个 bit 在新分组里的目标位置
     for (var gi = 0; gi < d.groups.length; gi++) {
       var gxx = gx0 + gi * (gW + 26);
-      var bb = box(gxx, 336, gW, 70, "rgba(167,139,250,.45)");
+      var bb = box(gxx, 336, gW, 70, "rgba(124,58,237,.4)");
       gBoxes.push(bb);
       for (var k2 = 0; k2 < 6; k2++) {
         var bitIdx = gi * 6 + k2;
         if (bitIdx >= d.bits.length) {
           // 补零位
-          var zc = mono(gxx + 5 + k2 * bitW + bitW / 2, 372, 21, "0", "rgba(127,142,147,.9)", 400);
+          var zc = mono(gxx + 5 + k2 * bitW + bitW / 2, 372, 21, "0", "#94a3b8", 400);
           zc.dataset.pad = "1";
           gCells.push(zc);
           continue;
@@ -252,7 +252,7 @@ svg { display: block; width: 100%; height: auto; }
     }
     for (var e1 = 0; e1 < d.eq; e1++) {
       var exx = gx0 + d.groups.length * (gW + 26) + e1 * 54;
-      var eb = box(exx, 336, 44, 70, "rgba(239,138,122,.5)");
+      var eb = box(exx, 336, 44, 70, "rgba(220,38,38,.45)");
       gBoxes.push(eb);
       gCells.push(mono(exx + 22, 372, 34, "=", C.red, 700));
     }
@@ -273,11 +273,11 @@ svg { display: block; width: 100%; height: auto; }
     var tableChars = [];
     for (var ti = 0; ti < 64; ti++) {
       var txx = tableX0 + ti * cellW;
-      tableChars.push(mono(txx + cellW / 2, tableY, 15, ALPHABET[ti], "rgba(230,237,243,.6)", 500));
+      tableChars.push(mono(txx + cellW / 2, tableY, 15, ALPHABET[ti], "rgba(51,65,85,.7)", 500));
       if (d.groups.some(function (g) { return g.val === ti; })) {
         var hl = el("rect", {
           x: txx, y: tableY - 15, width: cellW, height: 30, rx: 4,
-          fill: "rgba(88,196,221,.0)", stroke: C.blue, "stroke-width": 1.6
+          fill: "rgba(2,132,199,0)", stroke: C.blue, "stroke-width": 1.6
         });
         hl.dataset.match = ti;
       }
@@ -288,7 +288,7 @@ svg { display: block; width: 100%; height: auto; }
     var outStr = d.out + "=".repeat(d.eq);
     var outW = outStr.length * 64;
     var ox = cx0 - outW / 2;
-    var resultBox = box(ox - 16, 618, outW + 32, 66, "rgba(252,233,79,.5)");
+    var resultBox = box(ox - 16, 618, outW + 32, 66, "rgba(180,83,9,.45)");
     var resultTexts = [];
     for (var oi = 0; oi < outStr.length; oi++) {
       var oxx = ox + oi * 64;
@@ -369,7 +369,7 @@ svg { display: block; width: 100%; height: auto; }
     // ⑥ 查表高亮
     tl.addLabel("s5");
     svg.querySelectorAll("[data-match]").forEach(function (hl, i) {
-      tl.to(hl, { attr: { fill: "rgba(88,196,221,.25)" }, duration: 0.35 }, "s5+=" + i * 0.3);
+      tl.to(hl, { attr: { fill: "rgba(2,132,199,.15)" }, duration: 0.35 }, "s5+=" + i * 0.3);
       tl.fromTo(hl, { scale: 0.6, transformOrigin: "center" }, { scale: 1, duration: 0.4 }, "s5+=" + i * 0.3);
     });
     tl.to({}, { duration: 0.4 });

@@ -12,10 +12,10 @@
 html, body { height: 100%; overflow: hidden; }
 body {
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: #070b14; color: var(--pyv2-text);
+  background: #eef2f8; color: var(--pyv2-text);
 }
 .top { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 22px; background: linear-gradient(180deg, rgba(7,11,20,.92), transparent); }
+  padding: 12px 22px; background: linear-gradient(180deg, rgba(238,242,248,.95), rgba(238,242,248,0)); }
 .top h1 { font-size: 16px; }
 .top h1 .grad { background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .top .crumb { font-size: 13px; }
@@ -23,23 +23,23 @@ body {
 
 #stage { position: fixed; inset: 0; }
 #hint3d { position: fixed; right: 16px; bottom: 14px; font-size: 12px; color: var(--pyv2-muted-2); z-index: 15;
-  background: rgba(10,14,26,.7); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--pyv2-border); }
+  background: rgba(255,255,255,.88); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--pyv2-border); }
 
 .codebox {
   position: fixed; left: 22px; top: 66px; z-index: 15; width: 348px;
-  background: rgba(11,15,28,.93); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
   border: 1px solid var(--pyv2-border-2); border-radius: 14px; overflow: hidden;
-  box-shadow: 0 18px 60px rgba(0,0,0,.5);
+  box-shadow: 0 18px 48px rgba(15,23,42,.14);
 }
 .codebox .bar { display: flex; gap: 6px; align-items: center; padding: 9px 13px; border-bottom: 1px solid var(--pyv2-border); }
 .codebox .bar .dot { width: 10px; height: 10px; border-radius: 50%; }
 .codebox .bar .dot.r { background: #ff5f57; } .codebox .bar .dot.y { background: #febc2e; } .codebox .bar .dot.g { background: #28c840; }
 .codebox .bar span { margin-left: 6px; font-size: 11.5px; color: var(--pyv2-muted-2); font-family: var(--pyv2-font-mono); }
 .codebox pre { font-family: var(--pyv2-font-mono); font-size: 13.5px; line-height: 2.05; padding: 12px 14px; }
-.codebox .ln { display: block; padding: 0 10px; border-radius: 6px; color: #9fb3cc; transition: all .25s; white-space: pre; }
-.codebox .ln .cm { color: #4b5f7a; }
-.codebox .ln.cur { background: rgba(56,189,248,.14); color: #dff3ff; box-shadow: inset 2px 0 0 var(--pyv2-sky); }
-.codebox .ln.done { color: #7c93ad; }
+.codebox .ln { display: block; padding: 0 10px; border-radius: 6px; color: #475569; transition: all .25s; white-space: pre; }
+.codebox .ln .cm { color: #94a3b8; }
+.codebox .ln.cur { background: rgba(2,132,199,.1); color: #0c4a6e; box-shadow: inset 2px 0 0 var(--pyv2-sky); }
+.codebox .ln.done { color: #94a3b8; }
 
 .note { padding: 11px 15px; border-top: 1px solid var(--pyv2-border); font-size: 12.8px; line-height: 1.65; color: var(--pyv2-muted); min-height: 66px; }
 .note b { color: var(--pyv2-sky); }
@@ -54,15 +54,15 @@ body {
 
 .inspector {
   position: fixed; right: 22px; top: 66px; z-index: 15; width: 300px;
-  background: rgba(11,15,28,.93); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
   border: 1px solid var(--pyv2-border-2); border-radius: 14px; padding: 15px 17px;
   font-family: var(--pyv2-font-mono); font-size: 12.5px; display: none;
-  box-shadow: 0 18px 60px rgba(0,0,0,.5);
+  box-shadow: 0 18px 48px rgba(15,23,42,.14);
 }
-.inspector h3 { font-size: 13px; margin-bottom: 9px; color: #f1f5f9; }
-.inspector .row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed rgba(255,255,255,.06); }
+.inspector h3 { font-size: 13px; margin-bottom: 9px; color: #0f172a; }
+.inspector .row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed rgba(15,23,42,.1); }
 .inspector .row span:first-child { color: var(--pyv2-muted-2); }
-.inspector .row span:last-child { color: #a5f3fc; text-align: right; }
+.inspector .row span:last-child { color: #075985; text-align: right; }
 .inspector .close { position: absolute; top: 9px; right: 12px; background: none; border: 0; color: var(--pyv2-muted); cursor: pointer; font-size: 14px; }
 @media (max-width: 760px) { .codebox { width: calc(100vw - 44px); } .inspector { display: none !important; } }
 </style>
@@ -119,18 +119,18 @@ body {
   /* ================= Three.js 场景 ================= */
   var stageEl = document.getElementById("stage");
   var scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x070b14, 0.028);
+  scene.fog = new THREE.FogExp2(0xe8eef6, 0.028);
   var camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 200);
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   stageEl.appendChild(renderer.domElement);
 
-  scene.add(new THREE.AmbientLight(0x334466, 1.1));
-  var key = new THREE.DirectionalLight(0xbfdcff, 1.4); key.position.set(6, 10, 8); scene.add(key);
-  var rim = new THREE.PointLight(0xa78bfa, 2.2, 60); rim.position.set(-8, -4, -10); scene.add(rim);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.95));
+  var key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(6, 10, 8); scene.add(key);
+  var rim = new THREE.PointLight(0x7c3aed, 1.1, 60); rim.position.set(-8, -4, -10); scene.add(rim);
 
-  var grid = new THREE.GridHelper(60, 40, 0x1c2a44, 0x101a2c);
+  var grid = new THREE.GridHelper(60, 40, 0xb6c4d6, 0xdde5ef);
   grid.position.y = -4.2; scene.add(grid);
 
   // 星尘背景
@@ -141,7 +141,7 @@ body {
       pos.push((Math.random() - 0.5) * 90, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 90);
     }
     g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x3b5878, size: 0.14, transparent: true, opacity: 0.75 })));
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xa8bcd6, size: 0.14, transparent: true, opacity: 0.55 })));
   })();
 
   /* ---------- 文字/光晕贴图 ---------- */
@@ -167,7 +167,7 @@ body {
     g.addColorStop(0, color + "cc"); g.addColorStop(0.35, color + "55"); g.addColorStop(1, "transparent");
     ctx.fillStyle = g; ctx.fillRect(0, 0, 128, 128);
     var sp = new THREE.Sprite(new THREE.SpriteMaterial({
-      map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+      map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, blending: THREE.NormalBlending
     }));
     sp.scale.set(size, size, 1);
     return sp;
@@ -223,7 +223,7 @@ body {
     var glow = glowSprite(m.color, type === "list" ? 7 : 5);
     glow.position.copy(pos);
     glow.material.opacity = 0;
-    var label = textSprite(type + "·" + value, "#dbeafe", 4.6);
+    var label = textSprite(type + "·" + value, "#164e7e", 4.6);
     label.position.set(pos.x, pos.y + 1.9, pos.z);
     label.material.opacity = 0;
     scene.add(mesh, glow, label);
@@ -239,7 +239,7 @@ body {
     objects.push(obj);
     mesh.userData.obj = obj;
     gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 0.8, ease: "back.out(1.6)" });
-    gsap.to(glow.material, { opacity: 0.85, duration: 0.9 });
+    gsap.to(glow.material, { opacity: 0.3, duration: 0.9 });
     gsap.to(label.material, { opacity: 1, duration: 0.6, delay: 0.25 });
     gsap.from(label.position, { y: pos.y + 3.2, duration: 0.8, ease: "power3.out" });
     return obj;
@@ -257,10 +257,10 @@ body {
     var pos = new THREE.Vector3(-7.5, nameY(idx), 1.5);
     var node = new THREE.Mesh(
       new THREE.SphereGeometry(0.22, 16, 12),
-      new THREE.MeshBasicMaterial({ color: 0xe8f2ff })
+      new THREE.MeshBasicMaterial({ color: 0x334155 })
     );
     node.position.copy(pos);
-    var sprite = textSprite(name, "#e8f2ff", 2.2);
+    var sprite = textSprite(name, "#0f2a47", 2.2);
     sprite.position.set(pos.x - 1.1, pos.y, pos.z);
     sprite.material.opacity = 0;
     node.scale.setScalar(0.01);

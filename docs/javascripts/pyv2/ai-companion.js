@@ -108,7 +108,7 @@
         // 极简 markdown：代码块与行内代码
         var html = esc(text)
           .replace(/```(\w*)\n([\s\S]*?)```/g, function (_, l, code) {
-            return '<pre style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:12px;"><code>' + code + "</code></pre>";
+            return '<pre style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:12px;color:#334155;"><code>' + code + "</code></pre>";
           })
           .replace(/`([^`\n]+)`/g, "<code>$1</code>");
         div.innerHTML = html;

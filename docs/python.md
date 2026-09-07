@@ -15,7 +15,7 @@ hide:
           <span class="badge">2026 秋季</span>
         </div>
         <h1>Python 程序设计<br><span class="grad">AI 原生驱动版</span></h1>
-        <p class="sub">当 AI 能写代码，编程课教什么？这门课的答案：<b style="color:#e2e8f0">读代码、调试、系统设计</b>。
+        <p class="sub">当 AI 能写代码，编程课教什么？这门课的答案：<b style="color:#0f172a">读代码、调试、系统设计</b>。
         48 课时从第一行代码走到独立交付一个有前端、有后端、有 AI 核心的完整应用——全程 AI 结对开发，
         并在答辩中说清每一行代码的作用。</p>
         <div class="cta-row">
@@ -183,7 +183,7 @@ hide:
 
 <div class="pyv2" data-pyv2-page>
   <h2 style="font-size:22px;">交互实验室</h2>
-  <p>概念不再是静态文字——每个核心原理都做成可操作的动画与沙箱，点击卡片全屏体验。各模块页还内嵌<b style="color:#e2e8f0">浏览器内直接运行的 Python 运行场</b>（Pyodide，无需安装）。</p>
+  <p>概念不再是静态文字——每个核心原理都做成可操作的动画与沙箱，点击卡片全屏体验。各模块页还内嵌<b style="color:#0f172a">浏览器内直接运行的 Python 运行场</b>（Pyodide，无需安装）。</p>
   <div class="pyv2-lab">
     <a class="pyv2-demo-card" href="demos/interpreter.html" data-anim>
       <span class="tag">GSAP · 步进动画</span>
@@ -233,12 +233,12 @@ hide:
     </div>
     <div data-anim>
       <h3 style="margin-bottom:6px;">成绩构成</h3>
-      <p>平时作业 <b style="color:#e2e8f0">50%</b>（4 次小作业各 10% + 课堂参与 10%）<br>
-      期末大项目 <b style="color:#e2e8f0">50%</b> · 无上机考试</p>
+      <p>平时作业 <b style="color:#0f172a">50%</b>（4 次小作业各 10% + 课堂参与 10%）<br>
+      期末大项目 <b style="color:#0f172a">50%</b> · 无上机考试</p>
       <h3 style="margin:14px 0 6px;">AI 政策</h3>
       <p>全课程允许 AI 协作，但有三道防线：<br>
-      ① M2/M3 每课末 5 分钟<b style="color:#e2e8f0">无 AI 纸面小测</b><br>
-      ② 作业随机 20% <b style="color:#e2e8f0">「指行讲思路」抽查</b><br>
+      ① M2/M3 每课末 5 分钟<b style="color:#0f172a">无 AI 纸面小测</b><br>
+      ② 作业随机 20% <b style="color:#0f172a">「指行讲思路」抽查</b><br>
       ③ 答辩随机指一行代码问「这是干什么的」</p>
       <h3 style="margin:14px 0 6px;">期末项目池（五选一）</h3>
       <p>AI 知识库助手（RAG）· 智能学伴（Function Calling）· AI 创意工坊（多模态）· 智能数据分析师（NL2Code）· AI 客服机器人</p>

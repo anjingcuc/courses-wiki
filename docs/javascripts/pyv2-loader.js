@@ -10,6 +10,9 @@
   var jsRoot = me ? new URL("./", me.src).href : "";          // .../javascripts/
   var siteRoot = jsRoot ? new URL("../", jsRoot).href : "";   // 站点根
 
+  var VER = "2"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
+  function jsUrl(p) { return jsRoot + p + "?v=" + VER; }
+
   var loaded = {}; // url -> Promise
   function loadScript(url) {
     if (!loaded[url]) {
@@ -61,22 +64,22 @@
     // 1) GSAP（动画类组件依赖）
     var gsapChain = Promise.resolve();
     if (need.indexOf("anim") >= 0) {
-      gsapChain = loadScript(jsRoot + "vendor/gsap.min.js")
-        .then(function () { return loadScript(jsRoot + "vendor/ScrollTrigger.min.js"); })
+      gsapChain = loadScript(jsUrl("vendor/gsap.min.js"))
+        .then(function () { return loadScript(jsUrl("vendor/ScrollTrigger.min.js")); })
         .then(function () {
           if (window.gsap && window.ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
-            return loadScript(jsRoot + "pyv2/module.js");
+            return loadScript(jsUrl("pyv2/module.js"));
           }
         });
     }
 
     // 2) 独立组件（不依赖 GSAP）
-    if (need.indexOf("playground") >= 0) loadScript(jsRoot + "pyv2/playground.js").catch(console.error);
-    if (need.indexOf("quiz") >= 0) loadScript(jsRoot + "pyv2/quiz.js").catch(console.error);
-    if (need.indexOf("ai") >= 0) loadScript(jsRoot + "pyv2/ai-companion.js").catch(console.error);
-    if (need.indexOf("kgraph") >= 0) loadScript(jsRoot + "pyv2/knowledge-graph.js").catch(console.error);
-    if (need.indexOf("landing") >= 0) loadScript(jsRoot + "pyv2/landing.js").catch(console.error);
+    if (need.indexOf("playground") >= 0) loadScript(jsUrl("pyv2/playground.js")).catch(console.error);
+    if (need.indexOf("quiz") >= 0) loadScript(jsUrl("pyv2/quiz.js")).catch(console.error);
+    if (need.indexOf("ai") >= 0) loadScript(jsUrl("pyv2/ai-companion.js")).catch(console.error);
+    if (need.indexOf("kgraph") >= 0) loadScript(jsUrl("pyv2/knowledge-graph.js")).catch(console.error);
+    if (need.indexOf("landing") >= 0) loadScript(jsUrl("pyv2/landing.js")).catch(console.error);
     gsapChain.catch(console.error);
   }
 

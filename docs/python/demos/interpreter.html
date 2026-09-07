@@ -186,6 +186,13 @@ body {
   var tokP = document.getElementById("tokP");
   var cur = 0;
   var labels = [];
+  // 每个阶段完成后文件的形态（token 文字随流程变化）
+  var TOK_C = { 1: "hello.c", 2: "hello.i", 3: "hello.s", 4: "hello.o", 5: "hello.exe", 6: "hello.exe", 7: "hello.exe" };
+  var TOK_P = { 1: "hello.py", 2: "hello.pyc", 3: "字节码", 4: "字节码", 5: "字节码", 6: "字节码", 7: "字节码" };
+
+  function popTok(el) {
+    gsap.fromTo(el, { scale: 0.8 }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" });
+  }
 
   function setCaption(i) {
     capEl.innerHTML = '<span class="idx">STEP ' + i + " / " + (steps.length - 1) + "</span>" + steps[i].t;
@@ -209,6 +216,8 @@ body {
       });
       if (st.c) append(conC, "y", st.c);
       if (st.p) append(conP, "s", st.p);
+      if (TOK_C[i] && tokC.textContent !== TOK_C[i]) { tokC.textContent = TOK_C[i]; popTok(tokC); }
+      if (TOK_P[i] && tokP.textContent !== TOK_P[i]) { tokP.textContent = TOK_P[i]; popTok(tokP); }
     });
 
     // token 移动到当前激活 stage 位置
@@ -256,6 +265,8 @@ body {
     btnPlay.textContent = "▶ 播放";
     conC.innerHTML = '<span class="d">$ gcc hello.c -o hello</span>';
     conP.innerHTML = '<span class="d">$ python hello.py</span>';
+    tokC.textContent = "hello.c";
+    tokP.textContent = "hello.py";
     document.querySelectorAll(".stage").forEach(function (el) { el.classList.remove("on"); });
     setCaption(0);
     cur = 0;
@@ -265,7 +276,12 @@ body {
     document.getElementById("progBar").style.width = (tl.progress() * 100) + "%";
   }
 
-  window.addEventListener("resize", function () { tl.pause(0); cur = 0; setCaption(0); });
+  window.addEventListener("resize", function () {
+    tl.pause(0);
+    cur = 0; setCaption(0);
+    tokC.textContent = "hello.c";
+    tokP.textContent = "hello.py";
+  });
   setCaption(0);
 })();
 </script>

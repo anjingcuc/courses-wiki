@@ -16,9 +16,16 @@
     var tip = wrap ? wrap.querySelector(".pyv2-graph-tip") : null;
     var dataEl = document.getElementById("pyv2-kgraph-data");
     if (!canvas || !dataEl) return;
+    // 防重复初始化：loader 的首次 boot 与 document$ 初次发射可能各触发一次 init，
+    // 二次 init 会叠加 ctx.scale 导致节点画到画布外（表现为图谱空白）
+    if (canvas.dataset.kgReady) return;
+    canvas.dataset.kgReady = "1";
 
     var data;
-    try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+    try { data = JSON.parse(dataEl.textContent); } catch (e) {
+      console.error("[pyv2] 知识图谱数据解析失败:", e);
+      return;
+    }
 
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     // 浅色主题下加深节点填充色，保证白色文字/白描边有足够对比度

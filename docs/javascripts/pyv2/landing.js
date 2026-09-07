@@ -61,7 +61,9 @@
     try {
       var data = JSON.parse(dataEl.textContent);
       typewrite(body, data.lines || [], data.loop !== false);
-    } catch (e) { /* 数据损坏则静默 */ }
+    } catch (e) {
+      console.error("[pyv2] 终端数据解析失败:", e);
+    }
   }
 
   function init() {

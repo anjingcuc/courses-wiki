@@ -73,7 +73,7 @@ body {
   <div class="crumb"><a href="../../">← Python 程序设计 V2</a></div>
 </div>
 <div id="stage"></div>
-<div id="hint3d">🖱 拖拽旋转 · 滚轮缩放 · 点击对象查看身份卡</div>
+<div id="hint3d">🖱 拖拽旋转 · 滚轮缩放 · 点击对象查看信息卡</div>
 
 <div class="codebox">
   <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span>objects_demo.py</span></div>
@@ -88,7 +88,7 @@ body {
 
 <div class="inspector" id="inspector">
   <button class="close" id="insClose">✕</button>
-  <h3>🔍 对象身份卡</h3>
+  <h3>🔍 对象信息卡</h3>
   <div id="insBody"></div>
 </div>
 
@@ -108,9 +108,9 @@ body {
   var NOTES = [
     "赋值语句永远做两件事：<b>创建对象</b>（右侧）→ <b>绑定名字</b>（左侧）。绿色多面体就是那个 str 对象，漂浮在堆内存里。",
     "b = a <b>不创建新对象</b>——只是在命名空间里多了一个名字，指向同一个绿色对象。两个名字、一个对象。",
-    "列表也是对象（紫色八面体），它的元素是<b>引用</b>：两个小蓝球是 int 对象 1 和 2，被列表握在手里。",
-    "append 让列表长出一个新槽位，握住的正是 a 指向的那个字符串——<b>对象被共享了</b>，改列表会影响不到字符串（str 不可变）。",
-    "浮点数对象（黄色）同样住在堆里。到现在为止：5 个对象、6 个名字。",
+    "列表也是对象（紫色八面体），它的元素是<b>引用</b>：两个小蓝球是 int 对象 1 和 2，被列表持有引用。",
+    "append append 为列表新增一个元素，引用的正是 a 指向的字符串——<b>对象被共享了</b>，改列表会影响不到字符串（str 不可变）。",
+    "浮点数对象（黄色）同样位于堆中。到现在为止：5 个对象、6 个名字。",
     "<b>==</b> 比较对象的值 → True；<b>is</b> 比较身份（是不是同一个对象）→ True。因为 a、b 本来就指向同一个对象。",
     "字符串驻留（intern）小知识：相同字面量可能复用同一个对象——看动画里 e 是否连到了老对象。",
     "值相等但身份不同时 == True、is False。结论：<b>判断 None 用 is，比较内容用 ==</b>。"
@@ -364,7 +364,7 @@ body {
   document.getElementById("bPrev").addEventListener("click", function () { /* 3D 时间线只进不退，提示重置 */ });
   document.getElementById("bReset").addEventListener("click", function () { location.reload(); });
 
-  /* ---------- 点击拾取 → 身份卡 ---------- */
+  /* ---------- 点击拾取 → 信息卡 ---------- */
   var ray = new THREE.Raycaster(); var mouseV = new THREE.Vector2();
   var insEl = document.getElementById("inspector");
   document.getElementById("insClose").addEventListener("click", function () { insEl.style.display = "none"; });

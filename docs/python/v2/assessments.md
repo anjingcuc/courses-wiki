@@ -20,7 +20,7 @@ title: 作业与考核
     <div class="pyv2-stat v"><div class="n" data-count="50">0</div><div class="l">期末大项目%</div></div>
     <div class="pyv2-stat"><div class="n" data-count="0">0</div><div class="l">上机考试</div></div>
   </div>
-  <p>「作业打分制」的立意：把考核嵌入真实产出，而不是一次性闭卷。代价是必须配上「真实性保障」——见下方三道防线。</p>
+  <p>「作业评分制」的定位：把考核嵌入真实产出，而不是一次性闭卷考试。代价是必须配上「真实性保障」——见下方三道防线。</p>
 </div>
 
 <div class="pyv2" data-pyv2-page>
@@ -35,7 +35,7 @@ title: 作业与考核
     <div class="pyv2-tl-item v" data-anim><b>④ Prompt 工程实战</b><span class="meta">L20 发布 · 1 周 · 10%</span>
       <p>设计一个结构化 Prompt 模板解决特定任务（五件套齐全、含 few-shot 与输出格式约定）。鼓励大量 AI 实验，附 A/B 对比记录。</p></div>
     <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">L23 发布 · 2 周 · 10%</span>
-      <p>小型文档问答系统：切分 → 向量化 → 检索 → 生成完整链路，numpy 手搓即可。检索质量与「拒答幻觉」表现是加分点。</p></div>
+      <p>小型文档问答系统：切分 → 向量化 → 检索 → 生成完整链路，用 numpy 直接实现即可。检索质量与「拒答幻觉」表现是加分点。</p></div>
     <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">L31 发布 · 至 L43 答辩 · 50%</span>
       <p>完整 AI 应用（<a href="../m6/">五选一项目池</a>）+ README + AI 协作日志 + 答辩。评分维度：功能完整性 / 技术深度 / 用户体验 / 代码质量 / AI 协作意识。</p></div>
   </div>
@@ -56,8 +56,8 @@ title: 作业与考核
       <p>每次作业随机抽 20% 学生做 3 分钟口头抽查：指着任意一行代码问「这行是干什么的」。讲不出自己代码的学生当次作业降级。</p>
     </div>
     <div class="pyv2-demo-card" data-anim>
-      <span class="tag g">防线 ③</span><b>答辩灵魂三问</b>
-      <p>期末答辩随机指行提问 + 「去掉 AI 你能独立写出哪部分」+「最自豪的功能如何实现」。详见 <a href="../m6/">M6 模块页</a>。</p>
+      <span class="tag g">防线 ③</span><b>答辩三问</b>
+      <p>期末答辩随机指行提问 + 「去掉 AI 你能独立写出哪部分」+「最有价值的功能如何实现」。详见 <a href="../m6/">M6 模块页</a>。</p>
     </div>
   </div>
 </div>
@@ -68,7 +68,7 @@ title: 作业与考核
     <div class="pyv2-tl-item" data-anim><b>允许且鼓励</b><span class="meta">AI 辅助一切作业</span><p>用 AI 讨论、生成、优化都行——这正是课程要教的工作方式。</p></div>
     <div class="pyv2-tl-item" data-anim><b>必须做到</b><span class="meta">能讲清自己的代码</span><p>提交的每一行你都要能解释「干什么、为什么」。抽查与答辩按此标准执行。</p></div>
     <div class="pyv2-tl-item" data-anim><b>建议养成</b><span class="meta">协作日志习惯</span><p>记录关键 prompt 与人工修改原因。期末项目为强制提交项，平时作业不强制但强烈建议。</p></div>
-    <div class="pyv2-tl-item v" data-anim><b>明确禁止</b><span class="meta">代人写作业 / 买卖代码</span><p>AI 是你的副驾驶，不是替考者；让「别人（或别的 AI）替你完成并署你的名」一律按学术不端处理。</p></div>
+    <div class="pyv2-tl-item v" data-anim><b>明确禁止</b><span class="meta">代人写作业 / 买卖代码</span><p>AI 是协作者，不是替考者；让「别人（或别的 AI）替你完成并署你的名」一律按学术不端处理。</p></div>
   </div>
   <p style="margin-top:14px;">
     <a class="pyv2-btn primary" href="../../">返回课程主页</a>

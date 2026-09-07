@@ -100,7 +100,7 @@ body {
   <div class="crumb"><a href="../../">← Python 程序设计 V2</a></div>
 </div>
 <div class="wrap">
-  <div class="caption" id="caption"><span class="idx">STEP 0 / 8</span>点击<b>「播放」</b>或逐步执行，观察同一段程序在两条技术路线上的不同命运。</div>
+  <div class="caption" id="caption"><span class="idx">STEP 0 / 8</span>点击<b>「播放」</b>或逐步执行，观察同一段程序在两种执行方式下的处理过程。</div>
 
   <div class="lanes">
     <div class="lane c">
@@ -152,7 +152,7 @@ body {
   <div class="takeaway">
     <div class="tk"><b>⚡ 速度</b>编译型一次翻译、反复执行，同等计算通常快 1–2 个数量级；解释型每次运行都要 PVM 现场翻译字节码。</div>
     <div class="tk"><b>🌍 跨平台</b>C 的产物绑定操作系统与指令集（.exe 换台机器未必能跑）；Python 只要有对应虚拟机，字节码处处一致。</div>
-    <div class="tk"><b>🔄 灵活性</b>解释执行换来动态类型、REPL 即时反馈、运行时修改——这也是 AI 时代快速迭代的天然盟友。</div>
+    <div class="tk"><b>🔄 灵活性</b>解释执行带来动态类型、REPL 即时反馈、运行时修改的能力，适合快速迭代的开发方式。</div>
   </div>
 </div>
 
@@ -164,15 +164,15 @@ body {
       c: "", p: "" },
     { t: "C 语言先过<b>预处理器</b>：#include 的头文件被原样展开成上千行声明；Python 则把源码一次性<b>编译成字节码</b>（.pyc 只是缓存，下次可跳过这步）。",
       c: "展开 stdio.h → 1200+ 行", p: "生成字节码 6 条指令" },
-    { t: "C 编译器把预处理结果翻译成<b>汇编</b>，再由汇编器压成二进制目标文件；Python 的字节码此刻静静躺在 <b>PVM（Python 虚拟机）</b>门口。",
+    { t: "C 编译器把预处理结果翻译成<b>汇编</b>，再由汇编器压成二进制目标文件；Python 的字节码此刻已生成，等待 <b>PVM（Python 虚拟机）</b>执行。",
       c: "hello.s → hello.o", p: "LOAD_NAME  print\nLOAD_CONST  'world'\nCALL_FUNCTION 1" },
-    { t: "C 的链接器把目标文件与标准库缝合为<b>完整的 hello.exe——翻译到此结束</b>；Python 的 PVM 才刚开始<b>逐条取指令</b>。",
+    { t: "C 的链接器把目标文件与标准库链接为<b>完整的 hello.exe——翻译到此结束</b>；Python 的 PVM 才刚开始<b>逐条取指令</b>。",
       c: "ld → hello.exe ✓", p: "PVM: 取指 → 译码 → 执行" },
     { t: "执行阶段差距显现：CPU 全速吞吐机器码；PVM 每条字节码都要<b>经过一层软件翻译</b>再落到系统调用。",
       c: "CPU: call printf", p: "PVM → C API → printf" },
     { t: "运行中 Python 还要做<b>动态类型检查</b>（对象的类型存在对象头上，而不是指令里），这是灵活性的代价。",
       c: "", p: "type(str) ✓  refcount++" },
-    { t: "两边都输出结果。注意：改一行 C 代码要<b>重新编译链接</b>；改一行 Python <b>保存即生效</b>——这就是交互模式能「问一句答一句」的底层原因。",
+    { t: "两边都输出结果。注意：改一行 C 代码要<b>重新编译链接</b>；改一行 Python <b>保存即生效</b>——这正是交互模式能够即时反馈的根本原因。",
       c: "Hello, world!\n[耗时 0.4ms]", p: "Hello, world!\n[耗时 3.1ms]" },
     { t: "<b>总结</b>：编译型 = 先整体翻译再执行（快、平台绑定）；解释型 = 边翻译边执行（慢一点、处处能跑、改起来快）。AI 时代「迭代速度 > 极致性能」，Python 成了首选。",
       c: "", p: "" }

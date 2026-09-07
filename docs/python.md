@@ -10,14 +10,14 @@ hide:
     <div class="cols">
       <div>
         <div class="badge-row">
-          <span class="badge">V2 · AI 原生重构版</span>
+          <span class="badge">V2 · 2026 修订版</span>
           <span class="badge v">48 课时 · 8 模块</span>
           <span class="badge">2026 秋季</span>
         </div>
-        <h1>Python 程序设计<br><span class="grad">AI 原生驱动版</span></h1>
-        <p class="sub">当 AI 能写代码，编程课教什么？这门课的答案：<b style="color:#0f172a">读代码、调试、系统设计</b>。
-        48 课时从第一行代码走到独立交付一个有前端、有后端、有 AI 核心的完整应用——全程 AI 结对开发，
-        并在答辩中说清每一行代码的作用。</p>
+        <h1>Python 程序设计<br><span class="grad">面向 AI 时代的修订版</span></h1>
+        <p class="sub">AI 已经能写出可运行的代码，编程课还教什么？本课程的回答：<b style="color:#0f172a">读代码、调试、系统设计</b>。
+        48 课时从第一行代码走到独立交付一个包含前端、后端与 AI 能力的完整应用——全程与 AI 结对开发，
+        并在期末答辩中说明每一行代码的作用。</p>
         <div class="cta-row">
           <a class="pyv2-btn primary" href="v2/m0/">从 M0 开始学习 →</a>
           <a class="pyv2-btn ghost" href="#_2">查看课程地图</a>
@@ -38,13 +38,13 @@ hide:
               {"t": "ai",   "x": "你：用一句话解释什么是列表推导式"},
               {"t": "ai",   "x": "AI：边遍历边加工、直接产出列表的紧凑写法："},
               {"t": "ai",   "x": "    [x*2 for x in range(5)] → [0, 2, 4, 6, 8]"},
-              {"t": "dim",  "x": "// 这就是你学期末要自己做出来的东西"}
-            ]
+              {"t": "dim",  "x": "# 学期末，你将独立完成同级别的应用"}
+            }
           }
           </script>
           <div class="bar">
             <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <span class="title">vibe coding — 第 1 节课现场</span>
+            <span class="title">第 1 节课现场 · AI 结对编程演示</span>
           </div>
           <div class="body"></div>
         </div>
@@ -69,17 +69,17 @@ hide:
     <div class="pyv2-demo-card" data-anim>
       <span class="tag g">能力一</span>
       <b>读代码</b>
-      <p>AI 生成的代码，你能看懂、能审查、能发现坑（命名混乱、超纲语法、边界缺失）。这是全课程反复训练的第一能力。</p>
+      <p>AI 生成的代码，你能看懂、能审查、能发现隐患（命名混乱、超出课程范围的语法、边界条件缺失）。这是全课程反复训练的第一项能力。</p>
     </div>
     <div class="pyv2-demo-card" data-anim>
       <span class="tag g">能力二</span>
       <b>调试</b>
-      <p>报错是常态。读 traceback、print 定位、二分注释、最小复现——L37 专门设有「AI-free 调试日」锤炼无 AI 时的排错肌肉。</p>
+      <p>报错是常态。读 traceback、print 定位、二分注释、最小复现——L37 专门设有「AI-free 调试日」，训练不依赖 AI 的排错能力。</p>
     </div>
     <div class="pyv2-demo-card" data-anim>
       <span class="tag g">能力三</span>
       <b>系统设计</b>
-      <p>把模糊需求拆成模块、接口与数据流；知道何时该用 RAG、何时用 Agent、何时一个 if 就够了。期末项目见真章。</p>
+      <p>把模糊需求拆成模块、接口与数据流；知道何时该用 RAG、何时用 Agent、何时一个 if 就够。期末项目将全面检验这一能力。</p>
     </div>
   </div>
 </div>
@@ -90,16 +90,16 @@ hide:
   <div class="pyv2-path">
     <a class="pyv2-mod-card" href="v2/m0/" data-anim><div class="glow"></div>
       <span class="mid">M0 · L1–L2</span><b>导论</b>
-      <span>AI 时代为什么学编程；第一节课现场 vibe coding 出一个 AI 聊天网页</span>
+      <span>AI 时代为什么学编程；第一节课现场用 AI 结对编程完成一个 AI 聊天网页</span>
       <span class="lessons">2 课时 · V001–V003</span>
     </a>
     <a class="pyv2-mod-card" href="v2/m1/" data-anim><div class="glow"></div>
       <span class="mid">M1 · L3–L5</span><b>环境与工具链</b>
-      <span>命令行运行、Kimi Code / Trae 工具全家桶、第 4 课调通大模型 API、Git 分支工作流</span>
+      <span>命令行运行、Kimi Code / Trae 等 AI 编程工具、第 4 课调通大模型 API、Git 分支工作流</span>
       <span class="lessons">3 课时 · V004–V008</span>
     </a>
     <a class="pyv2-mod-card" href="v2/m2/" data-anim><div class="glow"></div>
-      <span class="mid">M2 · L6–L11</span><b>语言核心速通</b>
+      <span class="mid">M2 · L6–L11</span><b>语言核心</b>
       <span>类型、数据结构选型、控制流、函数契约、IO 与异常、类——建思维模型而非背方法清单</span>
       <span class="lessons">6 课时 · V009–V021</span>
     </a>
@@ -115,7 +115,7 @@ hide:
     </a>
     <a class="pyv2-mod-card" href="v2/m5/" data-anim><div class="glow"></div>
       <span class="mid">M5 · L19–L30</span><b>AI 应用开发</b>
-      <span>课程核心增量：Prompt 工程、Function Calling、RAG、Agent、FastAPI 前后端、对话记忆</span>
+      <span>课程核心模块：Prompt 工程、Function Calling、RAG、Agent、FastAPI 前后端、对话记忆</span>
       <span class="lessons">12 课时 · V034–V053</span>
     </a>
     <a class="pyv2-mod-card" href="v2/m6/" data-anim><div class="glow"></div>
@@ -142,7 +142,7 @@ hide:
     {
       "modules": [
         {"id": "m0", "label": "M0 导论", "color": "#38bdf8", "r": 26, "href": "v2/m0/", "desc": "AI 时代为什么学编程；现场做出第一个 AI 应用"},
-        {"id": "m1", "label": "M1 环境工具", "color": "#22d3ee", "r": 24, "href": "v2/m1/", "desc": "命令行 · AI 工具全家桶 · 大模型 API 初体验 · Git"},
+        {"id": "m1", "label": "M1 环境工具", "color": "#22d3ee", "r": 24, "href": "v2/m1/", "desc": "命令行 · AI 编程工具 · 大模型 API 初体验 · Git"},
         {"id": "m2", "label": "M2 语言核心", "color": "#34d399", "r": 26, "href": "v2/m2/", "desc": "类型 · 数据结构 · 控制流 · 函数 · IO 异常 · 类"},
         {"id": "m3", "label": "M3 数据获取", "color": "#fbbf24", "r": 24, "href": "v2/m3/", "desc": "HTTP · requests · 爬虫精要 · Pandas 可视化"},
         {"id": "m4", "label": "M4 工程化", "color": "#f472b6", "r": 22, "href": "v2/m4/", "desc": "虚拟环境 · 代码审查 · 模块化结构"},
@@ -151,7 +151,7 @@ hide:
         {"id": "m7", "label": "M7 展望", "color": "#94a3b8", "r": 20, "href": "v2/m7/", "desc": "技术版图 · 进阶路线 · 职业发展"}
       ],
       "lessons": [
-        {"id": "l1", "m": "m0", "label": "L1 第一课", "big": true, "desc": "10 分钟 vibe coding 出 AI 聊天网页"},
+        {"id": "l1", "m": "m0", "label": "L1 第一课", "big": true, "desc": "10 分钟完成 AI 聊天网页"},
         {"id": "l2", "m": "m0", "label": "L2 学习法"},
         {"id": "l4", "m": "m1", "label": "L4 API初体验", "big": true, "desc": "第 4 课亲手调通大模型 API"},
         {"id": "l5", "m": "m1", "label": "L5 Git 工作流"},
@@ -183,7 +183,7 @@ hide:
 
 <div class="pyv2" data-pyv2-page>
   <h2 style="font-size:22px;">交互实验室</h2>
-  <p>概念不再是静态文字——每个核心原理都做成可操作的动画与沙箱，点击卡片全屏体验。各模块页还内嵌<b style="color:#0f172a">浏览器内直接运行的 Python 运行场</b>（Pyodide，无需安装）。</p>
+  <p>课程的核心原理均配有可交互的动画与沙箱，点击卡片进入演示。各模块页还内嵌<b style="color:#0f172a">可直接在浏览器中运行的 Python 环境</b>（Pyodide，无需安装）。</p>
   <div class="pyv2-lab">
     <a class="pyv2-demo-card" href="demos/interpreter.html" data-anim>
       <span class="tag">GSAP · 步进动画</span>
@@ -206,7 +206,7 @@ hide:
     <a class="pyv2-demo-card" href="demos/rag.html" data-anim>
       <span class="tag">流程模拟</span>
       <b>RAG：让 AI 读你的文档</b>
-      <p>文档切分 → 向量化 → 语义检索 → 拼接 Prompt → 生成回答，M5 核心架构一屏看懂。</p>
+      <p>文档切分 → 向量化 → 语义检索 → 拼接 Prompt → 生成回答，完整呈现 M5 的核心架构。</p>
       <span class="go">进入演示 →</span>
     </a>
   </div>
@@ -228,7 +228,7 @@ hide:
         <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">L23 发布 · 10%</span>
           <p>小型文档问答系统：向量化、检索、生成完整链路。</p></div>
         <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">L31 发布 · 50%</span>
-          <p>完整 AI 应用 + AI 协作日志 + 答辩「灵魂三问」。</p></div>
+          <p>完整 AI 应用 + AI 协作日志 + 答辩「三问」。</p></div>
       </div>
     </div>
     <div data-anim>
@@ -251,7 +251,7 @@ hide:
   <div class="pyv2-lab">
     <a class="pyv2-demo-card" href="v2/scripts-index/" data-anim>
       <span class="tag">讲义</span><b>微课视频讲义</b>
-      <p>V001 起全部微课的完整口播稿与教学设计，配合视频食用。</p><span class="go">浏览讲义 →</span>
+      <p>V001 起全部微课的完整讲稿与教学设计，建议配合视频阅读。</p><span class="go">浏览讲义 →</span>
     </a>
     <a class="pyv2-demo-card" href="v2/notes-index/" data-anim>
       <span class="tag">深挖</span><b>经典课程笔记 · 88 篇</b>
@@ -259,7 +259,7 @@ hide:
     </a>
     <a class="pyv2-demo-card" href="introduction/" data-anim>
       <span class="tag v">存档</span><b>经典版课件</b>
-      <p>旧版 15 章幻灯片课件（reveal.js），V2 课程的语法细节仍可在此深挖。</p><span class="go">查看课件 →</span>
+      <p>旧版 15 章幻灯片课件（reveal.js），V2 课程中的语法细节可在此查阅。</p><span class="go">查看课件 →</span>
     </a>
     <a class="pyv2-demo-card" href="v2/assessments/" data-anim>
       <span class="tag v">考核</span><b>作业与考核细则</b>

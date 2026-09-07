@@ -21,6 +21,14 @@
     try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
 
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // 浅色主题下加深节点填充色，保证白色文字/白描边有足够对比度
+    function shade(hex, f) {
+      var v = hex.replace("#", "");
+      function ch(i) {
+        return Math.max(0, Math.min(255, Math.round(parseInt(v.substr(i, 2), 16) * f)));
+      }
+      return "rgb(" + ch(0) + "," + ch(2) + "," + ch(4) + ")";
+    }
     var W = wrap.clientWidth || 900;
     var H = canvas.height || 520;
     canvas.width = W * dpr;
@@ -98,7 +106,7 @@
       if (tip) {
         if (hover) {
           tip.innerHTML = "<b>" + hover.label + "</b>" + (hover.desc ? "<br>" + hover.desc : "") +
-            (hover.href ? "<br><span style='color:#7dd3fc'>点击进入 →</span>" : "");
+            (hover.href ? "<br><span style='color:#0369a1;font-weight:600'>点击进入 →</span>" : "");
           tip.style.display = "block";
           var tw = tip.offsetWidth;
           tip.style.left = Math.min(mouse.x + 14, W - tw - 10) + "px";
@@ -218,20 +226,23 @@
         }
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = n.kind === "module" ? "rgba(255,255,255,.97)" : (active ? n.color : "#ffffff");
+        ctx.fillStyle = n.kind === "module" ? shade(n.color, 0.74) : shade(n.color, active ? 1 : 0.82);
         ctx.fill();
-        ctx.lineWidth = n.kind === "module" ? 2.4 : 1.4;
-        ctx.strokeStyle = n.color;
+        ctx.lineWidth = n.kind === "module" ? 2.5 : 1.8;
+        ctx.strokeStyle = "#ffffff";
         ctx.stroke();
 
         // 标签
         ctx.textAlign = "center";
         if (n.kind === "module") {
           ctx.font = "700 13px 'Noto Sans SC', sans-serif";
-          ctx.fillStyle = active ? "#0f172a" : "#334155";
-          ctx.fillText(n.label.split(" ")[0], n.x, n.y + 4);
+          ctx.fillStyle = "#ffffff";
+          ctx.shadowColor = "rgba(15,23,42,.3)";
+          ctx.shadowBlur = 3;
+          ctx.fillText(n.label.split(" ")[0], n.x, n.y + 4.5);
+          ctx.shadowBlur = 0;
           ctx.font = "11px 'Noto Sans SC', sans-serif";
-          ctx.fillStyle = "rgba(71,85,105,.95)";
+          ctx.fillStyle = "rgba(51,65,85,.95)";
           ctx.fillText(n.label.split(" ").slice(1).join(" ") || "", n.x, n.y + n.r + 15);
         } else if (n.big || active) {
           ctx.font = (n.big ? "600 " : "") + "11px 'Noto Sans SC', sans-serif";

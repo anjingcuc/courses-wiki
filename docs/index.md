@@ -34,6 +34,6 @@ title: 首页
 
 ## 讲座
 
-### [AI-WPS 辅助办公](wps.md)
+### [AI-WPS 辅助办公](wps/introduction.md)
 
 课程资料请点击[AI-WPS 辅助办公](wps/introduction.md).

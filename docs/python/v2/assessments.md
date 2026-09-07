@@ -37,7 +37,7 @@ title: 作业与考核
     <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">L23 发布 · 2 周 · 10%</span>
       <p>小型文档问答系统：切分 → 向量化 → 检索 → 生成完整链路，numpy 手搓即可。检索质量与「拒答幻觉」表现是加分点。</p></div>
     <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">L31 发布 · 至 L43 答辩 · 50%</span>
-      <p>完整 AI 应用（<a href="m6.md">五选一项目池</a>）+ README + AI 协作日志 + 答辩。评分维度：功能完整性 / 技术深度 / 用户体验 / 代码质量 / AI 协作意识。</p></div>
+      <p>完整 AI 应用（<a href="../m6/">五选一项目池</a>）+ README + AI 协作日志 + 答辩。评分维度：功能完整性 / 技术深度 / 用户体验 / 代码质量 / AI 协作意识。</p></div>
   </div>
   <h3 style="margin:14px 0 8px;">提交方式</h3>
   <p>Git 分支工作流：每人在课程 GitLab 仓库建 <code style="font-family:var(--pyv2-font-mono)">0xNN-学号</code> 分支提交，
@@ -57,7 +57,7 @@ title: 作业与考核
     </div>
     <div class="pyv2-demo-card" data-anim>
       <span class="tag g">防线 ③</span><b>答辩灵魂三问</b>
-      <p>期末答辩随机指行提问 + 「去掉 AI 你能独立写出哪部分」+「最自豪的功能如何实现」。详见 <a href="m6.md">M6 模块页</a>。</p>
+      <p>期末答辩随机指行提问 + 「去掉 AI 你能独立写出哪部分」+「最自豪的功能如何实现」。详见 <a href="../m6/">M6 模块页</a>。</p>
     </div>
   </div>
 </div>
@@ -71,7 +71,7 @@ title: 作业与考核
     <div class="pyv2-tl-item v" data-anim><b>明确禁止</b><span class="meta">代人写作业 / 买卖代码</span><p>AI 是你的副驾驶，不是替考者；让「别人（或别的 AI）替你完成并署你的名」一律按学术不端处理。</p></div>
   </div>
   <p style="margin-top:14px;">
-    <a class="pyv2-btn primary" href="../../python.md">返回课程主页</a>
+    <a class="pyv2-btn primary" href="../../">返回课程主页</a>
   </p>
 </div>
 

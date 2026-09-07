@@ -8,7 +8,7 @@
 
 ### MkDocs 版本（当前仓库）
 - 部署：<https://anjingcuc.github.io/courses-wiki/>
-- 技术栈：MkDocs + reveal.js + ECharts Tree
+- 技术栈：MkDocs + Material for MkDocs 9.x（主题包）+ reveal.js（旧版课件）+ Python V2 交互体系（GSAP / Three.js / Pyodide / Canvas）
 
 ### React 版本（独立仓库 courses-react）
 - 部署：<https://anjingcuc.github.io/courses-react/>
@@ -21,8 +21,12 @@
 courses-wiki/
 ├── docs/                      # 课程内容源文件
 │   ├── img/                   # 共享图片资源
-│   ├── javascripts/           # 自定义 JavaScript
-│   ├── stylesheets/           # 自定义 CSS
+│   ├── javascripts/           # 自定义 JavaScript（含 pyv2-loader.js + pyv2/ 组件 + vendor/ 本地库）
+│   ├── stylesheets/           # 自定义 CSS（pyv2.css 为 V2 设计系统）
+│   ├── python/v2/              # Python V2 模块页（m0–m7）、考核、讲义/笔记索引
+│   │   ├── scripts/            # V001–V059 微课讲义（markdown）
+│   │   └── notes/              # 旧版 88 篇课程笔记存档
+│   ├── python/demos/           # 四个全屏交互演示（interpreter/objects/base64/rag.html）
 │   ├── aissop/                # 智能系统安全运维与实践
 │   ├── python/                # Python 程序设计
 │   ├── web/                   # 网页设计与制作
@@ -183,17 +187,18 @@ mkdocs build
 ```yaml
 site_name: 课程资料
 theme:
-  name: null
-  custom_dir: "material"      # 使用自定义主题
+  name: material              # mkdocs-material 9.x（uv 依赖安装）
+  custom_dir: overrides        # 主题覆盖（可选）
   language: "zh"
 markdown_extensions:
-  - codehilite:
-      linenums: true
+  - pymdownx.superfences / highlight / details / tabbed ...  # codehilite 已弃用
 extra_css:
-  - stylesheets/custom.css
+  - stylesheets/pyv2.css       # V2 设计系统（深色玻璃拟态）
 extra_javascript:
-  - javascripts/custom.js
+  - javascripts/pyv2-loader.js # 按页面标记按需加载 GSAP/Three/Pyodide 与组件
 ```
+
+注意：`material/` 目录不再作为主题，仅保留 `slideshow.html`（课件 symlink 的目标）与 `reveal/` 静态资源；reveal 资源已复制到 `docs/assets/`，随站点发布。
 
 ### slideshow.html 核心配置
 
@@ -232,7 +237,16 @@ extra_javascript:
 
 ### 更新 reveal.js
 
-替换 `material/assets/reveal/` 目录下的文件。
+替换 `material/assets/reveal/` 目录下的文件（同步更新 `docs/assets/reveal/`）。
+
+### Python V2 交互组件
+
+- **运行场**：在任意 markdown 页写 `<div class="py-playground" data-py-title="标题"><textarea>代码</textarea></div>`（HTML 转义 `<`）；Pyodide 懒加载于 Web Worker，死循环 15s 自动终止。
+- **测验**：`<div class="pyv2-quiz"><script type="application/json" class="quiz-data">{...}</script></div>`，字段 `questions[].{q,opts,a,explain}`。
+- **AI 学伴**：页面含 `<div data-pyv2-ai hidden></div>` 即出现浮窗；OpenAI 兼容接口，密钥存 localStorage。
+- **入场动效**：元素加 `data-anim` 属性即可（GSAP ScrollTrigger；加载失败自动回退 `.no-anim`）。
+- **知识图谱**：`#pyv2-kgraph` canvas + `#pyv2-kgraph-data` JSON（modules/lessons/links/crosslinks）。
+- **交互演示**：`docs/python/demos/` 下独立 HTML，引用 `../../javascripts/vendor/` 本地库，勿引外部 CDN（GSAP/Three 已本地化）。
 
 ## 注意事项
 

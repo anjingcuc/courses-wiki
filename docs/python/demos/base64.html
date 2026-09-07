@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 编码原理 · Manim 风格可视化 | Python V2</title>
+<link rel="stylesheet" href="../../stylesheets/pyv2.css">
+<script src="../../javascripts/vendor/gsap.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+  background: #0c0f14; color: var(--pyv2-text); min-height: 100vh;
+}
+.top { display: flex; justify-content: space-between; align-items: center; padding: 13px 26px; border-bottom: 1px solid var(--pyv2-border); }
+.top h1 { font-size: 16px; }
+.top h1 .grad { background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.top .crumb a { color: var(--pyv2-sky); text-decoration: none; font-size: 13px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 18px 26px 70px; }
+
+.inrow { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.inrow label { font-size: 13.5px; color: var(--pyv2-muted); }
+.inrow input {
+  width: 150px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 9px;
+  color: #bae6fd; font-family: var(--pyv2-font-mono); font-size: 16px; font-weight: 700;
+  letter-spacing: 6px; padding: 8px 14px; text-align: center; outline: none; text-transform: none;
+}
+.inrow input:focus { border-color: var(--pyv2-sky); }
+.inrow .presets { display: flex; gap: 7px; }
+.inrow .presets button {
+  font-size: 12px; padding: 5px 12px; border-radius: 999px; cursor: pointer;
+  background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25); color: #bae6fd;
+}
+.inrow .presets button:hover { background: var(--pyv2-grad); color: #071018; }
+
+.stagebox {
+  background: #11151c; border: 1px solid var(--pyv2-border); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,.4);
+}
+svg { display: block; width: 100%; height: auto; }
+
+.caption {
+  min-height: 58px; background: var(--pyv2-surface); border: 1px solid var(--pyv2-border);
+  border-radius: 12px; padding: 11px 18px; font-size: 13.8px; line-height: 1.7; color: var(--pyv2-muted); margin-top: 14px;
+}
+.caption b { color: #7dd3fc; }
+.caption .idx { font-family: var(--pyv2-font-mono); font-size: 11px; color: var(--pyv2-muted-2); display: block; }
+
+.ctrl { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.ctrl button {
+  font-size: 13.5px; font-weight: 600; padding: 9px 18px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--pyv2-border-2); background: var(--pyv2-surface-2); color: var(--pyv2-text);
+}
+.ctrl button:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+.ctrl button.primary { background: var(--pyv2-grad); color: #071018; border-color: transparent; }
+.prog { flex: 1; min-width: 140px; height: 6px; border-radius: 3px; background: var(--pyv2-surface-2); overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0; background: var(--pyv2-grad); }
+.stepno { font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-muted-2); }
+
+.code-ref { margin-top: 18px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 12px; overflow: hidden; }
+.code-ref .bar { padding: 8px 14px; font-size: 11.5px; color: var(--pyv2-muted-2); font-family: var(--pyv2-font-mono); border-bottom: 1px solid var(--pyv2-border); }
+.code-ref pre { padding: 13px 16px; font-family: var(--pyv2-font-mono); font-size: 13px; line-height: 1.8; color: #c8d8ea; overflow-x: auto; }
+.code-ref .k { color: #c792ea; } .code-ref .s { color: #a5f3cf; } .code-ref .f { color: #82aaff; } .code-ref .c { color: #5b6b82; }
+</style>
+</head>
+<body>
+<div class="top">
+  <h1><span class="grad">Manim 风格演示</span> · Base64 编码原理</h1>
+  <div class="crumb"><a href="../../">← Python 程序设计 V2</a></div>
+</div>
+<div class="wrap">
+  <div class="inrow">
+    <label>输入 1–3 个 ASCII 字符，动画实时重算：</label>
+    <input id="txtIn" maxlength="3" value="Man" spellcheck="false" autocomplete="off">
+    <div class="presets">
+      <button data-t="Man">Man</button>
+      <button data-t="Py">Py</button>
+      <button data-t="A">A</button>
+      <button data-t="荷">荷→?</button>
+    </div>
+  </div>
+
+  <div class="stagebox"><svg id="stage" viewBox="0 0 1200 700"></svg></div>
+
+  <div class="caption" id="caption"><span class="idx">STEP 0</span>点击<b>播放</b>，看 3 个字符如何变成 4 个 Base64 字符。</div>
+
+  <div class="ctrl">
+    <button class="primary" id="bPlay">▶ 播放</button>
+    <button id="bPrev">← 上一步</button>
+    <button id="bNext">下一步 →</button>
+    <button id="bReset">↺ 重置</button>
+    <div class="prog"><i id="pbar"></i></div>
+    <span class="stepno" id="stepNo"></span>
+  </div>
+
+  <div class="code-ref">
+    <div class="bar">作业②对应 · 手写 base64_encode() 的核心逻辑</div>
+    <pre><span class="k">def</span> <span class="f">base64_encode</span>(text: <span class="f">str</span>) -> <span class="f">str</span>:
+    <span class="c"># 1. 字符串 → 字节 → 24 比特位流</span>
+    bits = <span class="s">""</span>.join(<span class="f">format</span>(b, <span class="s">"08b"</span>) <span class="k">for</span> b <span class="k">in</span> text.encode())
+    <span class="c"># 2. 不足 6 的倍数就补零</span>
+    bits += <span class="s">"0"</span> * (-<span class="f">len</span>(bits) % <span class="f">6</span>)
+    <span class="c"># 3. 每 6 位一组 → 查表</span>
+    idx = [<span class="f">int</span>(bits[i:i+<span class="f">6</span>], <span class="f">2</span>) <span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(<span class="f">0</span>, <span class="f">len</span>(bits), <span class="f">6</span>)]
+    out = <span class="s">""</span>.join(ALPHABET[i] <span class="k">for</span> i <span class="k">in</span> idx)
+    <span class="c"># 4. 每 3 字节产出 4 字符，缺位补 '='</span>
+    <span class="k">return</span> out + <span class="s">"="</span> * ((<span class="f">3</span> - <span class="f">len</span>(text) % <span class="f">3</span>) % <span class="f">3</span>)</pre>
+  </div>
+</div>
+
+<script>
+(function () {
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  var C = { blue: "#58c4dd", yellow: "#fce94f", white: "#e6edf3", grey: "#7f8ea3", green: "#8fd6a8", red: "#ef8a7a" };
+  var svg = document.getElementById("stage");
+
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+  function mono(x, y, size, text, fill, weight) {
+    return el("text", {
+      x: x, y: y, fill: fill || C.white,
+      "font-family": "JetBrains Mono, Consolas, monospace",
+      "font-size": size, "font-weight": weight || 600,
+      "text-anchor": "middle", "dominant-baseline": "middle"
+    }, text);
+  }
+  function box(x, y, w, h, stroke, fill) {
+    return el("rect", {
+      x: x, y: y, width: w, height: h, rx: 7,
+      fill: fill || "rgba(255,255,255,.02)",
+      stroke: stroke || "rgba(255,255,255,.14)", "stroke-width": 1.4
+    });
+  }
+  function sectionLabel(x, y, text) {
+    return el("text", {
+      x: x, y: y, fill: C.grey, "font-family": "Noto Sans SC, sans-serif",
+      "font-size": 14, "font-weight": 600, "text-anchor": "start"
+    }, text);
+  }
+
+  var tl = null, captions = [], curStep = 0, labels = [];
+  var TXT = "Man";
+
+  function compute(text) {
+    // 允许非 ASCII：按 UTF-8 字节编码（提示信息会说明）
+    var bytes = [];
+    for (var i = 0; i < text.length; i++) {
+      var cp = text.codePointAt(i);
+      if (cp > 0xffff) i++;
+      if (cp < 128) bytes.push(cp);
+      else { // UTF-8 多字节
+        if (cp < 2048) bytes.push(0xc0 | (cp >> 6), 0x80 | (cp & 63));
+        else if (cp < 65536) bytes.push(0xe0 | (cp >> 12), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+        else bytes.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      }
+    }
+    var bits = bytes.map(function (b) { return b.toString(2).padStart(8, "0"); }).join("");
+    var pad = (-bits.length) % 6;
+    if (pad < 0) pad += 6;
+    var padded = bits + "0".repeat(pad);
+    var groups = [];
+    for (var j = 0; j < padded.length; j += 6) {
+      groups.push({ bits: padded.slice(j, j + 6), val: parseInt(padded.slice(j, j + 6), 2) });
+    }
+    var out = groups.map(function (g) { return ALPHABET[g.val]; }).join("");
+    var eq = (4 - groups.length % 4) % 4;
+    return { text: text, bytes: bytes, bits: bits, groups: groups, out: out, eq: eq };
+  }
+
+  function build() {
+    svg.textContent = "";
+    var d = compute(TXT);
+    var isAscii = TXT.split("").every(function (c) { return c.codePointAt(0) < 128; });
+
+    var cx0 = 600, bitW = 26, gap = 5;
+
+    /* --- 第 1 行：字符 --- */
+    sectionLabel(70, 78, "① 字符");
+    var charCells = [];
+    var charW = 86;
+    var totalW = d.bytes.length * (charW + 14) - 14;
+    var startX = cx0 - totalW / 2;
+    for (var i = 0; i < d.bytes.length; i++) {
+      var x = startX + i * (charW + 14);
+      box(x, 46, charW, 74, "rgba(88,196,221,.5)");
+      var ch = d.bytes.length === TXT.length ? TXT[i] : "";
+      charCells.push(mono(x + charW / 2, 84, 38, ch || "·", C.blue, 700));
+    }
+    if (d.bytes.length !== TXT.length) {
+      // 多字节：展示原始字符
+      mono(cx0, 30, 20, "'" + TXT + "'（UTF-8 占 " + d.bytes.length + " 字节）", C.grey, 500);
+    }
+
+    /* --- 第 2 行：ASCII / Unicode 码点 --- */
+    sectionLabel(70, 172, "② 字节值");
+    var asciiCells = [];
+    for (var i2 = 0; i2 < d.bytes.length; i2++) {
+      var x2 = startX + i2 * (charW + 14);
+      mono(x2 + charW / 2, 164, 24, String(d.bytes[i2]), C.yellow, 600);
+      mono(x2 + charW / 2, 190, 12, "0x" + d.bytes[i2].toString(16).toUpperCase().padStart(2, "0"), C.grey, 400);
+    }
+
+    /* --- 第 3 行：比特流（8 位分组） --- */
+    sectionLabel(70, 262, "③ 二进制位流 · 8 bit 一组");
+    var bitCells = [];
+    var bitsTotalW = d.bits.length * bitW + (d.bytes.length - 1) * 12;
+    var bx = cx0 - bitsTotalW / 2;
+    var idx3 = 0;
+    for (var b = 0; b < d.bytes.length; b++) {
+      for (var k = 0; k < 8; k++) {
+        var xx = bx + b * (8 * bitW + 12) + k * bitW;
+        var cell = mono(xx + bitW / 2, 262, 21, d.bits[idx3], k < 2 ? C.grey : C.white, 600);
+        bitCells.push(cell);
+        idx3++;
+      }
+    }
+    // 8位分组括线
+    for (var b2 = 0; b2 < d.bytes.length; b2++) {
+      var gx = bx + b2 * (8 * bitW + 12);
+      el("path", { d: "M" + gx + " 284 h" + (8 * bitW - 6), stroke: C.grey, fill: "none", "stroke-width": 1.6, "stroke-dasharray": "none" });
+    }
+
+    /* --- 第 4 行：6 位重排 --- */
+    sectionLabel(70, 372, "④ 重新分组 · 6 bit 一组");
+    var gCells = [], gBoxes = [];
+    var gW = 6 * bitW + 10;
+    var gTotalW = d.groups.length * (gW + 26) + d.eq * 54 - 26;
+    var gx0 = cx0 - gTotalW / 2;
+    var bitOwner = []; // 每个 bit 在新分组里的目标位置
+    for (var gi = 0; gi < d.groups.length; gi++) {
+      var gxx = gx0 + gi * (gW + 26);
+      var bb = box(gxx, 336, gW, 70, "rgba(167,139,250,.45)");
+      gBoxes.push(bb);
+      for (var k2 = 0; k2 < 6; k2++) {
+        var bitIdx = gi * 6 + k2;
+        if (bitIdx >= d.bits.length) {
+          // 补零位
+          var zc = mono(gxx + 5 + k2 * bitW + bitW / 2, 372, 21, "0", "rgba(127,142,147,.9)", 400);
+          zc.dataset.pad = "1";
+          gCells.push(zc);
+          continue;
+        }
+        gCells.push(null); // 占位，实际由上方 bitCells 移动而来
+        bitOwner[bitIdx] = { x: gxx + 5 + k2 * bitW + bitW / 2, y: 372 };
+      }
+    }
+    for (var e1 = 0; e1 < d.eq; e1++) {
+      var exx = gx0 + d.groups.length * (gW + 26) + e1 * 54;
+      var eb = box(exx, 336, 44, 70, "rgba(239,138,122,.5)");
+      gBoxes.push(eb);
+      gCells.push(mono(exx + 22, 372, 34, "=", C.red, 700));
+    }
+
+    /* --- 第 5 行：组值 --- */
+    sectionLabel(70, 470, "⑤ 组值（十进制）");
+    var valTexts = [];
+    for (var gi2 = 0; gi2 < d.groups.length; gi2++) {
+      var gxx2 = gx0 + gi2 * (gW + 26);
+      valTexts.push(mono(gxx2 + gW / 2, 470, 26, String(d.groups[gi2].val), C.green, 700));
+    }
+
+    /* --- 码表 --- */
+    sectionLabel(70, 545, "⑥ 查表（RFC 4648 码表）");
+    var tableY = 560;
+    var cellW = Math.min(15.5, (1060 / 64));
+    var tableX0 = cx0 - 64 * cellW / 2;
+    var tableChars = [];
+    for (var ti = 0; ti < 64; ti++) {
+      var txx = tableX0 + ti * cellW;
+      tableChars.push(mono(txx + cellW / 2, tableY, 15, ALPHABET[ti], "rgba(230,237,243,.6)", 500));
+      if (d.groups.some(function (g) { return g.val === ti; })) {
+        var hl = el("rect", {
+          x: txx, y: tableY - 15, width: cellW, height: 30, rx: 4,
+          fill: "rgba(88,196,221,.0)", stroke: C.blue, "stroke-width": 1.6
+        });
+        hl.dataset.match = ti;
+      }
+    }
+
+    /* --- 结果 --- */
+    sectionLabel(70, 655, "⑦ Base64 输出");
+    var outStr = d.out + "=".repeat(d.eq);
+    var outW = outStr.length * 64;
+    var ox = cx0 - outW / 2;
+    var resultBox = box(ox - 16, 618, outW + 32, 66, "rgba(252,233,79,.5)");
+    var resultTexts = [];
+    for (var oi = 0; oi < outStr.length; oi++) {
+      var oxx = ox + oi * 64;
+      mono(oxx + 4, 650, 17, String(oi + 1), C.grey, 400);
+      var rt = mono(oxx + 4, 638 - 8, 34, outStr[oi], outStr[oi] === "=" ? C.red : C.yellow, 700);
+      rt.setAttribute("y", 652);
+      resultTexts.push(rt);
+    }
+
+    /* ================= GSAP 时间线 ================= */
+    captions = [
+      "起点：把要编码的字符排成一排。Base64 的使命是用<b>纯可打印字符</b>安全地搬运任意二进制数据（历史上为了邮件附件）。",
+      "每个字符对应一个字节值（ASCII 直接映射；非 ASCII 按 UTF-8 拆成多个字节）。<b>Man → 77, 97, 110</b>。",
+      "把每个字节写成 <b>8 位二进制</b>，首两位灰色提醒你：ASCII 字节都以 0 开头——这就是后面「浪费」的来源。",
+      "关键一步：比特流<b>重新按 6 位切</b>。3 字节 = 24 bit = 4 组，整除；不足补零（灰色 0），组数不够 4 的倍数用 <b style='color:#ef8a7a'>=</b> 占位。",
+      "每组 6 位换算成十进制，范围恰好是 <b>0–63</b>，正好够用 64 个字符表达。",
+      "拿着组值去查 RFC 4648 码表：大写 26 + 小写 26 + 数字 10 + <b>+ /</b>。高亮的格子就是本次用到的行。",
+      "得到 <b>" + outStr + "</b>。规律：每 3 字节输入 → 4 字符输出（体积 +33%），这就是邮件附件比原文件大的原因。"
+    ];
+    if (!isAscii) {
+      captions[1] += " 你输入的「" + TXT + "」不是 ASCII，按 UTF-8 展开成了 " + d.bytes.length + " 个字节——中文在 Base64 里通常会变得更长。";
+    }
+
+    if (tl) tl.kill();
+    tl = gsap.timeline({ paused: true, onUpdate: function () { document.getElementById("pbar").style.width = tl.progress() * 100 + "%"; } });
+    labels = ["s0", "s1", "s2", "s3", "s4", "s5", "s6"];
+    curStep = 0;
+
+    function setCaption(i) {
+      document.getElementById("caption").innerHTML = '<span class="idx">STEP ' + i + " / 6</span>" + captions[i];
+      document.getElementById("stepNo").textContent = (i + 1) + " / 7";
+    }
+    tl.call(function () { setCaption(0); });
+
+    // ① 字符入场
+    tl.addLabel("s0");
+    charCells.forEach(function (c, i) { tl.from(c, { opacity: 0, y: -18, duration: 0.5, stagger: 0.12 }, "s0+=" + i * 0.1); });
+    tl.to({}, { duration: 0.5 });
+
+    // ② 字节值
+    tl.addLabel("s1");
+    svg.querySelectorAll("text").forEach(function () { });
+    var asciiNodes = svg.querySelectorAll('text[y="164"]');
+    asciiNodes.forEach(function (t) { tl.from(t, { opacity: 0, duration: 0.4 }, "s1"); });
+    tl.to({}, { duration: 0.5 });
+
+    // ③ 比特展开
+    tl.addLabel("s2");
+    bitCells.forEach(function (c, i) {
+      tl.from(c, { opacity: 0, scale: 0.3, transformOrigin: "center", duration: 0.22 }, "s2+=" + i * 0.03);
+    });
+    tl.to({}, { duration: 0.4 });
+
+    // ④ 比特飞行重组
+    tl.addLabel("s3");
+    var moved = [];
+    bitCells.forEach(function (c, i) {
+      var target = bitOwner[i];
+      if (!target) return;
+      var cur = { x: parseFloat(c.getAttribute("x")), y: parseFloat(c.getAttribute("y")) };
+      moved.push(c);
+      tl.to(c, {
+        attr: { x: target.x, y: target.y },
+        duration: 0.9, ease: "power3.inOut"
+      }, "s3+=" + (i * 0.012));
+    });
+    gBoxes.forEach(function (bb) { tl.from(bb, { opacity: 0, scale: 0.92, transformOrigin: "center", duration: 0.4 }, "s3+=0.15"); });
+    svg.querySelectorAll("[data-pad]").forEach(function (z) { tl.from(z, { opacity: 0, duration: 0.3 }, "s3+=0.6"); });
+    // 补零说明
+    if (d.eq > 0) tl.call(function () { setCaption(3); }, null, "s3+=0.7");
+    tl.to({}, { duration: 0.6 });
+
+    // ⑤ 组值
+    tl.addLabel("s4");
+    valTexts.forEach(function (t, i) { tl.from(t, { opacity: 0, y: 14, duration: 0.4 }, "s4+=" + i * 0.18); });
+    tl.to({}, { duration: 0.4 });
+
+    // ⑥ 查表高亮
+    tl.addLabel("s5");
+    svg.querySelectorAll("[data-match]").forEach(function (hl, i) {
+      tl.to(hl, { attr: { fill: "rgba(88,196,221,.25)" }, duration: 0.35 }, "s5+=" + i * 0.3);
+      tl.fromTo(hl, { scale: 0.6, transformOrigin: "center" }, { scale: 1, duration: 0.4 }, "s5+=" + i * 0.3);
+    });
+    tl.to({}, { duration: 0.4 });
+
+    // ⑦ 结果
+    tl.addLabel("s6");
+    tl.from(resultBox, { opacity: 0, y: 16, duration: 0.4 }, "s6");
+    resultTexts.forEach(function (t, i) {
+      tl.from(t, { opacity: 0, y: -26, duration: 0.4, ease: "back.out(2)" }, "s6+=" + (0.15 + i * 0.2));
+    });
+    tl.to({}, { duration: 0.6 });
+
+    // 逐步字幕（在标签处更新）
+    [["s1", 1], ["s2", 2], ["s3", 3], ["s4", 4], ["s5", 5], ["s6", 6]].forEach(function (pair) {
+      tl.call(function () { setCaption(pair[1]); }, null, pair[0]);
+    });
+    tl.eventCallback("onComplete", function () { document.getElementById("bPlay").textContent = "▶ 重播"; });
+
+    setCaption(0);
+  }
+
+  /* ---- 控件 ---- */
+  var bPlay = document.getElementById("bPlay");
+  bPlay.addEventListener("click", function () {
+    if (tl.isActive()) { tl.pause(); bPlay.textContent = "▶ 播放"; }
+    else { if (tl.progress() >= 1) tl.pause(0); tl.play(); bPlay.textContent = "⏸ 暂停"; }
+  });
+  document.getElementById("bPrev").addEventListener("click", function () {
+    var t = Math.max(0, labels.indexOf(labels[Math.max(0, curStep - 1)]));
+    curStep = Math.max(0, curStep - 1);
+    tl.tweenTo(labels[curStep], { duration: 0.4 });
+  });
+  document.getElementById("bNext").addEventListener("click", function () {
+    curStep = Math.min(6, curStep + 1);
+    tl.tweenTo(labels[curStep], { duration: 0.5 });
+  });
+  document.getElementById("bReset").addEventListener("click", function () {
+    tl.pause(0); bPlay.textContent = "▶ 播放"; curStep = 0;
+  });
+  document.getElementById("txtIn").addEventListener("input", function (e) {
+    var v = e.target.value.trim();
+    if (!v) return;
+    TXT = v;
+    build();
+  });
+  document.querySelectorAll(".presets button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.getElementById("txtIn").value = btn.dataset.t;
+      TXT = btn.dataset.t;
+      build();
+      tl.play();
+      bPlay.textContent = "⏸ 暂停";
+    });
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>

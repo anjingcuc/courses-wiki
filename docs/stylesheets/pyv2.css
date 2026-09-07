@@ -1,0 +1,689 @@
+/* ============================================================
+   Python V2 · AI 原生课程设计系统
+   深色优先 · 玻璃拟态 · sky/violet 双色渐变
+   ============================================================ */
+
+:root {
+  --pyv2-bg: #0a0e1a;
+  --pyv2-bg-soft: #0d1326;
+  --pyv2-surface: rgba(255, 255, 255, 0.035);
+  --pyv2-surface-2: rgba(255, 255, 255, 0.06);
+  --pyv2-border: rgba(255, 255, 255, 0.08);
+  --pyv2-border-2: rgba(255, 255, 255, 0.14);
+  --pyv2-sky: #38bdf8;
+  --pyv2-violet: #a78bfa;
+  --pyv2-green: #34d399;
+  --pyv2-red: #f87171;
+  --pyv2-amber: #fbbf24;
+  --pyv2-text: #e2e8f0;
+  --pyv2-muted: #8b98b4;
+  --pyv2-muted-2: #64748b;
+  --pyv2-grad: linear-gradient(92deg, #38bdf8, #a78bfa);
+  --pyv2-grad-soft: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(167, 139, 250, 0.12));
+  --pyv2-radius: 14px;
+  --pyv2-font-mono: "JetBrains Mono", "Fira Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+/* ---------- 基础暗色容器：嵌在明暗两种主题里都自洽 ---------- */
+.pyv2 {
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 45% at 85% -5%, rgba(56, 189, 248, 0.08), transparent),
+    radial-gradient(ellipse 50% 40% at 5% 105%, rgba(167, 139, 250, 0.08), transparent),
+    var(--pyv2-bg);
+  color: var(--pyv2-text);
+  border: 1px solid var(--pyv2-border);
+  border-radius: var(--pyv2-radius);
+  padding: 22px 24px;
+  margin: 1.2em 0;
+  overflow: hidden;
+}
+.pyv2 * { box-sizing: border-box; }
+.pyv2 a { color: var(--pyv2-sky); text-decoration: none; }
+.pyv2 a:hover { text-decoration: underline; }
+.pyv2 .grad {
+  background: var(--pyv2-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.pyv2 h1, .pyv2 h2, .pyv2 h3, .pyv2 h4 { color: var(--pyv2-text); margin: 0 0 8px; font-weight: 700; }
+.pyv2 p { color: var(--pyv2-muted); margin: 0 0 6px; line-height: 1.7; }
+
+/* ---------- Hero（课程主页） ---------- */
+.pyv2-hero {
+  position: relative;
+  margin: -2.4em -1.2em 1.2em;
+  padding: 56px 32px 40px;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% -10%, rgba(56, 189, 248, 0.16), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 110%, rgba(167, 139, 250, 0.14), transparent),
+    var(--pyv2-bg);
+  border-bottom: 1px solid var(--pyv2-border);
+  color: var(--pyv2-text);
+}
+.pyv2-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+.pyv2-hero .inner { position: relative; max-width: 1080px; margin: 0 auto; }
+.pyv2-hero .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.pyv2-hero .badge {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.08);
+  color: #7dd3fc;
+}
+.pyv2-hero .badge.v { border-color: rgba(167, 139, 250, 0.35); background: rgba(167, 139, 250, 0.08); color: #c4b5fd; }
+.pyv2-hero h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; letter-spacing: 1px; line-height: 1.2; color: #f8fafc; }
+.pyv2-hero .sub { margin-top: 10px; font-size: 15px; color: var(--pyv2-muted); max-width: 720px; line-height: 1.8; }
+.pyv2-hero .cta-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.pyv2-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pyv2-btn:hover { transform: translateY(-2px); text-decoration: none !important; }
+.pyv2-btn.primary {
+  background: var(--pyv2-grad);
+  color: #071018;
+  box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25);
+}
+.pyv2-btn.ghost {
+  background: var(--pyv2-surface);
+  border-color: var(--pyv2-border-2);
+  color: var(--pyv2-text);
+}
+.pyv2-btn.ghost:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+
+/* hero 双栏：文案 + 终端 */
+.pyv2-hero .cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
+@media (max-width: 960px) { .pyv2-hero .cols { grid-template-columns: 1fr; } }
+
+/* 终端窗口 */
+.pyv2-terminal {
+  background: #0b0f1c;
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  font-family: var(--pyv2-font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.pyv2-terminal .bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--pyv2-border);
+}
+.pyv2-terminal .dot { width: 11px; height: 11px; border-radius: 50%; }
+.pyv2-terminal .dot.r { background: #ff5f57; }
+.pyv2-terminal .dot.y { background: #febc2e; }
+.pyv2-terminal .dot.g { background: #28c840; }
+.pyv2-terminal .title { margin-left: 8px; font-size: 12px; color: var(--pyv2-muted-2); }
+.pyv2-terminal .body { padding: 14px 16px; min-height: 210px; white-space: pre-wrap; word-break: break-all; }
+.pyv2-terminal .c-in { color: #7dd3fc; }
+.pyv2-terminal .c-out { color: #a5f3fc; }
+.pyv2-terminal .c-ai { color: #c4b5fd; }
+.pyv2-terminal .c-dim { color: var(--pyv2-muted-2); }
+.pyv2-terminal .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--pyv2-sky);
+  vertical-align: -2px;
+  animation: pyv2-blink 1s steps(1) infinite;
+}
+@keyframes pyv2-blink { 50% { opacity: 0; } }
+
+/* ---------- 大数字统计 ---------- */
+.pyv2-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 1.2em 0; }
+.pyv2-stat {
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 12px;
+  padding: 16px 12px 12px;
+  text-align: center;
+}
+.pyv2-stat .n {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  font-family: var(--pyv2-font-mono);
+  background: linear-gradient(180deg, #e0f2fe, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.pyv2-stat .n small { font-size: 15px; font-weight: 600; }
+.pyv2-stat .l { margin-top: 7px; font-size: 12.5px; color: var(--pyv2-muted); }
+.pyv2-stat.v .n { background: linear-gradient(180deg, #ede9fe, #a78bfa); -webkit-background-clip: text; background-clip: text; }
+
+/* ---------- 模块学习路径 ---------- */
+.pyv2-path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 1em 0; }
+@media (max-width: 1080px) { .pyv2-path { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .pyv2-path { grid-template-columns: 1fr; } }
+.pyv2-mod-card {
+  position: relative;
+  display: block;
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  color: var(--pyv2-text);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pyv2-mod-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.12);
+  text-decoration: none !important;
+}
+.pyv2-mod-card .mid {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  color: var(--pyv2-sky);
+  letter-spacing: 1px;
+}
+.pyv2-mod-card b { display: block; font-size: 15.5px; margin: 5px 0 6px; color: #f1f5f9; }
+.pyv2-mod-card span { font-size: 12.5px; color: var(--pyv2-muted); line-height: 1.55; display: block; }
+.pyv2-mod-card .lessons {
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: var(--pyv2-muted-2);
+  font-family: var(--pyv2-font-mono);
+}
+.pyv2-mod-card .glow {
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 120px;
+  background: var(--pyv2-grad);
+  filter: blur(46px);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+/* ---------- 知识图谱 ---------- */
+.pyv2-graph-wrap {
+  position: relative;
+  background: var(--pyv2-bg-soft);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.pyv2-graph-wrap canvas { display: block; width: 100%; height: 520px; cursor: grab; }
+.pyv2-graph-wrap .hint {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 11.5px;
+  color: var(--pyv2-muted-2);
+  background: rgba(10, 14, 26, 0.72);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--pyv2-border);
+  pointer-events: none;
+}
+.pyv2-graph-tip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(10, 14, 26, 0.94);
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: var(--pyv2-text);
+  max-width: 260px;
+  display: none;
+  z-index: 5;
+  line-height: 1.6;
+}
+.pyv2-graph-tip b { color: var(--pyv2-sky); }
+
+/* ---------- 交互实验室卡片 ---------- */
+.pyv2-lab { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 1em 0; }
+@media (max-width: 900px) { .pyv2-lab { grid-template-columns: 1fr; } }
+.pyv2-demo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(160deg, rgba(56, 189, 248, 0.06), rgba(167, 139, 250, 0.05)), var(--pyv2-bg-soft);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 14px;
+  padding: 18px 20px 16px;
+  color: var(--pyv2-text);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pyv2-demo-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 14px 44px rgba(167, 139, 250, 0.14);
+  text-decoration: none !important;
+}
+.pyv2-demo-card .tag {
+  align-self: flex-start;
+  font-size: 11px;
+  font-family: var(--pyv2-font-mono);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+  letter-spacing: 1px;
+}
+.pyv2-demo-card .tag.v { background: rgba(167, 139, 250, 0.1); border-color: rgba(167, 139, 250, 0.3); color: #c4b5fd; }
+.pyv2-demo-card .tag.g { background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3); color: #6ee7b7; }
+.pyv2-demo-card b { font-size: 16px; color: #f1f5f9; }
+.pyv2-demo-card p { font-size: 13px; margin: 0; }
+.pyv2-demo-card .go { margin-top: auto; padding-top: 10px; font-size: 13px; color: var(--pyv2-sky); font-weight: 600; }
+
+/* ---------- 作业时间线 ---------- */
+.pyv2-tl { position: relative; padding-left: 26px; margin: 1em 0; }
+.pyv2-tl::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--pyv2-sky), var(--pyv2-violet));
+  opacity: 0.5;
+}
+.pyv2-tl-item { position: relative; padding: 0 0 18px 12px; }
+.pyv2-tl-item::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pyv2-bg);
+  border: 2px solid var(--pyv2-sky);
+}
+.pyv2-tl-item.v::before { border-color: var(--pyv2-violet); }
+.pyv2-tl-item b { color: #f1f5f9; font-size: 14px; }
+.pyv2-tl-item .meta { font-size: 11.5px; font-family: var(--pyv2-font-mono); color: var(--pyv2-muted-2); margin-left: 8px; }
+.pyv2-tl-item p { font-size: 13px; margin: 4px 0 0; }
+
+/* ---------- Pyodide 运行场 ---------- */
+.py-playground {
+  background: #0b0f1c;
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.2em 0;
+}
+.py-playground .pg-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--pyv2-border);
+}
+.py-playground .pg-title { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--pyv2-muted); }
+.py-playground .pg-title .lang { color: var(--pyv2-green); font-family: var(--pyv2-font-mono); font-weight: 700; }
+.py-playground .pg-actions { display: flex; gap: 8px; }
+.py-playground .pg-btn {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--pyv2-border-2);
+  background: var(--pyv2-surface-2);
+  color: var(--pyv2-text);
+  transition: all 0.15s ease;
+}
+.py-playground .pg-btn:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+.py-playground .pg-btn.run {
+  background: var(--pyv2-grad);
+  color: #071018;
+  border-color: transparent;
+}
+.py-playground .pg-btn.run:disabled { opacity: 0.55; cursor: wait; }
+.py-playground textarea {
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  padding: 14px 16px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  resize: vertical;
+  color: #d8f3ff;
+  font-family: var(--pyv2-font-mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+  tab-size: 4;
+}
+.py-playground .pg-out {
+  border-top: 1px dashed var(--pyv2-border);
+  padding: 10px 16px 12px;
+  font-family: var(--pyv2-font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #a5f3fc;
+  min-height: 20px;
+}
+.py-playground .pg-out .err { color: var(--pyv2-red); }
+.py-playground .pg-out .ok { color: var(--pyv2-green); }
+.py-playground .pg-out .dim { color: var(--pyv2-muted-2); }
+.py-playground .pg-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--pyv2-muted-2);
+}
+.py-playground .pg-status .spin {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.25);
+  border-top-color: var(--pyv2-sky);
+  animation: pyv2-rotate 0.8s linear infinite;
+}
+@keyframes pyv2-rotate { to { transform: rotate(360deg); } }
+
+/* ---------- 测验 ---------- */
+.pyv2-quiz { display: flex; flex-direction: column; gap: 12px; }
+.pyv2-q {
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 12px;
+  padding: 15px 18px;
+}
+.pyv2-q .q-title { font-size: 14.5px; color: #f1f5f9; font-weight: 600; margin-bottom: 11px; line-height: 1.6; }
+.pyv2-q .q-title .no { color: var(--pyv2-sky); font-family: var(--pyv2-font-mono); margin-right: 6px; }
+.pyv2-q .opts { display: flex; flex-direction: column; gap: 7px; }
+.pyv2-q .opt {
+  text-align: left;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--pyv2-muted);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 9px;
+  padding: 9px 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.pyv2-q .opt:hover { border-color: var(--pyv2-sky); color: var(--pyv2-text); }
+.pyv2-q .opt.correct { border-color: var(--pyv2-green); color: #a7f3d0; background: rgba(52, 211, 153, 0.08); }
+.pyv2-q .opt.wrong { border-color: var(--pyv2-red); color: #fecaca; background: rgba(248, 113, 113, 0.07); }
+.pyv2-q .opt.dimmed { opacity: 0.45; }
+.pyv2-q .opt:disabled { cursor: default; }
+.pyv2-q .explain {
+  margin-top: 10px;
+  font-size: 12.8px;
+  line-height: 1.7;
+  color: #bfe9ff;
+  background: rgba(56, 189, 248, 0.07);
+  border-left: 3px solid var(--pyv2-sky);
+  border-radius: 0 8px 8px 0;
+  padding: 9px 13px;
+  display: none;
+}
+.pyv2-quiz .quiz-score { font-size: 13px; color: var(--pyv2-muted); font-family: var(--pyv2-font-mono); }
+
+/* ---------- AI 学伴 ---------- */
+.pyv2-ai-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--pyv2-grad);
+  color: #071018;
+  font-size: 14px;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.35);
+  transition: transform 0.15s ease;
+}
+.pyv2-ai-fab:hover { transform: translateY(-2px); }
+.pyv2-ai-fab .spark { font-size: 16px; }
+.pyv2-ai-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 84px;
+  z-index: 91;
+  width: min(420px, calc(100vw - 44px));
+  height: min(600px, calc(100vh - 130px));
+  display: none;
+  flex-direction: column;
+  background: rgba(10, 14, 26, 0.97);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+.pyv2-ai-panel.open { display: flex; }
+.pyv2-ai-panel .ai-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--pyv2-border);
+  background: rgba(255, 255, 255, 0.025);
+}
+.pyv2-ai-panel .ai-head b { font-size: 14px; color: #f1f5f9; display: flex; gap: 8px; align-items: center; }
+.pyv2-ai-panel .ai-head .model-tag {
+  font-size: 11px;
+  font-family: var(--pyv2-font-mono);
+  color: #7dd3fc;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.pyv2-ai-panel .ai-head .icon-btn {
+  background: none;
+  border: 0;
+  color: var(--pyv2-muted);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 7px;
+  border-radius: 6px;
+}
+.pyv2-ai-panel .ai-head .icon-btn:hover { color: var(--pyv2-text); background: var(--pyv2-surface-2); }
+.pyv2-ai-panel .ai-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.pyv2-ai-panel .ai-body::-webkit-scrollbar { width: 6px; }
+.pyv2-ai-panel .ai-body::-webkit-scrollbar-thumb { background: var(--pyv2-border-2); border-radius: 3px; }
+.ai-msg { max-width: 88%; font-size: 13.5px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.ai-msg.user {
+  align-self: flex-end;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #dff3ff;
+  border-radius: 12px 12px 3px 12px;
+  padding: 9px 13px;
+}
+.ai-msg.assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--pyv2-border);
+  color: var(--pyv2-text);
+  border-radius: 12px 12px 12px 3px;
+  padding: 9px 13px;
+}
+.ai-msg.assistant code { font-family: var(--pyv2-font-mono); font-size: 12.5px; color: #93c5fd; }
+.ai-msg.system {
+  align-self: center;
+  font-size: 12px;
+  color: var(--pyv2-muted-2);
+  text-align: center;
+}
+.ai-msg .cursor {
+  display: inline-block;
+  width: 7px; height: 13px;
+  background: var(--pyv2-violet);
+  vertical-align: -2px;
+  animation: pyv2-blink 1s steps(1) infinite;
+}
+.pyv2-ai-panel .ai-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--pyv2-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+.pyv2-ai-panel .ai-input textarea {
+  flex: 1;
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 10px;
+  color: var(--pyv2-text);
+  font-size: 13.5px;
+  font-family: inherit;
+  padding: 9px 12px;
+  resize: none;
+  height: 42px;
+  max-height: 120px;
+  outline: none;
+  line-height: 1.5;
+}
+.pyv2-ai-panel .ai-input textarea:focus { border-color: var(--pyv2-sky); }
+.pyv2-ai-panel .ai-input .send {
+  align-self: flex-end;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--pyv2-grad);
+  color: #071018;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.pyv2-ai-panel .ai-input .send:disabled { opacity: 0.5; cursor: wait; }
+/* 设置区 */
+.ai-settings { padding: 14px; display: flex; flex-direction: column; gap: 11px; overflow-y: auto; }
+.ai-settings label { font-size: 12px; color: var(--pyv2-muted); display: block; margin-bottom: 4px; }
+.ai-settings select, .ai-settings input {
+  width: 100%;
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border-2);
+  border-radius: 8px;
+  color: var(--pyv2-text);
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+}
+.ai-settings select:focus, .ai-settings input:focus { border-color: var(--pyv2-sky); }
+.ai-settings .note { font-size: 11.5px; color: var(--pyv2-muted-2); line-height: 1.6; }
+.ai-settings .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ai-settings .preset-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.ai-settings .chip {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.09);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  color: #bae6fd;
+  cursor: pointer;
+}
+.ai-settings .chip.active { background: var(--pyv2-grad); color: #071018; border-color: transparent; font-weight: 600; }
+.ai-settings .actions { display: flex; gap: 9px; }
+.ai-settings .actions .pyv2-btn { flex: 1; justify-content: center; padding: 9px; border-radius: 9px; font-size: 13px; }
+
+/* ---------- 模块页头部 ---------- */
+.pyv2-mod-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse 70% 90% at 0% 0%, rgba(56, 189, 248, 0.12), transparent),
+    radial-gradient(ellipse 70% 90% at 100% 100%, rgba(167, 139, 250, 0.1), transparent),
+    var(--pyv2-bg-soft);
+  border: 1px solid var(--pyv2-border);
+  margin: 1.2em 0;
+}
+.pyv2-mod-hero .l b { font-size: 22px; color: #f1f5f9; display: block; }
+.pyv2-mod-hero .l .mid-tag { font-family: var(--pyv2-font-mono); font-size: 13px; color: var(--pyv2-sky); letter-spacing: 1.5px; }
+.pyv2-mod-hero .r { display: flex; gap: 18px; font-size: 12.5px; color: var(--pyv2-muted); font-family: var(--pyv2-font-mono); }
+.pyv2-mod-hero .r b { color: #e2e8f0; }
+
+/* 课时卡片 */
+.pyv2-lessons { display: flex; flex-direction: column; gap: 10px; margin: 1em 0; }
+.pyv2-lesson {
+  background: var(--pyv2-surface);
+  border: 1px solid var(--pyv2-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.pyv2-lesson .l-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.pyv2-lesson .l-no {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  color: var(--pyv2-violet);
+  letter-spacing: 1px;
+}
+.pyv2-lesson b { font-size: 15px; color: #f1f5f9; }
+.pyv2-lesson .l-body { margin-top: 7px; font-size: 13.5px; line-height: 1.75; color: var(--pyv2-muted); }
+.pyv2-lesson .l-body b { font-size: 13.5px; color: #cfe6ff; font-weight: 600; }
+.pyv2-lesson .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.pyv2-lesson .chips span {
+  font-size: 11.5px;
+  font-family: var(--pyv2-font-mono);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #9bd7f7;
+}
+.pyv2-lesson .chips span.v { background: rgba(167, 139, 250, 0.08); border-color: rgba(167, 139, 250, 0.22); color: #c4b5fd; }
+
+/* ---------- GSAP 入场（JS 兜底前可见性保护） ---------- */
+.pyv2 [data-anim] { opacity: 0; }
+.pyv2.no-anim [data-anim] { opacity: 1 !important; transform: none !important; }
+.js-ready .pyv2 [data-anim] { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .pyv2 [data-anim] { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- 明亮模式下的正文区域微调 ---------- */
+[data-md-color-scheme="default"] .md-typeset .pyv2,
+[data-md-color-scheme="default"] .md-typeset .py-playground,
+[data-md-color-scheme="default"] .md-typeset .pyv2-quiz { color-scheme: dark; }
+
+/* 打印友好 */
+@media print {
+  .pyv2-ai-fab, .pyv2-ai-panel { display: none !important; }
+  .pyv2 [data-anim] { opacity: 1 !important; }
+}

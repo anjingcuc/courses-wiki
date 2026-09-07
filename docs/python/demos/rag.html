@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG：让 AI 读你的文档 · 流程模拟 | Python V2</title>
+<link rel="stylesheet" href="../../stylesheets/pyv2.css">
+<script src="../../javascripts/vendor/gsap.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Noto Sans SC", "PingFang SC", sans-serif; background: var(--pyv2-bg); color: var(--pyv2-text); min-height: 100vh; }
+.top { display: flex; justify-content: space-between; align-items: center; padding: 13px 26px; border-bottom: 1px solid var(--pyv2-border); }
+.top h1 { font-size: 16px; }
+.top h1 .grad { background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.top .crumb a { color: var(--pyv2-sky); text-decoration: none; font-size: 13px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 18px 26px 70px; }
+
+.askrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.askrow input[type=text] {
+  flex: 1; min-width: 260px; background: #0b0f1c; border: 1px solid var(--pyv2-border-2); border-radius: 10px;
+  color: #dff3ff; font-size: 14px; padding: 11px 15px; outline: none;
+}
+.askrow input[type=text]:focus { border-color: var(--pyv2-sky); }
+.askrow .presets { display: flex; gap: 7px; flex-wrap: wrap; }
+.askrow .presets button {
+  font-size: 12px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25); color: #bae6fd;
+}
+.askrow .presets button:hover { background: var(--pyv2-grad); color: #071018; }
+.askrow .go {
+  font-size: 13.5px; font-weight: 700; padding: 11px 24px; border-radius: 10px; cursor: pointer;
+  border: 0; background: var(--pyv2-grad); color: #071018;
+}
+.ragtoggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--pyv2-muted); }
+.ragtoggle .sw {
+  position: relative; width: 44px; height: 24px; border-radius: 999px; cursor: pointer;
+  background: var(--pyv2-surface-2); border: 1px solid var(--pyv2-border-2); transition: all .25s;
+}
+.ragtoggle .sw::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--pyv2-muted-2); transition: all .25s;
+}
+.ragtoggle.on .sw { background: rgba(56,189,248,.25); border-color: var(--pyv2-sky); }
+.ragtoggle.on .sw::after { left: 22px; background: var(--pyv2-sky); }
+
+.pipe { display: flex; gap: 8px; margin-bottom: 16px; }
+.pipe .st {
+  flex: 1; text-align: center; padding: 11px 6px; border-radius: 11px;
+  background: var(--pyv2-surface); border: 1px solid var(--pyv2-border);
+  font-size: 12.5px; color: var(--pyv2-muted); transition: all .35s; position: relative; line-height: 1.5;
+}
+.pipe .st b { display: block; font-size: 15px; color: var(--pyv2-text); margin-bottom: 2px; }
+.pipe .st.on { border-color: var(--pyv2-sky); background: rgba(56,189,248,.08); box-shadow: 0 0 24px rgba(56,189,248,.15); }
+.pipe .st.on b { color: #7dd3fc; }
+.pipe .st:not(:last-child)::after {
+  content: "→"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); z-index: 2; color: var(--pyv2-sky); font-size: 13px;
+}
+
+.main2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 14px; }
+@media (max-width: 960px) { .main2 { grid-template-columns: 1fr; } .pipe { flex-wrap: wrap; } .pipe .st { min-width: 45%; } }
+
+.panel { background: var(--pyv2-bg-soft); border: 1px solid var(--pyv2-border); border-radius: 14px; padding: 14px 16px; }
+.panel h3 { font-size: 13.5px; color: #cbd5e1; margin-bottom: 10px; font-weight: 600; }
+.panel h3 em { font-style: normal; color: var(--pyv2-sky); }
+#vecCanvas { width: 100%; border-radius: 10px; background: #0a0e1a; border: 1px solid var(--pyv2-border); display: block; }
+.legend { display: flex; gap: 14px; font-size: 11.5px; color: var(--pyv2-muted-2); margin-top: 8px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
+
+.promptbox { background: #070a12; border: 1px solid var(--pyv2-border); border-radius: 10px; padding: 12px 14px;
+  font-family: var(--pyv2-font-mono); font-size: 12.3px; line-height: 1.75; white-space: pre-wrap; color: #9db8d3; min-height: 150px; }
+.promptbox .hl { color: #7dd3fc; }
+.promptbox .q { color: #fbbf24; }
+.promptbox .chunk { color: #8fd6a8; }
+.answer { margin-top: 12px; background: rgba(56,189,248,.05); border: 1px solid rgba(56,189,248,.2); border-radius: 10px; padding: 12px 14px;
+  font-size: 13.5px; line-height: 1.8; color: #d7ecff; min-height: 70px; }
+.answer .cite { font-family: var(--pyv2-font-mono); font-size: 11px; color: #7dd3fc; background: rgba(56,189,248,.12); padding: 1px 7px; border-radius: 999px; margin-right: 4px; }
+.answer.hallu { background: rgba(248,113,113,.05); border-color: rgba(248,113,113,.25); color: #ffd9d9; }
+.answer .warn { font-size: 11.5px; color: var(--pyv2-red); font-family: var(--pyv2-font-mono); }
+.caption { margin-top: 14px; min-height: 46px; font-size: 13.5px; line-height: 1.7; color: var(--pyv2-muted); }
+.caption b { color: #7dd3fc; }
+.docs-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.doc {
+  font-size: 11.5px; padding: 5px 11px; border-radius: 8px;
+  background: rgba(167,139,250,.08); border: 1px solid rgba(167,139,250,.25); color: #ddd6fe;
+}
+.doc.cut { border-style: dashed; }
+</style>
+</head>
+<body>
+<div class="top">
+  <h1><span class="grad">交互模拟</span> · RAG 检索增强生成</h1>
+  <div class="crumb"><a href="../../">← Python 程序设计 V2</a></div>
+</div>
+<div class="wrap">
+  <div class="askrow">
+    <input type="text" id="qIn" placeholder="问一个关于本课程的问题，例如：期末怎么评分？" value="期末成绩怎么算？">
+    <div class="presets">
+      <button data-q="期末成绩怎么算？">期末评分</button>
+      <button data-q="能用 AI 写作业吗？">AI 政策</button>
+      <button data-q="期末项目能做什么？">项目池</button>
+      <button data-q="RAG 是什么原理？">RAG 原理</button>
+    </div>
+    <div class="ragtoggle on" id="ragTg" title="切换后对比：纯大模型 vs RAG">
+      <div class="sw"></div><span id="ragTgLabel">RAG 开启</span>
+    </div>
+    <button class="go" id="goBtn">提问 →</button>
+  </div>
+
+  <div class="pipe" id="pipe">
+    <div class="st" data-i="0"><b>📄 知识库</b>课程文档</div>
+    <div class="st" data-i="1"><b>✂️ 切分</b>chunking</div>
+    <div class="st" data-i="2"><b>🧭 向量化</b>embedding</div>
+    <div class="st" data-i="3"><b>❓ 提问</b>query 向量</div>
+    <div class="st" data-i="4"><b>🔎 检索</b>top-k 近邻</div>
+    <div class="st" data-i="5"><b>📋 组装</b>prompt</div>
+    <div class="st" data-i="6"><b>✨ 生成</b>有据回答</div>
+  </div>
+
+  <div class="main2">
+    <div class="panel">
+      <h3>语义向量空间 <em id="topkLabel">top-k = 3</em></h3>
+      <canvas id="vecCanvas" height="330"></canvas>
+      <div class="legend">
+        <span><i style="background:#a78bfa"></i>文档块向量</span>
+        <span><i style="background:#38bdf8"></i>问题向量</span>
+        <span><i style="background:#fbbf24"></i>命中的 top-k</span>
+      </div>
+      <div style="margin-top:10px">
+        <label style="font-size:12px;color:var(--pyv2-muted)">top-k（检索条数）：</label>
+        <input type="range" id="topk" min="1" max="4" value="3" style="vertical-align:middle;width:140px">
+      </div>
+    </div>
+    <div class="panel">
+      <h3>组装出的 Prompt → 生成</h3>
+      <div class="docs-list" id="docsList"></div>
+      <div class="promptbox" id="promptBox">点击「提问」开始，观察右侧每个阶段。</div>
+      <div class="answer" id="answer"><span style="color:var(--pyv2-muted-2);font-size:12.5px">回答将出现在这里（带引用标注）</span></div>
+    </div>
+  </div>
+  <div class="caption" id="caption"><b>玩法：</b>输入问题（或点预设）→ 提问；拖动 top-k 看检索变化；关掉右上角 RAG 开关，对比「纯大模型」的幻觉回答。</div>
+</div>
+
+<script>
+(function () {
+  /* ---- 课程知识库（演示用迷你语料） ---- */
+  var CHUNKS = [
+    { id: 1, doc: "考核细则.docx", x: 0.18, y: 0.30, kw: ["成绩", "评分", "考核", "打分", "怎么算", "占", "比例", "期末", "分数"],
+      text: "成绩构成：平时作业 50%（4 次小作业各 10% + 课堂参与 10%），期末大项目 50%，无上机考试。",
+      ans: "成绩由两部分构成：平时作业占 50%（其中 4 次小作业各 10%，课堂参与 10%），期末大项目占 50%，本课程没有上机考试" },
+    { id: 2, doc: "考核细则.docx", x: 0.24, y: 0.52, kw: ["ai", "人工智能", "大模型", "作弊", "抄", "允许", "政策", "作业", "写作业", "能用"],
+      text: "AI 政策：全课程允许 AI 协作，但有纸面小测、指行讲思路抽查、答辩三问三道防线。",
+      ans: "可以用 AI 协作完成作业，这是课程鼓励的方式；但有三道防线保证真实掌握：每课末的无 AI 纸面小测、随机 20% 的「指行讲思路」抽查，以及答辩时随机指一行代码提问" },
+    { id: 3, doc: "项目池.md", x: 0.55, y: 0.22, kw: ["项目", "期末", "做什么", "选题", "题目", "答辩", "大项目", "能做"],
+      text: "期末项目池五选一：AI 知识库助手、智能学伴、AI 创意工坊、智能数据分析师、AI 客服机器人。",
+      ans: "期末大项目从五个项目池中任选其一：AI 知识库助手（RAG）、智能学伴（多轮对话 + Function Calling）、AI 创意工坊（多模态）、智能数据分析师（自然语言查数据）、AI 客服机器人（RAG + 工具调用），需在答辩中说清每一行代码" },
+    { id: 4, doc: "项目池.md", x: 0.68, y: 0.44, kw: ["组队", "几个人", "分工", "小组", "个人"],
+      text: "项目可 2–3 人分组或个人完成，需提交 AI 协作日志。",
+      ans: "项目可以 2–3 人一组，也可以个人完成；无论哪种形式都需要提交 AI 协作日志，记录 prompt 与人工修改" },
+    { id: 5, doc: "M5讲义/RAG.md", x: 0.42, y: 0.74, kw: ["rag", "检索", "增强", "原理", "向量", "embedding", "是什么", "语义"],
+      text: "RAG = Retrieval-Augmented Generation：先检索知识库中最相关的块，拼进 prompt，再让 LLM 基于这些材料回答，缓解幻觉与知识过时。",
+      ans: "RAG（检索增强生成）的原理是：把文档切分并向量化存入知识库；用户提问时同样向量化，检索最相近的 top-k 块，拼接进 prompt 交给大模型，让回答「有据可依」，从而缓解幻觉和知识截止问题" },
+    { id: 6, doc: "M5讲义/RAG.md", x: 0.58, y: 0.86, kw: ["切分", "chunk", "分块", "大小", "策略"],
+      text: "切分（chunking）策略：按段落/固定 token 数切，块太小丢上下文、太大检索不精准，需实验调优。",
+      ans: "切分策略通常按段落或固定 token 数进行；块太小会丢失上下文语义，太大则检索不精准且浪费 token，需要通过实验调优（这也是课程作业⑤的一部分）" },
+    { id: 7, doc: "课程大纲.xlsx", x: 0.12, y: 0.76, kw: ["课时", "模块", "大纲", "几节", "课程", "内容", "学什么"],
+      text: "48 课时 8 模块：导论、环境工具、语言核心、数据获取、工程化、AI 应用开发（12 课时）、综合项目（14 课时）、展望。",
+      ans: "课程共 48 课时、8 个模块：M0 导论、M1 环境与工具链、M2 语言核心、M3 数据获取与处理、M4 工程化、M5 AI 应用开发（12 课时核心模块）、M6 综合项目实战（14 课时）、M7 总结展望" },
+    { id: 8, doc: "课程大纲.xlsx", x: 0.86, y: 0.70, kw: ["工具", "用什么", "软件", "编辑器", "kimi", "trae", "环境"],
+      text: "工具链：VSCode + Trae + Kimi Code CLI + DeepSeek API，版本控制用 Git。",
+      ans: "课程工具链以国产 AI 工具为主：VSCode + Trae（IDE 内 AI）、Kimi Code（CLI 编程 Agent）、DeepSeek API（大模型接口），配合 Git 做版本控制" }
+  ];
+  var HALLU = {
+    ans: "据我所知这门课期末是闭卷考试，占总成绩 70%，另外 30% 是出勤分。建议背熟语法知识点，比如列表的 17 个方法……",
+    warn: "⚠ 以上为纯大模型幻觉示例——模型并不知道这门课的真实考核方式，RAG 关闭时它只能靠「常见课程」的先xiàn瞎猜"
+  };
+
+  var ragOn = true, topk = 3;
+  var canvas = document.getElementById("vecCanvas");
+  var ctx = canvas.getContext("2d");
+  var pts = [];          // 动画位置
+  var qPt = null;        // 问题点
+  var hits = [];
+  var timers = [];
+
+  function sizeCanvas() {
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = 330 * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  sizeCanvas();
+  window.addEventListener("resize", function () { sizeCanvas(); draw(); });
+
+  CHUNKS.forEach(function (c) {
+    pts.push({ c: c, x: c.x, y: c.y, tx: c.x, ty: c.y, hot: 0, seed: Math.random() * 10 });
+  });
+
+  function W() { return canvas.clientWidth; }
+  function H() { return 330; }
+
+  function draw() {
+    ctx.clearRect(0, 0, W(), H());
+    // 网格
+    ctx.strokeStyle = "rgba(148,163,184,.06)";
+    for (var gx = 0; gx <= W(); gx += 36) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H()); ctx.stroke(); }
+    for (var gy = 0; gy <= H(); gy += 36) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W(), gy); ctx.stroke(); }
+
+    // 命中连线
+    hits.forEach(function (h, i) {
+      if (!qPt) return;
+      ctx.beginPath();
+      ctx.moveTo(qPt.x * W(), qPt.y * H());
+      ctx.lineTo(h.x * W(), h.y * H());
+      ctx.strokeStyle = "rgba(251,191,36,.55)";
+      ctx.setLineDash([5, 4]);
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // 文档点
+    pts.forEach(function (p, i) {
+      var px = p.x * W(), py = p.y * H();
+      var isHit = hits.indexOf(p) >= 0;
+      var r = isHit ? 10 : 6;
+      if (isHit) {
+        var g = ctx.createRadialGradient(px, py, 1, px, py, 26);
+        g.addColorStop(0, "rgba(251,191,36,.5)"); g.addColorStop(1, "transparent");
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(px, py, 26, 0, 7); ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, 7);
+      ctx.fillStyle = isHit ? "#fbbf24" : "rgba(167,139,250,.85)";
+      ctx.fill();
+      ctx.font = "10.5px 'JetBrains Mono', monospace";
+      ctx.fillStyle = isHit ? "#fde68a" : "rgba(148,163,184,.75)";
+      ctx.textAlign = "center";
+      ctx.fillText("#" + p.c.id, px, py - r - 7);
+    });
+
+    // 问题点
+    if (qPt) {
+      var qx = qPt.x * W(), qy = qPt.y * H();
+      var pulse = 3 + Math.sin(Date.now() / 300) * 2;
+      ctx.beginPath(); ctx.arc(qx, qy, 14 + pulse, 0, 7);
+      ctx.strokeStyle = "rgba(56,189,248,.5)"; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(qx, qy, 7, 0, 7);
+      ctx.fillStyle = "#38bdf8"; ctx.fill();
+      ctx.font = "600 11px 'Noto Sans SC'";
+      ctx.fillStyle = "#bae6fd"; ctx.textAlign = "center";
+      ctx.fillText("问题", qx, qy - 22);
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  function clearTimeouts() { timers.forEach(clearTimeout); timers = []; }
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+  function matchScore(q, chunk) {
+    var score = 0;
+    var ql = q.toLowerCase();
+    chunk.kw.forEach(function (k) {
+      if (ql.indexOf(k) >= 0) score += (k.length > 2 ? 2 : 1);
+    });
+    return score;
+  }
+
+  function run() {
+    clearTimeouts();
+    var q = document.getElementById("qIn").value.trim() || "期末成绩怎么算？";
+    sizeCanvas();
+    var stEls = document.querySelectorAll("#pipe .st");
+    stEls.forEach(function (s) { s.classList.remove("on"); });
+    var docsList = document.getElementById("docsList");
+    docsList.textContent = "";
+    var promptBox = document.getElementById("promptBox");
+    var answerEl = document.getElementById("answer");
+    promptBox.textContent = "";
+    answerEl.innerHTML = '<span style="color:var(--pyv2-muted-2);font-size:12.5px">…</span>';
+    answerEl.classList.remove("hallu");
+    qPt = null; hits = [];
+
+    var stages = [
+      { t: 0, fn: function () { stEls[0].classList.add("on");
+        cap("<b>阶段 0 · 知识库</b>：这里有 8 个来自课程文档的切块（紫色点）。真实项目中可以是 PDF、Markdown、网页的几千个块。");
+        CHUNKS.slice(0, 4).forEach(function (c) { addDoc(c.doc, false); });
+        later(function () { CHUNKS.slice(4).forEach(function (c) { addDoc(c.doc, false); }); }, 220);
+      } },
+      { t: 900, fn: function () { stEls[1].classList.add("on");
+        cap("<b>阶段 1 · 切分</b>：长文档被切成合适大小的块——太小丢上下文，太大检索不准。虚线框表示切分边界。");
+        docsList.querySelectorAll(".doc").forEach(function (d, i) { if (i % 3 === 2) d.classList.add("cut"); });
+      } },
+      { t: 1600, fn: function () { stEls[2].classList.add("on");
+        cap("<b>阶段 2 · 向量化</b>：每个块经过 embedding 模型变成向量。演示里映射成 2D 点——<b>语义相近的块在空间中相邻</b>（同文档的块自然聚在一起）。");
+        pts.forEach(function (p) { p.tx = p.c.x; p.ty = p.c.y; });
+      } },
+      { t: 2500, fn: function () { stEls[3].classList.add("on");
+        cap("<b>阶段 3 · 提问</b>：「" + esc(q) + "」同样被向量化，落进这片语义空间。");
+        var scored = CHUNKS.map(function (c) { return { c: c, s: matchScore(q, c) }; }).sort(function (a, b) { return b.s - a.s; });
+        var best = scored[0];
+        var ox = 0.5 + (Math.random() - 0.5) * 0.08, oy = 0.5 + (Math.random() - 0.5) * 0.08;
+        if (best && best.s > 0) { ox = best.c.x + 0.06; oy = best.c.y + 0.07; }
+        qPt = { x: 0.5, y: 0.5, tx: Math.max(0.04, Math.min(0.96, ox)), ty: Math.max(0.06, Math.min(0.94, oy)) };
+      } },
+      { t: 3500, fn: function () {
+        if (!ragOn) {
+          stEls[6].classList.add("on");
+          cap("<b>RAG 已关闭</b>：问题直接发给大模型，没有任何资料佐证——看看它编得有多认真。");
+          typeAnswer(HALLU.ans, true);
+          later(function () {
+            answerEl.classList.add("hallu");
+            answerEl.innerHTML += '<br><br><span class="warn">' + HALLU.warn + "</span>";
+          }, 3200);
+          return;
+        }
+        stEls[4].classList.add("on");
+        // 排序：空间距离 + 关键词
+        var ranked = pts.slice().sort(function (a, b) {
+          if (!qPt) return 0;
+          var da = Math.hypot(a.x - qPt.x, a.y - qPt.y) - matchScore(q, a.c) * 0.06;
+          var db = Math.hypot(b.x - qPt.x, b.y - qPt.y) - matchScore(q, b.c) * 0.06;
+          return da - db;
+        });
+        hits = ranked.slice(0, topk);
+        cap("<b>阶段 4 · 检索 top-" + topk + "</b>：离问题向量最近的 " + topk + " 个块被选中（黄色）：#" +
+          hits.map(function (h) { return h.c.id; }).join(" #") + "。语义检索找到的不只是字面匹配——「怎么算」也能命中「成绩构成」。");
+      } },
+      { t: 4600, fn: function () {
+        if (!ragOn) return;
+        stEls[5].classList.add("on");
+        var rows = hits.map(function (h) { return "[" + h.c.id + "] " + h.c.text; }).join("\\n");
+        promptBox.innerHTML =
+          '<span class="hl">system:</span> 你是课程助教，仅依据以下资料回答，标注引用编号。\\n' +
+          '<span class="hl">资料：</span>\\n' +
+          hits.map(function (h) { return '<span class="chunk">[' + h.c.id + "] " + esc(h.c.text) + "</span>"; }).join("\\n") +
+          '\\n<span class="hl">user:</span> <span class="q">' + esc(q) + "</span>";
+        cap("<b>阶段 5 · 组装 Prompt</b>：检索到的块 + 指令 + 问题拼成最终 prompt。「仅依据资料回答」这条指令是防幻觉的关键一环。");
+      } },
+      { t: 5700, fn: function () {
+        if (!ragOn) return;
+        stEls[6].classList.add("on");
+        var citations = hits.map(function (h) { return h.c; });
+        var body = citations[0].ans;
+        if (citations[1]) body += "；此外" + citations[1].ans;
+        typeAnswer(body + "。", false, citations);
+        cap("<b>阶段 6 · 生成</b>：大模型基于资料作答并标注引用。试着换问题、调 top-k，或关掉 RAG 对比幻觉。");
+      } }
+    ];
+    stages.forEach(function (s) { later(s.fn, s.t); });
+  }
+
+  function typeAnswer(text, isHallu) {
+    var el = document.getElementById("answer");
+    if (isHallu) { el.classList.add("hallu"); } else { el.classList.remove("hallu"); }
+    el.textContent = "";
+    var i = 0;
+    (function tw() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        later(tw, 16);
+      } else if (!isHallu && hits.length) {
+        el.innerHTML += '<br><span style="color:var(--pyv2-muted-2);font-size:11.5px;font-family:var(--pyv2-font-mono)">来源：' +
+          Array.from(new Set(hits.map(function (h) { return h.c.doc; }))).join(" · ") +
+          "（块 " + hits.map(function (h) { return "#" + h.c.id; }).join(" ") + "）</span>";
+      }
+    })();
+  }
+
+  function addDoc(name, cut) {
+    var d = document.createElement("span");
+    d.className = "doc";
+    d.textContent = name;
+    document.getElementById("docsList").appendChild(d);
+  }
+  function cap(html) { document.getElementById("caption").innerHTML = html; }
+  function esc(s) { return s.replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  /* ---- 交互 ---- */
+  document.getElementById("goBtn").addEventListener("click", run);
+  document.getElementById("qIn").addEventListener("keydown", function (e) { if (e.key === "Enter") run(); });
+  document.querySelectorAll(".presets button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.getElementById("qIn").value = b.dataset.q;
+      run();
+    });
+  });
+  var tg = document.getElementById("ragTg");
+  tg.addEventListener("click", function () {
+    ragOn = !ragOn;
+    tg.classList.toggle("on", ragOn);
+    document.getElementById("ragTgLabel").textContent = ragOn ? "RAG 开启" : "RAG 关闭（纯大模型）";
+  });
+  document.getElementById("topk").addEventListener("input", function (e) {
+    topk = parseInt(e.target.value);
+    document.getElementById("topkLabel").textContent = "top-k = " + topk;
+  });
+
+  /* ---- 点位缓动 ---- */
+  (function ease() {
+    pts.forEach(function (p) {
+      p.x += (p.tx - p.x) * 0.07;
+      p.y += (p.ty - p.y) * 0.07;
+    });
+    if (qPt) {
+      qPt.x += (qPt.tx - qPt.x) * 0.07;
+      qPt.y += (qPt.ty - qPt.y) * 0.07;
+    }
+    setTimeout(ease, 16);
+  })();
+
+  run();
+})();
+</script>
+</body>
+</html>

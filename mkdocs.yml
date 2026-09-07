@@ -1,8 +1,37 @@
 site_name: 课程资料
+site_url: https://anjingcuc.github.io/courses-wiki/
 nav:
   - 首页: index.md
   - 智能系统安全运维与实践: aissop.md
-  - Python 程序设计: python.md
+  - Python 程序设计:
+      - 课程主页: python.md
+      - M0 导论 · AI 时代编程第一课: python/v2/m0.md
+      - M1 环境与工具链: python/v2/m1.md
+      - M2 语言核心: python/v2/m2.md
+      - M3 数据获取与处理: python/v2/m3.md
+      - M4 工程化: python/v2/m4.md
+      - M5 AI 应用开发: python/v2/m5.md
+      - M6 综合项目实战: python/v2/m6.md
+      - M7 总结与展望: python/v2/m7.md
+      - 作业与考核: python/v2/assessments.md
+      - 微课讲义: python/v2/scripts-index.md
+      - 经典课程笔记: python/v2/notes-index.md
+      - 经典版课件:
+          - 00-课程概述: python/introduction.md
+          - 01-基本概念: python/basic.md
+          - 02-数据类型基础: python/data-types-basic.md
+          - 03-程序结构: python/control-flow.md
+          - 04-数据类型进阶: python/data-types-advanced.md
+          - 05-输入输出: python/io-file.md
+          - 06-文件与目录: python/file-and-path.md
+          - 07-模块与包: python/lib-and-packages.md
+          - 08-第三方库与虚拟环境: python/virtualenvs.md
+          - 09-函数进阶与类: python/class.md
+          - 10-Web 开发: python/web.md
+          - 11-Web 分析与爬虫: python/web-and-crawler.md
+          - 12-爬虫: python/crawler.md
+          - 13-数据处理与可视化: python/data-process-and-visualization.md
+          - 14-数据处理与可视化实例: python/data-process-and-visualization-example.md
   - 网页设计与制作: web.md
   - 在线出版: online-publishing.md
   - AI-WPS 辅助办公: wps/introduction.md
@@ -12,26 +41,86 @@ repo_name: "anjingcuc/courses-wiki"
 repo_url: "https://github.com/anjingcuc/courses-wiki"
 
 theme:
-  name: null
-  custom_dir: "material"
+  name: material
+  custom_dir: overrides
   language: "zh"
   palette:
-    primary: "white"
-    accent: "red"
-  logo:
-    icon: "school"
-  feature:
-    tabs: true
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
   font:
-    text: "Fira Sans"
-    code: "Fira Mono"
+    text: "Noto Sans SC"
+    code: "JetBrains Mono"
+  icon:
+    logo: material/school
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.prune
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - toc.follow
 
 markdown_extensions:
-  - codehilite:
-      linenums: true
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
 
 extra_css:
-  - stylesheets/custom.css
+  - stylesheets/pyv2.css
 
 extra_javascript:
-  - javascripts/custom.js
+  - javascripts/pyv2-loader.js

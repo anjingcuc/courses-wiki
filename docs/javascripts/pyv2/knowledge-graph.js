@@ -10,12 +10,11 @@
 (function () {
   "use strict";
 
-  function init() {
-    var canvas = document.getElementById("pyv2-kgraph");
-    var wrap = canvas ? canvas.parentElement : null;
+  function setupGraph(canvas) {
+    var wrap = canvas.parentElement;
     var tip = wrap ? wrap.querySelector(".pyv2-graph-tip") : null;
-    var dataEl = document.getElementById("pyv2-kgraph-data");
-    if (!canvas || !dataEl) return;
+    var dataEl = wrap ? wrap.querySelector("script.pyv2-kgraph-data, #pyv2-kgraph-data") : null;
+    if (!wrap || !dataEl) return;
     // 防重复初始化：loader 的首次 boot 与 document$ 初次发射可能各触发一次 init，
     // 二次 init 会叠加 ctx.scale 导致节点画到画布外（表现为图谱空白）
     if (canvas.dataset.kgReady) return;
@@ -272,6 +271,12 @@
         }
       }).observe(wrap);
     }
+  }
+
+  function init() {
+    // 支持同页多个图谱：#pyv2-kgraph（Python 课程主页）与 canvas.pyv2-kgraph（其他课程）
+    var list = document.querySelectorAll("#pyv2-kgraph, canvas.pyv2-kgraph");
+    Array.prototype.forEach.call(list, setupGraph);
   }
 
   if (window.PYV2) PYV2.register("kgraph", init);

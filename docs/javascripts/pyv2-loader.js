@@ -10,7 +10,7 @@
   var jsRoot = me ? new URL("./", me.src).href : "";          // .../javascripts/
   var siteRoot = jsRoot ? new URL("../", jsRoot).href : "";   // 站点根
 
-  var VER = "2"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
+  var VER = "3"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
   function jsUrl(p) { return jsRoot + p + "?v=" + VER; }
 
   var loaded = {}; // url -> Promise
@@ -55,7 +55,7 @@
     if (any(".py-playground")) need.push("playground");
     if (any(".pyv2-quiz")) need.push("quiz");
     if (any("[data-pyv2-ai]")) need.push("ai");
-    if (any("#pyv2-kgraph")) need.push("kgraph");
+    if (any("#pyv2-kgraph, canvas.pyv2-kgraph")) need.push("kgraph");
     if (any(".pyv2-terminal[data-terminal]")) need.push("landing");
     if (pageHasAnimations()) need.push("anim");
 

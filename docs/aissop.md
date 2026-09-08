@@ -24,22 +24,28 @@ hide:
         </div>
       </div>
       <div>
-        <div class="pyv2-terminal">
+        <div class="pyv2-terminal" data-terminal>
+          <script type="application/json" class="term-data">
+          {
+            "loop": true,
+            "lines": [
+              {"t": "dim", "x": "# 查看占用 CPU 最高的 5 个进程"},
+              {"t": "in",   "x": "PS> Get-Process | Sort CPU -Desc | Select -First 5"},
+              {"t": "out",  "x": "Handles  NPM(K)  PM(K)   WS(K)  CPU(s)    Id  ProcessName"},
+              {"t": "out",  "x": "--------  -----  ------  ------  ------  ----  -----------"},
+              {"t": "out",  "x": "    1520     982   98200  185300  312.44  4012  firefox"},
+              {"t": "out",  "x": "     890     412    62100   98400  120.11  5896  svchost"},
+              {"t": "dim",  "x": "# 进程、账户、注册表——命令行是运维的听诊器"}
+            ]
+          }
+          </script>
           <div class="bar">
             <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
             <span class="title">运维现场 · PowerShell</span>
           </div>
-          <div class="body" style="font-size:12px;line-height:1.85;">
-            <span class="c-in">PS&gt; Get-Process | Sort CPU -Desc | Select -First 5</span>
-            <span class="c-out">Handles  NPM(K)  PM(K)  WS(K)  CPU(s)    Id  ProcessName</span>
-            <span class="c-out">--------  -----  -----  -----  ------  ----  -----------</span>
-            <span class="c-out">     herbs   1520  98200 185300  312.44  4012  firefox</span>
-            <span class="c-out">     890    412  62100  98400  120.11  5896  svchost</span>
-            <span class="c-dim"># 系统状态、进程、账户、注册表——命令行是运维的听诊器</span>
-          </div>
+          <div class="body"></div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 

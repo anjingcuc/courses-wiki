@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W3 类型与数据结构 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 03 / 16</span>
+    <span class="th">语言核心 · 类型与数据结构</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m2/">M2 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w02.html">← 上周</a>
+    <a class="cur" href="w03.html">本周</a>
+    <a href="w04.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W3 类型与数据结构">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 3 周（100 分钟 · L6–L7）</div>
+    <h1 class="rise">看数据先看类型<br><span class="grad">四种结构怎么选</span></h1>
+    <p class="sub rise">从今天起，语法课的方法论：每课建立思维模型，不逐个背方法——方法查询交给 AI 和文档。
+    本周用大模型 API 返回的真实数据当教材，学类型系统与数据结构选型。</p>
+    <div class="meta rise">
+      <span>所属模块 M2 语言核心</span><span>微课 V009–V012</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>从一段 API 返回说起</h2>
+    <pre class="rise"><code>{
+  <span class="s">"id"</span>: <span class="s">"chatcmpl-001"</span>,          <span class="c"># 字符串 str</span>
+  <span class="s">"created"</span>: <span class="n">1712345678</span>,          <span class="c"># 整数 int</span>
+  <span class="s">"temperature"</span>: <span class="n">0.7</span>,             <span class="c"># 浮点数 float</span>
+  <span class="s">"stream"</span>: <span class="k">false</span>,               <span class="c"># 布尔 bool（JSON 的 false）</span>
+  <span class="s">"object"</span>: <span class="k">null</span>,                <span class="c"># None（JSON 的 null）</span>
+  <span class="s">"choices"</span>: [ {...}, {...} ]     <span class="c"># 列表 list，里面套字典 dict</span>
+}</code></pre>
+    <ul>
+      <li class="frag">5 种核心类型：<b>int / float / str / bool / NoneType</b>，用 <code>type()</code> 随时查</li>
+      <li class="frag">思维模型：<b>看数据先问「它是什么类型」</b>，再决定能对它做什么</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>类型转换与 f-string</h2>
+    <pre class="rise"><code>tokens = <span class="n">730</span>                          <span class="c"># int</span>
+cost = <span class="n">730</span> * <span class="n">0.001</span> / <span class="n">1000</span>       <span class="c"># 自动变 float</span>
+
+<span class="c"># 字符串数字陷阱：</span>
+<span class="s">"730"</span> + <span class="n">1</span>        <span class="c"># TypeError！字符串不能加数字</span>
+<span class="f">int</span>(<span class="s">"730"</span>) + <span class="n">1</span>  <span class="c"># 731 —— 先转换，再运算</span>
+
+<span class="c"># f-string：把变量嵌进字符串</span>
+<span class="f">print</span>(<span class="s">f"本次对话 token 数 {tokens}，费用 {cost:.4f} 元"</span>)</code></pre>
+    <ul>
+      <li class="frag">遇到 <code>TypeError</code> 第一反应：<b>是不是该转换类型时没转换？</b></li>
+      <li class="frag"><code>{cost:.4f}</code> 保留 4 位小数、<code>{n:,}</code> 千分位——格式化是输出专业感的第一步</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>四种数据结构：一句话定位</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">排队的人</span><b class="tt">list · 有序可变</b>
+        <span class="small">按位置存取、会增会删。聊天记录、消息列表。</span>
+        <code style="display:block;margin-top:6px;">msgs.append(m)</code></div>
+      <div class="scard rise"><span class="tag v">通讯录</span><b class="tt">dict · 键值映射</b>
+        <span class="small">用名字找内容，查找近 O(1)。API 返回的 JSON 本体、配置。</span>
+        <code style="display:block;margin-top:6px;">cfg["model"]</code></div>
+      <div class="scard rise"><span class="tag">塑封文件</span><b class="tt">tuple · 不可变</b>
+        <span class="small">定下来就不变：坐标、函数多返回值。</span>
+        <code style="display:block;margin-top:6px;">x, y = pos</code></div>
+      <div class="scard rise"><span class="tag">筛子</span><b class="tt">set · 唯一无序</b>
+        <span class="small">自动去重、快速判存在。URL 去重。</span>
+        <code style="display:block;margin-top:6px;">seen.add(url)</code></div>
+    </div>
+    <p class="small rise" style="margin-top:14px;">选型口诀：看到数据先问「要什么操作」——按序存取用 list，按键查找用 dict，不许改用 tuple，要去重用 set。</p>
+  </section>
+
+  <section class="slide">
+    <h2>一切皆对象</h2>
+    <p class="rise">在 Python 里，数据和行为是绑在一起的：</p>
+    <pre class="rise"><code>name = <span class="s">"hello"</span>
+<span class="f">type</span>(name)          <span class="c"># &lt;class 'str'&gt; —— 它是 str 类的一个对象</span>
+name.<span class="f">upper</span>()       <span class="c"># 'HELLO'    —— upper 是对象自带的方法</span>
+name[<span class="n">0</span>]            <span class="c"># 'h'        —— 按索引取字符</span>
+name[<span class="n">1</span>:<span class="n">4</span>]         <span class="c"># 'ell'      —— 切片 [起:止)</span></pre>
+    <ul>
+      <li class="frag">字符串<b>不可变</b>：所有「修改」操作都是返回新字符串，原串不变</li>
+      <li class="frag">对象有<b>身份</b>（id）与<b>值</b>：<code>==</code> 比较值，<code>is</code> 比较身份——判断 None 一律用 <code>is</code></li>
+    </ul>
+    <p class="small frag">3D 直觉演示：<a href="../../demos/objects.html">一切皆对象 · 内存空间</a>（逐行执行看对象诞生与名字绑定）</p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：消息列表的统计与提取</h2>
+    <span class="lab">交互 · 浏览器内运行（L7 课堂主线）</span>
+    <p class="rise">API 返回的是「列表套字典」——遍历、统计、提取：</p>
+    <div class="py-playground" data-py-title="API 数据 → 遍历 → 字典统计 → 提取">
+      <textarea>messages = [
+    {"role": "user",      "content": "你好"},
+    {"role": "assistant", "content": "你好！有什么可以帮你？"},
+    {"role": "user",      "content": "什么是列表推导式"},
+    {"role": "assistant", "content": "一种紧凑的列表生成写法"},
+    {"role": "user",      "content": "举个例子？"},
+]
+
+# 1) 字典计数：每个角色说了几句话
+count = {}
+for m in messages:
+    count[m["role"]] = count.get(m["role"], 0) + 1
+print("各角色发言数:", count)
+
+# 2) 推导式：一行提取所有用户提问
+questions = [m["content"] for m in messages if m["role"] == "user"]
+print("用户提问:", questions)
+
+# 3) 练习：用 max + key 找出最长的一条消息
+# 提示：max(messages, key=lambda m: len(m["content"]))
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>推导式：边遍历边加工</h2>
+    <pre class="rise"><code><span class="c"># 普通写法</span>
+questions = []
+<span class="k">for</span> m <span class="k">in</span> messages:
+    <span class="k">if</span> m[<span class="s">"role"</span>] == <span class="s">"user"</span>:
+        questions.<span class="f">append</span>(m[<span class="s">"content"</span>])
+
+<span class="c"># 推导式：一行等价</span>
+questions = [m[<span class="s">"content"</span>] <span class="k">for</span> m <span class="k">in</span> messages <span class="k">if</span> m[<span class="s">"role"</span>] == <span class="s">"user"</span>]
+<span class="c">#            ↑拿什么          ↑从哪遍历            ↑只要谁</span></code></pre>
+    <ul>
+      <li class="frag">读法：对每个 m（来自 messages），如果满足条件，就取 m 的 content</li>
+      <li class="frag">AI 生成的代码里到处是推导式——<b>必须能读懂</b>，写不熟练没关系</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>课堂讨论：结构选型辩论</h2>
+    <div class="scard rise" style="border-left:5px solid #0284c7;">
+      <b>辩题一：去重一批 URL，用 list 还是 set？</b>
+      <span class="frag" style="display:block;margin-top:6px;">list 也能去重（逐个判断 in），但每次判断都要从头扫一遍 O(n)；set 天然去重、判断近 O(1)——爬虫的 <code>seen = set()</code> 是标准姿势。</span>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed; margin-top:12px;">
+      <b>辩题二：多轮对话历史，用 list 还是 dict？</b>
+      <span style="display:block;margin-top:6px;">对话是「按时间顺序追加」的 → list 套字典（messages 列表）；要「按会话 ID 找历史」才在外面再套一层 dict。</span>
+    </div>
+    <p class="small frag" style="margin-top:14px;">举手表决定立场，说出理由——选型理由比结论更重要。</p>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W3 类型与数据结构 · 概念检查",
+        "questions": [
+          {
+            "q": "要去重一批 URL 并快速判断「见没见过」，选哪种结构？",
+            "opts": ["list", "tuple", "set", "str"],
+            "a": 2,
+            "explain": "set 天然去重且查找接近 O(1)。经典套路：seen = set()，每抓一个 URL 先 if url in seen。"
+          },
+          {
+            "q": "a = \"hi\"; b = \"hi\"，a == b 与 a is b 分别是？",
+            "opts": ["True True", "True False（通常）", "False True", "False False"],
+            "a": 1,
+            "explain": "== 比较值恒为 True；is 比较身份（是否同一对象），除非字符串驻留恰好复用，通常 False。判断 None 一律用 is。"
+          },
+          {
+            "q": "API 返回的 JSON 解析后，最外层是 [ {...}, {...} ]，它的类型是？",
+            "opts": ["字典 dict", "列表 list（元素是字典）", "元组 tuple", "集合 set"],
+            "a": 1,
+            "explain": "方括号是列表，里面每个花括号是字典——「列表套字典」是 API 数据最常见的结构。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V009-数字与字符串核心操作/">V009</a> ·
+          <a href="../scripts/V010-类型转换与f-string格式化/">V010</a> ·
+          <a href="../scripts/V011-四种数据结构选型指南/">V011 选型指南</a> ·
+          <a href="../scripts/V012-列表字典核心操作速查/">V012 速查</a></li>
+        <li class="frag">练习：把课堂运行场的「找最长消息」补完</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W4 控制流与函数</b>
+      按条件筛选数据（分支循环）→ 给逻辑起名字（函数与函数契约）。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w04.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m2/">M2 模块页</a> · <a href="../notes/4.5-数据类型基础-列表/">经典笔记 4.5 列表</a> · <a href="../notes/6.4-数据类型进阶-字典/">6.4 字典</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

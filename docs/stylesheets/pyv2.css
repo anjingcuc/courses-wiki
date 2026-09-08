@@ -740,3 +740,185 @@
   .pyv2-ai-fab, .pyv2-ai-panel { display: none !important; }
   .pyv2 [data-anim] { opacity: 1 !important; }
 }
+
+/* ============================================================
+   在线课件（16 周高交互课件） — slides.js 配套
+   页面结构：body.sl-page > header.sl-top + div.pyv2-slides
+   ============================================================ */
+body.sl-page { background: #f4f7fb; overflow: hidden; }
+
+.sl-top {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 14px; padding: 10px 22px;
+  background: #ffffff; border-bottom: 1px solid var(--pyv2-border);
+  font-size: 13px; color: var(--pyv2-muted);
+}
+.sl-top .where { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.sl-top .wk {
+  font-family: var(--pyv2-font-mono); font-weight: 700; font-size: 12px;
+  color: #075985; background: rgba(2,132,199,.1);
+  border: 1px solid rgba(2,132,199,.28); border-radius: 999px; padding: 3px 11px;
+  white-space: nowrap;
+}
+.sl-top .th { font-weight: 700; color: var(--pyv2-text); font-size: 14.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sl-top nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.sl-top nav a {
+  color: var(--pyv2-sky); text-decoration: none; font-weight: 600; font-size: 12.5px;
+  border: 1px solid var(--pyv2-border); background: var(--pyv2-surface);
+  border-radius: 999px; padding: 4px 13px; white-space: nowrap;
+}
+.sl-top nav a:hover { border-color: var(--pyv2-sky); background: rgba(2,132,199,.06); }
+.sl-top nav a.cur { background: var(--pyv2-grad); color: #fff; border-color: transparent; }
+
+.pyv2-slides { position: relative; height: calc(100vh - 47px); overflow: hidden; }
+.pyv2-slides section.slide {
+  position: absolute; inset: 0; display: none;
+  padding: 40px 62px 70px; overflow-y: auto;
+  font-size: 19px; line-height: 1.75; color: var(--pyv2-body);
+}
+.pyv2-slides section.slide.active { display: block; }
+.pyv2-slides section.slide::-webkit-scrollbar { width: 8px; }
+.pyv2-slides section.slide::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+.slide h2 {
+  font-size: 32px; color: var(--pyv2-text); margin: 0 0 22px;
+  padding-left: 16px; border-left: 6px solid; border-image: var(--pyv2-grad) 1;
+  letter-spacing: .5px;
+}
+.slide h3 { font-size: 22px; color: var(--pyv2-text); margin: 26px 0 12px; }
+.slide p { margin: 10px 0; }
+.slide ul, .slide ol { margin: 12px 0 12px 6px; padding-left: 26px; }
+.slide li { margin: 9px 0; }
+.slide b { color: var(--pyv2-text); }
+.slide .small { font-size: 15px; color: var(--pyv2-muted); }
+.slide code {
+  font-family: var(--pyv2-font-mono); font-size: .82em;
+  background: rgba(2,132,199,.08); color: #075985;
+  padding: 2px 8px; border-radius: 6px;
+}
+.slide pre {
+  background: #0f172a; color: #e2e8f0; border-radius: 14px;
+  padding: 20px 24px; overflow-x: auto; margin: 16px 0;
+  font-family: var(--pyv2-font-mono); font-size: 16.5px; line-height: 1.72;
+}
+.slide pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+.slide pre .k { color: #7dd3fc; }        /* 关键字 */
+.slide pre .s { color: #86efac; }        /* 字符串 */
+.slide pre .c { color: #64748b; }        /* 注释 */
+.slide pre .f { color: #c4b5fd; }        /* 函数/标识 */
+.slide pre .n { color: #fbbf24; }        /* 数字 */
+
+/* 标题页 */
+.slide.cover { display: none; }
+.slide.cover.active { display: flex; flex-direction: column; justify-content: center; }
+.slide.cover .kicker {
+  font-family: var(--pyv2-font-mono); font-size: 15px; color: var(--pyv2-sky-deep);
+  letter-spacing: 2px; margin-bottom: 14px;
+}
+.slide.cover h1 {
+  font-size: 52px; line-height: 1.25; margin: 0 0 18px; color: var(--pyv2-text);
+}
+.slide.cover h1 .grad {
+  background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.slide.cover .sub { font-size: 21px; color: var(--pyv2-muted); max-width: 860px; }
+.slide.cover .meta { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+.slide.cover .meta span {
+  font-size: 13.5px; color: #334155; background: #ffffff;
+  border: 1px solid var(--pyv2-border); border-radius: 999px; padding: 5px 15px;
+}
+.slide.cover .rules { margin-top: 30px; font-size: 14px; color: var(--pyv2-muted-2); }
+
+/* 布局 */
+.slide .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.slide .cols2.wide-l { grid-template-columns: 1.4fr 1fr; }
+.slide .cols2.wide-r { grid-template-columns: 1fr 1.4fr; }
+@media (max-width: 900px) { .slide .cols2 { grid-template-columns: 1fr; } }
+
+/* 卡片 */
+.slide .scard {
+  background: #ffffff; border: 1px solid var(--pyv2-border); border-radius: 14px;
+  padding: 18px 22px; margin: 10px 0;
+}
+.slide .scard b.tt { display: block; font-size: 20px; margin-bottom: 6px; color: var(--pyv2-text); }
+.slide .scard .tag {
+  display: inline-block; font-size: 12.5px; font-weight: 700;
+  color: #075985; background: rgba(2,132,199,.1); border-radius: 6px; padding: 2px 10px; margin-bottom: 8px;
+}
+.slide .scard .tag.v { color: #5b21b6; background: rgba(124,58,237,.1); }
+.slide .scard .tag.g { color: #065f46; background: rgba(4,120,87,.1); }
+.slide .scard .tag.r { color: #991b1b; background: rgba(220,38,38,.08); }
+
+/* 分步显示 */
+.pyv2-slides .frag { opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .4s; }
+.pyv2-slides .frag.on { opacity: 1; transform: none; }
+
+/* 入场动画（切到 active 时触发） */
+.slide.active .rise { animation: slRise .55s cubic-bezier(.2,.7,.3,1) both; }
+.slide.active .rise:nth-child(2) { animation-delay: .08s; }
+.slide.active .rise:nth-child(3) { animation-delay: .16s; }
+.slide.active .rise:nth-child(4) { animation-delay: .24s; }
+.slide.active .rise:nth-child(5) { animation-delay: .3s; }
+@keyframes slRise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+/* 流程动画（.active 后逐个点亮） */
+.flowline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+.flowline .node {
+  background: #ffffff; border: 2px solid var(--pyv2-border-2); border-radius: 12px;
+  padding: 12px 18px; font-size: 16.5px; font-weight: 600; color: #334155; text-align: center;
+}
+.flowline .arrow { color: #94a3b8; font-size: 22px; font-weight: 700; }
+.slide.active .flowline .node { animation: slNodeOn .5s both; }
+.slide.active .flowline .node:nth-child(1) { animation-delay: .15s; }
+.slide.active .flowline .node:nth-child(3) { animation-delay: .55s; }
+.slide.active .flowline .node:nth-child(5) { animation-delay: .95s; }
+.slide.active .flowline .node:nth-child(7) { animation-delay: 1.35s; }
+.slide.active .flowline .node:nth-child(9) { animation-delay: 1.75s; }
+.slide.active .flowline .node.hot { border-color: var(--pyv2-sky); color: #075985; background: rgba(2,132,199,.07); }
+@keyframes slNodeOn { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+
+/* 交互提示徽标 */
+.slide .lab {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: #075985;
+  background: rgba(2,132,199,.09); border: 1px dashed rgba(2,132,199,.45);
+  border-radius: 999px; padding: 4px 14px; margin: 4px 0;
+}
+
+/* 运行场 / 测验在课件中的适配 */
+.slide .py-playground textarea { font-size: 15px; }
+.slide .pyv2-quiz { font-size: 16px; }
+
+/* 导航条与进度 */
+.sl-bar {
+  position: absolute; right: 20px; bottom: 18px; z-index: 30;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
+  border: 1px solid var(--pyv2-border); border-radius: 999px;
+  padding: 6px 12px; box-shadow: 0 8px 24px rgba(15,23,42,.14);
+}
+.sl-bar .sl-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--pyv2-border-2);
+  background: var(--pyv2-surface-2); color: var(--pyv2-text);
+  font-size: 19px; cursor: pointer; transition: all .15s; line-height: 1;
+}
+.sl-bar .sl-btn:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+.sl-bar .sl-count { font-family: var(--pyv2-font-mono); font-size: 13px; color: var(--pyv2-muted); min-width: 56px; text-align: center; }
+.sl-prog { position: absolute; left: 0; top: 0; right: 0; height: 4px; z-index: 31; background: rgba(148,163,184,.18); }
+.sl-prog i { display: block; height: 100%; width: 0; background: var(--pyv2-grad); transition: width .3s; }
+
+/* 全屏时铺满 */
+.pyv2-slides:fullscreen { height: 100vh; background: #f4f7fb; }
+.pyv2-slides:fullscreen section.slide { height: calc(100vh - 4px); }
+
+@media (max-width: 760px) {
+  .pyv2-slides section.slide { padding: 24px 22px 86px; font-size: 17px; }
+  .slide h2 { font-size: 26px; }
+  .slide.cover h1 { font-size: 36px; }
+  .slide pre { font-size: 14.5px; }
+  .sl-top .th { display: none; }
+}
+@media print {
+  .pyv2-slides section.slide { display: block !important; position: relative; inset: auto; page-break-after: always; height: auto; }
+  .sl-bar, .sl-prog { display: none !important; }
+}

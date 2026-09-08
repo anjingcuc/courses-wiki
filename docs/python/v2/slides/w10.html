@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W10 结构化输出与 RAG 基础 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 10 / 16</span>
+    <span class="th">AI 应用 · 结构化输出 / RAG 基础</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m5/">M5 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w09.html">← 上周</a>
+    <a class="cur" href="w10.html">本周</a>
+    <a href="w11.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W10 结构化输出与 RAG 基础">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 10 周（100 分钟 · L21–L22）</div>
+    <h1 class="rise">让 AI 说「机器话」<br><span class="grad">再让它读你的文档</span></h1>
+    <p class="sub rise">程序要解析 AI 的回复时，「说得像人」不够，要「说得让程序能读」——JSON Mode 与 Function Calling；
+    然后解决大模型的两大顽疾：幻觉与知识截止——RAG（检索增强生成）。</p>
+    <div class="meta rise">
+      <span>所属模块 M5 AI 应用开发</span><span>微课 V040–V044</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>开场翻车：AI 的「废话」</h2>
+    <pre class="rise"><code><span class="c"># 让 AI 返回 JSON：</span>
+resp = <span class="s">"好的，以下是您要的结果：{\"action\": \"weather\", \"city\": \"北京\"}"</span>
+json.<span class="f">loads</span>(resp)
+<span class="c"># → json.decoder.JSONDecodeError: Extra data!</span></code></pre>
+    <div class="frag scard" style="border-left:5px solid #dc2626;">
+      <b>问题：</b>AI 在 JSON 前后加了自然语言客套——人看得懂，程序崩给你看。
+    </div>
+    <div class="frag scard" style="border-left:5px solid #047857;">
+      <b>解法一（JSON Mode）：</b><code>response_format={"type": "json_object"}</code> 强制输出合法 JSON。
+      <span class="small">注意：prompt 里必须出现 "json" 字样，否则 API 直接报错。</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Function Calling：AI 当调度员</h2>
+    <div class="flowline">
+      <div class="node">用户：「查北京天气」</div><span class="arrow">→</span>
+      <div class="node hot">AI 决定：调 get_weather(city="北京")</div><span class="arrow">→</span>
+      <div class="node">你的代码执行函数</div><span class="arrow">→</span>
+      <div class="node">结果喂回 AI → 自然语言回复</div>
+    </div>
+    <pre class="rise"><code>tools = [{
+  <span class="s">"type"</span>: <span class="s">"function"</span>,
+  <span class="s">"function"</span>: {
+    <span class="s">"name"</span>: <span class="s">"get_weather"</span>,
+    <span class="s">"description"</span>: <span class="s">"查询指定城市的实时天气"</span>,   <span class="c"># 写给 AI 看的说明书！</span>
+    <span class="s">"parameters"</span>: {<span class="s">"type"</span>: <span class="s">"object"</span>,
+      <span class="s">"properties"</span>: {<span class="s">"city"</span>: {<span class="s">"type"</span>: <span class="s">"string"</span>}},
+      <span class="s">"required"</span>: [<span class="s">"city"</span>]}
+  }
+}]</code></pre>
+    <p class="frag"><b>核心观念：AI 不亲自干活——它决定「调什么、用什么参数」，执行永远是你的代码的事。</b></p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：意图识别器（模拟版）</h2>
+    <span class="lab">交互 · 浏览器内运行（体会「结构化意图」）</span>
+    <div class="py-playground" data-py-title="解析 AI 返回的工具调用意图">
+      <textarea>import json
+
+# Function Calling 模式下，AI 返回的不再是闲聊，而是结构化决策
+raw = '''
+{"tool_calls": [
+    {"name": "get_weather",  "arguments": {"city": "北京"}},
+    {"name": "calculator",   "arguments": {"expr": "25*3.6"}},
+    {"name": "search",       "arguments": {"query": "Python 发布日程"}}
+]}
+'''
+
+decision = json.loads(raw)
+print("可用工具：")
+TOOLS = {"get_weather": "查询城市天气", "calculator": "数学计算", "search": "联网搜索"}
+
+for call in decision["tool_calls"]:
+    name = call["name"]
+    print(f"  - {name}({call['arguments']}) → {TOOLS.get(name, '未知工具')}")
+
+# 练习：统计 search 类调用有几个；把所有城市名抽出来
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>大模型的两大顽疾</h2>
+    <div class="cols2">
+      <div class="scard rise" style="border-left:5px solid #dc2626;"><b class="tt">幻觉</b>
+        <span>问它「这门课期末项目占多少分」——它自信地编一个 40%。<br>
+        <span class="frag">不是它撒谎，是它<span style="text-decoration:underline">不知道也不说不知道</span>——生成机制决定了它会「合理地编」。</span></div>
+      <div class="scard rise" style="border-left:5px solid #b45309;"><b class="tt">知识截止</b>
+        <span>训练数据有截止日期——上周的新闻、你的私有文档，它一概不知。</span>
+        <span class="frag">微调能解决但太贵太难；<b>RAG 是轻量解法。</b></span></div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      <b>RAG = 开卷考试。</b>闭卷的大模型背了很多但不一定准；RAG 把相关资料递到它手边：「基于以下资料回答，没有依据就说不知道」。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>RAG 全链路一图</h2>
+    <div class="flowline">
+      <div class="node">文档切分<br><span class="small">chunking</span></div><span class="arrow">→</span>
+      <div class="node">向量化<br><span class="small">Embedding</span></div><span class="arrow">→</span>
+      <div class="node hot">语义检索<br><span class="small">找最相关的 chunk</span></div><span class="arrow">→</span>
+      <div class="node">拼接 Prompt<br><span class="small">资料+问题</span></div><span class="arrow">→</span>
+      <div class="node">生成回答<br><span class="small">有据可依</span></div>
+    </div>
+    <ul>
+      <li class="frag">两阶段：<b>离线建库</b>（一次性）+ <b>在线检索</b>（每次提问）</li>
+      <li class="frag">Embedding 直觉：把每段话标记在「语义地图」上——<b>距离近 = 意思近</b></li>
+      <li class="frag">语义检索 vs 关键词：「苹果手机」和「iPhone」字面不匹配、语义却相同</li>
+    </ul>
+    <p class="small frag">交互演示：<a href="../../demos/rag.html">RAG 检索增强生成流程模拟</a>（提问、调 top-k、关掉 RAG 看幻觉对比）</p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：迷你语义检索</h2>
+    <span class="lab">交互 · 浏览器内运行（Jaccard 版 RAG 检索环节）</span>
+    <p class="rise">还没申请 embedding 接口？词集合重叠度就是最朴素的「语义」近似：</p>
+    <div class="py-playground" data-py-title="手写迷你检索：RAG 的检索环节">
+      <textarea>chunks = [
+    {"id": 1, "text": "成绩构成 平时作业 期末项目 无上机考试"},
+    {"id": 2, "text": "允许 AI 协作 答辩 指行讲思路"},
+    {"id": 3, "text": "期末项目池 知识库助手 智能学伴 数据分析师"},
+    {"id": 4, "text": "RAG 检索增强 向量化 语义检索 切分"},
+]
+
+def to_set(t): return set(t.split())
+def jaccard(a, b):
+    if not a or not b: return 0.0
+    return len(a & b) / len(a | b)
+
+def retrieve(query, k=2):
+    q = to_set(query)
+    scored = sorted(((jaccard(q, to_set(c["text"])), c) for c in chunks),
+                    key=lambda t: -t[0])
+    return [c for s, c in scored[:k] if s > 0]
+
+for q in ["期末成绩怎么算", "RAG 是什么", "能组队吗"]:
+    hits = retrieve(q)
+    print(q, "→", [c["id"] for c in hits] or "无命中")
+
+# 思考：「能组队吗」为什么无命中？（词面零重叠）
+# 这正是 embedding 要解决的问题：把「意思」变成距离
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W10 结构化输出与 RAG · 概念检查",
+        "questions": [
+          {
+            "q": "Function Calling 中，AI 的角色是？",
+            "opts": ["亲自执行所有工具", "决定调用哪个函数、用什么参数，执行由程序完成", "只输出闲聊文本", "管理 API 计费"],
+            "a": 1,
+            "explain": "AI 是调度中枢：返回结构化的「调用决策」，你的代码负责真正执行并把结果喂回去。"
+          },
+          {
+            "q": "RAG 主要解决大模型的哪两个问题？",
+            "opts": ["速度慢、费用高", "幻觉与知识截止", "不支持中文", "不能写代码"],
+            "a": 1,
+            "explain": "检索相关资料拼进 prompt，让回答有据可依（缓解幻觉），同时突破训练数据的时间与范围边界。"
+          },
+          {
+            "q": "工具描述里的 description 字段写给谁看？",
+            "opts": ["最终用户", "代码审查者", "大模型——它靠描述决定何时调用该工具", "数据库"],
+            "a": 2,
+            "explain": "description 是写给 LLM 的说明书——描述写得越清晰，工具选择就越准。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V040-JSON-Mode与结构化输出/">V040 JSON Mode</a> ·
+          <a href="../scripts/V041-Function-Calling入门/">V041 Function Calling</a> ·
+          <a href="../scripts/V042-RAG原理向量与语义检索/">V042 RAG 原理</a> ·
+          <a href="../scripts/V043-文本切分与Embedding/">V043 切分与 Embedding</a></li>
+        <li class="frag">练习：玩透 <a href="../../demos/rag.html">RAG 流程模拟</a>，记录一次幻觉对比</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W11 RAG 实战与多模态</b>
+    亲手搭完整的 numpy 版 RAG 问答系统；再让 AI 看图（Vision）与说话（TTS）。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w11.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/13.5-Web分析与爬虫-数据接口爬取示例/">经典笔记 13.5 数据接口</a>（JSON 结构训练）</p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
   var jsRoot = me ? new URL("./", me.src).href : "";          // .../javascripts/
   var siteRoot = jsRoot ? new URL("../", jsRoot).href : "";   // 站点根
 
-  var VER = "3"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
+  var VER = "4"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
   function jsUrl(p) { return jsRoot + p + "?v=" + VER; }
 
   var loaded = {}; // url -> Promise
@@ -57,6 +57,7 @@
     if (any("[data-pyv2-ai]")) need.push("ai");
     if (any("#pyv2-kgraph, canvas.pyv2-kgraph")) need.push("kgraph");
     if (any(".pyv2-terminal[data-terminal]")) need.push("landing");
+    if (any(".pyv2-slides")) need.push("slides");
     if (pageHasAnimations()) need.push("anim");
 
     PYV2._active = need;
@@ -80,6 +81,7 @@
     if (need.indexOf("ai") >= 0) loadScript(jsUrl("pyv2/ai-companion.js")).catch(console.error);
     if (need.indexOf("kgraph") >= 0) loadScript(jsUrl("pyv2/knowledge-graph.js")).catch(console.error);
     if (need.indexOf("landing") >= 0) loadScript(jsUrl("pyv2/landing.js")).catch(console.error);
+    if (need.indexOf("slides") >= 0) loadScript(jsUrl("pyv2/slides.js")).catch(console.error);
     gsapChain.catch(console.error);
   }
 

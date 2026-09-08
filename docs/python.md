@@ -121,7 +121,7 @@ hide:
     <a class="pyv2-mod-card" href="v2/m6/" data-anim><div class="glow"></div>
       <span class="mid">M6 · L31–L44</span><b>综合项目实战</b>
       <span>14 课时完整项目周期：选题→架构→冲刺→AI-free 调试日→Bug Bash→答辩</span>
-      <span class="lessons">14 课时 · 期末 50%</span>
+      <span class="lessons">14 课时 · 项目实战</span>
     </a>
     <a class="pyv2-mod-card" href="v2/m7/" data-anim><div class="glow"></div>
       <span class="mid">M7 · L45–L48</span><b>总结与展望</b>
@@ -182,6 +182,27 @@ hide:
 </div>
 
 <div class="pyv2" data-pyv2-page>
+  <h2 id="_3" style="font-size:22px;">16 周在线课件</h2>
+  <p>按一学期 16 周、每周 100 分钟线下课整合而成的高交互授课课件——教师投影授课（方向键翻页、F 全屏、分步显示），
+  学生同页交互（浏览器内运行代码、随堂小测即时判分）。点击进入总览：</p>
+  <div class="pyv2-lab">
+    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim style="grid-column: span 2;">
+      <span class="tag v">LECTURE · 交互课件</span><b>16 周课件总览 · W1–W16</b>
+      <p>每周一份：要点讲授 + 可运行练习 + 随堂小测；与模块页、微课讲义、交互演示互相链接。</p>
+      <span class="go">进入课件总览 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/slides/w01.html" data-anim>
+      <span class="tag">第 1 周</span><b>导论 · AI 时代为什么学编程</b>
+      <p>现场演示 + 第一个浏览器练习。</p><span class="go">打开课件 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/slides/w13.html" data-anim>
+      <span class="tag">第 13 周</span><b>FastAPI 前后端与方法论</b>
+      <p>把 AI 能力变成网页服务。</p><span class="go">打开课件 →</span>
+    </a>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
   <h2 style="font-size:22px;">交互实验室</h2>
   <p>课程的核心原理均配有可交互的动画与沙箱，点击卡片进入演示。各模块页还内嵌<b style="color:#0f172a">可直接在浏览器中运行的 Python 环境</b>（Pyodide，无需安装）。</p>
   <div class="pyv2-lab">
@@ -217,31 +238,27 @@ hide:
   <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:22px;" class="pyv2-two">
     <div>
       <div class="pyv2-tl">
-        <div class="pyv2-tl-item" data-anim><b>① 数据处理脚本</b><span class="meta">L6 发布 · 10%</span>
-          <p>处理真实 JSON/CSV：提取、转换、统计。数据结构选型是评分点。</p></div>
-        <div class="pyv2-tl-item" data-anim><b>② API 调用项目</b><span class="meta">L13 发布 · 10%</span>
+        <div class="pyv2-tl-item" data-anim><b>① 数据处理脚本</b><span class="meta">W3 发布</span>
+          <p>处理真实 JSON/CSV：提取、转换、统计。数据结构选型是关键。</p></div>
+        <div class="pyv2-tl-item" data-anim><b>② API 调用项目</b><span class="meta">W6 发布</span>
           <p>调用公开 API 获取数据并结构化处理，处理超时与错误。</p></div>
-        <div class="pyv2-tl-item" data-anim><b>③ 模块化重构</b><span class="meta">L18 发布 · 10%</span>
+        <div class="pyv2-tl-item" data-anim><b>③ 模块化重构</b><span class="meta">W8 发布</span>
           <p>把单文件脚本重构为模块化项目，.env 管密钥。</p></div>
-        <div class="pyv2-tl-item v" data-anim><b>④ Prompt 工程实战</b><span class="meta">L20 发布 · 10%</span>
+        <div class="pyv2-tl-item v" data-anim><b>④ Prompt 工程实战</b><span class="meta">W9 发布</span>
           <p>设计结构化 Prompt 模板，鼓励大量 AI 实验。</p></div>
-        <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">L23 发布 · 10%</span>
+        <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">W11 发布</span>
           <p>小型文档问答系统：向量化、检索、生成完整链路。</p></div>
-        <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">L31 发布 · 50%</span>
-          <p>完整 AI 应用 + AI 协作日志 + 答辩「三问」。</p></div>
+        <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">W14 启动 · W16 答辩</span>
+          <p>完整 AI 应用 + AI 协作日志 + 答辩。</p></div>
       </div>
     </div>
     <div data-anim>
-      <h3 style="margin-bottom:6px;">成绩构成</h3>
-      <p>平时作业 <b style="color:#0f172a">50%</b>（4 次小作业各 10% + 课堂参与 10%）<br>
-      期末大项目 <b style="color:#0f172a">50%</b> · 无上机考试</p>
-      <h3 style="margin:14px 0 6px;">AI 政策</h3>
-      <p>全课程允许 AI 协作，但有三道防线：<br>
-      ① M2/M3 每课末 5 分钟<b style="color:#0f172a">无 AI 纸面小测</b><br>
-      ② 作业随机 20% <b style="color:#0f172a">「指行讲思路」抽查</b><br>
-      ③ 答辩随机指一行代码问「这是干什么的」</p>
-      <h3 style="margin:14px 0 6px;">期末项目池（五选一）</h3>
+      <h3 style="margin-bottom:6px;">期末项目池（五选一）</h3>
       <p>AI 知识库助手（RAG）· 智能学伴（Function Calling）· AI 创意工坊（多模态）· 智能数据分析师（NL2Code）· AI 客服机器人</p>
+      <h3 style="margin:14px 0 6px;">AI 协作</h3>
+      <p>全课程鼓励 AI 协作开发，同时坚持一条底线：<b>提交的每一行代码，你都要能解释「干什么、为什么」</b>。</p>
+      <h3 style="margin:14px 0 6px;">课件与课堂</h3>
+      <p>每周课件见上方「16 周在线课件」板块；课程相关安排以课堂说明为准。</p>
     </div>
   </div>
 </div>
@@ -261,9 +278,9 @@ hide:
       <span class="tag v">存档</span><b>经典版课件</b>
       <p>旧版 15 章幻灯片课件（reveal.js），V2 课程中的语法细节可在此查阅。</p><span class="go">查看课件 →</span>
     </a>
-    <a class="pyv2-demo-card" href="v2/assessments/" data-anim>
-      <span class="tag v">考核</span><b>作业与考核细则</b>
-      <p>六次作业的完整要求、提交方式、评分标准与 AI 协作规范。</p><span class="go">查看细则 →</span>
+    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim>
+      <span class="tag v">授课</span><b>16 周在线课件</b>
+      <p>高交互授课课件：分步讲授、可运行练习、随堂小测，与全部模块互相链接。</p><span class="go">进入课件总览 →</span>
     </a>
   </div>
 </div>

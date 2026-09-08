@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W15 联调、调试日与部署 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 15 / 16</span>
+    <span class="th">综合项目 · 前端联调 / 调试日 / Bug Bash / 部署</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m6/">M6 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w14.html">← 上周</a>
+    <a class="cur" href="w15.html">本周</a>
+    <a href="w16.html">答辩周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W15 联调调试与部署">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 15 周（100 分钟 · L35–L39）</div>
+    <h1 class="rise">让应用变得<br><span class="grad">能用、可靠、可交付</span></h1>
+    <p class="sub rise">后端已经跑通——本周给它装上前端、逼出 bug、修到可靠，最后让任何人 clone 后都能一键跑起来。
+    中间有一堂特别的课：<b>AI-free 调试日</b>——关掉所有 AI，只靠自己。</p>
+    <div class="meta rise">
+      <span>所属模块 M6 综合项目</span><span>微课 V054</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>前端联调：三大坑速查</h2>
+    <div class="scard rise" style="border-left:5px solid #dc2626;"><b>① CORS</b>
+      <span class="frag" style="display:block;margin-top:4px;">后端加 <code>CORSMiddleware(allow_origins=[前端地址])</code>——是配置机制，不是绕开。</span></div>
+    <div class="scard frag" style="border-left:5px solid #b45309;"><b>② 字段名不匹配</b>
+      <span style="display:block;margin-top:4px;">后端返 <code>reply</code> 前端读 <code>answer</code> → undefined。排查口诀：<b>对着接口文档逐字核对</b>。</span></div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed;"><b>③ 流式渲染</b>
+      <span style="display:block;margin-top:4px;">后端 StreamingResponse + 前端 fetch + getReader() 逐块读——打字机效果的技术内核。</span></div>
+    <p class="small frag" style="margin-top:10px;">UX 三要素顺手补齐：<b>加载状态</b>（点了要有反馈）、<b>错误提示</b>（别白屏）、<b>空状态</b>（「还没有对话，开始聊吧」）。</p>
+  </section>
+
+  <section class="slide">
+    <h2>AI-free 调试日：规则宣布</h2>
+    <div class="scard rise" style="border-left:5px solid #dc2626; font-size:22px;">
+      <b>从现在起关闭所有 AI 工具。</b>只允许用 print / 日志 / 断点 / 读报错，修自己项目里的 bug。
+    </div>
+    <p class="rise" style="margin-top:16px;">为什么？——建立「没有 AI 时我能做什么」的能力底座。工具越强，越要知道自己值多少。</p>
+    <div class="frag scard" style="border-left:5px solid #047857;">
+      <b>课后解禁的学习姿势：</b>把今天卡住的问题拿去问 AI——不是让它修，而是让它
+      <b>讲透原理、出变式题自测</b>。调试经历转化为问题，才是把 AI 用成老师。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>没有 AI 时的四件武器</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">武器一</span><b class="tt">读报错</b>
+        <span class="small">Traceback <b>从最后一行往前读</b>——最后一行是错误类型，往上找到你自己代码的那一帧。</span></div>
+      <div class="scard rise"><span class="tag">武器二</span><b class="tt">print 二分</b>
+        <span class="small">怀疑哪段就打哪段——在中间打一个 print，值不对就再对半排查。</span></div>
+      <div class="scard rise"><span class="tag">武器三</span><b class="tt">断点调试</b>
+        <span class="small">VSCode 行号左侧点一下 → F5 → 单步走，亲眼看变量变化。</span></div>
+      <div class="scard rise"><span class="tag">武器四</span><b class="tt">最小复现</b>
+        <span class="small">把 bug 剥到最小可运行示例——往往剥着剥着自己就看出来了。</span></div>
+    </div>
+    <p class="small rise" style="margin-top:12px;">课堂节奏：先按「边界场景清单」折腾自己的应用（空输入/超长文本/特殊字符/断网），把 bug 逼出来记清单，再逐个修。</p>
+  </section>
+
+  <section class="slide">
+    <h2>Bug Bash：全班互测</h2>
+    <div class="flowline">
+      <div class="node">A 批演示<br><span class="small">保持运行</span></div><span class="arrow">⇄</span>
+      <div class="node hot">B 批测试<br><span class="small">15 分钟一轮</span></div><span class="arrow">→</span>
+      <div class="node">互换角色</div><span class="arrow">→</span>
+      <div class="node">修复冲刺</div>
+    </div>
+    <ul>
+      <li class="frag">提 Bug 的规范：<b>复现步骤 + 预期行为 + 实际行为</b>——不是一句「这个坏了」</li>
+      <li class="frag">别人帮你测出 bug 是帮助，不是挑刺——<b>测试是团队协作的语言</b></li>
+      <li class="frag">修完写一条回归 assert，确保同一个 bug 不再出现</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>部署就绪：让别人也能跑</h2>
+    <pre class="rise"><code>my_project/
+├── .env.example        <span class="c"># 密钥模板：DEEPSEEK_KEY=（留空）</span>
+├── requirements.txt   <span class="c"># pip freeze 导出的精确清单</span>
+├── README.md          <span class="c"># 从 clone 到看到界面的每一步</span>
+└── app/ ...</code></pre>
+    <ul>
+      <li class="frag">「我电脑上能跑」≠ 别人能跑：<b>环境变量模板化 + 依赖锁定 + 启动步骤</b>是三件硬指标</li>
+      <li class="frag">验收标准：找一个没接触过你项目的同学，只看 README 从零跑起来</li>
+      <li class="frag">云部署是加分项——本地完整运行演示是底线（<a href="../scripts/V054-应用部署基础概念/">微课 V054 部署概念</a>）</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>随堂自查（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W15 联调与调试 · 自查",
+        "questions": [
+          {
+            "q": "print 二分定位的思路是？",
+            "opts": ["到处乱打 print", "在怀疑区间的中点打 print，按结果对半缩小范围", "只在最后一行打", "用 println 代替"],
+            "a": 1,
+            "explain": "像二分查找：每次 print 排除一半嫌疑区间，几轮就能锁定出错行。"
+          },
+          {
+            "q": "规范的 Bug 报告应包含？",
+            "opts": ["「这个坏了」四个字", "复现步骤 + 预期行为 + 实际行为", "一段截图没有文字", "报自己的学号"],
+            "a": 1,
+            "explain": "三要素齐全，开发者不用反问就能复现——这是协作的基本礼节。"
+          },
+          {
+            "q": "「部署就绪」的底线标准是？",
+            "opts": ["代码在自己电脑能跑", "任何人 clone 后按 README 步骤即可运行", "买了云服务器", "有域名"],
+            "a": 1,
+            "explain": ".env.example + requirements.txt + 清晰的 README——环境隔离与依赖锁定是工程基本功，云部署只是加分项。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与答辩周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">清零 Bug Bash 收到的关键 issue</li>
+        <li class="frag">完成 README 与 .env.example</li>
+        <li class="frag">开始整理 AI 协作日志（关键 prompt、人工修改及原因）</li>
+      </ul>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #dc2626;">
+      <b class="tt">下周：W16 打磨、答辩与课程总结</b>
+      演示彩排与文档定稿 → 答辩 → 复盘。答辩时随机指行提问——<b>每一行都要能讲清</b>。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w16.html">提前看答辩周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">项目细节：<a href="../m6/">M6 模块页</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

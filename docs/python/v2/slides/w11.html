@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W11 RAG 实战与多模态 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 11 / 16</span>
+    <span class="th">AI 应用 · RAG 实战 / 多模态</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m5/">M5 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w10.html">← 上周</a>
+    <a class="cur" href="w11.html">本周</a>
+    <a href="w12.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W11 RAG 实战与多模态">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 11 周（100 分钟 · L23–L24）</div>
+    <h1 class="rise">搭一个知识库问答<br><span class="grad">再让 AI 看图说话</span></h1>
+    <p class="sub rise">上周的原理今天变成产品：numpy 手搓完整 RAG 链路（不用任何框架），
+    做出「课程 FAQ 问答机器人」；然后串起 Vision（看图）→ 文本 → TTS（说话）的多模态链路。</p>
+    <div class="meta rise">
+      <span>所属模块 M5 AI 应用开发</span><span>微课 V044–V045</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>今日目标：课程 FAQ 问答机器人</h2>
+    <div class="flowline">
+      <div class="node">课程文档 ×N 份</div><span class="arrow">→</span>
+      <div class="node hot">numpy 向量库</div><span class="arrow">→</span>
+      <div class="node">提问「作业怎么提交」</div><span class="arrow">→</span>
+      <div class="node">检索 top-3</div><span class="arrow">→</span>
+      <div class="node">基于资料的回答</div>
+    </div>
+    <div class="frag scard">
+      <b>为什么不用 LangChain？</b>框架把每一步都藏进黑盒——课程要求<b>每一行都看得见、改得动</b>：
+      numpy + openai SDK 就是全部依赖。理解了原理，框架只是「别人替你写好的循环」。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>阶段一：离线建库</h2>
+    <pre class="rise"><code><span class="k">import</span> numpy <span class="k">as</span> np
+
+<span class="c"># 1) 文档 → 切块（chunking）</span>
+chunks = <span class="f">split_docs</span>(docs, size=<span class="n">200</span>)        <span class="c"># 按段落/长度切</span>
+
+<span class="c"># 2) 每块 → 向量（Embedding API，一次性）</span>
+vecs = np.<span class="f">array</span>([<span class="f">embed</span>(c.text) <span class="k">for</span> c <span class="k">in</span> chunks])   <span class="c"># (N, 1536)</span>
+
+np.<span class="f">save</span>(<span class="s">"kb_vectors.npy"</span>, vecs)      <span class="c"># 存下来，下次不用重新算钱</span></code></pre>
+    <ul>
+      <li class="frag">chunk 大小的影响：太大→检索不精准，太小→上下文破碎——<b>这是可调参数，不是玄学</b></li>
+      <li class="frag">建库是离线的：文档更新才需要重跑</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>阶段二：在线检索 + 生成</h2>
+    <pre class="rise"><code><span class="k">def</span> <span class="f">cosine</span>(a, b):                          <span class="c"># 余弦相似度：方向越一致越相关</span>
+    <span class="k">return</span> np.<span class="f">dot</span>(a, b) / (np.<span class="f">linalg</span>.norm(a) * np.<span class="f">linalg</span>.norm(b))
+
+<span class="k">def</span> <span class="f">answer</span>(question, k=<span class="n">3</span>):
+    qv = <span class="f">embed</span>(question)
+    scores = [ <span class="f">cosine</span>(qv, v) <span class="k">for</span> v <span class="k">in</span> vecs ]       <span class="c"># 全库打分</span>
+    top = np.<span class="f">argsort</span>(scores)[::-1][:k]            <span class="c"># 取 top-k</span>
+
+    context = <span class="s">"\n\n"</span>.<span class="f">join</span>(chunks[i].text <span class="k">for</span> i <span class="k">in</span> top)
+    <span class="k">return</span> <span class="f">llm_chat</span>(
+        <span class="s">f"基于以下资料回答问题，没有依据就说不知道：\n\n{context}\n\n问题：{question}"</span>
+    )</code></pre>
+    <ul>
+      <li class="frag">检索质量 = RAG 质量的上限——<b>检索错了，生成再好也是错</b></li>
+      <li class="frag">课堂调参实验：改 k（2→5）、改 chunk 大小，观察命中变化</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：向量检索的直觉</h2>
+    <span class="lab">交互 · 二维「语义地图」上的余弦检索</span>
+    <div class="py-playground" data-py-title="用 numpy 实现余弦相似度检索">
+      <textarea>import math
+
+# 用 2 维向量模拟 embedding（真实是上千维，原理相同）
+docs = {
+    "成绩构成.docx":  (0.9, 0.1),
+    "项目池.md":      (0.6, 0.8),
+    "RAG讲义.txt":    (0.1, 0.95),
+    "爬虫伦理.txt":   (-0.8, 0.2),
+}
+
+def cosine(a, b):
+    dot = sum(x*y for x, y in zip(a, b))
+    na = math.sqrt(sum(x*x for x in a)); nb = math.sqrt(sum(y*y for y in b))
+    return dot / (na * nb)
+
+question = (0.85, 0.25)   # 模拟「这门课怎么考核？」的向量
+
+ranked = sorted(((cosine(question, v), name) for name, v in docs.items()),
+                key=lambda t: -t[0])
+for score, name in ranked:
+    bar = "█" * int((score + 1) * 15)      # 相似度可视化
+    print(f"{name:12} {score:+.3f} {bar}")
+
+# 练习：把 question 改成 (0.0, 0.9)，看谁排第一（模拟「RAG 怎么做」类问题）
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>多模态：让 AI 看图与说话</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">Vision</span><b class="tt">看图</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">图片 → base64 编码（或 URL）放进消息</li>
+          <li class="frag">应用：OCR、图表解读、视觉问答</li>
+        </ul>
+      </div>
+      <div class="scard rise"><span class="tag v">TTS</span><b class="tt">说话</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">文本 → 语音文件（.mp3）</li>
+          <li class="frag">程序可直接播放或保存</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #7c3aed;">
+      <b>模态链路设计模式：一个 API 的输出是另一个 API 的输入。</b><br>
+      课堂演示「图片描述生成器」：读图片 → Vision 生成描述 → TTS 朗读保存。
+    </div>
+    <p class="small frag">判断力：<b>不是所有场景都要多模态</b>——能用文字说清的，不必强行看图。</p>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W11 RAG 实战与多模态 · 概念检查",
+        "questions": [
+          {
+            "q": "RAG 系统里，检索到的 chunk 不相关，最可能导致？",
+            "opts": ["回答依旧准确", "模型基于错误资料回答或拒答——检索质量决定 RAG 上限", "API 报错", "自动切换模型"],
+            "a": 1,
+            "explain": "生成器的输入是检索结果——垃圾进垃圾出。chunk 大小与 top-k 是最值得优先调的两个参数。"
+          },
+          {
+            "q": "Embedding 向量「语义相近」的几何含义是？",
+            "opts": ["向量长度相等", "向量方向夹角小（余弦相似度高）", "维度相同就行", "第一个分量相等"],
+            "a": 1,
+            "explain": "余弦相似度只看方向不看长度——「语义地图」上距离近的内容向量夹角小。"
+          },
+          {
+            "q": "「图片描述生成器」链路中，Vision 的输出是 TTS 的？",
+            "opts": ["输入", "输出", "配置", "无关组件"],
+            "a": 0,
+            "explain": "模态链路的核心模式：Vision 产出的文字描述，正是 TTS 的输入。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V044-RAG完整链路搭建/">V044 RAG 完整链路</a> ·
+          <a href="../scripts/V045-多模态AI-API调用/">V045 多模态调用</a></li>
+        <li class="frag">练习：给迷你知识库加两份自己的文档，测试检索命中</li>
+        <li class="frag">交互演示复习：<a href="../../demos/rag.html">RAG 流程模拟</a></li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W12 AI Agent</b>
+    从「你问它答」到「它自己决定调什么工具」——手写 ReAct 循环，不用任何框架。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w12.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/15.4-数据处理与可视化-实例讲解/">经典笔记 15.4（数据→结论链路）</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

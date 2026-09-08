@@ -34,6 +34,24 @@
       <span>所属模块 M5 AI 应用开发</span><span>微课 V044–V045</span><span>← → 翻页 · F 全屏</span>
     </div>
   </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>今日目标</b></td><td>课程 FAQ 问答机器人——把上周原理变成产品</td></tr>
+      <tr><td>8–20</td><td><b>离线建库</b></td><td>切分 chunk → Embedding API → numpy 存向量；chunk 大小是可调参数</td></tr>
+      <tr><td>20–34</td><td><b>在线检索生成</b></td><td>余弦相似度全库打分 → top-k → 拼接 prompt → 有据回答</td></tr>
+      <tr><td>34–46</td><td><b>动手练习</b></td><td>运行场：二维语义地图上的余弦检索排序</td></tr>
+      <tr><td>46–58</td><td><b>调参实验</b></td><td>改 k（2→5）、改 chunk 大小，观察命中变化——检索质量决定上限</td></tr>
+      <tr><td>58–68</td><td><b>为什么不用框架</b></td><td>LangChain 把每步藏进黑盒；numpy+SDK 每行看得见</td></tr>
+      <tr><td>68–80</td><td><b>多模态：看图</b></td><td>Vision API；base64/URL 传图；OCR/图表解读</td></tr>
+      <tr><td>80–90</td><td><b>多模态：说话</b></td><td>TTS 文字转语音；模态链路=一个 API 的输出是另一个的输入</td></tr>
+      <tr><td>90–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">今日产出：一个能回答课程问题的 RAG 问答系统（numpy 手搓版）。</p>
+  </section>
+
 
   <section class="slide">
     <h2>今日目标：课程 FAQ 问答机器人</h2>

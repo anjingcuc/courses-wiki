@@ -773,12 +773,37 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
 .pyv2-slides { position: relative; height: calc(100vh - 47px); overflow: hidden; }
 .pyv2-slides section.slide {
   position: absolute; inset: 0; display: none;
-  padding: 40px 62px 70px; overflow-y: auto;
-  font-size: 19px; line-height: 1.75; color: var(--pyv2-body);
+  padding: 36px 60px 68px; overflow-y: auto;
+  font-size: 19px; line-height: 1.72; color: var(--pyv2-body);
 }
-.pyv2-slides section.slide.active { display: block; }
+/* 垂直居中：内容不足一屏时自动居中；超出时自动回退为顶部对齐可滚动 */
+.pyv2-slides section.slide.active { display: flex; flex-direction: column; }
+.pyv2-slides section.slide.active > :first-child { margin-top: auto; }
+.pyv2-slides section.slide.active > :last-child { margin-bottom: auto; }
 .pyv2-slides section.slide::-webkit-scrollbar { width: 8px; }
 .pyv2-slides section.slide::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* 课件内表格（课表 / 对比） */
+.slide table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 15px; line-height: 1.55; }
+.slide table th, .slide table td { border: 1px solid var(--pyv2-border); padding: 7px 12px; text-align: left; vertical-align: top; }
+.slide table th { background: rgba(2,132,199,.08); color: #075985; font-weight: 700; white-space: nowrap; }
+.slide table td:first-child { white-space: nowrap; color: var(--pyv2-muted); font-family: var(--pyv2-font-mono); font-size: 13px; }
+.slide table tr:nth-child(even) td { background: rgba(148,163,184,.06); }
+.slide table td b { color: var(--pyv2-text); }
+
+/* 课件内嵌交互演示（three.js / GSAP / manim 风格页） */
+.slide .demo-frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 8.4; max-height: 66vh;
+  border: 1px solid var(--pyv2-border-2); border-radius: 14px; overflow: hidden;
+  background: #ffffff; box-shadow: 0 12px 34px rgba(15,23,42,.10); margin: 12px 0;
+}
+.slide .demo-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.slide .demo-frame .frame-tag {
+  position: absolute; top: 10px; right: 10px; z-index: 5;
+  font-size: 11.5px; font-weight: 700; color: #075985;
+  background: rgba(255,255,255,.9); border: 1px solid rgba(2,132,199,.3);
+  border-radius: 999px; padding: 3px 11px;
+}
 
 .slide h2 {
   font-size: 32px; color: var(--pyv2-text); margin: 0 0 22px;

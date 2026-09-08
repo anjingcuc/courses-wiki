@@ -34,6 +34,24 @@
       <span>所属模块 M5 AI 应用开发</span><span>微课 V034–V039</span><span>← → 翻页 · F 全屏</span>
     </div>
   </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>开场实验</b></td><td>同一 prompt 跑两次答案不同——大模型是带概率的生成器</td></tr>
+      <tr><td>8–22</td><td><b>四参数</b></td><td>temperature 控创意 / top_p 核采样 / max_tokens 控成本 / stop 控格式</td></tr>
+      <tr><td>22–32</td><td><b>猜温度互动</b></td><td>三段输出对应哪档温度？你的场景该用哪档？</td></tr>
+      <tr><td>32–44</td><td><b>流式输出</b></td><td>stream=True 逐块到达；打字机效果；yield 生成器语义</td></tr>
+      <tr><td>44–56</td><td><b>llm_chat 封装</b></td><td>可配置调用函数——W10–W13 的基础设施；三档温度对比实验</td></tr>
+      <tr><td>56–68</td><td><b>Prompt 五组件</b></td><td>角色/任务/约束/示例/输出格式——加一层组件提升一档</td></tr>
+      <tr><td>68–80</td><td><b>Few-shot 与 CoT</b></td><td>示例教它做什么、CoT 教它怎么想；现场对比输出质量</td></tr>
+      <tr><td>80–92</td><td><b>动手练习</b></td><td>运行场：build_prompt 五组件模板（f-string 版）</td></tr>
+      <tr><td>92–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">参数不是玄学：课后用 llm_chat() 做三档温度对比并记录观察。</p>
+  </section>
+
 
   <section class="slide">
     <h2>开场实验：同样的问题，跑两次</h2>

@@ -34,6 +34,24 @@
       <span>所属模块 M5 AI 应用开发</span><span>微课 V040–V044</span><span>← → 翻页 · F 全屏</span>
     </div>
   </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>开场翻车</b></td><td>json.loads 被 AI 的客套话搞崩——「说得像人」不够，要「程序能读」</td></tr>
+      <tr><td>8–20</td><td><b>JSON Mode</b></td><td>response_format 强制合法 JSON；prompt 必须含 json 字样</td></tr>
+      <tr><td>20–34</td><td><b>Function Calling</b></td><td>AI 当调度员：返回「调什么+参数」，执行永远是你的代码</td></tr>
+      <tr><td>34–46</td><td><b>动手练习</b></td><td>运行场：解析工具调用意图 + 统计 + 抽参</td></tr>
+      <tr><td>46–58</td><td><b>两大顽疾</b></td><td>幻觉现场演示（问它课程细节，自信编造）；知识截止</td></tr>
+      <tr><td>58–72</td><td><b>RAG 原理</b></td><td>开卷考试类比；切分→向量化→检索→拼接→生成；语义 vs 关键词</td></tr>
+      <tr><td>72–86</td><td><b>RAG 交互演示</b></td><td>流程模拟页：提问 / 调 top-k / 关掉 RAG 看幻觉对比（iframe）</td></tr>
+      <tr><td>86–96</td><td><b>动手练习</b></td><td>运行场：Jaccard 迷你检索——体会「词面零重叠」的失败</td></tr>
+      <tr><td>96–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">RAG 交互演示嵌入在本课件第 7 页——学生可自己操作 top-k 与幻觉对比。</p>
+  </section>
+
 
   <section class="slide">
     <h2>开场翻车：AI 的「废话」</h2>
@@ -130,6 +148,16 @@ for call in decision["tool_calls"]:
     </ul>
     <p class="small frag">交互演示：<a href="../../demos/rag.html">RAG 检索增强生成流程模拟</a>（提问、调 top-k、关掉 RAG 看幻觉对比）</p>
   </section>
+  <!-- 演示 -->
+  <section class="slide">
+    <h2>交互模拟：RAG 检索增强生成</h2>
+    <div class="demo-frame">
+      <span class="frame-tag">可交互演示 · 页内直接操作</span>
+      <iframe src="../../demos/rag.html" loading="lazy" title="交互模拟：RAG 检索增强生成"></iframe>
+    </div>
+    <p class="small">输入问题、拖动 top-k、关掉右上角 RAG 开关——直接对比「纯大模型幻觉回答」与「有据回答」的差别。　<a href="../../demos/rag.html" target="_blank">新窗口打开 →</a></p>
+  </section>
+
 
   <section class="slide">
     <h2>动手：迷你语义检索</h2>

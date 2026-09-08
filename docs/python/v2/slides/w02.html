@@ -34,6 +34,24 @@
       <span>所属模块 M1 环境与工具链</span><span>微课 V004–V008</span><span>← → 翻页 · F 全屏</span>
     </div>
   </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>命令行起步</b></td><td>交互模式 >>> vs 文件运行；写代码→保存→cd→python hello.py 三步循环</td></tr>
+      <tr><td>10–20</td><td><b>读报错练习</b></td><td>文件找不到 / 命令未找到 / 缩进错误——最后一行是重点</td></tr>
+      <tr><td>20–32</td><td><b>AI 编程工具</b></td><td>Kimi Code CLI 安装与首次对话；Trae 界面导览与补全体验</td></tr>
+      <tr><td>32–42</td><td><b>API 是什么</b></td><td>打电话类比；API Key=身份证+钱包、Token=计费单位</td></tr>
+      <tr><td>42–55</td><td><b>代码骨架逐行讲</b></td><td>import→client→messages 三角色→create→取 content；仪式时刻：填 Key 运行</td></tr>
+      <tr><td>55–70</td><td><b>学生亲手调通</b></td><td>创建 chat.py → 填自己的 Key → 运行 → 改 system 人设再跑；巡场</td></tr>
+      <tr><td>70–78</td><td><b>回答对比秀</b></td><td>2–3 名学生展示不同 system prompt 的效果对比</td></tr>
+      <tr><td>78–90</td><td><b>Git 三板斧</b></td><td>拍照类比 add/commit/push；「AI 大改前先 commit」翻车演示</td></tr>
+      <tr><td>90–100</td><td><b>提交实操</b></td><td>clone → 建分支 → .gitignore 排除 .env → push；确保人人完成一次</td></tr>
+    </table>
+    <p class="small">检查点：本节课结束时，每人都要完成一次 API 调用和一次 Git push。</p>
+  </section>
+
 
   <section class="slide">
     <h2>命令行：程序员的日常工作台</h2>
@@ -67,6 +85,16 @@ C:\Users\me\Desktop\py&gt; python hello.py
       <li class="frag">排错第一步：先看自己在哪个目录（<code>cd</code> / <code>dir</code>）</li>
     </ul>
   </section>
+  <!-- 演示 -->
+  <section class="slide">
+    <h2>交互演示：编译 vs 解释</h2>
+    <div class="demo-frame">
+      <span class="frame-tag">可交互演示 · 页内直接操作</span>
+      <iframe src="../../demos/interpreter.html" loading="lazy" title="交互演示：编译 vs 解释"></iframe>
+    </div>
+    <p class="small">点「播放」或逐步执行，观察同一段程序在 C 与 Python 两条流水线上的处理过程——为什么 Python 保存即可运行，答案就在这里。　<a href="../../demos/interpreter.html" target="_blank">新窗口打开 →</a></p>
+  </section>
+
 
   <section class="slide">
     <h2>AI 编程工具：命令行里的结对伙伴</h2>

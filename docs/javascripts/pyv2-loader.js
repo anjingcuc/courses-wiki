@@ -10,7 +10,7 @@
   var jsRoot = me ? new URL("./", me.src).href : "";          // .../javascripts/
   var siteRoot = jsRoot ? new URL("../", jsRoot).href : "";   // 站点根
 
-  var VER = "4"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
+  var VER = "5"; // 组件版本号：改动组件 JS 后递增，绕过浏览器/CDN 缓存
   function jsUrl(p) { return jsRoot + p + "?v=" + VER; }
 
   var loaded = {}; // url -> Promise

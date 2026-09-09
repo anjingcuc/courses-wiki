@@ -105,13 +105,8 @@
       tx = null;
     }, { passive: true });
 
-    /* 点击页面右/左区域翻页（避开按钮与交互元素） */
-    root.addEventListener("click", function (e) {
-      if (e.target.closest("button, a, input, textarea, .pyv2-quiz, .py-playground, .sl-bar, select, label")) return;
-      var r = root.getBoundingClientRect();
-      if (e.clientX - r.left > r.width * 0.72) next();
-      else if (e.clientX - r.left < r.width * 0.12) prev();
-    });
+    /* 注意：不响应鼠标点击翻页——授课时教师常用鼠标在课件上指点，
+       点击翻页极易误触破坏课堂节奏。翻页仅保留：键盘 / 右下角按钮 / 触摸滑动 */
 
     /* 深链 #/n */
     function fromHash() {

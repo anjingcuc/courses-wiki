@@ -1,0 +1,1035 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2023-02-git%E6%93%8D%E4%BD%9C/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2023-02 补充课：Git 操作（校内 GitLab 配置与第一次作业布置） - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2023-02-git-gitlab" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2023-02 补充课：Git 操作（校内 GitLab 配置与第一次作业布置）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gitlabgitcuceducn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 作业平台：校内 GitLab（git.cuc.edu.cn）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 课程小组与仓库结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-https-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. HTTPS + Access Token 认证（重点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 克隆与分支操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 环境相关补充
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 作业涉及的语言知识
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例与演示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rot13-ascii-5340" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一次作业：ROT13 + ASCII 十六进制 编解码器（约 53:40 起）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1170013926" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现场答疑中暴露的典型故障（约 1:17:00–1:39:26）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2023-02-git-gitlab">2023-02 补充课：Git 操作（校内 GitLab 配置与第一次作业布置）<a class="headerlink" href="#2023-02-git-gitlab" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这是国庆/军训停课两三周后的恢复课，主体是带着学生现场完成作业环境的搭建。课程作业平台从 Gitee 迁移到学校内部的 GitLab（git.cuc.edu.cn），老师现场指导学生注册激活账号、加入课程小组、创建个人仓库、配置 Personal Access Token、克隆仓库、建立 <code>0x01</code> 分支。随后布置并讲解了第一次作业：把英文字符串先做 ROT13 加密再做 ASCII 十六进制编码（以及反向解码），借此复习 Python 基本数据类型与类型转换（<code>ord</code>、<code>hex</code>、切片、循环遍历字符串）。课后留出了大量现场答疑时间，排查了 VPN、代理、token、仓库权限（Owner/Developer 继承问题）等一系列实际故障。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-gitlabgitcuceducn">1. 作业平台：校内 GitLab（git.cuc.edu.cn）<a class="headerlink" href="#1-gitlabgitcuceducn" title="Permanent link">&para;</a></h3>
+<ul>
+<li>此前用 Gitee，因其有用户数量和仓库体积限制，本学期迁移到学校内部的 GitLab：<code>git.cuc.edu.cn</code>（约 01:10）。</li>
+<li>该站点**仅限校园网访问**；在校外或连 WiFi 时需先登录学校 VPN：<code>vpn.cuc.edu.cn</code>（约 04:30、40:58）。</li>
+<li>登录方式：用**学号 + 平时上网的密码**登录即完成"激活"（约 06:50）。</li>
+<li>若登录时报 LDAP 错误（红字提示无法登录）：需先登录融合服务门户 <strong>espace（i.cuc.edu.cn）</strong>，在"认证设置"中**绑定邮箱（最好是学校邮箱，不要用 QQ 邮箱）**——未绑定邮箱的账号无法被授权进入代码仓库（约 08:20、17:16）。</li>
+<li>登录后建议开启**两步验证（2FA）**（约 15:51）。</li>
+<li><strong>用户名（username）必须先改成自己的学号</strong>：右上角头像 → Edit profile → Account → 修改 username → Update。老师的脚本靠学号自动把学生加进课程小组；加组完成后可随意改回个性化 ID，因为系统内部用 uid 唯一标识用户（约 15:00–17:10）。</li>
+</ul>
+<h3 id="2">2. 课程小组与仓库结构<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>课程小组名为"2023年Python程序设计"，学生被加入后可见（约 02:40）。</li>
+<li>组内有黄老师写的校内 GitLab 使用说明仓库，可供预习（约 25:48）。</li>
+<li><strong>仓库组织方式（与往年不同）</strong>：每人一个以自己姓名全拼命名的仓库，整学期复用；<strong>每次作业一个分支</strong>，命名为 <code>0x01</code>、<code>0x02</code>、<code>0x03</code>……老师按分支名爬取批改（约 26:40、43:15、44:20）。</li>
+<li>创建仓库：New project → 创建空仓库（Create blank project）→ Project name 用姓名全拼，其余保持默认（自动初始化 README、Private 级别）→ Create（约 28:16–29:40）。</li>
+</ul>
+<h3 id="3-https-access-token">3. HTTPS + Access Token 认证（重点）<a class="headerlink" href="#3-https-access-token" title="Permanent link">&para;</a></h3>
+<ul>
+<li>校内 GitLab <strong>只能用 HTTPS，不能用 SSH</strong>（出于安全考虑，SSH 是远程登录协议，防火墙规则难写），因此不能配置 SSH key，要改用 <strong>Access Token</strong>（约 30:20–31:15）。</li>
+<li>两种 token（约 31:20–33:00）：</li>
+<li><strong>Project Access Token</strong>：仓库内 Settings → Access Tokens 配置，仅对当前仓库有效；</li>
+<li><strong>Personal Access Token</strong>：右上角用户头像 → Preferences（首选项）→ Access Tokens 配置，对用户名下所有仓库有效。<strong>推荐用 Personal（省事）</strong>。</li>
+<li>创建 token 的要点（约 33:00–36:10）：</li>
+<li>Token name <strong>务必写自己的真实姓名</strong>——它会显示在每次 commit 的作者位置，乱写会很难看；</li>
+<li><strong>把过期日期（Expiration date）删掉</strong>，否则默认一个月后过期，届时会莫名其妙连不上；</li>
+<li>权限（Scopes）只需勾选**读仓库和写仓库两项**（read_repository / write_repository），其余是访问 GitLab API 用的（老师批量拉人进组的脚本才需要 API 权限）；</li>
+<li><strong>token 只在创建后显示一次</strong>，点 Create 后不要急着动页面，点"眼睛"图标显示并立即复制，妥善保存（如发到微信文件传输助手）。</li>
+<li>拼接带认证的克隆 URL（约 37:57–40:10）：</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://oauth2:&lt;你的token&gt;@git.cuc.edu.cn/&lt;组&gt;/&lt;仓库&gt;.git
+</span></code></pre></div>
+<ul>
+<li>在 <code>https://</code> 之后插入 <code>oauth2:</code>（OAuth2 是著名第三方认证协议，可扩展阅读）作为"用户名"，<code>:</code> 后接 token 作为"密码"，再用 <code>@</code> 与域名隔开；</li>
+<li><strong>冒号和 @ 必须是英文符号</strong>，用中文冒号会导致失败；</li>
+<li>这种 <code>协议://用户名:密码@域名/路径</code> 的形式源自早期 FTP 的用法（额外知识）。</li>
+</ul>
+<h3 id="4">4. 克隆与分支操作<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>克隆方式一：TortoiseGit（小乌龟）</strong>——文件夹空白处右键 → 克隆 → 粘贴拼接好的 URL → OK。注意 SSH 私钥（Load Putty Key）一栏再也不用了（约 40:10–40:55）。</li>
+<li><strong>克隆方式二：命令行</strong>——在目标目录下执行 <code>git clone &lt;拼接好的URL&gt; [目录名]</code>（约 41:50）。</li>
+<li>克隆失败排查（约 40:55、42:17）：</li>
+<li>报红框错误 → 多半**没登 VPN**；</li>
+<li>登了 VPN 仍报同样的错 → 检查是否给 Git 或系统配过**代理（科学上网）**，代理会把流量导到境外 IP，VPN 等于白登，必须排除所有代理干扰（包括全局代理）。</li>
+<li><strong>创建并切换分支</strong>（约 43:45–45:30）：</li>
+<li>小乌龟：右键 → TortoiseGit → Create Branch（创建分支），命名 <code>0x01</code> → OK；再右键 → Switch/Checkout（切换/检出）→ 下拉选 <code>0x01</code> → OK。<strong>创建和切换是两个独立步骤</strong>，创建后仍在 <code>main</code> 分支上，必须再切换；</li>
+<li>命令行：<code>git checkout -b 0x01</code>——一条命令同时完成"创建 + 切换"（小乌龟界面底部也能看到等效命令）；已存在的分支要切回去只用 <code>git checkout 0x01</code>，<strong>不要再加 <code>-b</code></strong>（<code>-b</code> 是创建新分支）；</li>
+<li>Mac 用户没有小乌龟，直接用终端执行上述命令行即可（约 46:25）。</li>
+<li>切换分支后，提交（commit）会落在当前分支上而非 <code>main</code>（约 45:50）。</li>
+<li><strong>提交与推送</strong>（约 1:13:32）：add → commit → push；首次 push 时远端尚无该分支，push 会自动在远端创建 <code>remote branch 0x01</code>。</li>
+</ul>
+<h3 id="5">5. 环境相关补充<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>写代码环境：装 Python + VS Code（也可用 PyCharm 或 Anaconda，自选）（约 19:10、52:00）。</li>
+<li>下载 Python：Windows 选 64 位 installer（recommended）；macOS 只有一个选项（约 51:10）。</li>
+<li><strong>Mac 上要用 <code>python3</code> 和 <code>pip3</code></strong>，不能输 <code>python</code>：macOS 系统自带 Python 2 占用了 <code>python</code> 这个名字，手动安装的 Python 3 用 <code>python3</code> 区分（约 49:20–50:30）。</li>
+<li>VS Code 技巧：用 VS Code "打开文件夹"打开仓库后，内置终端（快捷键 Ctrl + <code>）会**自动 cd 到该文件夹**，无需手动切换路径；Windows 的 cmd 不认</code>ls<code>，要用</code>dir`（约 1:07:59–1:09:00）。</li>
+</ul>
+<h3 id="6">6. 作业涉及的语言知识<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>字符串单/双引号都可以，但**不要混用**，选定一种风格就贯穿始终（约 59:10–1:00:20）。</li>
+<li>字符串是**可迭代对象**：<code>for char in confession:</code> 逐个取出字符，无需像 C 语言那样用 <code>i = 0; i++</code> 做索引（约 1:00:50–1:02:10）。</li>
+<li>内置函数 <code>ord(x)</code>：把单个字符转成整数（如大写 <code>I</code> → 73）（约 1:02:15–1:03:45）。</li>
+<li>内置函数 <code>hex(x)</code>：把整数转成**带 <code>0x</code> 前缀的小写十六进制字符串**（约 1:03:47–1:04:35）。</li>
+<li>字符串切片 <code>s[start:end]</code>：半开区间，取到 <code>end-1</code>；<code>start</code> 为 0 可省略，取到结尾时 <code>end</code> 可省略。作业中用 <code>[2:]</code> 去掉 <code>hex()</code> 结果的 <code>0x</code> 前缀（约 1:04:45–1:06:45）。</li>
+<li>字符串拼接可用 <code>+=</code>（如 <code>message += t</code>）（约 1:07:17）。</li>
+<li>VS Code 中演示了 GitHub Copilot（GPT-4）自动补全，教育优惠可申请（顺带提及，约 1:06:58）。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="rot13-ascii-5340">第一次作业：ROT13 + ASCII 十六进制 编解码器（约 53:40 起）<a class="headerlink" href="#rot13-ascii-5340" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>作业要求</strong>：写一个"神秘数字"生成器/解析器——把任意英文字符串（示例 <code>"I love python"</code>）先经 ROT13 加密，再转成 ASCII 码的十六进制小写字符串（编码）；并能把这串十六进制还原回原文（解码）。编码和解码都要写；先 ROT13 再 ASCII 或先 ASCII 再 ROT13 均可，只要编解码能对上。</li>
+<li><strong>背景知识</strong>：ASCII 码表（大写 <code>A</code> = 65，小写 <code>a</code> = 97）；凯撒密码平移思想，ROT13 即平移 13 位（A↔N、B↔O、C↔P），因字母共 26 个，<strong>ROT13 加密和解密是同一个操作</strong>（约 54:00–57:50）。</li>
+<li><strong>课上示例代码（example.py）要点</strong>：</li>
+<li><code>confession = 'I love python'</code>，<code>message = ''</code> 初始化空结果串；</li>
+<li><code>for char in confession:</code> 逐字符取出；</li>
+<li><code>number = ord(char)</code> 转成整数；</li>
+<li><code>hex(number)[2:]</code> 转十六进制并切片去掉 <code>0x</code> 前缀；</li>
+<li><code>message += ...</code> 拼接到结果串；<code>python example.py</code> 运行输出编码结果。</li>
+<li><strong>作业框架（老师已搭好，完形填空式）</strong>：提供 <code>encode(message)</code> 与 <code>decode(message)</code> 两个函数骨架，内部调用三个待完成的函数：<code>rot13()</code>、ASCII 编码、ASCII 解码。encode = 先 ROT13 再 ASCII 编码；decode 顺序相反（先 ASCII 解码再 ROT13）。其中 ASCII 编码部分基本可直接搬示例代码，实际只需新写约两个函数（约 1:09:35–1:12:35）。</li>
+<li><strong>提交方式</strong>：代码放到本地仓库，在 <code>0x01</code> 分支上 commit 并 push 到自己的仓库即可，老师按分支爬取批改。<strong>下节课会先讲完整答案才到截止时间</strong>，不会写不用有压力，但鼓励自己动脑（约 1:15:42）。</li>
+<li>参考往届：可去课程组里看师兄师姐的仓库结构（一个仓库、多次作业多个分支）（约 26:15）。</li>
+</ul>
+<h3 id="1170013926">现场答疑中暴露的典型故障（约 1:17:00–1:39:26）<a class="headerlink" href="#1170013926" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Ask a project Owner or Maintainer to create a default branch</code>：学生 push 报权限错误。原因是**仓库权限继承自小组权限**——学生在小组里是 Developer，不是各自仓库的 Owner/Maintainer，导致无法初始化默认分支。这是平台机制问题，老师课后去研究批量把学生设为各自仓库 Owner。</li>
+<li>有学生误删了 <code>main</code> 分支，报 <code>default branch main does not exist</code>。</li>
+<li>小乌龟本身损坏（证书找不到 / service not found）：需重装或改用命令行。</li>
+<li>URL 拼接错误（协议写错、token 复制错）：逐项核对 URL 与 token。</li>
+<li>克隆后文件夹上没有绿色勾号图标：那是资源管理器的图标覆盖层，可能被第三方桌面插件抢占，<strong>不影响使用，无需处理</strong>。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>必须先连校园网/VPN</strong>，且**关闭一切代理**，否则克隆一定失败——这是本课最高频的坑。</li>
+<li><strong>绑定学校邮箱</strong>（融合门户认证设置）是登录校内 GitLab 的前置条件，LDAP 报错都源于此。</li>
+<li>**username 先改成学号**再让老师拉进组；token 的 name 写真名；这两个"命名"要求都直接影响老师收作业。</li>
+<li><strong>Personal vs Project Access Token</strong> 的区别要能分清；token 只显示一次，务必当场复制保存；删掉过期时间；只勾读写仓库两项权限。</li>
+<li>URL 拼接格式 <code>https://oauth2:TOKEN@域名/路径</code> 中**符号必须是英文**（中文冒号是不行的）。</li>
+<li><strong>创建分支 ≠ 切换分支</strong>：小乌龟要两步；命令行 <code>git checkout -b</code> 一步到位；已存在的分支切回时不能再加 <code>-b</code>。每次作业务必在 <code>0x01</code> 分支上提交，不要提到 <code>main</code>。</li>
+<li>分支命名必须是 <code>0x01</code>、<code>0x02</code>……，这是批改脚本的约定。</li>
+<li><code>hex()</code> 结果带 <code>0x</code> 前缀且返回的是字符串；切片 <code>[2:]</code> 去前缀是"半开区间 + 省略端点"两个知识点的复合运用。</li>
+<li>不要合并（merge）分支，各作业分支保持独立。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>前置知识</strong>：依赖"基本数据类型基础"章节（数字、字符串、类型转换、<code>ord</code>/<code>hex</code>、切片、可迭代对象），老师明确说本次作业就是督导大家补看该章节视频；同时默认学生有 C 语言基础（循环索引、ASCII 编码）。</li>
+<li><strong>与《计算机系统原理与维护》课的关联</strong>：Git 收作业的方式沿袭自该课；但分支用法不同（当年不是一人一仓多分支），且当年用 SSH key + 小乌龟，本课改用 HTTPS + token（小乌龟的私钥选项不再使用）。</li>
+<li><strong>与第 10 章（第三方库与虚拟环境）的关联</strong>：课上提到 pip/pip3、Anaconda 安装、国内环境下 Mac 的 <code>python3</code>/<code>pip3</code> 区分，与环境搭建章节呼应。</li>
+<li><strong>后续衔接</strong>：本次作业的完整答案将在下一节课讲解，之后才到提交截止时间；以后每次作业均按本课建立的流程（克隆 → 建 <code>0xNN</code> 分支 → 写代码 → commit → push）进行。</li>
+<li><strong>扩展阅读</strong>：OAuth2 认证协议；凯撒密码与 ROT13；GitLab API（老师批量拉人脚本的原理）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

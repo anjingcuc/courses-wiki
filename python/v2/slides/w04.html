@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W4 控制流与函数 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 04 / 16</span>
+    <span class="th">语言核心 · 控制流与函数</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m2/">M2 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w03.html">← 上周</a>
+    <a class="cur" href="w04.html">本周</a>
+    <a href="w05.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W4 控制流与函数">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 4 周（100 分钟 · L8–L9）</div>
+    <h1 class="rise">程序会「做决定」<br><span class="grad">也会「重复做事」</span></h1>
+    <p class="sub rise">分支让程序做决定，循环让程序重复做事；函数给逻辑起名字。
+    本周还引出一个贯穿全课程的思维：<b>好的函数契约 = 好的 prompt</b>。</p>
+    <div class="meta rise">
+      <span>所属模块 M2 语言核心</span><span>微课 V013–V016</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>导入</b></td><td>上周取了数据——只想看 token>100 的记录怎么办？需要「条件判断」</td></tr>
+      <tr><td>8–20</td><td><b>分支</b></td><td>if/elif/else；and/or 组合；缩进即代码块</td></tr>
+      <tr><td>20–32</td><td><b>循环</b></td><td>for/range 三用法；while 多轮对话；break vs continue</td></tr>
+      <tr><td>32–42</td><td><b>两大杀手</b></td><td>off-by-one（range(5) 是 0–4）与死循环（Ctrl+C）现场演示</td></tr>
+      <tr><td>42–55</td><td><b>动手练习</b></td><td>运行场：筛选 token>200 + 按模型分组统计 + 找最大</td></tr>
+      <tr><td>55–68</td><td><b>函数语法</b></td><td>def/参数/返回值/docstring；默认值；*args **kwargs 认得出</td></tr>
+      <tr><td>68–80</td><td><b>契约四要素</b></td><td>名字/参数/返回值/示例——好的契约=好的 prompt</td></tr>
+      <tr><td>80–92</td><td><b>动手练习</b></td><td>运行场：补全 top_questions 函数（TODO 版）</td></tr>
+      <tr><td>92–100</td><td><b>lambda + 小测</b></td><td>max(logs, key=lambda...)；随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">两个运行场练习是本课核心——写完当堂运行验证。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>分支：让程序做决定</h2>
+    <pre class="rise"><code><span class="c"># 按 token 消耗分级——来自真实的 API 日志场景</span>
+<span class="k">for</span> log <span class="k">in</span> api_logs:
+    <span class="k">if</span> log[<span class="s">"tokens"</span>] &lt; <span class="n">50</span>:
+        level = <span class="s">"轻量"</span>
+    <span class="k">elif</span> log[<span class="s">"tokens"</span>] &lt;= <span class="n">200</span>:
+        level = <span class="s">"正常"</span>
+    <span class="k">else</span>:
+        level = <span class="s">"高消耗"</span>
+
+<span class="c"># 组合条件：高消耗 且 调用失败</span>
+<span class="k">if</span> log[<span class="s">"tokens"</span>] &gt; <span class="n">200</span> <span class="k">and</span> <span class="k">not</span> log[<span class="s">"ok"</span>]:
+    <span class="f">print</span>(<span class="s">"⚠ 需要排查："</span>, log)</code></pre>
+    <ul>
+      <li class="frag">Python 用<b>缩进</b>表示代码块（其他语言用花括号）——缩进错了就是语法错误</li>
+      <li class="frag"><code>and / or / not</code> 组合条件；<code>elif</code> 链代替其他语言的 switch</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>循环：重复做事</h2>
+    <div class="cols2 wide-l">
+      <pre class="rise"><code><span class="c"># for：遍历已知集合</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(<span class="n">5</span>):
+    <span class="f">print</span>(i)        <span class="c"># 0 1 2 3 4</span>
+
+<span class="c"># while：满足条件就一直做</span>
+<span class="k">while</span> <span class="k">True</span>:
+    q = <span class="f">input</span>(<span class="s">"你："</span>)
+    <span class="k">if</span> q == <span class="s">"退出"</span>:
+        <span class="k">break</span>           <span class="c"># 跳出整个循环</span>
+    <span class="f">reply</span>(q)</code></pre>
+      <div>
+        <div class="scard rise" style="border-left:5px solid #dc2626;"><b>循环两大杀手</b>
+          <ul style="font-size:15.5px;">
+            <li class="frag">off-by-one：<code>range(5)</code> 是 0–4，<b>不是</b> 1–5</li>
+            <li class="frag">死循环：忘写 <code>break</code> / 条件永真 → <code>Ctrl+C</code> 终止</li>
+          </ul>
+        </div>
+        <div class="scard frag"><b>break vs continue</b>
+          <span class="small">break 跳出循环；continue 跳过本轮进入下一轮。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>动手：筛选与统计 API 日志</h2>
+    <span class="lab">交互 · 浏览器内运行（L8 课堂主线）</span>
+    <div class="py-playground" data-py-title="条件筛选 + 分组统计 + 找最大">
+      <textarea>logs = [
+    {"model": "deepseek-chat", "tokens": 730,  "ok": True},
+    {"model": "kimi-k2",       "tokens": 120,  "ok": True},
+    {"model": "deepseek-chat", "tokens": 310,  "ok": False},
+    {"model": "glm-4.7",       "tokens": 45,   "ok": True},
+    {"model": "deepseek-chat", "tokens": 205,  "ok": True},
+]
+
+# 1) 筛选：token 超过 200 的记录
+heavy = [l for l in logs if l["tokens"] > 200]
+print("高消耗记录数:", len(heavy))
+
+# 2) 分组：每个模型被调了几次
+stats = {}
+for l in logs:
+    stats[l["model"]] = stats.get(l["model"], 0) + 1
+print("调用统计:", stats)
+
+# 3) 练习：找出 tokens 最大的一条（max + key=lambda）
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>函数：给逻辑起名字</h2>
+    <pre class="rise"><code><span class="k">def</span> <span class="f">estimate_cost</span>(tokens: <span class="f">int</span>, price: <span class="f">float</span> = <span class="n">0.001</span>) -&gt; <span class="f">float</span>:
+    <span class="s">"""估算一次 API 调用的费用（元）。
+
+    &gt;&gt;&gt; estimate_cost(730)
+    0.73
+    """</span>
+    <span class="k">return</span> tokens * price / <span class="n">1000</span>
+
+cost = <span class="f">estimate_cost</span>(<span class="n">730</span>)          <span class="c"># 位置参数</span>
+cost = <span class="f">estimate_cost</span>(tokens=<span class="n">730</span>)     <span class="c"># 关键字参数</span></code></pre>
+    <ul>
+      <li class="frag">为什么需要函数：换一份数据再跑，不必复制粘贴代码</li>
+      <li class="frag">默认值参数让调用更省事；<code>*args / **kwargs</code> 收集任意数量参数——<b>读 AI 代码必备</b></li>
+      <li class="frag"><code>lambda</code>：一行匿名函数，常当 key 用：<code>max(logs, key=lambda l: l["tokens"])</code></li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>函数契约四要素</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">①名字</span><b class="tt">它做什么</b>
+        <span class="small"><code>count_words</code> 而不是 <code>func1</code>——名字即文档，AI 也靠名字理解代码。</span></div>
+      <div class="scard rise"><span class="tag">②参数</span><b class="tt">它需要什么</b>
+        <span class="small">类型 + 含义 + 默认值：<code>text: str, topk: int = 3</code></span></div>
+      <div class="scard rise"><span class="tag">③返回值</span><b class="tt">它给出什么</b>
+        <span class="small">返回 dict 还是 list？空输入返回什么？异常时抛还是返 None？</span></div>
+      <div class="scard rise"><span class="tag v">④示例</span><b class="tt">怎么用</b>
+        <span class="small">docstring 里放 doctest 示例——既是文档也是测试。</span></div>
+    </div>
+    <div class="frag scard" style="margin-top:14px; border-left:5px solid #7c3aed;">
+      <b>好的函数契约 = 好的 prompt。</b>把契约四要素写给 AI，AI 就能一次写出正确的函数；
+      反过来，看不懂 AI 函数时，先问自己「它的契约是什么」。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>动手：补全一个函数契约</h2>
+    <span class="lab">交互 · 补全 TODO 再运行</span>
+    <div class="py-playground" data-py-title="L9 练习：封装成函数">
+      <textarea>def top_questions(messages: list, topk: int = 2) -> list:
+    """返回最长的 topk 条用户提问。
+
+    示例:
+    >>> top_questions([{"role": "user", "content": "hi"}])
+    ['hi']
+    """
+    questions = [m["content"] for m in messages if m["role"] == "user"]
+    # TODO: 按 content 长度从大到小排序，取前 topk 条
+    # 提示：sorted(questions, key=len, reverse=True)[:topk]
+    return questions
+
+msgs = [
+    {"role": "user", "content": "什么是变量"},
+    {"role": "assistant", "content": "变量是名字绑定对象"},
+    {"role": "user", "content": "什么是列表推导式？举个例子"},
+]
+print(top_questions(msgs))
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W4 控制流与函数 · 概念检查",
+        "questions": [
+          {
+            "q": "range(5) 产生的数字是？",
+            "opts": ["1 2 3 4 5", "0 1 2 3 4", "1 2 3 4", "0 1 2 3 4 5"],
+            "a": 1,
+            "explain": "range(5) 从 0 开始、不含 5——共 5 个数。边界差一是循环最常见 bug。"
+          },
+          {
+            "q": "读 AI 代码遇到 def f(*args, **kwargs)，它意味着？",
+            "opts": ["语法错误", "函数不接受参数", "可接收任意数量位置参数和关键字参数", "只能传两个参数"],
+            "a": 2,
+            "explain": "*args 把多余位置参数收进元组，**kwargs 把多余关键字参数收进字典——openai SDK 的 create() 签名里全是它。"
+          },
+          {
+            "q": "函数契约四要素不包括？",
+            "opts": ["名字", "参数", "作者姓名", "返回值与示例"],
+            "a": 2,
+            "explain": "契约 = 名字（做什么）+ 参数（需要什么）+ 返回值（给出什么）+ 示例（怎么用）。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V013-if分支与条件逻辑/">V013 分支</a> ·
+          <a href="../scripts/V014-for-while循环与推导式/">V014 循环与推导式</a> ·
+          <a href="../scripts/V015-函数定义与参数设计/">V015 函数设计</a> ·
+          <a href="../scripts/V016-args-kwargs与lambda/">V016 args-kwargs</a></li>
+        <li class="frag">练习：把课堂的两个运行场练习补完并改参数重跑</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W5 IO、异常与类</b>
+      程序「重启就失忆、断网就崩溃」怎么救——文件持久化、异常处理，再用类把状态打包。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w05.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m2/">M2 模块页</a> · <a href="../notes/5.3-程序结构-循环语句-done/">经典笔记 5.3 循环</a> · <a href="../notes/5.4-程序结构-函数-done/">5.4 函数</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

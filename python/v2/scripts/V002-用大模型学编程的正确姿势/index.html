@@ -1,0 +1,1030 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/scripts/V002-%E7%94%A8%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E7%BC%96%E7%A8%8B%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>V002 用大模型学编程的正确姿势 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v002" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V002 用大模型学编程的正确姿势
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐字稿
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐字稿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000035-hook-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:00–0:35] 开场 Hook：同一个 AI，天壤之别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#035230-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:35–2:30] 坏提问 vs 好提问：现场对比演示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#230500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2:30–5:00] 核心知识点：提问三维框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#500630-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [5:00–6:30] 用 AI 辅助排错：提问能力在真实场景中的价值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#630730-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [6:30–7:30] 48 课全景地图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#730825" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:30–8:25] 小结、提问彩蛋与下集预告
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演示操作清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="演示操作清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坏 Prompt（对比演示用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        好 Prompt（对比演示用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        排错演示 Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        录制注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v002">V002 用大模型学编程的正确姿势<a class="headerlink" href="#v002" title="Permanent link">&para;</a></h1>
+<h2 id="_1">视频信息<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号</td>
+<td>V002</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>用大模型学编程的正确姿势</td>
+</tr>
+<tr>
+<td>目标时长</td>
+<td>8 min</td>
+</tr>
+<tr>
+<td>对应课次</td>
+<td>L2 AI辅助学习法与环境初配</td>
+</tr>
+<tr>
+<td>前置微课</td>
+<td>V001 AI时代为什么学编程</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>同一个 AI，为什么有人用完说"太菜了"，有人说"改变了我的人生"？差距在提问</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">逐字稿<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="000035-hook-ai">[0:00–0:35] 开场 Hook：同一个 AI，天壤之别<a class="headerlink" href="#000035-hook-ai" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 左右分屏。左边标题"坏提问"，右边标题"好提问"。两个对话框同时弹出——左边输入"帮我写一个 Python 程序"，右边输入一段结构完整的需求描述。</p>
+<p><strong>【旁白】</strong>
+同样一个大模型，有人用完说"就这？太菜了"，有人用完说"这东西改变了我的人生"。差距在哪？不在 AI，在你怎么问。今天我现场做个对比实验：同一个 AI，同一个需求，两次不同的问法，你看输出质量差多少。</p>
+<hr />
+<h3 id="035230-vs">[0:35–2:30] 坏提问 vs 好提问：现场对比演示<a class="headerlink" href="#035230-vs" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 录屏：打开 Kimi 网页版。先输入坏 prompt 并展示 AI 的回复（泛泛的猜数字游戏代码）。清空对话。再输入好 prompt，展示 AI 的回复（结构清晰、带注释的成绩排序代码）。</p>
+<p><strong>【旁白】</strong>
+我们先来看坏提问。我问 AI："帮我写一个 Python 程序。"就这么一句话。AI 会给我什么？一个猜数字游戏，或者一个 Hello World。因为我的需求太笼统了，AI 只能给你一个最泛泛的示例。这不叫 AI 不行，这叫你没说清楚你要什么。</p>
+<p>现在我换个问法。我说："我是 Python 零基础学生。帮我写一个程序：读取一个 JSON 文件，里面是学生成绩列表，格式是 name 和 score 两个字段，按分数从高到低排序后打印出来。请加上中文注释，并解释每行的作用。"你看看 AI 这次给的：结构清晰，有注释，有解释，拿过来几乎就能直接用。同一个 AI，输出质量天差地别。</p>
+<hr />
+<h3 id="230500">[2:30–5:00] 核心知识点：提问三维框架<a class="headerlink" href="#230500" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 动画或字幕条，三个维度依次弹出：<code>① 上下文</code> <code>② 具体目标</code> <code>③ 约束条件</code>。每个维度配一行好/坏对比示例。</p>
+<p><strong>【旁白】</strong>
+差距在哪？我们对比一下两次提问，把规律总结出来。一个好问题要包含三个维度。</p>
+<p>第一，上下文。坏提问什么都不说背景；好提问说清楚"我是 Python 零基础学生"，这样 AI 就知道用入门级别来回答，不会给你整一堆你看不懂的高级语法。上下文还包括你的项目背景、技术栈、运行环境——交代得越多，AI 越不容易跑偏。</p>
+<p>第二，具体目标。坏提问说"帮我写个程序"——做什么的程序？完全没说。好提问说"读取 JSON 文件，按分数排序后打印"——目标非常明确。目标越具体，AI 越不需要猜，给你的东西就越精准。</p>
+<p>第三，约束条件。"加中文注释"是一个约束，"用 Python 标准库"是一个约束，"代码不超过 30 行"也是一个约束。约束条件相当于给 AI 画了跑道，让它在该跑的范围内发挥。</p>
+<p>记一个公式：<strong>好问题 = 上下文 + 具体目标 + 约束条件</strong>。这三个维度齐了，AI 给你的回答质量会翻好几倍。</p>
+<hr />
+<h3 id="500630-ai">[5:00–6:30] 用 AI 辅助排错：提问能力在真实场景中的价值<a class="headerlink" href="#500630-ai" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 录屏：模拟一个安装报错场景——命令行显示 <code>python 不是内部或外部命令</code>。然后展示如何把完整错误信息发给 AI，AI 给出修复方案。</p>
+<p><strong>【旁白】</strong>
+提问能力不只是用来写代码。你学编程的过程中，最大的时间消耗不是写代码，而是装环境、改报错。比如你装完 Python，命令行输入 python，系统告诉你"不是内部或外部命令"。很多人这时候就懵了。但如果你会提问，把这个错误信息原封不动发给 AI，再补上你的操作系统和安装路径，AI 一下就能告诉你：你安装的时候忘了勾选 Add to PATH，需要怎么怎么修。所以从第一天起，养成一个习惯：遇到问题，先把错误信息完整地发给 AI，看它怎么说。但前提是——你得能把问题描述清楚。</p>
+<hr />
+<h3 id="630730-48">[6:30–7:30] 48 课全景地图<a class="headerlink" href="#630730-48" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 展示 48 课课程地图，7 个模块一览。三个里程碑高亮标注：<code>L4 第一次调通 API</code> <code>L23 RAG 实战</code> <code>L31 项目启动</code>。</p>
+<p><strong>【旁白】</strong>
+最后给你看看我们这门课的全景。48 节课，7 个模块：导论、环境工具、语言核心、数据获取、工程化、AI 应用开发、综合项目。有几个关键里程碑你记住：第 4 课，你就会亲手调通大模型 API——从那以后你就能说"我可以用代码跟 AI 对话了"；第 23 课，你会搭一个能读文档回答问题的 AI 系统；第 31 课开始，你正式进入期末大项目阶段。从第 1 课到第 4 课只有 3 节课的准备时间，所以每一节都要跟上。</p>
+<hr />
+<h3 id="730825">[7:30–8:25] 小结、提问彩蛋与下集预告<a class="headerlink" href="#730825" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 公式再次出现：<code>好问题 = 上下文 + 具体目标 + 约束条件</code>。</p>
+<p><strong>【旁白】</strong>
+总结一下：用好 AI 的关键不是 AI 有多强，而是你会不会提问。记住三维框架：上下文、具体目标、约束条件。</p>
+<p><strong>【画面】</strong> 字幕条逐条弹出三个可直接照抄的 prompt（每条停留供暂停截图）：
+① <code>给我一个"烂提问"（比如"帮我写个程序"），让我用"上下文+具体目标+约束条件"框架把它改写成好提问，改完你打分并说明理由。</code>
+② <code>这是我的报错信息：（粘贴你的报错）。请不要直接给答案，用连续提问的方式引导我自己找到原因。</code>
+③ <code>扮演一位严格的编程老师，就"如何向 AI 提出好问题"连续向我追问 5 个问题，一个比一个深入。</code></p>
+<p><strong>【旁白】</strong>
+彩蛋时间。把刚学的三维框架用在"让 AI 教你"上：让它出题、让它追问、让它只给提示不给答案。这三条 prompt 直接照抄去试。你会发现，好问题能要到的不只是答案，还有练习和反馈。</p>
+<p><strong>【画面】</strong> 弹出下集标题卡：<code>V003 Python 与 VSCode 安装速通</code>。</p>
+<p><strong>【旁白】</strong>
+下一集，我们进入实操环节——7 分钟带你装好 Python 和 VSCode，跨过编程学习的第一道坎。我们下集见。</p>
+<hr />
+<h2 id="_3">演示操作清单<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="prompt">坏 Prompt（对比演示用）<a class="headerlink" href="#prompt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>帮我写一个Python程序
+</span></code></pre></div>
+<h3 id="prompt_1">好 Prompt（对比演示用）<a class="headerlink" href="#prompt_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>我是Python零基础学生。帮我写一个程序：读取一个JSON文件，里面是学生成绩列表，
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>格式如 [{&quot;name&quot;: &quot;张三&quot;, &quot;score&quot;: 85}, ...]，按分数从高到低排序后打印出来。
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>请加上中文注释，并解释每行的作用。
+</span></code></pre></div>
+<h3 id="prompt_2">排错演示 Prompt<a class="headerlink" href="#prompt_2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>我在 Windows 11 上安装了 Python 3.12，但在命令行输入 python 显示
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&quot;不是内部或外部命令&quot;。我的 Python 安装路径是
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>C:\Users\我的用户名\AppData\Local\Programs\Python\Python312。
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>怎么解决？
+</span></code></pre></div>
+<blockquote>
+<p>以上 prompt 均在 Kimi 网页版（kimi.com）中操作演示，也可用其他大模型替代，效果类似。</p>
+</blockquote>
+<hr />
+<h2 id="_4">录制注意<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>对比演示要真实</strong>：两个 prompt 必须在同一次录制中连续展示，先坏后好，让学生直观感受到差距。建议使用同一个对话窗口的"新对话"功能，保证对比公平。</li>
+<li><strong>三维框架是本片灵魂</strong>：上下文、具体目标、约束条件——这三个词必须在字幕条中出现，并在旁白中反复强调。这是学生要带走的核心知识点。</li>
+<li><strong>课程地图节奏要快</strong>：6:30 的全景图段不要逐个模块展开讲，快速过一遍即可，重点是三个里程碑（L4/L23/L31）。</li>
+<li><strong>时长控制</strong>：对比演示段（0:35–2:30）弹性最大——如果 AI 回答很长，可以只展示关键部分，关键是让学生看到"好坏输出的质变"。</li>
+<li><strong>提问彩蛋</strong>：提问彩蛋段的 prompt 字幕条需在后期加上，确保观众能暂停照抄。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

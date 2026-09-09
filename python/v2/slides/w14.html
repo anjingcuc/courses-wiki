@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W14 项目启动与冲刺一 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 14 / 16</span>
+    <span class="th">综合项目 · 启动 / 架构 / 冲刺一</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m6/">M6 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w13.html">← 上周</a>
+    <a class="cur" href="w14.html">本周</a>
+    <a href="w15.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W14 项目启动与冲刺一">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 14 周（100 分钟 · L31–L34）</div>
+    <h1 class="rise">期末项目<br><span class="grad">从选题到后端跑通</span></h1>
+    <p class="sub rise">零件你已经全部集齐：API 封装、Prompt、RAG、Agent、前后端、记忆。
+    接下来三周，把它们组装成一个完整的应用。本周：选题 → 需求与 MVP → 架构 → 冲刺一（后端 + AI 核心）。</p>
+    <div class="meta rise">
+      <span>所属模块 M6 综合项目</span><span>微课 V053 回顾</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>项目池介绍</b></td><td>五个项目逐个讲：场景/功能/技术栈/难度——觉得有想法的举手</td></tr>
+      <tr><td>10–22</td><td><b>分组与选题</b></td><td>自由组队；一句话描述；教师确认难度匹配</td></tr>
+      <tr><td>22–36</td><td><b>需求与 MVP</b></td><td>提案四件套；「砍功能」互动——划掉「有了更好」</td></tr>
+      <tr><td>36–50</td><td><b>架构设计</b></td><td>架构图三要素；API 接口定义表；技术风险与 Spike 验证</td></tr>
+      <tr><td>50–62</td><td><b>电梯演讲互动</b></td><td>每组一句话：谁用、解决什么、怎么解决——现场追问</td></tr>
+      <tr><td>62–95</td><td><b>冲刺一开发</b></td><td>按 DESIGN.md 搭 FastAPI 骨架 + 调通 AI 核心；教师巡场</td></tr>
+      <tr><td>88–95</td><td><b>中途 Checkpoint</b></td><td>骨架跑起来？端点调通？LLM 真的返回？——集中解决共性 blocker</td></tr>
+      <tr><td>95–100</td><td><b>小结</b></td><td>课后 push；下周前端联调</td></tr>
+    </table>
+    <p class="small">开发纪律四条贴在工位：一次一模块 / 先 commit / 每步验证 / 不懂不放过。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>项目池（五选一或自拟）</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">RAG</span><b class="tt">AI 知识库助手</b>
+        <span class="small">上传文档 → 切分检索 → 问答。FastAPI + Embedding + LLM + 前端。</span></div>
+      <div class="scard rise"><span class="tag">FC</span><b class="tt">智能学伴</b>
+        <span class="small">多轮对话 + 出题/判题/讲解工具调用。FastAPI + LLM + 出题逻辑。</span></div>
+      <div class="scard rise"><span class="tag v">多模态</span><b class="tt">AI 创意工坊</b>
+        <span class="small">文生图 + TTS 朗读 + 作品集管理。</span></div>
+      <div class="scard rise"><span class="tag v">NL2Code</span><b class="tt">智能数据分析师</b>
+        <span class="small">自然语言 → LLM 生成 Pandas 代码 → 执行 → 可视化。</span></div>
+    </div>
+    <div class="scard frag"><span class="tag">RAG+Agent</span><b class="tt">AI 客服机器人</b>
+      <span class="small">知识库检索 + 多轮对话 + 查订单/转人工工具。难度最高。</span>
+      <span class="small" style="display:block;margin-top:6px;">共同要求：<b>能在答辩中说清每一行代码的作用</b>。自拟选题与教师商定。</span></div>
+  </section>
+
+  <section class="slide">
+    <h2>第一步：需求与 MVP</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">项目提案四件套</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">用户画像：谁在用？什么场景？</li>
+          <li class="frag">核心功能清单：解决什么问题</li>
+          <li class="frag">技术选型：对话 / RAG / Agent / 多模态，各用在哪、为什么</li>
+          <li class="frag">分工计划：谁做什么、什么节奏</li>
+        </ul>
+      </div>
+      <div class="scard rise" style="border-left:5px solid #dc2626;"><b class="tt">MVP 思维：砍功能</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">「必须有」：没有它项目就不成立的核心闭环</li>
+          <li class="frag">「有了更好」：先全部划掉</li>
+        </ul>
+        <span class="small">三周里最大的风险是「什么都想做」——先保住可交付的闭环。</span></div>
+    </div>
+    <p class="small frag">课堂互动：「一句话电梯演讲」——谁用、解决什么问题、怎么解决。同学和教师现场追问。</p>
+  </section>
+
+  <section class="slide">
+    <h2>第二步：架构设计（写代码前做完）</h2>
+    <div class="flowline">
+      <div class="node">前端<br><span class="small">交互</span></div><span class="arrow">⇄</span>
+      <div class="node hot">后端 API<br><span class="small">路由/校验</span></div><span class="arrow">⇄</span>
+      <div class="node">AI 核心<br><span class="small">RAG/Agent</span></div><span class="arrow">⇄</span>
+      <div class="node">数据层<br><span class="small">文件/向量</span></div>
+    </div>
+    <ul>
+      <li class="frag">画三样东西：架构图（模块+数据流）、API 接口定义表（方法/路径/请求/响应）、目录结构</li>
+      <li class="frag">识别 2–3 个技术风险点，各写一个 <b>Spike</b>（最小验证代码）——例如「embedding 接口能不能通」</li>
+      <li class="frag"><b>架构先行是 vibe coding 的省钱诀窍</b>：先设计再生成，避免 AI 生成后推翻重来</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>冲刺一：本周开发目标</h2>
+    <div class="scard rise" style="border-left:5px solid #0284c7;">
+      <b class="tt">唯一目标：后端 API 能跑通，AI 核心功能能调通。</b>前端下周再做。
+    </div>
+    <div class="cols2" style="margin-top:12px;">
+      <div class="scard rise"><b class="tt">检查点 1（上半场）</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">FastAPI 能启动</li>
+          <li class="frag">至少一个端点在 /docs 测试通过</li>
+          <li class="frag">LLM 调用成功（不是占位符）</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">检查点 2（下半场）</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">AI 核心链路跑通（RAG 检索 / 工具调用）</li>
+          <li class="frag">核心逻辑封装进 modules/，与路由解耦</li>
+          <li class="frag">今天代码已 push 到 GitLab</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>开发纪律（贴在工位）</h2>
+    <div class="scard rise"><span class="tag">纪律一</span>一次一个模块——prompt 拆小，不甩整个项目给 AI</div>
+    <div class="scard frag"><span class="tag">纪律二</span>大改前先 commit——随时可回退</div>
+    <div class="scard frag"><span class="tag">纪律三</span>每步验证——AI 写完马上运行，不攒一堆再测</div>
+    <div class="scard frag"><span class="tag">纪律四</span>不懂的代码不放过——答辩要指行讲解</div>
+    <p class="small frag" style="margin-top:12px;">Standup 节奏：每次开课每组 1–2 分钟——昨天做了什么 / 今天做什么 / blocker 是什么。</p>
+  </section>
+
+  <section class="slide">
+    <h2>随堂自查（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W14 项目启动 · 自查",
+        "questions": [
+          {
+            "q": "MVP（最小可行产品）的正确理解是？",
+            "opts": ["功能最少的半成品", "能跑通核心价值闭环的最小版本，先交付再迭代", "界面临时凑合的版本", "没有文档的版本"],
+            "a": 1,
+            "explain": "先定义「没有它项目就不成立」的核心闭环，保证可交付，再谈扩展。三周里最大的风险是什么都想做。"
+          },
+          {
+            "q": "「架构先行」对 AI 结对开发的价值是？",
+            "opts": ["显得专业", "先设计再生成，避免 AI 生成代码后推翻重来", "减少字数", "让别人看不懂"],
+            "a": 1,
+            "explain": "架构与接口定义清晰，AI 的每次生成都落在明确的边界里——返工最少。"
+          },
+          {
+            "q": "冲刺一阶段，「AI 核心能调通」的判断标准是？",
+            "opts": ["代码写完就行", "端到端真实调用成功（/docs 测试通过、不是占位符）", "前端能显示Loading", "Git 有提交记录"],
+            "a": 1,
+            "explain": "验收看真行为：RAG 真的检索、工具真的执行、LLM 真的返回——占位符不算调通。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">完善提案与架构文档，提交到 GitLab</li>
+        <li class="frag">后端没跑通的组课后补齐——下周直接进前端联调</li>
+        <li class="frag">对照 <a href="../scripts/V053-vibe-coding项目方法论/">V053 方法论微课</a> 复盘自己的开发流程</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W15 前端整合 · AI-free 调试日 · Bug Bash · 部署</b>
+    前后端联调三大坑、禁用 AI 的调试日、全班互测的 Bug Bash，以及让任何人都能跑起你的项目。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w15.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">项目细节：<a href="../m6/">M6 模块页（项目池与周期）</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

@@ -1,0 +1,964 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2022-%E5%9B%9E%E6%94%BE-06/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2022-回放-06：Web 开发导论（HTTP 与 Web 技术演变）· Flask 实战 · FastAPI 初识 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2022-06web-http-web-flask-fastapi" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2022-回放-06：Web 开发导论（HTTP 与 Web 技术演变）· Flask 实战 · FastAPI 初识
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0000-0720" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、课程结构说明（约 00:00 - 07:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-0720-010830" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Web 基本概念与技术演变（约 07:20 - 01:08:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flask-010830-015850" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、Flask 实战（约 01:08:30 - 01:58:50）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-015940-022530" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、FastAPI 初识（约 01:59:40 - 02:25:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2022-06web-http-web-flask-fastapi">2022-回放-06：Web 开发导论（HTTP 与 Web 技术演变）· Flask 实战 · FastAPI 初识<a class="headerlink" href="#2022-06web-http-web-flask-fastapi" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本次直播回放是课程三大实战模块（Web 开发 → Web 爬虫 → 数据可视化）的开端。老师先阐述了三次实战课层层递进的设计逻辑（Web 开发是互联网基石；爬虫方案恰好对应 Web 技术架构的演变；爬取的数据再拿去做可视化），随后用画图的方式从零推演 Web 的基本概念：HTTP 协议、web 服务器、静态网页、后端动态生成、AJAX、前后端分离四个发展阶段，并用 HFS 软件、百度首页、B 站弹幕做了现场演示。后半场进入 Flask 实战：用 pipenv 建虚拟环境、写第一个 Flask 应用、路由与装饰器、templates 模板与 Jinja 语法、static 静态文件、debug 模式。最后对照演示了 FastAPI 的最小示例（uvicorn 运行、自动返回 JSON、路径参数、typing 类型标注），并布置了"用 Flask 做一个博客性质网站"的作业。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="0000-0720">一、课程结构说明（约 00:00 - 07:20）<a class="headerlink" href="#0000-0720" title="Permanent link">&para;</a></h3>
+<ul>
+<li>后三次实战是阶梯关系：<strong>Web 开发 → Web 爬虫 → 数据可视化</strong>。</li>
+<li>Web 开发是互联网的基石：绝大多数 App 本质是"混合应用"（Web 技术套壳），小程序的 WXML 是 HTML 的变种。</li>
+<li>爬虫方案与 Web 技术架构演变一一对应：静态站直接爬、动态站要处理 JS 渲染甚至用无头浏览器；从开发者视角思考目标站的数据组织与前后端对接方式，是爬虫的关键思路，也体现安全专业"对抗"的内核。</li>
+<li>数据可视化：爬来的几千几万条数据靠工具处理，如统计词频（TF-IDF）、画词云。</li>
+<li>授课思路说明：以 Python 为线索串起计算机领域的知识体系；实战部分每个单点不求讲透，而是提供"索引"，供学生按脉络自行展开。</li>
+</ul>
+<h3 id="web-0720-010830">二、Web 基本概念与技术演变（约 07:20 - 01:08:30）<a class="headerlink" href="#web-0720-010830" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>最原始形态</strong>（约 07:50）：Web 本质 = 通过 <strong>HTTP 协议</strong>（超文本传输协议）传输一串文本并在浏览器显示。对面电脑有个文件夹 A，浏览器想看里面的 1.txt——需要双方先约定"暗号"，这就是协议。</li>
+<li><strong>HTTP 方法</strong>（约 10:55）：约定若干动作——GET（从对方获取）、POST（往对方发送）、PUT/UPDATE（更新已传内容）、DELETE（删除）。请求行如 <code>GET /1.txt</code>，路径本质是相对 web 目录的相对路径。</li>
+<li><strong>web 服务器</strong>（约 13:50）：右边电脑也需要软件解析 HTTP 请求并操作文件夹，即 web server（WS）：收到 <code>GET /</code> 就列出目录内容，收到 <code>GET /1.txt</code> 就返回文件内容。常见 web 服务器：<strong>Apache、Nginx、Tomcat</strong>（Java 系）。</li>
+<li><strong>端口与多站点</strong>（约 15:50 - 17:30）：web server 通过配置文件把端口映射到目录（80 端口 ↔ A 文件夹）；http 默认 80 端口、https 默认 443，访问 <code>:8080</code> 说明开了第二个站点对应 B 文件夹——一台机器可同时跑 N 个网站。</li>
+<li><strong>HFS 演示</strong>（约 17:50 - 21:50）：用 Http File Server（约 2.5MB 小软件）现场演示：<code>add folder from disk</code> 把桌面 demo 文件夹映射为 <code>/demo</code>，浏览器访问即可看到 1.txt、2.txt 的内容——浏览器与 web server 甚至可以在同一台机器上。</li>
+<li><strong>阶段一：静态网页</strong>（约 22:00 - 26:50）：需求升级（富文本：加粗、标题、图片）催生了 HTML。所有 web server 默认会在路径下寻找 <strong><code>index.html</code></strong> 并自动打开（约定俗成，index = 索引），这就是为什么网页课第一个文件总叫 index.html。静态网页一保存内容就固定，连"您是第 N 位访客"都做不到。</li>
+<li><strong>阶段二：后端动态生成</strong>（约 26:50 - 33:00）：web server 后面不再直接对文件夹，而是转发给一个**程序**（Python / PHP / Java / C 都行）：根据 URL 路径找到对应脚本和函数，把 GET 参数（<code>?id=256</code> 问号后面是参数、前面是路径）传进去，函数生成一个符合 HTML 格式的字符串返回——页面"动"起来了。PHP 在安全领域常见（老站多、题多）。局限：拿到 HTML 后不再发请求，不按 F5 页面不会变——做不了弹幕。</li>
+<li><strong>阶段三：AJAX</strong>（约 33:00 - 41:20）：返回的不只 HTML，还有 <strong>CSS</strong>（管样式）和 <strong>JavaScript</strong>（管交互、在浏览器里运行）。JS 可以不刷新页面偷偷再发 GET 请求（如每秒取一次弹幕），拿到数据后修改页面局部元素。<strong>AJAX = Asynchronous JavaScript And XML</strong>：异步（不等上一个请求返回就能发下一个）、早期数据格式是 XML。</li>
+<li><strong>阶段四：前后端分离</strong>（约 41:20 - 57:45）：阶段三下后端生成 HTML、前端 JS 也改 HTML，两者"抢活"产生分歧；于是分家——<strong>前端</strong>（Node.js 生态的 Vue / React / Angular 框架）全权负责 HTML 呈现，<strong>后端</strong>（Python/PHP 等）只提供 URL 接口、返回数据。数据格式从 XML 演变为 <strong>JSON</strong>（JavaScript Object Notation）：XML 复杂且像 HTML，JSON 长得像 Python 字典、能被 JS 原生解析，现在互联网上 99% 用 JSON（机制仍叫 AJAX）。前后端可跑在不同服务器上，后端可做负载均衡；<strong>多终端共用同一后台</strong>（浏览器/App/小程序/平板访问 B 站，数据一样只是呈现不同）——这是前后端分离成为大趋势的根本原因。</li>
+<li><strong>实例观察</strong>（约 57:50 - 01:08:30）：</li>
+<li>百度首页：直接爬到的 HTML 是空架子（logo、搜索框、热搜都不在里面），里面一堆 <code>&lt;script&gt;</code>；浏览器运行 JS 后用 AJAX 取数据再修改 HTML 渲染出页面。<strong>爬虫不是浏览器、没有 JS 运行环境，所以爬到的页面和看到的不一致</strong>——这是爬虫失败的常见原因。</li>
+<li>B 站直播弹幕：F12 开发者工具 → 网络 → 过滤 Fetch/XHR，双手离开键盘也能看到请求数不断增长——JS 在后台持续取弹幕。百度首页则加载后不再发新请求，只用 JS 修改自身元素。</li>
+</ul>
+<h3 id="flask-010830-015850">三、Flask 实战（约 01:08:30 - 01:58:50）<a class="headerlink" href="#flask-010830-015850" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>框架对比</strong>：Python 常见 web 框架三个——<strong>Flask</strong>（轻量级、小而精、功能靠插件，适合教学）、<strong>Django</strong>（大而全、开箱即用，讲起来太庞大）、<strong>FastAPI</strong>（新生框架，天生为前后端分离的纯后端 API 设计）。Flask 设计之初是阶段三方案（含前端模板），装插件后也能做阶段四。</li>
+<li><strong>作业要求</strong>（约 01:11:40 与结尾 02:25:30）：用 <strong>Flask 做一个网站</strong>（博客、新闻站、班级网站均可）；老师会建空仓库，不提供任何结构化文件；录播的 Flask 实例视频有 40 多分钟从零做博客的全流程，跟着做一定能做出来。</li>
+<li><strong>项目初始化</strong>（约 01:14:25）：新建文件夹 → VS Code 打开 → 终端 <code>pipenv install</code> 建虚拟环境 → 改 <code>Pipfile</code> 里的源为国内镜像 → <code>pipenv shell</code> 进入环境 → <code>pipenv install flask</code>。VS Code 右下角要选择刚创建的虚拟环境，否则 import 处有波浪线。</li>
+<li><strong>最小应用</strong>（约 01:16:35）：新建 <code>app.py</code>（web 应用也叫 app）：
+  <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span>          <span class="c1"># 导入 Flask 类</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>             <span class="c1"># 实例化应用</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>                   <span class="c1"># 装饰器：定义路由，把路径绑定到函数</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">():</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="s1">&#39;hello world&#39;</span>
+</span></code></pre></div>
+  <code>@app.route('/')</code> 写在函数前是**装饰器**（原理见"函数与类"章节视频），含义：用户访问该路径时自动运行对应函数——一种路径与函数的绑定关系。</li>
+<li><strong>web server 在哪里</strong>（约 1:22:50 - 1:28:00）：Flask 内置了开发用 web 服务器（Werkzeug，德语"工具"），它承担两个角色：① 接收浏览器的 HTTP 请求；② 自动找到并执行 <code>app.py</code>。开发学习阶段不需要单独装 Apache/Nginx。文件名默认必须是 <code>app.py</code>；若叫别的名字（如 <code>hello.py</code>），需设置环境变量 <strong><code>FLASK_APP=hello</code></strong> 再运行。</li>
+<li><strong>两种运行方式</strong>（约 01:29:00）：</li>
+<li>代码末尾加 <code>app.run()</code>，直接 <code>python app.py</code>（符合直觉）；</li>
+<li>命令行 <code>flask run</code>（官方方式）。注意：<code>flask run</code> 本质上也是导入执行 app.py，若文件里裸写 <code>app.run()</code> 会重复运行，所以要用 <code>if __name__ == '__main__':</code> 包起来——正好用上模块与包章节的知识。</li>
+<li><strong>templates 模板</strong>（约 01:33:00 - 01:44:00）：动态页面的 HTML 大部分内容人人相同，只有局部要改——把整体 HTML 叫**模板**（类比群发邀请函只改姓名/称谓）。Flask 内置规则：默认去 <code>app.py</code> 同级目录下找 <strong><code>templates</code> 文件夹</strong>；视图函数改为 <code>return render_template('index.html')</code>（需 <code>from flask import render_template</code>）。路径是相对 templates 的相对路径（如子目录就写 <code>'pub/index.html'</code>）；强迫症想改文件夹名，可在 <code>Flask(__name__, template_folder='abc')</code> 里指定。</li>
+<li><strong>Jinja 模板语言</strong>（约 01:45:00 - 01:53:30）：所有现代 web 框架都有自己的模板语言（Java 的 JSP 同理）；Flask 用 <strong>Jinja</strong>。HTML 里写 <code>{{ name }}</code>（双大括号）表示此处显示 Python 传来的变量；后端 <code>render_template('index.html', name=username)</code> 传参（前一个 name 是模板里的变量名，后一个是函数内变量）。还可用 <code>{% %}</code> 做分支/循环（语法见录播视频，含模板继承）。演示：首页显示"欢迎{username}来到我的首页"+ 用 <code>datetime.now().strftime('%Y-%m-%d %H:%M:%S')</code> 显示当前时间（%Y 四位年份、%m 月、%d 日、%H 时、%M 分、%S 秒，老师也是现场查的）。</li>
+<li><strong>static 静态文件</strong>（约 01:54:00 - 01:58:00）：CSS、JS、图片等不需要后端计算的文件叫静态文件，默认放 <strong><code>static</code> 文件夹</strong>（可再分 css/js/image 子目录），HTML 里用 link 等标签引用。可用 <code>Flask(__name__, static_folder='...')</code> 改名；甚至 <code>static_host</code> 参数可把静态文件放到另一台服务器——浏览器拿到 HTML 后自己去那台服务器下载静态资源，实现**数据/计算与静态资源分离**，减轻 app 服务器压力（进阶内容，不懂不影响）。</li>
+<li><strong>debug 模式</strong>（约 01:39:50、01:41:30）：<code>app.run(debug=True)</code> 开启后，改代码 Ctrl+S 保存即自动 reload（终端显示 detected change... reloading），不用反复 Ctrl+C 重启。<strong>上线必须关掉</strong>：否则报错会把路径、代码细节直接打在网页上造成信息泄露（网安人的职业素养）。</li>
+</ul>
+<h3 id="fastapi-015940-022530">四、FastAPI 初识（约 01:59:40 - 02:25:30）<a class="headerlink" href="#fastapi-015940-022530" title="Permanent link">&para;</a></h3>
+<ul>
+<li>目的：通过对比理解阶段四（前后端分离）的框架长什么样。</li>
+<li><strong>安装与示例</strong>（约 02:00:40）：新建目录 → pipenv 老套路（改源）→ <code>pipenv install fastapi</code>；uvicorn 需单独装：<code>pipenv install "uvicorn[standard]"</code>（方括号语法表示安装其基于 C 扩展的一系列额外依赖）。官方示例文件名是 <code>main.py</code>。</li>
+<li><strong>最小示例</strong>：
+  <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>          <span class="c1"># 直接把 HTTP 方法写进装饰器</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">read_root</span><span class="p">():</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;Hello&#39;</span><span class="p">:</span> <span class="s1">&#39;World&#39;</span><span class="p">}</span>
+</span></code></pre></div>
+  运行用 <strong><code>uvicorn main:app</code></strong>（<code>main:app</code> = 文件名:应用对象名，uvicorn 相当于 Flask 的内置服务器 + 调度器双重角色，默认端口 8000）。</li>
+<li><strong>自动返回 JSON</strong>（约 02:09:50）：FastAPI 的示例根本不出现 HTML——视图函数返回 Python <strong>字典</strong>，框架自动转成符合 JSON 格式的字符串发给前端。Flask 也能返回 JSON 但要手工转换，FastAPI 是全自动——它天生只为"返回数据"设计。</li>
+<li><strong>路径参数</strong>（约 02:18:00）：<code>/items/{item_id}</code> 把参数写进路径（区别于 <code>?id=233</code> 的 GET 参数），如 <code>/users/233</code> 访问 ID 为 233 的用户；函数 <code>def read_item(item_id: int, q: str = None)</code> 自动从路径取参。Flask 也支持这种写法。</li>
+<li><strong>typing 类型标注</strong>（约 2:06:00）：示例里 <code>q: Union[str, None] = None</code>、<code>def f(name: str) -&gt; str</code> 是 Python 3.5+ 的类型提示语法——弥补 Python 变量无类型导致的"调用者乱传参"问题；<code>-&gt;</code> 标注返回值类型。</li>
+<li><strong>flask.py / abc.py 翻车</strong>（约 02:00:00、02:14:00）：项目文件夹不能叫 <code>flask</code>（import flask 会找到自己、循环依赖）；把 <code>main.py</code> 改名 <code>abc.py</code> 后 uvicorn 报错——因为 Python <strong>标准库真有一个叫 <code>abc</code> 的模块</strong>（abstract base classes），被优先搜到；改成"anjing.py"立刻成功。生动复习了模块搜索路径知识。</li>
+<li><strong>框架选择建议</strong>：做大创等项目时，前后端分离模式下后端用 FastAPI 只管数据，前端交给会 Vue/React 的同学；Flask 也在向这个方向发展。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>HFS 静态文件服务器</strong>：把桌面 demo 文件夹映射为 <code>/demo</code>，浏览器访问列出并打开 1.txt/2.txt，演示"HTTP 取文件"的最原始形态。</li>
+<li><strong>百度首页源代码</strong>：右键查看源代码几乎找不到实质内容（空 HTML + 一堆 script），说明页面靠 JS 渲染；对比 B 站直播页 F12 的 Fetch/XHR 请求持续增长（弹幕 AJAX 轮询）。</li>
+<li><strong>Flask 从零建站</strong>：pipenv 初始化 → 写 <code>app.py</code>（路由 <code>/</code> 返回 hello world、<code>/about</code> 返回"我"）→ 两种运行方式 → 加 <code>templates/index.html</code> 用 <code>render_template</code> 渲染 → Jinja <code>{{ name }}</code> 传用户名和当前时间 → 建 <code>static</code> 文件夹 → 开 debug 热重载。</li>
+<li><strong>FastAPI 最小示例</strong>：官方 example 复制为 <code>main.py</code> → <code>uvicorn main:app</code> → 浏览器访问 <code>/</code> 得到 <code>{"Hello":"World"}</code>，访问 <code>/items/1?q=xxx</code> 演示路径参数与查询参数。</li>
+<li><strong>作业</strong>：用 Flask 做一个博客性质的网站（想挑战可用 Vue + FastAPI，但基准要求是 Flask）；老师建空仓库，跟着 40 分钟的 Flask 实例录播视频可完成。</li>
+</ol>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Web 四阶段演变（静态 → 后端动态生成 → AJAX 局部刷新 → 前后端分离）是整节课的主线，也是理解爬虫策略的钥匙：爬动态渲染页面时，直接拿到的 HTML 是空壳。</li>
+<li>AJAX 的名字来源（异步 JavaScript and XML）与"JSON 取代 XML 但名字没改"的历史；JSON 与 Python 字典形态一致。</li>
+<li>HTTP 请求结构：路径 vs <code>?</code> 后的 GET 参数 vs 路径内嵌参数（<code>/items/{id}</code>）三种传参位置。</li>
+<li>Flask 的"内置规则"：<code>app.py</code> 文件名、<code>templates</code> 文件夹、<code>static</code> 文件夹都是默认约定，可通过 <code>Flask()</code> 参数（<code>template_folder</code>、<code>static_folder</code>、<code>static_host</code>）覆盖。</li>
+<li><code>@app.route</code> 装饰器 = 路径与函数的绑定；<code>flask run</code> 时务必用 <code>if __name__ == '__main__':</code> 包住 <code>app.run()</code>，否则重复运行。</li>
+<li>debug 模式仅用于开发，上线必须关闭（信息泄露风险）。</li>
+<li>文件/目录命名不要与标准库、第三方库重名（flask 目录、abc.py 两次现场翻车）；标准库里有 <code>abc</code>（abstract base classes）模块。</li>
+<li>uvicorn 的启动参数 <code>main:app</code> 是"模块:应用对象"，改名要两处一起改。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>直接承接上一讲（回放-05）的"模块与包、第三方库与虚拟环境"：pipenv/Pipfile 工作流、<code>if __name__ == '__main__'</code>、模块搜索路径在本课全部复用并翻车验证。</li>
+<li>装饰器原理见录播章节"函数进阶与类"；Flask 完整实例（模板继承、Jinja 语法、40 分钟博客实战）在对应录播视频中。</li>
+<li>本课是后续"Web 爬虫"的直接前置：爬虫各方案对应本课的 Web 架构演变（静态页直接爬 → AJAX 站需分析接口或用无头浏览器）；再往后接"数据可视化"（词频统计、词云）。</li>
+<li>前后端分离部分提及的 Vue/React/Angular、Node.js 不属于本课程内容，仅作方向指引；相对路径/绝对路径、环境变量等前置知识来自早期章节与《计算机安全与维护》。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

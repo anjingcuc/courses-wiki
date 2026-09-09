@@ -1,0 +1,1042 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/15.2-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>15.2 数据处理与可视化：Pandas 数据处理 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#152-pandas" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              15.2 数据处理与可视化：Pandas 数据处理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pandas-0000-0530" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么用 Pandas（约 00:00 - 05:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pandas-series-dataframe-0530-0900" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pandas 的数据观：Series 与 DataFrame（约 05:30 - 09:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0900-1430" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境安装与读取文件（约 09:00 - 14:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#series-1530-2100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Series 的创建（约 15:30 - 21:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numpy-2100-2400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NumPy 背景知识（约 21:00 - 24:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-2400-3720" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataFrame 的创建（约 24:00 - 37:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3720-5000" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查看与选择数据（约 37:20 - 50:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5000-5600" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        赋值与列操作（约 50:00 - 56:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5600-5843" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常（缺失）数据处理（约 56:00 - 58:43）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="152-pandas">15.2 数据处理与可视化：Pandas 数据处理<a class="headerlink" href="#152-pandas" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课介绍 Python 数据分析领域事实上的标准库 Pandas。老师先对比 MATLAB 说明 Pandas + Matplotlib 是开源免费的数据处理与画图组合，随后讲解 Pandas 看待数据的方式：两个核心数据类型 Series（一列数据）和 DataFrame（由多个 Series 拼成的表格）。课上在虚拟环境中安装 pandas，演示了 <code>read_csv</code>/<code>read_excel</code> 载入数据，Series 与 DataFrame 的多种创建方式，用 <code>loc</code>/<code>iloc</code> 查看和选择数据、条件筛选、<code>at</code>/<code>iat</code> 精确赋值，以及 <code>dropna</code>/<code>fillna</code> 处理无效数据。老师同时补充了 Pandas 基于 NumPy 的背景知识。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="pandas-0000-0530">为什么用 Pandas（约 00:00 - 05:30）<a class="headerlink" href="#pandas-0000-0530" title="Permanent link">&para;</a></h3>
+<ul>
+<li>上节课的 csv/openpyxl 只适合"打开表格用一用"的简单场景；要做趋势分析、线性回归等数据处理，需要更专业的工具。</li>
+<li>最有名的科学计算工具是 MATLAB，但收费；Python 中用 <strong>Pandas 处理数据 + Matplotlib 画图</strong>，开源免费，大部分场景够用。</li>
+<li>Pandas 的好处：提供非常完善的接口，能把各种类型/来源的数据统一载入为表格（或更高维矩阵）形式再处理。官方文档的 <strong>IO tools</strong> 支持读取 CSV、text、JSON、HTML、Excel、剪贴板、HDF5 等各种数据来源。</li>
+<li>在 Python 数据分析领域 Pandas 基本没有竞争对手（不像爬虫还有 Scrapy、py-spider 可选），大家都用它。</li>
+<li>老师自谦讲得浅，所以称"数据处理"而非"数据分析"——数据分析与挖掘是专门的课程。</li>
+</ul>
+<h3 id="pandas-series-dataframe-0530-0900">Pandas 的数据观：Series 与 DataFrame（约 05:30 - 09:00）<a class="headerlink" href="#pandas-series-dataframe-0530-0900" title="Permanent link">&para;</a></h3>
+<ul>
+<li>理解工具前先要理解它如何看待数据。Pandas 把表格看成两种数据类型：</li>
+<li><strong>Series（序列）</strong>：对应表格中的一列（如 name 列、team 列、number 列），本质类似 Python 列表，但操作方式略有区别。</li>
+<li><strong>DataFrame</strong>：多个 Series 在索引（index）统一后拼接起来的表格，有行（row）、列（column），中间的数据叫单元格（cell）。</li>
+<li>这种结构与直觉高度一致，是 Pandas 受欢迎的原因之一。</li>
+</ul>
+<h3 id="0900-1430">环境安装与读取文件（约 09:00 - 14:30）<a class="headerlink" href="#0900-1430" title="Permanent link">&para;</a></h3>
+<ul>
+<li>安装：<code>pipenv install pandas</code>；Pandas 读 Excel 依赖第三方 Excel 库（openpyxl/xlrd），也要装。</li>
+<li>惯例导入别名：<code>import pandas as pd</code>；变量 <code>df</code> 是 DataFrame 首字母缩写。</li>
+<li>读 CSV：<code>df = pd.read_csv('文件.csv')</code>；读 Excel：<code>pd.read_excel('文件.xlsx')</code>（老师课上忘了把 read_csv 改成 read_excel 导致 UTF-8 报错，现场排错）。</li>
+<li>打印 df 输出非常规整：表头、从 0 开始的行号；一个库即可读多种类型文件，读入后统一为 DataFrame。</li>
+</ul>
+<h3 id="series-1530-2100">Series 的创建（约 15:30 - 21:00）<a class="headerlink" href="#series-1530-2100" title="Permanent link">&para;</a></h3>
+<ul>
+<li>直接传列表：<code>s = pd.Series([1,2,3,4,5])</code>，默认索引（index）为 0,1,2,3,4（与 C 数组/Python 列表一样）。</li>
+<li><strong>注意 dtype</strong>：Pandas 数据有数据类型和宽度的概念，默认整数为 <code>int64</code>（64 比特）。这与 Python 原生整数"无限精度、无宽度概念"不同，更接近 C 语言——科学计算必须考虑数据宽度，否则会有误差和表示不准的问题，Pandas 帮你处理好了。</li>
+<li>自定义索引：<code>pd.Series([...], index=['A','B','C','D','E'])</code>，可把行号换成任意标签。把它想象成数据的 X 轴/Y 轴（如用户 ID → 相关信息）就有意义了。</li>
+<li>直接传字典：<code>pd.Series({'a': 1, ...})</code>，key 作索引、value 作值，效果与指定 index 等价。</li>
+</ul>
+<h3 id="numpy-2100-2400">NumPy 背景知识（约 21:00 - 24:00）<a class="headerlink" href="#numpy-2100-2400" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NumPy 是 Python 科学计算领域特别有名的库，用于处理矩阵（如 2×5 矩阵及加减乘除、特征值等线性代数运算）。</li>
+<li><strong>Pandas 基于 NumPy 开发</strong>；安装 pandas 时会自动装好 numpy，无需单独安装。</li>
+<li>矩阵概念与 DataFrame/表格高度相似，操作 DataFrame 时会结合 NumPy 一起看（本课不展开）。</li>
+</ul>
+<h3 id="dataframe-2400-3720">DataFrame 的创建（约 24:00 - 37:20）<a class="headerlink" href="#dataframe-2400-3720" title="Permanent link">&para;</a></h3>
+<ul>
+<li>方式一：随机矩阵 + 索引 + 列名</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20130101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>   <span class="c1"># 生成日期范围，返回 DatetimeIndex，dtype 为 datetime64，freq=&#39;D&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+</span></code></pre></div>
+<ul>
+<li><code>pd.date_range(起始日期字符串, periods=天数)</code> 生成时间序列，可作行索引；Python 内置有 <code>datetime</code> 库处理日期，Pandas 的 date_range 更方便。</li>
+<li><code>np.random.randn(6, 4)</code> 生成 6 行 4 列的随机矩阵，数值服从标准（正态）分布。</li>
+<li><code>columns=list('ABCD')</code> 指定四列列名。</li>
+<li>方式二：传字典，<strong>每个 key 对应一列</strong>（不是一行）：</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130102&#39;</span><span class="p">),</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">),</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">]),</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">})</span>
+</span></code></pre></div>
+<ul>
+<li>要点回顾（约 36:00）：① 数据会**自动补全/填充**——按最长列的行数把单值列（如 A 的 1.0、F 的 'foo'）复制填满；② 若某些列没写 index，会自动采用其他列的索引；③ 每个 key 对应一列（一个 Series），凭直觉容易误以为是行，务必注意。</li>
+</ul>
+<h3 id="3720-5000">查看与选择数据（约 37:20 - 50:00）<a class="headerlink" href="#3720-5000" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>df.head()</code> 默认取前 5 行（可传参）；<code>df.tail(3)</code> 取尾部 3 行。</li>
+<li><code>df.T</code> 转置：行列互换（与数学、Excel 选择性粘贴中的转置一致）。</li>
+<li><strong>按标签选择 <code>loc</code></strong>（方括号切片，不是函数调用）：<code>df.loc[dates[0]]</code> 取某一行；<code>df.loc[:, ['A', 'B']]</code> 取所有行的 A、B 两列——逗号前指定行（<code>:</code> 表示全部），逗号后用列表指定列，可以跳选（如只选 A 和 D）。</li>
+<li><strong>按位置选择 <code>iloc</code></strong>（带 i）：用行号列号，如 <code>df.iloc[[1,2,4], [0,2]]</code> 选出第 1、2、4 行与第 0、2 列交叉区域，拼成新表格。</li>
+<li><strong>条件筛选</strong>（约 43:00，非常有用）：</li>
+<li><code>df[df.A &gt; 0]</code>：选出 A 列大于 0 的所有行。应用场景举例：一键筛出中测不及格（成绩列 &lt; 60）的同学及科目、筛出爬取的电影中评分 8 分以上的。</li>
+<li><code>df[df &gt; 0]</code>：对整个表格筛选，大于 0 的值保留，不满足的被填成 <strong>NaN</strong>。</li>
+<li><strong>NaN</strong> 是 NumPy 中 Not a Number 的缩写，表示无效/不合法数据，含义类似 Python 的 None。</li>
+<li><code>df2[df2['E'].isin(['two', 'four'])]</code>：<code>isin</code> 方法选出某列值在指定集合中的所有行。</li>
+<li>以上筛选**不改变原表**，只是把一部分拿出来看。</li>
+</ul>
+<h3 id="5000-5600">赋值与列操作（约 50:00 - 56:00）<a class="headerlink" href="#5000-5600" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>df.copy()</code> 复制出内容一致但独立的新表。</li>
+<li>新增列：<code>df['F'] = pd.Series(...)</code>。对齐规则：新 Series 按索引对齐到原表，原表缺失的位置填 <strong>NaN</strong>；新列中超出原表索引范围的数据会被**直接丢弃**（如原表到 1 月 6 号，新列 1 月 7 号的值被舍弃）。</li>
+<li>精确到单元格赋值：<code>df.at[dates[0], 'A'] = 0</code>（按标签，不能切片）；<code>df.iat[0, 1] = 0</code>（按序号，与 loc/iloc 的对应关系一致）。</li>
+<li>条件赋值：<code>df[df &gt; 0] = -df</code>——把原表中所有正数取反，负数不变；结合筛选可实现条件更明确的批量赋值。</li>
+</ul>
+<h3 id="5600-5843">异常（缺失）数据处理（约 56:00 - 58:43）<a class="headerlink" href="#5600-5843" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>df.dropna()</code>：丢弃任何包含 NaN 的行。</li>
+<li><code>df.fillna(value)</code>（更常用）：把所有 NaN 填成指定值（数字或字符串均可）。典型场景：爬虫数据清洗——爬不到的字段（如知乎性别为 -1）先置为 NaN，再统一填充为便于后续计算的值；NaN 无法参与乘法等运算，必须先填充。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>演示 1（读文件）</strong>：虚拟环境中 <code>pipenv install pandas</code> + Excel 依赖库，<code>pd.read_csv</code> 读取上节课的人员信息 CSV 并打印；改后缀读 xlsx 时报 UTF-8 错，发现是忘了把 <code>read_csv</code> 改成 <code>read_excel</code>，改后正常。</li>
+<li><strong>演示 2（Series）</strong>：<code>pd.Series([1,2,3,4,5])</code> 观察默认索引 0-4 与 dtype int64；再用 <code>index=['A','B','C','D','E']</code> 自定义索引；再传字典得到同样效果。</li>
+<li><strong>演示 3（DataFrame 创建）</strong>：<code>date_range('20130101', periods=6)</code> 生成日期索引；<code>np.random.randn(6,4)</code> 生成随机矩阵；组合成 6 行 4 列 DataFrame。又用字典方式创建 df2（含 Timestamp、Categorical 等列），展示自动补全。</li>
+<li><strong>演示 4（选择数据）</strong>：head/tail/T 概览；loc 按日期标签取行、<code>:, ['A','B']</code> 取列；iloc 按序号跳选；重点演示 <code>df[df.A &gt; 0]</code>（配合打印原始矩阵对比，某行 A 列为负被整行过滤）和 <code>df[df &gt; 0]</code>（负值变 NaN）。</li>
+<li><strong>演示 5（赋值）</strong>：新增索引错位的 F 列，展示 NaN 填充与超范围丢弃；<code>at</code>/<code>iat</code> 单元格置 0；<code>df[df&gt;0] = -df</code> 正数取反。</li>
+<li>异常处理（dropna/fillna）因时间关系未现场运行，布置学生参照课件自己跑。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>dtype 概念</strong>：Pandas 数据有类型宽度（int64、float32、datetime64），不同于 Python 原生无限精度整数。</li>
+<li>字典创建 DataFrame 时 <strong>key 对应列而不是行</strong>；短列会自动按最长行数填充。</li>
+<li><code>loc</code>（按标签）/<code>iloc</code>（按序号）是**方括号切片机制，不是函数调用**；<code>at</code>/<code>iat</code> 只能精确定位单个单元格。</li>
+<li>条件筛选 <code>df[df.A &gt; 0]</code> 是极常用的操作（筛不及格成绩、筛高分电影）；整表筛选不满足项变 NaN。</li>
+<li>新增列时索引对齐规则：缺失填 NaN、超范围丢弃，容易踩坑。</li>
+<li>NaN 无法参与数值运算，后续处理前用 <code>dropna</code> 或 <code>fillna</code> 清理。</li>
+<li>老师反复强调的工作方式：左屏代码右屏文档/谷歌，一边查一边写。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>承接 15.1：csv/openpyxl 是轻量方案，Pandas 是"一网打尽"各种数据源的重型方案；Pandas 读 Excel 底层正依赖 openpyxl/xlrd。</li>
+<li>与爬虫章节联动：示例多次提到"爬下来的数据"（知乎回答、电影评分）可用本课方法筛选清洗。</li>
+<li>为 15.3 Matplotlib 可视化和 15.4 综合实例（分类汇总、排序、画图）打基础。</li>
+<li>前置知识：Python 列表/字典/切片、线性代数矩阵概念、datetime、pipenv 虚拟环境。</li>
+<li>提及 Pandas 基于 NumPy，NumPy 本身本课不展开，属后续可自学内容。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

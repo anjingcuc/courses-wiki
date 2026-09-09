@@ -1,0 +1,1188 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/scripts/V058-AI%E6%97%B6%E4%BB%A3%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>V058 AI 时代程序员成长路线 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v058-ai" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V058 AI 时代程序员成长路线
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐字稿
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐字稿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-035-hookai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:00-0:35] 开场 hook：AI 能写代码了，你的竞争力在哪？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#035-215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:35-2:15] 四维能力模型：你的竞争力由什么组成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2:15-4:15] 四个方向：你现在可以走哪些路
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#415-550" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [4:15-5:50] 持续学习：不是什么都学，是快速判断该学什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#550-700" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [5:50-7:00] 开源贡献：你最好的简历不是简历
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#700-745" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:00-7:45] 小结：三种永不过时的能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#745-805" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:45-8:05] 提问彩蛋
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#805-820" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [8:05-8:20] 引出下集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心展示物
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心展示物">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物1：四维能力雷达图（PPT 幻灯片）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物2：四个方向路线图（PPT 幻灯片）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物3：技术信息分级过滤漏斗（PPT 幻灯片）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4ai-kimi-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物4：AI 评估新技术演示（Kimi Code 终端截图）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物5：开源贡献入门路径（PPT 幻灯片）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        录制注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v058-ai">V058 AI 时代程序员成长路线<a class="headerlink" href="#v058-ai" title="Permanent link">&para;</a></h1>
+<h2 id="_1">视频信息<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号</td>
+<td>V058</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>AI 时代程序员成长路线</td>
+</tr>
+<tr>
+<td>目标时长</td>
+<td>8 min</td>
+</tr>
+<tr>
+<td>对应课次</td>
+<td>L47 职业发展与持续学习</td>
+</tr>
+<tr>
+<td>前置微课</td>
+<td>V057 数据库/Docker/云服务入门概念</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>课程结束了但学习没有终点——用四维能力模型看清自己、用四个方向选好路、用 AI 保持技术敏感度</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">逐字稿<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="000-035-hookai">[0:00-0:35] 开场 hook：AI 能写代码了，你的竞争力在哪？<a class="headerlink" href="#000-035-hookai" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 屏幕上播放一段新闻截图拼接——"AI 自动通过某公司编程面试""AI 编程工具用户突破千万"——两条标题交替闪过。画面中央弹出大字："程序员还有价值吗？"停顿一秒后，大字碎裂，切换成另一句话："有——但不是你想的那种。"字幕条："AI 时代程序员成长路线"。</p>
+<p><strong>【旁白】</strong> 先看两条新闻。第一条，AI 自动写代码通过了某家公司的编程面试。第二条，AI 编程工具用户已经突破千万。你看完可能会慌——程序员还有价值吗？答案是：有。但价值的来源变了。这集不讲代码，讲的是——这门课结束之后，你该怎么继续走。</p>
+<h3 id="035-215">[0:35-2:15] 四维能力模型：你的竞争力由什么组成<a class="headerlink" href="#035-215" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示一张四维雷达图，四个顶点分别是"基础能力""AI 协作""工程化""领域知识"。每个维度标注 1-5 分。然后用动画在雷达图上画出"课程结束时学生的典型分布"——基础能力 3-4 分、AI 协作 4 分、工程化 2-3 分、领域知识 1-2 分。图形形成一个明显的"偏科"形状。</p>
+<p><strong>【旁白】</strong> 先建一个模型。AI 时代程序员的能力，可以拆成四个维度。</p>
+<p>第一个，基础能力——编程语法、数据结构、系统思维。这是你们 48 节课在练的硬功夫。会写 for 循环不稀奇，但能判断什么时候用循环、什么时候用字典、怎么把一段逻辑封装成函数——这些是地基。</p>
+<p>第二个，AI 协作能力——Prompt 设计、vibe coding、代码审查。这是这门课的特色增量。大部分教程还在教你怎么手写每一行代码，而你们已经学会了用 AI 生成代码、审查代码、增量验证。这节课教的能力，很多在职程序员都还没掌握。</p>
+<p>第三个，工程化能力——测试、部署、版本控制、协作、文档。期末项目你们练了一轮，但说实话，离"长期维护一个真实项目"还差得远。这是要靠时间和项目量堆出来的。</p>
+<p>第四个，领域知识——你选择的行业。金融、医疗、教育、电商——每个领域都有自己的一套业务逻辑。这是最特殊的维度，因为它不是靠学编程能补的，得去实际行业里泡。</p>
+<p>现在看你自己的雷达图。课程结束时，典型分布是这样的：基础和 AI 协作偏强，工程化中等，领域知识最弱。这很正常。但有一个直觉很重要——<strong>如果你前三维都不错，补领域知识的性价比最高</strong>。因为一个懂金融的 Python 开发者，比一个只会 Python 的开发者值钱得多。领域知识是最难被 AI 替代的。</p>
+<h3 id="215-415">[2:15-4:15] 四个方向：你现在可以走哪些路<a class="headerlink" href="#215-415" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示一张四列路线图，每列代表一个方向，分三层：顶部"已有基础"、中部"进阶技能"、底部"推荐资源"。四列分别是"后端工程师""数据分析师""AI 应用开发者""产品工程师"。讲到哪个方向就高亮哪一列。</p>
+<p><strong>【旁白】</strong> 有了能力模型，来看具体方向。四个方向不是互斥的——你可能同时是"AI 应用开发者"加"有金融领域知识"。交叉方向往往最有价值。</p>
+<p>方向一，后端工程师。你们已有的基础是 FastAPI、API 设计、异常处理。进阶需要补的是：深入数据库，SQL 和 ORM；Docker 容器化，上一集 V057 刚讲过概念；还有 Linux 运维基础、消息队列这些。后端是所有互联网应用的地基，岗位需求最稳定。</p>
+<p>方向二，数据分析师。你们学过 Pandas、Matplotlib、数据获取。进阶要补的是：SQL 进阶、可视化工具比如 Tableau 或 Power BI、统计学基础、机器学习入门比如 scikit-learn。Kaggle 竞赛是最好的练手平台。</p>
+<p>方向三，AI 应用开发者。这是和这门课最相关的方向。你们已经会了 LLM API 调用、Prompt 工程、RAG、Agent、多模态。进阶要补的是：LangChain 或 LlamaIndex 框架、专业向量数据库、Docker 部署、模型微调概念。目前市场上"Python 加 AI"的岗位需求是爆发式增长的。</p>
+<p>方向四，产品工程师。前端加后端加 AI 加产品思维——最接近 vibe coding 创业者的角色。进阶要补前端框架 React 或 Vue、产品需求分析、用户体验设计。如果你未来想自己做产品、做独立开发者，这个方向最适合。</p>
+<p>记住一句话：<strong>方向感是走出来的，不是想出来的</strong>。选一个"最不排斥"的方向开始，做的过程中会越来越清楚自己喜欢什么。不需要现在就定死。</p>
+<h3 id="415-550">[4:15-5:50] 持续学习：不是什么都学，是快速判断该学什么<a class="headerlink" href="#415-550" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示一个三层信息漏斗图。第一层（宽口）："泛信息源"——GitHub Trending、HuggingFace Trending、Hacker News、掘金。第二层（中口）："深度信息源"——3-5 个高质量博客或公众号、1-2 个技术播客。第三层（窄口）："实践验证"——用 AI 问三个问题，全过关才花 1 小时做 demo。</p>
+<p><strong>【旁白】</strong> 技术发展太快，每周都有新模型、新框架、新概念。怎么跟上？关键不是什么都学——你的时间有限。核心策略是：建立"信息分级过滤"机制。</p>
+<p>第一级，泛信息源——知道"有什么新东西"。GitHub Trending 每周看一次，HuggingFace Trending 看 AI 模型动态，Hacker News 或掘金看技术聚合。这层只花你 15 分钟，目的是保持信息宽度，不用深入。</p>
+<p>第二级，深度信息源——理解"这个新东西好不好"。关注 3 到 5 个高质量技术博客或公众号，听 1 到 2 个技术播客。这层帮你建立判断力，知道哪些趋势是真机会、哪些是泡沫。</p>
+<p>第三级最关键——实践验证，判断"适不适合我"。当你对某个新技术感兴趣，先别急着花几天去学，用 AI 帮你做第一轮筛选。问它三个问题。</p>
+<p><strong>【画面】</strong> 屏幕切换到 Kimi Code 终端演示，输入一段 prompt："帮我评估 CrewAI 这个框架：1. 它解决什么问题？和 LangChain 有什么区别？2. 学习成本高不高？我已会用 Python 调 LLM API 做 Agent。3. GitHub 活跃度如何？最近一次更新是什么时候？"展示 AI 回复的要点摘要。</p>
+<p>第一，它解决什么问题？比现有方案好在哪？第二，学习成本多高？文档质量怎么样？第三，社区活跃度怎么样？有没有被放弃的风险？三个问题都过关，再花一小时做一个最小 demo。如果哪个环节卡住了——跳过。这就是 AI 时代的持续学习：不是什么都学，而是用 AI 帮你快速过滤噪音，只投入真正有价值的方向。</p>
+<h3 id="550-700">[5:50-7:00] 开源贡献：你最好的简历不是简历<a class="headerlink" href="#550-700" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示一个 GitHub 个人主页截图（示意），高亮三处：绿色贡献格子图、Pull Request 列表、"good first issue"标签的 issue。旁边配文字："开源贡献 = 最有说服力的简历"。</p>
+<p><strong>【旁白】</strong> 最后聊一个很多人想做但不知道怎么开始的事——开源贡献。</p>
+<p>很多人觉得开源很高门槛，得是大牛才能参与。不是的。从哪开始？第一步，找一个你用过的开源项目，比如 FastAPI。读它的源码和 Issues，看看别人在讨论什么。第二步，找标了 <code>good first issue</code> 的问题——这是专门给新手准备的，项目维护者已经标记好了"这个不难，适合新人上手"。第三步，别一上来就想改核心代码。修文档错别字、改进注释、补充示例代码——这些都是贡献。</p>
+<p>而且你们有一个别人没有的优势——用 AI 加速理解。看不懂代码？让 AI 给你逐行解释。改了代码不确定对不对？让 AI 帮你 review。AI 是你的结对编程伙伴。</p>
+<p>为什么强调这个？因为你的 GitHub 主页——那些绿格子、那些 PR 记录——是最好的简历。面试官看到你有真实的开源贡献，比看到你刷了 500 道算法题更有说服力。因为它证明了你能读别人的代码、能和团队协作、能解决真实问题。</p>
+<h3 id="700-745">[7:00-7:45] 小结：三种永不过时的能力<a class="headerlink" href="#700-745" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条出现，配三张小图标："理解问题""设计方案""用工具实现"。前两个图标标为"核心竞争力"，第三个标注"AI 改变了这步的效率"。最后浮现总结句："技术会变，这三种能力不会。"</p>
+<p><strong>【旁白】</strong> 回到开头那个问题——AI 能写代码了，你的竞争力在哪？</p>
+<p>记住三件事。第一，代码能力是入场券，不是护城河。AI 协作加领域理解加系统设计，这个组合才是不可替代的。第二，用四维能力模型定期自检——基础、AI 协作、工程化、领域知识——找到你的短板。第三，持续学习不是什么都学，是用 AI 快速判断该学什么。</p>
+<p>有一句话送给你们：<strong>技术会变，但三种能力永不过时——理解问题、设计方案、用工具实现。AI 改变的是第三步的效率，前两步是你的核心竞争力。</strong> 这 48 节课，你们花最多时间练的恰恰就是这三件事。</p>
+<h3 id="745-805">[7:45-8:05] 提问彩蛋<a class="headerlink" href="#745-805" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条列出三个 prompt，每条停留数秒供观众暂停照抄：</p>
+<ol>
+<li>"按四维能力模型（基础能力、AI 协作、工程化、领域知识），我给自己打 4/4/2/1 分。请分析这个组合的短板，并给我一个 3 个月提升计划，每周能投入约 5 小时。"</li>
+<li>"请你扮演 AI 应用开发岗位的技术面试官，对我做一轮模拟面试：一次只问一个问题，根据我的回答继续追问，结束后给我反馈和改进建议。"</li>
+<li>"帮我评估 LangGraph 这个框架：它解决什么问题、和 LangChain 有什么区别、学习成本高不高（我已会用 Python 调 LLM API 做 Agent）、社区活跃度怎么样。"</li>
+</ol>
+<p><strong>【旁白】</strong> 彩蛋时间——这三条 prompt 直接照抄去问 AI。还是那句话：把 AI 当教练，别当代写。让它诊断你的短板、追着你问，比让它替你做事值钱得多。</p>
+<h3 id="805-820">[8:05-8:20] 引出下集<a class="headerlink" href="#805-820" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 下集预告卡片，标题"V059 课程复盘：从零到 AI 应用全旅程"。配一行小字："48 节课，从第一行 print 到完整 AI 应用——我们一起回顾这段旅程。"</p>
+<p><strong>【旁白】</strong> 这门课快结束了。下一集也是最后一集——V059，我们一起回顾这 48 节课的完整旅程，从你写的第一行 print 到最终交付的 AI 应用。回头看看，你们已经走了很远。我们下集见。</p>
+<hr />
+<h2 id="_3">核心展示物<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>本集为概念/展望类微课，不包含可运行代码演示。以下为录制时需要在屏幕上展示的核心素材。</p>
+</blockquote>
+<h3 id="1ppt">展示物1：四维能力雷达图（PPT 幻灯片）<a class="headerlink" href="#1ppt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>         基础能力
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>           5
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>       4 ╱ │ ╲ 4
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      3 ╱  │  ╲ 3
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     2 ╱   │   ╲ 2
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    1 ╱    │    ╲ 1
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   AI协作 ─────── 工程化
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    1 ╲    │    ╱ 1
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>     2 ╲   │   ╱ 2
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      3 ╲  │  ╱ 3
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>       4 ╲ │ ╱ 4
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>           5
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>         领域知识
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>课程结束时学生的典型分布：
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  基础能力：3-4  （能写，不一定精通）
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  AI 协作：  4  （课程重点，是优势）
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  工程化：  2-3 （练过，缺长期经验）
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  领域知识：1-2 （刚起步，需工作积累）
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>目标组合（示例）：基础 4 + AI 协作 4 + 工程化 3 + 领域知识 3
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>→ 一个有 AI 应用开发能力的行业开发者
+</span></code></pre></div>
+<h3 id="2ppt">展示物2：四个方向路线图（PPT 幻灯片）<a class="headerlink" href="#2ppt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>方向一：后端工程师
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── 已有基础：FastAPI、API 设计、异常处理、Git
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── 进阶技能：深入数据库（SQL/ORM）、Docker、Linux 运维基础、
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│             消息队列（Redis/Celery）、微服务概念
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>└── 推荐资源：FastAPI 官方文档（进阶部分）、《架构整洁之道》
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>方向二：数据分析师
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── 已有基础：Pandas、Matplotlib、数据获取（API/爬虫）
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── 进阶技能：SQL 进阶、可视化工具（Tableau/Power BI）、
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│             统计学基础、机器学习概念（scikit-learn）
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>└── 推荐资源：Kaggle 竞赛、《Python 数据分析》
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>方向三：AI 应用开发者
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>├── 已有基础：LLM API、Prompt 工程、RAG、Agent、多模态
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├── 进阶技能：LangChain/LlamaIndex、向量数据库（Chroma/Pinecone）、
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│             Docker 部署、模型微调概念、AI 安全与伦理
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>└── 推荐资源：LangChain 官方文档、HuggingFace Course
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>方向四：产品工程师（全栈 + 产品思维）
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>├── 已有基础：前后端 + AI 整合
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── 进阶技能：React/Vue 前端框架、产品需求分析、
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│             用户体验设计、敏捷开发流程
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>└── 推荐资源：独立开发者社区、产品类播客/书籍
+</span></code></pre></div>
+<h3 id="3ppt">展示物3：技术信息分级过滤漏斗（PPT 幻灯片）<a class="headerlink" href="#3ppt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────┐
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│  第一级：泛信息源（知道&quot;有什么&quot;）       │  ← 每周 15 分钟
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│  GitHub Trending · HuggingFace       │
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│  Hacker News · 掘金 · V2EX           │
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>└──────────────┬──────────────────────┘
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>               ▼
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>┌─────────────────────────────────────┐
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│  第二级：深度信息源（判断&quot;好不好&quot;）     │  ← 每周 1-2 小时
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│  3-5 个高质量技术博客/公众号           │
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│  1-2 个技术播客 · 1-2 个活跃社区       │
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>└──────────────┬──────────────────────┘
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>               ▼
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>┌─────────────────────────────────────┐
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│  第三级：实践验证（判断&quot;适不适合我&quot;）   │  ← 按需投入
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│  用 AI 问三个问题：                    │
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│  1. 解决什么问题？比现有方案好在哪？    │
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│  2. 学习成本多高？文档质量如何？       │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│  3. 社区活跃度？有没有被放弃风险？     │
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│  → 三项全过 → 花 1 小时做最小 demo    │
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>└─────────────────────────────────────┘
+</span></code></pre></div>
+<h3 id="4ai-kimi-code">展示物4：AI 评估新技术演示（Kimi Code 终端截图）<a class="headerlink" href="#4ai-kimi-code" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ kimi
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>帮我评估 CrewAI 这个框架：
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>1. 它解决什么问题？和 LangChain 有什么区别？
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>2. 学习成本高不高？我已会用 Python 调 LLM API 做 Agent。
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>3. GitHub 活跃度如何？最近一次更新是什么时候？
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>—————————————————————————————————
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>CrewAI 评估摘要：
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>1. 定位：多 Agent 协作框架。和 LangChain 的区别——
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>   LangChain 侧重&quot;工具链编排&quot;（链式调用），
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>   CrewAI 侧重&quot;角色分工&quot;（多个 Agent 各有角色和任务，
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>   通过协作完成复杂目标）。
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>2. 学习成本：中等偏低。已有 LLM API + Agent 基础的话，
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>   核心概念（Crew / Agent / Task）可在半天内掌握。
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>   文档质量较好，有完整的示例。
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>3. GitHub 活跃度：Star 数 25k+，近一周有多次提交，
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>   社区活跃。但版本迭代快，API 可能不稳定。
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>结论：适合做多 Agent 场景的快速原型，不建议用于
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>对稳定性要求高的生产环境。
+</span></code></pre></div>
+<h3 id="5ppt">展示物5：开源贡献入门路径（PPT 幻灯片）<a class="headerlink" href="#5ppt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>开源贡献四步走：
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>1. 从读代码开始
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>   → 找一个你用过的项目（如 FastAPI）
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   → 读源码、读 Issues、读 Discussions
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>2. 从 good first issue 开始
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   → GitHub 搜索 label:&quot;good first issue&quot;
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>   → 这些是维护者标记的&quot;适合新手&quot;的问题
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>3. 不需要改核心代码
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>   → 修文档错别字 ✅
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>   → 改进注释和示例 ✅
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>   → 补充测试用例 ✅
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>   → 翻译文档 ✅
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>4. 用 AI 加速
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>   → 看不懂代码？让 AI 逐行解释
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>   → 改完不确定？让 AI 帮你 review
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>   → 写 PR 描述？让 AI 帮你润色
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>你的 GitHub 主页 = 最有说服力的简历
+</span></code></pre></div>
+<hr />
+<h2 id="_4">录制注意<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>开场新闻截图要有真实感</strong>：开场用的两条"AI 编程"新闻标题，建议从真实媒体报道中选取并截图（可模糊来源 logo），制造紧迫感。不要用纯文字 PPT 模拟——真实截图的冲击力远高于文字。但注意不编造虚假新闻，选择真实存在的报道即可。</li>
+<li><strong>雷达图用动画逐步绘制</strong>：四维能力雷达图不要一次性全部展示——先画坐标轴和四个维度标签，再动画绘制"课程结束时典型分布"的形状，最后用虚线叠加"目标组合"的形状。让观众看到从"当前"到"目标"的差距，比静态展示更有教学效果。</li>
+<li><strong>AI 评估演示要真实运行</strong>：展示物4 的 Kimi Code 评估 CrewAI 演示，必须真实运行并展示实际输出，不要用后期文字合成。如果录制时 AI 输出与本集预设内容有出入，以实际输出为准，旁白据此调整即可——这反而更能体现"真实使用 AI"的过程。</li>
+<li><strong>语速和情绪控制</strong>：本集旁白约 1850 字，按 230 字/分钟控制在 8 分钟以内。整体基调是"冷静但鼓舞人心"——不要灌鸡汤，也不要焦虑营销。用数据和事实说话，让学生自己得出"我有竞争力"的结论。结尾引出 V059 时语气可以稍放松，带有"快结束了"的仪式感。</li>
+<li><strong>提问彩蛋字幕条后期添加</strong>：提问彩蛋段的 prompt 字幕条需在后期加上，确保观众能暂停照抄。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

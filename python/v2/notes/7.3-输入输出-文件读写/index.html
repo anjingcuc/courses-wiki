@@ -1,0 +1,1000 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/7.3-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>7.3 输入输出：文件读写 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#73" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7.3 输入输出：文件读写
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-0001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        open() 函数与路径（约 00:01）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mode-0127" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打开模式 mode（约 01:27）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close-0415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用完必须 close()（约 04:15）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-0317" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read()（约 03:17）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readline-1551" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        readline() 与逐行遍历（约 15:51）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readlines-2109" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        readlines()（约 21:09）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-0500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write()（约 05:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tell-seek-2233" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件光标、tell() 与 seek()（约 22:33）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="73">7.3 输入输出：文件读写<a class="headerlink" href="#73" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课系统讲解 Python 中的文件读写操作。从 <code>open()</code> 函数的两个核心参数（路径、打开模式）讲起，逐一演示了 <code>r</code>/<code>w</code>/<code>a</code>/<code>x</code>/<code>b</code>/<code>+</code> 各种模式的含义与区别，强调操作完必须 <code>close()</code>。随后讲解了文本文件的常用方法：<code>read()</code>、<code>readline()</code>、<code>readlines()</code>、<code>write()</code>、<code>tell()</code>、<code>seek()</code>，并解释了文件内部"光标"随读写移动的机制、大文件不能一次性读入内存的问题，以及逐行读取的标准写法。二进制模式和字符编码留到下一节课展开。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="open-0001">open() 函数与路径（约 00:01）<a class="headerlink" href="#open-0001" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Python 的 <code>open()</code> 与 C 语言的 <code>fopen</code> 类似，参数作用都很像。</li>
+<li>第一个参数是文件的**路径**：如果 .py 文件与目标文件在同一目录，可直接写文件名（即之前讲过的**相对路径**概念）。</li>
+<li>基本形式：<code>f = open("log.txt")</code>。</li>
+</ul>
+<h3 id="mode-0127">打开模式 mode（约 01:27）<a class="headerlink" href="#mode-0127" title="Permanent link">&para;</a></h3>
+<ul>
+<li>第二个参数 <code>mode</code> 表示打开方式：读取、写入还是追加；<strong>默认值是 <code>r</code>（读取）</strong>。</li>
+<li><code>r</code> = read（读取）：只能读，调用 <code>write</code> 会报错 <code>io.UnsupportedOperation: not writable</code>（约 05:00，老师现场演示并强调要会读错误信息）。</li>
+<li><code>w</code> = write（写入）：只能写，调用 <code>read</code> 会报 <code>not readable</code>（约 05:58）；<strong>会覆盖/清空文件原有内容</strong>（约 06:52）。</li>
+<li><code>x</code> = 排他性创建：要求文件**必须之前不存在**，已存在则在 <code>open</code> 这一行直接报错 <code>FileExistsError</code>（约 07:22）。</li>
+<li><code>a</code> = append（追加）：在原内容末尾追加，不覆盖之前的内容——<strong>写日志一般用 <code>a</code></strong>（约 08:01）。</li>
+<li><code>b</code> = binary（二进制模式）（约 10:30）：加在 <code>r</code>/<code>w</code>/<code>a</code> 后面，如 <code>rb</code>、<code>wb</code>，表示以二进制方式读写。硬盘上大部分文件（如 exe）都是二进制的，人类不可直接读；详细内容（字符编码、二进制文件处理）下节课展开。</li>
+<li><code>+</code> = 读写兼具（约 11:51）：<code>r+</code> 可读也可写，在原内容后接着写入；<code>w+</code> 会先**清空**文件（与 <code>w</code> 行为一致），所以打开后立即读到的内容是空的（约 13:09）。</li>
+</ul>
+<h3 id="close-0415">用完必须 close()（约 04:15）<a class="headerlink" href="#close-0415" title="Permanent link">&para;</a></h3>
+<ul>
+<li>读或写完成后都要 <code>f.close()</code>，否则文件一直被程序占用——平时"文件被别的程序占用、无法修改/删除"的提示就是这么来的。</li>
+</ul>
+<h3 id="read-0317">read()（约 03:17）<a class="headerlink" href="#read-0317" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>f.read()</code> 把整个文件内容读入一个字符串；默认 <code>r</code> 模式下返回字符串。</li>
+<li>可指定长度：<code>f.read(10)</code> 只读 10 个字符（空格等都计入）（约 17:15）。</li>
+<li>注意大文件问题（约 17:45）：文件体积超过内存约两倍时会因内存不足报错（如 8G 内存读 16G 文件）；服务器日志文件达到十几 G 很常见，这时必须逐行读。</li>
+</ul>
+<h3 id="readline-1551">readline() 与逐行遍历（约 15:51）<a class="headerlink" href="#readline-1551" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>f.readline()</code> 每次读一行，可配合 <code>while</code> 循环读完全部内容：
+  <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">while</span> <span class="n">line</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span></code></pre></div></li>
+<li><strong>隐藏知识点</strong>（约 19:14）：文件读完时 <code>read</code>/<code>readline</code> 返回空字符串；空字符串在布尔判断中为 <code>False</code>，循环自然结束。</li>
+<li>每行读出的内容**自带换行符 <code>\n</code>**，<code>print</code> 又会加一个换行，所以直接打印会出现空行；用刚学过的 <code>end=""</code> 去掉多余的换行（约 20:15）。</li>
+</ul>
+<h3 id="readlines-2109">readlines()（约 21:09）<a class="headerlink" href="#readlines-2109" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>f.readlines()</code> 一次性把所有行读入，返回一个**列表**：每个元素是文件的一行（字符串），且每行末尾的 <code>\n</code> 保留。</li>
+</ul>
+<h3 id="write-0500">write()（约 05:00）<a class="headerlink" href="#write-0500" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>f.write(字符串)</code> 参数是字符串；<strong>不会自动换行</strong>，要换行需自己写入 <code>\n</code>。</li>
+</ul>
+<h3 id="tell-seek-2233">文件光标、tell() 与 seek()（约 22:33）<a class="headerlink" href="#tell-seek-2233" title="Permanent link">&para;</a></h3>
+<ul>
+<li>文件对象内部有一个类似"光标"的位置指示器：每次 <code>read</code>/<code>readline</code>/<code>write</code> 后光标自动后移，保证已读内容不重复读、写入内容接着往后写。</li>
+<li><code>f.tell()</code>：返回当前光标在文件第几个字符的位置（演示中读一行后 <code>tell()</code> 返回 14，约 24:26）。</li>
+<li><code>f.seek(偏移量)</code>：不经过读写、直接移动光标。如 <code>f.seek(3)</code> 跳过前 3 个字符再读（偏移从 0 开始算，演示中一开始 seek(4) 跳多了，约 26:47）。</li>
+<li><code>seek</code> 的第二个参数指定偏移基准（约 27:44）：默认 <code>SEEK_SET</code>（从文件开头算），还有 <code>SEEK_END</code>（从文件末尾算）、<code>SEEK_CUR</code>（从当前光标位置算）；不展开，鼓励大家自己试——<strong>一定要学会自己探索</strong>。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>基本读取</strong>（约 03:17）：<code>f = open("log.txt")</code>（默认 r 模式）→ <code>content = f.read()</code> → <code>print(content)</code>，三句话读完全部内容；指出文件本身有空行，输出也有空行；最后 <code>f.close()</code>。</li>
+<li><strong>r 模式下 write 报错</strong>（约 05:00）：尝试 <code>f.write("hello world")</code>，报 <code>not writable</code>；现场请同学翻译错误信息，强调读错误信息的习惯。</li>
+<li><strong>w 模式覆盖写入</strong>（约 05:58）：改成 <code>open("log.txt", "w")</code> 后 <code>read</code> 报 <code>not readable</code>；去掉 read 直接 <code>write("hello world")</code>，运行无输出，但文件内容被覆盖为 hello world。</li>
+<li><strong>x 模式排他创建</strong>（约 07:22）：对已存在的文件用 <code>x</code> 模式打开，第 1 行 open 处直接报"文件已存在"。</li>
+<li><strong>a 模式追加</strong>（约 08:32）：<code>a</code> 模式下 <code>write("\n")</code> 再 <code>write("again")</code>，内容追加在原内容之后；换成 <code>w</code> 则原内容丢失。</li>
+<li><strong>r+ / w+ 对比</strong>（约 12:16）：<code>r+</code> 先读原内容再写入 hello world，追加在原文之后；<code>w+</code> 打开即清空，读出来是空。</li>
+<li><strong>read(10) 限定长度</strong>（约 17:15）：只读出前 10 个字符。</li>
+<li><strong>逐行读取大文件</strong>（约 18:44）：<code>while</code> + <code>readline</code> 循环打印每一行；文件中文显示乱码，老师说明原因下节课讲编码后就会明白，演示时先把中文替换掉。</li>
+<li><strong>readlines 返回列表</strong>（约 21:09）：打印列表，逐项对应每行，可见每项末尾的 <code>\n</code>。</li>
+<li><strong>tell / seek 定位</strong>（约 24:26）：读一行后 <code>f.tell()</code> 得 14；<code>f.seek(3)</code> 跳过开头 3 个字符再读，输出从第 4 个字符开始。</li>
+</ol>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>模式之间的行为差异：<code>w</code> 覆盖清空、<code>a</code> 追加、<code>x</code> 要求文件不存在、<code>r+</code>/<code>w+</code> 读写兼具（<code>w+</code> 同样先清空）。</li>
+<li>务必 <code>close()</code>，否则文件被占用。</li>
+<li><code>read()</code> 一次性读入对大文件会因内存不足失败，应逐行（<code>readline</code>）处理。</li>
+<li>文件读完后 <code>read</code>/<code>readline</code> 返回空字符串，可作为循环结束条件。</li>
+<li>每行自带 <code>\n</code>，配合 <code>print</code> 时注意用 <code>end=""</code> 避免多余空行；<code>write</code> 不会自动换行。</li>
+<li>易错点：<code>seek</code> 的偏移从 0 开始计数。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>前置：相对路径/绝对路径的概念、字符串与布尔逻辑（空字符串为 False）、7.1 节 <code>print</code> 的 <code>end</code> 与 <code>file</code> 参数（本课直接用 <code>end=""</code> 解决换行问题）。</li>
+<li>7.1 节中 <code>print(..., file=f)</code> 写日志的演示依赖本课的 <code>open</code>/<code>close</code> 知识；写日志应使用 <code>a</code> 追加模式。</li>
+<li>二进制模式 <code>b</code>、字符编码（为什么中文读出乱码）、BMP 文件头解析等留到下一节课详细展开，并直接与 7.4 的 ASCII 图练习衔接（练习中已用 <code>rb</code> 读 BMP）。</li>
+<li>与 C 语言的 <code>fopen</code> 对照讲解，帮助有 C 基础的同学迁移。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1039 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2023-08-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%BC%94%E7%A4%BA/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2023-08 虚拟环境工作流演示 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2023-08" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2023-08 虚拟环境工作流演示
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#00000101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演示项目：开源换脸工具（约 00:00–01:01）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01010222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准工作流：拿到项目后的步骤（约 01:01–02:22）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02220259" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建环境后：读输出、验证状态（约 02:22–02:59）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02590459" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        读懂项目的安装脚本（约 02:59–04:59）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04591021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按实际情况修改脚本（约 04:59–10:21）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-install-pip-install-10211332" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conda install 与 pip install 的区别（约 10:21–13:32）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-channel-c-13321553" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conda 的 channel（-c 参数）与换源（约 13:32–15:53）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirementstxt-15531703" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        requirements.txt 与批量安装（约 15:53–17:03）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17031851" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        脚本执行的目录限制（约 17:03–18:51)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1951" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        放置模型权重与收尾（约 19:51–结尾）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2023-08">2023-08 虚拟环境工作流演示<a class="headerlink" href="#2023-08" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课是一次完整的实战演示：以一个开源的实时换脸（deepfake）项目为例，演示"从 GitHub 拿到一个开源项目到在本机跑起来"的标准工作流——下载代码、读说明文档（requirements）、用 conda 创建指定版本的虚拟环境、读并修改项目自带的安装批处理脚本（install_windows.bat）、安装依赖、放置模型权重文件。过程中穿插讲解了 conda install 与 pip install 的区别（预编译 vs 源代码编译）、conda 的 channel（-c 参数）与换源机制、<code>pip install -r requirements.txt</code> 的用法，以及脚本相对路径带来的执行目录限制。</p>
+<blockquote>
+<p>说明：字幕为语音转写，"conda" 被大量转写为"空大"，"pip" 被转写为"peep"，笔记已按上下文还原。</p>
+</blockquote>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="00000101">演示项目：开源换脸工具（约 00:00–01:01）<a class="headerlink" href="#00000101" title="Permanent link">&para;</a></h3>
+<ul>
+<li>项目效果：打开摄像头实时换脸（如换成爱因斯坦），配合 OBS 虚拟摄像头可以接入腾讯会议；本地显卡跑起来效果流畅、眼球转动真实。</li>
+<li>老师以此引出主题：对一个开源项目感兴趣，如何在自己电脑上部署运行？</li>
+</ul>
+<h3 id="01010222">标准工作流：拿到项目后的步骤（约 01:01–02:22）<a class="headerlink" href="#01010222" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>获取代码</strong>：<code>git clone</code> 或 Code → Download ZIP（老师因没设代理选择了直接下载，并改名区分）。</li>
+<li><strong>进入项目目录</strong>：右键"在终端打开"，或打开终端后用 <code>cd</code> 切换。</li>
+<li><strong>读说明文档</strong>：看 install instructions / requirements，确认依赖——该项目要求 <strong>Python 3.8</strong>、需要 git for windows、还需下载模型文件。</li>
+<li><strong>创建虚拟环境</strong>：<code>conda create -n ay python=3.8</code>。conda 会自动下载 Python 3.8.18 及对应的 pip 版本到本地，确认即可。</li>
+</ol>
+<h3 id="02220259">创建环境后：读输出、验证状态（约 02:22–02:59）<a class="headerlink" href="#02220259" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>计算机入门的表现就是"会读输出"</strong>（报错也是输出的一部分）：conda 装完会提示 <code>To activate this environment, use ...</code>，照着做即可。</li>
+<li>激活后养成确认习惯：看提示符前小括号里的环境名是否变了；用 <code>python -V</code>、<code>pip -V</code> 确认 Python 版本（3.8）且 pip 对应该虚拟环境。</li>
+</ul>
+<h3 id="02590459">读懂项目的安装脚本（约 02:59–04:59）<a class="headerlink" href="#02590459" title="Permanent link">&para;</a></h3>
+<ul>
+<li>技巧：命令行里用 <code>code .</code> 可以直接用 VSCode 打开当前目录（前提是安装 VSCode 时添加了环境变量）。</li>
+<li>逐行分析 <code>scripts\install_windows.bat</code>（批处理文件）：</li>
+<li><code>@echo off</code>：关闭回显，执行时不把命令本身再打印出来；</li>
+<li><code>rem</code>：注释；</li>
+<li>第 4 行 <code>call conda --version</code> + <code>&amp;&amp;</code> / <code>||</code> 结构：检查 conda 是否安装好（<code>&amp;&amp;</code> 表示前一条命令成功才执行后面的，<code>||</code> 表示失败则执行另一分支）；</li>
+<li>第 5 行（被注释掉）：结构上看是在判断 git 是否安装好；</li>
+<li>第 7 行：调用 <code>scripts\settings_windows.bat</code>；</li>
+<li>第 9 行：<code>conda create -n xxx python=3.7 -y</code>（<code>-y</code> 表示自动确认）创建环境。</li>
+<li><code>settings_windows.bat</code> 只做一件事：<strong>设置一个环境变量，指定 conda 环境的名字</strong>。</li>
+</ul>
+<h3 id="04591021">按实际情况修改脚本（约 04:59–10:21）<a class="headerlink" href="#04591021" title="Permanent link">&para;</a></h3>
+<ul>
+<li>把 settings 里的环境名改成自己建的 <code>ay</code>；</li>
+<li>发现并纠正作者的 bug：网页说明要求 3.8，脚本里却写 <code>python=3.7</code>，手动改成 3.8；</li>
+<li>脚本每次运行都会用 <code>-y</code> 重建（覆盖）环境，由于环境已手动建好，把第 9 行注释掉，避免重复创建。</li>
+</ul>
+<h3 id="conda-install-pip-install-10211332">conda install 与 pip install 的区别（约 10:21–13:32）<a class="headerlink" href="#conda-install-pip-install-10211332" title="Permanent link">&para;</a></h3>
+<ul>
+<li>脚本后续同时用了 conda 和 pip 安装包，两者都能装 Python 包，但**来源不同、下载的包内容可能有区别**（即使版本号一致）：</li>
+<li><strong>pip install</strong>：从 Python 社区官方服务器（PyPI）下载，<strong>可能是源代码级别的包</strong>——下载到你的电脑后试图**本地编译**。如果电脑上没有编译环境（类似 C 语言编译时头文件找不到、环境变量错误、缺 lib），Windows 上就会报五花八门的错。</li>
+<li><strong>conda install</strong>：对不同操作系统提供**预编译好**的包，下载即用，不容易报错。</li>
+<li>所以有时 conda install 不报错而 pip install 报错；反过来如果 pip（转写如此，按语境指源代码安装）报错说找不到 <code>cmake</code>，说明它正在试图下载源代码在本地编译——cmake 是编译工具。</li>
+<li>Python 本身提供两种安装机制：<strong>源代码级安装**和**二进制级安装</strong>（后者已帮你针对 Windows 平台编译好）。</li>
+</ul>
+<h3 id="conda-channel-c-13321553">conda 的 channel（-c 参数）与换源（约 13:32–15:53）<a class="headerlink" href="#conda-channel-c-13321553" title="Permanent link">&para;</a></h3>
+<ul>
+<li>脚本里 conda install 带 <code>-c</code> 参数：<code>-c</code> 是 <strong>channel</strong>（频道）的缩写，可理解为**不同的服务器**，由不同的热心群众维护，内容可能略有区别（如 <code>conda-forge</code>）。</li>
+<li>校园网装包慢时，可以把 conda 的 channels 换成**清华镜像源**（地址在国内甚至校园网内）：做法是创建/编辑用户目录下的 <code>.condarc</code> 文件，把 channels 全部替换为清华地址。</li>
+</ul>
+<h3 id="requirementstxt-15531703">requirements.txt 与批量安装（约 15:53–17:03）<a class="headerlink" href="#requirementstxt-15531703" title="Permanent link">&para;</a></h3>
+<ul>
+<li>脚本后半段下载面部识别模型，并用 <code>pip install -r requirements.txt</code> 安装剩余依赖。</li>
+<li><code>requirements.txt</code> 不是包名，而是 Python 提供的**依赖清单机制**：每行格式为 <code>包名==版本号</code>，<code>-r</code> 参数让 pip 按清单把全部包装好。</li>
+</ul>
+<h3 id="17031851">脚本执行的目录限制（约 17:03–18:51)<a class="headerlink" href="#17031851" title="Permanent link">&para;</a></h3>
+<ul>
+<li>运行 <code>.\scripts\install_windows.bat</code> 时**必须在项目根目录下**，不能切换到别处。</li>
+<li>原因：脚本第 7 行用**相对路径**调用 <code>scripts\settings_windows.bat</code>，执行出发点变了就找不到这个文件。</li>
+<li>规避办法：把 settings 里的 <code>set</code> 语句直接复制进主脚本，就不依赖外部脚本了——但人家**模块化**做得好（设置参数单独一个 bat，调用时再调用），不建议折腾。</li>
+</ul>
+<h3 id="1951">放置模型权重与收尾（约 19:51–结尾）<a class="headerlink" href="#1951" title="Permanent link">&para;</a></h3>
+<ul>
+<li>按说明文档把下载好的权重文件（FOMM 库所需）复制到指定目录，之后即可运行。</li>
+<li>说明文档后面的 install OBS / virtual camera 步骤是把换脸窗口接入腾讯会议，与 Python 无关，课上不讲，有兴趣可自行尝试、出问题截图问老师。</li>
+<li>换源补充：编辑 C 盘用户目录下的 <code>.condarc</code>，把镜像配置复制进去；<strong>改完源后记得清缓存再测试</strong>（<code>conda clean</code>）。安装包体积大、等待时间长是正常现象。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>开场演示</strong>：运行换脸工具，摄像头画面实时换成爱因斯坦的脸，并说明配合 OBS 虚拟摄像头可用于腾讯会议。</li>
+<li><strong>完整部署工作流演示</strong>（核心）：</li>
+<li>Download ZIP 下载项目并改名；</li>
+<li>项目目录右键"在终端打开"；</li>
+<li><code>conda create -n ay python=3.8</code> 创建环境，读输出提示后 <code>conda activate ay</code>；</li>
+<li><code>python -V</code> / <code>pip -V</code> 双重确认环境状态；</li>
+<li><code>code .</code> 打开 VSCode，逐行解读 <code>install_windows.bat</code> 与 <code>settings_windows.bat</code>；</li>
+<li>修改环境名为 <code>ay</code>、Python 版本 3.7→3.8、注释掉重复建环境的第 9 行；</li>
+<li><code>.\scripts\install_windows.bat</code> 在项目根目录运行安装脚本（因包体积大，课堂未等其装完）。</li>
+<li><strong>权重文件演示</strong>：把下载的 FOMM 权重文件复制到说明文档要求的目录。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>本课核心是**工作流思维**：拿到开源项目 → 读文档（requirements）→ 建对应版本的虚拟环境 → 激活并验证 → 装依赖 → 按文档放权重/数据 → 运行。</li>
+<li>**会读输出**是计算机入门的基本功，conda 每一步都会给出下一步提示（如 activate 命令）。</li>
+<li>不要盲目跑脚本：先读懂它在干什么（<code>echo off</code>、<code>rem</code>、<code>&amp;&amp;</code>/<code>||</code>、相对路径调用），再按自己环境修改（环境名、Python 版本、注释掉已完成的步骤）。</li>
+<li>带 <code>-y</code> 的 <code>conda create</code> 会**覆盖同名环境**，重复执行脚本有风险。</li>
+<li>脚本内含相对路径调用时，必须保证**执行目录**正确，否则报找不到文件。</li>
+<li>pip（源码编译，易报错）与 conda（预编译，省心）的差异，是装包报错时换工具试试的依据；报"找不到 cmake"说明正在本地编译源代码。</li>
+<li>装包慢/超时的对策：换清华源（改 <code>.condarc</code>），改完**清缓存**再测。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>直接应用上一课 2023-07 的 conda 知识（create/activate/<code>-V</code>/env list），是虚拟环境知识的实战落地。</li>
+<li>批处理（bat）解读呼应"计算机维护/权益维护"类前置课程的内容；相对路径与 2023-06 模块与包中的相对导入概念相通。</li>
+<li>涉及正课第 10 章：10.3 国内镜像源（清华源）、10.4 离线安装与 whl 文件、10.5 虚拟环境管理。</li>
+<li>下一课 2023-09"包管理器补充"将进一步讲解 pip/conda 装包背后的完整流程与报错分析。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

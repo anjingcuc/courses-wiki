@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W2 环境与工具链 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 02 / 16</span>
+    <span class="th">环境与工具链 · 命令行 / AI 工具 / API / Git</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m1/">M1 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w01.html">← 上周</a>
+    <a class="cur" href="w02.html">本周</a>
+    <a href="w03.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W2 环境与工具链">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 2 周（100 分钟 · L3–L5）</div>
+    <h1 class="rise">环境与工具链<br><span class="grad">从命令行到大模型 API</span></h1>
+    <p class="sub rise">今天完成三件事：用命令行跑起第一个 .py 程序；装好 AI 编程工具；
+    <b>亲手调通大模型 API</b>——这是本学期所有 AI 开发的地基。最后学会用 Git 提交作业。</p>
+    <div class="meta rise">
+      <span>所属模块 M1 环境与工具链</span><span>微课 V004–V008</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>命令行起步</b></td><td>交互模式 >>> vs 文件运行；写代码→保存→cd→python hello.py 三步循环</td></tr>
+      <tr><td>10–20</td><td><b>读报错练习</b></td><td>文件找不到 / 命令未找到 / 缩进错误——最后一行是重点</td></tr>
+      <tr><td>20–32</td><td><b>AI 编程工具</b></td><td>Kimi Code CLI 安装与首次对话；Trae 界面导览与补全体验</td></tr>
+      <tr><td>32–42</td><td><b>API 是什么</b></td><td>打电话类比；API Key=身份证+钱包、Token=计费单位</td></tr>
+      <tr><td>42–55</td><td><b>代码骨架逐行讲</b></td><td>import→client→messages 三角色→create→取 content；仪式时刻：填 Key 运行</td></tr>
+      <tr><td>55–70</td><td><b>学生亲手调通</b></td><td>创建 chat.py → 填自己的 Key → 运行 → 改 system 人设再跑；巡场</td></tr>
+      <tr><td>70–78</td><td><b>回答对比秀</b></td><td>2–3 名学生展示不同 system prompt 的效果对比</td></tr>
+      <tr><td>78–90</td><td><b>Git 三板斧</b></td><td>拍照类比 add/commit/push；「AI 大改前先 commit」翻车演示</td></tr>
+      <tr><td>90–100</td><td><b>提交实操</b></td><td>clone → 建分支 → .gitignore 排除 .env → push；确保人人完成一次</td></tr>
+    </table>
+    <p class="small">检查点：本节课结束时，每人都要完成一次 API 调用和一次 Git push。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>命令行：程序员的日常工作台</h2>
+    <div class="flowline">
+      <div class="node">写代码<br><span class="small">VSCode</span></div><span class="arrow">→</span>
+      <div class="node">保存文件<br><span class="small">hello.py</span></div><span class="arrow">→</span>
+      <div class="node hot">命令行运行<br><span class="small">python hello.py</span></div>
+    </div>
+    <div class="scard frag">
+      <b>两种运行方式：</b>
+      <ul>
+        <li>交互模式 <code>&gt;&gt;&gt;</code>：输入一句执行一句，适合做小实验</li>
+        <li>文件运行：cd 到文件所在目录 → <code>python 文件名.py</code></li>
+      </ul>
+    </div>
+    <p class="small frag">理解原理：<a href="../../demos/interpreter.html">交互演示 · 编译 vs 解释</a>（为什么 Python 保存即可运行）</p>
+  </section>
+
+  <section class="slide">
+    <h2>读懂命令行的「话」</h2>
+    <pre class="rise"><code><span class="c"># 逐行读报错：最后一行是重点</span>
+C:\Users\me&gt; python hello.py
+<span class="s">python: can't open file 'hello.py': [Errno 2] No such file or directory</span>
+
+<span class="c"># 翻译：当前目录下没有 hello.py → 先 cd 到正确目录</span>
+C:\Users\me&gt; cd Desktop\py
+C:\Users\me\Desktop\py&gt; python hello.py
+<span class="f">Hello, world!</span></code></pre>
+    <ul>
+      <li class="frag">三个最常见报错：<b>文件找不到</b>（目录不对）、<b>命令未找到</b>（PATH 问题）、<b>缩进错误</b></li>
+      <li class="frag">排错第一步：先看自己在哪个目录（<code>cd</code> / <code>dir</code>）</li>
+    </ul>
+  </section>
+  <!-- 演示 -->
+  <section class="slide">
+    <h2>交互演示：编译 vs 解释</h2>
+    <div class="demo-frame">
+      <span class="frame-tag">可交互演示 · 页内直接操作</span>
+      <iframe src="../../demos/interpreter.html" loading="lazy" title="交互演示：编译 vs 解释"></iframe>
+    </div>
+    <p class="small">点「播放」或逐步执行，观察同一段程序在 C 与 Python 两条流水线上的处理过程——为什么 Python 保存即可运行，答案就在这里。　<a href="../../demos/interpreter.html" target="_blank">新窗口打开 →</a></p>
+  </section>
+
+
+  <section class="slide">
+    <h2>AI 编程工具：命令行里的结对伙伴</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">Kimi Code CLI</span>
+        <ul style="font-size:16px;">
+          <li class="frag">命令行里直接与 AI 对话、生成代码</li>
+          <li class="frag">安装后首次对话：介绍自己 + 说明任务</li>
+        </ul>
+      </div>
+      <div class="scard rise"><span class="tag v">Trae</span>
+        <ul style="font-size:16px;">
+          <li class="frag">AI 原生编辑器：写代码时右侧对话</li>
+          <li class="frag">体验「描述需求 → AI 生成 → 自己运行验证」闭环</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      <b>核心观念：开发以人为主导，AI 工具起辅助作用。</b>
+      工具越强，越要能判断它给出的东西对不对。
+    </div>
+    <p class="small frag">微课：<a href="../scripts/V004-交互模式与命令行运行/">V004</a> · <a href="../scripts/V005-AI编程工具全家桶安装/">V005 工具安装</a></p>
+  </section>
+
+  <section class="slide">
+    <h2>大模型 API：拆开工具的包装</h2>
+    <p class="rise">用「打电话」类比理解 API 调用：</p>
+    <div class="flowline">
+      <div class="node">你的代码<br><span class="small">拨号</span></div><span class="arrow">→</span>
+      <div class="node hot">API 服务器<br><span class="small">总机</span></div><span class="arrow">→</span>
+      <div class="node">大模型<br><span class="small">接通</span></div><span class="arrow">→</span>
+      <div class="node">JSON 响应<br><span class="small">回话</span></div>
+    </div>
+    <div class="cols2" style="margin-top:16px;">
+      <div class="scard frag"><b>API Key</b><span class="small">＝身份证 + 钱包。绝不分享、绝不提交到仓库。</span></div>
+      <div class="scard frag"><b>Token</b><span class="small">＝计费单位。1 个汉字 ≈ 1–2 token；输入输出都计数。</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>第一次调用：代码骨架逐行讲</h2>
+    <pre class="rise"><code><span class="k">from</span> openai <span class="k">import</span> OpenAI
+
+client = <span class="f">OpenAI</span>(
+    api_key=<span class="s">"sk-你的密钥"</span>,                  <span class="c"># 用环境变量更安全！</span>
+    base_url=<span class="s">"https://api.deepseek.com/v1"</span>, <span class="c"># 换服务商只改这里</span>
+)
+resp = client.chat.completions.<span class="f">create</span>(
+    model=<span class="s">"deepseek-chat"</span>,
+    messages=[
+        {<span class="s">"role"</span>: <span class="s">"system"</span>, <span class="s">"content"</span>: <span class="s">"你是一个耐心的编程助教"</span>},  <span class="c"># 人设</span>
+        {<span class="s">"role"</span>: <span class="s">"user"</span>,   <span class="s">"content"</span>: <span class="s">"用一句话解释什么是变量"</span>},      <span class="c"># 提问</span>
+    ],
+)
+<span class="f">print</span>(resp.choices[<span class="n">0</span>].message.content)      <span class="c"># 取出回复文本</span></code></pre>
+    <ul>
+      <li class="frag">三种消息角色：<b>system</b> 设定人设与边界，<b>user</b> 是你的问题，<b>assistant</b> 是 AI 的回复</li>
+      <li class="frag">改一改 system，AI 的风格立刻不同——这就是「Prompt 即编程」</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：解析 API 的返回结构</h2>
+    <span class="lab">交互 · 浏览器内运行（模拟响应处理环节）</span>
+    <p class="rise">API 返回的是 JSON 字符串——把它拆开、逐层取值：</p>
+    <div class="py-playground" data-py-title="解析大模型 API 返回的 JSON">
+      <textarea>import json
+
+# 某大模型 API 返回的 JSON（字符串）
+response = '''
+{
+  "model": "deepseek-chat",
+  "choices": [
+    {"message": {"role": "assistant", "content": "变量是一个名字，绑定了内存里的对象"}}
+  ],
+  "usage": {"prompt_tokens": 12, "completion_tokens": 18}
+}
+'''
+
+data = json.loads(response)            # JSON 字符串 -> Python 字典
+msg = data["choices"][0]["message"]    # 逐层取值
+print("模型回答:", msg["content"])
+print("消耗 token:", data["usage"]["prompt_tokens"] + data["usage"]["completion_tokens"])
+
+# 练习：打印模型名字（data 里的 "model" 字段）
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Git：你的「后悔药」</h2>
+    <p class="rise">用「拍照」类比记住三板斧：</p>
+    <div class="flowline">
+      <div class="node">git add<br><span class="small">选好入镜的东西</span></div><span class="arrow">→</span>
+      <div class="node hot">git commit<br><span class="small">按下快门</span></div><span class="arrow">→</span>
+      <div class="node">git push<br><span class="small">上传云端相册</span></div>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #dc2626;">
+      <b>为什么「AI 大改前先 commit」？</b>
+      AI 重构可能大面积改写代码。先 commit 建立还原点，效果不对一条 <code>git checkout</code> 就能回退——否则只能像上节课开场那样手忙脚乱地撤销。
+    </div>
+    <ul>
+      <li class="frag">分支 = 平行宇宙：作业分支 <code>0xNN</code> 里随便折腾，主线不受影响</li>
+      <li class="frag"><code>.gitignore</code> 排除 <code>.env</code>——<b>API Key 绝不进仓库</b>（Git 历史删不掉，预防比补救重要一百倍）</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>作业提交流程（本学期通用）</h2>
+    <div class="flowline">
+      <div class="node">① clone<br><span class="small">课程仓库</span></div><span class="arrow">→</span>
+      <div class="node">② 建分支<br><span class="small">0x02-学号</span></div><span class="arrow">→</span>
+      <div class="node">③ 写代码<br><span class="small">+ .gitignore</span></div><span class="arrow">→</span>
+      <div class="node hot">④ add + commit</div><span class="arrow">→</span>
+      <div class="node">⑤ push</div>
+    </div>
+    <pre class="frag"><code>git clone &lt;仓库地址&gt;
+<span class="f">cd</span> 仓库目录
+git checkout -b 0x02-2026001        <span class="c"># 创建并切换到自己的作业分支</span>
+<span class="c"># ...写代码...  echo ".env" &gt;&gt; .gitignore</span>
+git add .
+git commit -m <span class="s">"作业②：API 调用"</span>
+git push origin 0x02-2026001</code></pre>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W2 环境与工具链 · 概念检查",
+        "questions": [
+          {
+            "q": "API Key 应该存放在哪里？",
+            "opts": ["直接写在代码里，方便调试", "提交到 Git 仓库备份", "环境变量或 .env 文件，并加入 .gitignore", "发到群里让同学帮忙保管"],
+            "a": 2,
+            "explain": "密钥进代码或仓库，一旦泄露就会被盗刷；Git 历史删不掉，预防比补救重要。正确做法：os.getenv() 读环境变量，.env 不进版本控制。"
+          },
+          {
+            "q": "messages 里 system 角色的作用是？",
+            "opts": ["存放系统日志", "设定 AI 的人设与行为约束", "存储用户的 API Key", "标记对话轮次"],
+            "a": 1,
+            "explain": "system 消息放在对话最前面，用来给模型设定角色、风格和边界（如「你是课程助教，仅依据资料回答」）。"
+          },
+          {
+            "q": "「AI 大改前先 commit」的原因是？",
+            "opts": ["让 AI 识别项目", "改动失败时能立即回退到上一个可用版本", "加快 AI 生成速度", "Git 规定必须先 commit"],
+            "a": 1,
+            "explain": "AI 重构可能大面积改写代码。先 commit 相当于建立还原点，效果不符预期时用 git checkout 即可回退。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V006-大模型API是什么/">V006 API 是什么</a> ·
+          <a href="../scripts/V007-申请APIKey与第一次调用/">V007 申请 Key 与第一次调用</a> ·
+          <a href="../scripts/V008-Git基础与分支工作流/">V008 Git 基础</a></li>
+        <li class="frag">确保 chat.py 能跑通、完成一次 Git push——下周要用</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W3 类型与数据结构</b>
+      拿真实 API 返回的数据当教材：变量与类型 → 四种数据结构怎么选。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w03.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m1/">M1 模块页</a> · <a href="../notes/3.1-运行方式-交互模式/">经典笔记 3.1 交互模式</a> · <a href="../notes/2023-02-git操作/">2023-02 Git 操作</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

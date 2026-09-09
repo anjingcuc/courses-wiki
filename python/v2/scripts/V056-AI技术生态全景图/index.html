@@ -1,0 +1,1183 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/scripts/V056-AI%E6%8A%80%E6%9C%AF%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF%E5%9B%BE/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>V056 AI 技术生态全景图 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v056-ai" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V056 AI 技术生态全景图
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐字稿
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐字稿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-035-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:00-0:35] 开场 hook：你站在什么山上？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#035-215-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:35-2:15] AI 应用的四层技术栈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-330-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2:15-3:30] 模型层：闭源 API 与开源模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#330-500-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3:30-5:00] 三大趋势：开源崛起、多模态融合、Agent 自主化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#500-615-huggingface-ollama-modelscope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [5:00-6:15] 三大平台：HuggingFace / Ollama / ModelScope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#615-700-ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [6:15-7:00] 实操演示：Ollama 本地跑模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#700-745" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:00-7:45] 你的位置：应用层开发者
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#745-800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:45-8:00] 小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#800-820" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [8:00-8:20] 提问彩蛋 + 引出下集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心展示物
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心展示物">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ai-ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物1：AI 应用四层技术栈海报（PPT/板书）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物2：三大趋势对比图（PPT）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物3：Ollama 本地运行演示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        展示物4：三大平台截图要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        录制注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v056-ai">V056 AI 技术生态全景图<a class="headerlink" href="#v056-ai" title="Permanent link">&para;</a></h1>
+<h2 id="_1">视频信息<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号</td>
+<td>V056</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>AI 技术生态全景图</td>
+</tr>
+<tr>
+<td>目标时长</td>
+<td>8 min</td>
+</tr>
+<tr>
+<td>对应课次</td>
+<td>L45 AI 时代技术版图</td>
+</tr>
+<tr>
+<td>前置微课</td>
+<td>V055 优秀 AI 项目复盘</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>退一步看清全局——从模型层到应用层，搞懂你学的每一门技术在整个 AI 生态中站在哪里</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">逐字稿<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="000-035-hook">[0:00-0:35] 开场 hook：你站在什么山上？<a class="headerlink" href="#000-035-hook" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 屏幕中央出现一张完整的技术版图，自下而上分四层：基础设施层、模型层、框架与工具层、应用层。应用层高亮标注"你的期末项目在这里"。画面缩小，旁边浮现一行字："48 节课，你学了这么多——但你知道它们各自站在哪一层吗？"</p>
+<p><strong>【旁白】</strong> 刚做完期末项目，你用 Python 调了 DeepSeek 的 API，写了 RAG 知识库，搭了 FastAPI 后端，还做了前端聊天页面。这些技术名词你都很熟了。但退一步想——这些技术在整个 AI 生态里分别站在哪一层？你学的东西是"造发动机"还是"造汽车"？今天花八分钟，带你把这张全景图看清。</p>
+<h3 id="035-215-ai">[0:35-2:15] AI 应用的四层技术栈<a class="headerlink" href="#035-215-ai" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示四层架构图，从下到上逐层揭示。底层"基础设施层"：GPU/TPU/云计算/数据中心，标注"不需要你管"。第二层"模型层"：GPT-4/Claude/DeepSeek/Qwen/Ollama，标注"你调 API 用"。第三层"框架与工具层"：FastAPI/LangChain/向量数据库，标注"课程教了"。顶层"应用层"：AI 知识库/智能学伴/你的期末项目，标注"你在这里"。每层用不同颜色区分。</p>
+<p><strong>【旁白】</strong> 先建立一张整体地图。AI 应用技术栈分四层，从底到顶。</p>
+<p>最底下是基础设施层——GPU 集群、云计算、数据中心。这是大公司烧钱的地方，你不用管。</p>
+<p>往上一层是模型层——GPT-4、Claude、DeepSeek、还有各种开源大模型。这一层提供"智能"，你在课程里从第四节课开始就在调它们的 API。</p>
+<p>再往上是框架与工具层——FastAPI 帮你搭 Web 后端，向量数据库帮你存 Embedding，LangChain 帮你封装 AI 工作流。这一层是"中间件"，连接模型和你的应用。</p>
+<p>最顶层就是应用层——AI 知识库助手、智能学伴、AI 创意工坊。你做的期末项目就在这一层。</p>
+<p>记住一个关键认知：<strong>课程 48 节课，从第一天到结业，从来没有让你训练模型</strong>。你做的是站在巨人肩膀上——用现成的模型，搭出解决真实问题的应用。模型是发动机，你造的是汽车。</p>
+<h3 id="215-330-api">[2:15-3:30] 模型层：闭源 API 与开源模型<a class="headerlink" href="#215-330-api" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 左右分栏对比。左栏"闭源 API"：DeepSeek、GPT-4、Claude、Kimi，标注"云端调用、按量付费、能力最强"。右栏"开源模型"：Llama、Qwen、DeepSeek 开源版，标注"可本地部署、免费、可微调"。中间箭头标注"2024 起开源模型能力快速逼近闭源"。</p>
+<p><strong>【旁白】</strong> 聚焦模型层。现在分两大阵营。</p>
+<p>左边是闭源 API——你调用 DeepSeek、GPT-4，模型跑在别人的服务器上，你按 token 付费。优点是能力强、不用管硬件，缺点是数据要传出去、长期使用有成本。</p>
+<p>右边是开源模型——Llama、通义千问 Qwen、DeepSeek 也开源了自己的模型权重。你可以把模型下载到本地，自己跑。优点是免费、数据不出门，缺点是吃硬件、需要自己部署。</p>
+<p>2024 年开始，开源模型的能力在快速逼近闭源。这意味着什么？意味着你有更多选择——对数据隐私敏感的场景可以用本地模型，追求最强效果的场景可以用云端 API。两条路都通。</p>
+<h3 id="330-500-agent">[3:30-5:00] 三大趋势：开源崛起、多模态融合、Agent 自主化<a class="headerlink" href="#330-500-agent" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示三列，每列一个趋势。第一列标题"开源模型崛起"，图标：开源 logo + 向上箭头。第二列"多模态融合"，图标：文本+图片+语音+视频图标汇聚。第三列"Agent 自主化"，图标：齿轮循环。每列下方一句话解释对开发者的影响。</p>
+<p><strong>【旁白】</strong> 看看当前 AI 领域的三大趋势。</p>
+<p>第一个趋势——开源模型崛起。刚才说了，DeepSeek 开源了权重，Qwen 系列持续迭代。这意味着技术不再被几家大公司垄断，普通人也能下载模型本地跑。对开发者来说，依赖第三方 API 的风险在降低。</p>
+<p>第二个趋势——多模态融合。以前大模型只处理文本，现在能看图、能听语音、能生成图片和视频。你在课程 L24 学过 Vision API 和 TTS——那就是多模态。未来应用不再是纯文字聊天，而是看图说话、听音办事。</p>
+<p>第三个趋势——Agent 自主化。你在课程 L25-L26 学过 AI Agent——AI 不只是回答问题，而是能自己拆任务、调工具、多步完成目标。2025 年这个方向是最热的赛道，从简单工具调用走向真正自主决策。</p>
+<p>这三个趋势有个共同点：你学的底层能力——调 API、做 RAG、写 Agent——不会过时。变的是模型更强、模态更多、Agent 更聪明。但"理解架构 + 选对工具 + 快速上手"这个核心能力，一直值钱。</p>
+<h3 id="500-615-huggingface-ollama-modelscope">[5:00-6:15] 三大平台：HuggingFace / Ollama / ModelScope<a class="headerlink" href="#500-615-huggingface-ollama-modelscope" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 浏览器分三个标签页。标签1打开 huggingface.co/models 页面，展示模型排行榜，按下载量排序，高亮 Qwen2.5 模型卡片。标签2打开 ollama.com 展示模型列表页面。标签3打开 modelscope.cn 魔搭社区首页。每个页面旁边浮一行中文标注。</p>
+<p><strong>【旁白】</strong> 了解趋势之后，你需要知道去哪找模型和工具。三大平台。</p>
+<p>第一个，HuggingFace——它是 AI 模型界的 GitHub。你需要找模型、找数据集、看别人做的 Demo，这里是第一站。按下载量排序就能看到当前最火的开源模型。点开任何一个模型卡片，能看到参数量、许可证、使用示例。</p>
+<p>第二个，Ollama——它让你一键在本地运行大模型。安装后一行命令 <code>ollama run qwen2.5</code> 就能和本地模型对话。不需要 API Key，不需要网络，离线也能跑。在数据隐私敏感的场景，比如医疗和金融，这个能力非常关键。</p>
+<p>第三个，ModelScope 魔搭社区——国内的版本，内容和使用方式和 HuggingFace 类似，访问速度快很多。如果你觉得 HuggingFace 打开慢，就用魔搭。</p>
+<p>这三个平台你不需要全注册，知道有它们存在就行。需要的时候，知道去哪找。</p>
+<h3 id="615-700-ollama">[6:15-7:00] 实操演示：Ollama 本地跑模型<a class="headerlink" href="#615-700-ollama" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 终端演示。先运行 <code>ollama run qwen2.5:0.5b</code>，展示交互对话——输入"你好，请用一句话介绍自己"，模型返回回复。然后切到 VS Code，展示一段 Python 代码：<code>base_url</code> 改成 <code>http://localhost:11434/v1</code>，其他代码和课程里调 DeepSeek 一模一样。运行后展示输出。</p>
+<p><strong>【旁白】</strong> 来看个实际的。终端里 <code>ollama run qwen2.5:0.5b</code>，等它下载完，就能直接对话。这是一个 5 亿参数的小模型，速度快但能力有限——如果你想效果更好，换 7B 以上的模型，当然也更吃内存。</p>
+<p>重点看这个：切到 VS Code，这段代码你一定很眼熟——就是课程 L4 学的 openai SDK 调用。唯一区别是 <code>base_url</code> 从 DeepSeek 换成了 <code>localhost:11434</code>。其他一行都不用改。这就是 OpenAI 兼容接口的威力——学一套代码，云端和本地的模型都能用。你之前写的所有调用代码，一行不改就能切换到本地模型。</p>
+<h3 id="700-745">[7:00-7:45] 你的位置：应用层开发者<a class="headerlink" href="#700-745" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 回到开场的四层架构图，镜头拉近应用层。应用层高亮，旁边浮现金句："模型是发动机，你的应用是汽车。发动机再好，没有方向盘、刹车、座椅——也只是一堆轰鸣的金属。"然后展示一行时间线："理解架构 → 选对工具 → 快速上手"。</p>
+<p><strong>【旁白】</strong> 最后回到核心问题——你在整个版图里站在哪？</p>
+<p>你站在应用层。你的价值不在于训练模型，而在于"理解业务需求、设计架构、实现体验"。模型是发动机，你的应用是汽车。发动机再好，没有方向盘、刹车、座椅，也只是一堆轰鸣的金属。</p>
+<p>技术版图会持续变化——明年可能 LangChain 就不流行了，新的框架又冒出来。但你的核心能力不变：理解架构，选对工具，快速上手。遇到新名词，用 AI 帮你三句话搞清楚，判断它值不值得深学。这就是持续学习的方法。</p>
+<h3 id="745-800">[7:45-8:00] 小结<a class="headerlink" href="#745-800" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条出现："四层技术栈：基础设施→模型→框架→应用 · 三大趋势：开源/多模态/Agent · 三大平台：HuggingFace/Ollama/ModelScope · 你的位置：应用层"。</p>
+<p><strong>【旁白】</strong> 核心记住几件事：四层技术栈从底到顶，你在应用层；三大趋势——开源崛起、多模态融合、Agent 自主化；三大平台——HuggingFace、Ollama、ModelScope。</p>
+<h3 id="800-820">[8:00-8:20] 提问彩蛋 + 引出下集<a class="headerlink" href="#800-820" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条列出三个 prompt，每条停留数秒供观众暂停照抄：</p>
+<ol>
+<li>"我刚学完 AI 应用四层技术栈（基础设施→模型→框架工具→应用）。请你扮演面试官，每层出一道追问题考我，我答完一题再出下一题，最后点评我的薄弱环节。"</li>
+<li>"用一张对比表讲清闭源 API 和开源本地模型在成本、数据隐私、部署难度上的区别，再各举一个真实场景说明什么时候选哪个。"</li>
+<li>"我用 Ollama 在本地跑通了 qwen2.5，请给我出 3 个由易到难的动手练习，把'改 base_url 切换云端和本地模型'练熟，先别给答案。"</li>
+</ol>
+<p>随后切下集预告卡片："V057 数据库、Docker、云服务——把课堂项目变成真实产品的三座桥梁"。</p>
+<p><strong>【旁白】</strong> 最后留个提问彩蛋——屏幕上这三条 prompt，现在暂停抄下来，去问 Kimi 或 DeepSeek。记住一个原则：AI 用得好的人，不是让它替自己想，而是让它考自己、追问自己。下集讲进阶技能：数据库、Docker、云服务——这些是把你的课堂项目变成真实产品的桥梁。我们下集见。</p>
+<hr />
+<h2 id="_3">核心展示物<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1ai-ppt">展示物1：AI 应用四层技术栈海报（PPT/板书）<a class="headerlink" href="#1ai-ppt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                    AI 应用技术版图
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>╔══════════════════════════════════════════════════════════╗
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>║                    应用层                                  ║
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>║  AI 知识库 / AI 客服 / AI 学伴 / 数据分析助手               ║
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>║  （你们做的期末项目在这层）                                 ║
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>╠══════════════════════════════════════════════════════════╣
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>║                  框架与工具层                              ║
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>║  Web 框架：FastAPI（L27）                                  ║
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>║  AI 框架：LangChain / LlamaIndex / Dify                   ║
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>║  向量数据库：Pinecone / Chroma / FAISS                    ║
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>║  前端：HTML/JS（L28）/ React / Vue                         ║
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>║  开发工具：Git（L5）/ Docker（L46预告）                    ║
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>╠══════════════════════════════════════════════════════════╣
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>║                    模型层                                  ║
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>║  闭源 API：GPT-4 / Claude / DeepSeek / Kimi（L4起用）      ║
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>║  开源模型：Llama / Qwen / DeepSeek 开源版 / Ollama 本地    ║
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>║  Embedding 模型：text-embedding / bge                     ║
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>║  多模态模型：DALL-E / Whisper / CLIP（L24）                ║
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>╠══════════════════════════════════════════════════════════╣
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>║                  基础设施层                                ║
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>║  GPU / TPU / 云计算 / 数据中心                             ║
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>╚══════════════════════════════════════════════════════════╝
+</span></code></pre></div>
+<p>讲解方式：从底到顶逐层揭示，每层标注"本课程在哪节课涉及"。到应用层时强调"你们的项目在这里"。</p>
+<h3 id="2ppt">展示物2：三大趋势对比图（PPT）<a class="headerlink" href="#2ppt" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>趋势</th>
+<th>核心变化</th>
+<th>对开发者的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开源模型崛起</td>
+<td>DeepSeek/Qwen 开源权重，能力逼近闭源</td>
+<td>数据隐私场景可用本地模型，API 依赖风险降低</td>
+</tr>
+<tr>
+<td>多模态融合</td>
+<td>文本→图片/语音/视频/3D</td>
+<td>应用不再限于文字聊天，看图说话、听音办事</td>
+</tr>
+<tr>
+<td>Agent 自主化</td>
+<td>工具调用→自主拆任务、多步决策</td>
+<td>AI 从"回答者"变成"执行者"，自动化能力飞跃</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3ollama">展示物3：Ollama 本地运行演示<a class="headerlink" href="#3ollama" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 拉取轻量模型</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5:0.5b
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 运行交互对话</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>ollama<span class="w"> </span>run<span class="w"> </span>qwen2.5:0.5b
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>&gt;&gt;&gt;<span class="w"> </span>你好，请用一句话介绍自己
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 预期输出（模型回复示例）：</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># 我是 Qwen2.5，一个由阿里云开发的语言模型，很高兴认识你！</span>
+</span></code></pre></div>
+<p>切换到 Python 代码，展示 OpenAI 兼容接口：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 用课程学的 openai SDK 调用 Ollama 本地模型</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 唯一区别：base_url 指向本地</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;ollama&quot;</span><span class="p">,</span>  <span class="c1"># Ollama 不检查 key，随便填</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434/v1&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen2.5:0.5b&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你好，请用一句话介绍自己&quot;</span><span class="p">}]</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 运行命令</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>call_ollama.py
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># 预期输出：</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># 我是 Qwen2.5，一个由阿里云开发的语言模型。</span>
+</span></code></pre></div>
+<p><strong>演示要点</strong>：重点强调"base_url 改一行，其他代码不变"——学一套 openai SDK，云端和本地模型都能用。</p>
+<h3 id="4">展示物4：三大平台截图要点<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>网址</th>
+<th>一句话定位</th>
+<th>课堂展示要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HuggingFace</td>
+<td>huggingface.co/models</td>
+<td>AI 模型界的 GitHub</td>
+<td>按下载量排序看热门模型；点开模型卡片看参数量/许可证</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>ollama.com</td>
+<td>一键本地跑大模型</td>
+<td>展示模型列表和一行命令安装</td>
+</tr>
+<tr>
+<td>ModelScope</td>
+<td>modelscope.cn</td>
+<td>国内魔搭社区（HF 替代）</td>
+<td>首页浏览，强调访问速度快</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">录制注意<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>四层架构图是本集核心视觉锚点</strong>：开场、结尾、中间讲解都回到这张图。建议提前做成一张精美的 PPT 或海报，用不同颜色区分四层，逐层揭示（动画或手动遮挡）。讲解时手指或激光笔指向当前讲的层，让观众始终知道"讲到哪了"。</li>
+<li><strong>Ollama 演示需要提前预装和拉模型</strong>：课堂/录制机器提前安装 Ollama 并拉好 <code>qwen2.5:0.5b</code>，避免录制时等待下载。演示重点不是 Ollama 本身，而是"base_url 改一行就能切换"这个认知——用 VS Code 并排展示调 DeepSeek 和调 Ollama 的代码，让观众一眼看出差异极小。</li>
+<li><strong>平台截图提前备好备用</strong>：HuggingFace 国内访问可能不稳定，提前截图备用。也可用 ModelScope 替代演示。核心信息是"有这三个平台，需要时知道去哪找"，不需要逐个深入操作。</li>
+<li><strong>语速控制</strong>：整体旁白约 1850 字，按 230 字/分钟控制在 8 分钟以内。四层架构讲解适当放慢，Ollama 演示和结尾正常语速。</li>
+<li><strong>提问彩蛋字幕条后期添加</strong>：提问彩蛋段的 prompt 字幕条需在后期加上，确保观众能暂停照抄。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 输入输出
+
+---
+
+## 输入-input 函数
+
+示例代码中有两句使用了输入函数 input , 在终端输出提示信息后等待用户输入，并将输入保存到返回值中。
+
+- 函数原型: input([prompt])
+- 参数 prompt : 可选，提示字符串。
+- 返回值: 无
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### 输出-print 函数
+
+经典输出函数 print , 用于在终端（系统标准输出）或文件中显示参数指定的内容。
+
+- 函数原型: print(\*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+- 参数 \*objects: 表示任意个数的参数
+- 参数 sep: 多个参数输出时使用的分隔符，默认分割符为一个空格，即 ' ' 。
+- 参数 end: 输出结束后的自动追加的字符，默认追加一个换行符 `\n` 来实现自动换行。
+- 参数 file: 指定 print 输出的位置，默认输出到标准系统输入 sys.stdout 也就是终端/命令行中，也可以指定文件对象。
+- 参数 flush: Python 3.3 后加入的内容，如果存在文件缓存的话表示是否立刻写入文件。
+- 返回值: 无
+
+<!-- .element: style="font-size:60%;" -->
+
+---
+
+## 字符串格式化进阶
+
+除了类似 C 语言 printf 的格式化字符串意外，Python 提供了更方便快捷的字符串格式化方式。
+
+--
+
+### f-string
+
+f-string 又称为格式化字符串字面值，特点是简单易用，在字符串的开始之前加上一个 `f` 或 `F` 即可。
+
+```python
+teacher = 'anjing'
+age = 18
+
+print(f'My teacher is {teacher}. He is {age} years old.')
+```
+
+--
+
+### format() 方法
+
+字符串对象提供 `str.format()` 方法来实现对输出内容的格式化。
+
+```python
+teacher = 'anjing'
+age = 18
+
+print('My teacher is {}. He is {} years old.'.format(teacher, age))
+print('My teacher is {1}. He is {0} years old.'.format(age, teacher))
+print('My teacher is {t}. He is {a} years old.'.format(a=age, t=teacher))
+print('My teacher is {0}. He is {a} years old.'.format(teacher, a=age))
+```
+
+--
+
+### 格式规格迷你语言
+
+在使用以上字符串格式化方法时，都可以运用 `格式规格迷你语言` 来对输出的内容进行对齐、填充、正负号以及精度控制等操作。
+
+```python
+import random
+
+# 生成一个假的名单
+# 包含 10 个学生
+students = []
+for x in range(10):
+    # 利用字母对应 ASCII 码增加来自动起名
+    name = '小' + chr(ord('A') + x)
+    student = {
+        'name': name,
+        'id': 20190001 + x,  # 按顺序生成学号
+        'score': random.randint(60, 100)  # 随机一个成绩
+    }
+
+    # 将一名学生对应的字典加入到名单中
+    students.append(student)
+
+# 对名单进行排序，排序的key是每个学生的成绩，倒序
+students.sort(key=lambda x: x['score'], reverse=True)
+
+# 输出排序后的成绩单
+rank = 1
+for student in students:
+    print(f'{rank:02d}. {student["name"]:>5} {student["score"]:<3d}')
+    print('{:02d}. {:>5} {:<3d}'.format(rank, student['name'], student['score']))
+    print('{0:02d}. {1[name]:>5} {1[score]:<3d}'.format(rank, student))
+
+    rank += 1
+```
+
+_注：详见 https://docs.python.org/zh-cn/3/library/string.html#formatspec_
+
+<!-- .element: style="font-size:50%;" -->
+
+---
+
+## 文件读写
+
+Python 内置文件对象 `file` 使用 `open()` 函数打开文件并创建文件对象，最常见的用法有两个参数：`filename` 即文件名（文件路径），`mode` 即打开模式。
+
+```python
+f = open('readme.md', 'r')
+```
+
+--
+
+### mode 参数
+
+打开文件时，通过参数 `mode` 来指定打开方式。
+
+| 字符 | 意义                             |
+| ---- | -------------------------------- |
+| 'r'  | 读取（默认）                     |
+| 'w'  | 写入，并先截断文件               |
+| 'x'  | 排它性创建，如果文件已存在则失败 |
+| 'a'  | 写入，如果文件存在则在末尾追加   |
+| 'b'  | 二进制模式                       |
+| 't'  | 文本模式（默认）                 |
+| '+'  | 打开用于更新（读取并写入）       |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 文件对象的方法
+
+文件对象有非常多方法对其进行操作，常见的文本方式打开的文件可用的方法如下：
+
+| 方法                                 | 参数                                                             | 返回值                                             |
+| ------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------- |
+| `file.read(size=-1)`                 | 可选，以字节为单位的读取长度，不填则返回整个文件内容             | 返回一个字符串或者二进制 bytes                     |
+| `file.readline(size=-1)`             | 可选，以字节为单位的读取长度，不填则返回整行                     | 返回一个字符串，包含换行符`\n`                     |
+| `file.readlines(hint=-1)`            | 可选，读取的行数，不填则返回所有行                               | 返回一个字符串或者二进制 bytes 组成的列表          |
+| `file.write(s)`                      | 一个要写入的字符串                                               | 返回成功写入的字符数量                             |
+| `file.tell()`                        | 无                                                               | 返回一个整数，表示目前访问的文件位置在多少个字节处 |
+| `file.seek(offset, whence=SEEK_SET)` | `offset`表示将当前位置移到偏移处，`whence`表示从哪里开始计算偏移 | 返回一个整数，新的文件位置                         |
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 练习
+
+---
+
+## Q & A

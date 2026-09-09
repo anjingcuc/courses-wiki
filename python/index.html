@@ -1,0 +1,1494 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/">
+      
+      
+        <link rel="prev" href="../aissop/ppt/">
+      
+      
+        <link rel="next" href="v2/m0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Python 程序设计 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python 程序设计
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 程序设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程主页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M0 导论 · AI 时代编程第一课
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M1 环境与工具链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M2 语言核心
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M3 数据获取与处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M4 工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M5 AI 应用开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M6 综合项目实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/m7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    M7 总结与展望
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/slides-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 周在线课件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/scripts-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微课讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="v2/notes-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典课程笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典版课件
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+<div class="pyv2-hero" data-pyv2-page>
+  <div class="inner">
+    <div class="cols">
+      <div>
+        <div class="badge-row">
+          <span class="badge">V2 · 2026 修订版</span>
+          <span class="badge v">48 课时 · 8 模块</span>
+          <span class="badge">2026 秋季</span>
+        </div>
+        <h1>Python 程序设计<br><span class="grad">面向 AI 时代的修订版</span></h1>
+        <p class="sub">AI 已经能写出可运行的代码，编程课还教什么？本课程的回答：<b style="color:#0f172a">读代码、调试、系统设计</b>。
+        48 课时从第一行代码走到独立交付一个包含前端、后端与 AI 能力的完整应用——全程与 AI 结对开发，
+        并在期末答辩中说明每一行代码的作用。</p>
+        <div class="cta-row">
+          <a class="pyv2-btn primary" href="v2/m0/">从 M0 开始学习 →</a>
+          <a class="pyv2-btn ghost" href="#_2">查看课程地图</a>
+        </div>
+      </div>
+      <div>
+        <div class="pyv2-terminal" data-terminal>
+          <script type="application/json" class="term-data">
+          {
+            "loop": true,
+            "lines": [
+              {"t": "dim",  "x": "# 第一节课：10 分钟做出一个 AI 聊天网页"},
+              {"t": "in",   "x": "$ kimi \"做一个 AI 聊天页面，流式输出\""},
+              {"t": "dim",  "x": "⠿ 生成 index.html + chat.js ..."},
+              {"t": "out",  "x": "✓ 完成（37 行，含流式渲染）"},
+              {"t": "in",   "x": "$ python -m http.server 8000"},
+              {"t": "dim",  "x": "Serving HTTP on http://localhost:8000"},
+              {"t": "ai",   "x": "你：用一句话解释什么是列表推导式"},
+              {"t": "ai",   "x": "AI：边遍历边加工、直接产出列表的紧凑写法："},
+              {"t": "ai",   "x": "    [x*2 for x in range(5)] → [0, 2, 4, 6, 8]"},
+              {"t": "dim",  "x": "# 学期末，你将独立完成同级别的应用"}
+            ]
+          }
+          </script>
+          <div class="bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">第 1 节课现场 · AI 结对编程演示</span>
+          </div>
+          <div class="body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 id="_1" style="font-size:22px;">课程概览</h2>
+  <div class="pyv2-stats">
+    <div class="pyv2-stat" data-anim><div class="n" data-count="48">0</div><div class="l">线下课时</div></div>
+    <div class="pyv2-stat" data-anim><div class="n" data-count="8">0</div><div class="l">教学模块</div></div>
+    <div class="pyv2-stat v" data-anim><div class="n" data-count="12">0</div><div class="l">AI 应用开发课时</div></div>
+    <div class="pyv2-stat v" data-anim><div class="n" data-count="5" data-suffix="+">0</div><div class="l">期末项目池</div></div>
+    <div class="pyv2-stat" data-anim><div class="n" data-count="60" data-suffix="+">0</div><div class="l">精讲微课</div></div>
+    <div class="pyv2-stat" data-anim><div class="n" data-count="6">0</div><div class="l">项目化作业</div></div>
+  </div>
+
+  <h3 style="margin:22px 0 6px;font-size:17px;">三个锚点 · AI 会写代码，你学什么</h3>
+  <div class="pyv2-lab">
+    <div class="pyv2-demo-card" data-anim>
+      <span class="tag g">能力一</span>
+      <b>读代码</b>
+      <p>AI 生成的代码，你能看懂、能审查、能发现隐患（命名混乱、超出课程范围的语法、边界条件缺失）。这是全课程反复训练的第一项能力。</p>
+    </div>
+    <div class="pyv2-demo-card" data-anim>
+      <span class="tag g">能力二</span>
+      <b>调试</b>
+      <p>报错是常态。读 traceback、print 定位、二分注释、最小复现——L37 专门设有「AI-free 调试日」，训练不依赖 AI 的排错能力。</p>
+    </div>
+    <div class="pyv2-demo-card" data-anim>
+      <span class="tag g">能力三</span>
+      <b>系统设计</b>
+      <p>把模糊需求拆成模块、接口与数据流；知道何时该用 RAG、何时用 Agent、何时一个 if 就够。期末项目将全面检验这一能力。</p>
+    </div>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 id="_2" style="font-size:22px;">学习路径 · 八大模块</h2>
+  <p>主线：从「零环境」到「独立交付 AI 应用」。每张卡片可点击进入模块页，含课件、可运行代码、随堂测验。</p>
+  <div class="pyv2-path">
+    <a class="pyv2-mod-card" href="v2/m0/" data-anim><div class="glow"></div>
+      <span class="mid">M0 · L1–L2</span><b>导论</b>
+      <span>AI 时代为什么学编程；第一节课现场用 AI 结对编程完成一个 AI 聊天网页</span>
+      <span class="lessons">2 课时 · V001–V003</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m1/" data-anim><div class="glow"></div>
+      <span class="mid">M1 · L3–L5</span><b>环境与工具链</b>
+      <span>命令行运行、Kimi Code / Trae 等 AI 编程工具、第 4 课调通大模型 API、Git 分支工作流</span>
+      <span class="lessons">3 课时 · V004–V008</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m2/" data-anim><div class="glow"></div>
+      <span class="mid">M2 · L6–L11</span><b>语言核心</b>
+      <span>类型、数据结构选型、控制流、函数契约、IO 与异常、类——建思维模型而非背方法清单</span>
+      <span class="lessons">6 课时 · V009–V021</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m3/" data-anim><div class="glow"></div>
+      <span class="mid">M3 · L12–L15</span><b>数据获取与处理</b>
+      <span>HTTP 与 F12 实测、requests 调 API、爬虫精要与伦理、Pandas + Matplotlib 全链路</span>
+      <span class="lessons">4 课时 · V022–V028</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m4/" data-anim><div class="glow"></div>
+      <span class="mid">M4 · L16–L18</span><b>工程化</b>
+      <span>虚拟环境与依赖、AI 生成代码的审查重构、模块化项目结构与配置管理</span>
+      <span class="lessons">3 课时 · V029–V033</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m5/" data-anim><div class="glow"></div>
+      <span class="mid">M5 · L19–L30</span><b>AI 应用开发</b>
+      <span>课程核心模块：Prompt 工程、Function Calling、RAG、Agent、FastAPI 前后端、对话记忆</span>
+      <span class="lessons">12 课时 · V034–V053</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m6/" data-anim><div class="glow"></div>
+      <span class="mid">M6 · L31–L44</span><b>综合项目实战</b>
+      <span>14 课时完整项目周期：选题→架构→冲刺→AI-free 调试日→Bug Bash→答辩</span>
+      <span class="lessons">14 课时 · 项目实战</span>
+    </a>
+    <a class="pyv2-mod-card" href="v2/m7/" data-anim><div class="glow"></div>
+      <span class="mid">M7 · L45–L48</span><b>总结与展望</b>
+      <span>AI 技术版图、数据库 / Docker / 云概念、职业路线与持续学习</span>
+      <span class="lessons">4 课时 · V056–V059</span>
+    </a>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 style="font-size:22px;">课程知识图谱</h2>
+  <p>拖拽节点、悬停查看说明、点击模块节点直达模块页。虚线为跨模块能力依赖。</p>
+  <div class="pyv2-graph-wrap">
+    <canvas id="pyv2-kgraph" height="560"></canvas>
+    <div class="pyv2-graph-tip"></div>
+    <span class="hint">拖拽 / 悬停 / 点击模块节点跳转</span>
+    <script type="application/json" id="pyv2-kgraph-data">
+    {
+      "modules": [
+        {"id": "m0", "label": "M0 导论", "color": "#38bdf8", "r": 26, "href": "v2/m0/", "desc": "AI 时代为什么学编程；现场做出第一个 AI 应用"},
+        {"id": "m1", "label": "M1 环境工具", "color": "#22d3ee", "r": 24, "href": "v2/m1/", "desc": "命令行 · AI 编程工具 · 大模型 API 初体验 · Git"},
+        {"id": "m2", "label": "M2 语言核心", "color": "#34d399", "r": 26, "href": "v2/m2/", "desc": "类型 · 数据结构 · 控制流 · 函数 · IO 异常 · 类"},
+        {"id": "m3", "label": "M3 数据获取", "color": "#fbbf24", "r": 24, "href": "v2/m3/", "desc": "HTTP · requests · 爬虫精要 · Pandas 可视化"},
+        {"id": "m4", "label": "M4 工程化", "color": "#f472b6", "r": 22, "href": "v2/m4/", "desc": "虚拟环境 · 代码审查 · 模块化结构"},
+        {"id": "m5", "label": "M5 AI开发", "color": "#a78bfa", "r": 30, "href": "v2/m5/", "desc": "Prompt · Function Calling · RAG · Agent · FastAPI"},
+        {"id": "m6", "label": "M6 综合项目", "color": "#f87171", "r": 27, "href": "v2/m6/", "desc": "14 课时：选题 → 冲刺 → 答辩"},
+        {"id": "m7", "label": "M7 展望", "color": "#94a3b8", "r": 20, "href": "v2/m7/", "desc": "技术版图 · 进阶路线 · 职业发展"}
+      ],
+      "lessons": [
+        {"id": "l1", "m": "m0", "label": "L1 第一课", "big": true, "desc": "10 分钟完成 AI 聊天网页"},
+        {"id": "l2", "m": "m0", "label": "L2 学习法"},
+        {"id": "l4", "m": "m1", "label": "L4 API初体验", "big": true, "desc": "第 4 课亲手调通大模型 API"},
+        {"id": "l5", "m": "m1", "label": "L5 Git 工作流"},
+        {"id": "l7", "m": "m2", "label": "L7 数据结构选型", "big": true, "desc": "四种结构一句话定位：什么时候用什么"},
+        {"id": "l9", "m": "m2", "label": "L9 函数契约", "desc": "好的函数契约 = 好的 prompt"},
+        {"id": "l11", "m": "m2", "label": "L11 类与对象"},
+        {"id": "l13", "m": "m3", "label": "L13 API 实战", "big": true, "desc": "requests 调 3 个公开 API"},
+        {"id": "l15", "m": "m3", "label": "L15 Pandas 可视化"},
+        {"id": "l17", "m": "m4", "label": "L17 代码审查", "desc": "现场重构一段 AI 生成的烂代码"},
+        {"id": "l20", "m": "m5", "label": "L20 Prompt 工程", "big": true},
+        {"id": "l22", "m": "m5", "label": "L22 RAG 基础", "big": true, "desc": "向量 · 语义检索 · 切分策略"},
+        {"id": "l25", "m": "m5", "label": "L25 Agent 基础", "desc": "ReAct：推理 + 行动循环"},
+        {"id": "l27", "m": "m5", "label": "L27 FastAPI", "big": true},
+        {"id": "l37", "m": "m6", "label": "L37 AI-free 调试日", "big": true, "desc": "禁用一切 AI，只靠 print/日志/读报错修 bug"},
+        {"id": "l42", "m": "m6", "label": "L42 项目答辩"},
+        {"id": "l45", "m": "m7", "label": "L45 技术版图"},
+        {"id": "l47", "m": "m7", "label": "L47 职业路线"}
+      ],
+      "links": [
+        ["m0", "m1"], ["m1", "m2"], ["m2", "m3"], ["m3", "m4"], ["m4", "m5"], ["m5", "m6"], ["m6", "m7"]
+      ],
+      "crosslinks": [
+        ["m2", "m5"], ["m3", "m6"], ["m5", "m6"], ["m1", "m3"], ["m4", "m5"], ["m3", "m5"], ["m2", "m7"]
+      ]
+    }
+    </script>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 id="_3" style="font-size:22px;">16 周在线课件</h2>
+  <p>按一学期 16 周、每周 100 分钟线下课整合而成的高交互授课课件——教师投影授课（方向键翻页、F 全屏、分步显示），
+  学生同页交互（浏览器内运行代码、随堂小测即时判分）。点击进入总览：</p>
+  <div class="pyv2-lab">
+    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim style="grid-column: span 2;">
+      <span class="tag v">LECTURE · 交互课件</span><b>16 周课件总览 · W1–W16</b>
+      <p>每周一份：要点讲授 + 可运行练习 + 随堂小测；与模块页、微课讲义、交互演示互相链接。</p>
+      <span class="go">进入课件总览 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/slides/w01.html" data-anim>
+      <span class="tag">第 1 周</span><b>导论 · AI 时代为什么学编程</b>
+      <p>现场演示 + 第一个浏览器练习。</p><span class="go">打开课件 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/slides/w13.html" data-anim>
+      <span class="tag">第 13 周</span><b>FastAPI 前后端与方法论</b>
+      <p>把 AI 能力变成网页服务。</p><span class="go">打开课件 →</span>
+    </a>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 style="font-size:22px;">交互实验室</h2>
+  <p>课程的核心原理均配有可交互的动画与沙箱，点击卡片进入演示。各模块页还内嵌<b style="color:#0f172a">可直接在浏览器中运行的 Python 环境</b>（Pyodide，无需安装）。</p>
+  <div class="pyv2-lab">
+    <a class="pyv2-demo-card" href="demos/interpreter.html" data-anim>
+      <span class="tag">GSAP · 步进动画</span>
+      <b>编译 vs 解释：代码如何变成运行</b>
+      <p>C 的编译四部曲与 Python 的字节码 / PVM 逐段对照，粒子流水线演示每一步产物。</p>
+      <span class="go">进入演示 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="demos/objects.html" data-anim>
+      <span class="tag v">Three.js · 3D 交互</span>
+      <b>一切皆对象：内存空间的直觉</b>
+      <p>3D 内存空间中亲手执行 <code>a = "hello"</code>：对象如何诞生、名字如何绑定引用、is 与 == 的区别。</p>
+      <span class="go">进入演示 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="demos/base64.html" data-anim>
+      <span class="tag v">Manim 风格 · 位运算</span>
+      <b>Base64 编码原理可视化</b>
+      <p>3 字节 → 24 比特 → 4 组 6 比特 → 查表输出。经典作业的每一步都可暂停、单步、回放。</p>
+      <span class="go">进入演示 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="demos/rag.html" data-anim>
+      <span class="tag">流程模拟</span>
+      <b>RAG：让 AI 读你的文档</b>
+      <p>文档切分 → 向量化 → 语义检索 → 拼接 Prompt → 生成回答，完整呈现 M5 的核心架构。</p>
+      <span class="go">进入演示 →</span>
+    </a>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 style="font-size:22px;">作业线与考核</h2>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:22px;" class="pyv2-two">
+    <div>
+      <div class="pyv2-tl">
+        <div class="pyv2-tl-item" data-anim><b>① 数据处理脚本</b><span class="meta">W3 发布</span>
+          <p>处理真实 JSON/CSV：提取、转换、统计。数据结构选型是关键。</p></div>
+        <div class="pyv2-tl-item" data-anim><b>② API 调用项目</b><span class="meta">W6 发布</span>
+          <p>调用公开 API 获取数据并结构化处理，处理超时与错误。</p></div>
+        <div class="pyv2-tl-item" data-anim><b>③ 模块化重构</b><span class="meta">W8 发布</span>
+          <p>把单文件脚本重构为模块化项目，.env 管密钥。</p></div>
+        <div class="pyv2-tl-item v" data-anim><b>④ Prompt 工程实战</b><span class="meta">W9 发布</span>
+          <p>设计结构化 Prompt 模板，鼓励大量 AI 实验。</p></div>
+        <div class="pyv2-tl-item v" data-anim><b>⑤ RAG 迷你应用</b><span class="meta">W11 发布</span>
+          <p>小型文档问答系统：向量化、检索、生成完整链路。</p></div>
+        <div class="pyv2-tl-item v" data-anim><b>⑥ 期末大项目</b><span class="meta">W14 启动 · W16 答辩</span>
+          <p>完整 AI 应用 + AI 协作日志 + 答辩。</p></div>
+      </div>
+    </div>
+    <div data-anim>
+      <h3 style="margin-bottom:6px;">期末项目池（五选一）</h3>
+      <p>AI 知识库助手（RAG）· 智能学伴（Function Calling）· AI 创意工坊（多模态）· 智能数据分析师（NL2Code）· AI 客服机器人</p>
+      <h3 style="margin:14px 0 6px;">AI 协作</h3>
+      <p>全课程鼓励 AI 协作开发，同时坚持一条底线：<b>提交的每一行代码，你都要能解释「干什么、为什么」</b>。</p>
+      <h3 style="margin:14px 0 6px;">课件与课堂</h3>
+      <p>每周课件见上方「16 周在线课件」板块；课程相关安排以课堂说明为准。</p>
+    </div>
+  </div>
+</div>
+
+<div class="pyv2" data-pyv2-page>
+  <h2 style="font-size:22px;">资料库</h2>
+  <div class="pyv2-lab">
+    <a class="pyv2-demo-card" href="v2/scripts-index/" data-anim>
+      <span class="tag">讲义</span><b>微课视频讲义</b>
+      <p>V001 起全部微课的完整讲稿与教学设计，建议配合视频阅读。</p><span class="go">浏览讲义 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/notes-index/" data-anim>
+      <span class="tag">深挖</span><b>经典课程笔记 · 88 篇</b>
+      <p>旧版 15 章课程的逐节详解笔记，含时间戳可回查视频，概念深挖的最佳参考。</p><span class="go">进入笔记库 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="introduction/" data-anim>
+      <span class="tag v">存档</span><b>经典版课件</b>
+      <p>旧版 15 章幻灯片课件（reveal.js），V2 课程中的语法细节可在此查阅。</p><span class="go">查看课件 →</span>
+    </a>
+    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim>
+      <span class="tag v">授课</span><b>16 周在线课件</b>
+      <p>高交互授课课件：分步讲授、可运行练习、随堂小测，与全部模块互相链接。</p><span class="go">进入课件总览 →</span>
+    </a>
+  </div>
+</div>
+
+<div data-pyv2-ai hidden></div>
+
+<style>
+@media (max-width: 960px) { .pyv2-two { grid-template-columns: 1fr !important; } }
+</style>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1026 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/14.4-%E7%88%AC%E8%99%AB-Scrapy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>14.4 爬虫：Scrapy 框架 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#144-scrapy" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              14.4 爬虫：Scrapy 框架
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0000-0220" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要框架（约 00:00 - 02:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrapy-0220-1350" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scrapy 架构（约 02:20 - 13:50）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1350-2300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装与项目创建（约 13:50 - 23:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2740-3940" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        项目文件解析（约 27:40 - 39:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spider-3940-5800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spider 编写（约 39:40 - 58:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-item-pipeline-5800-6500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item 与 Item Pipeline（约 58:00 - 65:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6500-6700" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行效果（约 65:00 - 67:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6700-7340" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        未展开的高级话题（约 67:00 - 73:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7340-7520" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作业（约 73:40 - 75:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="144-scrapy">14.4 爬虫：Scrapy 框架<a class="headerlink" href="#144-scrapy" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>前面三节课演示的单文件爬虫只能"小打小闹"，本课引出工程化方案：Python 最有名的爬虫框架 Scrapy。老师先分析单文件写法的四个短板（不会从结果中发现新链接、无多线程、无去重、无模块化），再对照官网架构图讲解 Scrapy 的引擎、调度器、下载器、Spider、Item Pipeline 与中间件各自的分工。随后实操：pipenv 安装 Scrapy、<code>scrapy startproject</code> 建项目、讲解各配置文件（scrapy.cfg、settings.py）的含义，并以知乎话题精华为例写好完整 Spider——用生成器 yield 返回 Item 和新 Request，处理分页，再通过回答→问题的跳转抓取每个热门问题的前 10 条回答，最后由 Item Pipeline 写入 CSV。结尾补充了未展开的高级话题（验证码、代理、模拟登录、cookie 池）并布置作业。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="0000-0220">为什么需要框架（约 00:00 - 02:20）<a class="headerlink" href="#0000-0220" title="Permanent link">&para;</a></h3>
+<p>单文件爬虫持续抓取大量数据的四个问题：
+1. 不会从抓取结果中解析出新的待抓对象（如抓了知乎 data 后没有分析 paging 继续翻页）；
+2. 没有多线程/多进程，机器性能没利用起来；
+3. 没有去重等机制；
+4. 所有过程写在一个文件里，没有模块化（发送请求、解析 response 应拆成不同模块）。</p>
+<h3 id="scrapy-0220-1350">Scrapy 架构（约 02:20 - 13:50）<a class="headerlink" href="#scrapy-0220-1350" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scrapy 是 Python 里功能最全、配置最灵活的爬虫框架（另有 PySpider 等）。</li>
+<li><strong>Spider（爬虫）</strong>：针对每个网站单独写一个（B 站、优酷、爱奇艺各一个），因为各站结构不同；Spider 负责**解析** response（HTML 或 JSON），并提供种子 URL（入口链接）。</li>
+<li>数据流：Spider 给出种子 request → 交给**引擎（Engine）** → 引擎转给**调度器（Scheduler）<strong>（排队、去重、决定起多少线程）→ 调度器经引擎交给**下载器（Downloader）</strong>（可多线程并发下载）→ 返回的 response 扔回 Spider 解析。</li>
+<li>对应关系：Downloader ≈ requests/Selenium（发请求拿响应），Spider ≈ BeautifulSoup/json（解析）——本质逻辑和之前的简单写法一样，只是模块化了。</li>
+<li>Spider 解析的结果有两种（约 08:00）：</li>
+<li><strong>Item</strong>：提取到的一条数据，交给 <strong>Item Pipeline</strong> 处理；</li>
+<li><strong>Request</strong>：从结果中发现的新请求（新链接、下一页），重新扔给引擎→调度器，循环抓取。</li>
+<li><strong>Item Pipeline</strong>（约 10:10）：对 Item 做进一步处理——字段清洗/预处理（如没抓到点赞数的补 0）、写入数据库等。</li>
+<li><strong>中间件（Middleware）</strong>（约 11:40）：Downloader 和 Spider 的一进一出都有中间件，对经过的 request/response/item 做统一预处理，例如给 request 加 header、改 User-Agent、加代理。</li>
+</ul>
+<h3 id="1350-2300">安装与项目创建（约 13:50 - 23:00）<a class="headerlink" href="#1350-2300" title="Permanent link">&para;</a></h3>
+<ul>
+<li>官方文档安装向导：<code>pipenv install scrapy</code>（也可用 conda）。</li>
+<li>坑 1：<code>pipenv install -i 镜像源</code> 的 <code>-i</code> 参数**不会**写入生成的 Pipfile，源没改过来会很慢——需手动把 Pipfile 里的源 URL 改成镜像，删掉 <code>Pipfile.lock</code> 让它重新生成，再 install（约 17:00）。</li>
+<li>坑 2：<code>pipenv install 包</code> 在 <code>pipenv shell</code> 之前之后执行都可以，但**执行脚本前必须 shell 进虚拟环境**，安装的库才生效（约 16:00）。</li>
+<li>安装后虚拟环境的 Scripts 目录下会多一个 <code>scrapy.exe</code>（就像 pip.exe、pipenv.exe），于是可用 <code>scrapy</code> 命令（约 20:50）。</li>
+<li>坑 3：VSCode 多窗口时容易进错虚拟环境（老师误留在 music163 环境里导致 <code>scrapy</code> 命令找不到）——注意终端提示的环境名（约 21:30）。</li>
+<li>创建项目：<code>scrapy startproject 项目名</code>（示例项目名"知乎"），自动生成目录结构。</li>
+<li>新建 Spider 两种方式：在 <code>spiders/</code> 文件夹手动新建 py 文件；或命令 <code>scrapy genspider 爬虫名 域名</code>（名字和域名为必选参数）（约 25:20）。老师用 genspider 生成的文件放错了位置——官方文档建议手动创建，照做更稳妥。</li>
+</ul>
+<h3 id="2740-3940">项目文件解析（约 27:40 - 39:40）<a class="headerlink" href="#2740-3940" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>scrapy.cfg</code>：cfg = config。<code>[settings] default = 知乎.settings</code> 用"点"是因为把"知乎"文件夹当作 Python <strong>包</strong>（含空的 <code>__init__.py</code>），settings 是包里的模块；<code>[deploy]</code> 部分指定部署目标，本地运行注释掉即可。</li>
+<li>运行逻辑：在含 scrapy.cfg 的目录运行命令 → Scrapy 读 cfg → 找到 settings 模块 → 读入全部配置（项目名、spider 位置、UA 等）。</li>
+<li><code>settings.py</code> 关键配置：</li>
+<li><code>USER_AGENT</code>：伪装成浏览器的 UA；</li>
+<li><code>ROBOTSTXT_OBEY</code>：是否遵守 robots.txt——演示设为 False，一般情况应遵守；</li>
+<li>并发请求数（默认 16，最大 32）；</li>
+<li><code>DOWNLOAD_DELAY</code>：下载延迟，默认 0 表示疯狂抓取，"太不礼貌"，演示设 3~5 秒（约 37:00）；</li>
+<li><code>ITEM_PIPELINES = {'知乎.pipelines.AnswerPipeline': 300}</code>：指定处理 Item 的类，后面的数字是**优先级**，数字越小越早处理，可配多个流水线依次处理（约 38:00）。</li>
+</ul>
+<h3 id="spider-3940-5800">Spider 编写（约 39:40 - 58:00）<a class="headerlink" href="#spider-3940-5800" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用框架后 <strong>Downloader 不用自己写</strong>——不用自己发请求拿 response，只需在 Spider 里写好拿到 response 后怎么处理。</li>
+<li><code>start_urls</code> 列表：爬虫入口，可放多个 URL。示例放入知乎话题接口（只写 include 参数；不写 offset/limit 时知乎会默认自动加上）。</li>
+<li><code>parse(self, response)</code>：每个爬虫默认的解析函数——downloader 每抓到一个 response 就交给它处理，抓一个处理一个，循环往复。parse 的产出有 items 和 request 两种。</li>
+<li>示例 parse 逻辑：</li>
+<li><code>json.loads(response.text)</code> 把 JSON 串转字典；</li>
+<li>处理 <code>data</code>（回答列表）：for 循环逐条处理；</li>
+<li>处理 <code>paging</code>：<code>is_end</code> 为 False 时取 <code>next</code> 链接生成新请求——用**生成器 <code>yield</code>**（不是 return）返回 <code>scrapy.Request(url=next_url, callback=self.parse)</code>；callback 指定由谁处理该请求的 response，设为 parse 自身即可无限循环翻页（约 46:40 - 48:30）。</li>
+<li>进阶跳转逻辑（约 48:30 - 58:00）：示例不直接存话题下的回答，而是 <code>answer.get("target")</code> → <code>.get("question")</code> 取出该回答所属问题的 id，用字符串 <code>format</code> 拼接"获取某问题下所有回答"的接口 URL（改 path 里的 question id 即切换问题，limit=10、offset=0 取前 10 条），发新请求；因该接口返回格式不同，需用**另一个解析函数**作为 callback 处理。</li>
+<li>字典 <code>.get(key)</code> 取不到时返回 None，可防 KeyError（示例处老师也少写了非空判断）。</li>
+</ul>
+<h3 id="item-item-pipeline-5800-6500">Item 与 Item Pipeline（约 58:00 - 65:00）<a class="headerlink" href="#item-item-pipeline-5800-6500" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>items.py</code> 中自定义 <code>AnswerItem</code>：只有属性没有方法的类，用 <code>scrapy.Field()</code> 定义六个字段（id、作者 id、作者名、作者性别、content、点赞数）。</li>
+<li>解析函数中对每个回答创建一个 item 填好字段，用 <code>yield</code> 扔给 Item Pipeline。</li>
+<li>Pipeline 类（约 62:50）：<code>__init__</code> 只在爬虫启动时由 scrapy 命令执行一次——示例用内置 <code>csv</code> 模块初始化 <code>answers.csv</code>（utf-8、文本模式 <code>w</code> 而非二进制的 <code>wb</code>），<code>csv.DictWriter</code> 按 fieldnames 写好表头（<code>writeheader</code>）。</li>
+<li>此后每 yield 一个 item，框架就调用一次 <code>process_item</code>，把 item 作为一行写入 CSV。</li>
+<li>CSV 是以逗号分隔的文本格式，类似表格的列分隔。</li>
+</ul>
+<h3 id="6500-6700">运行效果（约 65:00 - 67:00）<a class="headerlink" href="#6500-6700" title="Permanent link">&para;</a></h3>
+<ul>
+<li>运行 <code>scrapy crawl 爬虫名</code>（crawl 后必须跟 spider 名字，官方文档"how to run our spider"有写）。</li>
+<li>屏幕滚动 debug 信息，因设了 5 秒延迟爬得不快；<code>Ctrl+C</code> 中断后查看 answers.csv——抓到 100 多个回答的作者、内容、点赞数，可基于此做数据分析（如"美食话题点赞前十是谁"）。</li>
+</ul>
+<h3 id="6700-7340">未展开的高级话题（约 67:00 - 73:40）<a class="headerlink" href="#6700-7340" title="Permanent link">&para;</a></h3>
+<p>推荐崔庆才的爬虫书（GitBook 在线开源版，不用买），课堂内容只是冰山一角：
+- <strong>验证码识别</strong>：模拟登录、爬取次数超限都会遇到，可能需要图像识别技术；
+- <strong>代理</strong>：单机 IP 发 100 个请求会被封；用多台代理机器（B、C…Z）轮换发请求，服务器看到的是不同 IP，且每个 IP 间隔很久才访问一次，像人类正常速度；
+- <strong>模拟登录</strong>；
+- <strong>Cookie 池</strong>：HTTP 是无状态协议，靠 cookie 识别登录用户；注册多个账号存下各自的 cookie 构成 cookie 池，配合代理使用——用户和 IP 都不一样，服务器无法封禁，否则正常服务也无法运行。这是对抗的逻辑。</p>
+<h3 id="7340-7520">作业（约 73:40 - 75:20）<a class="headerlink" href="#7340-7520" title="Permanent link">&para;</a></h3>
+<ul>
+<li>找一个自己感兴趣的站点，用 Scrapy 抓数据保存到 CSV，可参考知乎示例的存 CSV 逻辑，但**不能照抄知乎那份代码**（课程有源代码比对查重工具，相似度高对学生不利）。</li>
+<li>期限两周。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>项目搭建演示</strong>：<code>mkdir webcrawler</code> → <code>pipenv install</code>（踩镜像源没写进 Pipfile 的坑，手动改源重装）→ <code>pipenv shell</code> → <code>pipenv install scrapy</code>（装了 25 个依赖包）→ <code>scrapy startproject 知乎</code> → <code>scrapy genspider 知乎 zhihu.com</code>（生成位置放错，说明手动创建更稳）。</li>
+<li><strong>完整示例</strong>（课前写好，课程仓库 spiders/scrapy 目录下可签出）：知乎话题精华爬虫——从话题接口出发翻页，对每条精华回答跳转抓取其所属热门问题的前 10 条回答，字段含回答 id、作者 id/名/性别、内容、点赞数，经 AnswerPipeline 写入 answers.csv。运行约一分钟抓到 100+ 条回答。</li>
+<li>作业要求：自选站点 + Scrapy + 存 CSV，禁抄示例，两周完成。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>**理解框架数据流**比记 API 重要：Engine/Scheduler/Downloader/Spider/Pipeline 各管一段，parse 产出 item 或新 request。</li>
+<li>parse 函数用 <code>yield</code>（生成器）而非 return 返回结果；新请求通过 <code>scrapy.Request(url, callback=...)</code> 构造，callback 指定解析函数，不同格式的响应要用不同的解析函数。</li>
+<li>配置三处易错：<code>scrapy crawl</code> 后必须跟 spider 名；<code>pipenv -i</code> 参数不写入 Pipfile；运行脚本前必须 <code>pipenv shell</code>。</li>
+<li>礼貌爬取：<code>DOWNLOAD_DELAY</code> 设延迟、遵守 robots.txt（演示除外）、控制并发。</li>
+<li>Item Pipeline 优先级数字越小越先执行；<code>__init__</code> 只执行一次（适合打开文件），<code>process_item</code> 每条执行一次。</li>
+<li>CSV 是文本文件，打开用 <code>w</code> 不用 <code>wb</code>。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>直接前置：14.1（requests+bs4 静态页）、14.2（Selenium 动态页）、14.3（知乎接口分析——本课 start_urls、接口参数、json 解析全部复用）。</li>
+<li>基础课程关联：模块与包（<code>__init__.py</code>、<code>包.模块</code> 的点号语法）、生成器（yield）、字典 get、字符串 format、csv 模块、虚拟环境。</li>
+<li>后续：数据分析章节会用到本课抓取的 CSV（如统计点赞前十）；14.4-错误排查课专门解答 <code>scrapy crawl</code> 目录错误和 pip 安装 Scrapy 编译报错两个高频问题。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

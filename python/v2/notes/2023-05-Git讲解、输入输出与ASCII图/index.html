@@ -1,0 +1,948 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2023-05-Git%E8%AE%B2%E8%A7%A3%E3%80%81%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%8EASCII%E5%9B%BE/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2023-05 Git讲解、输入输出与ASCII图 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2023-05-gitascii" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2023-05 Git讲解、输入输出与ASCII图
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Git 深入讲解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Python 输入输出回顾
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ascii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、ASCII 字符画原理（练习）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2023-05-gitascii">2023-05 Git讲解、输入输出与ASCII图<a class="headerlink" href="#2023-05-gitascii" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课分两部分。前半部分（约 0:00–39:00）老师重新系统地讲解了 Git 的核心机制：仓库、远程/本地、分支、提交、推送之间的关系，重点用图示解释了为什么会出现推送冲突（conflict）以及如何解决，并介绍了团队协作的典型分支工作流和 Pull Request 审核机制。后半部分（约 39:00–1:09）回到 Python，快速回顾了输入输出章节（<code>input</code>、字符串格式化、文件打开模式），随后完整演示了本章练习：读取一张 BMP 图片，将像素灰度值映射为不同密度的 ASCII 字符，生成"字符画"文本文件，其中涉及 BMP 文件头结构和 <code>struct.unpack</code> 二进制解析。文件目录章节的作业本课暂未布置，待新仓库建好后在群里通知。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="git">一、Git 深入讲解<a class="headerlink" href="#git" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>可视化工具与分支图</strong>（约 1:00）：推荐用 TortoiseGit（小乌龟）查看分支状态——右键 → TortoiseGit → Revision Graph（汉化后为"图形化展示"之类），可看到 <code>origin/0x01</code>、<code>main</code>、<code>HEAD</code> 等符号。</li>
+<li><strong>学习网站推荐</strong>（约 1:25）：Learn Git Branching（learngitbranching），一个可视化的 Git 学习网站，带关卡练习，左边是模拟终端、右边实时显示分支状态，老师已发到群里。</li>
+<li><strong>基本概念</strong>（约 7:40 / 2:40 起）：</li>
+<li>仓库 repo：在 GitLab 上创建仓库时，正常情况下会自动有一个 <code>main</code> 默认分支（本学期的仓库因权限问题——非 owner/maintainer——没能创建主分支，属异常情况）。</li>
+<li><code>main</code> 与 <code>master</code>：早期默认分支叫 <code>master</code>，后因政治正确运动改为 <code>main</code>，两者看到都算正常。</li>
+<li>分支本质上就是给某个 commit 起的名字（指针）；HEAD（课上画了个星号）表示"当前所在位置"。</li>
+<li><strong>remote / local</strong>：不在本地的东西叫 remote（远程，服务器上），本地的东西叫 local。</li>
+<li><strong>clone 与 origin</strong>（约 10:50）：克隆是把远端仓库**完全**搬到本地一份；克隆时默认给远端起的名字叫 <code>origin</code>。所以 <code>git push origin main</code> 的含义是：推送到 origin 这个远端的 main 分支（也可以是 <code>0x01</code> 等其他分支名）。</li>
+<li><strong>commit 只影响本地</strong>（约 12:15）：commit 是本地操作，commit 的编号是一串哈希值（课上简写为 0x00、0x01）。本地 commit 后分支指针（如 main）自动后移指向最新提交，但**与远端毫无关系**，必须 push 后远端才更新。</li>
+<li><strong>典型报错与冲突（conflict）</strong>（约 14:30–22:30，重点）：</li>
+<li>报错关键词：<code>hint: ... pull before push again</code>，即"更新被远端拒绝，因为本地分支落后于服务器分支"。</li>
+<li>原因：你本地 commit 了但还没 push 时，服务器上出现了新提交（别人 push 的、自己在 GitLab 网页上直接编辑的、或误操作）。Git 不能简单按时间戳拼接（不同时区、协作者作息不同），且两边可能改了同一个文件同一行，直接覆盖会丢失他人修改——这就是**冲突**。</li>
+<li>解决流程：push 前先 <strong>pull</strong> 到本地，在本地梳理两个提交的先后、检查并解决冲突，这个过程叫**合并（merge）**；解决好冲突后再 commit、再 push。</li>
+<li>冲突解决是**人工过程**：除非两人改的是不同行（如一个改 85 行、一个改 96 行）可以自动合并，否则改同一行就必须人工决定听谁的。</li>
+<li><strong>分支操作</strong>（约 23:15–26:45，结合 Learn Git Branching 演示）：</li>
+<li><code>git commit</code>：提交，分支指针前移。</li>
+<li>新分支创建后与原分支指向同一个 commit（类似 C++ 里的指针）；在当前分支上 commit 只会移动当前分支。</li>
+<li><code>git checkout &lt;分支名&gt;</code>：切换分支（将来有新命令 <code>switch</code>，本课先记住 checkout）。</li>
+<li><code>git checkout -b &lt;分支名&gt;</code>：创建**并**切换到新分支（课上示例 <code>git checkout -b bugFix</code>）。</li>
+<li><strong>典型团队工作流</strong>（约 26:45–28:35）：不会直接在 main（如最新提交 c3）上改代码，而是从 main 分出 <code>dev</code> 分支开发新功能、分出 <code>bugFix</code> 分支修复老错误；发新版本时把各分支 merge 回 main，解决所有冲突并保证不引入新错误后，main 指向最新提交再发布。</li>
+<li><strong>小乌龟实操</strong>（约 28:35–35:55）：</li>
+<li>Switch/Checkout 时可从 <code>remotes/origin</code> 下的远程分支（如 0x01）在本地创建同名分支并切换过去。</li>
+<li>本地基于 main 新建 0x02 分支、新建文件夹 <code>0x02</code>、在其中写 <code>b64homework.py</code>（故意不直接叫 <code>base64.py</code> 以免将来合并时冲突），commit 后 Revision Graph 出现分叉；此时远端还没有 0x02，push 后远端才出现（push 时 remote 分支名不填则默认与本地同名）。</li>
+<li><strong>建文件夹的习惯</strong>（约 33:30，老师强调的新知识）：每次作业在自己的分支里建一个独立文件夹（0x01、0x02……0x0n）放代码，这样将来把各分支全部 merge 回 main 归档时，文件相对独立、不会因同名文件（都叫"作业.py"）起冲突。非强制，但推荐养成。</li>
+<li><strong>Pull Request（PR）</strong>（约 36:00–39:00）：GitHub/GitLab 等平台的审核机制。开源项目通常把主干分支**保护（protect）<strong>起来，除 owner 外其他人不能直接 push 到 main；热心开发者想贡献代码时只能发起 **Pull Request</strong>——请主干维护者主动把你的内容"拉"过去合并，所以叫 pull request。之前课程仓库不让大家创建分支用的也是同一套 protect 机制。</li>
+</ul>
+<h3 id="python">二、Python 输入输出回顾<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>input()</code></strong>（约 39:30）：内置函数，相当于 C 语言的 <code>scanf</code>；<code>input("请输入你的学号：")</code> 括号里是提示字符串，运行时打印提示并等待用户输入。</li>
+<li><strong>字符串格式化</strong>（约 40:00–44:40）：</li>
+<li>按推荐优先级讲，<strong>最推荐 f-string</strong>：字符串前加小写 <code>f</code>，字符串内直接用 <code>{变量}</code> 大括号占位，打印时替换为变量值，如 <code>f"my teacher is {age} years old"</code>。优点是直观，不懂 Python 的人也看得懂。</li>
+<li>也讲了 <code>format</code>，但**<code>.format()</code> 形式的任何操作都可以用 f-string 等价实现**，注意二者基本等价。</li>
+<li>更精细的控制（左对齐/右对齐/居中、补零、浮点数格式等）需查 Python 官方文档的**格式化迷你语言（Format Specification Mini-Language）**，类似 C 语言 <code>printf</code> 那套格式控制。</li>
+<li><strong>文件打开模式</strong>（约 45:10）：类比 C 语言与英文首字母记忆——<code>r</code> = read（读）、<code>w</code> = write（写）、<code>x</code> = exclusive create（排他创建，文件已存在则报错）、<code>a</code> = append（追加）、<code>b</code> = binary（二进制）、<code>t</code> = text（文本，<strong>默认模式，可省略不写</strong>）、<code>+</code> = update（读+写）。</li>
+<li>老师观点：<code>input</code> 实际用得很少，<strong>文件读写得用很多</strong>——C 语言入门只教 <code>scanf</code> 极大限制了程序的输入能力，学文件操作才能处理图片等真实数据。</li>
+</ul>
+<h3 id="ascii">三、ASCII 字符画原理（练习）<a class="headerlink" href="#ascii" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>目标</strong>（约 49:20）：练习"读取特定文件格式 + 按特定方式输出"，把 BMP 图像转成由字符组成的文本图。</li>
+<li><strong>原理</strong>（约 53:45–59:30）：</li>
+<li>彩色图每个像素由 RGB 三个字节组成，各 0–255 共 256 级（如红色 R=255, G=0, B=0）。</li>
+<li>转成**灰度图**后每个像素只剩一个 0–255 的值：越大越亮（纯白≈255，纯黑≈0）。</li>
+<li>不同字符打印出来"占的面积"（墨色浓度）不同：空格最白（当 255），<code>$</code> 更黑，扩展 ASCII 里还有实心黑方块可当 0。</li>
+<li>取约 70 个可打印字符排成列表代表 70 级灰度：下标越小字符越黑，越靠近尾部越白。</li>
+<li>逐像素取出 0–255 的灰度值，**量化映射**到 0–69 区间，从字符列表取对应字符写入文本文件，遍历完整张图即得字符画（思路和之前讲过的 base64 编码映射类似）。</li>
+<li>量化方法（代码第 7 行附近）：先算常量 <code>256 / 70</code>（即 256 ÷ 字符列表长度），每个像素的灰度值再除以该常量即得列表下标。</li>
+<li><strong>比例失真问题</strong>（约 58:40）：512×512 的方图转出来变成长条，因为编辑器里的字符本身不是正方形（长方形），方形像素被拉高；选高宽相等的字体可避免拉伸。</li>
+<li><strong>BMP 文件格式</strong>（约 1:01:30）：文件头共 <strong>14 字节</strong>——前 2 字节是 <code>BM</code> 标识，4 字节文件大小，2+2 字节保留位，4 字节位图数据偏移；其后约 **40 字节**的信息头里存着图像宽度、高度等。代码先读（跳过/解析）14 字节文件头，再读 40 字节信息头取出高宽，最后处理像素颜色。</li>
+<li><strong>RGB→灰度公式</strong>（约 1:02:50，代码第 52 行）：数字图像处理领域的经典公式，<code>灰度 = R×系数 + G×系数 + B×系数</code>（加权求和），老师让学生自己查阅。</li>
+<li><strong><code>struct</code> 库与 <code>struct.unpack</code></strong>（约 1:03:40–1:09，难点）：</li>
+<li>用途：分析二进制结构，相当于 C 语言结构体与字节串之间的转换（C 语言里可定义结构体，Python 原生表示不了这种定长布局，所以用 <code>struct</code>）。可打包（<code>pack</code>）也可解包（<code>unpack</code>），本课用解包。</li>
+<li>用法：<code>struct.unpack(格式规则, 字节数据)</code>，按规则把字节一一解析进多个变量。</li>
+<li>格式字符：开头 <code>&lt;</code> 表示字节序（大端 big-endian / 小端 little-endian，默认小端）；<code>2s</code> = 2 字节字符串；<code>I</code> = 4 字节无符号整型（unsigned int）；<code>h</code> = short；<code>H</code> = unsigned short。14 字节文件头可解出 5 个变量。</li>
+<li>各字母对应关系要到官方文档查。老师评价：这个库对处理二进制数据相当有用，建议自学尝试，下节课再细讲。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Learn Git Branching 过关演示</strong>（约 23:20–26:45）：第一关完成两次 <code>git commit</code> 过关；创建 <code>newImage</code> 分支观察两分支指向同一 commit；<code>git checkout newImage</code> 后再 commit 使新分支前移；<code>git checkout -b bugFix</code> 一步创建并切换。</li>
+<li><strong>小乌龟完整流程演示</strong>（约 28:35–35:55）：克隆仓库到桌面 → Revision Graph 看图 → 从 <code>remotes/origin/0x01</code> switch 出本地 0x01 分支 → 切回 main 新建 0x02 分支 → 在 0x02 分支建 <code>0x02</code> 文件夹并用 VS Code 写 <code>b64homework.py</code> → add + commit → Revision Graph 出现分叉 → push（远端出现 0x02）。</li>
+<li><strong>ASCII 字符画演示</strong>（约 45:35–1:03）：</li>
+<li>准备素材：从网上另存一张卡通图（webp），用画图软件把画布改成 666×666、图像缩放到 512×512 并锁定比例，另存为 24 位 <code>test.bmp</code>（演示程序写死了固定宽高，不够完备，学生可自行改进）。</li>
+<li>新建 <code>demo.py</code>：先 <code>open</code> 一个空白文本文件用于写入（模式 <code>w</code>，文本模式 <code>t</code> 省略），再以**二进制读**模式（<code>rb</code>）打开 BMP，处理后写入 <code>txt.txt</code>。</li>
+<li>运行结果：512×512、24 位的图被转成一片字符，缩小看是原图轮廓，放大看鼻子、眼睛都由具体字符组成；文本可以 Ctrl+A 全选删除，证明确实是纯文本。</li>
+<li>拓展思路：用 <strong>ffmpeg</strong> 把视频逐帧抽成 BMP → 每帧映射成字符文本 → 文本截图 → 再用 ffmpeg 合成，即可做 ASCII 字符版视频。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>push 前先 pull</strong>：本地 commit 不会同步到远端；远端出现本地没有的提交时 push 会被拒绝（<code>pull before push again</code>），必须 pull 下来在本地 merge、人工解决冲突后再 push。这是本课花最多篇幅讲的核心逻辑。</li>
+<li><strong>冲突只能人工解决</strong>：改同一文件同一行必然冲突，自动合并只适用于改动互不重叠的情况；Git 是协作平台，不能假设只有自己一个人在提交（包括网页端误操作也算远端变更）。</li>
+<li><strong>分支是指针</strong>：分支只是指向 commit 的名字，checkout 切换的是 HEAD 位置；<code>git checkout -b</code> 是创建+切换的合写。</li>
+<li><strong>PR 机制</strong>：受保护的主干分支不能直接 push，外部贡献通过 Pull Request 由维护者合并。</li>
+<li><strong>作业归档习惯</strong>：每次作业放独立文件夹，避免多分支合并时同名文件冲突（老师特别强调的"新知识"）。</li>
+<li><strong>格式化</strong>：f-string 优先；<code>.format()</code> 与 f-string 基本等价；对齐/补零/浮点精度要查官方格式化迷你语言。</li>
+<li><strong>文件模式</strong>：<code>t</code> 是默认模式可省略；读 BMP 必须用二进制模式 <code>b</code>。</li>
+<li><strong><code>struct.unpack</code> 是本课自认最难的点</strong>：格式字符（<code>&lt;</code>、<code>2s</code>、<code>I</code>、<code>h</code>、<code>H</code>）与字节序、BMP 14 字节文件头 + 40 字节信息头的布局需要对着官方文档理解。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>前置知识</strong>：之前课程已讲过 Git 基本操作（clone/commit/push，用 TortoiseGit 与 GitLab），本课是复习与深化；输入输出小节（<code>input</code>、<code>print</code>、字符串格式化、文件读写）在课前视频中已详细讲过，本课仅快速回顾。</li>
+<li><strong>与后续课程的衔接</strong>：文件目录章节有一份作业，本课未布置（等新仓库建好后再在群里通知），下节课将结合输入输出与文件目录一起讲解并解决该作业；<code>struct</code> 库下节课再细讲。</li>
+<li><strong>与已学内容的呼应</strong>：灰度值→字符列表下标的映射逻辑类比此前讲过的 <strong>base64</strong> 编码（故演示文件起名 <code>b64homework.py</code>，并故意避开 <code>base64.py</code> 这个名字防止合并冲突）；字节序（大端/小端）、定长二进制结构呼应 C 语言的数据结构与结构体知识；<code>input</code> 类比 <code>scanf</code>，格式化迷你语言类比 <code>printf</code>。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

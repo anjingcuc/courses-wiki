@@ -1,0 +1,1003 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/11.1-%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6%E4%B8%8E%E7%B1%BB-%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>11.1 函数进阶与类 —— 函数进阶 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#111" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11.1 函数进阶与类 —— 函数进阶
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0000-0150" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课程定位与目的 (约 00:00 - 01:50)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#args-0220" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变长位置参数 *args (约 02:20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kwargs-0240-0930" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变长关键字参数 **kwargs (约 02:40 - 09:30)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0932-2050" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        函数调用与参数解包 (约 09:32 - 20:50)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2100-3550" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        特殊参数 / 与 *：限定传参形式 (约 21:00 - 35:50)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2648-3200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现场翻车与补救：版本与解释器切换 (约 26:48 - 32:00)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3555-3825" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么推荐用终端而不是运行按钮 (约 35:55 - 38:25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3827-4446" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        函数标注（类型注解）(约 38:27 - 44:46)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="111">11.1 函数进阶与类 —— 函数进阶<a class="headerlink" href="#111" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课是入门阶段理论课的收尾部分之一，主要梳理 Python 函数在之前课程中没有讲到的进阶用法：变长参数 <code>*args</code> / <code>**kwargs</code>、函数调用时的参数解包、限定参数传递形式的特殊符号 <code>/</code> 和 <code>*</code>、以及函数标注（类型注解）。老师反复强调本课目的不是要求大家自己写代码时必须用这些技巧，而是让大家在阅读开源项目和第三方库代码、查阅 API 文档时能看懂这些写法，为后续的实验课（需要自己读文档调 API）做铺垫。课上还在 VS Code 里逐一做了演示，并顺带讲解了 VS Code 切换解释器版本与环境变量 PATH 的关系。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="0000-0150">课程定位与目的 (约 00:00 - 01:50)<a class="headerlink" href="#0000-0150" title="Permanent link">&para;</a></h3>
+<ul>
+<li>本节课是入门阶段最后一次理论课，之后全是实践型课程（实验课会先讲原理再让学生自己动手）。</li>
+<li>本课两大主题：函数进阶 和 类。目的不是强制大家用进阶写法，而是**能看懂别人（开源项目、第三方库）的代码**。看别人的代码和能自己写代码各占 50% 的重要性。</li>
+</ul>
+<h3 id="args-0220">变长位置参数 <code>*args</code> (约 02:20)<a class="headerlink" href="#args-0220" title="Permanent link">&para;</a></h3>
+<ul>
+<li>函数定义中 <code>*args</code> 表示该位置可接收任意多个位置参数，这些参数在函数体内被当作一个**元组（tuple）**。</li>
+<li>例：<code>def demo(*args): print(args)</code>，调用 <code>demo(3, 2, 1)</code> 打印出元组 <code>(3, 2, 1)</code>；元素个数取决于调用时传入的个数。</li>
+<li>这是之前课程已讲过的内容，本课作为复习引入。</li>
+</ul>
+<h3 id="kwargs-0240-0930">变长关键字参数 <code>**kwargs</code> (约 02:40 - 09:30)<a class="headerlink" href="#kwargs-0240-0930" title="Permanent link">&para;</a></h3>
+<ul>
+<li>比 <code>*args</code> 多一个星号：<code>**kwargs</code>。该参数在函数体内是一个**字典（dict）**，调用时以 <code>key=value</code> 形式传入，key 是参数名、value 是对应的值。</li>
+<li>演示：定义含 <code>*args, **kwargs</code> 的函数，调用时传 <code>a, b, c, d</code> 四个位置参数和 <code>name=..., age=18, gender=...</code> 三个键值对，函数体内打印出含 4 个元素的元组和含 3 个键值对的字典。</li>
+<li>强调：这种形式在开源项目和第三方库文档中很常见，看到"函数明明只定义了两个参数（一个单星号、一个双星号）却有奇怪的调用方式"时，要能回忆起本课内容。</li>
+</ul>
+<h3 id="0932-2050">函数调用与参数解包 (约 09:32 - 20:50)<a class="headerlink" href="#0932-2050" title="Permanent link">&para;</a></h3>
+<p>以求和函数 <code>def sum(a, b): return a + b</code> 为例讲多种调用方式：</p>
+<ul>
+<li><strong>普通位置调用</strong>：<code>sum(1, 2)</code>，a=1、b=2，返回 3。(约 10:18)</li>
+<li><strong>关键字调用</strong>：<code>sum(a=567, b=234)</code>，写法类似 <code>**kwargs</code> 的调用形式，但这里是普通参数的关键字传参；用得较少但不算错。(约 11:13)</li>
+<li><strong>序列解包 <code>*data</code></strong>：调用时（注意是调用时，不是定义时）在列表/元组前加一个星号，如 <code>sum(*data)</code>，会把序列元素按位置拆开分别赋给 a、b。避免手写 <code>data[0], data[1], ...</code> 的繁琐，尤其当参数有几十上百个时。(约 12:30)</li>
+<li><strong>字典解包 <code>**dict</code></strong>：调用时用两个星号对字典解包，如 <code>sum(**{'a': 123, 'b': 456})</code>，字典的 key 必须与函数参数名完全一致，值赋给对应参数。(约 15:42)</li>
+<li>常见报错（要能看懂）：</li>
+<li>字典 key 与参数名不一致时报 <code>unexpected keyword argument</code>（如把 key 改成 <code>c</code>）。(约 17:50)</li>
+<li>解包序列元素个数与参数个数不符时报"函数需要 2 个参数但给了 3 个"。(约 19:28)</li>
+<li>参数解包形式在开源项目中非常常见，因为大家懒得逐个索引传参。</li>
+</ul>
+<h3 id="2100-3550">特殊参数 <code>/</code> 与 <code>*</code>：限定传参形式 (约 21:00 - 35:50)<a class="headerlink" href="#2100-3550" title="Permanent link">&para;</a></h3>
+<ul>
+<li>官方文档说法：为确保可读性和运行效率，可限制允许的参数传递形式（老师吐槽这两个符号初次看毫无可读性）。</li>
+<li>语法（<strong>Python 3.8 引入</strong>）：</li>
+<li>斜杠 <code>/</code>：其**前面**的参数**仅限位置传递**（positional-only），不能用关键字形式。</li>
+<li>星号 <code>*</code>（单独一个 <code>*</code> 占位，后面跟参数名）：其**后面**的参数**仅限关键字传递**（keyword-only），必须写成 <code>kwd=6</code> 形式。</li>
+<li>两者之间的参数：位置、关键字均可，与未加符号时一样。</li>
+<li>演示用 <code>pass</code> 作函数体，逐步加 <code>/</code> 和 <code>*</code>：</li>
+<li>在 b 后加 <code>/</code> 后，用 <code>a=1, b=2</code> 关键字调用会在对应行报错：positional-only 参数却用了 keyword 传参。</li>
+<li>加 <code>*</code> 后，其后的参数 <code>c</code> 若直接按位置传 3 会报错：该参数应为 keyword argument。</li>
+<li>同时加 <code>/</code> 和 <code>*</code> 时，唯一正确的调用方式是 <code>f(1, 2, c=3)</code>。</li>
+</ul>
+<h3 id="2648-3200">现场翻车与补救：版本与解释器切换 (约 26:48 - 32:00)<a class="headerlink" href="#2648-3200" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/</code> 和 <code>*</code> 语法在老师的 Python 3.7.4 上报错，查证后确认是 <strong>Python 3.8 引入</strong>。</li>
+<li>VS Code 左下角可切换当前项目的 Python 解释器版本（如切到 3.8.2），但该切换**只影响运行按钮和 debug**，<strong>不影响内置终端</strong>。</li>
+<li>终端里的 <code>python</code> 版本只与**环境变量 PATH** 有关；改完 PATH 后要重启 VS Code（有时甚至要重启电脑）才能让内置终端加载新环境变量。替代办法：在外部 CMD 终端中运行。</li>
+<li>外部终端需手动 <code>cd</code> 到代码目录，VS Code 内置终端会自动切到文件所在目录，更方便。</li>
+</ul>
+<h3 id="3555-3825">为什么推荐用终端而不是运行按钮 (约 35:55 - 38:25)<a class="headerlink" href="#3555-3825" title="Permanent link">&para;</a></h3>
+<ul>
+<li>点 VS Code 的运行/调试箭头时，VS Code 会自动设置一批环境变量，可能覆盖/干扰用户自己对 PATH 的设置，排查起来复杂。</li>
+<li>终端只对应 PATH 环境变量，行为简单可控，不容易出错，所以课上一直坚持用命令行运行。</li>
+</ul>
+<h3 id="3827-4446">函数标注（类型注解）(约 38:27 - 44:46)<a class="headerlink" href="#3827-4446" title="Permanent link">&para;</a></h3>
+<ul>
+<li>动机：Python 与 C 语言不同，定义变量/参数时不声明类型；读别人代码或合作开发时，无法从函数原型看出参数和返回值应该是什么类型（函数的自解释性差）。</li>
+<li>语法（较高版本 Python 提供，非 3.8 才有）：</li>
+<li>参数后加冒号和类型：<code>def sum(a: int, b: int)</code></li>
+<li>参数列表后用箭头标注返回值类型：<code>-&gt; int</code></li>
+<li>完整示例：<code>def sum(a: int, b: int) -&gt; int: ...</code>；字符串拼接示例 <code>def concat(a: str, b: str) -&gt; str: ...</code></li>
+<li>意义：调用者从函数原型一眼看出该传什么类型。反驳"读函数体代码也能看出类型"：开源项目里一个函数可能有一两百行，从代码里推断类型非常困难，直接标注是最快的方式。这是 Python 开发团队为改进语言所做的努力。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>变长参数演示</strong>：<code>demo(*args, **kwargs)</code>，调用时传 <code>a b c d</code> 和 <code>name=安静, age=18, gender=...</code>，打印出 4 元素元组和 3 键值对字典（VS Code 中运行验证）。</li>
+<li><strong>解包演示</strong>：把 <code>sum(a, b)</code> 的多种调用方式（位置、关键字、<code>*data</code>、<code>**dict</code>）逐一 print，结果均为 801 / 579 / 579 等一致结果；随后演示两类报错（key 不匹配、元素个数不匹配）。</li>
+<li><strong><code>/</code> 与 <code>*</code> 演示</strong>：以空函数（<code>pass</code> 占位）逐步添加 <code>/</code>、<code>*</code>，预测每行调用是否报错并验证：加 <code>/</code> 后第 7 行关键字调用报错；加 <code>*</code> 后第 5 行位置调用报错、第 7 行正常；两个都加后仅 <code>f(1, 2, c=3)</code> 正确。</li>
+<li><strong>函数标注演示</strong>：给 <code>sum</code> 加 <code>: int</code> 与 <code>-&gt; int</code> 标注，另写 <code>concat(a: str, b: str) -&gt; str</code> 并 print 验证。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>定义时的星号 vs 调用时的星号</strong>：定义时 <code>*args</code> 是把多个位置参数"打包"成元组；调用时 <code>*data</code> 是把序列"解包"成多个位置参数。两者方向相反但相关，必须分清。</li>
+<li><strong>字典解包时 key 必须与参数名完全一致</strong>，否则报 <code>unexpected keyword argument</code>；序列解包元素个数必须与参数个数匹配。看到这些报错要有印象。</li>
+<li><strong><code>/</code> 和 <code>*</code> 是 Python 3.8 才引入的语法</strong>，低版本（如 3.7）会直接语法报错；VS Code 切换解释器版本不影响内置终端，终端版本由 PATH 决定。</li>
+<li><strong>函数标注只是标注</strong>：目的是增强自解释性，方便协作开发和读文档，不是强制类型检查。</li>
+<li>本课内容记不牢没关系，关键是看别人代码时知道"原来这么回事"，后面实验课查 API 文档会大量用到。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>前置知识：函数基础、<code>*args</code> 任意长度参数（之前课程已讲）、元组与字典、环境变量 PATH 与终端（环境配置课）。</li>
+<li>与本章其他课的关系：本课是第 11 章"函数进阶与类"的第一部分，为 11.2（作用域）和 11.3（类）做铺垫。</li>
+<li>与后续实验课的关系：实验课不再逐字讲原理，需要自己读第三方库文档调 API，本课的解包、<code>**kwargs</code>、函数标注正是读懂文档和示例代码的必备知识。</li>
+<li>与文件目录相关课程的关联：特殊参数 <code>/</code>、<code>*</code> 的形式在之前某课贴出的列表中曾出现过。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

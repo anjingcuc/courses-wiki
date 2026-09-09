@@ -1,0 +1,987 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/scripts/V006-%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%98%AF%E4%BB%80%E4%B9%88/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>V006 - 大模型API是什么 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v006-api" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V006 - 大模型API是什么
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐字稿
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐字稿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-030-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:00-0:30] 开场Hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#030-145-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:30-1:45] 核心概念：API调用模型（打电话类比）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145-300-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [1:45-3:00] API Key：你的身份证 + 钱包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#300-430-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3:00-4:30] Token：大模型的"字数货币"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#430-530" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [4:30-5:30] 费用低到惊人：算一笔账
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#530-615-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [5:30-6:15] 安全原则：Key比密码更重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#615-725" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [6:15-7:25] 小结、提问彩蛋与引出下集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演示操作清单
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        录制注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v006-api">V006 - 大模型API是什么<a class="headerlink" href="#v006-api" title="Permanent link">&para;</a></h1>
+<h2 id="_1">视频信息<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号</td>
+<td>V006</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>大模型API是什么</td>
+</tr>
+<tr>
+<td>目标时长</td>
+<td>7min</td>
+</tr>
+<tr>
+<td>对应课次</td>
+<td>L4</td>
+</tr>
+<tr>
+<td>前置微课</td>
+<td>V005</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>用"打电话"类比讲透大模型API是什么——API Key是身份证+钱包，Token是字数货币，费用低到惊人</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">逐字稿<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="000-030-hook">[0:00-0:30] 开场Hook<a class="headerlink" href="#000-030-hook" title="Permanent link">&para;</a></h3>
+<p>【画面】左边：DeepSeek网页版弹出"服务器繁忙，请稍后再试"的截图；右边：VS Code终端里一行命令发出，AI文字回复瞬间刷出来。字幕："网页版频繁繁忙？API给你另一条路"</p>
+<p>【旁白】每次用DeepSeek网页版，是不是经常遇到"服务器繁忙，请稍后再试"？但你发现没有，同样的模型，用代码调API的时候却很少碰到这个问题。今天我就带你搞明白——大模型API到底是个什么东西？为什么它能绕过网页限制？又为什么，全班同学一起调上一百次，费用还不到一块钱？</p>
+<h3 id="030-145-api">[0:30-1:45] 核心概念：API调用模型（打电话类比）<a class="headerlink" href="#030-145-api" title="Permanent link">&para;</a></h3>
+<p>【画面】动画演示：一个小人（你的代码）拿起电话→拨号→接通总机（API服务器）→总机转接大模型→对方回答。每一步标注对应的技术术语。最终画面定格在一张对应关系图上。</p>
+<p>【旁白】要理解API，我们用大家都熟悉的场景——打电话。你在网页上和DeepSeek聊天，本质上就是你在跟一台远端的大模型服务器对话。那API是什么呢？它就是让你用代码也打这通电话的通道。</p>
+<p>整个流程跟打电话一模一样：第一步，你的代码发出一个请求，相当于拿起电话拨号。第二步，这个请求先到达API服务器，相当于总机接到了你的电话。第三步，API服务器把你的消息转发给大模型，相当于总机帮你接通对方。第四步，大模型生成回答，把结果打包成一个JSON返回给你，相当于对方说话，你听到了。</p>
+<p>你注意到了吗？网页版是所有人挤在一扇门里，所以经常"服务器繁忙"。而API是一条专用通道，走的是另一条路，所以拥堵的概率小得多。记住这张图，下集写代码的时候，每一步都能对应回来。</p>
+<h3 id="145-300-api-key">[1:45-3:00] API Key：你的身份证 + 钱包<a class="headerlink" href="#145-300-api-key" title="Permanent link">&para;</a></h3>
+<p>【画面】左半屏：一张"API Key"的卡片，上面标着<code>sk-</code>开头的一串字符，卡片左侧标"身份证"图标，右侧标"钱包"图标。右半屏：终端演示请求时携带api_key的代码片段（灰色淡化处理，不细讲）。</p>
+<p>【旁白】那打电话得有电话号码吧？在API的世界里，你的"号码"就是API Key。你会在DeepSeek开放平台上申请到一个，长得像这样，sk-开头，后面跟着一长串字符。</p>
+<p>这个Key同时干两件事。第一件，身份认证——服务器看到这把Key，就知道是你来了，相当于你的身份证。没有它，请求直接被拒绝，你连总机都到不了。第二件，计费——服务器根据你这次调用消耗了多少资源，从你账户里扣钱，相当于你的钱包。</p>
+<p>所以API Key不是密码，它比密码更重要。你的密码泄露了最多被骚扰，API Key泄露了，别人可以拿你的钱包去消费。这里先记住一个原则：绝对不分享，绝对不上传到GitHub这类公开仓库。我们下节课会专门讲怎么安全地管理它。</p>
+<h3 id="300-430-token">[3:00-4:30] Token：大模型的"字数货币"<a class="headerlink" href="#300-430-token" title="Permanent link">&para;</a></h3>
+<p>【画面】一段中文文字"变量是一个装数据的盒子。"，每个字上方标注token计数：逐字亮起，旁边数字递增。然后切换到英文"The answer is 42."，按单词拆分标注token。字幕："1汉字 ≈ 1-2 token，1英文单词 ≈ 1 token"</p>
+<p>【旁白】那API到底怎么计费呢？这就得说一个核心概念——Token。Token是大模型读写文字的计量单位，你可以理解为它的"字数货币"。</p>
+<p>大模型不是按"个"或"行"来算的，它把所有文本拆成一小块一小块来处理。对于中文，大概一个汉字消耗一到两个token；对于英文，差不多一个单词一个token。不管是你发给它的输入，还是它回答你的输出，都要算token。</p>
+<p>我们来看一个真实的例子。上次V005里我们看到API返回的数据里有一段usage，里面写着prompt_tokens是28，completion_tokens是12，total_tokens是40。这就是说，你发出去的话花了28个token，AI回答的话花了12个token，加一起总共40个token。记住这个数字，一会儿我们要用它算钱。</p>
+<h3 id="430-530">[4:30-5:30] 费用低到惊人：算一笔账<a class="headerlink" href="#430-530" title="Permanent link">&para;</a></h3>
+<p>【画面】一个简洁的计算器动画：输入"40 token ÷ 1,000,000 × ¥1 = ¥0.00004"。然后放大显示。接着切换成表格：一行"全班50人 × 调用100次 × 每次40 token = 200,000 token"，费用"¥0.2"。字幕："全班调100次 &lt; 1块钱"</p>
+<p>【旁白】现在我们来算钱。DeepSeek的deepseek-chat模型，输入大约每百万token一块钱，输出每百万token两块钱。我们就高不就低，统一按两块钱算。</p>
+<p>刚才那次调用总共40个token。40除以一百万，再乘以两块钱，等于零点零零零零八元。不到万分之一块钱。</p>
+<p>再放大一点：班上50个人，每人调100次，每次40个token，总共才20万token。费用多少？四毛钱。全班折腾半天花不了一块钱。这就是为什么我们敢让全班放开调API，费用真的低到可以忽略。当然前提是你正常使用，别拿它跑死循环。</p>
+<h3 id="530-615-key">[5:30-6:15] 安全原则：Key比密码更重要<a class="headerlink" href="#530-615-key" title="Permanent link">&para;</a></h3>
+<p>【画面】红色警告框弹出，大字："API Key 三不原则"。下方逐条亮起："① 不截图发群 ② 不写进代码传GitHub ③ 不告诉任何人"。然后演示一个<code>.env</code>文件的图标，字幕："下集教你安全存放"。</p>
+<p>【旁白】既然API Key就是你的钱包，那安全就是头等大事。记住三个"不"：第一，不截图发群里——哪怕只露了一角，别人也能复制走。第二，不写死在代码里然后传到GitHub——这是最常见的翻车方式，一旦公开，爬虫几秒钟就能扫到。第三，不告诉任何人，包括你的同学和室友。</p>
+<p>正确做法是把Key放在<code>.env</code>文件里，代码运行时再读取。具体怎么做，下集手把手教你。今天记住一句话：Key是你的钱包，保护它就像保护支付宝。</p>
+<h3 id="615-725">[6:15-7:25] 小结、提问彩蛋与引出下集<a class="headerlink" href="#615-725" title="Permanent link">&para;</a></h3>
+<p>【画面】回顾卡片四格漫画：①电话模型图 ②身份证+钱包 ③字数货币Token ④三不原则。</p>
+<p>【旁白】今天我们搞清了四件事：API调用就像打电话——发请求、服务器转发、大模型回答、JSON返回；API Key是身份证加钱包；Token是字数货币，输入输出都要算；费用低到惊人，全班一起调花不了一块钱，但Key绝不能泄露。</p>
+<p>【画面】字幕条逐条弹出三个可直接照抄的prompt（每条停留供暂停截图）：
+①<code>我刚学完大模型API的概念。请不要用"打电话"，换一个新的类比重新解释API、API Key和Token的关系，讲完问我一个问题检验我是否理解。</code>
+②<code>出道计算题考我：DeepSeek输入每百万token 1元、输出每百万token 2元，一次调用输入100 token、输出50 token要花多少钱？我算完你再评判。</code>
+③<code>扮演安全审查员：我描述几个使用API Key的场景，你逐个判断有没有泄露风险并说明原因。</code></p>
+<p>【旁白】最后送你三个提问彩蛋。概念课最怕"听懂了但说不出来"，检验方法很简单：让AI换个类比考你一次，你能接住，才算真懂。这三条prompt暂停截图，直接照抄去问。</p>
+<p>【画面】切换到下集预告画面：VS Code终端里运行<code>python chat.py</code>，AI回复文字逐行刷出。字幕："下集：亲手写出第一次API调用"</p>
+<p>【旁白】今天全是概念，你还没敲过一行代码。下集V007，我带你从零开始：安装SDK、申请API Key、写出五行核心代码，亲眼看到你的代码让AI开口回答。下集见。</p>
+<h2 id="_3">演示操作清单<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本集为概念讲解课，无代码录屏操作。画面以动画图示和标注为主。</p>
+<p><strong>素材准备清单：</strong>
+1. DeepSeek网页版"服务器繁忙"截图
+2. 打电话类比动画（4步流程：拨号→总机→接通→回答）
+3. API Key卡片视觉素材（<code>sk-</code>开头示例字符串，标注身份证+钱包）
+4. Token计数动画（中文逐字亮起+计数 / 英文逐词亮起+计数）
+5. 费用计算器动画（40 token → ¥0.00008 / 全班场景 → ¥0.2）
+6. 三不原则红色警告框
+7. 下集预告画面（<code>python chat.py</code> 运行 + AI回复刷屏）</p>
+<h2 id="_4">录制注意<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>本集纯概念，无代码录屏，画面全部靠动画和图示驱动，视觉节奏要快，避免一张图停留超过15秒。</li>
+<li>打电话类比是全片核心锚点，动画要做得直观——四个步骤的对应关系（拨号=发请求、总机=API服务器、接通=转发大模型、回答=返回JSON）必须让观众一眼看懂。</li>
+<li>费用环节的数字要真实可验证：DeepSeek deepseek-chat 输入¥1/百万token、输出¥2/百万token，40 token按输出价格算 = 40/1000000×2 = ¥0.00008，叙述中"零点零零零零八元"与此一致。</li>
+<li>API Key示例字符串用明显的假Key（如<code>sk-xxxxxxxx1234</code>），绝不能出现真实Key。</li>
+<li>安全原则环节语气加重，这是本课反复强调的红线，语气要有警示感但不能恐吓。</li>
+<li>结尾引出V007时要展示运行<code>python chat.py</code>的画面，让观众有"下集就能做出这个"的期待感。</li>
+<li>提问彩蛋段的 prompt 字幕条需在后期加上，确保观众能暂停照抄。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

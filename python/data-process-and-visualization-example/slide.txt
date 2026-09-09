@@ -1,0 +1,68 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 数据处理与可视化实例
+
+---
+
+## pandas 绘图
+
+基于爬虫抓取的 csv 对数据进行处理和可视化。
+
+--
+
+### 可视化
+
+pandas 可视化需要用到 matplotlib 的图表接口。
+
+_注: 参考 https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html _
+
+<!-- .element: style="font-size:60%;" -->
+
+---
+
+## 关键词提取
+
+--
+
+### jieba 关键词提取
+
+jieba 是一个很受欢迎的中文分词工具，提供了多种语言的库，包括 Python 。
+
+_注: 参考 https://github.com/fxsjy/jieba _
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### TF-IDF
+
+TF-IDF 是一种文本挖掘常见的关键词提取算法，TF 是 Term Frequency 即词频，IDF 是 Inverse Document Frequency 即逆向文件频率。
+
+_注: 参考 https://zh.wikipedia.org/wiki/Tf-idf 以及 http://www.ruanyifeng.com/blog/2013/03/tf-idf.html _
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+## 词云
+
+文章关键词及其权重可以用词云这种可视化形式来呈现，Python 中可以用 wordcloud 库来实现。
+
+_注: 参考 https://github.com/amueller/word_cloud/ _
+
+<!-- .element: style="font-size:60%;" -->
+
+---
+
+# Q & A

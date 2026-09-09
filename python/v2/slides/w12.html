@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W12 AI Agent | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 12 / 16</span>
+    <span class="th">AI 应用 · Agent 基础与实战</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m5/">M5 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w11.html">← 上周</a>
+    <a class="cur" href="w12.html">本周</a>
+    <a href="w13.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W12 AI Agent">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 12 周（100 分钟 · L25–L26）</div>
+    <h1 class="rise">AI 自己决定<br><span class="grad">调什么工具、走几步</span></h1>
+    <p class="sub rise">前面所有应用都是「你问它答」。Agent 不同：给它一个目标，它自己拆步骤、选工具、看结果、再决策——
+    今天手写 ReAct 循环（一个 while + Function Calling），不用任何 Agent 框架。</p>
+    <div class="meta rise">
+      <span>所属模块 M5 AI 应用开发</span><span>微课 V046–V047</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>开场对比</b></td><td>「123×456」普通对话可能算错；Agent 自己决定调计算器——精准</td></tr>
+      <tr><td>8–20</td><td><b>ReAct 框架</b></td><td>思考→行动→观察循环；做菜类比；人类也这么解决问题</td></tr>
+      <tr><td>20–34</td><td><b>手写核心循环</b></td><td>while + max_steps + 工具字典 + Function Calling——没有魔法</td></tr>
+      <tr><td>34–46</td><td><b>动手练习</b></td><td>运行场：人肉走一遍 ReAct（补全单位换算函数）</td></tr>
+      <tr><td>46–58</td><td><b>实战工具设计</b></td><td>搜索/计算器/自定义工具；description 是写给 AI 的说明书</td></tr>
+      <tr><td>58–70</td><td><b>三种故障与防护</b></td><td>无限循环(max_steps)/错误传播(try+ERROR标注)/选择不当(描述分明)</td></tr>
+      <tr><td>70–82</td><td><b>实战 Agent 演示</b></td><td>三步任务：搜面积→换算→计算——完整思考轨迹打印</td></tr>
+      <tr><td>82–92</td><td><b>边界讨论</b></td><td>什么任务交 Agent（路径未知）什么用确定代码（固定流程）</td></tr>
+      <tr><td>92–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">手写循环是本课核心——理解它，Agent 框架就再无魔法。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>开场对比：谁来做决定</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">普通对话</b>
+        <span>问「123 × 456 等于多少」→ 大模型「心算」——<b>可能算错</b>。</span></div>
+      <div class="scard rise" style="border-left:5px solid #047857;"><b class="tt">Agent</b>
+        <span>同一个问题 → Agent 自己决定<b>调用计算器工具</b> → 返回精确结果。</span></div>
+    </div>
+    <div class="frag scard">
+      <b>区别不是「更聪明地回答」，而是「自己决定用什么工具解决问题」。</b>
+      LangChain / CrewAI 那些 Agent 框架的底层，就是今天要手写的这个循环。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>ReAct：思考 → 行动 → 观察</h2>
+    <div class="flowline">
+      <div class="node">Thought<br><span class="small">我该做什么</span></div><span class="arrow">→</span>
+      <div class="node hot">Action<br><span class="small">调用工具</span></div><span class="arrow">→</span>
+      <div class="node">Observation<br><span class="small">看到结果</span></div><span class="arrow">↺</span>
+      <div class="node">再思考…<br><span class="small">直到完成</span></div>
+    </div>
+    <ul>
+      <li class="frag">类比做菜：看冰箱（感知）→ 决定做什么（推理）→ 下厨（行动）→ 尝味道（观察）→ 调整</li>
+      <li class="frag">人类解决问题就是这么转圈的——Agent 把这个循环交给了模型</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>手写 Agent 核心循环</h2>
+    <pre class="rise"><code>tools = {<span class="s">"calculator"</span>: calc_fn, <span class="s">"search"</span>: search_fn, <span class="s">"now"</span>: time_fn}
+messages = [{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"中国面积能装下多少个足球场？"</span>}]
+
+<span class="k">for</span> step <span class="k">in</span> <span class="f">range</span>(<span class="n">8</span>):                          <span class="c"># max_steps：防无限循环！</span>
+    resp = llm(messages, tools=tool_schemas)    <span class="c"># 把工具说明书给模型</span>
+
+    <span class="k">if</span> <span class="k">not</span> resp.tool_calls:                     <span class="c"># 不再调工具 = 任务完成</span>
+        <span class="f">print</span>(<span class="s">"✓ 完成："</span>, resp.text)
+        <span class="k">break</span>
+
+    <span class="k">for</span> call <span class="k">in</span> resp.tool_calls:
+        <span class="f">print</span>(<span class="s">f"  思考→行动: {call.name}({call.args})"</span>)
+        result = tools[call.name](**call.args)   <span class="c"># 执行永远是代码的事</span>
+        messages.<span class="f">append</span>(tool_result(result))  <span class="c"># 结果喂回去，进入下一轮</span></code></pre>
+    <p class="small frag">整个 Agent = <b>一个循环 + 工具字典 + Function Calling</b>。没有魔法。</p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：人肉走一遍 ReAct</h2>
+    <span class="lab">交互 · 你来当 Agent 的「大脑」，走完这个循环</span>
+    <div class="py-playground" data-py-title="ReAct 循环模拟器：追踪思考轨迹">
+      <textarea># 任务：中国国土面积 ≈ 960万 km²，能装下多少个 100 公顷的足球场？
+# Agent 的两步工具调用，请你补全单位换算函数
+
+def to_square_km(hectares):
+    # TODO: 1 公顷 = 0.01 km²，返回换算结果
+    pass
+
+# --- Agent 轨迹回放 ---
+print("Thought 1: 需要先知道中国国土面积")
+print("Action 1 : search('中国国土面积') → 9600000 km²")
+
+print("Thought 2: 需要把 100 公顷换算成 km²")
+print(f"Action 2 : calculator('{to_square_km(100)}') → {to_square_km(100)} km²")
+
+print("Thought 3: 两个数相除就是答案")
+print(f"Action 3 : calculator('9600000 / {to_square_km(100)}') → {9600000 / to_square_km(100):,.0f} 个")
+print("Observation: 任务完成，生成最终回答")
+</textarea>
+    </div>
+    <p class="small frag">补完 to_square_km 再运行——你刚刚执行了 Agent 的第三个工具调用。</p>
+  </section>
+
+  <section class="slide">
+    <h2>Agent 的三种典型故障与防护</h2>
+    <div class="scard rise" style="border-left:5px solid #dc2626;"><b>① 无限循环</b>——反复调用同一工具停不下来
+      <span class="frag" style="display:block;margin-top:4px;color:#065f46;">防护：max_steps 上限 + 重复调用检测</span></div>
+    <div class="scard frag" style="border-left:5px solid #b45309;"><b>② 错误传播</b>——上一步结果错，越走越偏
+      <span style="display:block;margin-top:4px;color:#065f46;">防护：工具内部 try/except，错误信息明确标注「ERROR:」</span></div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed;"><b>③ 工具选择不当</b>——两个工具功能重叠，AI 犹豫
+      <span style="display:block;margin-top:4px;color:#065f46;">防护：description 边界写清楚——说明书越分明，选择越果断</span></div>
+  </section>
+
+  <section class="slide">
+    <h2>课堂讨论：什么任务交给 Agent？</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag g">适合 Agent</span>
+        <ul style="font-size:15.5px;">
+          <li class="frag">步骤不确定：查资料→换算→再查（今天的示例）</li>
+          <li class="frag">需要组合多个工具的开放式任务</li>
+        </ul>
+      </div>
+      <div class="scard rise"><span class="tag r">适合确定性代码</span>
+        <ul style="font-size:15.5px;">
+          <li class="frag">固定流程：每天定时导出报表</li>
+          <li class="frag">要求 100% 可复现：一次写对 if 就够了，别绕 Agent</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard">
+      <b>判断题：</b>「把班里 60 个人的成绩排序输出」需要 Agent 吗？
+      <span class="small">——不需要。一个 sorted() 就是确定解；Agent 是给「路径未知」的任务准备的。</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W12 Agent · 概念检查",
+        "questions": [
+          {
+            "q": "Agent 与普通对话的最本质区别是？",
+            "opts": ["回复更长", "能多轮对话", "感知→决策→行动循环，能自主调用工具完成多步任务", "收费更贵"],
+            "a": 2,
+            "explain": "ReAct 框架：模型先推理（Thought）再行动（Action）观察结果（Observation）循环往复，直到任务完成。"
+          },
+          {
+            "q": "手写 Agent 循环中，防「无限循环」的第一道防线是？",
+            "opts": ["调低 temperature", "max_steps 步数上限", "换更大的模型", "多加工具"],
+            "a": 1,
+            "explain": "for step in range(max_steps) 是最简单可靠的护栏；配合重复调用检测效果更好。"
+          },
+          {
+            "q": "以下哪个任务最适合交给 Agent？",
+            "opts": ["每天定时备份文件", "「查资料并换算单位再总结」这类路径不确定的多步任务", "两个数字相加", "排序一个列表"],
+            "a": 1,
+            "explain": "固定流程用确定性代码更可靠；Agent 的价值在「步骤无法预先写死」的开放式任务。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V046-AIAgent原理与ReAct框架/">V046 Agent 原理</a> ·
+          <a href="../scripts/V047-构建有工具的AIAgent/">V047 构建有工具的 Agent</a></li>
+        <li class="frag">练习：给你的 Agent 加一个「随机笑话生成器」工具，测试它选不选</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W13 FastAPI 前后端与方法论</b>
+    把 AI 能力包装成网页服务（FastAPI 后端 + 前端聊天页 + 对话记忆），再学 AI 结对开发方法论——M5 收官。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w13.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">FastAPI 实战续（异步/CORS）</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

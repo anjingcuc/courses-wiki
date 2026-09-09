@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W6 HTTP 与数据获取 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 06 / 16</span>
+    <span class="th">数据获取 · HTTP / API / 爬虫</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m3/">M3 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w05.html">← 上周</a>
+    <a class="cur" href="w06.html">本周</a>
+    <a href="w07.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W6 HTTP 与数据获取">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 6 周（100 分钟 · L12–L14）</div>
+    <h1 class="rise">从网上拿数据<br><span class="grad">API、爬虫与边界</span></h1>
+    <p class="sub rise">你从 W2 就在调大模型 API——今天揭开它底层的面纱：HTTP 请求-响应模型。
+    然后用 requests 调真实 API、爬真实网页，并回答一个 AI 回答不了的问题：<b>该不该爬？</b></p>
+    <div class="meta rise">
+      <span>所属模块 M3 数据获取与处理</span><span>微课 V022–V026</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>HTTP 模型</b></td><td>请求四要素 / 响应三要素 / 状态码口诀（2xx 你对 4xx 你错 5xx 服务器错）</td></tr>
+      <tr><td>10–22</td><td><b>F12 实测</b></td><td>打开网站 Network 面板：找请求、看响应——原来 chat.completions 就是 POST</td></tr>
+      <tr><td>22–36</td><td><b>requests 五分钟</b></td><td>get/params/headers/timeout；json() 解析；错误三连处理</td></tr>
+      <tr><td>36–48</td><td><b>动手练习</b></td><td>运行场：探索无文档 API 响应结构 + .get() 安全取值</td></tr>
+      <tr><td>48–60</td><td><b>三个真实 API</b></td><td>天气 / 名言 / 假数据——不同结构逐层提取</td></tr>
+      <tr><td>60–72</td><td><b>爬虫三步</b></td><td>requests 拿 HTML → BeautifulSoup 解析 → select 提取；CSS 选择器速记</td></tr>
+      <tr><td>72–84</td><td><b>靶场演示</b></td><td>quotes.toscrape.com 爬名言+作者+标签</td></tr>
+      <tr><td>84–94</td><td><b>伦理三问</b></td><td>能不能爬（robots）/ 该不该爬（频率）/ 用来干什么——只有人能回答</td></tr>
+      <tr><td>94–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">伦理三问没有标准答案——讨论比结论重要。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>HTTP：互联网的说话方式</h2>
+    <div class="flowline">
+      <div class="node">客户端（浏览器/你的代码）<br><span class="small">发请求</span></div><span class="arrow">→</span>
+      <div class="node hot">服务器<br><span class="small">处理</span></div><span class="arrow">→</span>
+      <div class="node">响应（状态码 + JSON/HTML）</div>
+    </div>
+    <div class="cols2" style="margin-top:14px;">
+      <div class="scard rise"><b>请求四要素</b>
+        <ul style="font-size:15px;">
+          <li class="frag">方法：GET 取数据 / POST 提交</li>
+          <li class="frag">URL：去哪拿</li>
+          <li class="frag">请求头：我是谁（User-Agent…）</li>
+          <li class="frag">请求体：POST 带的数据</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b>状态码口诀</b>
+        <ul style="font-size:15px;">
+          <li class="frag"><b>2xx</b> 成功（200 OK）</li>
+          <li class="frag"><b>4xx</b> 你错了（404 没找到 / 429 太频繁）</li>
+          <li class="frag"><b>5xx</b> 服务器错了（500 内部错误）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>现场实测：F12 Network 面板</h2>
+    <p class="rise">打开任意网站 → F12 → Network → 刷新：</p>
+    <pre class="rise"><code>GET /v1/now?city=beijing  HTTP/1.1        <span class="c"># ← 请求行</span>
+Host: api.weather.cn
+User-Agent: Mozilla/5.0 ...              <span class="c"># ← 你是谁（爬虫要伪装的就是它）</span>
+
+HTTP/1.1 200 OK                          <span class="c"># ← 响应：成功</span>
+Content-Type: application/json
+
+{"city": "北京", "temp": "26℃", "aqi": 42}  <span class="c"># ← JSON：字典的模样</span></code></pre>
+    <div class="frag scard">
+      <b>恍然大悟时刻：</b><code>client.chat.completions.create()</code> 底层就是一个 HTTP POST——
+      openai SDK 只是帮你把 HTTP 细节包装好了。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>requests：五分钟上手</h2>
+    <pre class="rise"><code><span class="k">import</span> requests
+
+resp = requests.<span class="f">get</span>(
+    <span class="s">"https://api.example.com/now"</span>,
+    params={<span class="s">"city"</span>: <span class="s">"beijing"</span>},       <span class="c"># 查询参数自动拼接</span>
+    headers={<span class="s">"Authorization"</span>: <span class="s">"Bearer sk-..."</span>},  <span class="c"># 认证放请求头</span>
+    timeout=<span class="n">10</span>,                             <span class="c"># 一定要设超时！</span>
+)
+resp.status_code      <span class="c"># 200</span>
+data = resp.<span class="f">json</span>()      <span class="c"># JSON 响应 → Python 字典</span>
+data[<span class="s">"temp"</span>]           <span class="c"># 逐层取值</span></code></pre>
+    <ul>
+      <li class="frag">错误处理三连：<b>网络超时 / 状态码异常 / JSON 解析失败</b>——try/except 分别接住</li>
+      <li class="frag">课堂演示调用 3 个公开 API：天气 / 名言 / 假数据（结构各不相同，练逐层取值）</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：处理无文档的 API 响应</h2>
+    <span class="lab">交互 · 浏览器内运行（模拟 requests 环节）</span>
+    <p class="rise">真实场景：拿到了响应，但没文档——先探索结构，再取值：</p>
+    <div class="py-playground" data-py-title="探索 JSON 结构 → 安全取值">
+      <textarea>import json
+
+# 模拟 requests.get(...).json() 的返回
+data = json.loads('''
+{"code": 0, "data": {"list": [
+    {"name": "DeepSeek", "tokens": 730},
+    {"name": "Kimi", "tokens": null}
+]}}
+''')
+
+# 1) 探索：type() + keys()
+print(type(data), list(data.keys()))
+
+# 2) 逐层取值 + .get() 安全兜底（null → None）
+items = data["data"]["list"]
+for it in items:
+    # get 第二个参数：键不存在时的默认值
+    print(it.get("name"), it.get("tokens", 0))
+
+# 3) 练习：统计 tokens 非空记录的平均值
+# 提示：先过滤 None，再 sum/len
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>没有 API 怎么办：网页爬取</h2>
+    <p class="rise">三步流程，核心代码只有五行：</p>
+    <pre class="rise"><code><span class="k">from</span> bs4 <span class="k">import</span> BeautifulSoup
+<span class="k">import</span> requests
+
+html = requests.<span class="f">get</span>(<span class="s">"https://quotes.toscrape.com"</span>, timeout=<span class="n">10</span>).text
+soup = <span class="f">BeautifulSoup</span>(html, <span class="s">"html.parser"</span>)
+
+<span class="k">for</span> q <span class="k">in</span> soup.<span class="f">select</span>(<span class="s">"span.text"</span>):        <span class="c"># CSS 选择器：class="text" 的 span</span>
+    <span class="f">print</span>(q.get_text()[:30])</code></pre>
+    <ul>
+      <li class="frag">CSS 选择器速记：<code>.class</code> / <code>#id</code> / <code>tag</code>——F12 右键检查定位元素</li>
+      <li class="frag">动态页面（Ajax 渲染）用 Selenium/Playwright——<b>细节可以交给 AI，需求描述和审查是你的事</b></li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>爬虫伦理三问</h2>
+    <div class="scard rise" style="border-left:5px solid #047857;"><b>① 能不能爬？</b>
+      <span class="frag" style="display:block;margin-top:6px;">先访问 <code>域名/robots.txt</code> 看是否允许；尊重网站条款与个人信息保护法。</span></div>
+    <div class="scard frag" style="border-left:5px solid #b45309;"><b>② 该不该爬？</b>
+      <span style="display:block;margin-top:6px;">加 <code>time.sleep()</code>、避开高峰——你的每次请求都是别人的服务器成本。课堂演示过请求过快被封 IP 的真实案例。</span></div>
+    <div class="scard frag" style="border-left:5px solid #dc2626;"><b>③ 用来干什么？</b>
+      <span style="display:block;margin-top:6px;">学习研究可以；商用、转卖、爬隐私数据不行。<b>AI 能一键生成爬虫代码，但「该不该」只有人能回答。</b></span></div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W6 HTTP 与数据获取 · 概念检查",
+        "questions": [
+          {
+            "q": "服务器返回 HTTP 429，最可能的含义是？",
+            "opts": ["页面不存在", "请求太频繁被限流", "服务器内部错误", "需要登录"],
+            "a": 1,
+            "explain": "429 Too Many Requests——对策：加延时、退避重试或降低并发。"
+          },
+          {
+            "q": "爬虫伪装 User-Agent 的目的是？",
+            "opts": ["让请求更快", "让服务器以为是正常浏览器访问", "绕过法律", "加密数据"],
+            "a": 1,
+            "explain": "User-Agent 表明「我是谁」；部分站点拒绝非浏览器 UA。但伪装不等于可以乱爬——robots.txt 与频率约束仍然适用。"
+          },
+          {
+            "q": "网页返回乱码，最常见的修法是？",
+            "opts": ["换个浏览器", "resp.encoding = resp.apparent_encoding", "重启电脑", "把 URL 换成 https"],
+            "a": 1,
+            "explain": "服务器是 GBK 而 requests 猜错编码时，用 apparent_encoding 让其重新探测（经典课 13.3 现场修过）。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V022-HTTP请求与响应模型/">V022</a> ·
+          <a href="../scripts/V023-JSON格式与F12面板/">V023</a> ·
+          <a href="../scripts/V024-requests库与API调用实战/">V024</a> ·
+          <a href="../scripts/V025-BeautifulSoup与CSS选择器/">V025</a> ·
+          <a href="../scripts/V026-爬虫伦理与robots.txt/">V026 伦理</a></li>
+        <li class="frag">练习：调一个公开 API（天气/名言），格式化输出三个字段</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W7 数据处理与工程化起步</b>
+      拿到手的数据怎么「说话」——Pandas 筛选统计 + Matplotlib 画图；再解决「装库把环境搞坏」的虚拟环境。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w07.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m3/">M3 模块页</a> · <a href="../notes/12.1-Web开发-Web基本概念/">经典笔记 12.1 Web 概念</a> · <a href="../notes/13.5-Web分析与爬虫-数据接口爬取示例/">13.5 数据接口爬取</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

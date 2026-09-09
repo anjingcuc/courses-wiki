@@ -1,0 +1,960 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2022-%E5%9B%9E%E6%94%BE-05/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2022-回放-05：二进制与文本文件 · 伪装文件检测作业 · 模块与包 · 第三方库与虚拟环境 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2022-05" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2022-回放-05：二进制与文本文件 · 伪装文件检测作业 · 模块与包 · 第三方库与虚拟环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0000-0027" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、二进制文件与文本文件（约 00:00 - 00:27）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2730-4300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、作业：伪装文件检测（约 27:30 - 43:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4400-012330" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、模块与包（约 44:00 - 01:23:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#012400-021800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、第三方库与虚拟环境（约 01:24:00 - 02:18:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2022-05">2022-回放-05：二进制与文本文件 · 伪装文件检测作业 · 模块与包 · 第三方库与虚拟环境<a class="headerlink" href="#2022-05" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本次直播回放围绕三大块内容展开。第一块讲"文件与目录"章节的核心概念：二进制文件与文本文件的本质区别、字符编码、二进制文件的结构（文件头/文件特征），并结合网安专业背景讲解 PE/ELF 可执行文件格式与 CTF 题目中的文件格式篡改思路，顺势布置了"遍历目录检测伪装文件"的作业。第二块串讲"模块与包"：模块名即文件名、import 的执行机制、<code>if __name__ == '__main__'</code> 的原理、模块搜索路径 <code>sys.path</code>、包与 <code>__init__.py</code>。第三块以一个学生装包失败的真实案例引入"第三方库与虚拟环境"：pip 与 python 环境错位的排查、虚拟环境的意义、pipenv + Pipfile 的工作流、whl 文件命名规则、查找命令路径的技巧，最后对比了 Python 与 Anaconda。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="0000-0027">一、二进制文件与文本文件（约 00:00 - 00:27）<a class="headerlink" href="#0000-0027" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Python 中的两种二进制数据类型</strong>（约 01:10）：<code>bytes</code> 不可变（初始化后内容不能改，但可以追加拼接）；<code>bytearray</code> 像列表一样可以修改中间的字节。base64 作业中已接触过。</li>
+<li><strong>文本文件 vs 二进制文件</strong>（约 03:20 - 14:45）：</li>
+<li>对计算机而言没有区别，所有文件本质上都是二进制序列；区别是**程序员/工具视角**的。</li>
+<li>能被文本类工具（文本编辑器、<code>cat</code>、<code>echo</code> 等命令行工具）直接读写的文件就是文本文件；文本文件的存取流程只有最简单的**编码与解码**一步（<code>open</code> 的 <code>encoding</code> 参数如 UTF-8）。</li>
+<li>二进制文件不能通过统一的编解码直接转成字符，它们**都有固定的文件格式**：文件头 + 按固定结构组织的元信息 + 数据（如 BMP 的长宽高位深度；Word 文档同理），读取软件必须按格式解析才能正确显示。</li>
+<li>历史原因：早期计算机围绕字符界面的 shell 发展，围绕文本文件的工具极多。</li>
+<li>从 API 层面看：打开文件的 mode 中，<code>r/w/a</code> 默认是文本模式，加 <code>b</code>（<code>rb/wb/ab</code>）才是二进制模式。</li>
+<li>字符集与字符编码（每个字符对应哪个二进制序列的规定）在"字符集与编码"录播视频中讲过，本课不重复。</li>
+<li><strong>安全专业视角</strong>（约 16:00）：逆向、恶意代码分析、漏洞挖掘面对的大多是二进制文件；所有可执行文件都是二进制的——Windows 的 .exe/.dll 统称 <strong>PE（Portable Executable，可移植可执行文件）</strong>，Linux 下对应 <strong>ELF</strong>。双击 exe 时操作系统按文件结构（DOS 头、signature 签名即 <code>MZ</code> 等）解析后执行。</li>
+<li><strong>文件破损的不同后果</strong>（约 20:00）：二进制文件格式精密，头被篡改可能整个跑不起来；文本文件损坏通常只丢损坏部分或出现乱码。</li>
+<li><strong>CTF 例题思路</strong>（约 21:10）：给一张只显示上半截的图片，可能是出题人把 BMP 头中的高度值（如 1080 改成 540）改小了，黑色下半部分藏着 flag；解法是写程序或用二进制编辑器把高度改回去。</li>
+<li><strong>docx 本质是 zip</strong>（约 25:00）：新建 Word 文档贴图保存后，把 <code>.docx</code> 改后缀为 <code>.zip</code> 解压，可在 <code>word/media</code> 里找到 <code>image1.png</code>——二进制格式远比文本复杂，不可能用编解码直接读出。</li>
+<li><strong>文本文件泄露隐私 vs 二进制文件带毒</strong>（约 26:55）：文本文件本身不会让你中毒（但可能泄露隐私），安全研究的对象绝大多数是二进制文件。</li>
+</ul>
+<h3 id="2730-4300">二、作业：伪装文件检测（约 27:30 - 43:00）<a class="headerlink" href="#2730-4300" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>背景</strong>：钓鱼邮件案例——伪装成"国台办通知"的邮件附件，图标改成 Word 文稿样式的 <code>.exe</code>。普通用户因资源管理器默认不显示扩展名而上当（《计算机安全与维护》第一课就要求勾选"文件扩展名"）。</li>
+<li><strong>检测原理</strong>：每种文件类型的**文件头特征**不同——exe/PE 开头两字节是十六进制 <code>5A 4D</code>（即字符 <code>MZ</code>），JPG 开头是 <code>FF D8</code>，PNG 开头是 <code>89 50 4E 47</code>（<code>\x89PNG</code>），PDF、BMP、DOCX、TXT 等各有特征。读取文件头与后缀名比对，不一致即为伪装文件。</li>
+<li><strong>杀毒软件同理</strong>（约 36:30）：病毒库存的就是病毒二进制文件的特征（文件头特征相同，但代码段各有特征），全盘扫描就是逐个打开二进制文件匹配特征。</li>
+<li><strong>作业要求</strong>（约 39:30）：给定一个含多个文件夹的目录，里面的文件（如"考研讲义.pptx"等诱人名字）中混有 exe 伪装的文件；要求写程序**遍历目录**，读取每个文件的文件头特征与后缀比对，一致视为正常、不一致视为异常，分别放入正常/异常两个文件夹。需结合录播视频"目录遍历"部分完成（该视频讲得很细）。有兴趣可以遍历整个 C 盘。</li>
+</ul>
+<h3 id="4400-012330">三、模块与包（约 44:00 - 01:23:30）<a class="headerlink" href="#4400-012330" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>模块概念</strong>（约 45:50）：任何 <code>.py</code> 文件都是模块，模块名 = 去掉后缀的文件名（<code>calc.py</code> → 模块 <code>calc</code>；<code>作业.py</code> → 模块"作业"）。第三方库（PIL、OpenCV）也只是别人起的名字。</li>
+<li><strong>符号（symbol）与 <code>dir()</code></strong>（约 47:25）：<code>dir(模块名)</code> 列出模块中所有符号；符号包括顶格定义的全局变量、函数、类（关联编译原理的词法/语法分析概念）。通过 <code>模块名.符号名</code> 访问，如 <code>calc.sum()</code>。</li>
+<li><strong>import 会执行整个模块</strong>（约 50:40）：导入模块时 Python 解释器把模块所有语句**逐行执行一遍**（否则函数定义就不存在）。演示：<code>main.py</code> 里只写 <code>import calc</code>，运行 main 也会打印 calc 里的 <code>print</code> 语句。</li>
+<li><strong><code>if __name__ == '__main__'</code></strong>（约 53:50 - 01:01:00）：</li>
+<li>用途：模块内写测试代码，直接运行该脚本时执行、被别人 import 时不执行。否则协作开发时忘删测试语句会让使用者看到莫名其妙的输出。</li>
+<li>原理：双下划线变量是 Python 内置变量（自己不要起这种名字）。<code>__name__</code> 随运行方式变化：直接运行 <code>python calc.py</code> 时值为 <code>'__main__'</code>；被 import 时值为模块名字符串（如 <code>'calc'</code>），条件不成立故测试代码不执行。</li>
+<li><strong>模块搜索路径 <code>sys.path</code></strong>（约 01:01:30 - 01:13:00）：<code>import xxx</code> 时先查**内置模块**（如 <code>sys</code>，内置在解释器中，没有对应 .py 文件——课堂上一度想从安装目录找 sys.py 翻车），再按 <code>sys.path</code> 列表顺序搜索。<code>print(sys.path)</code> 可见优先级：① 当前脚本所在目录；② 某些 zip 路径；③ 安装目录的 DLLs、lib；④ Python 根目录；⑤ <strong><code>site-packages</code></strong>（网上下载的第三方包就装在这里，如 bs4）。理解搜索路径是为后面多环境下装包问题做铺垫。</li>
+<li><strong>包（package）</strong>（约 01:13:55）：模块的升级版——多个 .py 文件（甚至多级目录）组成的库，如 bs4 就是一个文件夹。每个包（含子包）必须有 <strong><code>__init__.py</code></strong> 作为入口：import 包时优先执行它（如 <code>from bs4 import BeautifulSoup</code> 实际导入的是 bs4 的 <code>__init__.py</code> 中定义的类）。包可层层套娃，缺 <code>__init__.py</code> 会报警告。</li>
+<li><strong>子包相对导入</strong>（约 01:19:00）：包内模块互相导入用相对路径写法：<code>from . import xxx</code>（当前目录）、<code>from ..fx import echo</code>（上一级），注意用点而非斜杠分隔。</li>
+<li><strong>不推荐 <code>from pkg import *</code></strong>（约 01:21:00）：通配符会把包里所有模块全部加载执行一遍，效率低，不符合"操作精确"的最佳编程实践。</li>
+</ul>
+<h3 id="012400-021800">四、第三方库与虚拟环境（约 01:24:00 - 02:18:00）<a class="headerlink" href="#012400-021800" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>真实案例引入</strong>（约 01:24:40）：某同学装 <code>wifipumpkin</code>（无线钓鱼实验库，原理：设备会自动连同 SSID 的热点，伪造同名无密码热点即可钓鱼）报错——asn1crypto 需要 ≥1.5.1 而机器上是 1.4.0；但 <code>pip3 list</code> 明明显示装的是 1.5.1，百思不得其解。</li>
+<li><strong>排查关键命令</strong>（约 01:31:25）：<code>pip -V</code>（大写 V，等价于 <code>--version</code>；<code>pip --help</code> 可查所有命令与选项），会同时显示 <strong>pip 对应的安装路径</strong>。对比发现：安装用的是 <code>/usr/local/lib/python3.9/dist-packages</code>，而 pip3 list 看的是 <code>/usr/lib/python3/dist-packages</code>——<strong>python 和 pip 分属两个不同的环境</strong>。该同学机器上甚至有 4 个 Python 版本。</li>
+<li><strong>原因与重现</strong>（约 1:35:45 - 1:45:50）：与 Python 相关的环境变量有两个——<code>python.exe</code> 所在目录和 <code>Scripts</code>（pip.exe 所在）目录；两者指向不同环境时，命令行里的 python 与 pip 就错位了。老师现场改环境变量重现该 bug，再改回来修复。注意该同学是因为用 <code>sudo python3 setup.py install</code>（而非 pip）安装才触发版本冲突。</li>
+<li><strong>启发</strong>（约 01:45:54）：① 环境变量配置错误会导致 pip 装的包与 python 用的环境对不上（装了 bs4 却 import 不进来就是典型）；② Python 环境的构成——正规安装：根目录有 <code>python.exe</code>、<code>pythonw.exe</code>（无黑框静默运行脚本）、DLLs、Lib（内含 <code>site-packages</code>）、<code>Scripts</code>（内含 pip）；虚拟环境则更精简，<code>Scripts</code> 里 python/pythonw/pip 全在一起，还有配置文件记录它是从哪个环境克隆的。</li>
+<li><strong>虚拟环境的意义</strong>（约 01:50:43）：不同项目需要不同版本的 Python 和第三方库，共用一个环境会互相覆盖冲突；用 <code>virtualenv</code> 为每个项目建独立环境（如换脸项目只装 OpenCV，另一个项目只装 pandas/openpyxl），互不干扰，做完可直接删除（不影响主环境，还能省几百兆空间）。现代语言（Node.js、Go 等）都有类似机制。</li>
+<li><strong>包管理系统回顾</strong>（约 01:54:00）：macOS、Linux 都有包管理机制；pip 安装流程（查索引服务器拿版本与下载地址 → 下载 → 编译 → 装依赖 → 安装）在录播视频里用 <code>pip -vvv install xxx</code>（v 越多日志越详细，注意与 <code>pip -V</code> 区分）演示过。</li>
+<li><strong>镜像源</strong>：改成国内源只为加速，照录播课件配置即可（阿里源）。</li>
+<li><strong>whl 离线安装与命名规则</strong>（约 01:57:20）：whl 文件名短横线分隔的部分不能随便改，必须按规范：版本号 - <code>cp310</code>（CPython 3.10，即默认的 C 语言版解释器）- <code>win_amd64</code>（64 位 Windows）。可去热心群众维护的 Windows 平台编译 whl 站点下载。</li>
+<li><strong>pipenv 工作流演示</strong>（约 01:59:50 - 02:12:50）：</li>
+<li>环境管理工具有 virtualenv、venv、pyenv、pipenv 等（内置或第三方），老师偏好 pipenv。</li>
+<li>一个目录 = 一个项目；进入目录执行 <code>pipenv install</code>（没有 pipenv 先 <code>pip install pipenv</code>——pipenv 本身也是个 Python 包），自动生成 <code>Pipfile</code> 和 <code>Pipfile.lock</code>（lock 不用管）。</li>
+<li><strong>改源</strong>：打开 <code>Pipfile</code> 把 <code>[[source]]</code> 的 url 从官方源改成阿里镜像。</li>
+<li><code>pipenv shell</code> 进入虚拟环境；装包要用 <strong><code>pipenv install pillow</code></strong>（而不是 <code>pip install</code>），因为前者会把包名与版本写进 <code>Pipfile</code>，后者不会。</li>
+<li><strong>一键重建</strong>：删掉 <code>.virtualenvs</code> 下的环境目录后，只要 <code>Pipfile</code> 还在，再执行 <code>pipenv install</code> 就会自动按 Pipfile 把 pillow、requests 等全部装回——分享项目时只需发代码 + Pipfile（lock 可不发）。</li>
+<li><code>Pipfile</code> 里的 <code>python_version</code> 记录环境所用 Python 版本（如 3.9）；创建时也可指定其他版本（如 2.7），pipenv 会自动去本机找对应版本。</li>
+<li>环境变量 PATH 里上面的 Python 优先生效；VS Code 会自动扫描 <code>.virtualenvs</code> 等常见目录识别出所有环境列在右下角。</li>
+<li><strong>查找命令路径的技巧</strong>（约 02:00:20）：Linux 用 <code>which python</code>；Windows cmd 用 <code>where python.exe</code>；PowerShell 没有 where，用 <code>gcm</code>（<code>Get-Command</code> 缩写）。当命令找不到或版本不对时，先用它确认当前命令行解析到的是哪个目录。</li>
+<li><strong>Python 与 Anaconda</strong>（约 02:15:00）：完全不同的两个概念。Anaconda 安装包约 500 多 MB（Python 官方安装包仅约 25-30 MB，差约 20 倍），因为自带 numpy 等大量科学计算包，一体化省心但"全家桶"式；非计算机专业可以用，计算机专业建议自己管理环境（个人偏好，不强制）。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>伪装文件现场演示</strong>：把 <code>python.exe</code> 改成"比特币钱包.docx"，说明图标可改、扩展名默认隐藏导致钓鱼得逞；引出用文件头特征（MZ/5A4D）识别真实文件类型的思路。</li>
+<li><strong>作业</strong>：遍历给定目录，按文件头特征（JPG/PNG/BMP/PDF/DOCX/PPT/TXT/EXE 的特征表已给出）与后缀比对，把 exe 伪装的文件筛进"异常"文件夹——相当于写一个小型杀毒扫描器。</li>
+<li><strong>import 执行机制演示</strong>：<code>calc.py</code>（含 print 和函数）+ <code>main.py</code>（仅 <code>import calc</code>），运行 main 也会执行 calc 的 print；加 <code>if __name__ == '__main__':</code> 后 import 不再触发测试代码。</li>
+<li><strong>sys.path 演示</strong>：<code>print(sys.path)</code> 看搜索顺序；Ctrl+点击 bs4 跳转到 site-packages 下的 <code>__init__.py</code>，直观理解包结构。</li>
+<li><strong>pip/python 环境错位重现</strong>：改环境变量把 Scripts 指向另一环境 → <code>where python</code> 与 <code>pip -V</code> 路径不一致 → 再改一致修复。</li>
+<li><strong>pipenv 完整流程</strong>：<code>pipenv install</code> → 改 Pipfile 源 → <code>pipenv shell</code> → <code>pipenv install pillow</code> / <code>pipenv install requests</code> → 删除虚拟环境目录 → 再次 <code>pipenv install</code> 一键恢复。</li>
+</ol>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>文本文件只有"编码/解码"一层，二进制文件有自定义格式与文件头——这是本课全部内容与作业的理论基础。</li>
+<li>文件头特征（magic number）：PE/exe 是 <code>MZ</code>（5A4D），JPG 是 <code>FF D8</code>，PNG 是 <code>89 PNG</code>；文件后缀可以被随便改，文件头不会说谎。</li>
+<li>import 模块 = 逐行执行模块全部语句；<code>__name__</code> 在直接运行时是 <code>'__main__'</code>、被导入时是模块名——<code>if __name__ == '__main__':</code> 的原理必须理解而非死记。</li>
+<li>包必须有 <code>__init__.py</code> 作为入口；包内相对导入用点号（<code>.</code>、<code>..</code>）而非路径斜杠。</li>
+<li>不用 <code>from x import *</code>：全量加载低效且不精确。</li>
+<li><strong>pip 与 python 必须是同一环境</strong>：排查用 <code>pip -V</code>（看路径）、<code>where</code>/<code>gcm</code>/<code>which</code>（看命令解析路径）、检查两个 Python 相关环境变量是否一致。"装上了却 import 不到"九成是环境错位。</li>
+<li>pipenv 装包要用 <code>pipenv install</code>（写入 Pipfile），用 <code>pip install</code> 虽然能装上但不会记录，破坏一键重建能力。</li>
+<li>whl 文件名不能乱改，命名规范包含版本、解释器（cp310）、平台（win_amd64）信息。</li>
+<li>模块搜索顺序：内置模块 → sys.path（当前目录优先，site-packages 靠后）；命名自己的文件时不要与标准库/第三方库重名（呼应后面回放-06 中 flask.py、abc.py 翻车）。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>对应录播章节："数据类型进阶与输入输出"之后的"文件与目录"（字符编码、目录遍历视频讲得很细）、"模块与包"、"第三方库与虚拟环境"各节；whl 命名规则在"课程概述/基本概念"中讲过。</li>
+<li>前置：base64 作业（bytes 操作）、《计算机安全与维护》（环境变量、文件扩展名、字节序、数据恢复章节中 txt 在硬盘上的 ASCII 存储演示）。</li>
+<li>后续：Web 开发、爬虫、数据可视化三大实战大量依赖第三方库与虚拟环境，本节是必修前置；bs4（BeautifulSoup）在爬虫章节使用；目录遍历能力与本次伪装文件检测作业直接配合。</li>
+<li>安全专业关联：PE/ELF 文件结构、病毒特征库、钓鱼与无线钓鱼（SSID 伪装）案例，呼应后续逆向工程、软件安全课程与 CTF。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# WinDBG 脚本
+
+---
+
+## WinDBG 命令
+
+命令窗口是 WinDBG 的一大特色，命令窗口中我们可以使用类似 cmd 中的快捷键来编辑、重复或者取消各种调试命令。WinDBG 命令的详细说明请参考[调试器命令](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-commands)。
+
+- 方向键 `↑` / `↓` 来翻看之前输入的命令。
+- `BACKSPACE` / `DELETE` / `INSERT` / `←` / `→` 来编辑。
+- `ESC` 清空本行命令，`CTRL-BREAK` 终止当前命令执行。
+
+<!-- .element style="font-size:0.6em;"-->
+
+---
+
+## 表达式
+
+WinDBG 能够处理两种类型的表达式 MASM 表达式和 C++ 表达式。默认情况下 WinDBG 会将表达式作为 MASM 表达式进行处理。
+
+- `.expr (/s masm|c++)` 可以查看或修改当前的默认表达式处理器。
+- `?? Expression` 命令，Watch 窗口，Locals 窗口使用 C++表达式处理器。
+- 部分扩展使用 MASM 表达式处理器。
+- 如果表达式被括号括起来并且前面有 `@@` 符号，那么将使用非默认表达式处理器。
+- 其他情况下，都使用默认的表达式处理器。
+
+<!-- .element style="font-size:0.6em;"-->
+
+--
+
+### 数字
+
+在没有前缀的情况下，数字可以使用 `n (Set Number Base)` 来指定基数；同时还可以使用前缀 `0x` 表示十六进制数，`0n` 表示十进制数，`0t` 表示八进制数，`0b` 表示二进制数。还可以使用 `.format ((Show Number Formats)` 来查看一个数字的多种进制表示。
+
+--
+
+### 符号
+
+总的来说，符号在两种不同的表达式处理器中表示的内容不同，符号以字母、下划线(`_`)、问号(`?`)或者 dollar 符号(`$`)开头。
+
+- MASM 中，符号表示的都是地址，可以是全局变量地址、局部变量地址、函数地址、模块地址，总之都是地址。
+- C++ 中，符号表示的是它相应的数据类型，比如整型、结构体、函数指针等 C++ 中的数据类型。
+
+<!-- .element style="font-size:0.6em;"-->
+
+---
+
+## 别名 (Aliases)
+
+在 WinDBG 命令中，对于一些可能反复输入的较长的指令，我们可以为他们取别名。别名由别名名字(alias name)和别名等价式(alias equivalent)两部分组成，WinDBG 支持三种别名：
+
+- 用户自定义别名。
+- 固定别名：`$u0` - `$u9`。
+- 调试器自动设置的别名。
+
+--
+
+### 用户自定义别名
+
+类似我们编程定义变量并赋值一样，自己定义别名名称并同时设置好别名等价式即可。使用 `as` 或者 `aS` 设置别名，`ad` 删除别名，`al` 列出已经定义的别名。
+
+- 别名名称应该是一个不包含空白字符的字符串。
+- 别名等价式可以是任意字符串，比如内存值、表达式、某文件的内容等等。
+
+<!-- .element style="font-size:0.6em;"-->
+
+--
+
+### 固定别名
+
+固定别名共有 10 个：`$u0` - `$u9`。固定别名的等价式应该是不包含回车的任意字符串。使用 `r` 命令来定义固定别名。
+
+--
+
+### 调试器自动设置的别名
+
+| 别名名称                  | 别名等价式                                                                                               |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `$ntnsym`                 | NT 符号在系统原生架构中对应的模块，一般等于 `ntdll` or `nt`。                                            |
+| `$ntwsym`                 | 在 WOW64 上进行 32 位调试时，NT 符号在系统原生架构中对应的模块，一般为 `ntdll` 或者其他 32 位的`ntdll`。 |
+| `$ntsym`                  | 根据当前机器模式，找到 NT 符号对应的模块。一般与 `$ntnsym` 一致。                                        |
+| `$CurrentDumpFile`        | 调试器最后加载的 dump 文件名。                                                                           |
+| `$CurrentDumpPath`        | 调试器最后加载的 dump 文件所在路径。                                                                     |
+| `$CurrentDumpArchiveFile` | 调试器最后加载的 CAB 文件名。                                                                            |
+| `$CurrentDumpArchivePath` | 调试器最后加载的 CAB 文件所在路径。                                                                      |
+
+<!-- .element style="font-size:0.6em;"-->
+
+--
+
+### 用法
+
+别名在执行时为被自动替换为其等价式，但是别名比如和其他命令文本用空格、分号或者引号隔开。如果必须和别的命令文本连起来使用，则需要用 `${}` 这种形式展开。
+
+```dbgcmd
+aS /x myAlias 5 + 1; .block{.echo myAlias}
+```
+
+---
+
+## 调试脚本
+
+脚本是一系列的调试命令组合而成的文本文件，通过调试脚本，用户实现自动化的调试和修改程序执行流程。
+
+| 命令    | 文件名包含分号 | 与其他命令相连 | 缩短命令为一行 | 允许传递参数 |
+| ------- | -------------- | -------------- | -------------- | ------------ |
+| `$<`    | 是             | 否             | 否             | 否           |
+| `$><`   | 是             | 否             | 是             | 否           |
+| `$$<`   | 否             | 是             | 否             | 否           |
+| `$$><`  | 否             | 是             | 是             | 否           |
+| `$$>a<` | 否             | 是             | 是             | 是           |
+
+<!-- .element style="font-size:0.6em;"-->
+
+--
+
+### 调试命令编程基本元素
+
+调试脚本由[控制流指令](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/control-flow-tokens)以及[调试命令](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-commands)组成，控制流指令相当于其他高级语言中的控制语句，比如 `.if` / `.while` / `.for` 等等，代码块使用 `{}` 包裹，如果单纯的想要构建一个代码块且不适用任何控制语句，那么需要用 `.block{}` 的形式。脚本中可以使用别名、[伪寄存器](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/pseudo-register-syntax)等来作为局部变量，还可以加入注释 `$$` 开头即可。
+
+--
+
+### 语法规则
+
+默认情况下调试脚本采用 MASM 的语法规则，如果要加入 C++ 相关内容，则使用 `@@c++()` 语法。字符串比较的操作使用 MASM 中的 `$scmp` / `$sicmp` / `$spat` 等函数实现，具体函数说明参考[官方文档](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/masm-numbers-and-operators)。
+
+--
+
+### 脚本示例
+
+```dbgcmd
+.foreach (value {dd 61000 L4})
+{
+   as /x ${/v:myAlias} value + 1
+   .block{.echo value myAlias}
+}
+
+ad myAlias
+```
+
+---
+
+### 演示
+
+保存文件过程中修改内容。
+
+```dbgcmd
+as /mu content poi(esp+0n24)
+.block{.if($scmp("${content}","123456")==0){ezu poi(esp+0n24) "hacked";}.else{.echo content}}
+g
+```
+
+---
+
+## Q & A

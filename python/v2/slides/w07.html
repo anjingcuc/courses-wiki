@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W7 数据可视化与虚拟环境 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 07 / 16</span>
+    <span class="th">数据处理与可视化 · 虚拟环境</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m3/">M3</a> <a href="../m4/">M4</a>
+    <a href="../../">课程主页</a>
+    <a href="w06.html">← 上周</a>
+    <a class="cur" href="w07.html">本周</a>
+    <a href="w08.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W7 数据可视化与虚拟环境">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 7 周（100 分钟 · L15–L16）</div>
+    <h1 class="rise">让数据说话<br><span class="grad">再让项目互相不打架</span></h1>
+    <p class="sub rise">前两周拿回来的数据还是「一堆数字」——本周用 Pandas 清洗统计、Matplotlib 画图，
+    走完从原始数据到可视化结论的完整链路；然后解决 AI 项目最痛的问题：依赖冲突。</p>
+    <div class="meta rise">
+      <span>M3 收官 + M4 开篇</span><span>微课 V027–V030</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>Pandas 模型</b></td><td>DataFrame=代码里的 Excel；read_csv/head/info/describe</td></tr>
+      <tr><td>10–22</td><td><b>筛选与统计</b></td><td>df[df[列]>值]；groupby+mean；sort_values——每步打印看变化</td></tr>
+      <tr><td>22–34</td><td><b>动手练习</b></td><td>运行场：清洗→统计→ASCII 柱状图（Pandas 思维先行版）</td></tr>
+      <tr><td>34–46</td><td><b>Matplotlib</b></td><td>bar 对比 / plot 趋势；标题轴标保存；图表是为了让数据说话</td></tr>
+      <tr><td>46–58</td><td><b>全链路演示</b></td><td>天气 CSV → groupby 均温 → 柱状图 + 一周趋势折线</td></tr>
+      <tr><td>58–70</td><td><b>依赖灾难现场</b></td><td>全局环境装 requests==2.20 再装 >=2.28——当场冲突报错</td></tr>
+      <tr><td>70–85</td><td><b>虚拟环境</b></td><td>venv 创建/激活/独立安装；requirements.txt 锁定与还原</td></tr>
+      <tr><td>85–95</td><td><b>镜像与生态</b></td><td>清华源 -i 加速；pipenv/conda 知道有得选</td></tr>
+      <tr><td>95–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">依赖灾难演示一定要现场复现——比讲十遍概念都有效。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>Pandas：代码里的 Excel</h2>
+    <div class="flowline">
+      <div class="node">读取<br><span class="small">read_csv</span></div><span class="arrow">→</span>
+      <div class="node">了解<br><span class="small">head / info / describe</span></div><span class="arrow">→</span>
+      <div class="node hot">筛选统计<br><span class="small">条件 / groupby</span></div><span class="arrow">→</span>
+      <div class="node">可视化<br><span class="small">Matplotlib</span></div>
+    </div>
+    <pre class="rise"><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.<span class="f">read_csv</span>(<span class="s">"weather.csv"</span>)          <span class="c"># DataFrame ≈ 一张表</span>
+
+df[df[<span class="s">"temperature"</span>] &gt; <span class="n">30</span>]               <span class="c"># 条件筛选：高温天</span>
+df.<span class="f">groupby</span>(<span class="s">"city"</span>)[<span class="s">"temperature"</span>].<span class="f">mean</span>()    <span class="c"># 分组统计：各城市均温</span>
+df.<span class="f">sort_values</span>(<span class="s">"temperature"</span>, ascending=<span class="k">False</span>) <span class="c"># 排序</span></code></pre>
+    <p class="small frag">方法极多不用背——<b>能描述要什么、能看懂 AI 生成的链式调用</b>即可。</p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：数据全链路（纯 Python 版）</h2>
+    <span class="lab">交互 · 浏览器内运行（Pandas 思维的先行版）</span>
+    <p class="rise">浏览器运行场装不了 Pandas，但「清洗 → 统计 → 结论」的思路先跑通：</p>
+    <div class="py-playground" data-py-title="清洗 → 统计 → ASCII 可视化">
+      <textarea>import json
+
+movies = json.loads('''
+[{"title": "流浪地球2", "score": 8.3}, {"title": "满江红", "score": 7.0},
+ {"title": "奥本海默", "score": 8.9}, {"title": "数据缺失", "score": null},
+ {"title": "封神", "score": 7.8}, {"title": "消失的她", "score": 6.4}]
+''')
+
+# 1) 清洗（Pandas 里叫 dropna）
+clean = [m for m in movies if m["score"] is not None]
+
+# 2) 统计：平均分 + 分级计数（Pandas 里叫 groupby）
+avg = sum(m["score"] for m in clean) / len(clean)
+buckets = {"佳作(>=8)": 0, "良好(7-8)": 0, "一般(<7)": 0}
+for m in clean:
+    if m["score"] >= 8: buckets["佳作(>=8)"] += 1
+    elif m["score"] >= 7: buckets["良好(7-8)"] += 1
+    else: buckets["一般(<7)"] += 1
+
+print(f"有效 {len(clean)} 部，平均分 {avg:.1f}")
+for name, n in buckets.items():
+    print(f"  {name:　<8} {'█' * (n * 3)}")
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Matplotlib：一图胜千数</h2>
+    <pre class="rise"><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
+
+fig, ax = plt.<span class="f">subplots</span>(figsize=(<span class="n">8</span>, <span class="n">4</span>))
+ax.<span class="f">bar</span>(cities, avg_temps)             <span class="c"># 柱状图：对比</span>
+ax.<span class="f">plot</span>(dates, temps)                <span class="c"># 折线图：趋势</span>
+ax.<span class="f">set_title</span>(<span class="s">"各城市平均温度"</span>)
+ax.<span class="f">set_ylabel</span>(<span class="s">"℃"</span>)
+fig.<span class="f">savefig</span>(<span class="s">"temp.png"</span>, dpi=<span class="n">150</span>)   <span class="c"># 保存图片</span></code></pre>
+    <ul>
+      <li class="frag">选择：柱状图看<b>对比</b>、折线图看<b>趋势</b>、饼图看<b>占比</b></li>
+      <li class="frag">课堂演示：天气 CSV → groupby 均温 → 柱状图 + 一周趋势折线图</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>现场制造一次「依赖灾难」</h2>
+    <p class="rise">演示：全局环境里装 <code>requests==2.20</code>，再装一个要求 <code>requests>=2.28</code> 的库——</p>
+    <pre class="rise"><code>ERROR: pip's dependency resolver... requests 2.20 has requirement...,
+but you'll have requests 2.31 which is incompatible.</code></pre>
+    <div class="frag scard" style="border-left:5px solid #dc2626;">
+      <b>为什么会这样？</b>所有项目共用一个全局环境——A 项目要 torch 2.1，B 项目要 torch 2.5，
+      装在一起必有一个崩。AI 时代更严重：<b>每次问 AI 安装命令，它推荐的版本还可能不一样。</b>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #047857;">
+      <b>解法：虚拟环境</b>——每个项目一间独立实验室，各有各的试剂柜。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>虚拟环境标准流程</h2>
+    <div class="flowline">
+      <div class="node">python -m venv venv<br><span class="small">创建</span></div><span class="arrow">→</span>
+      <div class="node hot">venv\Scripts\activate<br><span class="small">激活（Windows）</span></div><span class="arrow">→</span>
+      <div class="node">pip install ...<br><span class="small">独立安装</span></div><span class="arrow">→</span>
+      <div class="node">pip freeze &gt; requirements.txt<br><span class="small">导出锁定</span></div>
+    </div>
+    <ul>
+      <li class="frag">换机 / 协作：队友 clone 后 <code>pip install -r requirements.txt</code>，依赖原样到位</li>
+      <li class="frag"><code>.gitignore</code> 要忽略 <code>venv/</code> 文件夹本身</li>
+      <li class="frag">国内加速：<code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名</code></li>
+      <li class="frag">工具生态：pipenv（Pipfile.lock 锁定哈希）、conda（数据科学向）——<b>先掌握 venv，知道有别的选</b></li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W7 可视化与虚拟环境 · 概念检查",
+        "questions": [
+          {
+            "q": "Pandas 中「按年份统计平均评分」，最贴切的一行是？",
+            "opts": ["df.sort_values('year')", "df.groupby('year')['score'].mean()", "df['year'].count()", "df.merge(df)"],
+            "a": 1,
+            "explain": "groupby(分组键)[值列].聚合() 是最常用的统计句式；sort_values 只排序不汇总。"
+          },
+          {
+            "q": "requirements.txt 的价值是？",
+            "opts": ["让代码跑得更快", "换机/协作时一键还原依赖", "自动修 bug", "替代虚拟环境"],
+            "a": 1,
+            "explain": "锁定依赖清单，pip install -r requirements.txt 即可复现「我电脑上能跑」的环境。"
+          },
+          {
+            "q": "看到各城市温度对比，最合适的图表是？",
+            "opts": ["折线图", "饼图", "柱状图", "散点图"],
+            "a": 2,
+            "explain": "对比用柱状图；趋势用折线图；占比用饼图。图表是为了让数据说话，不是为了好看。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V027-Pandas数据处理速通/">V027 Pandas</a> ·
+          <a href="../scripts/V028-Matplotlib可视化基础/">V028 Matplotlib</a> ·
+          <a href="../scripts/V029-虚拟环境与pipenv工作流/">V029 虚拟环境</a> ·
+          <a href="../scripts/V030-conda与依赖管理/">V030 conda</a></li>
+        <li class="frag">练习：给项目建 venv，装 requests + openai，导出 requirements.txt</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W8 代码质量与模块化</b>
+      AI 生成的代码为什么不能直接用——五类常见问题与审查方法；把单文件巨石拆成专业项目结构。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w08.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m3/">M3</a> · <a href="../m4/">M4 模块页</a> · <a href="../notes/15.2-数据处理与可视化-Pandas数据处理/">经典笔记 15.2 Pandas</a> · <a href="../notes/10.5-第三方库与虚拟环境-虚拟环境管理/">10.5 虚拟环境</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

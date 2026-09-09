@@ -1,0 +1,989 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/8.5-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95-%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>8.5 文件与目录——目录操作 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#85" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8.5 文件与目录——目录操作
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-0000-0312" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引入与 os 库概览（约 00:00 - 03:12）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0312-0800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例功能与效果演示（约 03:12 - 08:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listdir-0804-1945" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用 listdir + 递归遍历目录（约 08:04 - 19:45）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2145-2445" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取文件大小并排序（约 21:45 - 24:45）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2445-2905" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重命名并移动（约 24:45 - 29:05）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oswalk-2907-3345" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二种遍历方式：os.walk（约 29:07 - 33:45）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pathlib-3345-3943" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pathlib：面向对象的路径操作（约 33:45 - 39:43）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="85">8.5 文件与目录——目录操作<a class="headerlink" href="#85" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本节课讲解非常实用的目录操作。老师以"批量转码课程录像并上传 B 站"的日常需求引入，介绍用 <code>os</code> 标准库实现目录遍历、创建目录、获取文件信息、删除与重命名等操作。课上通过一个完整示例——输入源目录和目标目录，把源目录下所有文件（含子目录）按体积从大到小排序、加序号重命名并移动到新目录——逐步讲解了 <code>os.listdir</code> 配合递归的遍历写法、<code>os.path.join</code> 的路径拼接、<code>os.path.exists</code> / <code>os.mkdir</code> / <code>os.stat</code> / <code>os.path.basename</code> / <code>os.path.splitext</code> / <code>os.rename</code> 等 API。随后介绍了更高效的 <code>os.walk</code> 遍历方式，最后用 Python 3.4 引入的 <code>pathlib</code>（Path 对象）重写同一示例，展示其简洁性。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="os-0000-0312">引入与 os 库概览（约 00:00 - 03:12）<a class="headerlink" href="#os-0000-0312" title="Permanent link">&para;</a></h3>
+<ul>
+<li>实际场景：每次课程回放都要遍历录像文件、批量转码成符合 B 站标准的格式再上传——遍历目录是最常见的需求之一。</li>
+<li>Python 提供大量内置**标准库**，最基础的之一是 <code>os</code>（Operating System），负责与操作系统相关的操作。</li>
+<li>使用前必须 <code>import os</code>。常见功能：目录遍历（两种方式）、创建文件夹、获取文件信息（大小、创建日期等）、删除文件/目录、重命名（即剪切/移动，macOS 下叫 rename）、路径字符串处理。默认参数细节建议直接看文档。</li>
+</ul>
+<h3 id="0312-0800">示例功能与效果演示（约 03:12 - 08:00）<a class="headerlink" href="#0312-0800" title="Permanent link">&para;</a></h3>
+<ul>
+<li>示例：输入要遍历的目录路径和一个新目录名，程序把源目录（含子目录）下所有文件按**体积从大到小**排序，加序号前缀重命名后放进新目录。</li>
+<li>应用拓展：遍历照片文件夹，对每个文件算**哈希值**，哈希一致即内容重复，可自动找出并删除重复文件——攒了十几年照片人工去重不现实，用 Python 很简单。（提示：作业涉及遍历，但不是排序这个。）</li>
+</ul>
+<h3 id="listdir-0804-1945">用 listdir + 递归遍历目录（约 08:04 - 19:45）<a class="headerlink" href="#listdir-0804-1945" title="Permanent link">&para;</a></h3>
+<ul>
+<li>自定义函数 <code>walk_dir(path)</code> 遍历目录：</li>
+<li><code>os.listdir(path)</code>：接收目录路径，返回该目录下所有文件和文件夹名组成的**列表**；但它**不会深入子目录**，只列出当前层。</li>
+<li><strong>原始字符串</strong>：写 Windows 路径时用 <code>r'...'</code> 避免反斜杠转义；注意**原始字符串不能以奇数个反斜杠结尾**（2 个可以，3 个不行），这是 Python 的特点，记住即可。</li>
+<li><strong>路径拼接</strong>：必须用 <code>os.path.join(dir, filename)</code>，不要自己用字符串加 <code>'\\'</code>：<ul>
+<li>Windows 路径分隔符是反斜杠，Linux 是斜杠，手写拼接的代码在 Linux 下跑不了，Python 程序本应跨平台可移植；</li>
+<li><code>os.path.join</code> 自动判断操作系统加分隔符，还能避免用户输入路径末尾已带反斜杠导致的重复分隔符问题。</li>
+</ul>
+</li>
+<li><code>os.path.isdir(path)</code>：判断路径是目录还是文件（返回 True/False）。</li>
+<li><strong>递归逻辑</strong>：遇到子目录就递归调用 <code>walk_dir</code> 并把结果 <code>+=</code> 拼接到 <code>result</code> 列表；遇到文件直接 <code>append</code>。最终 <code>result</code> 里只有文件、没有目录。递归效率不高（之前讲过），但逻辑清晰。</li>
+<li>用 <code>input</code> 获取要遍历的目录和输出目录。</li>
+<li><code>os.path.exists(path)</code>：判断路径（文件或目录）是否存在；不存在时用 <code>os.mkdir</code> 创建目录（存在则跳过不重复创建）。</li>
+</ul>
+<h3 id="2145-2445">获取文件大小并排序（约 21:45 - 24:45）<a class="headerlink" href="#2145-2445" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>os.stat(path)</code>：传入路径返回一个对象，内含大小、创建时间、权限等多种信息；取大小属性即可。</li>
+<li>把文件列表转成**字典**：key 是文件路径，value 是文件大小。</li>
+<li>用之前"数据类型进阶"学过的方法按字典的 value 排序（不记得可回看录像）。</li>
+<li>老师的写代码习惯：每写一段就 <code>print</code> 一下验证前面是否成功，基本不需要专门调试。</li>
+</ul>
+<h3 id="2445-2905">重命名并移动（约 24:45 - 29:05）<a class="headerlink" href="#2445-2905" title="Permanent link">&para;</a></h3>
+<ul>
+<li>初始化编号 1，每处理一个文件编号加 1（最大的文件是 1 号）。</li>
+<li><code>os.path.basename(path)</code>：取路径最后一部分（文件名含扩展名，如 <code>1.txt</code>），去掉前面所有目录。</li>
+<li><code>os.path.splitext(basename)</code>：split + extension，把文件名拆成元组 <code>('1', '.txt')</code>——前者赋给 <code>name</code>、后者赋给 <code>ext</code>，以便在中间插入序号。</li>
+<li>新文件名 = <code>编号_原文件名 + 扩展名</code>，再用 <code>os.path.join</code> 与新目录拼成完整目标路径，最后 <code>os.rename(原路径, 新路径)</code> 完成移动（rename 即剪切）。</li>
+</ul>
+<h3 id="oswalk-2907-3345">第二种遍历方式：os.walk（约 29:07 - 33:45）<a class="headerlink" href="#oswalk-2907-3345" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>os.walk(path)</code>：返回遍历到的每一级目录本身、其子目录列表（dirs）、其文件列表（files），并自动向下层下探，无需手写递归，效率更高。</li>
+<li>演示打印每一轮的 <code>root, dirs, files</code>：第一轮 root 是 backup（2 个子目录、无文件），随后分别以子目录为 root 继续下探，直到没有可遍历内容结束。</li>
+<li>用法：每轮遍历 <code>files</code> 列表，把文件名与当前 <code>root</code> 用 <code>os.path.join</code> 拼接后 <code>append</code> 进结果列表即可。</li>
+</ul>
+<h3 id="pathlib-3345-3943">pathlib：面向对象的路径操作（约 33:45 - 39:43）<a class="headerlink" href="#pathlib-3345-3943" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>os.path</code> 从 Python 2 时代就有，但它是在**路径字符串**基础上做拼接等操作，没有"路径"这个对象，用起来繁琐。</li>
+<li>Python 3.4 引入 <strong><code>pathlib</code></strong>，提供 <code>Path</code> 对象（类）：把路径字符串通过构造函数（类比 C++ 构造函数）转成 Path 对象，之后对路径的所有操作都直接操作这个对象。</li>
+<li>对应功能：两种遍历、创建文件夹、统计文件信息、删除文件/目录、重命名、拼接路径。拼接路径直接用**斜杠运算符 <code>/</code>**，不用 <code>os.path.join</code>。</li>
+<li>用 pathlib 重写同一示例：</li>
+<li><code>Path(目录).glob(...)</code> 遍历目录下所有文件（返回列表，<strong>既含文件也含文件夹</strong>，需过滤掉文件夹只留文件）；</li>
+<li><code>Path(新目录).mkdir(exist_ok=True)</code>：把"目录是否已存在"的判断隐含到参数里，存在也不报错；</li>
+<li>文件名部分直接用属性：<code>.stem</code>（不含路径、不含后缀的纯文件名）、<code>.suffix</code>（后缀），不再用 <code>basename</code> + <code>splitext</code>；</li>
+<li>用 <code>/</code> 运算符拼接输出目录与新文件名，再移动——代码大幅简化。</li>
+<li>为什么不一上来就教 pathlib：现在仍是新老交替的年代，很多开源项目还在用 <code>os.path</code>，<strong>不光要会写代码，还得能看懂别人的代码</strong>——这是进阶的基本要求。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>完整示例（os 版）：<code>walk_dir</code> 函数用 <code>os.listdir</code> + 递归遍历 backup 目录的所有文件 → <code>os.path.exists</code> / <code>os.mkdir</code> 准备输出目录 → <code>os.stat</code> 取文件大小构建字典 → 按 value 从大到小排序 → 循环中用 <code>basename</code>、<code>splitext</code> 组装 <code>1_xxx.txt</code> 式新文件名 → <code>os.rename</code> 移动。运行后 new 目录里文件按大小排序并重新编号。</li>
+<li>踩坑演示：原始字符串路径末尾多写一个反斜杠导致报错，引出"原始字符串不能以奇数个反斜杠结尾"的规则；缩进多一个空格把自己坑了（Python 缩进严格）。</li>
+<li><code>os.walk</code> 演示：逐轮打印 <code>root / dirs / files</code>，展示自动下探子目录的过程，并改写成收集所有文件路径的代码。</li>
+<li>pathlib 版示例：同一功能用 <code>Path.glob</code>、<code>.stem</code>、<code>.suffix</code>、<code>/</code> 拼接、<code>mkdir(exist_ok=True)</code> 重写，明显更简洁。</li>
+</ol>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>os.listdir</code> 只列当前层、不进子目录；要遍历整棵树需配合**递归**，或直接用 <code>os.walk</code>（效率更高、自动下探）。</li>
+<li>路径拼接永远用 <code>os.path.join</code>（或 pathlib 的 <code>/</code>），不要手写 <code>'\\'</code>：跨平台分隔符不同、还可能重复分隔符。</li>
+<li>Windows 路径用原始字符串 <code>r'...'</code> 防转义；原始字符串不能以奇数个反斜杠结尾。</li>
+<li><code>os.rename</code> 同时承担重命名与移动（剪切）功能；<code>os.stat</code> 返回的对象含大小、时间、权限等多种信息。</li>
+<li>pathlib（3.4+）是当前**最推荐**的写法，但 <code>os.path</code> 在老项目中仍大量存在，两种都要看得懂。</li>
+<li>递归遍历返回结果里只有文件没有目录——目录被"展开"处理掉了，这个设计要想清楚。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>用到大量前置知识：函数与递归（讲函数时学过）、字典及其按 value 排序（数据类型进阶）、序列与列表操作、字符串的原始字符串记法（讲字符串时）。</li>
+<li>标准库 <code>os</code> 的使用为第 9 章系统介绍 Python 标准库/第三方库预热；老师明确说"这涉及到下节课的一部分内容"。</li>
+<li>遍历目录 + 读文件头是 8.6 节作业"猫鼠游戏"的直接技术基础；去重文件的哈希思路预告了后续"更多酷的内容"。</li>
+<li>遍历 + 排序 + 重命名的完整流程是 Python 作为"脚本语言"处理日常事务（整理照片、批量转码）的典型场景。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

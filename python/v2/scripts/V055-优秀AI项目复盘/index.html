@@ -1,0 +1,1196 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/scripts/V055-%E4%BC%98%E7%A7%80AI%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>V055 优秀 AI 项目复盘 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v055-ai" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V055 优秀 AI 项目复盘
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视频信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐字稿
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐字稿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-035-hookm6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:00-0:35] 开场 hook：M6 全旅程回顾 + 灵魂三问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#035-215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0:35-2:15] 维度一：技术深度——架构决定上限
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-355" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2:15-3:55] 维度二：工程素养——细节决定下限
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#355-545-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3:55-5:45] AI 生成代码的五个典型陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#545-715" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [5:45-7:15] 全班经验：六条可迁移的项目法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#715-745" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:15-7:45] 小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#745-810" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [7:45-8:10] 提问彩蛋：把复盘标准用到自己代码上
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#810-825" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [8:10-8:25] 引出下集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演示操作清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="演示操作清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心展示物
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        录制注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v055-ai">V055 优秀 AI 项目复盘<a class="headerlink" href="#v055-ai" title="Permanent link">&para;</a></h1>
+<h2 id="_1">视频信息<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号</td>
+<td>V055</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>优秀 AI 项目复盘</td>
+</tr>
+<tr>
+<td>目标时长</td>
+<td>8 min</td>
+</tr>
+<tr>
+<td>对应课次</td>
+<td>L44 项目复盘与优秀代码审查</td>
+</tr>
+<tr>
+<td>前置微课</td>
+<td>V054 应用部署基础概念</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>从全班项目中提炼"什么决定一个 AI 项目的成败"——技术深度、工程素养、AI 协作意识三个维度的真实复盘</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">逐字稿<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="000-035-hookm6">[0:00-0:35] 开场 hook：M6 全旅程回顾 + 灵魂三问<a class="headerlink" href="#000-035-hookm6" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示 M6 里程碑时间线：L31 选题 → L32 架构 → L33-L34 后端冲刺 → L35-L36 前端冲刺 → L37-L38 测试 → L39 部署 → L40-L41 打磨 → L42-L43 答辩 → L44 复盘。每一步用图标标注关键产出。然后切到答辩现场照片（或截图），浮现字幕："14 节课 · 从零到一个完整的 AI 应用"。最后弹出答辩灵魂三问："这行代码干什么的？""去掉 AI 你能独立写吗？""你最自豪的功能怎么实现的？"</p>
+<p><strong>【旁白】</strong> 14 节课前，你选了题、分了组，可能心里还在打鼓——"我真的能做一个完整应用吗？"然后你经历了需求拆解、架构设计、后端、前端、联调、测试、部署、答辩。你做到了。今天最后一节项目课，我们回头看。看看全班最优秀的项目长什么样，看看你的项目还有哪些可以提升的地方。看完这 8 分钟，你会知道——决定一个 AI 项目成败的，不是技术数量的堆砌，而是几个关键的选择。</p>
+<h3 id="035-215">[0:35-2:15] 维度一：技术深度——架构决定上限<a class="headerlink" href="#035-215" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 标题"优秀项目剖析 A：技术深度"。先展示一个优秀项目的目录树：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ai_customer_service/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── api/            # FastAPI 路由层
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── ai_core/        # AI 核心逻辑（RAG / 对话管理）
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── data/           # 知识库文档
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── static/         # 前端静态资源
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── .env            # 环境变量
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── config.py       # 集中配置
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└── main.py         # 入口
+</span></code></pre></div>
+<p>用箭头标注"api/ 和 ai_core/ 分离"，旁边浮现注释："换模型只改 ai_core/，API 层不动"。然后展示 <code>ai_core/rag.py</code> 的核心代码片段（切分+检索+生成），高亮"重叠窗口切分"和"来源标注"两处。</p>
+<p><strong>【旁白】</strong> 先看第一个维度——技术深度。这是全班答辩中技术最亮的一个项目：AI 客服机器人。</p>
+<p>第一眼看什么？项目结构。注意它的目录划分——<code>api/</code> 放路由，<code>ai_core/</code> 放 AI 逻辑，<code>data/</code> 放知识库文档。这叫"关注点分离"。好处是什么？如果以后要把 DeepSeek 换成 Kimi，你只改 <code>ai_core/</code>，API 层一个字都不用动。很多组把所有代码堆在一个文件里——改一个功能，半个项目都要重测。</p>
+<p>再看它的 RAG 实现。亮点在文本切分——它不是按固定长度粗暴切断，而是用了"重叠窗口"，每段之间保留一段重复。为什么？避免一句话被切断后，上下文丢失。另一个亮点是检索结果带了来源标注——回答末尾注明"参考自售后文档第 3 条"。用户就知道，这个回答是有依据的，不是 AI 瞎编的。</p>
+<p>技术深度不是说用了多少个 API，而是——你的架构能不能支撑未来的扩展，你的 AI 核心逻辑是否经得起推敲。</p>
+<h3 id="215-355">[2:15-3:55] 维度二：工程素养——细节决定下限<a class="headerlink" href="#215-355" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 标题"优秀项目剖析 B：工程素养"。展示另一个优秀项目的几个亮点片段。片段一：函数定义 + docstring（<code>def retrieve_relevant(query, top_k=3): """检索最相关的文档片段"""</code>）。片段二：自定义异常类（<code>class DocumentParseError(Exception): pass</code>）和 API 层统一异常处理。片段三：<code>.env.example</code> 文件，每行都有注释说明。片段四：README 截图——有功能截图、安装步骤、技术栈表格。四个片段并排展示，字幕标注"命名 / 异常 / 配置 / 文档"。</p>
+<p><strong>【旁白】</strong> 再看第二个维度——工程素养。这个项目功能跟上一个差不多，但它打动评委的是代码的"细节功夫"。</p>
+<p>看函数命名——<code>load_and_split_documents</code>、<code>retrieve_relevant</code>、<code>generate_answer</code>，一看名字就知道干什么。每个函数都有 docstring，没有超过 30 行的巨型函数。这不是炫技，是让队友能看懂、让自己三个月后还能维护。</p>
+<p>再看异常处理。大多数组的代码里只有一个 <code>except Exception as e</code> 打天下。这个组定义了自定义异常——<code>DocumentParseError</code>、<code>RetrievalError</code>，区分了文档解析失败、检索出错、API 超时等不同情况。用户看到的是友好提示，不是一堆堆栈跟踪。</p>
+<p>配置管理也很规范——所有可配置项集中在 <code>config.py</code>，<code>.env.example</code> 每一行都有注释。README 有功能截图、精确到每一条命令的安装步骤。</p>
+<p><strong>记住这句话</strong>：AI 能帮你写代码，但 AI 不会自动帮你写好代码。工程素养，永远是人的责任。功能相同的情况下，工程素养决定了你的项目能走多远。</p>
+<h3 id="355-545-ai">[3:55-5:45] AI 生成代码的五个典型陷阱<a class="headerlink" href="#355-545-ai" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示"AI 生成代码的 5 个典型模式"，用 5 个卡片并排。每张卡片左边是"AI 生成的问题代码"，右边是"人工修正后的代码"。逐张翻出（或逐张高亮）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>典型模式</th>
+<th>问题</th>
+<th>人工修正</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>结构清晰但异常缺失</td>
+<td>只写 <code>except Exception</code></td>
+<td>区分不同错误类型</td>
+</tr>
+<tr>
+<td>2</td>
+<td>倾向过度设计</td>
+<td>简单 CRUD 加了 Redis 缓存</td>
+<td>判断"真的需要吗？"</td>
+</tr>
+<tr>
+<td>3</td>
+<td>API Key 硬编码</td>
+<td><code>api_key = "sk-xxx"</code> 写在代码里</td>
+<td>改为环境变量 <code>os.environ</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>前端配色不稳定</td>
+<td>每次 AI 生成的颜色都不一样</td>
+<td>定义 CSS 变量统一管理</td>
+</tr>
+<tr>
+<td>5</td>
+<td>不理解业务上下文</td>
+<td>AI 按通用模式写，不考虑你的实际场景</td>
+<td>根据业务逻辑手动调整</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【旁白】</strong> 做完这个项目，你应该对 AI 生成代码的特点有了直觉。我总结了五个典型陷阱，下次审查 AI 代码时，重点看这几个地方。</p>
+<p>第一，异常处理缺失。AI 写的代码结构通常没问题，但 <code>try/except</code> 往往只有一个宽泛的 <code>except Exception</code>。你要补的是——区分网络超时、数据解析错误、用户输入非法这些不同情况。</p>
+<p>第二，过度设计。AI 有时候会"热心过头"——一个简单的增删改查，它给你加了一层 Redis 缓存、一个消息队列。你得判断：这个功能真的需要这些吗？不需要就删掉。</p>
+<p>第三，最常见的问题——API Key 硬编码。AI 不知道你的项目结构，经常把 Key 直接写在代码里。你必须改成环境变量，通过 <code>os.environ</code> 读取。答辩时好几个组因为这个被扣分。</p>
+<p>第四，前端配色不稳定。你让 AI 生成三次前端，它给你三种不同的配色方案。解决方法很简单——定义 CSS 变量，把颜色集中管理。</p>
+<p>第五，AI 不理解你的业务上下文。它按通用模式写代码，但你的项目有特定的业务逻辑。这部分必须人工调整。</p>
+<p>识别这些模式，不是让你排斥 AI——是让你更高效地审查 AI 代码。知道它容易在哪犯错，就知道该重点检查哪里。</p>
+<h3 id="545-715">[5:45-7:15] 全班经验：六条可迁移的项目法则<a class="headerlink" href="#545-715" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> PPT 展示"全班经验清单"，六条逐条浮现，每条配一个图标：</p>
+<ol>
+<li>🔍 需求拆解比写代码更重要</li>
+<li>✅ 先做 MVP 再迭代</li>
+<li>🔧 前后端联调是最花时间的</li>
+<li>🛡️ 异常处理是好项目和烂项目的分水岭</li>
+<li>📝 Git commit 是后悔药</li>
+<li>🤝 队友分工要早确定</li>
+</ol>
+<p>字幕在底部浮现："这些经验不只适用于 Python——它们是通用软件工程经验。"</p>
+<p><strong>【旁白】</strong> 最后，全班同学一起总结了这 14 节课最重要的经验。我精选六条分享给你。</p>
+<p>第一条——需求拆解比写代码更重要。选题和模块划分做好，后面顺风顺水；没想清楚就开写，后面到处救火。L31 和 L32 花的时间，是整个项目里回报率最高的投资。</p>
+<p>第二条——先做 MVP 再迭代。先跑通核心功能，哪怕只有一个对话接口能返回结果。然后一点一点加功能。很多组想一口气做完所有功能，结果一个都没跑通。</p>
+<p>第三条——前后端联调是最花时间的。CORS 报错、数据格式不匹配、异步处理……这里坑最多。给联调预留足够的时间。</p>
+<p>第四条——异常处理是好项目和烂项目的分水岭。刚才那个工程素养最好的项目就是最好的例子。</p>
+<p>第五条——Git commit 是后悔药。大改之前先 commit，出了问题随时回退。好几组没 commit 就让 AI 大改，结果改坏了回不去。</p>
+<p>第六条——队友分工要早确定。谁做后端、谁做前端、谁做测试，第一天就商量好。</p>
+<p>这些经验不只适用于 Python 项目。以后你做任何软件项目，都会用到。</p>
+<h3 id="715-745">[7:15-7:45] 小结<a class="headerlink" href="#715-745" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条出现："技术深度看架构 · 工程素养看细节 · AI 代码必须人工审查 · 经验比技术更可迁移"。最后弹出一句加粗的话："交付能力 &gt; 技术数量"。</p>
+<p><strong>【旁白】</strong> 总结一下。一个优秀的 AI 项目，三个维度缺一不可：技术深度决定上限，看的是架构设计和核心逻辑；工程素养决定下限，看的是命名、异常、配置和文档；AI 协作意识看的是——你能不能识别 AI 代码的陷阱并有效修正。记住：能稳定运行的交付，比功能多但 bug 也多的堆砌，有价值得多。</p>
+<h3 id="745-810">[7:45-8:10] 提问彩蛋：把复盘标准用到自己代码上<a class="headerlink" href="#745-810" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 字幕条逐条列出三个 prompt："① 我把项目里最长的一个函数贴给你，请从命名、异常处理、函数长度三个维度按'优秀项目'标准打分，并逐条给出修改建议。 ② 请扮演答辩评委，围绕我的 AI 项目追问三个问题：'这行代码干什么的？''去掉 AI 你能独立写吗？''你最自豪的功能怎么实现的？'——我回答后你来点评。 ③ 请出 5 段带有典型问题的'AI 生成代码'（异常缺失、过度设计、Key 硬编码等）让我找茬，我指出问题后你给标准答案。"</p>
+<p><strong>【旁白】</strong> 复盘的价值，在于变成你下次的肌肉记忆。让 AI 当评委、出找茬题，把这集的标准用在你自己的代码上——挑一个 prompt 现在就发。学到多少，不取决于 AI 给了什么，取决于你问得多狠。</p>
+<h3 id="810-825">[8:10-8:25] 引出下集<a class="headerlink" href="#810-825" title="Permanent link">&para;</a></h3>
+<p><strong>【画面】</strong> 下集预告卡片：M7 模块标题"总结与展望"，展示四个微课编号 V056-V059，配文字"从 Python 到 AI 应用的全景图"。</p>
+<p><strong>【旁白】</strong> M6 综合项目实战到这里就结束了。接下来是 M7 总结与展望——四节课，聊 AI 技术生态全景图、进阶技能路线、职业发展，以及最后的课程结业。下集我们看——Python 和 AI 在整个技术生态中的位置在哪。我们下集见。</p>
+<hr />
+<h2 id="_3">演示操作清单<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">核心展示物<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>本集为复盘/概念类微课，演示物以幻灯片要点和代码截图为主，不需要可运行代码。</p>
+<h4 id="1m6">展示物 1：M6 里程碑时间线（开场用）<a class="headerlink" href="#1m6" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gu">## M6 综合项目实战：14 节课全旅程</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>| 课次 | 阶段 | 关键产出 |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>|---|---|---|
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>| L31 | 选题与需求 | 项目提案文档 |
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>| L32 | 架构设计 | 系统架构 + API 定义 |
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>| L33-L34 | 后端冲刺 | FastAPI + AI 核心跑通 |
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>| L35-L36 | 前端冲刺 | 前端页面 + 前后端联调 |
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>| L37-L38 | 测试完善 | Bug Bash + 核心测试 |
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>| L39 | 部署上线 | 部署就绪 + 跨机器运行 |
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>| L40-L41 | 打磨文档 | 代码优化 + README + 协作日志 |
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>| L42-L43 | 答辩展示 | 全班答辩完成 |
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>| L44 | 复盘 | 经验总结 + 优秀代码审查 ← 今天 |
+</span></code></pre></div>
+<h4 id="2">展示物 2：优秀项目目录树（技术深度维度）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ai_customer_service/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── api/                # FastAPI 路由层
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── routes.py       # 路由定义
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   └── exceptions.py   # 统一异常处理
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>├── ai_core/            # AI 核心逻辑
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   ├── rag.py          # RAG 链路（切分→检索→生成）
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   ├── session_manager.py  # 多会话记忆管理
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   └── llm.py          # 大模型调用封装
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>├── data/               # 知识库文档
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>├── static/             # 前端静态资源
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>├── .env.example        # 环境变量模板（带注释）
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├── config.py           # 集中配置管理
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>├── main.py             # 应用入口
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>└── README.md           # 项目文档
+</span></code></pre></div>
+<p><strong>讲解要点</strong>：
+- <code>api/</code> 与 <code>ai_core/</code> 分离 → 换模型只改 <code>ai_core/</code>，API 层不动
+- <code>config.py</code> 集中管理所有可配置项
+- <code>.env.example</code> 提供模板，新人 clone 后立刻知道需要哪些环境变量</p>
+<h4 id="3rag">展示物 3：RAG 核心代码片段（讲解"重叠窗口"和"来源标注"）<a class="headerlink" href="#3rag" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># rag.py 核心片段 —— 展示技术深度的两个亮点</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">split_with_overlap</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;按段落切分，每段之间保留 overlap 个字符的重叠窗口</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="sd">    重叠窗口避免一句话被切断后丢失上下文。</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">])</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">overlap</span>  <span class="c1"># 回退 overlap 个字符</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="k">return</span> <span class="n">chunks</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">retrieve_and_answer</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;检索最相关的文档片段，生成带来源标注的回答&quot;&quot;&quot;</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="c1"># 检索 top_k 个最相关片段</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="n">relevant</span> <span class="o">=</span> <span class="n">retrieve_relevant</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">)</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="c1"># 在 prompt 中要求 AI 标注来源</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;基于以下文档片段回答问题。</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s2">在每个回答末尾，注明引用了哪个片段（片段已编号）。</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s2">文档片段：</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="si">{</span><span class="n">format_chunks</span><span class="p">(</span><span class="n">relevant</span><span class="p">)</span><span class="si">}</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s2">问题：</span><span class="si">{</span><span class="n">query</span><span class="si">}</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="n">answer</span> <span class="o">=</span> <span class="n">call_llm</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>    <span class="k">return</span> <span class="n">answer</span>
+</span></code></pre></div>
+<p><strong>讲解要点</strong>：
+- 重叠窗口（<code>overlap=100</code>）避免语义被截断
+- 来源标注让回答可追溯，降低幻觉风险</p>
+<h4 id="4">展示物 4：工程素养对比卡片<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gu">## 工程素养对比：普通项目 vs 优秀项目</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| 维度 | 普通项目 | 优秀项目 |
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>|---|---|---|
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>| 函数命名 | <span class="sb">`do_stuff()`</span>, <span class="sb">`process()`</span> | <span class="sb">`load_and_split_documents()`</span> |
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>| docstring | 无 | 每个函数都有 |
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>| 异常处理 | <span class="sb">`except Exception as e`</span> | 自定义异常类 + 分类处理 |
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>| 配置管理 | API Key 写死在代码中 | <span class="sb">`.env`</span> + <span class="sb">`config.py`</span> 集中管理 |
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>| README | 纯文字，无截图 | 截图 + 安装步骤 + 技术栈表格 |
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>| 函数长度 | 有 80 行的巨型函数 | 没有超过 30 行的函数 |
+</span></code></pre></div>
+<h4 id="5ai">展示物 5：AI 生成代码五个典型陷阱（幻灯片）<a class="headerlink" href="#5ai" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gu">## AI 生成代码的 5 个典型陷阱</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="gu">### 1. 异常处理缺失</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">-</span><span class="w"> </span>AI 写法：except Exception as e（一个打天下）
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">-</span><span class="w"> </span>人工修正：区分超时 / 解析错误 / 输入非法
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="gu">### 2. 倾向过度设计</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">-</span><span class="w"> </span>AI 写法：简单功能加了 Redis / 消息队列
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">-</span><span class="w"> </span>人工修正：判断&quot;真的需要吗？&quot;，不需要就删
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="gu">### 3. API Key 硬编码</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">-</span><span class="w"> </span>AI 写法：api_key = &quot;sk-xxx&quot; 写在源码中
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">-</span><span class="w"> </span>人工修正：os.environ[&quot;API_KEY&quot;] + .env 文件
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="gu">### 4. 前端配色不稳定</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">-</span><span class="w"> </span>AI 写法：每次生成不同配色方案
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">-</span><span class="w"> </span>人工修正：定义 CSS 变量，统一管理
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="gu">### 5. 不理解业务上下文</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">-</span><span class="w"> </span>AI 写法：按通用模式写，不考虑实际场景
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">-</span><span class="w"> </span>人工修正：根据业务逻辑手动调整
+</span></code></pre></div>
+<h4 id="6">展示物 6：全班经验清单（结尾用）<a class="headerlink" href="#6" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gu">## 六条可迁移的项目法则</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">1.</span> 需求拆解比写代码更重要（L31-L32 是回报率最高的投资）
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">2.</span> 先做 MVP 再迭代（先跑通核心功能，再逐步加功能）
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">3.</span> 前后端联调是最花时间的（CORS / 数据格式 / 异步，坑最多）
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">4.</span> 异常处理是好项目和烂项目的分水岭
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">5.</span> Git commit 是后悔药（大改前先 commit）
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">6.</span> 队友分工要早确定（后端 / 前端 / 测试，第一天就分好）
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">&gt; </span><span class="ge">这些经验不只适用于 Python —— 它们是通用的软件工程经验。</span>
+</span></code></pre></div>
+<hr />
+<h2 id="_5">录制注意<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>幻灯片信息密度要分层</strong>：本集是复盘类微课，没有代码实操，画面以 PPT 和代码截图为主。每张幻灯片不要堆太多文字——核心要点 3-5 条，用卡片或对比表格呈现。讲到每条时逐条高亮，避免观众面对一整屏文字失去焦点。</li>
+<li><strong>代码截图要配标注</strong>：展示优秀项目代码时，不要直接丢一段代码让观众自己看。用箭头、高亮、颜色标注关键设计点（如"重叠窗口""来源标注""自定义异常"），每段代码旁配一句话总结"好在哪"。讲解节奏是"展示→标注→讲亮点→总结可学习点"。</li>
+<li><strong>"五个陷阱"用对比展示</strong>：AI 代码典型陷阱那段，一定要用左右对比——左边"AI 生成的问题代码"，右边"人工修正后的代码"。视觉对比比纯口述有效十倍。每张卡片停留 10-15 秒即可，不要拖。</li>
+<li><strong>语速和总字数</strong>：整体旁白约 1850 字，按 230 字/分钟控制在 8 分钟以内。五个陷阱和全班经验两部分信息密度最高，语速适当放慢；开场和结尾正常语速。保持"复盘"的语气——从容、有总结感，不是赶进度。</li>
+<li>提问彩蛋段的 prompt 字幕条需在后期加上，确保观众能暂停照抄。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

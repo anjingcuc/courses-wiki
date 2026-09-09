@@ -1,0 +1,1014 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2023-04-Base64%E8%AE%B2%E8%A7%A3/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2023-04 Base64 讲解（程序结构作业课） - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2023-04-base64" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2023-04 Base64 讲解（程序结构作业课）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-0000-0440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 课程进度安排说明（约 00:00 - 04:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-base64-0650-1055" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Base64 名字的含义（约 06:50 - 10:55）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-base64-1055-1243" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Base64 的核心功能与符号表（约 10:55 - 12:43）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-base64-1243-1910" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么需要 Base64：基于文本的传输协议（约 12:43 - 19:10）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-base64-1910-2810" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Base64 编码算法的手工推演（约 19:10 - 28:10）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-base64-2810-5312" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 手写 Base64 编码函数的代码要点（约 28:10 - 53:12）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 其他零散知识点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2023-04-base64">2023-04 Base64 讲解（程序结构作业课）<a class="headerlink" href="#2023-04-base64" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课是一次线下作业课，分为两部分。开头约 5 分钟老师介绍了本学期后续课程的整体安排：剩余 11 节课中，6 节课留给 Web 开发、爬虫、数据可视化三个实战模块（各两周），"函数与类"和"数据类型进阶"两章不再线下重复、要求自行看视频，其余每周对应第 6~9 章各一节。主体内容围绕 Base64 作业展开：从名字来源（base 进制概念）讲起，解释 Base64 编码的背景动机（基于文本的传输协议无法直接传二进制数据），手工演示了 <code>"Man"</code> 的完整编码过程（含补零和 <code>=</code> 填充），随后在 VS Code 中带着大家从零手写了一个 Base64 编码函数，最后布置了作业要求。课的末尾把剩余时间留给学生自己练习。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-0000-0440">1. 课程进度安排说明（约 00:00 - 04:40）<a class="headerlink" href="#1-0000-0440" title="Permanent link">&para;</a></h3>
+<ul>
+<li>本学期还剩 11 节课：今天讲程序结构的 Base64 作业；后续 4 节分别对应输入输出文件、目录、模块、包与第三方库；最后 3 个实战模块（Web 开发、爬虫、数据可视化）各占两周（共 6 节）。</li>
+<li>第 5 章（数据类型进阶）和第 11 章附近的"函数与类"内容有视频且后续课程中会反复用到，<strong>不再线下重复</strong>，需自行安排看视频。</li>
+<li>第 6、7、8、9 章每周线下对应一章，老师会做演示、实验和练习。</li>
+<li>数据可视化部分会涉及 pandas；老师提到 Office 365 已内置 Python 并与 pandas 结合。</li>
+<li>本课程定位是"引子"：只给初步概念、带做最基本操作，不必焦虑两周能否学完实战内容。</li>
+</ul>
+<h3 id="2-base64-0650-1055">2. Base64 名字的含义（约 06:50 - 10:55）<a class="headerlink" href="#2-base64-0650-1055" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>base64</code> = 英文单词 base + 数字 64，即以 64 为 base（基数）的算法。</li>
+<li>类比进制概念：十进制 base 为 10，二进制 base 为 2。</li>
+<li>引出 Python 内置函数 <code>int()</code>：<code>int("16")</code> 默认按 base=10 转换；<code>int("1101010", base=2)</code> 或等价写法把二进制字符串转为十进制数（课堂演示结果为 106）。<code>int()</code> 的第二个参数名就叫 <code>base</code>，返回值总是十进制。</li>
+</ul>
+<h3 id="3-base64-1055-1243">3. Base64 的核心功能与符号表（约 10:55 - 12:43）<a class="headerlink" href="#3-base64-1055-1243" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Base64 本质上**不是数字、不表示数字，而是表示数据**：核心功能是把任意数据转换为**可打印文本**（printable text），编码结果中不会出现不可见字符。</li>
+<li>64 个符号的构成：</li>
+<li>大写字母 <code>A-Z</code>：26 个</li>
+<li>小写字母 <code>a-z</code>：26 个（累计 52）</li>
+<li>数字 <code>0-9</code>：10 个（累计 62）</li>
+<li><code>+</code> 和 <code>/</code>（正斜杠，即 Linux 路径分隔符方向的那个）：2 个（累计 64）</li>
+</ul>
+<h3 id="4-base64-1243-1910">4. 为什么需要 Base64：基于文本的传输协议（约 12:43 - 19:10）<a class="headerlink" href="#4-base64-1243-1910" title="Permanent link">&para;</a></h3>
+<ul>
+<li>互联网很多**协议是基于文本的**，最有名的是 HTTP（超文本传输协议）：浏览器发出的 request 和服务器返回的 response 都是人类可读的文本（课堂用浏览器 F12 打开百度页面，在 Network 面板查看请求头演示）。</li>
+<li>但 HTTP 要传"超文本"内容：音乐、图像、视频等多媒体数据含大量不可打印字节。典型问题是 <code>0x00</code>：C 语言中 <code>\0</code> 表示字符串结束，HTTP 协议同样用 00 标志请求结束。</li>
+<li>举例：RGB 表示像素时 R、G、B 各取 0~255，黑色像素 <code>000000</code>（十六进制）的三个分量全为 0，一张图里黑色像素比比皆是，直接按文本传输会立刻出错。</li>
+<li>除 HTTP 外还有 SMTP（发邮件的协议），同样基于文本（都以 TP 结尾，文本传输协议）；邮件附件（图片、甚至钓鱼邮件里的可执行程序）必然包含 <code>0x00</code> 字节，因此急需一种方法把任意二进制数据统一翻译成可打印字符——Base64 应运而生。</li>
+</ul>
+<h3 id="5-base64-1910-2810">5. Base64 编码算法的手工推演（约 19:10 - 28:10）<a class="headerlink" href="#5-base64-1910-2810" title="Permanent link">&para;</a></h3>
+<ul>
+<li>基本思路：1 个字节 = 8 个 bit，表示范围 0~255；把范围缩小到 0~63，对应的二进制宽度是 <strong>6 bit</strong>（6 bit 最大为 63）。因此把原始字节流展开成二进制后，**每 6 个 bit 一组**重新分组。</li>
+<li>课堂用 Python 逐步演示（以 <code>"Man"</code> 为例）：</li>
+<li><code>ord('m')</code> → 77，<code>bin(77)</code> → <code>0b1001101</code>，去掉 <code>0b</code> 前缀并在前面补零凑足 8 bit：<code>01001101</code>。</li>
+<li>同理把 <code>a</code>、<code>n</code> 各自转成 8 bit 串。</li>
+<li>三个字节拼成 24 bit 序列，按 6 bit 一组切成 4 组。</li>
+<li>每组用 <code>int(串, base=2)</code> 转成十进制数（课堂演示得到 19、22、5、46）。</li>
+<li>把这组数字当作**下标**到 64 字符表（A-Z、a-z、0-9、+、/）中查字符：19→T、22→W、5→F、46→u，即 <code>"Man"</code> 的 Base64 编码为 <code>TWFu</code>（字幕中口述为 "TWFU"，按算法应为 <code>TWFu</code>）。</li>
+<li><strong>长度除不尽时的处理（截断与填充）</strong>（约 26:25 - 28:10）：</li>
+<li>3 字节 = 24 bit 恰好被 6 整除；若字节数不是 3 的倍数，最后一组不足 6 bit 时**在后面补 0** 凑足 6 bit，再转字符。</li>
+<li>之后还需做 <strong>padding 补齐</strong>：不写字母、直接用等号 <code>=</code> 补足长度。剩 4 bit（即少 1 个字节）时补 1 个 <code>=</code>；剩 2 bit（少 2 个字节）时补 4 个 0 并补 2 个 <code>=</code>。</li>
+<li>实用提示：打 CTF 时看到一串莫名其妙的字符以 <code>=</code> 结尾，可以盲猜是 Base64，丢进解码器试试。</li>
+</ul>
+<h3 id="6-base64-2810-5312">6. 手写 Base64 编码函数的代码要点（约 28:10 - 53:12）<a class="headerlink" href="#6-base64-2810-5312" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>文件命名陷阱</strong>：文件不能叫 <code>base64.py</code>，因为 Python 标准库已有同名模块 <code>base64</code>，会产生命名空间冲突（import 时不知道指谁），要刻意错开命名。</li>
+<li>作业**不允许直接 <code>import base64</code> 调库**（老师演示用 Copilot 自动补全一行 <code>import base64</code> 后明确否定）；作业目的是练熟**列表、切片、循环**等控制语句。真实场景（如打 CTF）当然直接用现成工具。</li>
+<li>编码函数的实现步骤（课堂上在 VS Code 中边写边测）：</li>
+<li>定义函数，参数名取 <code>data</code>（可接收任何数据，甚至直接读入的二进制文件）。</li>
+<li>遍历：<code>for b in data:</code>——若 <code>data</code> 是二进制序列，则每次迭代把一个字节放入 <code>b</code>（隐含知识点）。注意 <code>byte</code> 是关键词/易冲突名，循环变量改用 <code>b</code>。</li>
+<li>转二进制串：<code>ord()</code> 可把字符或字节转成 int（其输入可以是 string、byte、byte array），再套 <code>bin()</code> 得到二进制字符串。</li>
+<li>处理 <code>bin()</code> 结果的两个问题：<ul>
+<li>有 <code>0b</code> 前缀 → 用切片 <code>[2:]</code> 去掉（从下标 2 开始取到末尾）；</li>
+<li>不一定够 8 位 → 前面补零：朴素写法 <code>while len(temp) &lt; 8: temp = "0" + temp</code>（0 要补在前面）。</li>
+</ul>
+</li>
+<li>养成**写一段测一段**的习惯：每一步打印中间结果验证（老师演示中差点因比较符少写一个 <code>=</code>、变量名写成 <code>b</code> 而非 <code>temp</code> 翻车）。</li>
+<li>拼接：定义空串 <code>before_regroup</code>，循环中 <code>before_regroup += temp</code>，把所有 8 bit 串连成一个整体。</li>
+<li>重新分组：<code>for i in range(0, len(before_regroup), 6):</code>，用 <code>group = before_regroup[i:i+6]</code> 切片取 6 bit 一组（注意字符串切片用方括号、冒号，不是函数调用）。</li>
+<li>转下标：<code>index = int(group, 2)</code>（把 6 bit 二进制串转成数字，作为字符表索引）。</li>
+<li>构造 64 字符表（约 44:16 - 50:48）：<ul>
+<li>方法一：列表推导式 + <code>chr()</code>/<code>ord()</code>。<code>ord('A')</code> 是 65，用 <code>[chr(x) for x in range(65, 65+26)]</code> 生成 A-Z；列表推导式形式为 <code>[表达式 for 变量 in 旧列表]</code>。</li>
+<li>简化写法：直接 <code>range(ord('A'), ord('A')+26)</code>。</li>
+<li>复习 <code>ord()</code> 与 <code>chr()</code>：<code>ord()</code> 字符→数字；<code>chr()</code> 数字→对应 ASCII 字符。</li>
+<li>拼完整表：A-Z 列表 += a-z 列表 += 0-9 列表 += <code>['+', '/']</code>（课堂通过复制终端结果逐段 <code>+=</code> 完成）。</li>
+</ul>
+</li>
+<li>查表并拼接结果：<code>encoded = base64表[index]</code>，<code>encoded_string += encoded</code>，循环结束后 <code>return encoded_string</code>。</li>
+<li><strong>老师故意留的坑</strong>：课堂代码**没有处理字节数非 3 倍数时的补零与 <code>=</code> padding**，也**没有写解码过程**——这两部分是作业要完成的内容。</li>
+</ul>
+<h3 id="7">7. 其他零散知识点<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Windows 终端退出 Python 交互模式（<code>&gt;&gt;&gt;</code>）：<code>Ctrl+C</code> 退不出去，用 <code>Ctrl+Z</code> 回车（约 28:42）。</li>
+<li>老师提到可安装 Anaconda 以使用 Jupyter Notebook 演示，但自己电脑没装，本课直接在 VS Code 里写。</li>
+<li>老师课前误删了作业 PPT（更新仓库时覆盖掉了），本课靠白板+视频+维基百科的 Base64 示意图现场讲。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>int()</code> 与 base 演示</strong>：终端中 <code>int("16")</code> → 16；<code>int("1101010", base=2)</code> → 106，说明 base 参数语义与"返回值总是十进制"。</li>
+<li><strong>HTTP 协议基于文本的演示</strong>：浏览器访问百度，F12 → Network 面板，查看最上方请求的文本形式请求头。</li>
+<li><strong>手工编码 <code>"Man"</code> → <code>TWFu</code></strong>：完整走了一遍 <code>ord</code> → <code>bin</code> → 补零凑 8 bit → 拼接 24 bit → 6 bit 分组 → <code>int(x, 2)</code> 转下标 → 查表得字符的流程。</li>
+<li><strong>截断/填充推演</strong>：以 <code>"Ma"</code>（2 字节）为例演示剩余 4 bit 补零转字符后补 1 个 <code>=</code>；以单字节为例演示剩余 2 bit 补 4 个 0 后补 2 个 <code>=</code>。</li>
+<li><strong>VS Code 现场编码</strong>：从零写出 Base64 编码函数（步骤见知识点详解第 6 节），每完成一步立即运行打印验证（以 <code>"Man"</code> 为测试输入）。</li>
+<li><strong>作业要求</strong>：</li>
+<li>基于课堂代码继续完成：补齐"长度非 3 的倍数时补零 + <code>=</code> padding"的逻辑，并自行实现 Base64 **解码**过程。</li>
+<li>不允许 <code>import base64</code> 直接调库（作业目的是练列表、切片、循环）。</li>
+<li>提交方式：<strong>不需要新建仓库</strong>；把之前的作业仓库克隆下来（若本地还有就更方便），<strong>新建分支 <code>0x02</code></strong>，在该分支上写代码并 push。还没绑定邮箱/收不到验证码的同学可先在本地写好，等信息化处发验证码后再提交。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Base64 是"数据→可打印文本"的编码，不是数字进制、更不是加密</strong>：名字虽来自进制概念，但它表示的是数据。</li>
+<li><strong>8 bit → 6 bit 的重新分组是算法核心</strong>：6 bit 恰好表示 0~63，对应 64 个可打印符号；老师口误把"六个比特"说成"三个比特"后当场纠正，需注意（3 bit 只有 8 种取值）。</li>
+<li><strong><code>bin()</code> 结果的两个坑</strong>：自带 <code>0b</code> 前缀需切片 <code>[2:]</code> 去掉；不足 8 位要在**前面**补零（<code>"0" + temp</code>，不是 <code>temp + "0"</code>）。</li>
+<li><strong>补零与 <code>=</code> padding 是本作业的留白</strong>：课堂代码只处理了整除情况，作业必须自己实现非整除时的补零、padding 及解码。</li>
+<li><strong>文件命名避开标准库同名模块</strong>：自己的脚本不要叫 <code>base64.py</code>，否则 import 冲突。</li>
+<li><strong>禁止直接调库</strong>：作业目的是练列表、切片、循环控制语句；<code>import base64</code> 一行解决不算完成作业。</li>
+<li><strong>细节易错点</strong>：切片用 <code>[i:i+6]</code>（冒号，非函数调用的逗号）；比较运算符是 <code>==</code> 不是 <code>=</code>；<code>range(0, len(s), 6)</code> 的步长为 6。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>前置知识</strong>：进制概念（十进制/二进制/base）；C 语言中 <code>\0</code> 字符串结束符；Python 内置函数 <code>int(x, base)</code>、<code>ord()</code>、<code>chr()</code>、<code>bin()</code>；字符串切片、<code>range()</code> 步长、列表推导式、循环与累加拼接——都是此前章节（数据类型、程序结构）的内容，本课作业正是为了练熟它们。</li>
+<li><strong>与后续章节的关联</strong>：HTTP、SMTP 等基于文本的协议在本课只作背景介绍，HTTP request/response 的结构会在后续 <strong>Web 开发</strong> 与 <strong>爬虫</strong> 实战模块中深入使用；二进制文件的处理与后续 <strong>输入输出文件</strong> 章节相关。</li>
+<li><strong>与工程实践的关联</strong>：作业通过 Git 分支（<code>0x02</code>）提交，延续此前课程建立的仓库+分支工作流；Base64 在 CTF 竞赛中常见（看到 <code>=</code> 结尾的字符串可盲猜 Base64）。</li>
+<li><strong>课程安排关联</strong>：本课说明第 5 章（数据类型进阶）与函数/类章节只在线上看视频，第 6~9 章每周线下对应一章，最后三周为 Web 开发、爬虫、数据可视化实战。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

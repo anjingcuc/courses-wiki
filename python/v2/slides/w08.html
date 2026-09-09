@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W8 代码质量与模块化 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 08 / 16</span>
+    <span class="th">工程化 · 代码质量与模块化</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m4/">M4 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w07.html">← 上周</a>
+    <a class="cur" href="w08.html">本周</a>
+    <a href="w09.html">下半学期 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W8 代码质量与模块化">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 8 周（100 分钟 · L17–L18）</div>
+    <h1 class="rise">AI 写的代码<br><span class="grad">为什么不能直接用</span></h1>
+    <p class="sub rise">功能一样、样子天差地别的两段代码，差距在哪？本周学会审查 AI 代码的五类常见问题、
+    用 assert 写最轻量的测试，再把单文件巨石拆成专业的项目结构——工程化收官。</p>
+    <div class="meta rise">
+      <span>所属模块 M4 工程化</span><span>微课 V031–V033</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>开场对比</b></td><td>两段功能相同的代码：干净版 vs AI 暴力堆砌版——好在哪？</td></tr>
+      <tr><td>8–22</td><td><b>五类常见问题</b></td><td>命名不一致/超纲语法/边界缺失/异常粗暴/过度工程化——逐类反面教材</td></tr>
+      <tr><td>22–34</td><td><b>现场审查重构</b></td><td>「能跑但糟」的代码逐步修：密钥/命名/边界/全局变量/零测试</td></tr>
+      <tr><td>34–44</td><td><b>审查三步法</b></td><td>密钥→名字职责→边界；过完三问再运行</td></tr>
+      <tr><td>44–58</td><td><b>动手练习</b></td><td>运行场：可变默认参数陷阱 + assert 三连测试</td></tr>
+      <tr><td>58–70</td><td><b>模块化</b></td><td>300 行巨石的三大问题；按职责拆分；厨房类比</td></tr>
+      <tr><td>70–82</td><td><b>配置分离</b></td><td>.env + python-dotenv + config.py；密钥进 .env、代码只读</td></tr>
+      <tr><td>82–92</td><td><b>M4 收官</b></td><td>虚拟环境+质量+结构=工程化基本功；下半学期预告</td></tr>
+      <tr><td>92–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">审查三步法在期末项目里每天都要用，从今天开始养成习惯。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>AI 生成代码的五类常见问题</h2>
+    <div class="scard rise"><span class="tag r">①</span><b>命名不一致</b>——同一个变量一会儿叫 data、一会儿叫 result、一会儿叫 output</div>
+    <div class="scard frag"><span class="tag r">②</span><b>超纲语法</b>——用了你没学过的装饰器 / 元类 / 上下文管理器，看得懂才敢用</div>
+    <div class="scard frag"><span class="tag r">③</span><b>边界缺失</b>——没处理空列表、None、空字符串；一传边界值就崩</div>
+    <div class="scard frag"><span class="tag r">④</span><b>异常处理粗暴</b>——一个 <code>except Exception</code> 吞掉所有错误，bug 更难找</div>
+    <div class="scard frag"><span class="tag r">⑤</span><b>过度工程化</b>——简单需求上了三层抽象工厂；课程范围内坚持轻量方案</div>
+  </section>
+
+  <section class="slide">
+    <h2>现场案例：审查一段「能跑但糟糕」的代码</h2>
+    <pre class="rise"><code><span class="c"># AI 初稿：功能是对的，问题你来找</span>
+api_key = <span class="s">"sk-abc123"</span>                    <span class="c"># 问题①：密钥硬编码！</span>
+<span class="k">def</span> <span class="f">process</span>(d):                          <span class="c"># 问题②：process 是什么？d 是什么？</span>
+    <span class="k">return</span> d.<span class="f">split</span>()                    <span class="c"># 问题③：d 为空串/None 时崩</span>
+results = []                               <span class="c"># 问题④：全局变量，多函数共用</span>
+<span class="c"># ...零测试...</span>                          <span class="c"># 问题⑤：没法验证对错</span></code></pre>
+    <div class="frag scard" style="border-left:5px solid #047857;">
+      <b>重构后：</b>密钥进 <code>os.getenv()</code> · 函数改名 <code>count_words(text: str) -&gt; dict</code> ·
+      空输入返回 <code>{}</code> · 结果收进函数返回 · 补 <code>assert count_words("a a b") == {"a":2,"b":1}</code>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>审查三步法（贴在工位上）</h2>
+    <div class="flowline">
+      <div class="node">① 密钥与敏感信息<br><span class="small">有没有进代码？</span></div><span class="arrow">→</span>
+      <div class="node hot">② 名字与职责<br><span class="small">能自解释吗？只做一件事吗？</span></div><span class="arrow">→</span>
+      <div class="node">③ 边界<br><span class="small">空输入/超长/非法类型会怎样？</span></div>
+    </div>
+    <ul>
+      <li class="frag">过完三问<b>再运行验证</b>——这套流程在期末项目冲刺里每天都要用</li>
+      <li class="frag">注释写「为什么」而不是「做了什么」——代码自己能说明做了什么</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：找 bug + 写测试</h2>
+    <span class="lab">交互 · 先猜输出，再运行验证</span>
+    <div class="py-playground" data-py-title="可变默认参数陷阱 + assert 测试">
+      <textarea>def add_item(item, items=[]):   # ← 经典陷阱：默认值是列表！
+    items.append(item)
+    return items
+
+print(add_item("a"))    # 猜一下输出？
+print(add_item("b"))    # 再猜？为什么不是 ['b']？
+
+# 正确写法：默认 None + 函数体内建新列表
+def add_item_safe(item, items=None):
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+
+# 最轻量的测试：assert
+assert add_item_safe("a") == ["a"]
+assert add_item_safe("b") == ["b"]        # 互不污染
+assert add_item_safe("c", ["x"]) == ["x", "c"]
+print("全部测试通过 ✓")
+</textarea>
+    </div>
+    <p class="small frag">测试思维：<b>不是证明代码对，而是尽早发现代码错</b>——正常输入 + 边界输入各测一条。</p>
+  </section>
+
+  <section class="slide">
+    <h2>模块化：把巨石拆成积木</h2>
+    <p class="rise">300 行的 main.py——你愿意接手维护吗？</p>
+    <div class="cols2 wide-r">
+      <div class="rise">
+        <ul>
+          <li class="frag">单文件三大问题：找代码难、改一处怕崩别处、没法复用</li>
+          <li class="frag">拆分原则：<b>按职责</b>——一个文件一个主题</li>
+          <li class="frag">厨房类比：储物间（配置）/ 切配（数据处理）/ 烹饪（API 调用）/ 摆盘（输出）</li>
+        </ul>
+      </div>
+      <pre class="frag"><code>my_ai_app/
+├── .env               <span class="c"># API Key（不进仓库）</span>
+├── .gitignore
+├── requirements.txt
+└── app/
+    ├── config.py      <span class="c"># 读环境变量</span>
+    ├── client.py      <span class="c"># LLM 调用封装</span>
+    ├── stats.py       <span class="c"># 数据处理</span>
+    └── main.py        <span class="c"># 入口</span></code></pre>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>配置与代码分离</h2>
+    <pre class="rise"><code><span class="c"># .env（已被 .gitignore 排除）</span>
+DEEPSEEK_KEY=sk-xxxxxxxx
+
+<span class="c"># config.py —— 密钥进 .env，配置集中管理</span>
+<span class="k">import</span> os
+<span class="k">from</span> dotenv <span class="k">import</span> load_dotenv
+<span class="f">load_dotenv</span>()
+
+API_KEY = os.<span class="f">getenv</span>(<span class="s">"DEEPSEEK_KEY"</span>)   <span class="c"># 读不到就是 None，不会泄露</span>
+MODEL = <span class="s">"deepseek-chat"</span>
+MAX_TOKENS = <span class="n">2048</span></code></pre>
+    <ul>
+      <li class="frag">原则：<b>密钥进 .env，配置进 config.py，代码只读不存</b></li>
+      <li class="frag">附赠好处：文件边界清晰的项目，AI 生成代码的质量也更高——<b>好的结构让 AI 更好帮你</b></li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>M4 收官：工程化基本功</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">W7 已完成</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">虚拟环境与依赖锁定</li>
+          <li class="frag">requirements.txt 复现</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">本周完成</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">AI 代码审查五类问题 + 三步法</li>
+          <li class="frag">assert 轻量测试</li>
+          <li class="frag">模块化结构 + 配置分离</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #7c3aed;">
+      <b>下半学期预告（W9–W13）：AI 应用开发。</b>
+      API 参数与流式输出 → Prompt 工程 → 结构化输出与 Function Calling → RAG →
+      多模态 → Agent → FastAPI 前后端。期末项目的全部零件，五周内集齐。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W8 质量与模块化 · 概念检查",
+        "questions": [
+          {
+            "q": "审查 AI 代码发现 api_key = \"sk-xxx\" 写在源码里，正确处理是？",
+            "opts": ["注释掉这行", "改成小写变量名", "移到 .env + os.getenv() 读取，.env 进 .gitignore", "没关系，私有仓库安全"],
+            "a": 2,
+            "explain": "密钥进版本控制等于永久泄露（历史可回溯）。.env + 环境变量是行业标准做法。"
+          },
+          {
+            "q": "写测试最轻量的起点是？",
+            "opts": ["必须先学 pytest fixture", "assert 断言核心函数的输入输出", "手动点一遍网页", "不需要测试，AI 会保证正确"],
+            "a": 1,
+            "explain": "从 assert f(x) == y 开始就有测试意识；pytest 是后续自然升级，不是前置门槛。"
+          },
+          {
+            "q": "「好的项目结构」对 AI 协作的意义是？",
+            "opts": ["没有意义", "文件边界清晰、命名规范的项目，AI 生成代码质量更高", "让网页更好看", "减少字数"],
+            "a": 1,
+            "explain": "结构清晰的代码给 AI 更好的上下文——这是「结构让 AI 更好帮你」的直接回报。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下半学期预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V031-AI生成代码的审查方法/">V031 审查方法</a> ·
+          <a href="../scripts/V032-代码规范与基础测试/">V032 规范与测试</a> ·
+          <a href="../scripts/V033-Python项目结构与模块化/">V033 项目结构</a></li>
+        <li class="frag">练习：把之前的单文件脚本拆成 config / client / main 三模块</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W9 大模型 API 深入与 Prompt 工程</b>
+      拧开引擎盖：temperature 等四参数 + 流式输出；然后学「怎么问才准」的 Prompt 工程。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w09.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m4/">M4 模块页</a> · <a href="../notes/10.2-第三方库与虚拟环境-包管理系统/">经典笔记 10.2 包管理</a> · <a href="../notes/9.3-模块与包-包/">9.3 包</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

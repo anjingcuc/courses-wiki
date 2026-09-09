@@ -1,0 +1,973 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/15.4-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%AE%9E%E4%BE%8B%E8%AE%B2%E8%A7%A3/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>15.4 数据处理与可视化：实例讲解 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#154" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              15.4 数据处理与可视化：实例讲解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0000-2500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实例一：知乎话题高赞用户排行（约 00:00 - 25:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2500-6445" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实例二：关键词提取与词云（约 25:00 - 64:45）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="154">15.4 数据处理与可视化：实例讲解<a class="headerlink" href="#154" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课是数据处理与可视化章节的综合实例课（也是作业讲解），基于之前爬虫课爬取的知乎话题回答数据（CSV）完成两个完整案例。案例一：用 Pandas 对回答按作者做分类汇总（groupby + sum），按点赞总数降序排列取前十，再用 Matplotlib 画横向柱状图。案例二：用结巴分词（jieba）的 TF-IDF 接口对 572 篇回答做关键词提取，汇总权重排序后取前 100 个关键词，用 wordcloud 库画词云。老师现场"复现"自己写代码的过程，强调"写一句打印一句"的打印驱动编程方式，并穿插讲解了 TF-IDF 算法的原理。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="0000-2500">实例一：知乎话题高赞用户排行（约 00:00 - 25:00）<a class="headerlink" href="#0000-2500" title="Permanent link">&para;</a></h3>
+<h4 id="0000-0400">需求与数据（约 00:00 - 04:00）<a class="headerlink" href="#0000-0400" title="Permanent link">&para;</a></h4>
+<ul>
+<li>数据来源：爬虫课抓取的知乎"Windows 应用软件"话题下 500 多个回答，CSV 含作者 ID、作者名、性别、答案内容、点赞数等列。</li>
+<li>目标：把同一作者的多个回答的点赞数累加，找出话题下点赞总数排名前十的用户（高赞用户）。</li>
+<li>程序分两个函数：数据处理函数（接受 CSV 文件路径参数）+ 可视化函数。</li>
+</ul>
+<h4 id="0400-0545">分类汇总的概念（约 04:00 - 05:45）<a class="headerlink" href="#0400-0545" title="Permanent link">&para;</a></h4>
+<ul>
+<li>类比 Excel 的分类汇总：以某列字段分类，把同类的数值加起来。例如 A=1、B=2、C=3、A=5、C=6 → A 合计 6、B 合计 2、C 合计 9。</li>
+<li>对应到数据：用户 A 有两个回答，点赞数 4 和 15，则其总赞数为两者之和。</li>
+</ul>
+<h4 id="0615-1700">数据处理流程（约 06:15 - 17:00）<a class="headerlink" href="#0615-1700" title="Permanent link">&para;</a></h4>
+<ul>
+<li>老师强调"写的过程比写出来的代码重要"，现场复现"面向打印语句的编程"（打印驱动开发）：写一句 print 一句，确认符合预期再往下写；新手不要追求一气呵成几百行，顶多写一个函数测一下。</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>          <span class="c1"># 读入，pandas 自动去掉 CSV 空行，得到 572 行 6 列的 DataFrame</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">,</span> <span class="s1">&#39;voteup_count&#39;</span><span class="p">]]</span>  <span class="c1"># loc 切片：取所有行、只保留两列</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;author_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>             <span class="c1"># 先分组（groupby 只分组），再 sum 求和（分类汇总）</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;voteup_count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 取出点赞列，ascending=False 降序排列</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">top10</span> <span class="o">=</span> <span class="n">s</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>                  <span class="c1"># 切片取前 10，与列表切片逻辑一致</span>
+</span></code></pre></div>
+<ul>
+<li><strong>数据陷阱提醒（约 15:54）</strong>：爬虫未登录抓取时，开启匿名保护的用户作者名统一显示为"知乎用户"，其实是不同人组成的，逻辑上应把"知乎用户"排除掉。</li>
+</ul>
+<h4 id="1700-2500">可视化（约 17:00 - 25:00）<a class="headerlink" href="#1700-2500" title="Permanent link">&para;</a></h4>
+<ul>
+<li>用 <strong>DataFrame 自带的 plot 接口</strong>（Pandas 封装的 Matplotlib 接口）画**横向柱状图**；pandas 官方文档有 visualization 一节，介绍 df.plot 的各种图。</li>
+<li><strong>中文乱码问题（约 18:20）</strong>：Matplotlib 默认字体显示中文是方块乱码，需设置字体：</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;字体名&#39;</span><span class="p">]</span>   <span class="c1"># rc = resource，params = 参数</span>
+</span></code></pre></div>
+<p>字体名可到 Windows 的 <code>C:\Windows\Fonts</code> 目录里找（如宋体等中文字体）。
+- <strong>调整画布大小（约 20:30）</strong>：y 轴作者名文字超出图表左侧被截断，回忆 Matplotlib 图表结构——背景区域由 figure 决定，于是查文档在初始化时传 <code>figsize=(宽, 高)</code>，<strong>单位是英寸（inch）</strong>，把图拉宽即可（不用手动拖窗口）。
+- 还用到了反转 y 轴顺序的接口，让点赞数最高的人排在最上面。</p>
+<h3 id="2500-6445">实例二：关键词提取与词云（约 25:00 - 64:45）<a class="headerlink" href="#2500-6445" title="Permanent link">&para;</a></h3>
+<h4 id="2520-2700">任务设计（约 25:20 - 27:00）<a class="headerlink" href="#2520-2700" title="Permanent link">&para;</a></h4>
+<ul>
+<li>把每篇回答当作一篇文章，用自然语言处理工具分词，并用算法提取主题词（关键词）排序；汇总所有回答的关键词权重，取前 100 名画词云——权重越高词在词云中面积越大。</li>
+</ul>
+<h4 id="jieba-2730-2900">jieba 分词库（约 27:30 - 29:00）<a class="headerlink" href="#jieba-2730-2900" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>jieba（结巴）</strong>：GitHub 上最流行的 Python 中文分词组件，"做最好的 Python 中文分词组件"。</li>
+<li>基本分词：一句话（如"我来到北京清华大学"）可按不同模式切成词。</li>
+<li>jieba 自带基于 <strong>TF-IDF</strong> 的关键词提取功能（<code>jieba.analyse</code> 接口）。</li>
+</ul>
+<h4 id="tf-idf-2900-4015">TF-IDF 算法原理（约 29:00 - 40:15，老师声明非自己专业领域，讲解力求通俗）<a class="headerlink" href="#tf-idf-2900-4015" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>TF（Term Frequency，词频）</strong>：最朴素的方法——一个词在当前文章出现次数越多，越可能是主题词。计算：词在本文出现次数 ÷ 文章总词数（如 100/1000 = 0.1）。</li>
+<li>TF 的缺陷：有些词在所有文章里都高频出现（如三篇都是讲 Python 的文章里，"Python"一词每篇都很多），但它不能区分各篇文章的真正侧重（可视化/爬虫/游戏）。</li>
+<li><strong>IDF（Inverse Document Frequency，逆向文档频率）</strong>：衡量词在整个语料库（全部 n 篇文档）中的普遍程度——</li>
+</ul>
+<p><code>IDF = log( 文档总数 / (包含该词的文档数 + 1) )</code></p>
+<ul>
+<li>分母只数"在多少篇文档里出现过"，单篇内出现 1 万次也只算 1；</li>
+<li><strong>分母 +1 是为了避免除零</strong>（某词一篇都没出现时）；</li>
+<li>取 log 是为了避免增长过快（有专门文章论证，课上不展开）；</li>
+<li>一个词在越多文档中出现，IDF 越低，说明它是大家共有的词，对单篇文章主题的代表性越弱。</li>
+<li><strong>TF-IDF = TF × IDF</strong>：既看词在本文的频率，又看它在全语料库的稀缺程度，乘积即该词对单篇文章的重要性。</li>
+</ul>
+<h4 id="4020-5550">关键词提取的代码流程（约 40:20 - 55:50）<a class="headerlink" href="#4020-5550" title="Permanent link">&para;</a></h4>
+<p>处理流程设计（画板讲解）：每篇回答 → TF-IDF 提取出"关键词: 权重"字典（取前 10 个）→ 572 个字典拼成总表 → 按关键词分类汇总权重 → 降序排序取前 100 → 作为词云输入。</p>
+<ul>
+<li><code>getAnswers()</code> 函数：<code>pd.read_csv</code> 读入 → 取 <code>content</code> 列 → <code>list()</code> 转成 Python 列表（<code>df['content']</code> 取出来是 Series，转列表是个人习惯，不转也行）。</li>
+<li><strong>停用词（stop words，约 44:50）</strong>：要人工忽略的词——语气词（啊、呀）、标点、与主题无关的词。本例想把高频"软件"提取出来，所以把"windows、输入法、软件、卸载、exe、图形、电脑、安装"等词写进一个 txt（一行一个词），用 <code>jieba.analyse.set_stop_words('路径')</code> 设置。演示用的停用词表并不完善，仅作示例。</li>
+<li>关键词提取（第 17 行，jieba 文档标准用法）：</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">文本</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>参数 1：要提取的文章字符串；参数 2 <code>topK</code>：返回排名前几个关键词（这里 10）；参数 3 <code>withWeight=True</code>：连同权重一起返回（后面要跨文章累加权重，所以必须带权重）。</li>
+<li>拼总表：先建只有列名（keyword、weight）的空 DataFrame，每个回答的关键词表用 <strong><code>df.append()</code></strong> 拼接（与列表 append 类似），得到 4000 多行的大表（DataFrame 打印时会自动省略中间行）。</li>
+<li>复用案例一套路：<code>groupby('keyword').sum()</code> 按关键词汇总权重 → <code>sort_values</code> 降序 → 取前 100。</li>
+<li>中间结果观察：360 权重特别高（很多回答提到）、surface（话题是软件但有人推荐硬件）、护眼、命令提示符等——不太直观，需要词云可视化。</li>
+</ul>
+<h4 id="wordcloud-5550-6445">wordcloud 词云库（约 55:50 - 64:45）<a class="headerlink" href="#wordcloud-5550-6445" title="Permanent link">&para;</a></h4>
+<ul>
+<li>GitHub 上的 <strong>wordcloud</strong> 库，文档的 API reference 主要就四个类，本例只用 <code>WordCloud</code> 类；支持蒙版（如星战头盔形状）等酷炫效果。</li>
+<li>安装：<code>pipenv install wordcloud</code>；导入 <code>from wordcloud import WordCloud, STOPWORDS</code>（库内置英文停用词）。</li>
+<li>初始化（5 个参数）：</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;仿宋.ttf&#39;</span><span class="p">,</span>      <span class="c1"># ① 字体：必须是中文字体，否则中文显示成方块</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">width</span><span class="o">=</span><span class="mi">1920</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1080</span><span class="p">,</span>   <span class="c1"># ②③ 词云宽高</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>  <span class="c1"># ④ 背景色</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">stopwords</span><span class="o">=</span><span class="n">STOPWORDS</span>        <span class="c1"># ⑤ 停用词（用其自带的，这句可省略，也可自行添加）</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">字典</span><span class="p">)</span>   <span class="c1"># 从词频生成：参数是 {关键词: 浮点权重} 字典</span>
+</span></code></pre></div>
+<ul>
+<li>DataFrame 转字典：<code>top100['weight'].to_dict()</code>——取 weight 这个 Series 再 <code>to_dict()</code>，因为词云输入要求是字典。</li>
+<li>生成的 wordcloud 对象本质类似图片矩阵，可直接作为 Matplotlib <code>imshow()</code> 的输入：建画布 → <code>plt.imshow(wc)</code> → 关掉坐标轴显示、不留空白 → <code>plt.show()</code>。</li>
+<li>结果：词云被 360"占领"，还有 Adobe、Fiddler（分析 HTTP 协议的代理工具）、安卓文件共享应用、iTunes、压缩工具等；也有不相关的词（命令提示符、国际版、手机、8.1 等），说明停用词表和处理逻辑还可进一步优化，但大致逻辑已成功。</li>
+<li>老师提醒：这个思路可迁移到任何爬取的数据（电影、音乐等）。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>作业/案例一</strong>：知乎"Windows 应用软件"话题回答数据 → 按作者分类汇总点赞数 → 降序取前十 → 横向柱状图。要求复现"读数据 → 取两列 → groupby 求和 → 排序 → 画图"全链路，并处理中文字体与画布大小。</li>
+<li><strong>作业/案例二</strong>：同一数据 → jieba TF-IDF 提取每篇回答前 10 关键词（带权重）→ append 拼总表 → groupby 汇总 → 降序取前 100 → wordcloud 画词云。</li>
+<li>老师全程演示"打印驱动编程"：每写一步先 print 验证（读完打印 df、取列后打印、分组求和后打印、提取关键词后先注释掉拼接逻辑单独打印关键词效果）。</li>
+<li>课堂互动：讲完 TF-IDF 让学生打 1 确认理解；课末 3 点整休息 10 分钟。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>**分类汇总（groupby + sum）**是本章核心操作：groupby 只分组，必须再接 sum 等聚合方法。</li>
+<li><code>loc[:, ['col1', 'col2']]</code> 取列、<code>sort_values(ascending=False)</code> 降序、切片取前 N 的组合套路在两个案例中反复使用。</li>
+<li><strong>中文乱码</strong>：Matplotlib 和 wordcloud 都必须显式指定中文字体（<code>rcParams['font.sans-serif']</code> / <code>font_path</code>），否则中文变方块。</li>
+<li><code>figsize</code> 单位是英寸；y 轴标签被截断时调大 figure 宽度。</li>
+<li><strong>数据质量意识</strong>：未登录爬取的"知乎用户"是多人的集合，应排除；TF-IDF 结果中混有不相关词，停用词表需要迭代完善。</li>
+<li>TF-IDF 理解要点：TF 看本文频率，IDF 看全语料稀缺度（分母 +1 防除零，取 log 防增长过快），二者相乘。</li>
+<li><code>extract_tags(文本, topK, withWeight=True)</code>：要跨文章累加权重就必须带权重返回。</li>
+<li>词云输入是 <code>{词: 权重}</code> 字典；DataFrame 用 <code>df['weight'].to_dict()</code> 转换。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>综合运用前面所有章节：爬虫（第 14 章，数据来源）、csv/文件读取（15.1）、Pandas 数据处理（15.2 的 loc/groupby 前奏、排序、NaN）、Matplotlib 可视化（15.3 的 figure 结构、show）。</li>
+<li>本课即 15.3 末尾预告的**作业**：爬虫数据 → Pandas 处理 → Matplotlib 画图；老师提前把作业发布在课件网站和群里。</li>
+<li>引入新第三方库：jieba（中文分词 + TF-IDF）、wordcloud（词云），延续"查 GitHub/官方文档 → 模仿示例"的学习方法。</li>
+<li>TF-IDF 属自然语言处理/文本挖掘入门内容，老师声明非专业方向，感兴趣可自查通俗资料深入。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

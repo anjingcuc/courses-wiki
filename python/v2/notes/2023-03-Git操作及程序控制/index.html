@@ -1,0 +1,1032 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2023-03-Git%E6%93%8D%E4%BD%9C%E5%8F%8A%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2023-03 Git操作及程序控制 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2023-03-git" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2023-03 Git操作及程序控制
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-0000-3800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Git 作业提交的四类典型报错（约 00:00 – 38:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3800-4450" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、作业与学习安排（约 38:00 – 44:50）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4520-4720" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、布尔逻辑与真值检测（约 45:20 – 47:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4720-5120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、分支与循环（约 47:20 – 51:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-4900-5120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、range（约 49:00 – 51:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#break-continue-else-pass-5520-5820" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、break / continue / else 与 pass（约 55:20 – 58:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5820-010820" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、函数参数（约 58:20 – 01:08:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#010240-011230" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、工具与学习方法（约 01:02:40 – 01:12:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2023-03-git">2023-03 Git操作及程序控制<a class="headerlink" href="#2023-03-git" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本课是 2023 年的一次线下课，前半节集中解决同学们在提交第一次作业时遇到的 Git 问题：老师逐一讲解了四类典型报错的成因与排查思路（校园网/VPN 与代理导致的重定向、SSH 协议被禁用、GitLab 分支保护导致无法 push、HTTPS 证书错误），并澄清了 Git for Windows 与 TortoiseGit（小乌龟）的关系。后半节回到 Python 课程内容，围绕"程序结构"一章快速讲解了布尔逻辑、分支、循环、<code>range</code>、函数参数默认值、<code>pass</code> 占位符、关键字参数调用、可变参数与 <code>lambda</code> 匿名函数等知识点，并顺带演示了如何查阅第三方库官方文档以及 GitHub Copilot 的使用。课上还说明了作业安排：第一次作业（编码解码/"表白"作业）因 Git 问题延期一周，下节课讲解答案并布置第二次作业。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="git-0000-3800">一、Git 作业提交的四类典型报错（约 00:00 – 38:00）<a class="headerlink" href="#git-0000-3800" title="Permanent link">&para;</a></h3>
+<h4 id="1-vpn-0130-0910">1. 网络问题：VPN 与系统代理（约 01:30 – 09:10）<a class="headerlink" href="#1-vpn-0130-0910" title="Permanent link">&para;</a></h4>
+<p>提交/克隆仓库前的第一件事：</p>
+<ul>
+<li>确认已连接校园 VPN 或已在校园网中；</li>
+<li>关闭所有系统代理，<strong>包括在 Git 中设置的代理</strong>（如 Clash 等代理工具的全局模式）。</li>
+</ul>
+<p>典型现象与判断方法（约 07:00）：克隆时报错信息中出现 <code>redirect</code> 重定向到 <code>sso</code> 相关地址。原因是学校设有**单点登录（SSO）机制**：在校外访问任何校内网页都会被重定向到统一身份认证登录页。观察 URL 可以看出机制：登录网址后 <code>?service=</code> 参数里是被访问的实际服务地址（URL 编码，<code>%3A</code> 是冒号、<code>%2F</code> 是斜杠的编码），登录成功后再跳回。</p>
+<p>要点：这个错误与密码、仓库都无关，纯粹是网络不对。即使登了 VPN，若开着全局系统代理，流量仍会经代理绕到外网再绕回来，同样会触发重定向。</p>
+<h4 id="2-ssh-gitlab-https-1135-1640">2. SSH 协议被禁用：校内 GitLab 只支持 HTTPS（约 11:35 – 16:40）<a class="headerlink" href="#2-ssh-gitlab-https-1135-1640" title="Permanent link">&para;</a></h4>
+<ul>
+<li>以往教过的克隆地址是 SSH 协议形式：<code>git@域名:命名空间/仓库名.git</code>。</li>
+<li>校内 GitLab 出于安全考虑**关闭了 SSH**：SSH 本质是远程登录协议，拿到终端后可执行 <code>reboot</code>、<code>rm -rf /</code> 等任意操作，危害性大。因此只能用 HTTPS 形式的地址：<code>https://域名/组名/仓库名.git</code>。</li>
+<li>需要把地址中的 token、命名空间（group / namespace，一个 group 就是一个命名空间）、仓库名替换为自己的内容。有的仓库有父子两级 group（如 <code>CCS/python-2023/仓库名</code>），有两个命名空间。</li>
+<li>若误用 SSH 地址会连接失败：因为协议不同走的端口不同——HTTP/HTTPS 走 80/443 端口，服务器开着；而 <strong>SSH 默认端口是 22</strong>，服务器没开就直接报网络错误。注意区分：认证失败（密码错）与连接失败（端口没开）是两种不同的错误。</li>
+</ul>
+<h4 id="3-gitlab-push-1700-2920">3. GitLab 分支保护导致 push 失败（约 17:00 – 29:20）<a class="headerlink" href="#3-gitlab-push-1700-2920" title="Permanent link">&para;</a></h4>
+<p>典型报错（约 20:40）：<code>a default branch main does not yet exist for xxx</code>，提示找 project 的 owner 或 maintainer 创建默认分支，最后 <code>remote rejected ... fail</code>。</p>
+<p>成因链条：</p>
+<ul>
+<li>GitLab 用户在组/仓库中有五级权限：<strong>Owner &gt; Maintainer &gt; Developer &gt; Reporter &gt; Guest</strong>。Owner 如老板、Maintainer 如项目经理、Developer 是普通开发者、Reporter 给测试人员、Guest 只能看不能改。同学们都被分配为 Developer。</li>
+<li>GitLab 有**分支保护（protected branches）机制**（Settings 中的 default branch 设置），本质是防止任何人随意往 <code>main</code> 等主分支 push 代码（防止恶意或失误覆盖代码，尤其配合强制删除历史版本就更危险）。</li>
+<li>创建仓库时的默认保护级别是"完全保护"：<code>developers cannot push new commits, but maintainers can, no one can force push</code>。</li>
+<li>因此出现死循环：Developer 创建仓库时无权限初始化 <code>main</code> 分支 → 仓库没有任何分支 → push 时既无默认分支也无提交权限 → 报错。</li>
+</ul>
+<p>解决办法（老师已把组内默认分支保护设置改宽）：</p>
+<ol>
+<li>删掉原来的空仓库重建一个，GitLab 会自动创建 <code>main</code> 分支，可正常 push；</li>
+<li>或在原空仓库基础上先 push 一个 <code>main</code> 分支，再 push 一个 <code>0x01</code> 分支（操作两次）。</li>
+</ol>
+<h4 id="4-https-2920-3600">4. HTTPS 证书错误（约 29:20 – 36:00）<a class="headerlink" href="#4-https-2920-3600" title="Permanent link">&para;</a></h4>
+<ul>
+<li>报错中出现 <code>custom ... not found</code>，即 Git 找不到本地的认证证书，无法完成 HTTPS 连接建立。</li>
+<li>原理背景：HTTPS 通信需要本地与服务器双方通过数字证书/数字签名交换来建立可靠、保密的连接（属密码学/计算机网络内容，可自行了解 HTTPS 通信过程）。</li>
+<li>老师的推断（未验证）：报错信息中证书路径出现乱码，可能是 <strong>Git for Windows 安装在中文路径下导致找不到证书</strong>。建议方案：重装 Git for Windows 到**英文路径**下。老师明确表示这只是推断，不作结论。</li>
+</ul>
+<h4 id="5-git-for-windows-tortoisegit-3600-3800">5. Git for Windows 与 TortoiseGit 的区别（约 36:00 – 38:00）<a class="headerlink" href="#5-git-for-windows-tortoisegit-3600-3800" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Git for Windows</strong>：命令行工具，装完后命令行可识别 <code>git</code> 命令，右键菜单多出 <code>Open Git GUI here</code> 和 <code>Open Git Bash here</code>；本身没有可视化的克隆/提交界面，克隆要在 Git Bash 中敲 <code>git clone</code>。</li>
+<li><strong>TortoiseGit（小乌龟）</strong>：只提供图形界面。点 OK 的瞬间，它把界面上填的参数拼成命令行，再去调用 Git for Windows 执行。因此**只装小乌龟没装 Git for Windows 会报错**（拼好命令后找不到 <code>git</code>），两者都装才能正常工作。</li>
+<li>判断该重装哪个：看报错中的路径——路径是 <code>Git-...</code> 则是 Git for Windows 的问题，是 <code>TortoiseGit-...</code> 则是小乌龟的问题。</li>
+</ul>
+<h3 id="3800-4450">二、作业与学习安排（约 38:00 – 44:50）<a class="headerlink" href="#3800-4450" title="Permanent link">&para;</a></h3>
+<ul>
+<li>第一次作业是编码解码（"表白"）程序，因很多人被 Git 卡住，<strong>截止日期延到下周</strong>，下节课讲答案并点评大家的作业。</li>
+<li>老师要求以后每次课前明确预习范围：做第一次作业前应看完"运行方式/交互环境"及"数字数据类型"至少到"类型转换"；<strong>下次课（布置第二次作业）之前务必看完"程序结构"相关的全部视频</strong>（分支、循环、函数等，与 C 语言相通）。</li>
+</ul>
+<h3 id="4520-4720">三、布尔逻辑与真值检测（约 45:20 – 47:20）<a class="headerlink" href="#4520-4720" title="Permanent link">&para;</a></h3>
+<ul>
+<li>布尔逻辑是分支和循环的前提：必须有判断是否执行分支/继续循环的真值。</li>
+<li>Python 中为 <code>False</code> 的值：<code>None</code>、<code>False</code>、整数 <code>0</code>、浮点数 <code>0.0</code>、空字符串、空元组、空列表、空迭代器等。</li>
+<li>逻辑运算符与 C 语言基本一致；特殊的是 <code>is</code> 和 <code>is not</code>：类似"等于/不等于"，但比较的是对象身份，常用于判断 <code>xxx is None</code>（是否是空对象），可读性像英文。</li>
+</ul>
+<h3 id="4720-5120">四、分支与循环（约 47:20 – 51:20）<a class="headerlink" href="#4720-5120" title="Permanent link">&para;</a></h3>
+<ul>
+<li>分支结构与 C 语言一致；注意多分支关键字是 <code>elif</code>，<strong>不是</strong> <code>else if</code>。</li>
+<li><code>for</code> 循环与 C 语言最大的不同：<code>for 变量 in 序列</code>，可对任何序列（字符串、列表、元组，以后学的字典等）直接遍历，对常见工作流非常友善。</li>
+<li>课件示例：对 <code>numbers</code> 列表遍历，判断奇偶并分别 <code>append</code> 到两个空列表。用 C 语言写需自行分配内存（<code>malloc</code> 等），Python 直接用列表即可。</li>
+</ul>
+<h3 id="range-4900-5120">五、<code>range</code>（约 49:00 – 51:20）<a class="headerlink" href="#range-4900-5120" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>range</code> 是内置函数（官方文档称其为内置函数，但更像一个不可变序列类型），用于生成从 <code>start</code> 到 <code>stop</code>（<strong>取不到 stop</strong>）、步长为 <code>step</code> 的一系列值，循环中最常用。</li>
+<li><code>range(8)</code> 等价于 <code>range(0, 8)</code>，生成 0–7；<code>range(0, 10, 2)</code> 中第三个参数是步长 <code>step</code>。</li>
+<li>不写 <code>step</code> 时默认值为 1——由此引出 Python 函数**参数默认值**的概念（C 语言中除 <code>printf</code> 变长参数外没有默认值概念，在 Python 里是很基础的知识）。</li>
+</ul>
+<h3 id="break-continue-else-pass-5520-5820">六、<code>break</code> / <code>continue</code> / <code>else</code> 与 <code>pass</code>（约 55:20 – 58:20）<a class="headerlink" href="#break-continue-else-pass-5520-5820" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>break</code>、<code>continue</code>、循环的 <code>else</code> 与 C 语言用法"一模一样"，不赘述。</li>
+<li><strong><code>pass</code> 是 Python 特有的占位符</strong>：代码块（冒号后）不能为空，否则语法检查报错；没想好函数/循环体怎么写时先放 <code>pass</code> 占位，保证语法正确、程序框架完整，具体实现留给以后（或协作者）。大型项目、面向对象中常用 <code>pass</code> 预留函数接口。</li>
+</ul>
+<h3 id="5820-010820">七、函数参数（约 58:20 – 01:08:20）<a class="headerlink" href="#5820-010820" title="Permanent link">&para;</a></h3>
+<ul>
+<li>函数定义、递归（斐波那契数列）与 C 语言相同，看视频即可。</li>
+<li><strong>参数默认值</strong>：定义时写 <code>step=1</code> 即声明可选参数，调用时可省略。<strong>必须先写完所有必选参数才能写可选参数</strong>；一旦出现带缺省值的参数，其后所有参数都必须有缺省值（老师现场用 <code>test(argument1, argument2, argument3=3)</code> 演示：再追加无默认值的 <code>argument4</code> 会报语法错误，补上 <code>=4</code> 或挪到前面即可）。</li>
+<li><strong>关键字参数调用</strong>：调用时可写 <code>test(1, 2, 3, 4)</code> 按位置传参，也可写 <code>test(argument2=2, argument3=3, ...)</code> 按名字传参。参数多时（如第三方库）按名字写更清晰——以 <code>wordcloud</code> 库为例，其初始化函数参数极多，指定 <code>background_color=...</code> 必须按名传参。</li>
+<li><strong>可变参数</strong>：用 <code>*x</code> 形式可接收任意个数参数，函数内 <code>x</code> 对应一个列表（老师口述为列表）。示例：拼接函数用字符串的 <code>join</code> 方法把列表用指定分隔符（如 <code>\t</code> 制表符，可改成分号等）拼成一个字符串。</li>
+<li><strong><code>lambda</code> 匿名函数</strong>：<code>lambda p: p[1]</code> 等价于定义一个输入为 <code>p</code>、返回 <code>p[1]</code> 的无名函数。冒号前是参数（输入），冒号后是返回值（输出）。典型用途：<code>list.sort(key=lambda p: p[1])</code>——<code>sort</code> 的 <code>key</code> 参数接收一个函数作为排序依据，示例为对元组列表按每个元组的第 1 项（索引 1，即第二项，第 0 项是第一个数字）排序。这种让程序员"偷懒尝到甜头"、对功能无影响的写法叫**语法糖**。</li>
+</ul>
+<h3 id="010240-011230">八、工具与学习方法（约 01:02:40 – 01:12:30）<a class="headerlink" href="#010240-011230" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>查官方文档的套路</strong>：关键词搜到官网 → 找文档 → 大库一般先看 <code>quick start</code> / <code>getting started</code> 示例 → 再查 <code>API reference</code>（函数手册）；以 <code>requests</code> 库文档为典型。强调学计算机要学好英文，直接看一手官方资料，避免二手资料引入错误。</li>
+<li><strong>GitHub Copilot</strong>：VS Code 插件，可自动补全代码（写注释后等待即补全实现，按 Tab 接受），还带聊天功能可让它修复代码问题。学生/教师可通过 GitHub 教育认证免费申请，支持 Python、Java、C 等多种语言。老师推荐使用，但提醒：作业中要求自己手写、不允许直接生成；且 Copilot 生成的代码可能有小 bug，必须懂程序才能修正——"写代码一小时，调代码七小时"。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>SSO 重定向演示</strong>（约 07:00）：展示同学克隆失败的截图，从报错中的 <code>redirect ... sso</code> 字样推断未连校园网；并现场演示退出校园网登录后访问校内网页被重定向到统一身份认证页。</li>
+<li><strong>HTTPS 地址拼接演示</strong>（约 13:00）：以自己仓库为例说明 URL 结构：<code>https://域名/组名/仓库名.git</code>，token、命名空间、仓库名都要替换；演示了 <code>CCS</code>（父 group）/ <code>python-2023</code>（子 group）两级命名空间的情况。</li>
+<li><strong>SSH 克隆报错演示</strong>（约 15:00）：误用 SSH 地址克隆报连接失败，因 22 端口未开放。</li>
+<li><strong>分支保护机制演示</strong>（约 24:00）：打开 GitLab 仓库设置的 default branch 保护选项，展示"developers cannot push new commits, but maintainers can, no one can force push"的完全保护状态及修改后的状态；展示无 <code>main</code> 分支的空仓库。</li>
+<li><strong>参数默认值演示</strong>（约 59:00）：在 VS Code 中定义 <code>def test(argument1, argument2, argument3=3): pass</code>，演示在必选参数后再加无默认值参数会画波浪线报错。</li>
+<li><strong><code>join</code> 拼接演示</strong>（约 01:13:30）：可变参数拼接函数，用 <code>\t</code>（制表符）为分隔符把 <code>"安静"</code>, <code>"ABC"</code>, <code>"DEF"</code> 等拼接打印，改分隔符为分号后结果相应变化。</li>
+<li><strong><code>lambda</code> 排序演示</strong>（约 01:16:00）：对含 4 个元组（形如 <code>(数字, 数字)</code>）的列表用 <code>sort(key=lambda p: p[1])</code> 按第二项排序并 <code>print</code> 输出。</li>
+<li><strong>Copilot 演示</strong>（约 01:09:20）：写一行注释后等待 Copilot 自动补全一个编码函数的实现，按 Tab 接受；演示用 Copilot Chat 让它 <code>fix</code> 代码问题。</li>
+<li><strong>作业说明</strong>：第一次作业为编码解码（"表白"）程序，老师给了带 <code>pass</code> 占位的框架代码 <code>demo.py</code>，删掉 <code>pass</code> 会被语法检查器标错；作业延期至下周，下节课讲答案。第二次作业下节课布置，课前需看完"程序结构"全部视频。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>会读报错才算计算机入门</strong>（老师反复强调）：要从报错信息反推原因——重定向到 SSO → 网络/VPN/代理问题；连接失败 → 端口/协议问题；认证失败 → 密码问题；路径乱码 → 中文路径问题。</li>
+<li><strong>VPN 与代理不能共存</strong>：登了 VPN 又开全局代理，流量仍绕外网，照样报错；Git 中单独设置的代理也要关闭。</li>
+<li><strong>SSH 默认端口 22</strong> 是常识，校内 GitLab 已禁用 SSH，只能用 HTTPS 地址。</li>
+<li>**GitLab 分支保护机制**是本次 push 失败的根因：Developer 权限在完全保护下无法创建/推送默认分支。理解五级权限（Owner/Maintainer/Developer/Reporter/Guest）的用途。</li>
+<li><strong>小乌龟 ≠ Git</strong>：TortoiseGit 只是壳，实际执行靠 Git for Windows，两个都要装；判断重装哪个看报错路径前缀。</li>
+<li>Python 易错点：<code>elif</code> 不是 <code>else if</code>；<code>range</code> 取不到 stop 值；代码块不能为空、用 <code>pass</code> 占位；必选参数不能放在带默认值的参数之后。</li>
+<li>课前预习要求：下次课前看完"程序结构"全部视频，不要只看本课讲的几个"特别点"而跳过前面内容。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>本课承接上一课布置的第一次作业（编码解码/"表白"程序），作业答案与点评在下一次课（2023 年下一次线下课）讲解，同时布置第二次作业。</li>
+<li>Git 部分与之前教过的 SSH 克隆方式（<code>git@域名:命名空间/仓库名.git</code>）衔接，说明校内 GitLab 改用 HTTPS 的原因；后续六次作业都要用这套 Git 流程提交，故本课花整节课解决。</li>
+<li>预习内容关联课程前面章节："运行方式/交互环境""数字数据类型"（至少到"类型转换"）是第一次作业的前置知识；"程序结构"（分支、循环、函数）是第二次作业的前置知识。</li>
+<li>知识点上大量对照 C 语言（学生已有 C 语言基础）：布尔逻辑、分支、<code>break</code>/<code>continue</code>、函数与递归与 C 一致；<code>for...in</code>、<code>range</code>、参数默认值、<code>pass</code>、<code>lambda</code> 是 Python 特有或显著不同之处。参数默认值、可变参数、<code>lambda</code> 与后面章节的"函数"部分、面向对象内容相关联。</li>
+<li>HTTPS 证书、数字签名原理属"密码学/计算机网络"课程的内容；<code>is</code>/<code>is not</code> 涉及对象身份，与后续对象概念相关。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

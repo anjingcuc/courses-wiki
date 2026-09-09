@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W16 答辩与课程总结 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 16 / 16</span>
+    <span class="th">综合项目 · 打磨 / 答辩 / 总结展望</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m6/">M6</a> <a href="../m7/">M7</a>
+    <a href="../../">课程主页</a>
+    <a href="w15.html">← 上周</a>
+    <a class="cur" href="w16.html">本周（末周）</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W16 答辩与总结">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 16 周（100 分钟 · L40–L48）</div>
+    <h1 class="rise">交付、答辩<br><span class="grad">然后带着方法离开</span></h1>
+    <p class="sub rise">最后一周：演示彩排与文档定稿、项目答辩与互评、优秀代码复盘；
+    然后站高处看一眼——AI 时代的技术版图、四维能力模型，和结课后的四条深入路线。</p>
+    <div class="meta rise">
+      <span>M6 收官 + M7 总结展望</span><span>微课 V054–V059</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–12</td><td><b>答辩前打磨</b></td><td>文档三件（README/协作日志/演示脚本）；断网兜底录屏；开场 30 秒讲清价值</td></tr>
+      <tr><td>12–40</td><td><b>项目答辩</b></td><td>每组 5 分钟演示 + 3–5 分钟问答；随机指行提问</td></tr>
+      <tr><td>40–52</td><td><b>答辩三问复盘</b></td><td>指行讲解 / 去掉 AI 你能写哪部分 / 最满意的功能如何实现</td></tr>
+      <tr><td>52–64</td><td><b>优秀代码复盘</b></td><td>选 2–3 组深度走读：他的切分策略/模块边界/你会怎么重构</td></tr>
+      <tr><td>64–76</td><td><b>技术版图</b></td><td>从 Python 到 AI 生态全景；HuggingFace/Ollama 一瞥</td></tr>
+      <tr><td>76–88</td><td><b>能力模型与路线</b></td><td>基础×AI协作×工程化×领域知识（乘法）；四条深入路线</td></tr>
+      <tr><td>88–100</td><td><b>课程结业</b></td><td>16 周回望：从第一行 print 到独立交付 AI 应用；一句话感言</td></tr>
+    </table>
+    <p class="small">答辩看真行为：演示 + 指行讲解 + 诚实回答「哪些是你写的」。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>答辩前打磨清单</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">文档三件</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">README：介绍 / 安装 / 使用 / 技术栈</li>
+          <li class="frag">AI 协作日志：关键 prompt 与人工修改原因</li>
+          <li class="frag">演示脚本：5 分钟内走完核心闭环（先排练！）</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">彩排要点</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">演示断网怎么办？准备录屏兜底</li>
+          <li class="frag">开场 30 秒讲清「谁用、解决什么」</li>
+          <li class="frag">功能不在多——<b>讲透一条完整链路胜过堆十个半成品</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>答辩三问（提前想好）</h2>
+    <div class="scard rise" style="border-left:5px solid #0284c7;"><b>问一：随机指一行代码——这是干什么的？</b>
+      <span class="frag" style="display:block;margin-top:4px;">读代码是本课程的第一能力。答不出的行，今晚回去搞懂它。</span></div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed;"><b>问二：去掉 AI 辅助，你能独立写出哪部分？</b>
+      <span style="display:block;margin-top:4px;">诚实回答：哪些是你写的、哪些是 AI 生成你审查过的、哪些你还看不懂——协作日志就是为此准备的。</span></div>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b>问三：你最满意的功能是怎么实现的？</b>
+      <span style="display:block;margin-top:4px;">讲清「需求 → 方案取舍 → 遇到的问题 → 解决过程」的完整链路。</span></div>
+  </section>
+
+  <section class="slide">
+    <h2>复盘：读别人的代码</h2>
+    <p class="rise">答辩后选 2–3 组做深度复盘——<b>读别人的代码是最高效的学习</b>：</p>
+    <ul>
+      <li class="frag">他的 RAG 切分策略为什么和我不一样？效果差在哪？</li>
+      <li class="frag">同样的 FastAPI 骨架，他的模块边界为什么更清爽？</li>
+      <li class="frag">如果我来维护这个项目，第一个重构动作是什么？</li>
+    </ul>
+    <p class="small frag">微课：<a href="../scripts/V055-优秀AI项目复盘/">V055 优秀 AI 项目复盘</a></p>
+  </section>
+
+  <section class="slide">
+    <h2>AI 时代的程序员能力模型</h2>
+    <p class="rise">四个维度<b>相乘</b>而非相加——任何一项为零，整体趋近于零：</p>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">基础</span><b class="tt">编程与计算机基本功</b>
+        <span class="small">数据结构直觉、网络与系统概念、读代码——AI 越强，判断它对不对的能力越重要。</span></div>
+      <div class="scard rise"><span class="tag v">AI 协作</span><b class="tt">驾驭模型的工程能力</b>
+        <span class="small">Prompt 设计、RAG/Agent 选型、输出验证、成本评估——本课程 M5 的全部。</span></div>
+      <div class="scard rise"><span class="tag">工程化</span><b class="tt">把原型变产品的能力</b>
+        <span class="small">测试、版本控制、模块化、部署——M4 与 M6 反复打磨的部分。</span></div>
+      <div class="scard rise"><span class="tag v">领域知识</span><b class="tt">懂业务才能定义问题</b>
+        <span class="small">AI 是通用工具，价值落在具体领域——也是系统设计能力的重要支撑。</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>结课后的四条路线</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">Web / 后端</b>
+        <span class="small">FastAPI → 数据库 → Docker → 云：把期末项目升级成真正的多用户服务。</span></div>
+      <div class="scard rise"><b class="tt">数据方向</b>
+        <span class="small">SQL → Pandas 进阶 → 数仓/BI：M3 数据链路的专业化。</span></div>
+      <div class="scard rise"><b class="tt">AI 工程 / 研究</b>
+        <span class="small">RAG/Agent 深入 → 微调 → 模型原理：读 transformer 论文、玩 Ollama 本地模型。</span></div>
+      <div class="scard rise"><b class="tt">产品方向</b>
+        <span class="small">场景洞察 → 原型 → 迭代：技术是手段，解决问题才是目的。</span></div>
+    </div>
+    <p class="small frag" style="margin-top:12px;">微课：<a href="../scripts/V056-AI技术生态全景图/">V056 版图</a> · <a href="../scripts/V057-数据库Docker云服务入门概念/">V057 数据库/Docker/云</a> · <a href="../scripts/V058-AI时代程序员成长路线/">V058 成长路线</a> · <a href="../scripts/V059-课程复盘从零到AI应用全旅程/">V059 全旅程复盘</a></p>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W16 总结 · 概念检查",
+        "questions": [
+          {
+            "q": "四维能力模型用乘法而不是加法的原因是？",
+            "opts": ["显得复杂", "任何一项为零，整体价值都趋近于零", "方便打分", "没有原因"],
+            "a": 1,
+            "explain": "只会调 AI 不懂基础会被幻觉误导；只懂基础不会协作效率落后；能写代码但不懂业务就定义不出好问题。"
+          },
+          {
+            "q": "答辩中「随机指行提问」考察的核心是？",
+            "opts": ["背代码能力", "读代码能力——你是否真正拥有这个项目", "打字速度", "运气"],
+            "a": 1,
+            "explain": "读代码是课程第一能力锚点：AI 生成的代码经你审查、理解、验收之后，才真正是你的。"
+          },
+          {
+            "q": "课程结束后的持续学习，最不建议的做法是？",
+            "opts": ["读优秀开源项目代码", "把自己不熟的 AI 输出直接用于生产", "为课程项目加新功能练手", "深入某个方向的文档"],
+            "a": 1,
+            "explain": "未经审查与验证的 AI 输出直接上生产，是本课程反复强调要避免的工程习惯。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide cover">
+    <div class="kicker rise">课程的最后</div>
+    <h1 class="rise">16 周，从第一行 print<br><span class="grad">到独立交付一个 AI 应用</span></h1>
+    <p class="sub rise">从「AI 会写代码，人学什么」的疑问出发——愿你带走的不只是 Python，
+    还有读代码的底气、调试的耐心、设计系统的视野，以及与 AI 协作的信心与方法。</p>
+    <div class="meta rise">
+      <span><b>祝答辩顺利。</b></span>
+      <span><a href="../../">课程主页</a> · <a href="../slides-index/">全部 16 周课件</a></span>
+    </div>
+    <div class="rules rise">本页课件与全部资料长期在线——随时回来查。</div>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

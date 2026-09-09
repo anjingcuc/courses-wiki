@@ -1,0 +1,1066 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/Python-2023-10-Web%E5%BC%80%E5%8F%91%E4%B9%8Bfastapi%E5%AE%9E%E6%88%98/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Python-2023-10 Web开发之FastAPI实战 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-2023-10-webfastapi" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python-2023-10 Web开发之FastAPI实战
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#00000300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课程安排与工具切换（约 00:00–03:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-07461400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现代 Web 服务的典型架构（约 07:46–14:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iaas-paas-saas-18442500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        云计算概念：IaaS / PaaS / SaaS（约 18:44–25:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpg-png-26093600" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战第一步：本地实现 jpg 转 png（约 26:09–36:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36573800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        封装成函数（约 36:57–38:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-38004100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搭建 FastAPI 环境（约 38:00–41:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainpy-41264730" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        main.py 示例与路由概念（约 41:26–47:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47335230" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动服务与访问测试（约 47:33–52:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523010400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接入转换功能与文件上传接口（约 52:30–1:04:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1040011600" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        上传文件落盘与类型标注（约 1:04:00–1:16:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1184812800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        静态文件挂载与下载（约 1:18:48–1:28:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-2023-10-webfastapi">Python-2023-10 Web开发之FastAPI实战<a class="headerlink" href="#python-2023-10-webfastapi" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这是课程进入项目实战阶段的第一课（Web 开发两节课中的第一节）。老师先梳理了现代 Web 服务的典型架构（前端、后端、缓存、数据库、Docker），并用 IaaS/PaaS/SaaS 三个云计算概念说明"一切服务最终都落在 Web 上"。随后进入实战：先用 Pillow 在本地实现 jpg 转 png 的功能，再用 FastAPI 把它包装成一个 HTTP 服务，依次实现 Hello World 接口、文件上传接口、上传文件落盘、图片格式转换、静态文件挂载与下载。本课只完成后端，前端留待下一课。结尾布置了作业：用 FastAPI 实现一个类似的小服务。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="00000300">课程安排与工具切换（约 00:00–03:00）<a class="headerlink" href="#00000300" title="Permanent link">&para;</a></h3>
+<ul>
+<li>前 11 个章节是基础铺垫，从本章开始进入三个项目章节（Web 开发、爬虫、可视化）。</li>
+<li>项目章节改用 <strong>VS Code</strong> 开发（可视化部分仍适合用 Jupyter Notebook，因为要边做边看图）。</li>
+<li>后端框架从 Flask 改为 <strong>FastAPI</strong>（老师认为目前 Python 后端主流是 FastAPI；GitHub 上他的 <code>learn</code> 仓库里仍保留 Flask 的从零开始项目）。</li>
+<li>两节课分配：第一节过概念、搭后端；第二节写前端、带写作业。</li>
+</ul>
+<h3 id="web-07461400">现代 Web 服务的典型架构（约 07:46–14:00）<a class="headerlink" href="#web-07461400" title="Permanent link">&para;</a></h3>
+<ul>
+<li>简化架构：一个**前端**（形式很宽泛：网页 Vue.js/React.js/Angular、微信小程序等），一个**后端**。</li>
+<li>后端之下通常还有三类配套软件：<strong>Web 后端服务</strong>（如 nginx + Flask/FastAPI）、<strong>缓存</strong>（Redis 最常用）、<strong>数据库</strong>（MySQL、MongoDB 等），初学阶段一般只涉及后端 + 数据库，Redis 不设计。</li>
+<li>前端与后端通过 <strong>HTTP</strong> 交换数据，常用 <strong>JSON</strong>（JavaScript Object Notation）作为接口格式，结构类似 Python 字典（键值对）。</li>
+<li><strong>Docker</strong>（约 11:57）：相比虚拟机更轻量级的环境隔离软件。类比 Python 虚拟环境：为每个软件创建独立命名空间（容器 container），容器内的动态链接库、环境变量互不影响，可解决依赖冲突（如 nginx 依赖 OpenSSL 1.0 而 MySQL 依赖 1.2）。常见玩法是一台云虚拟机上跑多个 Docker 容器（web 后端、Redis、数据库各一个）。</li>
+</ul>
+<h3 id="iaas-paas-saas-18442500">云计算概念：IaaS / PaaS / SaaS（约 18:44–25:00）<a class="headerlink" href="#iaas-paas-saas-18442500" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>IaaS（基础设施即服务）</strong>：厂商买好大量服务器，用虚拟化技术分配计算资源，用户开账号买虚拟机（VPS）即可。本质是"虚拟机 + Docker"。</li>
+<li><strong>PaaS（平台即服务）</strong>：在虚拟机基础上一键初始化操作系统、数据库、开发环境（如选 Ubuntu、Kali），开箱即用。</li>
+<li><strong>SaaS（软件即服务）</strong>：把本地软件的功能做成在线服务，例如把 docx 上传到网页转成 PDF——后端可能就是一个 FastAPI 服务调用 Python 包完成转换。</li>
+<li>老师强调：这三种服务的提供途径最终都是 Web；并顺势畅想未来可能出现"模型即服务"（如 Hugging Face 上点 run 直接用模型，背后是即时构建、用完销毁的容器环境）。</li>
+</ul>
+<h3 id="jpg-png-26093600">实战第一步：本地实现 jpg 转 png（约 26:09–36:00）<a class="headerlink" href="#jpg-png-26093600" title="Permanent link">&para;</a></h3>
+<p>整体思路三步走：①先实现功能；②用 FastAPI 包装成 HTTP 服务；③写前端。</p>
+<ul>
+<li>新建文件夹 <code>SAAS</code>，用 VS Code 打开，新建 <code>convert.py</code>。</li>
+<li>安装 <strong>Pillow</strong>（导入名为 <code>PIL</code>）：<code>from PIL import Image</code>。</li>
+<li>命令行参数：用内置模块 <code>sys</code>，<code>sys.argv</code> 取参数（0 号是脚本名，1 号是传入的 jpg 文件名，类比 C 语言 argv）。</li>
+<li>路径处理：<code>from pathlib import Path</code>，<code>Path</code> 对象有 <code>with_suffix()</code> 方法可替换文件后缀（如把 <code>.jpg</code> 换成 <code>.png</code>）。</li>
+<li>后缀校验：<code>jpg_file.lower().endswith(".jpg")</code>（先转小写再判断，兼容大写后缀），不满足则提示"请指定 JPG"。</li>
+<li>转换：<code>Image.open(jpg_file).save(new_file_name)</code>，Pillow 会根据后缀自动做格式转换。</li>
+<li>测试：<code>python convert.py test.jpg</code>，52KB 的 jpg 转出 157KB 的 png（png 支持透明背景）。</li>
+</ul>
+<h3 id="36573800">封装成函数（约 36:57–38:00）<a class="headerlink" href="#36573800" title="Permanent link">&para;</a></h3>
+<ul>
+<li>把转换逻辑改写成函数 <code>convert(jpg_file)</code>：失败 <code>return None</code>，成功返回新文件路径。</li>
+<li>注意 <code>Path</code> 返回的是路径对象，需 <code>str()</code> 强制转成字符串再返回。</li>
+</ul>
+<h3 id="fastapi-38004100">搭建 FastAPI 环境（约 38:00–41:00）<a class="headerlink" href="#fastapi-38004100" title="Permanent link">&para;</a></h3>
+<ul>
+<li>FastAPI 官网有中文文档，安装：<code>pip install fastapi</code>，生产/运行用 <code>uvicorn</code>（课上装的是 <code>uvicorn[standard]</code>）。</li>
+<li>用 conda 建虚拟环境：<code>conda create -n FA python=3.9</code>（FastAPI 要求 3.8 及以上），<code>conda activate FA</code> 后在环境内装 Pillow 和 FastAPI。</li>
+<li>老师自我批评：不要在 conda 的 base 环境里乱装包，应先建虚拟环境再装依赖。</li>
+</ul>
+<h3 id="mainpy-41264730">main.py 示例与路由概念（约 41:26–47:30）<a class="headerlink" href="#mainpy-41264730" title="Permanent link">&para;</a></h3>
+<ul>
+<li>从官网复制示例：<code>from fastapi import FastAPI</code>，创建 <code>app = FastAPI()</code>（Web 框架普遍自称 app，即 Web 应用）。</li>
+<li><code>@app.get("/")</code> 装饰器（约 45:09）：把"用户访问网站根目录"这个行为**绑定**到下面的函数上——URL 路径与函数的绑定关系叫**路由**。访问根目录时运行该函数，<code>return {"Hello": "World"}</code>（Python 字典会被 FastAPI 自动转成 JSON 字符串返回前端）。</li>
+<li><strong>VS Code 波浪线问题</strong>（约 42:06）：Pylance 插件报"无法解析导入 fastapi"，是因为插件不会自动切换虚拟环境，右下角解释器还停在 base。解决办法：点击右下角切换解释器到刚创建的 FA 环境；不切换也不影响终端里运行。</li>
+</ul>
+<h3 id="47335230">启动服务与访问测试（约 47:33–52:30）<a class="headerlink" href="#47335230" title="Permanent link">&para;</a></h3>
+<ul>
+<li>启动命令：<code>uvicorn main:app --reload</code>。</li>
+<li><code>main</code> 是模块名（main.py），<code>app</code> 是模块里的应用变量名，结构固定为"模块:应用变量"；</li>
+<li><code>--reload</code> 表示文件修改保存后自动重载，免去了反复手动重启。</li>
+<li>默认在本地 **8000 端口**启动。VS Code 终端里 Ctrl+单击链接即可在浏览器打开。</li>
+<li>访问根目录返回 JSON 串；后端日志显示收到 GET 请求、HTTP/1.1 协议、响应 <code>200 OK</code>。</li>
+</ul>
+<h3 id="523010400">接入转换功能与文件上传接口（约 52:30–1:04:00）<a class="headerlink" href="#523010400" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>from convert import convert</code> 导入自己写的函数，先在根路由里写死调用 <code>convert("test.jpg")</code> 返回 <code>{"filename": fn}</code> 验证打通。</li>
+<li>查 FastAPI 文档的 File / UploadFile 部分，复制示例写上传接口（约 55:41）：</li>
+<li>装饰器用 <code>@app.post("/uploadfile/")</code>——HTTP 有不同 method：<strong>GET 用于获取/下载，POST 用于提交/上传</strong>（如登录提交用户名密码），上传文件是浏览器到服务器的过程，故用 POST。</li>
+<li>函数参数 <code>file: UploadFile</code>，先返回 <code>{"filename": file.filename}</code>。</li>
+<li><strong>报错实战</strong>（约 57:31）：刷新后服务报错 <code>form data requires python-multipart to be installed</code>。上传文件是 multipart（多组成部分）过程，需安装 <code>python-multipart</code> 库——强调"解决方案就在报错里"，要学会读报错。</li>
+<li><strong><code>/docs</code> 交互式文档</strong>（约 54:40、1:00:22）：FastAPI 自动生成的接口文档页，列出所有路由，点 <strong>Try it out</strong> 会自动生成上传控件，无需前端即可测试接口；配合 F12 开发者工具的"网络"标签页可看到 POST 请求的负载（二进制文件）和响应 JSON。</li>
+</ul>
+<h3 id="1040011600">上传文件落盘与类型标注（约 1:04:00–1:16:00）<a class="headerlink" href="#1040011600" title="Permanent link">&para;</a></h3>
+<ul>
+<li>直接把 <code>file.filename</code> 扔给 convert 报 <code>Internal server error</code>：<code>file.filename</code> 只是文件名，文件内容还没写到服务器本地，且文件路径未知，报 <code>no such file or directory</code>。</li>
+<li>参考 Stack Overflow 写 <code>save_upload_file</code> 函数：用内置模块 <strong>shutil</strong>（shell 工具）的 <code>shutil.copyfileobj</code> 把上传文件内容拷贝到本地以 <code>wb</code>（二进制写）模式打开的文件中，配合 <code>try...finally</code> 确保关闭。</li>
+<li><strong>Python 类型标注新语法</strong>（约 1:09:06）：参数名后加冒号写类型（如 <code>destination: Path</code>），还可标注返回值类型。解决"看参数名不知道该传 str 还是 Path"的问题；课上翻车示例：把 Path 对象传给期望 str 的 convert 报 <code>lower</code> 相关错误，<code>str()</code> 强转后解决。</li>
+<li>串联逻辑：<code>save_upload_file</code> 落盘 → <code>convert</code> 转换 → 返回新文件名。</li>
+</ul>
+<h3 id="1184812800">静态文件挂载与下载（约 1:18:48–1:28:00）<a class="headerlink" href="#1184812800" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>搜索技巧</strong>（约 1:17:05）：把需求拆碎翻译成英文关键词，如"fastapi serve static file to download"。</li>
+<li><strong>静态文件 static files</strong>：服务器上不需要用代码修改、只供用户下载的文件（JavaScript、CSS、图片、供下载的结果文件）；与之相对的是要执行的 <code>.py</code>。</li>
+<li>用法两步：</li>
+<li><code>from fastapi.staticfiles import StaticFiles</code>；</li>
+<li><code>app.mount("/static", StaticFiles(directory="static"), name="static")</code>——本质是**绑定 URL 路径与本地文件夹**：本地新建 <code>static</code> 文件夹后，<code>static/test.png</code> 就映射到 <code>http://127.0.0.1:8000/static/test.png</code>，浏览器直接可下载。</li>
+<li>用 <code>shutil.move(fn, "static/" + fn)</code> 把转换结果移入 static 文件夹，返回的 filename 改成 <code>/static/xxx.png</code> 即得下载链接。</li>
+<li><strong>导入库的分区习惯</strong>（约 1:20:04）：最上面内置库、中间第三方库、最后自己的模块，不要乱放。</li>
+<li>拓展提及：<strong>重定向</strong>（302 响应，如登录后自动跳首页），可用 RedirectResponse 把响应重定向到图片地址；或返回 JSON 让前端显示下载链接。</li>
+<li><strong>作业</strong>（约 1:28:05）：用 FastAPI 实现一个类似功能的小服务，建议不要做转图片（课上已全演示），换一个别的功能；用 git 的 0x04 分支提交，先把后端写出来。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>convert.py</code>：命令行版 jpg→png 转换器（sys.argv + pathlib + Pillow）。</li>
+<li><code>main.py</code> 演进过程：</li>
+<li>官网 Hello World 示例，<code>@app.get("/")</code> 返回 <code>{"Hello": "World"}</code>；</li>
+<li>根路由内调用 <code>convert("test.jpg")</code> 返回转换结果文件名；</li>
+<li><code>@app.post("/uploadfile/")</code> 上传接口，先只返回文件名；</li>
+<li>加 <code>save_upload_file</code> 落盘 + convert 转换 + 返回新文件名；</li>
+<li>加 StaticFiles 挂载，转换结果 move 进 static，返回可下载路径。</li>
+<li>全程用 <code>/docs</code> 的 Try it out 测试上传，用 F12 网络面板观察 POST 请求与响应。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>路由 = URL 路径与函数的绑定</strong>，装饰器 <code>@app.get</code> / <code>@app.post</code> 干的就是绑定这件事；GET 与 POST 的语义区别要分清。</li>
+<li><code>uvicorn main:app --reload</code> 的"模块:变量"结构是固定的，变量名变了冒号后也要跟着变。</li>
+<li>VS Code 的 Pylance 报错多半是解释器/虚拟环境没切换，不是代码问题。</li>
+<li><code>UploadFile.filename</code> 只给文件名，文件必须自己落盘后才能被本地函数处理——这是第一个 Internal server error 的根源。</li>
+<li>上传文件必须装 <code>python-multipart</code>，报错信息会直接告诉你。</li>
+<li>类型标注能帮助发现"把 Path 当 str 传"这类参数类型错误。</li>
+<li>强调工程习惯：虚拟环境隔离、导入分区、先实现功能再包装成服务的分步思路。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>直接续接下一课《Python-2023-11 Web开发之FastAPI实战续》（写前端页面、处理 CORS 跨域）。</li>
+<li>依赖前置章节：第三方库与虚拟环境（conda/pip）、pathlib 路径处理、函数与装饰器（装饰器详见视频）、文件读写与二进制模式。</li>
+<li>JSON 与前后端分离的概念在后续《爬虫之豆瓣》中再次用到（爬虫直接请求数据接口拿 JSON）。</li>
+<li>Docker/虚拟环境隔离思想呼应第 10 章《第三方库与虚拟环境》。</li>
+<li>作业成果为后续 Web 部分作业（前后端完整服务）的基础。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

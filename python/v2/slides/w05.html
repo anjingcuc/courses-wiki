@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W5 IO、异常与类 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 05 / 16</span>
+    <span class="th">语言核心 · 文件 IO / 异常 / 类</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m2/">M2 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w04.html">← 上周</a>
+    <a class="cur" href="w05.html">本周</a>
+    <a href="w06.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W5 IO 异常与类">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 5 周（100 分钟 · L10–L11）</div>
+    <h1 class="rise">让程序「记得住」<br><span class="grad">也「扛得住」</span></h1>
+    <p class="sub rise">文件 IO 解决「重启就失忆」，异常处理解决「一断网就崩溃」，
+    类把散落的状态打包成盒子。本周收官语言核心——之后带着全套武器进入真实数据世界。</p>
+    <div class="meta rise">
+      <span>所属模块 M2 语言核心</span><span>微课 V017–V021</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–6</td><td><b>两个痛点</b></td><td>重启失忆（演示）+ 断网崩溃（演示）——今天解决</td></tr>
+      <tr><td>6–18</td><td><b>文件 IO</b></td><td>open 模式 r/w/a；with 自动关闭；json.dump/load 存读对话</td></tr>
+      <tr><td>18–30</td><td><b>异常处理</b></td><td>Traceback 从最后一行往前读；捕获要具体；API 三大异常</td></tr>
+      <tr><td>30–42</td><td><b>动手练习</b></td><td>运行场：存档→读回→FileNotFoundError 兜底</td></tr>
+      <tr><td>42–56</td><td><b>模块与包</b></td><td>import 机制；.py=模块、文件夹=包；不用背标准库</td></tr>
+      <tr><td>56–72</td><td><b>类语法</b></td><td>class/__init__/self；类=图纸 实例=产品；client 就是实例</td></tr>
+      <tr><td>72–86</td><td><b>AIChatManager 演示</b></td><td>逐步建类：骨架→send→clear→创建实例使用</td></tr>
+      <tr><td>86–96</td><td><b>动手练习</b></td><td>运行场：ChatSession 补全 user_count 方法</td></tr>
+      <tr><td>96–100</td><td><b>M2 收官</b></td><td>手里的武器清单；下周进入真实数据世界</td></tr>
+    </table>
+    <p class="small">M2 收官课：课后把「手里的武器清单」对照自查一遍。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>开场演示：两个痛点</h2>
+    <div class="cols2">
+      <div class="scard rise" style="border-left:5px solid #dc2626;"><b class="tt">痛点一：失忆</b>
+        <span>跑 L9 的对话程序，聊了三轮 → 关掉重跑 → 历史全没了。</span>
+        <span class="frag" style="display:block;margin-top:8px;color:#065f46;">→ 文件 IO：把数据存成 JSON，重启读回来。</span></div>
+      <div class="scard rise" style="border-left:5px solid #dc2626;"><b class="tt">痛点二：脆弱</b>
+        <span>拔掉网线再跑 → 红色 Traceback 满屏，程序当场崩溃。</span>
+        <span class="frag" style="display:block;margin-top:8px;color:#065f46;">→ 异常处理：接住错误，优雅降级。</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>文件 IO：把数据存下来</h2>
+    <pre class="rise"><code><span class="k">import</span> json
+
+<span class="c"># 存：对话历史 → JSON 文件</span>
+<span class="k">with</span> <span class="f">open</span>(<span class="s">"history.json"</span>, <span class="s">"w"</span>, encoding=<span class="s">"utf-8"</span>) <span class="k">as</span> f:
+    json.<span class="f">dump</span>(messages, f, ensure_ascii=<span class="k">False</span>, indent=<span class="n">2</span>)
+
+<span class="c"># 读：JSON 文件 → Python 对象</span>
+<span class="k">with</span> <span class="f">open</span>(<span class="s">"history.json"</span>, encoding=<span class="s">"utf-8"</span>) <span class="k">as</span> f:
+    messages = json.<span class="f">load</span>(f)</code></pre>
+    <ul>
+      <li class="frag">模式：<code>"r"</code> 读 / <code>"w"</code> 覆盖写 / <code>"a"</code> 追加</li>
+      <li class="frag"><code>with</code> 语句保证文件<b>一定被关闭</b>（出异常也会关）——处理文件的标准写法</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>异常处理：接住错误</h2>
+    <pre class="rise"><code><span class="k">try</span>:
+    resp = client.chat.completions.<span class="f">create</span>(...)
+<span class="k">except</span> <span class="f">ConnectionError</span> <span class="k">as</span> e:
+    <span class="f">print</span>(<span class="s">"网络不通，稍后重试："</span>, e)
+<span class="k">except</span> <span class="f">FileNotFoundError</span>:
+    messages = []              <span class="c"># 首次运行没有历史文件，给个空列表</span>
+<span class="k">finally</span>:
+    <span class="f">print</span>(<span class="s">"本次调用结束"</span>)   <span class="c"># 无论如何都执行</span></code></pre>
+    <ul>
+      <li class="frag">读报错的方法：<b>Traceback 从最后一行往前读</b>——最后一行是错误类型和原因</li>
+      <li class="frag">捕获要具体：<code>except Exception</code> 一把梭会吞掉所有错误，让 bug 更难找</li>
+      <li class="frag">AI 场景三大常见异常：网络超时、API Key 无效、返回格式异常</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：健壮的对话存储</h2>
+    <span class="lab">交互 · 浏览器内运行（L10 课堂主线简化版）</span>
+    <div class="py-playground" data-py-title="存档 → 读回 → 异常兜底">
+      <textarea>import json
+
+messages = [{"role": "user", "content": "你好"},
+            {"role": "assistant", "content": "你好！"}]
+
+# 1) 存档
+with open("history.json", "w", encoding="utf-8") as f:
+    json.dump(messages, f, ensure_ascii=False, indent=2)
+print("已保存", len(messages), "条消息")
+
+# 2) 读回（带异常兜底：文件不存在时给空列表）
+try:
+    with open("history.json", encoding="utf-8") as f:
+        restored = json.load(f)
+    print("读回:", [m["content"] for m in restored])
+except FileNotFoundError:
+    restored = []
+    print("首次运行，从空历史开始")
+
+# 3) 练习：统计读回后 user 角色的消息条数
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>类：把数据和操作装进同一个盒子</h2>
+    <p class="rise">痛点回顾：client、history、api_key、model、system_prompt 五个变量在函数间传来传去——</p>
+    <pre class="rise"><code><span class="k">class</span> <span class="f">AIChatManager</span>:
+    <span class="k">def</span> <span class="f">__init__</span>(self, api_key, model=<span class="s">"deepseek-chat"</span>):
+        self.api_key = api_key          <span class="c"># 属性：数据</span>
+        self.model = model
+        self.history = []               <span class="c"># 对话历史也装在盒子里</span>
+
+    <span class="k">def</span> <span class="f">send</span>(self, text):              <span class="c"># 方法：操作</span>
+        self.history.<span class="f">append</span>({<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: text})
+        <span class="c"># ...调用 API（此处省略）...</span>
+
+    <span class="k">def</span> <span class="f">clear</span>(self):
+        self.history = []
+
+chat = <span class="f">AIChatManager</span>(<span class="s">"sk-..."</span>)     <span class="c"># 类是图纸，chat 是实例（产品）</span>
+chat.<span class="f">send</span>(<span class="s">"你好"</span>)</code></pre>
+    <ul>
+      <li class="frag"><code>self</code> 指向实例本身；<code>__init__</code> 是出厂设置</li>
+      <li class="frag">什么时候用类：<b>一组数据和操作它的函数高度耦合时</b>——你用的 OpenAI client 本身就是类的实例</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：实现一个迷你会话管理器</h2>
+    <span class="lab">交互 · 补全 TODO 再运行</span>
+    <div class="py-playground" data-py-title="L11 练习：给类加方法">
+      <textarea>class ChatSession:
+    def __init__(self, name):
+        self.name = name
+        self.history = []
+
+    def send(self, text):
+        self.history.append({"role": "user", "content": text})
+        reply = f"[{self.name}] 收到：{text[:10]}..."
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+
+    def user_count(self):
+        # TODO: 返回 user 角色的消息条数
+        # 提示：len([...]) + 推导式
+        pass
+
+s1 = ChatSession("翻译助手")
+s2 = ChatSession("代码助手")
+s1.send("hello")
+s1.send("world")
+s2.send("def foo()")
+
+print("s1 历史:", len(s1.history), "条 / user", s1.user_count(), "条")
+print("s2 历史:", len(s2.history), "条 / user", s2.user_count(), "条")
+print("两个会话互不干扰:", s1.history is not s2.history)
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>模块：代码的组织单位</h2>
+    <div class="flowline">
+      <div class="node">模块<br><span class="small">一个 .py 文件</span></div><span class="arrow">→</span>
+      <div class="node">包<br><span class="small">文件夹 + __init__.py</span></div><span class="arrow">→</span>
+      <div class="node hot">import json<br><span class="small">拿来就用</span></div>
+    </div>
+    <ul>
+      <li class="frag"><code>import json</code> / <code>from pathlib import Path</code>——两种引入方式</li>
+      <li class="frag">不用背标准库清单：<b>知道「有这个东西」+ 会查文档</b>就够了</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>M2 收官：你手里的武器</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">数据与逻辑</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">类型与转换（W3）</li>
+          <li class="frag">四种数据结构选型（W3）</li>
+          <li class="frag">分支循环（W4）</li>
+          <li class="frag">函数与契约（W4）</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">健壮与组织</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">文件 IO 持久化（本周）</li>
+          <li class="frag">异常处理（本周）</li>
+          <li class="frag">类封装状态（本周）</li>
+          <li class="frag">模块与包（本周）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      下半学期全部建立在语言核心之上：<b>W6 起去真实的数据世界（HTTP / API / 爬虫 / Pandas）</b>。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W5 IO 异常与类 · 概念检查",
+        "questions": [
+          {
+            "q": "with open(\"data.json\", encoding=\"utf-8\") as f 的好处是？",
+            "opts": ["读得更快", "自动关闭文件（异常时也会关）", "自动转成 dict", "不需要 import"],
+            "a": 1,
+            "explain": "with 是上下文管理器语法，代码块结束或抛出异常都保证 f.close()——这是文件操作的标准写法。"
+          },
+          {
+            "q": "读报错 Traceback 的正确姿势是？",
+            "opts": ["从第一行往下读", "只看第一行", "从最后一行往前读", "随机看一行"],
+            "a": 2,
+            "explain": "最后一行是错误类型和直接原因；往上翻是调用链。先读最后一行，再定位到你自己代码的那一帧。"
+          },
+          {
+            "q": "什么时候应该用类？",
+            "opts": ["任何代码都要包成类才专业", "一组数据和操作它的函数高度耦合时", "只有图形界面需要", "Python 不支持类"],
+            "a": 1,
+            "explain": "类 = 数据 + 行为的封装。五个变量在函数间传来传去时，就是该建类的信号。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V017-文件读写与with语句/">V017 文件读写</a> ·
+          <a href="../scripts/V018-try-except异常处理实战/">V018 异常实战</a> ·
+          <a href="../scripts/V019-import机制与模块基础/">V019 import 机制</a> ·
+          <a href="../scripts/V020-类与init和self/">V020 类</a> ·
+          <a href="../scripts/V021-面向对象思维与实战/">V021 面向对象思维</a></li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W6 HTTP 与数据获取</b>
+      F12 打开新世界：请求-响应模型 → requests 调 3 个真实 API → 网页爬取精要与伦理。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w06.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m2/">M2 模块页</a> · <a href="../notes/7.3-输入输出-文件读写/">经典笔记 7.3 文件读写</a> · <a href="../notes/11.3-函数进阶与类-类/">11.3 类</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

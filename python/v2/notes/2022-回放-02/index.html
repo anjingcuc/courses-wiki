@@ -1,0 +1,1089 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/2022-%E5%9B%9E%E6%94%BE-02/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2022-回放-02：面向对象概念引入、列表推导式与第一次作业 ROT13（第二次直播回放） - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2022-02-rot13" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2022-回放-02：面向对象概念引入、列表推导式与第一次作业 ROT13（第二次直播回放）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dlib-00000450" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dlib 安装问题的解决方案（约 00:00–04:50）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-08301440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向过程 vs 面向对象（约 08:30–14:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-14402630" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 万物皆对象、类与实例化（约 14:40–26:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#31003430" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查文档与离线文档工具（约 31:00–34:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-range-34404830" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for 循环、range 与列表推导式（约 34:40–48:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-1040010700" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        in 关键字（约 1:04:00–1:07:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-1080011200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hex() 与字符串处理（约 1:08:00–1:12:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单元测试概念（约 1:12:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-code-4330444011300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code 使用技巧（约 43:30–44:40，1:13:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-code-1490015400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code 报波浪线但命令行能跑的原因（约 1:49:00–1:54:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1150012340" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序设计方法：流程图与任务拆解（约 1:15:00–1:23:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rot13-1270014730" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROT13 算法实现思路（约 1:27:00–1:47:30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例与演示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rot13-ascii-54001020012340127001544015600" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一次作业：直男表白编码升级版（ROT13 + ASCII 十六进制）（约 54:00–1:02:00，1:23:40–1:27:00，1:54:40–1:56:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2022-02-rot13">2022-回放-02：面向对象概念引入、列表推导式与第一次作业 ROT13（第二次直播回放）<a class="headerlink" href="#2022-02-rot13" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这是第二次直播回放课（约 1 小时 56 分钟）。开头解决了上次遗留的 dlib 安装问题（装 Visual C++ 编译工具，或直接用预编译的 .whl 文件），并补充了"语言绑定"概念。随后进入正式内容：以"万物皆对象"为线索引入面向对象、类与实例化的概念，讲解如何查 Python 官方文档（并推荐离线文档工具 Zeal/Dash），演示字符串/列表的常用方法与列表推导式。后半节课围绕第一次作业展开：先画流程图拆解任务，再逐行讲解示例代码和 ROT13 算法的实现思路，最后布置作业。课上还补充了 VS Code 报波浪线（Lint 环境不匹配）的原因。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="dlib-00000450">dlib 安装问题的解决方案（约 00:00–04:50）<a class="headerlink" href="#dlib-00000450" title="Permanent link">&para;</a></h3>
+<ul>
+<li>方案一：安装 Visual Studio 的 C++ 编译工具，在"单个组件"里搜索勾选 CMake 相关组件（"用于 CMake 和 Linux 的 Visual C++ 工具"，约 5GB）。dlib 原生在 Linux 下运行较好，在 Windows 上需要 CMake 编译，装好后 <code>pip install dlib</code> 不再报错。</li>
+<li>方案二（推荐省事）：直接下载别人编译好的 <code>.whl</code> 文件（注意对应 Python 版本，如 cp310 对应 3.10），<code>cd</code> 到下载目录后 <code>pip install 文件名.whl</code>。<code>pip install</code> 后跟包名会去服务器下载，跟本地文件路径则直接安装本地包，无需再编译。</li>
+<li>小结三个要点：Python 的包怎么装（pip）；为什么要编译——dlib 是 C++ 写的，通过动态链接方式被加载，必须在目标平台编译；编译失败是因为缺 CMake 等编译工具。</li>
+<li>额外知识——<strong>语言绑定（language binding）</strong>：dlib、OpenCV、jieba（中文分词）等库不管本身用什么语言实现，都会提供不同语言的绑定（对应语言的 API），Python/Java/Go 等都能调用，不必关心其内部实现语言。</li>
+</ul>
+<h3 id="vs-08301440">面向过程 vs 面向对象（约 08:30–14:40）<a class="headerlink" href="#vs-08301440" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用"自动买菜程序"对比两种思路：</li>
+<li>面向过程：按执行顺序思考（穿衣拿钱包 → 坐车去菜市场 → 依次买每样菜）。</li>
+<li>面向对象：先梳理涉及哪些对象（钱包：有多少钱/能装多少钱等属性，能被打开等操作；菜贩子：卖什么菜的属性），再考虑对象间交互。</li>
+<li>两者只是侧重点不同：一个侧重完成任务的过程，一个侧重参与任务的真实对象的特征（属性）和行为（方法）。属性即对象里的变量，方法即对象里的函数。</li>
+</ul>
+<h3 id="python-14402630">Python 万物皆对象、类与实例化（约 14:40–26:30）<a class="headerlink" href="#python-14402630" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Python 从设计之初就是面向对象语言，所有基础类型（字符串、数字等）本质上都是对象，都有属性和可调用的方法。这与 C 语言的用法差异很大，而在 Python 里非常常见，作业中会大量使用。</li>
+<li><code>int</code> 本身就是一个 class（文档中写作 <code>class int</code>）。字符串 <code>str</code> 有大量方法：<code>capitalize</code>（首字母大写）、<code>count</code>（统计子串出现次数）、<code>find</code>（查子串位置）等。老师现场演示误把 <code>isinstance</code> 当成 int 的方法"翻车"，随后澄清：<code>isinstance(对象, 类型)</code> 是内置函数，判断某变量是否属于某类型。</li>
+<li><strong>类（class）与实例化（instantiation）</strong>：类是统称/图纸（如 <code>person</code> 类定义了 name、age、gender 等特征），本身不是可操作的实体；根据类创建出可操作的对象的过程叫实例化，创建出的对象叫该类的一个实例（如 <code>a.name = "安静"</code>，<code>a</code> 是 person 类的一个实例/对象）。</li>
+<li><code>type(x)</code> 函数返回变量的类型，显示为 <code>&lt;class 'str'&gt;</code> 等。</li>
+<li>类型转换函数 <code>int(x, base=10)</code> 实质是 int 类的实例化（构造）函数：<code>base</code> 表示**传入字符串本身是什么进制**（不是"转成几进制"）。如 <code>int("110011010", 2)</code> 把二进制字符串转成十进制数；<code>int("18", 2)</code> 报错，因为 "18" 不是合法二进制串。</li>
+</ul>
+<h3 id="31003430">查文档与离线文档工具（约 31:00–34:30）<a class="headerlink" href="#31003430" title="Permanent link">&para;</a></h3>
+<ul>
+<li>鼓励大家自己查 python.org 官方文档（老师上课时反复演示从首页进入文档搜索的过程）。</li>
+<li>推荐离线文档软件：Windows/Linux 用 <strong>Zeal</strong>，macOS 用 <strong>Dash</strong>（开源免费，"offline documentation browser for software developers"）。支持 <code>python3:print</code> 这种"语言:关键词"检索，带源码示例；各主流语言（C、Java、JS、Go 等）的文档都有，按需缓存，占磁盘空间。</li>
+</ul>
+<h3 id="for-range-34404830">for 循环、range 与列表推导式（约 34:40–48:30）<a class="headerlink" href="#for-range-34404830" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>range(n)</code>：生成从 0 到 n-1 的序列；<code>for i in range(26):</code> 让 i 依次取 0–25。</li>
+<li>需求引出：作业要处理字母表，手打 <code>ABCDEFG...Z</code> 26 个字母"过于朴实"，程序员追求自动生成。</li>
+<li>背景知识 ASCII 码：电脑只能存数字，ASCII 表建立数字与字符的对应。大写 A 对应十进制 65，A–Z 即 65+0 到 65+25。</li>
+<li><code>ord(字符)</code> 把单个字符转成对应整数（ASCII 码），<code>chr(整数)</code> 反过来转成字符。如 <code>ord('A')</code> → 65，<code>chr(ord('A')+1)</code> → 'B'。</li>
+<li>朴素写法：循环里 <code>number = 65 + i</code>、<code>char = chr(number)</code>、<code>result.append(char)</code>（<code>append</code> 在列表末尾追加元素）。</li>
+<li><strong>列表推导式</strong>：一句话生成整个列表——<code>b = [chr(65 + i) for i in range(26)]</code>，与上面循环完全等价，是本课重点强调的写法（作业会用到）。</li>
+<li>列表转字符串：用字符串的 <code>join</code> 方法——<code>''.join(b)</code> 无缝拼接，<code>','.join(b)</code> 以逗号分隔（典型场景：把全班名单列表拼成逗号分隔的串）。反过来 <code>c.split(',')</code> 把逗号分隔的字符串拆成列表。空字符串 <code>''</code> 仍是字符串类型，只是内容为空。</li>
+</ul>
+<h3 id="in-1040010700">in 关键字（约 1:04:00–1:07:00）<a class="headerlink" href="#in-1040010700" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>in</code> 用于判断包含关系：<code>if 'a' in '安静':</code> 判断子串是否在字符串中；<code>'张三' in student_list</code> 判断元素是否在列表中。<code>in</code> 后面只要是可遍历的序列（字符串、列表等）即可。</li>
+<li><code>for x in 序列:</code> 结合 <code>in</code> 就是遍历：依次取出序列中每个元素处理。</li>
+</ul>
+<h3 id="hex-1080011200">hex() 与字符串处理（约 1:08:00–1:12:00）<a class="headerlink" href="#hex-1080011200" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>hex(整数)</code> 转成以 <code>0x</code> 为前缀的小写十六进制**字符串**，如 <code>hex(255)</code> → <code>'0xff'</code>。演示查文档的标准流程：Zeal 或 python.org 搜内置函数。</li>
+<li>去掉 <code>0x</code> 前缀用切片：<code>hex_string[2:]</code>（从下标 2 开始到结尾）。</li>
+<li>字符串拼接用 <code>+</code>，<code>message += xxx</code> 等价于 <code>message = message + xxx</code>，在末尾追加内容。</li>
+</ul>
+<h3 id="11200">单元测试概念（约 1:12:00）<a class="headerlink" href="#11200" title="Permanent link">&para;</a></h3>
+<ul>
+<li>把大程序拆解成小单元（函数），每写完一个单元就测试它能否正常工作——软件工程中叫**单元测试（unit test）**。写完每一步都要运行验证。</li>
+</ul>
+<h3 id="vs-code-4330444011300">VS Code 使用技巧（约 43:30–44:40，1:13:00）<a class="headerlink" href="#vs-code-4330444011300" title="Permanent link">&para;</a></h3>
+<ul>
+<li>快捷键 <code>Ctrl + `</code>（Esc 下面那个键）呼出/收起内置终端；内置终端与独立 CMD 窗口本质相同。</li>
+<li>以"打开文件夹"方式使用 VS Code 时，新开终端会自动 cd 到该文件夹，省去手动切目录。</li>
+</ul>
+<h3 id="vs-code-1490015400">VS Code 报波浪线但命令行能跑的原因（约 1:49:00–1:54:00）<a class="headerlink" href="#vs-code-1490015400" title="Permanent link">&para;</a></h3>
+<ul>
+<li>VS Code 的 Lint 工具（Pylance）检查 <code>import</code> 的包时，去的是**左侧选择的解释器环境**的 <code>Lib/site-packages</code> 里找；终端里运行则永远用**环境变量**里配置的那个环境。两者不一致时会出现"编辑器画波浪线说没有 requests，命令行却能正常跑"。</li>
+<li>此问题可推广到任何语言：Java 的 package、C 的 <code>#include &lt;stdio.h&gt;</code> 能找到头文件也是靠环境变量/查找路径（Visual Studio 安装时自动配好了大量路径；VS Code 轻量，需要自己配）。编辑器报错不代表代码错，可能只是环境没配对。</li>
+<li>再次强调：用箭头/F5 运行"你糊涂我也糊涂"，命令行里 <code>python -V</code> 一下就知道用的是哪个解释器，绝不会搞错。</li>
+</ul>
+<h3 id="1150012340">程序设计方法：流程图与任务拆解（约 1:15:00–1:23:40）<a class="headerlink" href="#1150012340" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用面向过程思路拆解"两层加密"任务，现场画流程图：输入字符串 → ROT13 加密（只处理 52 个英文字母，空格标点保留）→ ASCII 转十六进制编码 → 输出；解密反之。</li>
+<li>流程图三种基本形状：斜四边形（平行四边形）表示数据/输入输出，矩形表示处理流程，菱形表示判断分支（有 True/False 两个走向），用箭头连接。</li>
+<li>由流程图得出需要三个工具函数：<code>rot13</code>、<code>ascii_encode</code>、<code>ascii_decode</code>，再整合成 <code>encode</code> 和 <code>decode</code> 两个函数，最后用 <code>if __name__ == "__main__":</code> 写测试代码。</li>
+<li>ROT13 的特性：加密两次即还原（26 个字母，加 13 再加 13 回到原位），所以只需写一个函数，不分 encode/decode。</li>
+</ul>
+<h3 id="rot13-1270014730">ROT13 算法实现思路（约 1:27:00–1:47:30）<a class="headerlink" href="#rot13-1270014730" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ROT13 = Rotate by 13 places，凯撒式轮转加密：A→N、B→O……超过 Z 绕回 A。强度极弱，常出现在 CTF 比赛签到题中。</li>
+<li>实现方式一（不动脑子版，课上演示）：定义两个对照串 <code>before = "ABC...Z"</code>、<code>after = "NOP...M"</code>；遍历输入字符，<code>if char in before:</code> 则 <code>index = before.find(char)</code>，取 <code>after[index]</code> 追加到结果；<code>else</code> 原样保留（非字母不处理）。<code>before</code>/<code>after</code> 定义在 <code>rot13</code> 函数内部而非全局（别处用不到）。</li>
+<li>可改写：<code>find</code> 找不到时返回 -1，可直接用 <code>index != -1</code> 判断，省去 <code>in</code> 的判断（不算真正的优化，"回字的 N 种写法"）。</li>
+<li>实现方式二（动脑子版，留给大家）：用 <code>ord</code> 转数字加 13 再 <code>chr</code> 转回，注意处理超过 90（Z）时绕回 65 的截断逻辑。</li>
+<li>扩展：<code>find(sub[, start[, end]])</code> 的可选参数——文档中**方括号表示可选参数**；指定 start/end 可限定查找区间。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="rot13-ascii-54001020012340127001544015600">第一次作业：直男表白编码升级版（ROT13 + ASCII 十六进制）（约 54:00–1:02:00，1:23:40–1:27:00，1:54:40–1:56:00）<a class="headerlink" href="#rot13-ascii-54001020012340127001544015600" title="Permanent link">&para;</a></h3>
+<ul>
+<li>梗：网上猜谜小游戏，发一串看不懂的代码默认翻译为"我爱你"。去年视频的简化版是把 "I love" 逐字符查 ASCII 表转成 494c4f56 这样的十六进制串；本次升级为先做 ROT13 再转 ASCII 十六进制（两层）。</li>
+<li>作业仓库（Gitee 企业版，fork 后提交）里给了两样东西：</li>
+<li><code>example.py</code>：只写了 ASCII 转十六进制编码部分的最朴素示例（无函数，逐行执行）。</li>
+<li>框架代码：函数骨架已搭好（首次作业福利），类似"完形填空"，把 <code>pass</code> 删掉补上实现即可。</li>
+<li><code>example.py</code> 逐行讲解：<code>confession = "I love Python."</code> → 空字符串存结果 → <code>for char in confession:</code> 遍历 → <code>ord</code> 转数字 → <code>hex</code> 转十六进制 → <code>[2:]</code> 去 <code>0x</code> → <code>+=</code> 拼接 → <code>print</code>。</li>
+<li>代码风格提醒：字符串引号应统一（不要一会单引号一会双引号）；缩进默认四个空格。</li>
+<li>课上现场把 example 的逻辑改写进框架的 <code>encode</code> 函数（注意变量名与参数名撞车要改名，如 <code>result</code>），并演示了 <code>def rot13</code> 的完整实现与测试（<code>b = rot13(rot13(a))</code> 验证两次加密还原）。</li>
+<li><strong>作业要求</strong>：完成框架里的空白（<code>rot13</code>、<code>ascii_decode</code>、<code>decode</code> 等）；不要求写 README/截图/执行报告；老师会直接运行测试，代码跑不起来扣分较多。<code>decode</code> 完全不提示，自己想：把十六进制串两个两个字符取出 → 转成十进制数（<code>int(x, 16)</code>）→ <code>chr</code> 转回字符 → 拼接 → 再做一次 ROT13。</li>
+<li>测试预期：<code>"I love Python."</code> 编码后再解码应原样还原（包括句号）。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>对象方法调用形式</strong>（<code>字符串.find(...)</code>、<code>列表.append(...)</code>）与 C 语言习惯差异大，是 Python 最普遍的写法，必须适应。</li>
+<li><code>int(x, base)</code> 的 <code>base</code> 指字符串本身的进制，常被误解为"转成 base 进制"。</li>
+<li>列表推导式的等价变形：循环 + 空列表 + <code>append</code> 与 <code>[表达式 for i in range(n)]</code> 的一一对应关系。</li>
+<li><code>''.join(list)</code> 的写法初学者不适应（用"分隔符字符串"去调 join）。</li>
+<li>查文档是核心能力：官方文档、Zeal/Dash、方括号=可选参数等阅读文档的基本功。</li>
+<li>编辑器 Lint 报错 ≠ 代码错误，要理解解释器环境与环境变量的关系。</li>
+<li>养成"先画流程图拆解任务 → 搭框架（pass 占位）→ 逐个实现 → 单元测试"的开发习惯，而不只是学语法。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>紧接回放-01：解决其遗留的 dlib/CMake 安装问题；复习其讲过的命令行执行、环境变量、克隆仓库等操作。</li>
+<li>面向对象概念将在"11.1 函数进阶与类"一章正式展开，本课只是引入。</li>
+<li>ASCII 码、进制转换承接 C 语言前置知识；<code>if __name__ == "__main__"</code> 的原理仍在"模块与包"章节讲解。</li>
+<li>本课作业是后续第二次作业（base64，见回放-03）的铺垫：同样围绕"编码/解码 + ASCII/进制转换"展开，难度递增。</li>
+<li>爬虫章节将正式讲 requests/BeautifulSoup 与知乎分析（本课仅提语言绑定时涉及 jieba 等库）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

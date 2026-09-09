@@ -1,0 +1,1009 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://anjingcuc.github.io/courses-wiki/python/v2/notes/Python-2023-12-%E7%88%AC%E8%99%AB%E4%B9%8B%E8%B1%86%E7%93%A3/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Python-2023-12 爬虫之豆瓣 - 课程资料</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/pyv2.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-2023-12" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="课程资料" class="md-header__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            课程资料
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python-2023-12 爬虫之豆瓣
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aissop/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  智能系统安全运维与实践
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python 程序设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../web/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  网页设计与制作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../online-publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  在线出版
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wps/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI-WPS 辅助办公
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="课程资料" class="md-nav__button md-logo" aria-label="课程资料" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    课程资料
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/anjingcuc/courses-wiki" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    anjingcuc/courses-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../aissop/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能系统安全运维与实践
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 程序设计
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网页设计与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../online-publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在线出版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wps/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-WPS 辅助办公
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容梗概
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识点详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识点详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01581300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三种网站类型（约 01:58–13:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13542440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        爬虫的两个步骤与三个困难（约 13:54–24:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24462920" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析返回结果所需知识（约 24:46–29:20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook-29243240" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战准备：Jupyter Notebook（约 29:24–32:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requests-ua-32403800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战第一步：requests 请求与 UA 伪装（约 32:40–38:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beautifulsoup-38004800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战第二步：BeautifulSoup 解析与动态渲染的发现（约 38:00–48:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48495500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战第三步：找到数据接口（约 48:49–55:00）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#553210640" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实战第四步：瀑布流分页与循环爬取（约 55:32–1:06:40）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例与演示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点与难点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关联内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-2023-12">Python-2023-12 爬虫之豆瓣<a class="headerlink" href="#python-2023-12" title="Permanent link">&para;</a></h1>
+<h2 id="_1">内容梗概<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这是"Web 分析与爬虫"章节的线下实战课（爬虫 + 可视化是一个大作业的前半部分）。老师先在白板上梳理了爬虫要面对的三种网站类型——静态网站、动态网站、数据接口，以及写爬虫的两个核心步骤和三个典型困难（User-Agent 伪装、登录 Cookie、IP 封禁）。随后进入实战：用 Jupyter Notebook 从零开始爬取豆瓣剧情/悬疑类电影榜单。直接请求页面发现列表数据是 JS 动态渲染的（BeautifulSoup 抓不到），于是改用开发者工具的 Fetch/XHR 筛选器找到背后的数据接口，直接请求接口拿 JSON，再通过分析瀑布流分页的 URL 规律（start 参数），用循环爬完全部 248 部电影的标题和链接。结尾留时间让学生照逻辑自己实操。</p>
+<h2 id="_2">知识点详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="01581300">三种网站类型（约 01:58–13:00）<a class="headerlink" href="#01581300" title="Permanent link">&para;</a></h3>
+<p>老师自总结的分类（非官方），"静态/动态/数据"都是对浏览器而言：</p>
+<ul>
+<li><strong>静态网站</strong>：服务器直接返回渲染好的 HTML。浏览器里肉眼看到的和爬虫抓到的一致——"浏览器里怎么操作，爬虫里就怎么操作"。</li>
+<li><strong>动态网站</strong>（约 06:51）：服务器返回 HTML/CSS/JS，其中 JavaScript 会根据用户操作**动态生成新的 HTML**，关键信息往往由 JS 生成（如百度首页的搜索框）。难点：爬虫拿到的 HTML ≠ 浏览器显示结果，因为爬虫没有 JS 渲染环境。解决方案：借助第三方 JS 渲染工具，如 <strong>Selenium、PhantomJS</strong>，替你把 JS 渲染出最终 HTML（本课暂不涉及）。</li>
+<li><strong>数据接口</strong>（约 09:57）：前后端分离技术普及后越来越常见。前端（浏览器）通过 HTTP 与后端交换 JSON 数据。爬虫的最终目的是拿数据，所以只要分析前端与后端的通信过程，直接请求数据接口拿到 JSON、转成字典存下来即可，比解析 HTML 更省事。本次项目就是"数据接口 + 静态网站"两种模式结合的例子。</li>
+</ul>
+<h3 id="13542440">爬虫的两个步骤与三个困难（约 13:54–24:40）<a class="headerlink" href="#13542440" title="Permanent link">&para;</a></h3>
+<ul>
+<li>两个核心步骤：① 用程序模拟 HTTP 请求与服务器通信，<strong>拿到返回结果</strong>（不能直接说"拿到数据"，因为返回的可能不是直接可用的数据）；② <strong>分析返回结果，拿到目标数据</strong>。</li>
+<li>困难一：如何拿到与浏览器尽可能一致的返回结果——服务器通过 HTTP 请求头的 <strong>User-Agent</strong> 字段判断访问来源并给出不同响应。</li>
+<li><strong>robots.txt</strong>（约 17:09）：以 bilibili 为例，robots.txt 里对不同 spider/bot 规定了允许访问的范围（如只允许访问根目录），体现"不同程序访问同一网站会得到不同对待"。</li>
+<li>User-Agent 指"用户通过什么软件访问网站"（用户代理），与上网用的"代理"不是一回事。</li>
+<li>困难二（进阶，了解即可）：网站需要登录怎么办——登录信息保存在浏览器的 <strong>Cookie</strong> 里，可用工具导出 Cookie，让爬虫发请求时带上，伪装成已登录用户。规模化做法是**账号池（account pool）**。Cookie 很重要：XSS 漏洞、WiFi 钓鱼的目的往往就是窃取他人 Cookie 冒用身份。</li>
+<li>困难三（进阶，了解即可）：IP 被封怎么办——网站读访问日志发现某个 IP 高频抓取就会封禁；对策是**代理 + IP 池**，每次切换不同 IP（伪分布式）。老师调侃互联网上 80% 以上的流量可能是爬虫贡献的。</li>
+<li>本课只用 User-Agent 伪装这一种，前后两个进阶问题先回避。</li>
+</ul>
+<h3 id="24462920">分析返回结果所需知识（约 24:46–29:20）<a class="headerlink" href="#24462920" title="Permanent link">&para;</a></h3>
+<ul>
+<li>需要了解 HTML 解析、<strong>如何在 HTML 页面中定位关键元素</strong>——即 <strong>CSS 选择器</strong>（Web 开发中学过；课件里也有）。</li>
+<li>若是动态网页，还需第三方工具先把 JS 渲染成 HTML 再解析。</li>
+<li>借助浏览器自带的开发者工具来分析页面结构。</li>
+</ul>
+<h3 id="jupyter-notebook-29243240">实战准备：Jupyter Notebook（约 29:24–32:40）<a class="headerlink" href="#jupyter-notebook-29243240" title="Permanent link">&para;</a></h3>
+<ul>
+<li>原视频例子是知乎，但知乎接口已封，改用豆瓣：目标是获取剧情/悬疑类电影榜单。</li>
+<li>用 <strong>Jupyter Notebook</strong> 写爬虫，因为方便与后续数据分析对接。</li>
+<li>用法：建项目文件夹（如桌面 demo）→ 在该文件夹的终端里运行 <code>jupyter notebook</code>。<strong>隐含知识</strong>：在哪个文件夹运行该命令，Notebook 的根目录就是哪个文件夹（Anaconda 已装则直接可用）。</li>
+</ul>
+<h3 id="requests-ua-32403800">实战第一步：requests 请求与 UA 伪装（约 32:40–38:00）<a class="headerlink" href="#requests-ua-32403800" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用 <strong>requests</strong> 库（网上搜爬虫第一时间被推荐的库）：<code>requests.get(url)</code> 发 GET 请求，<code>print(r.text)</code> 打印响应文本。</li>
+<li>第一次直接请求豆瓣榜单页：返回**空内容**——被 User-Agent 识别拦截了。</li>
+<li>伪装成浏览器：F12 开发者工具 → 网络标签页 → Ctrl+R 刷新重发所有请求 → 选中第一个请求 → 在请求标头中复制 <code>User-Agent</code> 的值。</li>
+<li>代码：构造一个**字典** <code>h = {"User-Agent": "..."}</code>，请求时传参 <code>requests.get(url, headers=h)</code>——<code>headers</code> 是 get 函数的参数名。再次请求即拿到真实 HTML 页面。</li>
+</ul>
+<h3 id="beautifulsoup-38004800">实战第二步：BeautifulSoup 解析与动态渲染的发现（约 38:00–48:00）<a class="headerlink" href="#beautifulsoup-38004800" title="Permanent link">&para;</a></h3>
+<ul>
+<li>页面结构分析：右键"检查"，发现每部电影在 <code>movie-list-item</code> 结构中，内部规律一致（movie-content → movie-info → movie-name）。</li>
+<li><strong>BeautifulSoup</strong>（第三方库，包名 bs4，Anaconda 环境自带）：<code>from bs4 import BeautifulSoup</code>，<code>soup = BeautifulSoup(r.text, "html.parser")</code>——用自带的 html.parser 解析引擎把 HTML 文本解析成结构化对象 soup。</li>
+<li>CSS 选择器定位：BeautifulSoup 的 <code>.select()</code> 方法支持大部分 CSS 选择器。不会手写选择器可在开发者工具中右键元素 → 复制 → <strong>Copy Selector</strong>，直接粘贴。</li>
+<li>粗略解读选择器（约 43:48）：<code>#content</code> 选中 id 为 content 的元素；空格表示逐级向下；<code>.xxx</code> 表示 class（一个元素可有多个 class）。</li>
+<li><strong>调试过程</strong>（约 45:47）：复制来的选择器选中的是第一个元素且结果为空，逐步删改选择器调试。</li>
+<li><strong>发现大问题</strong>（约 46:49）：能找到外层容器，但容器内部是空的，找不到真实电影数据——回忆三种类型，判断这是**动态渲染页面**：列表数据是浏览器通过 JS 向后端请求后再写入页面的。不急着上 JS 渲染工具，先排查它有没有数据接口。</li>
+</ul>
+<h3 id="48495500">实战第三步：找到数据接口（约 48:49–55:00）<a class="headerlink" href="#48495500" title="Permanent link">&para;</a></h3>
+<ul>
+<li>排查方法：开发者工具"网络"标签页的**筛选器**，选中 <strong>Fetch/XHR</strong>——前端用 JS 向后端请求数据发起的请求类型（Fetch 是新版 JS 的函数，XHR 是老版 XMLHttpRequest 的缩写）。</li>
+<li>观察各请求的响应大小：7.5KB 的请求很可疑 → 点开看"响应"，再用"预览"标签页看格式化后的内容——是一个列表，列表里每部电影是一个字典（含 title、url、封面等）。JSON 与 Python 字典、JS 数组与 Python 列表结构高度相似，可直接转换处理。</li>
+<li>结论：不用请求页面解析 HTML 了，<strong>直接请求数据接口</strong>。</li>
+<li>接口 URL 形如 <code>movie.douban.com/j/chart/top_list?type=10&amp;interval_id=...&amp;action=</code>：</li>
+<li><strong>GET 请求的 URL 参数规则</strong>（约 53:01）：问号 <code>?</code> 之后是参数，参数间用 <code>&amp;</code> 分隔，前面是参数名后面是值（type=10 可能是电影类型），有点像 Python 调用函数。</li>
+<li>代码改造：删掉 BeautifulSoup 部分；requests 的 response 如果含 JSON，直接用 <strong><code>r.json()</code></strong> 方法转成 Python 字典/列表（自己爬时应去查 requests 文档确认）。思路变为：冒充浏览器向数据接口发请求 → 拿到的 JSON 转成字典 → 打印。成功拿到前 20 部电影。</li>
+</ul>
+<h3 id="553210640">实战第四步：瀑布流分页与循环爬取（约 55:32–1:06:40）<a class="headerlink" href="#553210640" title="Permanent link">&para;</a></h3>
+<ul>
+<li>页面显示共 248 部电影，但接口一次只返回 20 部。往下滚动页面时网络面板会多出新请求——**瀑布流**机制：JS 检测到滚动条到底部就自动发起新请求加载更多数据。</li>
+<li>对比 4 个连续请求的 URL：只有 <code>start</code> 参数变化（0、20、40、60），<code>limit=20</code> 不变——start 即偏移量。</li>
+<li>循环爬取（约 58:07）：设 <code>offset = 0</code>，用字符串的 <code>format</code> 把 URL 中 start 值替换为 offset，每次爬完 <code>offset += 20</code>，外层套 <code>while True:</code> 循环。</li>
+<li>数据拆解：每个电影字典取 <code>title</code> 和 <code>url</code> 存入自建字典 <code>movie_info</code>，再 <code>result.append(movie_info)</code> 汇总。url 正好对应该电影的详情页（为下节课抓剧情简介埋下接口）。</li>
+<li><strong>防封礼仪</strong>（约 1:02:11）：<code>import time</code>，每轮 <code>time.sleep(3)</code> 停顿 3 秒，避免高频请求被 ban IP；同时在循环里 print 日志（"正在请求第 offset 条"），否则停顿期间像卡死。</li>
+<li><strong>现场 bug</strong>（约 1:03:37）：循环不结束——网页拖到 247 部后再拖就没有了，接口返回空列表，但代码没判断这种情况。修复：<code>if len(movie_list) == 0: break</code>，列表为空就跳出循环。</li>
+<li>最终预期结果：result 列表含 248 个字典，每个含电影名和豆瓣链接。剩余时间让学生照着逻辑自己爬。</li>
+</ul>
+<h2 id="_3">示例与演示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>完整爬取脚本（Jupyter Notebook 中逐步演进）：</li>
+<li><code>requests.get(url)</code> 直接请求榜单页 → 空响应；</li>
+<li>加 <code>headers</code> 字典伪装 UA → 拿到 HTML；</li>
+<li>BeautifulSoup + Copy Selector 尝试解析 → 发现动态渲染、列表为空；</li>
+<li>Fetch/XHR 筛选器定位数据接口 → 复制接口 URL 直接请求；</li>
+<li><code>r.json()</code> 转字典 → 发现只有 20 条；</li>
+<li>分析瀑布流 URL 规律，<code>offset</code> + <code>format</code> + <code>while</code> 循环 + <code>time.sleep(3)</code> + 日志 print；</li>
+<li>空列表 break 修复死循环 → 爬全 248 部电影的 title 和 url。</li>
+</ul>
+<h2 id="_4">重点与难点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>爬虫抓到的 HTML ≠ 浏览器看到的页面</strong>：动态渲染页面必须先判断数据来自哪里——优先找数据接口（Fetch/XHR），最后才考虑 Selenium 等渲染工具。</li>
+<li>**User-Agent 伪装**是最基本也是最常用的反反爬手段：从开发者工具复制真实浏览器的 UA，放进 headers 字典传给 requests。</li>
+<li>接口类爬虫的两大技能：用开发者工具"网络 + Fetch/XHR + 预览"找接口；肉眼对比连续请求的 URL 找出**分页参数规律**（如 start/offset）。</li>
+<li>循环爬取必须处理**终止条件**（空列表 break）和**请求频率**（time.sleep），否则死循环或被封 IP。</li>
+<li>三个进阶问题（Cookie 登录、账号池、IP 池）本课只建立概念，不展开。</li>
+</ul>
+<h2 id="_5">关联内容<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>本课是爬虫+可视化大作业的第一部分；续接《Python-2023-13 关键词提取与可视化》（继续访问每部电影的 url 抓剧情简介，再做 TF-IDF 关键词提取与词云）。</li>
+<li>前置知识：requests/HTTP 基础、字典与列表操作、字符串 format、循环与 break、CSS 选择器（Web 章节）、JSON（FastAPI 实战课中前后端 JSON 通信）。</li>
+<li>"数据接口"的理解直接得益于前两课 FastAPI 实战：自己写过前后端 JSON 通信，就能认出别人网站的数据接口。</li>
+<li>课程章节归属："Web 分析与爬虫"章节；动态渲染工具 Selenium/PhantomJS 留作自学方向。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.prune", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/pyv2-loader.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W9 API 深入与 Prompt 工程 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 09 / 16</span>
+    <span class="th">AI 应用 · API 深入 / Prompt 工程</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m5/">M5 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w08.html">← 上周</a>
+    <a class="cur" href="w09.html">本周</a>
+    <a href="w10.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W9 API 深入与 Prompt 工程">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 9 周（100 分钟 · L19–L20）</div>
+    <h1 class="rise">拧开引擎盖<br><span class="grad">参数与提问的艺术</span></h1>
+    <p class="sub rise">七周前你用 5 行代码第一次调通 API——今天回到起点深入引擎盖下面：
+    四个参数控制 AI 怎么生成、流式输出改善体验；然后学真正决定输出质量的东西：<b>怎么问</b>。</p>
+    <div class="meta rise">
+      <span>所属模块 M5 AI 应用开发</span><span>微课 V034–V039</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–8</td><td><b>开场实验</b></td><td>同一 prompt 跑两次答案不同——大模型是带概率的生成器</td></tr>
+      <tr><td>8–22</td><td><b>四参数</b></td><td>temperature 控创意 / top_p 核采样 / max_tokens 控成本 / stop 控格式</td></tr>
+      <tr><td>22–32</td><td><b>猜温度互动</b></td><td>三段输出对应哪档温度？你的场景该用哪档？</td></tr>
+      <tr><td>32–44</td><td><b>流式输出</b></td><td>stream=True 逐块到达；打字机效果；yield 生成器语义</td></tr>
+      <tr><td>44–56</td><td><b>llm_chat 封装</b></td><td>可配置调用函数——W10–W13 的基础设施；三档温度对比实验</td></tr>
+      <tr><td>56–68</td><td><b>Prompt 五组件</b></td><td>角色/任务/约束/示例/输出格式——加一层组件提升一档</td></tr>
+      <tr><td>68–80</td><td><b>Few-shot 与 CoT</b></td><td>示例教它做什么、CoT 教它怎么想；现场对比输出质量</td></tr>
+      <tr><td>80–92</td><td><b>动手练习</b></td><td>运行场：build_prompt 五组件模板（f-string 版）</td></tr>
+      <tr><td>92–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    </table>
+    <p class="small">参数不是玄学：课后用 llm_chat() 做三档温度对比并记录观察。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>开场实验：同样的问题，跑两次</h2>
+    <p class="rise">同一个 prompt 连续调用两次——答案不一样。为什么？</p>
+    <div class="flowline">
+      <div class="node">你的 prompt</div><span class="arrow">→</span>
+      <div class="node hot">采样（受参数控制）</div><span class="arrow">→</span>
+      <div class="node">每次不同的输出</div>
+    </div>
+    <div class="frag scard">
+      <b>大模型不是检索引擎，是「带概率的生成器」。</b>
+      每个词都是从概率分布里「抽」出来的——抽签的松紧，由参数控制。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>四个核心参数</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">temperature</span><b class="tt">控创意</b>
+        <span class="small">0 = 确定（连跑三次结果一致）→ 代码 / JSON 输出常用 0–0.3；调高更随机 → 创意写作。</span></div>
+      <div class="scard rise"><span class="tag v">top_p</span><b class="tt">核采样</b>
+        <span class="small">只从累积概率前 p 的候选词里抽——与 temperature 二选一调，别同时拉满。</span></div>
+      <div class="scard rise"><span class="tag g">max_tokens</span><b class="tt">控成本</b>
+        <span class="small">输出上限，防烧钱。一次调用多少钱 ≈ token 数 × 单价。</span></div>
+      <div class="scard rise"><span class="tag g">stop</span><b class="tt">控边界</b>
+        <span class="small">停止序列：输出到指定字符串就停——控制格式的利器。</span></div>
+    </div>
+    <p class="small rise" style="margin-top:14px;">心智模型：<b>temperature 控创意，max_tokens 控成本，stop 控格式。</b></p>
+  </section>
+
+  <section class="slide">
+    <h2>课堂互动：猜温度</h2>
+    <div class="scard rise" style="border-left:5px solid #0284c7;">
+      <b>输出 A（?）：「变量的作用是存储数据。」</b>
+      <span class="small" style="display:block;margin-top:4px;">三次运行，一字不差。</span>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed; margin-top:10px;">
+      <b>输出 B（?）：「变量嘛，就像你给内存里的宝盒贴了张便利贴……」</b>
+      <span class="small" style="display:block;margin-top:4px;">每次的花活都不一样。</span>
+    </div>
+    <p class="frag" style="margin-top:16px;">A 对应 temperature = 0，B 对应 1.5。<b>你的应用场景该用哪个？</b>（写代码？写文案？）</p>
+  </section>
+
+  <section class="slide">
+    <h2>流式输出：第一个字 0.5 秒出现</h2>
+    <pre class="rise"><code>stream = client.chat.completions.<span class="f">create</span>(
+    model=<span class="s">"deepseek-chat"</span>,
+    messages=messages,
+    stream=<span class="k">True</span>,                    <span class="c"># ← 关键开关</span>
+)
+
+full = <span class="s">""</span>
+<span class="k">for</span> chunk <span class="k">in</span> stream:                <span class="c"># 逐块到达</span>
+    delta = chunk.choices[<span class="n">0</span>].delta.content
+    <span class="k">if</span> delta:
+        full += delta
+        <span class="f">print</span>(delta, end=<span class="s">""</span>, flush=<span class="k">True</span>)  <span class="c"># 打字机效果</span></code></pre>
+    <ul>
+      <li class="frag">为什么需要：等 10 秒看完整段 vs 逐字出现——<b>体验天差地别</b></li>
+      <li class="frag">Python 侧依赖 <b>yield 生成器</b>语义（<a href="../scripts/V035-yield生成器与流式输出基础/">微课 V035</a>）</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>封装：可配置的 llm_chat() 函数</h2>
+    <p class="rise">本函数是 W10–W13 所有课的<b>基础设施</b>：</p>
+    <pre class="rise"><code><span class="k">def</span> <span class="f">llm_chat</span>(prompt, system=<span class="s">"你是课程助教"</span>, model=<span class="s">"deepseek-chat"</span>,
+             temperature=<span class="n">0.7</span>, max_tokens=<span class="n">1024</span>, stream=<span class="k">False</span>):
+    <span class="s">"""可配置的大模型调用：换模型/调温度/流式，全在这一个函数里。"""</span>
+    <span class="c"># ... 组装 messages、调 API、处理流式/非流式 ...</span>
+    <span class="k">return</span> reply</code></pre>
+    <div class="frag scard">
+      课堂演示：用它跑同一个 prompt 的 temperature=0 / 0.7 / 1.5 三档对比——
+      <b>参数不是玄学，是可以实验测量的</b>。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Prompt 工程：五组件结构</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">①角色</span><b class="tt">你是谁</b>
+        <span class="small">「你是 Python 专家」——对应 system 消息，设定人设与边界。</span></div>
+      <div class="scard rise"><span class="tag">②任务</span><b class="tt">做什么</b>
+        <span class="small">动词开头、一句话可复述。「审查这段代码的安全问题」优于「看看这个」。</span></div>
+      <div class="scard rise"><span class="tag">③约束</span><b class="tt">边界条件</b>
+        <span class="small">「只用中文」「不超过 100 字」「没有依据就说不知道」。</span></div>
+      <div class="scard rise"><span class="tag v">④示例</span><b class="tt">Few-shot</b>
+        <span class="small">给 1–3 个输入→输出样例——示例对格式的约束力远强于文字描述。</span></div>
+    </div>
+    <div class="frag scard"><span class="tag v">⑤输出格式</span><b class="tt">给谁看</b>
+      <span class="small">要被程序解析就明确说「输出 JSON，字段为 …」——下周 JSON Mode 是它的工程化版本。</span></div>
+  </section>
+
+  <section class="slide">
+    <h2>Few-shot 与思维链</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">Few-shot（教 AI 做什么）</b>
+        <pre style="font-size:14px;margin:8px 0 0;"><code>输入：开心 → 输出：😊
+输入：难过 → 输出：😢
+输入：惊喜 → 输出：</code></pre>
+        <span class="small">两个示例就够它学会模式。</span></div>
+      <div class="scard rise"><b class="tt">Chain of Thought（教 AI 怎么想）</b>
+        <pre style="font-size:14px;margin:8px 0 0;"><code>请一步一步分析这段代码
+每步说明理由，最后给结论</code></pre>
+        <span class="small">触发推理链，复杂问题质量显著提升。</span></div>
+    </div>
+    <p class="frag" style="margin-top:12px;">心智模型：<b>示例教它做什么，CoT 教它怎么想。</b></p>
+  </section>
+
+  <section class="slide">
+    <h2>动手：Prompt 迭代实验</h2>
+    <span class="lab">交互 · 用「模拟 AI」体会组件的作用</span>
+    <div class="py-playground" data-py-title="结构化 Prompt 模板（f-string 版）">
+      <textarea>def build_prompt(code: str) -> str:
+    """五组件齐全的代码审查 prompt——你以后写 prompt 就照这个骨架。"""
+    return f"""你是 Python 代码审查专家（角色）。
+任务：审查下面的代码，找出安全隐患与边界问题（任务）。
+要求：只输出问题清单，每条一行，没有问题就输出"无"（约束）。
+
+示例（Few-shot）：
+代码：api_key = "sk-123"
+输出：1. 密钥硬编码，应改用环境变量
+
+请审查的代码：
+{code}
+"""
+
+# 自己写一段"可疑代码"放进去试试
+demo = 'data = input("输入: ")\nprint(int(data))'
+print(build_prompt(demo))
+</textarea>
+    </div>
+    <p class="small frag">课后用真实的 llm_chat() 跑这个模板——体会「加一层组件，输出质量提升一档」。</p>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W9 API 与 Prompt · 概念检查",
+        "questions": [
+          {
+            "q": "生成 JSON / 代码的场景，temperature 通常设为？",
+            "opts": ["1.5（更有创造性）", "0–0.3（要确定性和格式稳定）", "2.0", "无所谓"],
+            "a": 1,
+            "explain": "低温采样更确定、格式更稳；创意写作才调高。参数选择要匹配场景。"
+          },
+          {
+            "q": "流式输出（stream=True）的 Python 实现依赖哪个语法特性？",
+            "opts": ["装饰器", "yield 生成器", "多线程", "元类"],
+            "a": 1,
+            "explain": "逐块产出而非一次返回——正是生成器的语义，这也是语法补丁安排在 M5 开头的原因。"
+          },
+          {
+            "q": "Prompt 五组件中，「Few-shot」指的是？",
+            "opts": ["给 AI 写长篇开场白", "给 1-3 个输入→输出示例让它模仿", "连发多条消息", "让 AI 打草稿"],
+            "a": 1,
+            "explain": "少样本示例：示例教 AI 做什么；CoT 教它怎么想。两者常常配合使用。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">微课：<a href="../scripts/V036-大模型API核心参数详解/">V036 参数</a> ·
+          <a href="../scripts/V037-流式输出实现/">V037 流式</a> ·
+          <a href="../scripts/V038-Prompt结构化设计/">V038 Prompt 结构</a> ·
+          <a href="../scripts/V039-Few-shot与思维链技巧/">V039 Few-shot 与 CoT</a></li>
+        <li class="frag">练习：用 llm_chat() 做 temperature 三档对比实验，记录观察</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W10 结构化输出与 RAG 基础</b>
+      让 AI 说「机器话」（JSON Mode / Function Calling）；再让它读你的文档（RAG 原理）。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w10.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/12.5-Web开发-装饰器与Flask路由/">经典笔记 12.5 装饰器</a> · <a href="../notes/11.3-函数进阶与类-类/">11.3 生成器</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

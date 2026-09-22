@@ -1,0 +1,47 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Gitbook
+
+---
+
+## Gitbook 简介
+
+--
+
+### 概述
+
+Gitbook 起始于在线文档需求，经过发展，已经成为了一种使用 Markdown 编写，能够输出为在线网站、EPUB、PDF 等多种电子书格式的数字书籍或者文档工具。
+
+--
+
+### 原理及特性
+
+Gitbook 也是基于 Nodejs 开发的一种命令行工具，所以在使用过程中需要在命令行中进行交互。Gitbook 具备多种特性来满足用户的需求：
+
+1. 使用 Markdown 进行编写，便于版本管理；
+2. 多种格式输出，包括网站和各种电子书格式；
+3. 可自定义书籍封面；
+4. 可选多种书籍主题样式。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 发布
+
+Gitbook 可以直接发布到 <https://www.gitbook.com/> 也可以发布到 Github 或者 Gitee 的 Pages 服务上，并且可以使用 Git 进行版本管理和协作。
+
+---
+
+## Q & A

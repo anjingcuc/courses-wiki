@@ -1,0 +1,249 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 函数进阶与类
+
+---
+
+## 函数进阶
+
+--
+
+### 字典类型参数
+
+Python 中在定义函数时，还可以通过在参数前面加上 `**` 来表示字典参数。
+
+```python
+def demo(*args_tuple, **args_dict):
+  print(args_tuple)
+  print(args_dict)
+
+
+demo(3, 2, 1, winter=2019, has=4, came=15)
+# (3, 2, 1)
+# {'winter': 2019, 'has': 4, 'came': 15}
+```
+
+--
+
+## 函数调用与参数解包
+
+函数调用时可以使用 key=value 形式来指定参数的值；对于有多个参数的情况，可以在函数调用是用 `*` 来将某个元组或者列表中的数据解包依次传入；还可以使用 `**` 来解包字典，实现 `key=value` 形式的关键字参数调用。
+
+<!-- .element: style="font-size:70%;" -->
+
+```python
+def sum(a, b):
+  return a + b
+
+sum(a=567, b=234)
+
+data = [123, 456]
+sum(*data) # a=123, b=456
+
+arg_dict = {'a':123, 'b':456}
+sum(**arg_dict)
+```
+
+--
+
+### 特殊参数
+
+为了确保<del>可读性</del>和运行效率，限制允许的参数传递形式是有意义的，这样开发者只需查看函数定义即可确定参数项是仅按位置、按位置也按关键字，还是仅按关键字传递。
+
+```
+def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
+      -----------    ----------     ----------
+        |             |                 |
+        |        位置和关键字混用         |
+        |                               - 仅关键字
+         -- 仅位置
+```
+
+--
+
+### 函数标注
+
+Python 作为一种动态类型语言，在函数定义时无法确定参数和返回值类型，导致开发者迷惑，因此在最近的标准中提出了一种函数标注的写法。
+
+```python
+def sum(a: int, b: int) -> int:
+  return a + b
+```
+
+---
+
+## 作用域
+
+--
+
+### 搜索顺序
+
+Python 中变量有作用域的概念，通过内置函数 `dir([object])` 可以列出当前作用域或者参数对应的对象中的名称。
+
+- 最先搜索的最内部作用域包含局部名称
+- 从最近的封闭作用域开始搜索的任何封闭函数的作用域包含非局部名称，也包括非全局名称
+- 倒数第二个作用域包含当前模块的全局名称
+- 最外面的作用域（最后搜索）是包含内置名称的命名空间
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### 示例
+
+```python
+def scope_test():
+  def do_local():
+    spam = "local spam"
+
+  def do_nonlocal():
+    nonlocal spam
+    spam = "nonlocal spam"
+
+  def do_global():
+    global spam
+    spam = "global spam"
+
+  spam = "test spam"
+  do_local()
+  print("After local assignment:", spam)
+  do_nonlocal()
+  print("After nonlocal assignment:", spam)
+  do_global()
+  print("After global assignment:", spam)
+
+
+scope_test()
+print("In global scope:", spam)
+```
+
+---
+
+## 类
+
+--
+
+### 类简介
+
+Python 支持面向对象编程，类是面向对象编程的核心。在 Python 中新建一个类相当于有了一种新的自定义类型，实例化一个类，则会生成一个该类的对象。类定义中的变量称为类的`属性`，类定义中的函数成为类的`方法`。
+
+<!-- .element: style="font-size:70%;" -->
+
+```python
+class MyClass:
+  """A simple example class"""
+  attribute = 12345
+
+  def method(self):
+    return 'hello world'
+```
+
+--
+
+### 类的初始化方法（构造函数）
+
+定义类时，可以定义一个 `__init__()` 函数来实现类实例化过程中的初始化工作。
+
+```python
+class Hero:
+  '''游戏中玩家操作的英雄。'''
+  position = '大哥/Carry'
+
+  def __init__(self, name):
+    self.name = name
+
+BurNing = Hero('敌法师')
+```
+
+--
+
+### 类变量和实例变量
+
+类变量所有实例共享且在没有实例的时候就可以访问，实例变量则每个实例单独保存。
+
+```python
+class Programmer:
+  '''这是一名程序员。'''
+  bald = True
+
+  def __init__(self, name, bald):
+    self.name = name
+    self.bald = bald
+
+
+anjing = Programmer('安靖', False)
+```
+
+---
+
+## 迭代器与生成器
+
+--
+
+### 迭代器
+
+当一个对象可以在 `for` 循环中依次去除其中元素并进行处理时，我们称之为可迭代的。在类中添加 `__iter__()` 方法来返回一个可迭代额对象，并且使用 `__next__()` 逐一返回需要返回的值，则该类的实例对象就是可迭代的。
+
+<!-- .element: style="font-size:70%;" -->
+
+```python
+class Reverse:
+  """Iterator for looping over a sequence backwards."""
+
+  def __init__(self, data):
+    self.data = data
+    self.index = len(data)
+
+  def __iter__(self):
+    return self
+
+  def __next__(self):
+    if self.index == 0:
+      raise StopIteration
+    self.index = self.index - 1
+    return self.data[self.index]
+```
+
+--
+
+### 生成器
+
+生成器写法类似函数，但没有 `return` 而使用 `yield` 来返回值。生成器自动创建 `__iter__()` 和 `__next__()` 方法，自动记录局部变量的上一次位置，且结束时会自动触发 `StopInteration` 异常来结束迭代。
+
+<!-- .element: style="font-size:70%;" -->
+
+```python
+def reverse(data):
+  for index in range(len(data) - 1, -1, -1):
+    yield data[index]
+
+
+for char in reverse('python'):
+  print(char)
+```
+
+--
+
+### 生成器表达式
+
+部分生成器可以简化成表达式。
+
+```python
+sum(i*i for i in range(10))
+# 285
+```
+
+---
+
+## Q & A

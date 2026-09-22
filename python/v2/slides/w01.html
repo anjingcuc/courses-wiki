@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W1 导论 · AI 时代为什么学编程 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 01 / 16</span>
+    <span class="th">导论 · AI 时代为什么学编程</span>
+  </div>
+  <nav>
+    <a href="../slides-index/">课件总览</a>
+    <a href="../m0/">M0 模块页</a>
+    <a href="../../">课程主页</a>
+    <a class="cur" href="w01.html">本周</a>
+    <a href="w02.html">下周 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W1 导论">
+
+  <!-- 1 封面 -->
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 1 周（100 分钟）</div>
+    <h1 class="rise">AI 都能写代码了，<br><span class="grad">这门课教什么？</span></h1>
+    <p class="sub rise">这节课务虚：我先用一个真实项目演示「现在开发有多方便」，然后一起回答三个问题——
+    <b>为什么还要学编程、学编程学什么、这门课怎么学</b>。</p>
+    <div class="meta rise">
+      <span>所属模块 M0 导论</span><span>第一课 · 务虚</span><span>键盘 ← → 翻页 · F 全屏</span>
+    </div>
+    <div class="rules rise">同学们可以直接在手机或电脑上打开本页：练习页可运行代码，测验页可以作答。</div>
+  </section>
+
+  <!-- 2 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>开场寒暄</b></td><td>认识一下 · 感叹现在开发有多方便</td></tr>
+      <tr><td>10–25</td><td><b>现场演示</b></td><td>上周下班后我做的一个小工具：让 AI 帮我找开源项目、改 bug、移植、起名、传 GitHub</td></tr>
+      <tr><td>25–40</td><td><b>核心问题</b></td><td>AI 都能写代码了，这门课还有必要上吗？</td></tr>
+      <tr><td>40–55</td><td><b>课程回答</b></td><td>三种能力：读代码、调试、系统设计</td></tr>
+      <tr><td>55–70</td><td><b>课程怎么学</b></td><td>线上课看什么、不看什么；线下课主要留给我们多交流</td></tr>
+      <tr><td>70–85</td><td><b>动手</b></td><td>浏览器里跑你的第一行 Python（不用装任何东西）</td></tr>
+      <tr><td>85–95</td><td><b>怎么向 AI 提问</b></td><td>好问题 vs 坏问题，三要素框架</td></tr>
+      <tr><td>95–100</td><td><b>小结与课后</b></td><td>下周一的重点是环境与工具链——我们要真的动手装环境了</td></tr>
+    </table>
+    <p class="small">← → 翻页；带分步的页面按 → 逐条展开。学生打开本页即可参与练习与测验。</p>
+  </section>
+
+  <!-- 3 开场演示 -->
+  <section class="slide">
+    <h2>先看一个真东西</h2>
+    <div class="scard rise"><span class="tag">上周课后 5 天</span><b class="tt">我做了什么</b>
+      我用 AI 帮我找到了一个开源项目——一个小圆形窗，把摄像头里的人脸直接显示在桌面上。
+      然后让它改 bug、移植成单文件 exe、起名字、传上 GitHub——<b>全程我基本没写一行代码。</b></div>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      <b>这个项目甚至自动做好了 GitHub 的自动构建流程：</b>
+      代码传上去，GitHub 自己构建 release 并发布。我让它给我起个名——「circular camera」，还带了个朴实的 logo。
+    </div>
+    <div class="frag scard" style="border-left:5px solid #047857;">
+      <b>结论：</b>你让我专业地干这件事我干得动，但要花精力还要上课——现在 AI 直接帮我做完了。
+      <b>这就是为什么这门课要升级成 AI 版。</b>
+    </div>
+  </section>
+
+  <!-- 4 核心问题 -->
+  <section class="slide">
+    <h2>先抛一个问题</h2>
+    <p style="font-size:30px; line-height:1.6; margin-top:20px;" class="rise">
+      “大模型已经能写出能跑的代码了——<br>那这门课，<b>还有必要上吗？</b>”
+    </p>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      <b>举手投票：</b>你已经用过大模型写代码或写作业吗？用的什么？
+      <span class="small">（Kimi / 智谱 / ChatGPT / Copilot……）</span>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #7c3aed;">
+      追问用过的人：<b>你见过它写错的时候吗？你是怎么发现的？</b>
+      ——这个「发现」的能力，就是这门课要教的东西。
+    </div>
+  </section>
+
+  <!-- 5 三种能力 -->
+  <section class="slide">
+    <h2>这门课的回答：三种能力</h2>
+    <div class="scard rise"><span class="tag">能力一</span><b class="tt">读代码</b>
+      AI 生成的代码，你要看得懂、能审查、能发现隐患——命名混乱、超出课程范围的语法、边界条件缺失。</div>
+    <div class="scard frag"><span class="tag v">能力二</span><b class="tt">调试</b>
+      AI 不会一次写对。程序报错或行为异常时，定位并修复问题的能力无法由 AI 代替——<b>读报错是本课的基本功。</b></div>
+    <div class="scard frag"><span class="tag g">能力三</span><b class="tt">系统设计</b>
+      做什么、分几个模块、数据如何流动——这些决策由人完成。期末项目将全面检验这一能力。</div>
+  </section>
+
+  <!-- 6 类比 -->
+  <section class="slide">
+    <h2>一个类比：自动驾驶</h2>
+    <div class="flowline">
+      <div class="node">人：定目的地</div><span class="arrow">→</span>
+      <div class="node hot">AI：辅助驾驶</div><span class="arrow">→</span>
+      <div class="node">人：关键时刻接管</div>
+    </div>
+    <ul>
+      <li class="frag">AI 承担了大量「写」的工作——但它不承担<b>后果</b>；后果由你承担。</li>
+      <li class="frag">如同自动驾驶仍要求驾驶员具备接管能力，<b>关键决策必须由人把关</b>。</li>
+      <li class="frag">这门课的目标：让你在任何时候都能「接过方向盘」。</li>
+    </ul>
+  </section>
+
+  <!-- 7 课程怎么学 -->
+  <section class="slide">
+    <h2>这门课怎么学</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">线上课</span><b class="tt">看什么</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">网上基础课（上学期那套）：简介与实例、结构与建议——<b>这些要看</b></li>
+          <li class="frag">历史线下课录像：不用看（我们这学期正在上新的）</li>
+        </ul>
+      </div>
+      <div class="scard rise"><span class="tag v">线下课</span><b class="tt">怎么用</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">线下时间多留给我们交流：作业怎么写、哪里卡住了</li>
+          <li class="frag">基础知识的补全会带，但不会占太久</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #0284c7;">
+      <b>每周课后我会把这周的课堂录像传上去</b>——想回看可以，不强制。
+    </div>
+  </section>
+
+  <!-- 8 第一行代码 -->
+  <section class="slide">
+    <h2>动手：你的第一行 Python</h2>
+    <span class="lab">交互 · 直接在浏览器里运行，无需安装</span>
+    <p class="rise">点击「运行」看看结果，再把代码改成<b>打印你自己的名字</b>：</p>
+    <div class="py-playground" data-py-title="第一行代码">
+      <textarea>print("Hello, world!")
+print("你好，Python！")
+
+# 试着加一行：用 print 打印你的名字
+</textarea>
+    </div>
+    <p class="small rise" style="margin-top:10px;">这个「运行场」基于 Pyodide——浏览器里的真 Python 解释器。以后每节课都会用它做课堂练习。</p>
+  </section>
+
+  <!-- 9 提问的艺术 -->
+  <section class="slide">
+    <h2>怎么向 AI 提问</h2>
+    <p class="rise">同样一个需求，两种问法，结果天差地别：</p>
+    <div class="scard rise" style="border-left:5px solid #dc2626;"><span class="tag r">坏问题</span>
+      <code style="font-size:16px;">帮我写个学生成绩统计脚本</code>
+      <div class="small" style="margin-top:8px;">没说语言、没说数据格式、没说输出长什么样——AI 只能猜，猜就可能错。</div>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #047857;"><span class="tag g">好问题</span>
+      <code style="font-size:15.5px;">我用 Python，有一份 JSON 格式的学生成绩数据，想按班级分组计算平均分并排序输出，用注释说明每一步</code>
+      <div class="small" style="margin-top:8px;">有上下文、有具体目标、有约束条件——AI 一次就能给到可用的答案。</div>
+    </div>
+  </section>
+
+  <!-- 10 三要素 -->
+  <section class="slide">
+    <h2>好问题的三要素</h2>
+    <div class="flowline">
+      <div class="node">上下文<br><span class="small">我在用什么、数据长什么样</span></div><span class="arrow">＋</span>
+      <div class="node hot">具体目标<br><span class="small">要它产出什么</span></div><span class="arrow">＋</span>
+      <div class="node">约束条件<br><span class="small">语言/格式/范围</span></div>
+    </div>
+    <ul>
+      <li class="frag">这三要素不只适用于问 AI——<b>也适用于你向任何人提需求</b>。</li>
+      <li class="frag">约束越具体，AI 越少跑偏——下周配环境时你会立刻用上。</li>
+    </ul>
+  </section>
+
+  <!-- 11 16 周地图 -->
+  <section class="slide">
+    <h2>16 周课程地图</h2>
+    <div class="cols2 wide-l">
+      <div class="rise">
+        <ul style="font-size:17.5px;">
+          <li class="frag">W1–W2 导论与环境 · <b>下周就装环境、调通 AI</b></li>
+          <li class="frag">W3–W5 语言核心（类型→控制流→函数→类）</li>
+          <li class="frag">W6–W8 数据获取 + 工程化</li>
+          <li class="frag">W9–W13 AI 应用开发（Prompt / RAG / Agent / 前后端）</li>
+          <li class="frag">W14–W16 综合项目实战与答辩</li>
+        </ul>
+      </div>
+      <div class="scard rise"><span class="tag">三个里程碑</span>
+        <ul style="font-size:16px;">
+          <li class="frag">W2：亲手配好 AI 开发环境</li>
+          <li class="frag">W11：做出自己的知识库问答系统</li>
+          <li class="frag">W14：期末项目正式启动</li>
+        </ul>
+        <p class="small" style="margin-top:10px;"><a href="../../#_2">完整知识图谱见课程主页</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 随堂小测 -->
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 直接点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W1 导论 · 概念检查",
+        "questions": [
+          {
+            "q": "课程对「AI 会写代码，人学什么」的回答是？",
+            "opts": ["背更多语法细节", "读代码、调试、系统设计三种能力", "学会手写更快的代码", "专心学数学理论"],
+            "a": 1,
+            "explain": "AI 降低了「写」的成本，但审查 AI 代码（读）、定位修复问题（调试）、决定做什么与怎么做（系统设计）仍是人的核心价值。"
+          },
+          {
+            "q": "自动驾驶类比中，「关键时刻接管」对应的是？",
+            "opts": ["AI 自动修复", "人做关键决策、为结果负责", "AI 完全自主", "不用管"],
+            "a": 1,
+            "explain": "AI 承担了大量写的工作，但不承担后果——关键决策必须由人来把关。"
+          },
+          {
+            "q": "不用安装任何软件，本周课件里的练习在哪里运行？",
+            "opts": ["需要先装 Python", "浏览器内的运行场（Pyodide）", "微信小程序", "不能运行"],
+            "a": 1,
+            "explain": "课件内嵌基于 Pyodide 的运行场：手机或电脑打开页面即可直接运行 Python，零安装。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <!-- 13 课后 -->
+  <section class="slide">
+    <h2>课后与下周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        <li class="frag">回顾这节课的三种能力——读代码、调试、系统设计</li>
+        <li class="frag">环境可以先不配——下周我们当堂一起装</li>
+        <li class="frag">注册一个大模型账号，试着用三要素问一个好问题</li>
+      </ul>
+    </div>
+    <div class="scard frag"><b class="tt">下周：W2 环境与工具链</b>
+      把 AI 开发环境配好（Zcode / 校内 OpenAI 平台 / UV），把 Python 环境搞清楚（Miniconda），学会读报错。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w02.html">提前看下周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m0/">M0 模块页</a> · <a href="../notes/1.1-课程概述-简介与实例/">经典笔记 1.1 课程概述</a> · <a href="../../demos/interpreter.html">交互演示：编译 vs 解释</a></p>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

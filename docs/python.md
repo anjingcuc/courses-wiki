@@ -60,7 +60,7 @@ hide:
     <div class="pyv2-stat" data-anim><div class="n" data-count="8">0</div><div class="l">教学模块</div></div>
     <div class="pyv2-stat v" data-anim><div class="n" data-count="12">0</div><div class="l">AI 应用开发课时</div></div>
     <div class="pyv2-stat v" data-anim><div class="n" data-count="5" data-suffix="+">0</div><div class="l">期末项目池</div></div>
-    <div class="pyv2-stat" data-anim><div class="n" data-count="60" data-suffix="+">0</div><div class="l">精讲微课</div></div>
+    <div class="pyv2-stat" data-anim><div class="n" data-count="88" data-suffix="+">0</div><div class="l">经典课程笔记</div></div>
     <div class="pyv2-stat" data-anim><div class="n" data-count="6">0</div><div class="l">项目化作业</div></div>
   </div>
 
@@ -188,7 +188,7 @@ hide:
   <div class="pyv2-lab">
     <a class="pyv2-demo-card" href="v2/slides-index/" data-anim style="grid-column: span 2;">
       <span class="tag v">LECTURE · 交互课件</span><b>16 周课件总览 · W1–W16</b>
-      <p>每周一份：要点讲授 + 可运行练习 + 随堂小测；与模块页、微课讲义、交互演示互相链接。</p>
+      <p>每周一份：要点讲授 + 可运行练习 + 随堂小测；与模块页、经典笔记、交互演示互相链接。</p>
       <span class="go">进入课件总览 →</span>
     </a>
     <a class="pyv2-demo-card" href="v2/slides/w01.html" data-anim>
@@ -266,10 +266,6 @@ hide:
 <div class="pyv2" data-pyv2-page>
   <h2 style="font-size:22px;">资料库</h2>
   <div class="pyv2-lab">
-    <a class="pyv2-demo-card" href="v2/scripts-index/" data-anim>
-      <span class="tag">讲义</span><b>微课视频讲义</b>
-      <p>V001 起全部微课的完整讲稿与教学设计，建议配合视频阅读。</p><span class="go">浏览讲义 →</span>
-    </a>
     <a class="pyv2-demo-card" href="v2/notes-index/" data-anim>
       <span class="tag">深挖</span><b>经典课程笔记 · 88 篇</b>
       <p>旧版 15 章课程的逐节详解笔记，含时间戳可回查视频，概念深挖的最佳参考。</p><span class="go">进入笔记库 →</span>

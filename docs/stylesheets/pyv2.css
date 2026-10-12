@@ -959,6 +959,7 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
   .sl-bar, .sl-prog { display: none !important; }
 }
 
+<<<<<<< HEAD
 /* === T3 周时间线 === */
 /* 「8 幕 × 16 周」分组时间线：浅色纸面卡片、圆角 16px、悬停上浮、h2 左竖条 */
 .pyv2 .pyv2-weeks-h2 { position: relative; padding-left: 14px; }
@@ -1067,3 +1068,7 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
 }
 .pyv2-week-card .wk-ref a.pri { font-weight: 600; color: var(--pyv2-body); }
 .pyv2-week-card .wk-ref a:hover { color: var(--pyv2-sky-deep); text-decoration: none; }
+
+/* === T4 对照按钮 === */
+.sl-top nav a.legacy { color: #b45309; border-style: dashed; }
+.sl-top nav a.legacy:hover { border-color: #b45309; background: rgba(180,83,9,.07); }

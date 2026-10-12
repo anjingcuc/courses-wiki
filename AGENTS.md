@@ -1,275 +1,65 @@
-# AGENTS.md
+# AGENTS.md — courses-wiki 仓库
 
-本文档为 AI Agent 提供项目上下文，帮助理解和操作此课程网站项目。
+《课程资料》站点：MkDocs + Material for MkDocs 9.x，部署到 GitHub Pages（<https://anjingcuc.github.io/courses-wiki/>）。姊妹仓库 `D:\workspace\python-course` 是内容生产区（微课脚本/教案/录像），发布时拷贝进 `docs/python/v2/`。
 
-## 项目概述
-
-本项目维护两个版本的课程网站：
-
-### MkDocs 版本（当前仓库）
-- 部署：<https://anjingcuc.github.io/courses-wiki/>
-- 技术栈：MkDocs + Material for MkDocs 9.x（主题包）+ reveal.js（旧版课件）+ Python V2 交互体系（GSAP / Three.js / Pyodide / Canvas）
-
-### React 版本（独立仓库 courses-react）
-- 部署：<https://anjingcuc.github.io/courses-react/>
-- 技术栈：Next.js 14 + React 19 + Tailwind CSS
-- 目录：`/srv/home/anjing/courses-wiki-react/`
-
-## 目录结构
-
-```
-courses-wiki/
-├── docs/                      # 课程内容源文件
-│   ├── img/                   # 共享图片资源
-│   ├── javascripts/           # 自定义 JavaScript（含 pyv2-loader.js + pyv2/ 组件 + vendor/ 本地库）
-│   ├── stylesheets/           # 自定义 CSS（pyv2.css 为 V2 设计系统）
-│   ├── python/v2/              # Python V2 模块页（m0–m7）、考核、讲义/笔记索引
-│   │   ├── scripts/            # V001–V059 微课讲义（markdown）
-│   │   └── notes/              # 旧版 88 篇课程笔记存档
-│   ├── python/demos/           # 四个全屏交互演示（interpreter/objects/base64/rag.html）
-│   ├── aissop/                # 智能系统安全运维与实践
-│   ├── python/                # Python 程序设计
-│   ├── web/                   # 网页设计与制作
-│   ├── online-publishing/     # 在线出版
-│   ├── apdms/                 # 数字媒体安全应用与实践
-│   ├── wps/                   # AI-WPS 辅助办公
-│   └── substitute/            # 临时代课内容
-├── material/                  # 自定义 MkDocs 主题
-│   ├── assets/                # 静态资源
-│   │   ├── reveal/            # reveal.js 框架文件
-│   │   ├── fonts/
-│   │   └── images/
-│   ├── partials/              # 模板片段
-│   ├── base.html              # 基础布局模板
-│   ├── slideshow.html         # 幻灯片模板
-│   └── mkdocs_theme.yml       # 主题配置
-├── charts/                    # Visio 图表源文件
-├── mkdocs.yml                 # MkDocs 主配置
-├── pyproject.toml             # Python 依赖（uv 包管理）
-└── .github/workflows/         # CI/CD 配置
-```
-
-## 课程清单
-
-| 课程代码 | 课程名称 | 章节数 |
-|---------|---------|-------|
-| aissop | 智能系统安全运维与实践 | 11 |
-| python | Python 程序设计 | 15 |
-| web | 网页设计与制作 | 13 |
-| online-publishing | 在线出版 | 7 |
-| apdms | 数字媒体安全应用与实践 | 4 |
-| wps | AI-WPS 辅助办公 | 1 |
-| substitute | 临时代课 | 2 |
-
-## 课件结构
-
-每个课件目录包含：
-
-- `slide.txt` - 幻灯片内容（Markdown 格式，供 reveal.js 渲染）
-- 对应的 `.md` 文件 - 课程说明页面（MkDocs 渲染，可选）
-
-### slide.txt 格式规范
-
-```markdown
-<style type="text/css">
-  .reveal p { text-align: left; font-size: 0.8em; }
-  .reveal ul { display: block; }
-</style>
-
-# 标题幻灯片
-
----
-
-## 第一节标题
-
---
-
-### 子节内容
-
-内容详情...
-
----
-
-## Q & A
-```
-
-**分隔符说明：**
-
-- `---` - 水平分隔（主要幻灯片）
-- `--` - 垂直分隔（子幻灯片）
-
-**常用样式注释：**
-
-```markdown
-<!-- .element style="font-size:70%"-->
-<!-- .element: style="width:60%;" -->
-<!-- .element style="text-align:center"-->
-```
-
-**图片引用：**
-
-```markdown
-![描述](/img/filename.jpg)
-![描述](/img/filename.jpg)<!-- .element: style="width:70%;" -->
-```
-
-**视频嵌入：**
-
-```markdown
-<video src="filename.mp4" controls="controls">
-  你的浏览器不支持 video 标签。
-</video>
-```
-
-**代码块：**
-
-```markdown
-\`\`\`python
-import os
-print("Hello, World!")
-\`\`\`
-```
-
-**链接与PDF引用：**
-
-```markdown
-[链接文字](https://example.com)
-[PDF文档](./document.pdf)
-```
-
-## 构建与部署
-
-### 本地开发
+## 构建与验证
 
 ```bash
-# 安装依赖（使用 uv）
-uv sync
-
-# 或使用 pip
-pip install mkdocs pygments pyyaml
-
-# 本地预览
-mkdocs serve
-
-# 构建静态文件
-mkdocs build
+uv sync                    # 安装依赖
+uv run mkdocs build        # 构建到 site/（本地与 CI 同一条）
+uv run python linkcheck.py # 全站断链检查（已知误报 3 条：reveal notes-server ×2、V025 页内 /author/）
 ```
 
-### 创建幻灯片符号链接（Windows）
+本地预览用 junction 静态托管（Git Bash 后台热重载不可靠，site_url 带 `/courses-wiki/` 子路径）：
 
-```powershell
-# 在所有课件目录创建 slideshow.html 符号链接
-.\mklinks.ps1
+```bash
+mklink /J D:\workspace\pyserv-8000\courses-wiki D:\workspace\courses-wiki\site
+python -m http.server 8000 -d D:\workspace\pyserv-8000   # http://127.0.0.1:8000/courses-wiki/
 ```
 
-这使每个课件目录可以直接通过 `slideshow.html` 访问幻灯片模板。
+push 到 `master`（或 `main`）触发 CI：uv sync → sed 重写 `/img/`、`/assets/` 前缀 → `mkdocs gh-deploy --force`。线上生效有最长 10 分钟 CDN 缓存。
 
-### CI/CD 流程
+## 目录
 
-推送到 master/main 分支后，GitHub Actions 自动执行：
-
-1. 安装 MkDocs 和 Pygments（Python 3.12）
-2. 替换图片路径（适配 GitHub Pages 子目录）
-   - `docs/` 下所有 `.txt` 和 `.md` 文件中的 `/img/` → `/courses-wiki/img/`
-   - `material/slideshow.html` 中的 `/assets/` → `/courses-wiki/assets/`
-3. 执行 `mkdocs gh-deploy --force` 部署
-
-缓存策略：使用基于周数的缓存 key (`mkdocs-material-{周数}`)
-
-### 部署目标
-
-- **GitHub Pages**: <https://anjingcuc.github.io/courses-wiki/>
-
-## 关键配置文件
-
-### mkdocs.yml
-
-```yaml
-site_name: 课程资料
-theme:
-  name: material              # mkdocs-material 9.x（uv 依赖安装）
-  custom_dir: overrides        # 主题覆盖（可选）
-  language: "zh"
-markdown_extensions:
-  - pymdownx.superfences / highlight / details / tabbed ...  # codehilite 已弃用
-extra_css:
-  - stylesheets/pyv2.css       # V2 设计系统（深色玻璃拟态）
-extra_javascript:
-  - javascripts/pyv2-loader.js # 按页面标记按需加载 GSAP/Three/Pyodide 与组件
+```
+docs/
+├── python.md                        # Python V2 主页
+├── python/v2/m0.md … m7.md          # 8 个模块页（要点+运行场+小测+互链）
+├── python/v2/slides/w01–w16.html    # 16 周高交互课件（slides.js 框架）
+├── python/v2/slides-index.md        # 课件总览
+├── python/v2/notes/ + notes-index.md  # 88 篇经典笔记
+├── python/demos/                    # 4 个全屏交互演示（interpreter/objects/base64/rag.html）
+├── aissop.md + aissop/              # 智能系统安全运维与实践
+├── javascripts/                     # pyv2-loader.js（懒加载组件）+ pyv2/ + vendor/（本地 GSAP/Three/Pyodide）
+├── stylesheets/pyv2.css             # V2 设计系统
+└── assets/reveal/                   # reveal.js（复制自 material/，供旧课件 symlink 用）
 ```
 
-注意：`material/` 目录不再作为主题，仅保留 `slideshow.html`（课件 symlink 的目标）与 `reveal/` 静态资源；reveal 资源已复制到 `docs/assets/`，随站点发布。
+两套课件并存，勿混：**新版** `docs/python/v2/slides/wXX.html`（slides.js 自研）；**旧版**各 `docs/<课程>/章目录/` 下 `slide.txt` + `slideshow.html` symlink → 根 `material/slideshow.html`。本地 Windows 检出 symlink 为纯文本属正常——Linux CI 上 mkdocs 跟随 symlink 复制播放器并改写资源前缀，旧课件只能在线上验证。
 
-### slideshow.html 核心配置
+## 关键约定（改之前读）
 
-- 主题: `simple.css`
-- 代码高亮: `solarized-light`
-- 插件: markdown, highlight, notes, zoom
-- 数据源: `slide.txt`
+### Git 与 LFS
+本地缺失的 LFS 附件（.exe/.zip/.whl/.mp4）在 `git status` 里呈现为「幽灵删除」。暂存改动时**逐个列文件名**（不要用 `git add <目录>/`），提交前 `git diff --cached --name-only --diff-filter=D` 应为空（除非有意删除）。误删后恢复：`git reset HEAD~1 -- <路径>` + `git commit --amend`。功能在 `feature/python-v2-ai-native` 上做，`--no-ff` 合并回 `master` 后两边都推。
 
-**reveal.js 配置项：**
+### MkDocs 链接
+markdown 链接会被重写，**原生 HTML `<a href>` 不会**——HTML 块里的链接必须手写最终 URL。`use_directory_urls` 下页面 URL 比源文件多一层目录：`docs/python.md` → `/python/`，`docs/python/v2/m0.md` → `/python/v2/m0/`，`docs/python/v2/slides/w01.html` → `/python/v2/slides/w01.html`。微课讲义源是 `scripts/Vxxx-….md` 文件（目录 URL 是构建产物）；链接讲义时先用 `ls docs/python/v2/scripts/` 核对真实文件名。改完链接跑 `linkcheck.py`。
 
-```javascript
-{
-  controls: true,        // 显示控制箭头
-  progress: true,        // 显示进度条
-  slideNumber: "c/t",    // 显示幻灯片编号
-  history: true,         // 添加到浏览器历史
-  center: true,          // 垂直居中
-  transition: "default"  // 过渡效果
-}
-```
-
-## 常见任务
-
-### 新增课件
-
-1. 在 `docs/<课程代码>/` 下创建新目录
-2. 创建 `slide.txt` 文件
-3. 如需要，创建对应的 `.md` 说明文件
-4. 更新 `mkdocs.yml` 导航（如需要）
-
-### 修改主题样式
-
-- 主题模板: `material/base.html`, `material/slideshow.html`
-- 幻灯片主题: `material/assets/reveal/css/theme/simple.css`
-- 自定义样式: `docs/stylesheets/custom.css`
-
-### 更新 reveal.js
-
-替换 `material/assets/reveal/` 目录下的文件（同步更新 `docs/assets/reveal/`）。
-
-### Python V2 交互组件
-
-- **运行场**：在任意 markdown 页写 `<div class="py-playground" data-py-title="标题"><textarea>代码</textarea></div>`（HTML 转义 `<`）；Pyodide 懒加载于 Web Worker，死循环 15s 自动终止。
-- **测验**：`<div class="pyv2-quiz"><script type="application/json" class="quiz-data">{...}</script></div>`，字段 `questions[].{q,opts,a,explain}`。
-- **AI 学伴**：页面含 `<div data-pyv2-ai hidden></div>` 即出现浮窗；OpenAI 兼容接口，密钥存 localStorage。
-- **入场动效**：元素加 `data-anim` 属性即可（GSAP ScrollTrigger；加载失败自动回退 `.no-anim`）。
+### Python V2 交互组件（loader 懒加载）
+- **运行场**：`<div class="py-playground" data-py-title="…"><textarea>代码</textarea></div>`（HTML 转义 `<`，textarea 里不放 `<script>`）。
+- **小测**：`<div class="pyv2-quiz"><script type="application/json" class="quiz-data">{"title":..,"questions":[{q,opts,a,explain}]}</script></div>`；题干与解析是纯文本（不支持 HTML 标签）。
 - **知识图谱**：`#pyv2-kgraph` canvas + `#pyv2-kgraph-data` JSON（modules/lessons/links/crosslinks）。
-- **交互演示**：`docs/python/demos/` 下独立 HTML，引用 `../../javascripts/vendor/` 本地库，勿引外部 CDN（GSAP/Three 已本地化）。
+- **AI 学伴**：页含 `<div data-pyv2-ai hidden></div>` 出现浮窗（OpenAI 兼容接口，密钥存 localStorage）。
+- 组件脚本加载带 `?v=N`——改动 `docs/javascripts/pyv2/` 下任何组件后，把 `pyv2-loader.js` 里的 `VER` 递增。
 
-## 注意事项
+### 课件框架（slides.js）
+- 结构：`body.sl-page` > `header.sl-top`（顶栏：周次/链接）+ `div.pyv2-slides` > 若干 `section.slide`（封面加 `.cover`）。
+- 分步：内容元素加 `class="frag"`，按 → 逐条展开。
+- 翻页：键盘 ←→/空格、右下角按钮、触摸滑动、深链 `#/n`。
+- 每份课件第二页放「今日课表（100 分钟）」表格；嵌演示用 `<div class="demo-frame"><iframe src="../../demos/X.html" loading="lazy"></iframe></div>`。
+- 视觉对齐参考 `D:\workspace\AI4teacher\工作坊-自定义SKILL\index.html`：浅色纸面卡片、圆角 16px、悬停上浮、h2 左竖条。
 
-1. **图片路径**: 本地使用 `/img/`，CI 会自动替换为 `/courses-wiki/img/`
-2. **中文支持**: 确保文件编码为 UTF-8
-3. **代码高亮**: 使用 Pygments，支持行号显示
-4. **思维导图**: 使用 ECharts Tree，通过 CDN 引入，在课程页面中嵌入
-5. **幻灯片导航**:
-   - 方向键 / 空格：切换幻灯片
-   - ESC：概览模式
-   - S：演讲者模式
-   - ?：帮助
-6. **大文件管理**: 使用 Git LFS 管理大型二进制文件
-
-## 技术演进历史
-
-项目经历以下技术栈演进：
-
-- **思维导图**: jsMind → AntV G6 → simple-mind-map → ECharts Tree
-- **包管理**: pipenv → uv
-
-## 课件统计数据
-
-- 课件总数：53 个 slide.txt 文件
-- 课程数量：7 门
-- 图片资源：183 个文件（docs/img/ 目录）
+### 内容原则
+- 文案用专业教师口吻：说「AI 结对编程/开发」「答辩三问」「延伸阅读」等。
+- 课程安排以课堂说明为准：页面不写成绩构成、评分比例与考核方式（由教师线下口述）。
+- 生产资料（微课源稿、字幕、录像）放 `D:\workspace\python-course`，本仓库只放发布内容。

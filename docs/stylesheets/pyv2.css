@@ -959,7 +959,6 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
   .sl-bar, .sl-prog { display: none !important; }
 }
 
-<<<<<<< HEAD
 /* === T3 周时间线 === */
 /* 「8 幕 × 16 周」分组时间线：浅色纸面卡片、圆角 16px、悬停上浮、h2 左竖条 */
 .pyv2 .pyv2-weeks-h2 { position: relative; padding-left: 14px; }

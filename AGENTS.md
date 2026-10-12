@@ -7,7 +7,7 @@
 ```bash
 uv sync                    # 安装依赖
 uv run mkdocs build        # 构建到 site/（本地与 CI 同一条）
-uv run python linkcheck.py # 全站断链检查（已知误报 3 条：reveal notes-server ×2、V025 页内 /author/）
+uv run python linkcheck.py # 全站断链检查（已知误报 2 条：reveal notes-server ×2）
 ```
 
 本地预览用 junction 静态托管（Git Bash 后台热重载不可靠，site_url 带 `/courses-wiki/` 子路径）：
@@ -26,7 +26,7 @@ docs/
 ├── python.md                        # Python V2 主页
 ├── python/v2/m0.md … m7.md          # 8 个模块页（要点+运行场+小测+互链）
 ├── python/v2/slides/w01–w16.html    # 16 周高交互课件（slides.js 框架）
-├── python/v2/slides-index.md        # 课件总览
+├── python/v2/extensions.md          # 拓展自学长廊（汇总各周拓展章节）
 ├── python/v2/notes/ + notes-index.md  # 88 篇经典笔记
 ├── python/demos/                    # 4 个全屏交互演示（interpreter/objects/base64/rag.html）
 ├── aissop.md + aissop/              # 智能系统安全运维与实践
@@ -43,7 +43,7 @@ docs/
 本地缺失的 LFS 附件（.exe/.zip/.whl/.mp4）在 `git status` 里呈现为「幽灵删除」。暂存改动时**逐个列文件名**（不要用 `git add <目录>/`），提交前 `git diff --cached --name-only --diff-filter=D` 应为空（除非有意删除）。误删后恢复：`git reset HEAD~1 -- <路径>` + `git commit --amend`。功能在 `feature/python-v2-ai-native` 上做，`--no-ff` 合并回 `master` 后两边都推。
 
 ### MkDocs 链接
-markdown 链接会被重写，**原生 HTML `<a href>` 不会**——HTML 块里的链接必须手写最终 URL。`use_directory_urls` 下页面 URL 比源文件多一层目录：`docs/python.md` → `/python/`，`docs/python/v2/m0.md` → `/python/v2/m0/`，`docs/python/v2/slides/w01.html` → `/python/v2/slides/w01.html`。微课讲义源是 `scripts/Vxxx-….md` 文件（目录 URL 是构建产物）；链接讲义时先用 `ls docs/python/v2/scripts/` 核对真实文件名。改完链接跑 `linkcheck.py`。
+markdown 链接会被重写，**原生 HTML `<a href>` 不会**——HTML 块里的链接必须手写最终 URL。`use_directory_urls` 下页面 URL 比源文件多一层目录：`docs/python.md` → `/python/`，`docs/python/v2/m0.md` → `/python/v2/m0/`，`docs/python/v2/slides/w01.html` → `/python/v2/slides/w01.html`。改完链接跑 `linkcheck.py`。
 
 ### Python V2 交互组件（loader 懒加载）
 - **运行场**：`<div class="py-playground" data-py-title="…"><textarea>代码</textarea></div>`（HTML 转义 `<`，textarea 里不放 `<script>`）。

@@ -34,23 +34,25 @@
     <script>
       // 章节 → 新版周课件 反向映射（单一事实源 week-map.json，ADR-0001 附表；15 章全覆盖）
       // 注：class 章横跨 W4（函数部分）与 W5（类部分），规范目标取 W4。
+      // WEEKMAP:BEGIN legacy-map
       var LEGACY_TO_WEEK = {
         "introduction": { w: 1, t: "导论 · AI 时代为什么学编程" },
         "basic": { w: 2, t: "环境与工具链" },
         "data-types-basic": { w: 3, t: "类型与数据结构" },
-        "data-types-advanced": { w: 3, t: "类型与数据结构" },
         "control-flow": { w: 4, t: "控制流与函数" },
-        "class": { w: 4, t: "控制流与函数" },
+        "data-types-advanced": { w: 3, t: "类型与数据结构" },
         "io-file": { w: 5, t: "IO、异常与类" },
         "file-and-path": { w: 5, t: "IO、异常与类" },
+        "lib-and-packages": { w: 8, t: "代码质量与模块化" },
+        "virtualenvs": { w: 7, t: "数据可视化与虚拟环境" },
+        "class": { w: 4, t: "控制流与函数" },
+        "web": { w: 13, t: "FastAPI 前后端与方法论" },
         "web-and-crawler": { w: 6, t: "HTTP 与数据获取" },
         "crawler": { w: 6, t: "HTTP 与数据获取" },
         "data-process-and-visualization": { w: 7, t: "数据可视化与虚拟环境" },
-        "virtualenvs": { w: 7, t: "数据可视化与虚拟环境" },
-        "data-process-and-visualization-example": { w: 7, t: "数据可视化与虚拟环境" },
-        "lib-and-packages": { w: 8, t: "代码质量与模块化" },
-        "web": { w: 13, t: "FastAPI 前后端与方法论" }
+        "data-process-and-visualization-example": { w: 7, t: "数据可视化与虚拟环境" }
       };
+      // WEEKMAP:END legacy-map
       (function () {
         try {
           var segs = location.pathname.split("/");

@@ -1,5 +1,22 @@
 {
-  "_comment": "周↔模块↔章节映射单一事实源（ADR-0001 附表，docs/adr/0001-python-homepage-weekly-spine.md；规格见 GitHub issue #4，本文件实现 issue #6）。消费方：主页周卡片（T3）、16 份周课件顶栏「旧版对照」按钮（T4）、经典播放器反向链接（T6）、模块页周次对照行（T7）。primary/secondary 为 docs/python/ 下的经典章节目录名；primary 为 null 表示全新内容周（无对照章节，不渲染对照按钮）。周主题/课时/模块/要点取自 docs/python/v2/slides-index.md 周卡片，title 与 docs/python/v2/slides/wXX.html 的 <title> 一致。本文件属仓库工具数据，不发布。",
+  "_comment": "周↔模块↔章节映射单一事实源（ADR-0001 附表，docs/adr/0001-python-homepage-weekly-spine.md；规格见 GitHub issue #4，本文件实现 issue #6）。消费方由 sync-week-map.py 同步（issue #15）：主页周卡片、16 份周课件顶栏「旧版对照」按钮、经典播放器反向链接、模块页周次对照行——改映射只改本文件再跑 uv run python sync-week-map.py（--check 校验漂移）。primary/secondary 为 docs/python/ 下的经典章节目录名；primary 为 null 表示全新内容周（无对照章节，不渲染对照按钮）。周主题/课时/模块/要点取自 docs/python/v2/slides-index.md 周卡片，title 与 docs/python/v2/slides/wXX.html 的 <title> 一致。chapters 为章节目录名 → 显示名（取自 mkdocs.yml nav）。本文件属仓库工具数据，不发布。",
+  "chapters": {
+    "introduction": {"num": "00", "name": "课程概述"},
+    "basic": {"num": "01", "name": "基本概念"},
+    "data-types-basic": {"num": "02", "name": "数据类型基础"},
+    "control-flow": {"num": "03", "name": "程序结构"},
+    "data-types-advanced": {"num": "04", "name": "数据类型进阶"},
+    "io-file": {"num": "05", "name": "输入输出"},
+    "file-and-path": {"num": "06", "name": "文件与目录"},
+    "lib-and-packages": {"num": "07", "name": "模块与包"},
+    "virtualenvs": {"num": "08", "name": "第三方库与虚拟环境"},
+    "class": {"num": "09", "name": "函数进阶与类"},
+    "web": {"num": "10", "name": "Web 开发"},
+    "web-and-crawler": {"num": "11", "name": "Web 分析与爬虫"},
+    "crawler": {"num": "12", "name": "爬虫"},
+    "data-process-and-visualization": {"num": "13", "name": "数据处理与可视化"},
+    "data-process-and-visualization-example": {"num": "14", "name": "数据处理与可视化实例"}
+  },
   "weeks": [
     {
       "week": "w01",

@@ -42,6 +42,9 @@ docs/
 ### Git 与 LFS
 本地缺失的 LFS 附件（.exe/.zip/.whl/.mp4）在 `git status` 里呈现为「幽灵删除」。暂存改动时**逐个列文件名**（不要用 `git add <目录>/`），提交前 `git diff --cached --name-only --diff-filter=D` 应为空（除非有意删除）。误删后恢复：`git reset HEAD~1 -- <路径>` + `git commit --amend`。功能在 `feature/python-v2-ai-native` 上做，`--no-ff` 合并回 `master` 后两边都推。
 
+### 周↔章节映射
+`week-map.json` 是周↔模块↔经典章节的单一事实源（ADR-0001）。改映射只改它，然后跑 `uv run python sync-week-map.py` 同步四处消费点（主页周卡片 / wXX 顶栏对照按钮 / 模块页页脚 / 经典播放器反向映射）；`--check` 校验漂移。四处消费点由 WEEKMAP marker 圈定，marker 间内容勿手改。
+
 ### MkDocs 链接
 markdown 链接会被重写，**原生 HTML `<a href>` 不会**——HTML 块里的链接必须手写最终 URL。`use_directory_urls` 下页面 URL 比源文件多一层目录：`docs/python.md` → `/python/`，`docs/python/v2/m0.md` → `/python/v2/m0/`，`docs/python/v2/slides/w01.html` → `/python/v2/slides/w01.html`。改完链接跑 `linkcheck.py`。
 

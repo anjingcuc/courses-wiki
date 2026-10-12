@@ -958,3 +958,7 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
   .pyv2-slides section.slide { display: block !important; position: relative; inset: auto; page-break-after: always; height: auto; }
   .sl-bar, .sl-prog { display: none !important; }
 }
+
+/* === T4 对照按钮 === */
+.sl-top nav a.legacy { color: #b45309; border-style: dashed; }
+.sl-top nav a.legacy:hover { border-color: #b45309; background: rgba(180,83,9,.07); }

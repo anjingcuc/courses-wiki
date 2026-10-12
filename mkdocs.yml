@@ -1,5 +1,11 @@
 site_name: 课程资料
 site_url: https://anjingcuc.github.io/courses-wiki/
+
+# Internal agent docs (docs/agents/) and ADRs (docs/adr/) are repo tooling, not course content
+exclude_docs: |
+  agents/
+  adr/
+
 nav:
   - 首页: index.md
   - 智能系统安全运维与实践:

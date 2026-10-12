@@ -63,3 +63,17 @@ markdown 链接会被重写，**原生 HTML `<a href>` 不会**——HTML 块里
 - 文案用专业教师口吻：说「AI 结对编程/开发」「答辩三问」「延伸阅读」等。
 - 课程安排以课堂说明为准：页面不写成绩构成、评分比例与考核方式（由教师线下口述）。
 - 生产资料（微课源稿、字幕、录像）放 `D:\workspace\python-course`，本仓库只放发布内容。
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked as GitHub issues on `anjingcuc/courses-wiki`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles use their default label strings (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout: `GLOSSARY.md` and `docs/adr/` at the repo root (created lazily by `/domain-modeling`). See `docs/agents/domain.md`.

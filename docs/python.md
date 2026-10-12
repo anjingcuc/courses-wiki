@@ -85,121 +85,291 @@ hide:
 </div>
 
 <div class="pyv2" data-pyv2-page>
-  <h2 id="_2" style="font-size:22px;">学习路径 · 八大模块</h2>
-  <p>主线：从「零环境」到「独立交付 AI 应用」。每张卡片可点击进入模块页，含课件、可运行代码、随堂测验。</p>
-  <div class="pyv2-path">
-    <a class="pyv2-mod-card" href="v2/m0/" data-anim><div class="glow"></div>
-      <span class="mid">M0 · L1–L2</span><b>导论</b>
-      <span>AI 时代为什么学编程；第一节课现场用 AI 结对编程完成一个 AI 聊天网页</span>
-      <span class="lessons">2 课时 · V001–V003</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m1/" data-anim><div class="glow"></div>
-      <span class="mid">M1 · L3–L5</span><b>环境与工具链</b>
-      <span>命令行运行、Kimi Code / Trae 等 AI 编程工具、第 4 课调通大模型 API、Git 分支工作流</span>
-      <span class="lessons">3 课时 · V004–V008</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m2/" data-anim><div class="glow"></div>
-      <span class="mid">M2 · L6–L11</span><b>语言核心</b>
-      <span>类型、数据结构选型、控制流、函数契约、IO 与异常、类——建思维模型而非背方法清单</span>
-      <span class="lessons">6 课时 · V009–V021</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m3/" data-anim><div class="glow"></div>
-      <span class="mid">M3 · L12–L15</span><b>数据获取与处理</b>
-      <span>HTTP 与 F12 实测、requests 调 API、爬虫精要与伦理、Pandas + Matplotlib 全链路</span>
-      <span class="lessons">4 课时 · V022–V028</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m4/" data-anim><div class="glow"></div>
-      <span class="mid">M4 · L16–L18</span><b>工程化</b>
-      <span>虚拟环境与依赖、AI 生成代码的审查重构、模块化项目结构与配置管理</span>
-      <span class="lessons">3 课时 · V029–V033</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m5/" data-anim><div class="glow"></div>
-      <span class="mid">M5 · L19–L30</span><b>AI 应用开发</b>
-      <span>课程核心模块：Prompt 工程、Function Calling、RAG、Agent、FastAPI 前后端、对话记忆</span>
-      <span class="lessons">12 课时 · V034–V053</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m6/" data-anim><div class="glow"></div>
-      <span class="mid">M6 · L31–L44</span><b>综合项目实战</b>
-      <span>14 课时完整项目周期：选题→架构→冲刺→AI-free 调试日→Bug Bash→答辩</span>
-      <span class="lessons">14 课时 · 项目实战</span>
-    </a>
-    <a class="pyv2-mod-card" href="v2/m7/" data-anim><div class="glow"></div>
-      <span class="mid">M7 · L45–L48</span><b>总结与展望</b>
-      <span>AI 技术版图、数据库 / Docker / 云概念、职业路线与持续学习</span>
-      <span class="lessons">4 课时 · V056–V059</span>
-    </a>
-  </div>
-</div>
+  <span id="_2"></span>
+  <h2 id="weeks" class="pyv2-weeks-h2" style="font-size:22px;">8 幕 × 16 周 · 课程时间线</h2>
+  <p>模块是「幕」，周课件是「场」：8 个模块把 16 周分为 8 幕，幕标题直达模块页（要点串讲、运行场、随堂小测）。
+  每张周卡片直达当周周课件，并按主/次顺序列出经典课件的对照章节，课堂上可即时对照切换新旧讲法。
+  在经典课件中没有对照章节的周标注「全新内容」——本课程近半内容为本次修订新增。</p>
 
-<div class="pyv2" data-pyv2-page>
-  <h2 style="font-size:22px;">课程知识图谱</h2>
-  <p>拖拽节点、悬停查看说明、点击模块节点直达模块页。虚线为跨模块能力依赖。</p>
-  <div class="pyv2-graph-wrap">
-    <canvas id="pyv2-kgraph" height="560"></canvas>
-    <div class="pyv2-graph-tip"></div>
-    <span class="hint">拖拽 / 悬停 / 点击模块节点跳转</span>
-    <script type="application/json" id="pyv2-kgraph-data">
-    {
-      "modules": [
-        {"id": "m0", "label": "M0 导论", "color": "#38bdf8", "r": 26, "href": "v2/m0/", "desc": "AI 时代为什么学编程；现场做出第一个 AI 应用"},
-        {"id": "m1", "label": "M1 环境工具", "color": "#22d3ee", "r": 24, "href": "v2/m1/", "desc": "命令行 · AI 编程工具 · 大模型 API 初体验 · Git"},
-        {"id": "m2", "label": "M2 语言核心", "color": "#34d399", "r": 26, "href": "v2/m2/", "desc": "类型 · 数据结构 · 控制流 · 函数 · IO 异常 · 类"},
-        {"id": "m3", "label": "M3 数据获取", "color": "#fbbf24", "r": 24, "href": "v2/m3/", "desc": "HTTP · requests · 爬虫精要 · Pandas 可视化"},
-        {"id": "m4", "label": "M4 工程化", "color": "#f472b6", "r": 22, "href": "v2/m4/", "desc": "虚拟环境 · 代码审查 · 模块化结构"},
-        {"id": "m5", "label": "M5 AI开发", "color": "#a78bfa", "r": 30, "href": "v2/m5/", "desc": "Prompt · Function Calling · RAG · Agent · FastAPI"},
-        {"id": "m6", "label": "M6 综合项目", "color": "#f87171", "r": 27, "href": "v2/m6/", "desc": "14 课时：选题 → 冲刺 → 答辩"},
-        {"id": "m7", "label": "M7 展望", "color": "#94a3b8", "r": 20, "href": "v2/m7/", "desc": "技术版图 · 进阶路线 · 职业发展"}
-      ],
-      "lessons": [
-        {"id": "l1", "m": "m0", "label": "L1 第一课", "big": true, "desc": "10 分钟完成 AI 聊天网页"},
-        {"id": "l2", "m": "m0", "label": "L2 学习法"},
-        {"id": "l4", "m": "m1", "label": "L4 API初体验", "big": true, "desc": "第 4 课亲手调通大模型 API"},
-        {"id": "l5", "m": "m1", "label": "L5 Git 工作流"},
-        {"id": "l7", "m": "m2", "label": "L7 数据结构选型", "big": true, "desc": "四种结构一句话定位：什么时候用什么"},
-        {"id": "l9", "m": "m2", "label": "L9 函数契约", "desc": "好的函数契约 = 好的 prompt"},
-        {"id": "l11", "m": "m2", "label": "L11 类与对象"},
-        {"id": "l13", "m": "m3", "label": "L13 API 实战", "big": true, "desc": "requests 调 3 个公开 API"},
-        {"id": "l15", "m": "m3", "label": "L15 Pandas 可视化"},
-        {"id": "l17", "m": "m4", "label": "L17 代码审查", "desc": "现场重构一段 AI 生成的烂代码"},
-        {"id": "l20", "m": "m5", "label": "L20 Prompt 工程", "big": true},
-        {"id": "l22", "m": "m5", "label": "L22 RAG 基础", "big": true, "desc": "向量 · 语义检索 · 切分策略"},
-        {"id": "l25", "m": "m5", "label": "L25 Agent 基础", "desc": "ReAct：推理 + 行动循环"},
-        {"id": "l27", "m": "m5", "label": "L27 FastAPI", "big": true},
-        {"id": "l37", "m": "m6", "label": "L37 AI-free 调试日", "big": true, "desc": "禁用一切 AI，只靠 print/日志/读报错修 bug"},
-        {"id": "l42", "m": "m6", "label": "L42 项目答辩"},
-        {"id": "l45", "m": "m7", "label": "L45 技术版图"},
-        {"id": "l47", "m": "m7", "label": "L47 职业路线"}
-      ],
-      "links": [
-        ["m0", "m1"], ["m1", "m2"], ["m2", "m3"], ["m3", "m4"], ["m4", "m5"], ["m5", "m6"], ["m6", "m7"]
-      ],
-      "crosslinks": [
-        ["m2", "m5"], ["m3", "m6"], ["m5", "m6"], ["m1", "m3"], ["m4", "m5"], ["m3", "m5"], ["m2", "m7"]
-      ]
-    }
-    </script>
-  </div>
-</div>
+  <section class="pyv2-act" id="act-m0">
+    <div class="act-head">
+      <span class="act-mid">M0</span>
+      <h3>导论</h3>
+      <span class="act-range">L1–L2 · W01</span>
+      <a class="act-link" href="v2/m0/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W01</span>
+          <span class="wk-lessons">L1–L2</span>
+        </div>
+        <b class="wk-title">导论 · AI 时代为什么学编程</b>
+        <p class="wk-summary">三种能力 · 现场 AI 结对演示 · 提问的艺术 · 环境安装</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w01.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="introduction/slideshow.html">第 00 章 课程概述</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="pyv2" data-pyv2-page>
-  <h2 id="_3" style="font-size:22px;">16 周在线课件</h2>
-  <p>按一学期 16 周、每周 100 分钟线下课整合而成的高交互授课课件——教师投影授课（方向键翻页、F 全屏、分步显示），
-  学生同页交互（浏览器内运行代码、随堂小测即时判分）。点击进入总览：</p>
-  <div class="pyv2-lab">
-    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim style="grid-column: span 2;">
-      <span class="tag v">LECTURE · 交互课件</span><b>16 周课件总览 · W1–W16</b>
-      <p>每周一份：要点讲授 + 可运行练习 + 随堂小测；与模块页、经典笔记、交互演示互相链接。</p>
-      <span class="go">进入课件总览 →</span>
-    </a>
-    <a class="pyv2-demo-card" href="v2/slides/w01.html" data-anim>
-      <span class="tag">第 1 周</span><b>导论 · AI 时代为什么学编程</b>
-      <p>现场演示 + 第一个浏览器练习。</p><span class="go">打开课件 →</span>
-    </a>
-    <a class="pyv2-demo-card" href="v2/slides/w13.html" data-anim>
-      <span class="tag">第 13 周</span><b>FastAPI 前后端与方法论</b>
-      <p>把 AI 能力变成网页服务。</p><span class="go">打开课件 →</span>
-    </a>
-  </div>
+  <section class="pyv2-act" id="act-m1">
+    <div class="act-head">
+      <span class="act-mid">M1</span>
+      <h3>环境与工具链</h3>
+      <span class="act-range">L3–L5 · W02</span>
+      <a class="act-link" href="v2/m1/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W02</span>
+          <span class="wk-lessons">L3–L5</span>
+        </div>
+        <b class="wk-title">环境与工具链</b>
+        <p class="wk-summary">命令行运行 · AI 编程工具 · 亲手调通大模型 API · Git 提交流程</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w02.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="basic/slideshow.html">第 01 章 基本概念</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pyv2-act" id="act-m2">
+    <div class="act-head">
+      <span class="act-mid">M2</span>
+      <h3>语言核心</h3>
+      <span class="act-range">L6–L11 · W03–W05</span>
+      <a class="act-link" href="v2/m2/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W03</span>
+          <span class="wk-lessons">L6–L7</span>
+        </div>
+        <b class="wk-title">类型与数据结构</b>
+        <p class="wk-summary">看数据先看类型 · 四种结构一句话选型 · 推导式入门</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w03.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="data-types-basic/slideshow.html">第 02 章 数据类型基础</a><a href="data-types-advanced/slideshow.html">第 04 章 数据类型进阶</a></span>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W04</span>
+          <span class="wk-lessons">L8–L9</span>
+        </div>
+        <b class="wk-title">控制流与函数</b>
+        <p class="wk-summary">分支循环 · 循环两大杀手 · 函数契约四要素</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w04.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="control-flow/slideshow.html">第 03 章 程序结构</a><a href="class/slideshow.html">第 09 章 函数进阶与类</a></span>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W05</span>
+          <span class="wk-lessons">L10–L11</span>
+        </div>
+        <b class="wk-title">IO、异常与类</b>
+        <p class="wk-summary">文件持久化 · 异常处理 · 类封装状态 · 模块与包</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w05.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="io-file/slideshow.html">第 05 章 输入输出</a><a href="file-and-path/slideshow.html">第 06 章 文件与目录</a><a href="class/slideshow.html">第 09 章 函数进阶与类</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pyv2-act" id="act-m3">
+    <div class="act-head">
+      <span class="act-mid">M3</span>
+      <h3>数据获取与处理</h3>
+      <span class="act-range">L12–L15 · W06–W07</span>
+      <a class="act-link" href="v2/m3/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W06</span>
+          <span class="wk-lessons">L12–L14</span>
+        </div>
+        <b class="wk-title">HTTP 与数据获取</b>
+        <p class="wk-summary">请求-响应模型 · F12 实测 · requests 调 API · 爬虫精要与伦理</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w06.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="web-and-crawler/slideshow.html">第 11 章 Web 分析与爬虫</a><a href="crawler/slideshow.html">第 12 章 爬虫</a></span>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W07</span>
+          <span class="wk-lessons">L15–L16</span>
+        </div>
+        <b class="wk-title">数据可视化与虚拟环境</b>
+        <p class="wk-summary">Pandas 筛选统计 · Matplotlib 画图 · 依赖隔离与复现</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w07.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="data-process-and-visualization/slideshow.html">第 13 章 数据处理与可视化</a><a href="virtualenvs/slideshow.html">第 08 章 第三方库与虚拟环境</a><a href="data-process-and-visualization-example/slideshow.html">第 14 章 数据处理与可视化实例</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pyv2-act" id="act-m4">
+    <div class="act-head">
+      <span class="act-mid">M4</span>
+      <h3>工程化</h3>
+      <span class="act-range">L16–L18 · W07–W08</span>
+      <a class="act-link" href="v2/m4/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W08</span>
+          <span class="wk-lessons">L17–L18</span>
+        </div>
+        <b class="wk-title">代码质量与模块化</b>
+        <p class="wk-summary">AI 代码五类问题 · 审查三步法 · assert 测试 · 项目结构</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w08.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="lib-and-packages/slideshow.html">第 07 章 模块与包</a></span>
+        </div>
+      </div>
+    </div>
+    <p class="act-cross">W07「数据可视化与虚拟环境」跨 M3 / M4 两幕，周卡片见 <a href="#act-m3">M3 幕</a>。</p>
+  </section>
+
+  <section class="pyv2-act" id="act-m5">
+    <div class="act-head">
+      <span class="act-mid">M5</span>
+      <h3>AI 应用开发</h3>
+      <span class="act-range">L19–L30 · W09–W13 · 课程核心模块</span>
+      <a class="act-link" href="v2/m5/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W09</span>
+          <span class="wk-lessons">L19–L20</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">API 深入与 Prompt 工程</b>
+        <p class="wk-summary">四参数 · 流式输出 · Prompt 五组件 · Few-shot 与 CoT</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w09.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W10</span>
+          <span class="wk-lessons">L21–L22</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">结构化输出与 RAG 基础</b>
+        <p class="wk-summary">JSON Mode · Function Calling · 幻觉与 RAG 原理</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w10.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W11</span>
+          <span class="wk-lessons">L23–L24</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">RAG 实战与多模态</b>
+        <p class="wk-summary">numpy 手搓完整 RAG 链路 · Vision 看图 · TTS 说话</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w11.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W12</span>
+          <span class="wk-lessons">L25–L26</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">AI Agent</b>
+        <p class="wk-summary">ReAct 循环手写 · 工具设计 · 故障防护与能力边界</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w12.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W13</span>
+          <span class="wk-lessons">L27–L30</span>
+        </div>
+        <b class="wk-title">FastAPI 前后端与方法论</b>
+        <p class="wk-summary">路由与 Pydantic · fetch 前端 · 对话记忆 · 五步开发流程</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w13.html">周课件 →</a>
+          <span class="wk-ref">对照章节 <a class="pri" href="web/slideshow.html">第 10 章 Web 开发</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pyv2-act" id="act-m6">
+    <div class="act-head">
+      <span class="act-mid">M6</span>
+      <h3>综合项目实战</h3>
+      <span class="act-range">L31–L44 · W14–W16</span>
+      <a class="act-link" href="v2/m6/">模块页 →</a>
+    </div>
+    <div class="act-weeks">
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W14</span>
+          <span class="wk-lessons">L31–L34</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">项目启动与冲刺一</b>
+        <p class="wk-summary">项目池选题 · MVP 定义 · 架构设计 · 后端与 AI 核心</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w14.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W15</span>
+          <span class="wk-lessons">L35–L39</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">联调、调试日与部署</b>
+        <p class="wk-summary">联调三坑 · AI-free 调试日 · Bug Bash · 部署就绪</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w15.html">周课件 →</a>
+        </div>
+      </div>
+      <div class="pyv2-week-card" data-anim>
+        <div class="wk-head">
+          <span class="wk-no">W16</span>
+          <span class="wk-lessons">L40–L48</span>
+          <span class="wk-badge">全新内容</span>
+        </div>
+        <b class="wk-title">答辩与课程总结</b>
+        <p class="wk-summary">打磨与答辩 · 优秀代码复盘 · 能力模型与进阶路线</p>
+        <div class="wk-links">
+          <a class="wk-go" href="v2/slides/w16.html">周课件 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pyv2-act" id="act-m7">
+    <div class="act-head">
+      <span class="act-mid">M7</span>
+      <h3>总结与展望</h3>
+      <span class="act-range">L45–L48 · W16</span>
+      <a class="act-link" href="v2/m7/">模块页 →</a>
+    </div>
+    <p class="act-cross">W16「答辩与课程总结」跨 M6 / M7 两幕，周卡片见 <a href="#act-m6">M6 幕</a>。</p>
+  </section>
 </div>
 
 <div class="pyv2" data-pyv2-page>
@@ -258,7 +428,7 @@ hide:
       <h3 style="margin:14px 0 6px;">AI 协作</h3>
       <p>全课程鼓励 AI 协作开发，同时坚持一条底线：<b>提交的每一行代码，你都要能解释「干什么、为什么」</b>。</p>
       <h3 style="margin:14px 0 6px;">课件与课堂</h3>
-      <p>每周课件见上方「16 周在线课件」板块；课程相关安排以课堂说明为准。</p>
+      <p>每周课件见上方「8 幕 × 16 周 · 课程时间线」板块；课程相关安排以课堂说明为准。</p>
     </div>
   </div>
 </div>
@@ -273,10 +443,6 @@ hide:
     <a class="pyv2-demo-card" href="introduction/" data-anim>
       <span class="tag v">存档</span><b>经典版课件</b>
       <p>旧版 15 章幻灯片课件（reveal.js），V2 课程中的语法细节可在此查阅。</p><span class="go">查看课件 →</span>
-    </a>
-    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim>
-      <span class="tag v">授课</span><b>16 周在线课件</b>
-      <p>高交互授课课件：分步讲授、可运行练习、随堂小测，与全部模块互相链接。</p><span class="go">进入课件总览 →</span>
     </a>
   </div>
 </div>

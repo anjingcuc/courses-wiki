@@ -1,0 +1,402 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# JavaScript 初探
+
+---
+
+## 什么是 JavaScript
+
+JavaScript 的概念：
+
+- HTML 是一种标记语言，用来结构化我们的网页内容并赋予内容含义，例如定义段落、标题和数据表，或在页面中嵌入图片和视频。
+- CSS 是一种样式规则语言，可将样式应用于 HTML 内容， 例如设置背景颜色和字体，在多个列中布局内容。
+- JavaScript 是一种脚本语言，可以用来创建动态更新的内容，控制多媒体，制作图像动画，还有很多。
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## JavaScript 可以做什么？
+
+通过调用应用程序接口（Application Programming Interfaces（API））实现复杂的页面功能。
+
+![浏览器](/courses-wiki/img/browser.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element: style="text-align:center;" -->
+
+--
+
+### JavaScript 示例
+
+点击下面的按钮并输入新的玩家名字。
+
+<iframe class="live-sample-frame hide-codepen-jsfiddle" frameborder="0" height="80" id="frame_Customizable_name_label" src="https://mdn.mozillademos.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_JavaScript$samples/Customizable_name_label?revision=1583743" width="100%"></iframe>
+
+```javascript
+const para = document.querySelector("p");
+
+para.addEventListener("click", updateName);
+
+function updateName() {
+  let name = prompt("输入一个新的名字：");
+  para.textContent = "玩家1：" + name;
+}
+```
+
+按钮的[在线演示](https://roy-tian.github.io/learning-area/javascript/introduction-to-js-1/what-is-js/javascript-label.html)和[源代码](https://raw.githubusercontent.com/roy-tian/learning-area/master/javascript/introduction-to-js-1/what-is-js/javascript-label.html)
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## JavaScript 如何工作？
+
+浏览器根据 HTML 内容下载相应 CSS 或 JavaScript 文件，并在一个标签页中加工出一个用户可交互的页面。
+
+![浏览器](/courses-wiki/img/execution.png)
+
+<!-- .element: style="text-align:center;" -->
+
+--
+
+### JavaScript 运行顺序
+
+当浏览器执行到一段 JavaScript 代码时，通常会按从上往下的顺序执行这段代码。这意味着你需要注意代码书写的顺序。
+
+1. 选定一个文本段落（第 1 行);
+2. 然后给它附上一个事件监听器（第 3 行）, 使得在它被点击时，updateName() 代码块（code block） （5 – 8 行）便会运行;
+3. updateName() （这类可以重复使用的代码块称为“函数”）向用户请求一个新名字，然后把这个名字插入到段落中以更新显示。
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 怎样向页面添加 JavaScript
+
+与 CSS 类似，分为三种形式：
+
+1. 内部
+2. 外部
+3. 内联（不推荐）
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 内部 JavaScript
+
+1. 下载 [apply-javascript.html](apply-javascript.html)；
+2. 在 `</body>` 标签**前面**加入 `<script>` 和 `</script>` 标签；
+3. 在标签中加入以下代码，保存后用浏览器重新打开 HTML 文件并点击按钮。
+
+<!-- .element: style="font-size: 70%;" -->
+
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
+  function createParagraph() {
+    let para = document.createElement("p");
+    para.textContent = "你点击了这个按钮！";
+    document.body.appendChild(para);
+  }
+
+  const buttons = document.querySelectorAll("button");
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", createParagraph);
+  }
+});
+```
+
+--
+
+### 外部 JavaScript
+
+1. 和 CSS 文件一样，在 HTML 同目录下创建一个扩展名为 `.js` 的文件，如 `script.js`；
+2. 把刚才的 `<script>` 元素替换为 `<script src="script.js" async></script>`；
+3. 在 `script.js` 中添加如下内容，保存并重新打开/刷新页面。
+
+<!-- .element: style="font-size: 70%;" -->
+
+```javascript
+function createParagraph() {
+  let para = document.createElement("p");
+  para.textContent = "你点击了这个按钮！";
+  document.body.appendChild(para);
+}
+
+const buttons = document.querySelectorAll("button");
+
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", createParagraph);
+}
+```
+
+--
+
+### 内联 JavaScript
+
+不推荐内联方式。
+
+<!-- .element: style="font-size: 70%;" -->
+
+```javascript
+function createParagraph() {
+  const para = document.createElement("p");
+  para.textContent = "你点击了这个按钮！";
+  document.body.appendChild(para);
+}
+```
+
+```html
+<button onclick="createParagraph()">点我呀</button>
+```
+
+---
+
+### 注释
+
+1. 单行注释使用 `//` 符号，如 `// 我是一条注释` ；
+2. 多行注释则使用 `/*` 作为开始，`*/` 作为结尾。
+
+<!-- .element: style="font-size: 0.7em;" -->
+
+```javascript
+// 函数：创建一个新的段落并添加至 HTML body 底部。
+function createParagraph() {
+  let para = document.createElement("p");
+  para.textContent = "你点了这个按钮！";
+  document.body.appendChild(para);
+}
+
+/*
+  1. 取得页面上所有按钮的引用并将它们置于一个数组中。
+  2. 通过一个循环为每个按钮添加一个点击事件的监听器。
+  当按钮被点击时，调用 createParagraph() 函数。
+*/
+
+const buttons = document.querySelectorAll("button");
+
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", createParagraph);
+}
+```
+
+---
+
+## 第一个 JavaScript 小游戏
+
+像程序员一样思考，先玩几局课件下方游戏。
+
+--
+
+### 需求
+
+开发一个猜数字游戏。游戏应随机选择一个 100 以内的自然数, 然后邀请玩家在 10 轮以内猜出这个数字。每轮后都应告知玩家的答案正确与否，如果出错了，则告诉他数字是低了还是高了。并且应显示出玩家前一轮所猜的数字。一旦玩家猜对，或者用尽所有机会，游戏将结束。游戏结束后，可以让玩家选择再次开始。
+
+<!-- .element: style="font-size: 70%;" -->
+
+--
+
+### 需求分析
+
+```markdown
+1. 随机生成一个 100 以内的自然数。
+2. 记录玩家当前的轮数。从 1 开始。
+3. 为玩家提供一种猜测数字的方法。
+4. 一旦有结果提交，先将其记录下来，以便用户可以看到他们先前的猜测。
+5. 然后检查它是否正确。
+6. 如果正确：
+7. 显示祝贺消息。
+8. 阻止玩家继续猜测（这会使游戏混乱）。
+9. 显示控件允许玩家重新开始游戏。
+10. 如果出错，并且玩家有剩余轮次：
+11. 告诉玩家他们错了。
+12. 允许他们输入另一个猜测。
+13. 轮数加 1。
+14. 如果出错，并且玩家没有剩余轮次：
+15. 告诉玩家游戏结束。
+16. 阻止玩家继续猜测（这会使游戏混乱）。
+17. 显示控件允许玩家重新开始游戏。
+18. 一旦游戏重启，确保游戏的逻辑和 UI 完全重置，然后返回步骤 1。
+```
+
+--
+
+### 准备工作
+
+先右键另存初始代码[number-guessing-game-start.html](number-guessing-game-start.html)。
+
+--
+
+### 添加变量
+
+1. 用数学算法得出一个 1 到 100 之间的随机数，并赋值给第一个变量（randomNumber）。
+2. 接下来的三个常量均存储着一个引用，分别指向 HTML 结果段落中某个元素，用于在代码后面段落中插入值。
+3. 接下来的两个常量存储对表单文本输入和提交按钮的引用，并用于控制以后提交猜测。
+4. 倒数第二个变量存储一个计数器并初始化为 1（用于跟踪玩家猜测的次数），最后一个变量存储对重置按钮的引用，这个按钮尚不存在（但稍后就有了）。
+
+<!-- .element: style="font-size: 60%;" -->
+
+```javascript
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+const guesses = document.querySelector(".guesses");
+const lastResult = document.querySelector(".lastResult");
+const lowOrHi = document.querySelector(".lowOrHi");
+
+const guessSubmit = document.querySelector(".guessSubmit");
+const guessField = document.querySelector(".guessField");
+
+let guessCount = 1;
+let resetButton;
+```
+
+--
+
+### 函数
+
+函数是可复用的代码块，可以一次编写，反复运行，从而节省了大量的重复代码。它们真的很有用。定义函数的方法很多，但现在我们先集中考虑当前这个简单的方式。 这里我们使用关键字 function 、一个函数名、一对小括号定义了一个函数。 随后是一对花括号（{}）。花括号内部是调用函数时要运行的所有代码。要运行一个函数代码时，可以输入函数名加一对小括号。
+
+<!-- .element: style="font-size: 70%;" -->
+
+```javascript
+function checkGuess() {
+  alert("我是一个占位符");
+}
+```
+
+--
+
+### 运算符
+
+<p style='text-align:left;font-size: 0.7em;'>JavaScript 运算符允许我们执行比较，做数学运算，连接字符串，以及其他类似的事情。</p>
+
+| 运算符 | 名称                           | 示例                     |
+| ------ | ------------------------------ | ------------------------ |
+| +      | 加                             | 6 + 9                    |
+| -      | 减                             | 20 - 15                  |
+| \*     | 乘                             | 3 \* 7                   |
+| /      | 除                             | 10 / 5                   |
+| ===    | 严格等于（它们是否完全一样？） | 5 === 2 + 4              |
+| !==    | 不等于（它们究竟哪里不一样？） | 'Chris' !== 'Ch' + 'ris' |
+| <      | 小于                           | 10 < 6                   |
+| >      | 大于                           | 10 > 20                  |
+
+<!-- .element: style="font-size: 0.6em;" -->
+
+--
+
+### 条件语句
+
+<p style='text-align:left;font-size: 0.7em;'>将当前的 checkGuess() 函数替换为以下版本，它不仅能够给出一个占位符消息，同时还能检查玩家是否猜对，并做出适当的反应。</p>
+
+```javascript
+function checkGuess() {
+  // 获取用户输入的内容，并用Number函数转化为数字，保存在userGuess变量中。
+  let userGuess = Number(guessField.value);
+
+  // 条件代码块，如果guessCount的值是1，那么这个条件为true，执行花括号内部代码。
+  // 否则就不执行花括号中的代码，这样来判断玩家是不是第一次猜数字。
+  if (guessCount === 1) {
+    guesses.textContent = "上次猜的数：";
+  }
+  // 将用户猜测的内容后面加上一个空格，并追加到 guesses 的文本内容中。
+  guesses.textContent += userGuess + " ";
+
+  // 用户猜对了，则输出提示信息，并调用一个结束游戏的函数。
+  if (userGuess === randomNumber) {
+    lastResult.textContent = "恭喜你！猜对了";
+    lastResult.style.backgroundColor = "green";
+    lowOrHi.textContent = "";
+    setGameOver();
+  } else if (guessCount === 10) {
+    // 用户猜了十次还没有对，则提示挂掉。
+    lastResult.textContent = "!!!GAME OVER!!!";
+    setGameOver();
+  } else {
+    // 猜错了，但还没有到十次，则提示用户数字高还是低。
+    lastResult.textContent = "你猜错了！";
+    lastResult.style.backgroundColor = "red";
+    if (userGuess < randomNumber) {
+      lowOrHi.textContent = "你猜低了！";
+    } else if (userGuess > randomNumber) {
+      lowOrHi.textContent = "你猜高了";
+    }
+  }
+
+  // 清空用户输入内容并且增加一次猜测计数器。
+  guessCount++;
+  guessField.value = "";
+  guessField.focus();
+}
+```
+
+--
+
+### 事件
+
+<p style='text-align:left;font-size: 0.7em;'> checkGuess() 实现完成后，还没有人调用这个函数，我们希望在有人点击确定按钮的时候调用这个函数，因此要利用`事件监听器`和`事件处理器`来实现这个功能。</p>
+
+```javascript
+guessSubmit.addEventListener("click", checkGuess);
+```
+
+--
+
+### 完善游戏结束函数
+
+```javascript
+function setGameOver() {
+  // disabled 属性设置为 true 使得按钮和输入框都不能使用。
+  guessField.disabled = true;
+  guessSubmit.disabled = true;
+
+  // 新增一个重置按钮，按钮上的内容为 '开始新游戏'
+  resetButton = document.createElement("button");
+  resetButton.textContent = "开始新游戏";
+  document.body.appendChild(resetButton);
+
+  // 为重置按钮添加点击事件监听器和相应的事件处理器也就是函数resetGame
+  resetButton.addEventListener("click", resetGame);
+}
+
+function resetGame() {
+  // 恢复到玩家第一次玩的计数
+  guessCount = 1;
+
+  // 循环清除所有结果信息
+  const resetParas = document.querySelectorAll(".resultParas p");
+  for (let i = 0; i < resetParas.length; i++) {
+    resetParas[i].textContent = "";
+  }
+
+  // 删掉重置按钮
+  resetButton.parentNode.removeChild(resetButton);
+
+  // 重新使得输入框和按钮可用
+  guessField.disabled = false;
+  guessSubmit.disabled = false;
+  guessField.value = "";
+  guessField.focus();
+
+  // 结果背景恢复成白色
+  lastResult.style.backgroundColor = "white";
+
+  // 重新随机一个数字
+  randomNumber = Math.floor(Math.random() * 100) + 1;
+}
+```
+
+---
+
+# Q & A

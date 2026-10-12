@@ -1,0 +1,488 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# CSS 布局
+
+---
+
+## CSS 布局
+
+CSS 布局默认情况下采用正常布局，但为了实现更多现代化的效果，我们还要学习其他三种布局相关内容。本节将从下面几个部分介绍：
+
+- 正常布局
+- 浮动布局
+- 网格布局
+- 定位
+- 弹性盒子
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 正常布局流 - Normal Flow
+
+--
+
+### 改变正常布局的方法
+
+正常布局流是指在不对页面进行任何布局控制时，浏览器默认的 HTML 布局方式。出现在另一个元素下面的元素被描述为块元素，与出现在另一个元素旁边的内联元素不同，内联元素就像段落中的单个单词一样。使用以下 CSS 布局技术会使得元素离开正常布局流。
+
+<!-- .element: style="font-size:75%;" -->
+
+- display 属性 — 标准的 value，比如 block, inline 。或者新式布局 CSS Grid 和 Flexbox 。
+- 浮动 - 应用 float 值，诸如 left 能够让块级元素互相并排成一行，而不是一个堆叠在另一个上面。
+- position 属性 — 允许你精准设置盒子中的盒子的位置，正常布局流中，默认为 static 。
+- 表格布局 — 使用 display: table 布局方式可以用在非表格内容上。
+- 多列布局— Multi-column layout 属性 可以让块按列布局，比如报纸的内容就是一列一列排布的。
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 浮动布局
+
+浮动布局实现文字环绕效果。
+
+```html
+<h1>Simple float example</h1>
+
+<img
+  src="https://mdn.mozillademos.org/files/13340/butterfly.jpg"
+  alt="A pretty butterfly with red, white, and brown coloring, sitting on a large leaf"
+/>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus aliquam
+  dolor, eu lacinia lorem placerat vulputate. Duis felis orci, pulvinar id metus
+  ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at ultricies tellus
+  laoreet sit amet. Sed auctor cursus massa at porta. Integer ligula ipsum,
+  tristique sit amet orci vel, viverra egestas ligula. Curabitur vehicula tellus
+  neque, ac ornare ex malesuada et. In vitae convallis lacus. Aliquam erat
+  volutpat. Suspendisse ac imperdiet turpis. Aenean finibus sollicitudin eros
+  pharetra congue. Duis ornare egestas augue ut luctus. Proin blandit quam nec
+  lacus varius commodo et a urna. Ut id ornare felis, eget fermentum sapien.
+</p>
+
+<p>
+  Nam vulputate diam nec tempor bibendum. Donec luctus augue eget malesuada
+  ultrices. Phas
+</p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+body {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+p {
+  line-height: 2;
+  word-spacing: 0.1rem;
+}
+
+img {
+  float: left;
+  margin-right: 30px;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 浮动布局-两列布局
+
+```html
+<h1>2 column layout example</h1>
+<div>
+  <h2>First column</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus
+    aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci,
+    pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at
+    ultricies tellus laoreet sit amet. Sed auctor cursus massa at porta. Integer
+    ligula ipsum, tristique sit amet orci vel, viverra egestas ligula. Curabitur
+    vehicula tellus neque, ac ornare ex malesuada et. In vitae convallis lacus.
+    Aliquam erat volutpat. Suspendisse ac imperdiet turpis. Aenean finibus
+    sollicitudin eros pharetra congue. Duis ornare egestas augue ut luctus.
+    Proin blandit quam nec lacus varius commodo et a urna. Ut id ornare felis,
+    eget fermentum sapien.
+  </p>
+</div>
+
+<div>
+  <h2>Second column</h2>
+  <p>
+    Nam vulputate diam nec tempor bibendum. Donec luctus augue eget malesuada
+    ultrices. Phasellus turpis est, posuere sit amet dapibus ut, facilisis sed
+    est. Nam id risus quis ante semper consectetur eget aliquam lorem. Vivamus
+    tristique elit dolor, sed pretium metus suscipit vel. Mauris ultricies
+    lectus sed lobortis finibus. Vivamus eu urna eget velit cursus viverra quis
+    vestibulum sem. Aliquam tincidunt eget purus in interdum. Cum sociis natoque
+    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+  </p>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+div:nth-of-type(1) {
+  width: 48%;
+  float: left;
+}
+
+div:nth-of-type(2) {
+  width: 48%;
+  float: right;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 浮动布局 - 清除浮动
+
+```html
+<footer>
+  <p>
+    &copy;2016 your imagination. This isn't really copyright, this is a mockery
+    of the very concept. Use as you wish.
+  </p>
+</footer>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+footer {
+  clear: both;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+---
+
+## 网格布局
+
+网格布局示意如下所示。
+
+![网格](/courses-wiki/img/grid.png)<!-- .element style="border:none;"-->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 网格布局-定宽网格
+
+请打开[示例](https://mdn.github.io/learning-area/css/css-layout/grids/simple-grid-finished.html)
+
+```html
+<div class="wrapper">
+  <div class="row">
+    <div class="col">1</div>
+    <div class="col">2</div>
+    <div class="col">3</div>
+    <div class="col">4</div>
+    <div class="col">5</div>
+    <div class="col">6</div>
+    <div class="col">7</div>
+    <div class="col">8</div>
+    <div class="col">9</div>
+    <div class="col">10</div>
+    <div class="col">11</div>
+    <div class="col">12</div>
+  </div>
+  <div class="row">
+    <div class="col span1">13</div>
+    <div class="col span6">14</div>
+    <div class="col span3">15</div>
+    <div class="col span2">16</div>
+  </div>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  width: 980px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  padding-right: 20px;
+}
+
+.row {
+  clear: both;
+}
+
+.col {
+  float: left;
+  margin-left: 20px;
+  width: 60px;
+  background: rgb(255, 150, 150);
+}
+
+/* Two column widths (120px) plus one gutter width (20px) */
+.col.span2 { width: 140px; }
+/* Three column widths (180px) plus two gutter widths (40px) */
+.col.span3 { width: 220px; }
+/* And so on... */
+.col.span4 { width: 300px; }
+.col.span5 { width: 380px; }
+.col.span6 { width: 460px; }
+.col.span7 { width: 540px; }
+.col.span8 { width: 620px; }
+.col.span9 { width: 700px; }
+.col.span10 { width: 780px; }
+.col.span11 { width: 860px; }
+.col.span12 { width: 940px; }
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 网格布局-第三方网格
+
+还可以采用 Bootstrap 之类第三方库提供的网格布局。
+
+---
+
+## 定位
+
+```html
+<h1>Basic document flow</h1>
+
+<p>
+  I am a basic block level element. My adjacent block level elements sit on new
+  lines below me.
+</p>
+
+<p>
+  By default we span 100% of the width of our parent element, and we are as tall
+  as our child content. Our total width and height is our content + padding +
+  border width/height.
+</p>
+
+<p>
+  We are separated by our margins. Because of margin collapsing, we are
+  separated by the width of one of our margins, not both.
+</p>
+
+<p>
+  inline elements <span>like this one</span> and <span>this one</span> sit on
+  the same line as one another, and adjacent text nodes, if there is space on
+  the same line. Overflowing inline elements will
+  <span>wrap onto a new line if possible (like this one containing text)</span>,
+  or just go on to a new line if not, much like this image will do:
+  <img src="https://mdn.mozillademos.org/files/13360/long.jpg" />
+</p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+body {
+  width: 500px;
+  margin: 0 auto;
+}
+
+p {
+  background: aqua;
+  border: 3px solid blue;
+  padding: 10px;
+  margin: 10px;
+}
+
+span {
+  background: red;
+  border: 1px solid black;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 定位-静态定位
+
+静态定位是将元素放入它在正常布局流中的正常位置。为了演示这一点，并为以后的部分设置示例，首先在 HTML 中添加一个 positioned 的 class 到第二个`<p>`。
+
+<!-- .element: style="font-size:70%;" -->
+
+```html
+<p class="positioned">...</p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```CSS
+.positioned {
+   position: static;
+  background: yellow;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 定位-相对定位
+
+把刚才那个 `<p>` 改为相对定位。
+
+```CSS
+.positioned {
+  position: relative;
+  background: yellow;
+
+  top: 30px;
+  left: 30px;
+}
+```
+
+--
+
+### 定位-绝对定位
+
+把刚才那个 `<p>` 改为相对定位。
+
+```CSS
+.positioned {
+  position: absolute;
+  background: yellow;
+
+  top: 30px;
+  left: 30px;
+}
+```
+
+--
+
+### 定位 - `z-index`
+
+实现类似图层的效果。
+
+```CSS
+p:nth-of-type(1) {
+  position: absolute;
+  background: lime;
+  top: 10px;
+  right: 30px;
+
+  z-index: 1;
+}
+```
+
+---
+
+## 弹性盒子
+
+长久以来，唯一可用的且有稳定的跨浏览器兼容性的能用来构建 CSS 布局的工具只有 `浮动` 和 `定位`。这些都很好而且有效，但是在某些布局方面它们就有限制，并且难以实现，比如：
+
+- 在父内容里面垂直居中一个块内容。
+- 使容器的所有子项占用等量的可用宽度/高度，而不管有多少宽度/高度可用。
+- 使多列布局中的所有列采用相同的高度，即使它们包含的内容量不同。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 弹性盒子-模型说明
+
+![弹性模型](/courses-wiki/img/flex_terms.png)<!-- .element: style="width:100%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 弹性盒子-模型示例
+
+使用 Chrome 在新标签页中打开[示例](https://mdn.github.io/learning-area/css/css-layout/flexbox/flexbox0.html) ，通过开发者工具修改 `<section>` 的 `display: flex` ，即可实现文章的横向排列。
+
+<!-- .element: style="font-size:70%;" -->
+
+![横向](/courses-wiki/img/flexbox-example2.png)<!-- .element: style="width:100%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 弹性盒子-换行
+
+弹性盒子的子元素过多时会发生溢出，此时可以组合使用 `flex-wrap: wrap` 和 `flex: 200px` 来实现子元素换行，打开[示例](https://mdn.github.io/learning-area/css/css-layout/flexbox/flexbox-wrap0.html)，并修改样式后，达到以下效果。
+
+<!-- .element: style="font-size:70%;" -->
+
+![换行](/courses-wiki/img/flexbox-example4.png)<!-- .element: style="width:60%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 弹性盒子-方向与缩写
+
+弹性盒子子元素默认从左到右排列，也可以通过 `flex-direction: row-reverse` 反过来从右到左排列，此外 `flex-direction` 与 `flex-wrap` 可以合并为 `flex-flow` 。
+
+```CSS
+flex-direction: row-reverse;
+flex-wrap: wrap;
+```
+
+```CSS
+flex-flow: row-reverse wrap;
+```
+
+--
+
+### 弹性盒子- flex 缩写和全拼
+
+`flex` 属性可以有多种写法。
+
+| 写法             | 示例          | 效果                                     |
+| ---------------- | ------------- | ---------------------------------------- |
+| flex: basis      | flex: 200px   | 指定子元素最小宽度                       |
+| flex: grow basis | flex: 2 200px | 指定子元素所占位置大小以及子元素最小宽度 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 弹性盒子-对齐
+
+弹性盒子子元素默认情况下会在横轴上紧贴左侧以最大元素宽度横向排列，填满时则平均分配，纵轴上则拉伸填满父元素的高度，或者以最大子元素高度为统一高度。请打开[示例](https://mdn.github.io/learning-area/css/css-layout/flexbox/flex-align0.html)，依次添加如下 CSS 观察效果。
+
+```CSS
+div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+```
+
+---
+
+## Q & A

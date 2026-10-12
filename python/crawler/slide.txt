@@ -1,0 +1,79 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 爬虫
+
+---
+
+## 爬虫分析实例
+
+--
+
+### 静态页面
+
+[Bilibili 关键词搜索](https://search.bilibili.com/all?keyword=python)
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### JavaScript 渲染
+
+[网易云音乐](https://music.163.com/#/discover/playlist)
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 数据接口
+
+[知乎精华](https://www.zhihu.com/topic/19551137/top-answers)
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 持续抓取
+
+![爬虫框架](/courses-wiki/img/web_crawler.jpg)<!-- .element style="border-style:none;" -->
+
+--
+
+### Scrapy 介绍
+
+Scrapy 是 Python 最著名得爬虫框架，与之前得网页抓取不同，Scrapy 帮助用户解决了包括异步、代理等多方面。
+
+--
+
+### Scrapy 架构
+
+![Scrapy 架构](/courses-wiki/img/scrapy_architecture_02.png)<!-- .element style="width:90%;border-style:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 入门参考
+
+1. [Scrapy 官方文档](https://docs.scrapy.org/en/latest/)
+2. [Python3 网络爬虫开发实战](https://python3webspider.cuiqingcai.com/)
+
+--
+
+### 示例
+
+示例详见 [CUCSec/spiders](https://github.com/CUCSec/spiders/blob/master/scrapy)
+
+---
+
+## Q & A

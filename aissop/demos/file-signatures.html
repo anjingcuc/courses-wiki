@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文件签名识别 · 看穿伪装文件 | 智能系统安全运维与实践</title>
+<link rel="stylesheet" href="../../stylesheets/pyv2.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f8fafc;
+  color: var(--pyv2-text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 90% -5%, rgba(2,132,199,.06), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 105%, rgba(220,38,38,.05), transparent);
+}
+.top { display: flex; justify-content: space-between; align-items: center; padding: 14px 26px; border-bottom: 1px solid var(--pyv2-border); }
+.top .crumb { font-size: 13px; color: var(--pyv2-muted); }
+.top .crumb a { color: var(--pyv2-sky); text-decoration: none; }
+.top h1 { font-size: 17px; }
+.top h1 .grad { background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 22px 26px 70px; }
+
+.intro { background: var(--pyv2-surface); border: 1px solid var(--pyv2-border); border-radius: 12px; padding: 14px 18px; font-size: 14px; line-height: 1.75; color: var(--pyv2-body); margin-bottom: 18px; }
+.intro b { color: var(--pyv2-text); }
+
+h2.sec { font-size: 16px; margin: 26px 0 12px; }
+h2.sec .no { font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-muted-2); margin-right: 8px; }
+
+.fmt-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.fmt-chips button {
+  font-family: var(--pyv2-font-mono); font-size: 12.5px; font-weight: 700;
+  padding: 7px 14px; border-radius: 9px; cursor: pointer;
+  border: 1.5px solid var(--pyv2-border-2); background: var(--pyv2-surface-2); color: var(--pyv2-text);
+  transition: all .15s;
+}
+.fmt-chips button:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+.fmt-chips button.on { border-color: var(--pyv2-sky); background: rgba(2,132,199,.08); color: var(--pyv2-sky-deep); }
+
+.hexcard { background: var(--pyv2-surface); border: 1px solid var(--pyv2-border); border-radius: 12px; overflow: hidden; }
+.hexcard .hd { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 16px; border-bottom: 1px solid var(--pyv2-border); }
+.hexcard .hd .fn { font-family: var(--pyv2-font-mono); font-weight: 700; font-size: 14px; }
+.hexcard .hd .sig { font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-sky-deep); }
+.hexgrid { padding: 14px 16px; font-family: var(--pyv2-font-mono); font-size: 13px; line-height: 2; }
+.hrow { display: flex; gap: 10px; }
+.hoff { color: var(--pyv2-muted-2); min-width: 44px; user-select: none; }
+.hbytes { display: flex; flex-wrap: wrap; gap: 7px; }
+.b { min-width: 30px; text-align: center; padding: 1px 4px; border-radius: 5px; color: #334155; background: var(--pyv2-bg-soft); }
+.b.sig { background: rgba(2,132,199,.13); color: #075985; font-weight: 700; box-shadow: inset 0 0 0 1.5px rgba(2,132,199,.45); }
+.hexnote { padding: 10px 16px 14px; font-size: 13px; color: var(--pyv2-muted); line-height: 1.7; }
+
+.checker { background: var(--pyv2-surface); border: 1px dashed var(--pyv2-border-2); border-radius: 12px; padding: 16px 18px; }
+.checker input[type=file] { font-size: 13.5px; }
+.verdict { margin-top: 12px; border-radius: 10px; padding: 12px 16px; font-size: 13.5px; line-height: 1.7; display: none; }
+.verdict.ok { display: block; background: rgba(4,120,87,.08); border: 1px solid rgba(4,120,87,.35); color: #065f46; }
+.verdict.bad { display: block; background: rgba(220,38,38,.07); border: 1px solid rgba(220,38,38,.35); color: #991b1b; }
+.verdict b { font-size: 14.5px; }
+.verdict .mono { font-family: var(--pyv2-font-mono); font-size: 12px; }
+
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 900px) { .cases { grid-template-columns: 1fr; } }
+.case { background: var(--pyv2-surface); border: 1px solid var(--pyv2-border); border-radius: 12px; padding: 14px 16px; }
+.case .fn { font-family: var(--pyv2-font-mono); font-weight: 700; font-size: 13.5px; margin-bottom: 8px; }
+.case .hbytes { font-size: 11.5px; gap: 5px; margin-bottom: 10px; }
+.case .b { min-width: 26px; padding: 0 3px; }
+.case .opts { display: flex; flex-direction: column; gap: 6px; }
+.case button {
+  font-size: 12.5px; text-align: left; padding: 7px 12px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--pyv2-border-2); background: var(--pyv2-surface-2); color: var(--pyv2-text);
+}
+.case button:hover { border-color: var(--pyv2-sky); }
+.case button.right { border-color: #059669; background: rgba(4,120,87,.09); color: #065f46; }
+.case button.wrong { border-color: #dc2626; background: rgba(220,38,38,.07); color: #991b1b; }
+.case .ans { margin-top: 8px; font-size: 12.5px; color: var(--pyv2-muted); display: none; line-height: 1.65; }
+
+.foot { margin-top: 26px; font-size: 12.5px; color: var(--pyv2-muted-2); line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="top">
+  <h1><span class="grad">交互演示</span> · 文件签名识别</h1>
+  <div class="crumb"><a href="../../">← 智能系统安全运维与实践</a></div>
+</div>
+<div class="wrap">
+
+  <div class="intro">
+    文件扩展名只是名字，<b>文件头部的字节（Magic Number，魔数/文件签名）</b>才决定它真正的格式。
+    病毒伪装成图片、文档改后缀躲过粗略检查，都逃不过文件头的核对。
+    这个演示展示了系统维护、恶意代码分析中最常用的「看头识文件」技术，对应第 02 章文件系统、第 06/08 章分析实践。
+  </div>
+
+  <h2 class="sec"><span class="no">01</span>常见格式文件头速查</h2>
+  <div class="fmt-chips" id="chips"></div>
+  <div class="hexcard">
+    <div class="hd"><span class="fn" id="curFn"></span><span class="sig" id="curSig"></span></div>
+    <div class="hexgrid" id="hexgrid"></div>
+    <div class="hexnote" id="hexnote"></div>
+  </div>
+
+  <h2 class="sec"><span class="no">02</span>本地文件检查（不上传，浏览器内完成）</h2>
+  <div class="checker">
+    <input type="file" id="fileIn">
+    <div class="verdict" id="verdict"></div>
+  </div>
+
+  <h2 class="sec"><span class="no">03</span>挑战：识破伪装文件</h2>
+  <div class="cases" id="cases"></div>
+
+  <div class="foot">
+    判定原则：以文件头签名为准，扩展名仅作参考。注意一类特殊情况：<b>.exe / .dll / .sys / .scr 都是 PE 格式（4D 5A "MZ" 开头）</b>——扩展名不同，格式同源；这也是作业②中 homework.exe 释放文件的判断依据。<br>
+    在第 08 章实验中，可结合 Process Monitor 观察到的文件写入行为，用本页方法核对释放文件的真实类型。
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var FORMATS = [
+    { name: "PNG 图片", ext: ".png", sig: [0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A], sigText: "89 50 4E 47 0D 0A 1A 0A（\\x89PNG\\r\\n\\x1A\\n）",
+      bytes: [0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A,0x00,0x00,0x00,0x0D,0x49,0x48,0x44,0x52,0x00,0x00,0x07,0xD0,0x00,0x00,0x04,0x38,0x08,0x06,0x00,0x00,0x00],
+      note: "8 字节的 PNG 签名以非常规字节 0x89 开头，正是为了防止被误当作文本传输时发生转义损坏。紧跟其后的 IHDR 是图像尺寸信息块。" },
+    { name: "JPEG 图片", ext: ".jpg/.jpeg", sig: [0xFF,0xD8,0xFF], sigText: "FF D8 FF（SOI + APP0/APP1 标记）",
+      bytes: [0xFF,0xD8,0xFF,0xE0,0x00,0x10,0x4A,0x46,0x49,0x46,0x00,0x01,0x01,0x00,0x00,0x01,0x00,0x01,0x00,0x00,0xFF,0xDB,0x00,0x43,0x00,0x08,0x06,0x06],
+      note: "FF D8 是 JPEG 的图像开始（SOI）标记，其后 FF E0（JFIF）或 FF E1（Exif）表明元数据格式；文件以 FF D9 结束。" },
+    { name: "GIF 图片", ext: ".gif", sig: [0x47,0x49,0x46,0x38], sigText: "47 49 46 38（\"GIF8\"）",
+      bytes: [0x47,0x49,0x46,0x38,0x39,0x61,0x01,0x00,0x01,0x00,0x80,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x2C,0x00,0x00,0x00,0x00],
+      note: "ASCII 字符串 GIF8 后跟版本号 9a 或 87a——少数以可读字符串作签名的格式之一。" },
+    { name: "ZIP 压缩包", ext: ".zip/.docx/.xlsx/.jar", sig: [0x50,0x4B,0x03,0x04], sigText: "50 4B 03 04（\"PK..\"）",
+      bytes: [0x50,0x4B,0x03,0x04,0x14,0x00,0x00,0x00,0x08,0x00,0x63,0x9A,0x51,0x53,0xB8,0x33,0x15,0x49,0x00,0x00,0x00,0x1E,0x00,0x00,0x00,0x08,0x00,0x0C],
+      note: "PK 是 ZIP 作者 Phil Katz 的首字母。注意 docx/xlsx/jar 本质上都是 ZIP 容器——改后缀为 .zip 即可直接解压查看内部结构。" },
+    { name: "RAR 压缩包", ext: ".rar", sig: [0x52,0x61,0x72,0x21], sigText: "52 61 72 21 1A 07（\"Rar!\"，RAR4）/ 01 00（RAR5）",
+      bytes: [0x52,0x61,0x72,0x21,0x1A,0x07,0x01,0x00,0xCF,0x90,0x73,0x00,0x0D,0x01,0x04,0x05,0x00,0x06,0x20,0x5D,0x11,0x80,0x50,0x00],
+      note: "可读字符串 Rar!。第 7-8 字节区分 RAR4（00 00）与 RAR5（01 00）；第 08 章实验的病毒样本正是 RAR 压缩包。" },
+    { name: "PE 可执行文件", ext: ".exe/.dll/.sys", sig: [0x4D,0x5A], sigText: "4D 5A（\"MZ\"，DOS 头）",
+      bytes: [0x4D,0x5A,0x90,0x00,0x03,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0xFF,0xFF,0x00,0x00,0xB8,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x40,0x00,0x00,0x00],
+      note: "MZ 源自微软工程师 Mark Zbikowski 的姓名首字母。DOS 头偏移 0x3C 处的值指向 PE 签名（PE\\0\\0）。病毒样本 1.exe 与一切 Windows 程序都是这个开头。" },
+    { name: "7-Zip 压缩包", ext: ".7z", sig: [0x37,0x7A,0xBC,0xAF], sigText: "37 7A BC AF 27 1C（\"7z\\xBC\\xAF\'\\x1C\"）",
+      bytes: [0x37,0x7A,0xBC,0xAF,0x27,0x1C,0x00,0x04,0x85,0x21,0x0F,0x97,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x11,0x00,0x00,0x00,0x18,0x00,0x00,0x00],
+      note: "第 08 章实验用到的 7-Zip 工具自有格式。" },
+    { name: "PDF 文档", ext: ".pdf", sig: [0x25,0x50,0x44,0x46], sigText: "25 50 44 46（\"%PDF\"）",
+      bytes: [0x25,0x50,0x44,0x46,0x2D,0x31,0x2E,0x37,0x0A,0x25,0xE2,0xE3,0xCF,0xD3,0x0A,0x31,0x20,0x30,0x20,0x6F,0x62,0x6A,0x0A,0x3C,0x3C,0x2F,0x54,0x79],
+      note: "以 %PDF-版本号 开头，以 %%EOF 结尾。伪装成 PDF 的恶意可执行文件，头部一看便知。" },
+    { name: "BMP 位图", ext: ".bmp", sig: [0x42,0x4D], sigText: "42 4D（\"BM\"）",
+      bytes: [0x42,0x4D,0x36,0x84,0x03,0x00,0x00,0x00,0x00,0x00,0x36,0x00,0x00,0x00,0x28,0x00,0x00,0x00,0x80,0x02,0x00,0x00],
+      note: "BM 后紧跟文件大小与像素数据偏移。Python 课程作业曾手工解析 BMP 文件头——原理相同。" },
+    { name: "OLE 复合文档", ext: ".doc/.xls/.msi", sig: [0xD0,0xCF,0x11,0xE0], sigText: "D0 CF 11 E0 A1 B1 1A E1",
+      bytes: [0xD0,0xCF,0x11,0xE0,0xA1,0xB1,0x1A,0xE1,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00],
+      note: "Office 97-2003 的 .doc/.xls 与 MSI 安装包共用的容器格式；新版 .docx/.xlsx 则改为 ZIP 容器。" }
+  ];
+
+  var CASES = [
+    { fn: "holiday_photo.jpg",
+      bytes: [0x4D,0x5A,0x90,0x00,0x03,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0xFF,0xFF,0x00,0x00],
+      opts: ["正常的 JPEG 图片", "PE 可执行文件伪装成图片", "ZIP 压缩包", "无法判断"], a: 1,
+      ans: "文件头 4D 5A（MZ）表明这是 PE 可执行文件。点开这样的\"图片\"等于直接运行程序——邮件附件欺诈的经典手法。" },
+    { fn: "course_notes.7z",
+      bytes: [0x50,0x4B,0x03,0x04,0x14,0x00,0x00,0x00,0x08,0x00,0x63,0x9A,0x51,0x53],
+      opts: ["7-Zip 压缩包", "ZIP 压缩包", "PDF 文档", "GIF 图片"], a: 1,
+      ans: "50 4B 03 04（PK）是 ZIP 签名，与扩展名 .7z 不符。多数解压软件会按内容识别而正常解开，但严格校验的场合（如上传白名单）就会暴露。" },
+    { fn: "driver.sys",
+      bytes: [0x4D,0x5A,0x90,0x00,0x03,0x00,0x00,0x00,0x04,0x00,0x00,0x00],
+      opts: ["伪装的系统驱动，实际是图片", "正常情况：.sys 与 .exe 同为 PE 格式", "损坏的文件", "文本文件"], a: 1,
+      ans: "MZ 开头对 .sys 而言完全正常——驱动本身就要是 PE 格式。签名判断的是「格式」，扩展名描述的是「用途」，两者要结合上下文解读。" }
+  ];
+
+  function hx(b) { return b.toString(16).toUpperCase().padStart(2, "0"); }
+
+  function renderHex(bytes, sigLen) {
+    var html = "";
+    for (var i = 0; i < bytes.length; i += 8) {
+      html += '<div class="hrow"><span class="hoff">' + i.toString(16).toUpperCase().padStart(4, "0") + '</span><span class="hbytes">';
+      for (var j = i; j < Math.min(i + 8, bytes.length); j++) {
+        html += '<span class="b' + (j < sigLen ? " sig" : "") + '">' + hx(bytes[j]) + "</span>";
+      }
+      html += "</span></div>";
+    }
+    return html;
+  }
+
+  /* --- 速查 --- */
+  var chips = document.getElementById("chips");
+  FORMATS.forEach(function (f, i) {
+    var b = document.createElement("button");
+    b.textContent = f.name + " " + f.ext;
+    b.addEventListener("click", function () {
+      chips.querySelectorAll("button").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("curFn").textContent = "示例：" + (f.ext.split("/")[0].replace(".", "") || "file") + f.ext.split(",")[0];
+      document.getElementById("curFn").textContent = "前 " + f.bytes.length + " 字节 · " + f.name;
+      document.getElementById("curSig").textContent = "签名: " + f.sigText;
+      document.getElementById("hexgrid").innerHTML = renderHex(f.bytes, f.sig.length);
+      document.getElementById("hexnote").textContent = f.note;
+    });
+    chips.appendChild(b);
+  });
+  chips.querySelector("button").click();
+
+  /* --- 本地检查 --- */
+  function matchFormat(bytes) {
+    for (var i = 0; i < FORMATS.length; i++) {
+      var s = FORMATS[i].sig, ok = true;
+      for (var j = 0; j < s.length; j++) { if (bytes[j] !== s[j]) { ok = false; break; } }
+      if (ok) return FORMATS[i];
+    }
+    return null;
+  }
+  document.getElementById("fileIn").addEventListener("change", function (e) {
+    var file = e.target.files[0], v = document.getElementById("verdict");
+    if (!file) { v.className = "verdict"; v.innerHTML = ""; return; }
+    var fr = new FileReader();
+    fr.onload = function () {
+      var u8 = new Uint8Array(fr.result.slice(0, 32));
+      var f = matchFormat(u8);
+      var hex = Array.prototype.map.call(u8.slice(0, 8), hx).join(" ");
+      var ext = (file.name.split(".").pop() || "").toLowerCase();
+      if (!f) {
+        v.className = "verdict ok";
+        v.innerHTML = "<b>未识别出已知签名</b><br>文件头：<span class='mono'>" + hex + " …</span><br>可能是纯文本或其他未收录格式。纯文本没有固定签名，需结合内容判断。";
+        return;
+      }
+      var expectExt = f.ext.toLowerCase();
+      var match = expectExt.indexOf(ext) >= 0 || (ext === "jpeg" && expectExt.indexOf("jpg") >= 0) ||
+        (ext === "docx" || ext === "xlsx" || ext === "jar") && expectExt.indexOf("zip") >= 0 ||
+        (ext === "doc" || ext === "xls" || ext === "msi") && expectExt.indexOf("ole") >= 0;
+      if (match) {
+        v.className = "verdict ok";
+        v.innerHTML = "<b>✓ 匹配：" + f.name + "</b><br>文件头：<span class='mono'>" + hex + " …</span><br>签名与扩展名 " + file.name + " 一致。";
+      } else {
+        v.className = "verdict bad";
+        v.innerHTML = "<b>⚠ 扩展名与内容不符：实际是 " + f.name + "</b><br>文件头：<span class='mono'>" + hex + " …</span><br>扩展名 ." + ext + " 声称是" + (expectExt.split("/")[0]) + " 以外的类型，请按 " + f.ext + " 对待——<b>不要直接双击运行</b>。";
+      }
+    };
+    fr.readAsArrayBuffer(file.slice(0, 32));
+  });
+
+  /* --- 挑战 --- */
+  var box = document.getElementById("cases");
+  CASES.forEach(function (c) {
+    var d = document.createElement("div");
+    d.className = "case";
+    d.innerHTML = '<div class="fn">' + c.fn + "</div>" +
+      '<div class="hbytes">' + c.bytes.map(function (b, i) {
+        return '<span class="b' + (i < 4 ? " sig" : "") + '">' + hx(b) + "</span>";
+      }).join("") + "</div>" +
+      '<div class="opts">' + c.opts.map(function (o, i) {
+        return '<button data-i="' + i + '">' + o + "</button>";
+      }).join("") + "</div>" +
+      '<div class="ans">' + c.ans + "</div>";
+    d.querySelectorAll("button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var i = +btn.dataset.i;
+        d.querySelectorAll("button").forEach(function (x, xi) {
+          if (xi === c.a) x.classList.add("right");
+          else if (xi === i) x.classList.add("wrong");
+          x.disabled = true;
+        });
+        d.querySelector(".ans").style.display = "block";
+      });
+    });
+    box.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

@@ -444,10 +444,6 @@ hide:
       <span class="tag v">存档</span><b>经典版课件</b>
       <p>旧版 15 章幻灯片课件（reveal.js），V2 课程中的语法细节可在此查阅。</p><span class="go">查看课件 →</span>
     </a>
-    <a class="pyv2-demo-card" href="v2/slides-index/" data-anim>
-      <span class="tag v">授课</span><b>16 周在线课件</b>
-      <p>高交互授课课件：分步讲授、可运行练习、随堂小测，与全部模块互相链接。</p><span class="go">进入课件总览 →</span>
-    </a>
   </div>
 </div>
 

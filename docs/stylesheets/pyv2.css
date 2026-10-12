@@ -958,3 +958,112 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
   .pyv2-slides section.slide { display: block !important; position: relative; inset: auto; page-break-after: always; height: auto; }
   .sl-bar, .sl-prog { display: none !important; }
 }
+
+/* === T3 周时间线 === */
+/* 「8 幕 × 16 周」分组时间线：浅色纸面卡片、圆角 16px、悬停上浮、h2 左竖条 */
+.pyv2 .pyv2-weeks-h2 { position: relative; padding-left: 14px; }
+.pyv2 .pyv2-weeks-h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  bottom: 3px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--pyv2-grad);
+}
+
+/* 幕标题行：模块编号胶囊 + 模块名 + 课时/周次范围 + 模块页链接 */
+.pyv2-act { margin: 8px 0 4px; }
+.pyv2-act .act-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 22px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--pyv2-border);
+}
+.pyv2-act .act-mid {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.07);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--pyv2-sky-deep);
+}
+.pyv2-act .act-head h3 { margin: 0; font-size: 17px; }
+.pyv2-act .act-range {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  color: var(--pyv2-muted-2);
+}
+.pyv2-act .act-link { margin-left: auto; font-size: 13px; font-weight: 600; }
+
+/* 跨幕周的单行指路（如 W07 见 M3 幕） */
+.pyv2-act .act-cross { font-size: 12.5px; color: var(--pyv2-muted-2); margin: 2px 0 10px; }
+
+/* 周卡片栅格（两列，窄屏单列） */
+.pyv2-act .act-weeks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 900px) { .pyv2-act .act-weeks { grid-template-columns: 1fr; } }
+.pyv2-week-card {
+  background: #ffffff;
+  border: 1px solid var(--pyv2-border);
+  border-radius: 16px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pyv2-week-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 12px 32px rgba(2, 132, 199, 0.12);
+}
+.pyv2-week-card .wk-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.pyv2-week-card .wk-no {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.07);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--pyv2-sky-deep);
+}
+.pyv2-week-card .wk-lessons {
+  font-family: var(--pyv2-font-mono);
+  font-size: 11.5px;
+  color: var(--pyv2-muted-2);
+}
+.pyv2-week-card .wk-badge {
+  margin-left: auto;
+  font-family: var(--pyv2-font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.07);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  color: var(--pyv2-violet-deep);
+}
+.pyv2-week-card .wk-title { display: block; font-size: 15.5px; color: var(--pyv2-text); margin: 2px 0 5px; }
+.pyv2-week-card .wk-summary { font-size: 12.5px; color: var(--pyv2-muted); line-height: 1.6; margin: 0 0 10px; }
+.pyv2-week-card .wk-links {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--pyv2-border);
+  padding-top: 9px;
+}
+.pyv2-week-card .wk-go { font-size: 13px; font-weight: 600; color: var(--pyv2-sky); }
+.pyv2-week-card .wk-ref { font-size: 12px; color: var(--pyv2-muted-2); }
+.pyv2-week-card .wk-ref a {
+  margin-left: 8px;
+  color: var(--pyv2-muted);
+  border-bottom: 1px dotted var(--pyv2-border-2);
+}
+.pyv2-week-card .wk-ref a.pri { font-weight: 600; color: var(--pyv2-body); }
+.pyv2-week-card .wk-ref a:hover { color: var(--pyv2-sky-deep); text-decoration: none; }

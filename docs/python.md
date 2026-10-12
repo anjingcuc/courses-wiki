@@ -54,43 +54,13 @@ hide:
 </div>
 
 <div class="pyv2" data-pyv2-page>
-  <h2 id="_1" style="font-size:22px;">课程概览</h2>
-  <div class="pyv2-stats">
-    <div class="pyv2-stat" data-anim><div class="n" data-count="48">0</div><div class="l">线下课时</div></div>
-    <div class="pyv2-stat" data-anim><div class="n" data-count="8">0</div><div class="l">教学模块</div></div>
-    <div class="pyv2-stat v" data-anim><div class="n" data-count="12">0</div><div class="l">AI 应用开发课时</div></div>
-    <div class="pyv2-stat v" data-anim><div class="n" data-count="5" data-suffix="+">0</div><div class="l">期末项目池</div></div>
-    <div class="pyv2-stat" data-anim><div class="n" data-count="88" data-suffix="+">0</div><div class="l">经典课程笔记</div></div>
-    <div class="pyv2-stat" data-anim><div class="n" data-count="6">0</div><div class="l">项目化作业</div></div>
-  </div>
-
-  <h3 style="margin:22px 0 6px;font-size:17px;">三个锚点 · AI 会写代码，你学什么</h3>
-  <div class="pyv2-lab">
-    <div class="pyv2-demo-card" data-anim>
-      <span class="tag g">能力一</span>
-      <b>读代码</b>
-      <p>AI 生成的代码，你能看懂、能审查、能发现隐患（命名混乱、超出课程范围的语法、边界条件缺失）。这是全课程反复训练的第一项能力。</p>
-    </div>
-    <div class="pyv2-demo-card" data-anim>
-      <span class="tag g">能力二</span>
-      <b>调试</b>
-      <p>报错是常态。读 traceback、print 定位、二分注释、最小复现——L37 专门设有「AI-free 调试日」，训练不依赖 AI 的排错能力。</p>
-    </div>
-    <div class="pyv2-demo-card" data-anim>
-      <span class="tag g">能力三</span>
-      <b>系统设计</b>
-      <p>把模糊需求拆成模块、接口与数据流；知道何时该用 RAG、何时用 Agent、何时一个 if 就够。期末项目将全面检验这一能力。</p>
-    </div>
-  </div>
-</div>
-
-<div class="pyv2" data-pyv2-page>
   <span id="_2"></span>
   <h2 id="weeks" class="pyv2-weeks-h2" style="font-size:22px;">8 幕 × 16 周 · 课程时间线</h2>
   <p>模块是「幕」，周课件是「场」：8 个模块把 16 周分为 8 幕，幕标题直达模块页（要点串讲、运行场、随堂小测）。
   每张周卡片直达当周周课件，并按主/次顺序列出经典课件的对照章节，课堂上可即时对照切换新旧讲法。
   在经典课件中没有对照章节的周标注「全新内容」——本课程近半内容为本次修订新增。</p>
 
+  <div class="pyv2-timeline">
   <section class="pyv2-act" id="act-m0">
     <div class="act-head">
       <span class="act-mid">M0</span>
@@ -99,6 +69,7 @@ hide:
       <a class="act-link" href="v2/m0/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m0 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W01</span>
@@ -111,6 +82,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="introduction/slideshow.html">第 00 章 课程概述</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m0 -->
     </div>
   </section>
 
@@ -122,6 +94,7 @@ hide:
       <a class="act-link" href="v2/m1/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m1 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W02</span>
@@ -134,6 +107,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="basic/slideshow.html">第 01 章 基本概念</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m1 -->
     </div>
   </section>
 
@@ -145,6 +119,7 @@ hide:
       <a class="act-link" href="v2/m2/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m2 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W03</span>
@@ -181,6 +156,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="io-file/slideshow.html">第 05 章 输入输出</a><a href="file-and-path/slideshow.html">第 06 章 文件与目录</a><a href="class/slideshow.html">第 09 章 函数进阶与类</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m2 -->
     </div>
   </section>
 
@@ -192,6 +168,7 @@ hide:
       <a class="act-link" href="v2/m3/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m3 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W06</span>
@@ -216,6 +193,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="data-process-and-visualization/slideshow.html">第 13 章 数据处理与可视化</a><a href="virtualenvs/slideshow.html">第 08 章 第三方库与虚拟环境</a><a href="data-process-and-visualization-example/slideshow.html">第 14 章 数据处理与可视化实例</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m3 -->
     </div>
   </section>
 
@@ -227,6 +205,7 @@ hide:
       <a class="act-link" href="v2/m4/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m4 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W08</span>
@@ -239,6 +218,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="lib-and-packages/slideshow.html">第 07 章 模块与包</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m4 -->
     </div>
     <p class="act-cross">W07「数据可视化与虚拟环境」跨 M3 / M4 两幕，周卡片见 <a href="#act-m3">M3 幕</a>。</p>
   </section>
@@ -251,6 +231,7 @@ hide:
       <a class="act-link" href="v2/m5/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m5 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W09</span>
@@ -311,6 +292,7 @@ hide:
           <span class="wk-ref">对照章节 <a class="pri" href="web/slideshow.html">第 10 章 Web 开发</a></span>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m5 -->
     </div>
   </section>
 
@@ -322,6 +304,7 @@ hide:
       <a class="act-link" href="v2/m6/">模块页 →</a>
     </div>
     <div class="act-weeks">
+      <!-- WEEKMAP:BEGIN cards:m6 -->
       <div class="pyv2-week-card" data-anim>
         <div class="wk-head">
           <span class="wk-no">W14</span>
@@ -358,6 +341,7 @@ hide:
           <a class="wk-go" href="v2/slides/w16.html">周课件 →</a>
         </div>
       </div>
+      <!-- WEEKMAP:END cards:m6 -->
     </div>
   </section>
 
@@ -370,6 +354,7 @@ hide:
     </div>
     <p class="act-cross">W16「答辩与课程总结」跨 M6 / M7 两幕，周卡片见 <a href="#act-m6">M6 幕</a>。</p>
   </section>
+  </div>
 </div>
 
 <div class="pyv2" data-pyv2-page>

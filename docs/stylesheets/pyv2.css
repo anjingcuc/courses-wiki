@@ -975,6 +975,18 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
 
 /* 幕标题行：模块编号胶囊 + 模块名 + 课时/周次范围 + 模块页链接 */
 .pyv2-act { margin: 8px 0 4px; }
+
+/* 时间线整体双列栅格：幕为格单元，单周幕不再独占整行 */
+.pyv2-timeline { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 28px; align-items: start; }
+@media (max-width: 1100px) { .pyv2-timeline { grid-template-columns: 1fr; } }
+.pyv2-timeline .pyv2-act { margin: 0; }
+.pyv2-timeline .pyv2-act .act-head { margin-top: 10px; }
+.pyv2-timeline .pyv2-act .act-weeks { grid-template-columns: 1fr; }
+
+/* 周卡片整卡可点（stretched link）：wk-go 的 ::after 覆盖全卡，内部对照链接抬层级保持独立可点 */
+.pyv2-week-card { position: relative; }
+.pyv2-week-card .wk-go::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+.pyv2-week-card .wk-ref a { position: relative; z-index: 1; }
 .pyv2-act .act-head {
   display: flex;
   align-items: baseline;

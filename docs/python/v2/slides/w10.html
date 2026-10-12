@@ -14,7 +14,7 @@
     <span class="th">AI 应用 · 结构化输出 / RAG 基础</span>
   </div>
   <nav>
-    <a href="../slides-index/">课件总览</a>
+    <a href="../../#weeks">课件总览</a>
     <a href="../m5/">M5 模块页</a>
     <a href="../../">课程主页</a>
     <a href="w09.html">← 上周</a>
@@ -237,6 +237,109 @@ for q in ["期末成绩怎么算", "RAG 是什么", "能组队吗"]:
       <span class="small" style="display:block;margin-top:8px;"><a href="w11.html">提前看下周课件 →</a></span>
     </div>
     <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/13.5-Web分析与爬虫-数据接口爬取示例/">经典笔记 13.5 数据接口</a>（JSON 结构训练）</p>
+  </section>
+
+  <!-- ===== 拓展自学：Embedding 向量空间（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">Embedding 向量空间<br><span class="grad">语义的几何直觉</span></h1>
+    <p class="sub rise">正课说「距离近 = 意思近」——凭什么是距离？这 4 页把词画在地图上，
+    亲眼看「国王 − 男人 + 女人 ≈ 女王」和余弦相似度是怎么回事。</p>
+    <div class="meta rise">
+      <span>对应正课 W10 · M5 AI 应用开发</span><span>约 10 分钟 · 按 → 逐步展开</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>第一步：把词变成一串数字</h2>
+    <div class="flowline">
+      <div class="node">词「苹果」</div><span class="arrow">→</span>
+      <div class="node hot">Embedding 模型<br><span class="small">训练好的「语义标尺」</span></div><span class="arrow">→</span>
+      <div class="node">[0.21, −0.53, 0.87, …]<br><span class="small">768 个数字的坐标</span></div>
+    </div>
+    <ul>
+      <li class="frag">每个词（每段话）都变成一串数字——<b>这串数字就是它在「语义地图」上的坐标</b></li>
+      <li class="frag">模型训练时见过大量文本：<b>用法相近的词，坐标也相近</b>——「苹果」和「iPhone」落在同一片区域</li>
+      <li class="frag">关键词匹配只能比字面；Embedding 比的是<b>坐标距离</b>——这是正课 RAG 检索的地基</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>语义近邻：向量可以「加减」</h2>
+    <svg class="ext-svg" viewBox="0 0 660 280">
+      <defs>
+        <marker id="extArrB" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#0284c7"></path>
+        </marker>
+        <marker id="extArrG" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#059669"></path>
+        </marker>
+      </defs>
+      <g class="frag">
+        <circle cx="120" cy="210" r="8" fill="#64748b"></circle><text x="104" y="236">男人</text>
+        <circle cx="130" cy="80" r="8" fill="#64748b"></circle><text x="114" y="106">女人</text>
+        <circle cx="480" cy="195" r="8" fill="#7c3aed"></circle><text x="464" y="221">国王</text>
+        <circle cx="490" cy="65" r="8" fill="#7c3aed"></circle><text x="474" y="91">女王</text>
+      </g>
+      <g class="frag">
+        <line x1="136" y1="206" x2="462" y2="194" stroke="#0284c7" stroke-width="2.5" marker-end="url(#extArrB)"></line>
+        <text x="270" y="182" class="dim">国王 − 男人 = 「成为君主」的方向</text>
+      </g>
+      <g class="frag">
+        <line x1="146" y1="76" x2="472" y2="64" stroke="#059669" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#extArrG)"></line>
+        <text x="230" y="48" class="dim">把同一方向加到「女人」身上</text>
+      </g>
+      <g class="frag">
+        <circle cx="490" cy="65" r="16" fill="none" stroke="#059669" stroke-width="2.5" stroke-dasharray="4 4"></circle>
+        <text x="516" y="70" style="fill:#065f46;font-weight:700;">落点的最近邻 ≈ 女王！</text>
+        <text x="120" y="264" class="dim">国王 − 男人 + 女人 ≈ 女王 —— 语义关系是空间里的方向</text>
+      </g>
+    </svg>
+    <p class="frag"> Embedding 把「意思」编码成坐标之后，<b>类比推理变成了向量加减法</b>——这不是比喻，是真实的几何。</p>
+  </section>
+
+  <section class="slide">
+    <h2>怎么量「近」：余弦相似度</h2>
+    <svg class="ext-svg" viewBox="0 0 660 280">
+      <g class="frag">
+        <line x1="90" y1="240" x2="560" y2="60" stroke="#0284c7" stroke-width="2.5"></line>
+        <text x="566" y="62" style="fill:#075985;">猫</text>
+        <line x1="90" y1="240" x2="590" y2="120" stroke="#0284c7" stroke-width="2.5"></line>
+        <text x="596" y="122" style="fill:#075985;">狗</text>
+        <path d="M 155.4 214.9 A 70 70 0 0 1 158.1 223.7" fill="none" stroke="#0284c7" stroke-width="1.8"></path>
+        <text x="170" y="215" class="dim">夹角小 → cos ≈ 0.96「近义词」</text>
+      </g>
+      <g class="frag">
+        <line x1="90" y1="240" x2="150" y2="40" stroke="#b45309" stroke-width="2.5" stroke-dasharray="7 5"></line>
+        <text x="156" y="40" style="fill:#b45309;">汽车</text>
+        <path d="M 141.3 220.3 A 55 55 0 0 0 105.8 187.3" fill="none" stroke="#b45309" stroke-width="1.8"></path>
+        <text x="120" y="160" class="dim">夹角大 → cos ≈ 0.2「无关」</text>
+      </g>
+    </svg>
+    <pre class="frag"><code>cos θ = (A · B) / (|A| × |B|)     <span class="c"># 只看方向，不看长度——句子长短不影响语义比较</span></code></pre>
+    <p class="frag"><b>检索 = 把所有 chunk 按与问题的夹角从小到大排序，取 top-k。</b>正课第 8 页拖动的 top-k 滑块，调的就是这个。</p>
+  </section>
+
+  <section class="slide">
+    <h2>串回正课：RAG 的检索环节</h2>
+    <div class="flowline">
+      <div class="node">提问「期末成绩怎么算」</div><span class="arrow">→</span>
+      <div class="node">向量化<br><span class="small">同一标尺</span></div><span class="arrow">→</span>
+      <div class="node hot">向量空间找近邻<br><span class="small">余弦 top-k</span></div><span class="arrow">→</span>
+      <div class="node">chunk 拼进 prompt</div><span class="arrow">→</span>
+      <div class="node">有据生成</div>
+    </div>
+    <ul>
+      <li class="frag">正课 Jaccard 练习里「能组队吗」词面零重叠——<b>换成 Embedding，它离「允许 AI 协作」那条很近</b></li>
+      <li class="frag">回 <a href="../../demos/rag.html">RAG 流程模拟</a> 里再玩一次 top-k：现在你手里有几何直觉了</li>
+    </ul>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b class="tt">深挖指引</b>
+      <ul style="font-size:15.5px;">
+        <li><a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings Guide</a>——API 用法与最佳实践</li>
+        <li>word2vec（2013）——「词向量加减」的起点；搜索「king − man + woman」看原始论文例子</li>
+        <li>W11 正课会用 numpy 亲手算余弦相似度，搭完整 RAG 链路</li>
+      </ul>
+    </div>
   </section>
 
 </div>

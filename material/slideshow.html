@@ -29,6 +29,50 @@
   </head>
 
   <body>
+    <!-- T6(#10)：经典播放器「新版周课件对照」反向链接。静态兜底条供 linkcheck 与 JS 失效时使用；运行时按 URL 路径升级为当周新版课件链接。映射由 week-map.json 反向生成。 -->
+    <div id="legacy-backlink-bar" style="position:fixed;left:12px;bottom:24px;z-index:9999;margin:0;padding:4px 10px;font:12px/1.5 sans-serif;background:rgba(255,255,255,0.85);color:#555;border:1px solid rgba(0,0,0,0.12);border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,0.08);"><a href="../" style="color:#2a6fb0;text-decoration:none;">返回课程主页</a></div>
+    <script>
+      // 章节 → 新版周课件 反向映射（单一事实源 week-map.json，ADR-0001 附表；15 章全覆盖）
+      // 注：class 章横跨 W4（函数部分）与 W5（类部分），规范目标取 W4。
+      var LEGACY_TO_WEEK = {
+        "introduction": { w: 1, t: "导论 · AI 时代为什么学编程" },
+        "basic": { w: 2, t: "环境与工具链" },
+        "data-types-basic": { w: 3, t: "类型与数据结构" },
+        "data-types-advanced": { w: 3, t: "类型与数据结构" },
+        "control-flow": { w: 4, t: "控制流与函数" },
+        "class": { w: 4, t: "控制流与函数" },
+        "io-file": { w: 5, t: "IO、异常与类" },
+        "file-and-path": { w: 5, t: "IO、异常与类" },
+        "web-and-crawler": { w: 6, t: "HTTP 与数据获取" },
+        "crawler": { w: 6, t: "HTTP 与数据获取" },
+        "data-process-and-visualization": { w: 7, t: "数据可视化与虚拟环境" },
+        "virtualenvs": { w: 7, t: "数据可视化与虚拟环境" },
+        "data-process-and-visualization-example": { w: 7, t: "数据可视化与虚拟环境" },
+        "lib-and-packages": { w: 8, t: "代码质量与模块化" },
+        "web": { w: 13, t: "FastAPI 前后端与方法论" }
+      };
+      (function () {
+        try {
+          var segs = location.pathname.split("/");
+          // 从右往左找「python/」段，其下一段即章节目录名；命中映射才升级
+          for (var i = segs.length - 2; i >= 0; i--) {
+            if (segs[i] === "python" && LEGACY_TO_WEEK[segs[i + 1]]) {
+              var hit = LEGACY_TO_WEEK[segs[i + 1]];
+              var prefix = segs.slice(0, i).join("/") + "/";
+              var w2 = ("0" + hit.w).slice(-2);
+              var bar = document.getElementById("legacy-backlink-bar");
+              if (!bar) return;
+              bar.innerHTML =
+                '<a href="' + prefix + "python/v2/slides/w" + w2 + '.html" style="color:#2a6fb0;text-decoration:none;">📖 新版对照：W' +
+                hit.w + " " + hit.t + " →</a>";
+              return;
+            }
+          }
+        } catch (e) {
+          // 任何异常都保持静态兜底条原样
+        }
+      })();
+    </script>
     <div class="reveal">
       <div class="slides">
         <section

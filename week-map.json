@@ -1,0 +1,149 @@
+{
+  "_comment": "周↔模块↔章节映射单一事实源（ADR-0001 附表，docs/adr/0001-python-homepage-weekly-spine.md；规格见 GitHub issue #4，本文件实现 issue #6）。消费方：主页周卡片（T3）、16 份周课件顶栏「旧版对照」按钮（T4）、经典播放器反向链接（T6）、模块页周次对照行（T7）。primary/secondary 为 docs/python/ 下的经典章节目录名；primary 为 null 表示全新内容周（无对照章节，不渲染对照按钮）。周主题/课时/模块/要点取自 docs/python/v2/slides-index.md 周卡片，title 与 docs/python/v2/slides/wXX.html 的 <title> 一致。本文件属仓库工具数据，不发布。",
+  "weeks": [
+    {
+      "week": "w01",
+      "title": "导论 · AI 时代为什么学编程",
+      "lessons": "L1–L2",
+      "modules": ["m0"],
+      "summary": "三种能力 · 现场 AI 结对演示 · 提问的艺术 · 环境安装",
+      "primary": "introduction",
+      "secondary": []
+    },
+    {
+      "week": "w02",
+      "title": "环境与工具链",
+      "lessons": "L3–L5",
+      "modules": ["m1"],
+      "summary": "命令行运行 · AI 编程工具 · 亲手调通大模型 API · Git 提交流程",
+      "primary": "basic",
+      "secondary": []
+    },
+    {
+      "week": "w03",
+      "title": "类型与数据结构",
+      "lessons": "L6–L7",
+      "modules": ["m2"],
+      "summary": "看数据先看类型 · 四种结构一句话选型 · 推导式入门",
+      "primary": "data-types-basic",
+      "secondary": ["data-types-advanced"]
+    },
+    {
+      "week": "w04",
+      "title": "控制流与函数",
+      "lessons": "L8–L9",
+      "modules": ["m2"],
+      "summary": "分支循环 · 循环两大杀手 · 函数契约四要素",
+      "primary": "control-flow",
+      "secondary": ["class"]
+    },
+    {
+      "week": "w05",
+      "title": "IO、异常与类",
+      "lessons": "L10–L11",
+      "modules": ["m2"],
+      "summary": "文件持久化 · 异常处理 · 类封装状态 · 模块与包",
+      "primary": "io-file",
+      "secondary": ["file-and-path", "class"]
+    },
+    {
+      "week": "w06",
+      "title": "HTTP 与数据获取",
+      "lessons": "L12–L14",
+      "modules": ["m3"],
+      "summary": "请求-响应模型 · F12 实测 · requests 调 API · 爬虫精要与伦理",
+      "primary": "web-and-crawler",
+      "secondary": ["crawler"]
+    },
+    {
+      "week": "w07",
+      "title": "数据可视化与虚拟环境",
+      "lessons": "L15–L16",
+      "modules": ["m3", "m4"],
+      "summary": "Pandas 筛选统计 · Matplotlib 画图 · 依赖隔离与复现",
+      "primary": "data-process-and-visualization",
+      "secondary": ["virtualenvs", "data-process-and-visualization-example"]
+    },
+    {
+      "week": "w08",
+      "title": "代码质量与模块化",
+      "lessons": "L17–L18",
+      "modules": ["m4"],
+      "summary": "AI 代码五类问题 · 审查三步法 · assert 测试 · 项目结构",
+      "primary": "lib-and-packages",
+      "secondary": []
+    },
+    {
+      "week": "w09",
+      "title": "API 深入与 Prompt 工程",
+      "lessons": "L19–L20",
+      "modules": ["m5"],
+      "summary": "四参数 · 流式输出 · Prompt 五组件 · Few-shot 与 CoT",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w10",
+      "title": "结构化输出与 RAG 基础",
+      "lessons": "L21–L22",
+      "modules": ["m5"],
+      "summary": "JSON Mode · Function Calling · 幻觉与 RAG 原理",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w11",
+      "title": "RAG 实战与多模态",
+      "lessons": "L23–L24",
+      "modules": ["m5"],
+      "summary": "numpy 手搓完整 RAG 链路 · Vision 看图 · TTS 说话",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w12",
+      "title": "AI Agent",
+      "lessons": "L25–L26",
+      "modules": ["m5"],
+      "summary": "ReAct 循环手写 · 工具设计 · 故障防护与能力边界",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w13",
+      "title": "FastAPI 前后端与方法论",
+      "lessons": "L27–L30",
+      "modules": ["m5"],
+      "summary": "路由与 Pydantic · fetch 前端 · 对话记忆 · 五步开发流程",
+      "primary": "web",
+      "secondary": []
+    },
+    {
+      "week": "w14",
+      "title": "项目启动与冲刺一",
+      "lessons": "L31–L34",
+      "modules": ["m6"],
+      "summary": "项目池选题 · MVP 定义 · 架构设计 · 后端与 AI 核心",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w15",
+      "title": "联调、调试日与部署",
+      "lessons": "L35–L39",
+      "modules": ["m6"],
+      "summary": "联调三坑 · AI-free 调试日 · Bug Bash · 部署就绪",
+      "primary": null,
+      "secondary": []
+    },
+    {
+      "week": "w16",
+      "title": "答辩与课程总结",
+      "lessons": "L40–L48",
+      "modules": ["m6", "m7"],
+      "summary": "打磨与答辩 · 优秀代码复盘 · 能力模型与进阶路线",
+      "primary": null,
+      "secondary": []
+    }
+  ]
+}

@@ -958,3 +958,228 @@ body.sl-page { background: #f4f7fb; overflow: hidden; }
   .pyv2-slides section.slide { display: block !important; position: relative; inset: auto; page-break-after: always; height: auto; }
   .sl-bar, .sl-prog { display: none !important; }
 }
+
+/* === T3 周时间线 === */
+/* 「8 幕 × 16 周」分组时间线：浅色纸面卡片、圆角 16px、悬停上浮、h2 左竖条 */
+.pyv2 .pyv2-weeks-h2 { position: relative; padding-left: 14px; }
+.pyv2 .pyv2-weeks-h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  bottom: 3px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--pyv2-grad);
+}
+
+/* 幕标题行：模块编号胶囊 + 模块名 + 课时/周次范围 + 模块页链接 */
+.pyv2-act { margin: 8px 0 4px; }
+.pyv2-act .act-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 22px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--pyv2-border);
+}
+.pyv2-act .act-mid {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.07);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--pyv2-sky-deep);
+}
+.pyv2-act .act-head h3 { margin: 0; font-size: 17px; }
+.pyv2-act .act-range {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  color: var(--pyv2-muted-2);
+}
+.pyv2-act .act-link { margin-left: auto; font-size: 13px; font-weight: 600; }
+
+/* 跨幕周的单行指路（如 W07 见 M3 幕） */
+.pyv2-act .act-cross { font-size: 12.5px; color: var(--pyv2-muted-2); margin: 2px 0 10px; }
+
+/* 周卡片栅格（两列，窄屏单列） */
+.pyv2-act .act-weeks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 900px) { .pyv2-act .act-weeks { grid-template-columns: 1fr; } }
+.pyv2-week-card {
+  background: #ffffff;
+  border: 1px solid var(--pyv2-border);
+  border-radius: 16px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pyv2-week-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 12px 32px rgba(2, 132, 199, 0.12);
+}
+.pyv2-week-card .wk-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.pyv2-week-card .wk-no {
+  font-family: var(--pyv2-font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.07);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--pyv2-sky-deep);
+}
+.pyv2-week-card .wk-lessons {
+  font-family: var(--pyv2-font-mono);
+  font-size: 11.5px;
+  color: var(--pyv2-muted-2);
+}
+.pyv2-week-card .wk-badge {
+  margin-left: auto;
+  font-family: var(--pyv2-font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.07);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  color: var(--pyv2-violet-deep);
+}
+.pyv2-week-card .wk-title { display: block; font-size: 15.5px; color: var(--pyv2-text); margin: 2px 0 5px; }
+.pyv2-week-card .wk-summary { font-size: 12.5px; color: var(--pyv2-muted); line-height: 1.6; margin: 0 0 10px; }
+.pyv2-week-card .wk-links {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--pyv2-border);
+  padding-top: 9px;
+}
+.pyv2-week-card .wk-go { font-size: 13px; font-weight: 600; color: var(--pyv2-sky); }
+.pyv2-week-card .wk-ref { font-size: 12px; color: var(--pyv2-muted-2); }
+.pyv2-week-card .wk-ref a {
+  margin-left: 8px;
+  color: var(--pyv2-muted);
+  border-bottom: 1px dotted var(--pyv2-border-2);
+}
+.pyv2-week-card .wk-ref a.pri { font-weight: 600; color: var(--pyv2-body); }
+.pyv2-week-card .wk-ref a:hover { color: var(--pyv2-sky-deep); text-decoration: none; }
+
+/* === T4 对照按钮 === */
+.sl-top nav a.legacy { color: #b45309; border-style: dashed; }
+.sl-top nav a.legacy:hover { border-color: #b45309; background: rgba(180,83,9,.07); }
+
+/* === T8 拓展自学 === */
+/* 周课件末尾「拓展自学」章节配套样式：全部为 slides.js 原生（frag 分步 + CSS transform/opacity），无 JS 改动 */
+
+/* 章节分隔页徽章「拓展自学 · 课堂不讲，课后自翻」 */
+.slide .ext-badge {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  font-family: var(--pyv2-font-mono); font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+  color: #b45309; background: rgba(180,83,9,.07);
+  border: 1.5px dashed rgba(180,83,9,.5); border-radius: 999px; padding: 5px 16px;
+}
+
+/* frag 驱动的横向步骤条：视觉对齐 .flowline，但不用入场动画，由 → 键逐条展开 */
+.ext-steps { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+.ext-steps .node {
+  background: #ffffff; border: 2px solid var(--pyv2-border-2); border-radius: 12px;
+  padding: 10px 16px; font-size: 15.5px; font-weight: 600; color: #334155; text-align: center; line-height: 1.5;
+}
+.ext-steps .node .small { font-size: 12.5px; font-weight: 400; }
+.ext-steps .node.hot { border-color: var(--pyv2-sky); color: #075985; background: rgba(2,132,199,.07); }
+.ext-steps .arrow { color: #94a3b8; font-size: 22px; font-weight: 700; }
+
+/* W5 水泵与水管：列表一桶水（内存占满） vs 生成器逐滴流出（内存平稳） */
+.ext-viz { display: flex; align-items: flex-end; gap: 18px; min-height: 128px; margin: 12px 0 4px; }
+.ext-bucket {
+  display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-end;
+  width: 168px; min-height: 108px; padding: 10px;
+  border: 2px solid rgba(220,38,38,.35); border-top-width: 6px; border-radius: 6px 6px 14px 14px;
+  background: rgba(220,38,38,.04);
+}
+.ext-bucket i, .ext-drips i {
+  font-style: normal; font-family: var(--pyv2-font-mono); font-size: 11.5px;
+  width: 30px; height: 22px; display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; background: rgba(2,132,199,.12); border: 1px solid rgba(2,132,199,.35); color: #075985;
+}
+.ext-drips { position: relative; width: 168px; height: 118px; }
+.ext-drips::before { /* 水管 */
+  content: ""; position: absolute; left: 50%; top: 0; width: 8px; height: 100%;
+  transform: translateX(-50%); border-radius: 4px;
+  background: linear-gradient(rgba(4,120,87,.12), rgba(4,120,87,.02));
+  border: 1px dashed rgba(4,120,87,.35);
+}
+.ext-drips i { position: absolute; left: calc(50% - 15px); top: 0; opacity: 0; background: rgba(4,120,87,.12); border-color: rgba(4,120,87,.4); color: #065f46; }
+.slide.active .ext-drips i { animation: extDrip 3.6s linear infinite; }
+.slide.active .ext-drips i:nth-child(2) { animation-delay: .9s; }
+.slide.active .ext-drips i:nth-child(3) { animation-delay: 1.8s; }
+.slide.active .ext-drips i:nth-child(4) { animation-delay: 2.7s; }
+@keyframes extDrip {
+  0% { opacity: 0; transform: translateY(0); }
+  12% { opacity: 1; }
+  82% { opacity: 1; transform: translateY(88px); }
+  100% { opacity: 0; transform: translateY(100px); }
+}
+.ext-memcol { display: flex; flex-direction: column; align-items: center; }
+.ext-mem {
+  width: 30px; height: 108px; border-radius: 8px; overflow: hidden;
+  border: 1.5px solid var(--pyv2-border-2); background: #fff; display: flex; align-items: flex-end;
+}
+.ext-mem span { display: block; width: 100%; background: rgba(220,38,38,.55); }
+.ext-mem span.thin { background: rgba(4,120,87,.55); }
+.slide.active .ext-mem span.thin { animation: extMem 3.6s ease-in-out infinite; }
+@keyframes extMem { 0%, 100% { height: 14%; } 50% { height: 20%; } }
+.ext-memlab { font-size: 11px; color: var(--pyv2-muted-2); font-family: var(--pyv2-font-mono); margin-top: 4px; }
+
+/* W9 装饰器洋葱：嵌套包裹层逐层出现（外层为 frag） */
+.ext-onion { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 16px 0; }
+.ext-onion > .arrow { color: #94a3b8; font-size: 22px; font-weight: 700; }
+.ext-stage .ext-lab { display: block; font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-muted); margin-bottom: 6px; text-align: center; }
+.ext-onion .layer { border: 2px solid var(--pyv2-border-2); border-radius: 14px; padding: 10px 14px; background: #fff; text-align: center; }
+.ext-onion .layer .lab2 { display: block; font-family: var(--pyv2-font-mono); font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+.ext-onion .layer.core { border-color: var(--pyv2-sky); background: rgba(2,132,199,.06); font-family: var(--pyv2-font-mono); font-size: 14px; padding: 8px 16px; }
+.ext-onion .layer.l1 { border-color: rgba(124,58,237,.45); background: rgba(124,58,237,.05); }
+.ext-onion .layer.l1 > .lab2 { color: #5b21b6; }
+.ext-onion .layer.l2 { border-color: rgba(180,83,9,.45); background: rgba(180,83,9,.05); }
+.ext-onion .layer.l2 > .lab2 { color: #b45309; }
+
+/* W10 向量空间：原生 SVG 画布（元素挂 .frag 随 → 逐步出现） */
+.slide .ext-svg { width: 100%; max-width: 660px; border: 1px solid var(--pyv2-border); border-radius: 14px; background: #fff; display: block; margin: 10px 0; }
+.ext-svg text { font-size: 13.5px; fill: var(--pyv2-text); font-weight: 600; }
+.ext-svg .dim { fill: var(--pyv2-muted); font-weight: 400; font-size: 12px; }
+
+/* W12 ReAct 循环：三态节点接力高亮（进入该页后循环播放，配合 frag 文字走一轮） */
+.ext-cycle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+.ext-cycle .node {
+  background: #ffffff; border: 2px solid var(--pyv2-border-2); border-radius: 12px;
+  padding: 12px 18px; font-size: 16.5px; font-weight: 600; color: #334155; text-align: center; line-height: 1.5;
+}
+.ext-cycle .node .small { font-size: 12.5px; font-weight: 400; }
+.ext-cycle .arrow { color: #94a3b8; font-size: 22px; font-weight: 700; }
+.slide.active .ext-cycle .node.p1 { animation: extPulse 6s ease-in-out infinite; }
+.slide.active .ext-cycle .node.p2 { animation: extPulse 6s ease-in-out 2s infinite; }
+.slide.active .ext-cycle .node.p3 { animation: extPulse 6s ease-in-out 4s infinite; }
+@keyframes extPulse {
+  0%, 100% { border-color: var(--pyv2-border-2); box-shadow: none; }
+  8%, 25% { border-color: var(--pyv2-sky); background: rgba(2,132,199,.08); box-shadow: 0 0 22px rgba(56,189,248,.35); }
+  42% { border-color: var(--pyv2-border-2); box-shadow: none; }
+}
+
+/* W13 餐厅点餐 / 事件循环：迷你甘特时间轴 */
+.ext-gantt { margin: 12px 0 4px; }
+.ext-gantt .row { display: flex; align-items: center; gap: 8px; margin: 7px 0; }
+.ext-gantt .who { width: 46px; flex: none; font-size: 12px; color: var(--pyv2-muted); font-family: var(--pyv2-font-mono); text-align: right; }
+.ext-gantt .tl { position: relative; flex: 1; height: 24px; background: rgba(148,163,184,.12); border-radius: 7px; }
+.ext-gantt .tl i {
+  position: absolute; top: 3px; height: 18px; border-radius: 5px; padding: 0 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-style: normal; font-size: 10.5px; color: #fff; white-space: nowrap; overflow: hidden;
+}
+.ext-gantt .b1 { background: #b45309; }   /* 串行死等 */
+.ext-gantt .b2 { background: var(--pyv2-sky); }  /* 计算 / 下单 */
+.ext-gantt .b3 { background: #059669; }   /* 上菜 / 恢复 */
+.ext-gantt .b0 { background: #94a3b8; }   /* 让出 / 排队 */

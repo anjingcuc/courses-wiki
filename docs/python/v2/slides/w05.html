@@ -14,7 +14,8 @@
     <span class="th">语言核心 · 文件 IO / 异常 / 类</span>
   </div>
   <nav>
-    <a href="../slides-index/">课件总览</a>
+    <a href="../../#weeks">课件总览</a>
+    <a class="legacy" href="../../io-file/slideshow.html">旧版对照</a>
     <a href="../m2/">M2 模块页</a>
     <a href="../../">课程主页</a>
     <a href="w04.html">← 上周</a>
@@ -266,6 +267,101 @@ print("两个会话互不干扰:", s1.history is not s2.history)
       <span class="small" style="display:block;margin-top:8px;"><a href="w06.html">提前看下周课件 →</a></span>
     </div>
     <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m2/">M2 模块页</a> · <a href="../notes/7.3-输入输出-文件读写/">经典笔记 7.3 文件读写</a> · <a href="../notes/11.3-函数进阶与类-类/">11.3 类</a></p>
+  </section>
+
+  <!-- ===== 拓展自学：迭代器与 yield 生成器（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">迭代器与<br><span class="grad">yield 生成器</span></h1>
+    <p class="sub rise">for 循环到底在「循环」什么？W9 的流式输出凭什么一个字一个字往外蹦？
+    答案都藏在「迭代协议」里——4 页动效，按 → 慢慢翻。</p>
+    <div class="meta rise">
+      <span>对应正课 W5 · M2 语言核心</span><span>约 10 分钟 · 带跑代码更佳</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>for 循环背后：迭代协议</h2>
+    <p class="rise">你以为 for 在「数下标」？其实它在反复喊「下一个！」——把这行代码拆开看：</p>
+    <pre class="rise"><code><span class="k">for</span> x <span class="k">in</span> [<span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span>]:
+    <span class="f">print</span>(x)
+
+<span class="c"># 等价于（解释器替你做的事）：</span>
+it = <span class="f">iter</span>([<span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span>])      <span class="c"># ① 先拿到一个「迭代器」</span>
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">try</span>:    x = <span class="f">next</span>(it)      <span class="c"># ② 反复要「下一个」</span>
+    <span class="k">except</span> <span class="f">StopIteration</span>:  <span class="k">break</span>  <span class="c"># ③ 要到没有为止</span>
+    <span class="f">print</span>(x)</code></pre>
+    <ul>
+      <li class="frag"><b>迭代协议</b>：对象能被 <code>iter()</code> 出迭代器、迭代器能被 <code>next()</code> 取下一个——满足这两条，for 就能遍历</li>
+      <li class="frag">结束不靠数长度：<code>next()</code> 取空时抛 <code>StopIteration</code> 异常，for 收到它就优雅停下</li>
+      <li class="frag">列表、字符串、文件对象都实现了这个协议——<code>for line in f</code> 逐行读文件靠的就是它</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>列表 vs 生成器：水桶与水泵</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">列表 = 一桶水</b>
+        <span class="small">一次性全部算好装进内存，要用随时舀。</span>
+        <div class="ext-viz">
+          <div class="ext-bucket"><i>10</i><i>20</i><i>30</i><i>40</i><i>50</i></div>
+          <div class="ext-memcol"><div class="ext-mem"><span style="height:100%"></span></div><span class="ext-memlab">内存</span></div>
+        </div>
+        <span class="small frag">一百万条？桶先炸——内存被整桶水占满。</span>
+      </div>
+      <div class="scard rise"><b class="tt">生成器 = 水泵接水管</b>
+        <span class="small">只在 next() 时算一个、吐一个，内存里始终只有一滴。</span>
+        <div class="ext-viz">
+          <div class="ext-drips"><i>10</i><i>20</i><i>30</i><i>40</i></div>
+          <div class="ext-memcol"><div class="ext-mem"><span class="thin"></span></div><span class="ext-memlab">内存</span></div>
+        </div>
+        <span class="small frag">十亿条也照流——内存水位纹丝不动。</span>
+      </div>
+    </div>
+    <pre class="frag"><code><span class="k">def</span> <span class="f">count_up</span>(n):
+    <span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(n):
+        <span class="k">yield</span> i                <span class="c"># ← 吐一个，然后暂停在这儿</span>
+
+g = <span class="f">count_up</span>(<span class="n">10</span>**<span class="n">9</span>)          <span class="c"># 十亿个数的「水泵」，此刻内存占用 ≈ 0</span></code></pre>
+  </section>
+
+  <section class="slide">
+    <h2>yield：会「暂停」的函数</h2>
+    <div class="cols2">
+      <pre class="rise"><code><span class="k">def</span> <span class="f">gen</span>():
+    <span class="f">print</span>(<span class="s">"-- 启动"</span>)
+    <span class="k">yield</span> <span class="n">10</span>
+    <span class="f">print</span>(<span class="s">"-- 继续"</span>)
+    <span class="k">yield</span> <span class="n">20</span>
+
+g = <span class="f">gen</span>()     <span class="c"># 一行都没打印！</span>
+<span class="f">next</span>(g)       <span class="c"># → 打印"启动"，吐出 10</span>
+<span class="f">next</span>(g)       <span class="c"># → 打印"继续"，吐出 20</span></code></pre>
+      <div>
+        <div class="scard frag" style="margin:0 0 10px;"><span class="tag">①</span> 调用 gen()——<b>函数体一行都没跑</b>，只拿到一个生成器对象</div>
+        <div class="scard frag" style="margin:0 0 10px;"><span class="tag">②</span> next() → 运行到第一个 yield，<b>吐出 10 后原地冻结</b>，局部变量全部保留</div>
+        <div class="scard frag" style="margin:0 0 10px;"><span class="tag">③</span> 再 next() → <b>从冻结处复活</b>，继续跑到下一个 yield</div>
+        <div class="scard frag" style="margin:0;"><span class="tag g">④</span> 没有更多 yield → 抛 StopIteration，for 优雅收场</div>
+      </div>
+    </div>
+    <p class="frag">普通函数是「一跑到底的过山车」；生成器是「随叫随停的电梯」——<b>yield 就是暂停键</b>。</p>
+  </section>
+
+  <section class="slide">
+    <h2>为什么值得会：流式数据的世界</h2>
+    <ul>
+      <li class="frag"><b>大文件逐行读</b>：<code>for line in open("10GB.log")</code>——内存里永远只有当前一行</li>
+      <li class="frag"><b>W9 的流式输出</b>：<code>for chunk in stream</code> 逐块到达，正是 API 返回了一个生成器</li>
+      <li class="frag"><b>无限序列</b>：传感器数据、实时日志——没有「结尾」的数据，只能用生成器表达</li>
+    </ul>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b class="tt">深挖指引</b>
+      <ul style="font-size:15.5px;">
+        <li>官方文档：<a href="https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types">Iterator Types（迭代器协议）</a> · <a href="https://docs.python.org/zh-cn/3/library/itertools.html">itertools——迭代器瑞士军刀</a></li>
+        <li><a href="https://peps.python.org/pep-0255/">PEP 255 Simple Generators</a>——yield 的设计缘由</li>
+        <li>经典笔记 <a href="../notes/11.3-函数进阶与类-类/">11.3 函数进阶与类（生成器部分）</a></li>
+      </ul>
+    </div>
   </section>
 
 </div>

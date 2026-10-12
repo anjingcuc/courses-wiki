@@ -6,9 +6,9 @@ from urllib.parse import urljoin, urlparse, unquote
 
 SITE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "site")
 
-# 已知无害/环境性断链（LFS 本地未拉取、协议相对链接、reveal 自带示例、讲义示例链接）
+# 已知无害/环境性断链（LFS 本地未拉取、协议相对链接、reveal 自带示例）
 IGNORE = re.compile(
-    r"(\.zip|\.exe|\.rar|\.mp4|\.webm|\.whl|//player\.|socket\.io|/plugin/markdown|/author/|ct/demo\.md)$|//player\."
+    r"(\.zip|\.exe|\.rar|\.mp4|\.webm|\.whl|//player\.|socket\.io|/plugin/markdown|ct/demo\.md)$|//player\."
 )
 
 

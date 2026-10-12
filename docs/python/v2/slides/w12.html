@@ -205,6 +205,74 @@ print("Observation: 任务完成，生成最终回答")
     <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">FastAPI 实战续（异步/CORS）</a></p>
   </section>
 
+  <!-- ===== 拓展自学：ReAct 循环（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">ReAct 循环<br><span class="grad">一台三态机器</span></h1>
+    <p class="sub rise">正课手写过一个 while 循环——这 4 页把它升格成状态机：
+    Thought → Action → Observation 接力转圈，看一条真实轨迹从头走到尾。</p>
+    <div class="meta rise">
+      <span>对应正课 W12 · M5 AI 应用开发</span><span>约 10 分钟 · 按 → 走一轮</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>状态机：三个状态接力转圈</h2>
+    <div class="ext-cycle">
+      <div class="node p1">Thought<br><span class="small">我现在该做什么？</span></div><span class="arrow">→</span>
+      <div class="node p2">Action<br><span class="small">调用一个工具</span></div><span class="arrow">→</span>
+      <div class="node p3">Observation<br><span class="small">看工具返回</span></div><span class="arrow">↺</span>
+    </div>
+    <ul>
+      <li class="frag">模型只负责两件事：<b>产生 Thought、选择 Action</b>——执行 Action、产生 Observation 的都是你的代码</li>
+      <li class="frag">每转一圈，轨迹追加进 messages——<b>模型看着越来越长的「案卷」做下一步决策</b></li>
+      <li class="frag">出口只有一个：模型说「不调工具了，直接答」——循环终止</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>一条完整轨迹：「北京明天冷吗？」</h2>
+    <div class="scard frag" style="margin:0 0 10px;"><span class="tag">T1</span> <b>Thought</b>：需要明天的天气数据，我有 get_weather 工具</div>
+    <div class="scard frag" style="margin:0 0 10px;"><span class="tag v">A1</span> <b>Action</b>：get_weather(city=<span style="font-family:var(--pyv2-font-mono);">"北京"</span>, date=<span style="font-family:var(--pyv2-font-mono);">"明天"</span>)</div>
+    <div class="scard frag" style="margin:0 0 10px;"><span class="tag g">O1</span> <b>Observation</b>：晴转多云，−2°C ~ 6°C，北风 4 级</div>
+    <div class="scard frag" style="margin:0 0 10px;"><span class="tag">T2</span> <b>Thought</b>：信息足够，不用再调工具</div>
+    <div class="scard frag" style="margin:0;border-left:5px solid #0284c7;"><span class="tag g">✓</span> <b>Final Answer</b>：「冷。最低 −2°C，北风 4 级，注意防风保暖。」</div>
+    <p class="small frag" style="margin-top:12px;">对照正课的手写循环：T/A/O 就是 messages 列表里一条一条追加的记录——<b>轨迹即上下文</b>。</p>
+  </section>
+
+  <section class="slide">
+    <h2>什么时候停，怎么翻车</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">两个终止条件</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag">正常：模型不再返回 tool_calls → 出循环，给最终回答</li>
+          <li class="frag">兜底：max_steps 用尽 → 强制收尾（正课里的 range(8)）</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">两种失败模式</b>
+        <ul style="font-size:15.5px;">
+          <li class="frag"><b>死循环</b>：反复调同一工具——防护：重复调用检测 + max_steps</li>
+          <li class="frag"><b>工具误用</b>：选错工具、参数乱填——防护：description 写分明 + 参数校验</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frag scard" style="border-left:5px solid #b45309;">
+      工程口诀：<b>先让它停得下来，再让它做得对。</b>没加 max_steps 的 Agent 不上线。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>深挖指引</h2>
+    <div class="scard rise" style="border-left:5px solid #047857;"><b class="tt">延伸阅读</b>
+      <ul style="font-size:15.5px;">
+        <li><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a>（2022）——这个循环的原始论文，第二节的例子值得精读</li>
+        <li><a href="https://python.langchain.com/docs/concepts/agents/">LangChain Agents 文档</a>——框架封装的就是你手写的那个循环</li>
+        <li>回看正课「手写 Agent 核心循环」一页：<b>没有魔法</b>，框架只是帮你管 messages 和工具表</li>
+      </ul>
+    </div>
+    <p class="frag">课后挑战：给正课的 Agent 加一条「重复调用检测」——同一工具同名参数连续出现两次就强制收尾。</p>
+  </section>
+
 </div>
 
 <script src="../../../javascripts/pyv2-loader.js"></script>

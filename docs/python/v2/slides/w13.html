@@ -229,6 +229,85 @@ print("清空后 u1:", sm.history("u1"), "｜ u2 不受影响:", len(sm.history(
     <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/Python-2023-10-Web开发之fastapi实战/">FastAPI 实战</a> · <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">实战续</a></p>
   </section>
 
+  <!-- ===== 拓展自学：async 事件循环（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">async 事件循环<br><span class="grad">协程是怎么被调度的</span></h1>
+    <p class="sub rise">正课的端点为什么写 async def？await 到底「等」的是什么？
+    这 4 页用餐厅点餐和调度时间轴讲清事件循环——FastAPI 快的真正原因。</p>
+    <div class="meta rise">
+      <span>对应正课 W13 · M5 AI 应用开发</span><span>约 10 分钟 · 按 → 逐条展开</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>同步 vs 异步：餐厅点餐</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">同步：一根筋服务员</b>
+        <span class="small">给 A 桌点完单，杵在厨房门口死等，B、C 两桌干瞪眼。</span>
+        <div class="ext-gantt">
+          <div class="row"><span class="who">A 桌</span><div class="tl"><i class="b1" style="left:2%;width:32%">点单→死等→上菜</i></div></div>
+          <div class="row"><span class="who">B 桌</span><div class="tl"><i class="b1" style="left:36%;width:32%">终于轮到</i></div></div>
+          <div class="row"><span class="who">C 桌</span><div class="tl"><i class="b1" style="left:70%;width:28%">排队到打烊</i></div></div>
+        </div>
+        <span class="small frag">总耗时 = 三桌串行相加——服务员大量时间在「等」。</span>
+      </div>
+      <div class="scard rise"><b class="tt">异步：机灵服务员</b>
+        <span class="small">给 A 下单后立刻去 B、C；谁的菜好了就端给谁。</span>
+        <div class="ext-gantt">
+          <div class="row"><span class="who">A 桌</span><div class="tl"><i class="b2" style="left:2%;width:10%">下单</i><i class="b3" style="left:26%;width:10%">上菜</i></div></div>
+          <div class="row"><span class="who">B 桌</span><div class="tl"><i class="b2" style="left:13%;width:10%">下单</i><i class="b3" style="left:37%;width:10%">上菜</i></div></div>
+          <div class="row"><span class="who">C 桌</span><div class="tl"><i class="b2" style="left:24%;width:10%">下单</i><i class="b3" style="left:48%;width:10%">上菜</i></div></div>
+        </div>
+        <span class="small frag">厨房（IO）忙的时候服务员（CPU）从不空等——一半时间就服务完三桌。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>事件循环时间轴：谁让出，谁顶上</h2>
+    <div class="ext-gantt rise">
+      <div class="row"><span class="who">协程 A</span><div class="tl"><i class="b2" style="left:2%;width:12%">计算</i><i class="b0" style="left:15%;width:33%">await 等 LLM（让出）</i><i class="b3" style="left:49%;width:12%">恢复</i></div></div>
+      <div class="row"><span class="who">协程 B</span><div class="tl"><i class="b0" style="left:2%;width:12%">排队</i><i class="b2" style="left:15%;width:16%">计算</i><i class="b0" style="left:32%;width:16%">await（让出）</i><i class="b3" style="left:62%;width:10%">恢复</i></div></div>
+      <div class="row"><span class="who">CPU</span><div class="tl"><i class="b3" style="left:2%;width:70%">永不空转：A → B → 别人的请求 → A → …</i></div></div>
+    </div>
+    <ul>
+      <li class="frag"><b>await = 主动让出</b>：「我要等网络/磁盘了，控制权还给事件循环」</li>
+      <li class="frag"><b>事件循环 = 调度员</b>：登记每个协程在等什么，谁的结果到了就喊谁从断点继续</li>
+      <li class="frag">注意：这是<b>单线程内的接力</b>——不是多线程，没有锁和竞态</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>async / await 与事件循环的对应</h2>
+    <pre class="rise"><code><span class="k">async def</span> <span class="f">chat</span>(msg):            <span class="c"># 定义协程——光调用不执行，只拿到「计划」</span>
+    r = <span class="k">await</span> <span class="f">call_llm</span>(msg)    <span class="c"># ① await：挂起点，控制权还给事件循环</span>
+    <span class="k">return</span> r                    <span class="c"># ② 响应到达后，从这里原地恢复</span>
+
+<span class="k">await</span> asyncio.<span class="f">gather</span>(<span class="f">chat</span>(a), <span class="f">chat</span>(b), <span class="f">chat</span>(c))   <span class="c"># 三个并发跑</span></code></pre>
+    <ul>
+      <li class="frag"><code>async def</code> 定义的是「可暂停的函数」；<code>await</code> 标出<b>让出点</b>——其余语法和你写过的一样</li>
+      <li class="frag"><code>gather</code> 把多个协程一起交给事件循环——总耗时 ≈ 最慢的那个，而不是相加</li>
+      <li class="frag">坑：在协程里调<b>同步阻塞</b>函数（如 time.sleep、requests.get）会把整个事件循环卡死——要用对应的异步库</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>FastAPI 为什么快</h2>
+    <ul>
+      <li class="frag">等 LLM 的 3–8 秒里，单进程转身去服务别人的请求——<b>一台机器顶过去一排</b></li>
+      <li class="frag">AI 应用是典型的 IO 密集场景：网络调用占 95% 时间——async 收益最大</li>
+      <li class="frag">边界：CPU 密集任务（图像处理、大矩阵运算）async 帮不上忙——那是多进程的事</li>
+    </ul>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b class="tt">深挖指引</b>
+      <ul style="font-size:15.5px;">
+        <li>官方文档：<a href="https://docs.python.org/zh-cn/3/library/asyncio.html">asyncio——异步 I/O 库</a>（event loop / coroutine / task 三个概念）</li>
+        <li><a href="https://fastapi.tiangolo.com/async/">FastAPI: Concurrency and async/await</a>——官方「并发与并行」一章写得极好</li>
+        <li>经典笔记 <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">FastAPI 实战续（异步/CORS）</a></li>
+      </ul>
+    </div>
+  </section>
+
 </div>
 
 <script src="../../../javascripts/pyv2-loader.js"></script>

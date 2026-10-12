@@ -234,6 +234,98 @@ print(build_prompt(demo))
     <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/12.5-Web开发-装饰器与Flask路由/">经典笔记 12.5 装饰器</a> · <a href="../notes/11.3-函数进阶与类-类/">11.3 生成器</a></p>
   </section>
 
+  <!-- ===== 拓展自学：装饰器原理（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">装饰器原理<br><span class="grad">那个 @ 到底干了什么</span></h1>
+    <p class="sub rise">正课里 @app.post("/chat") 只是照抄——这 4 页讲清它凭什么工作：
+    函数是一等公民、洋葱式包裹、@ 只是一次赋值。</p>
+    <div class="meta rise">
+      <span>对应正课 W9 · M5 AI 应用开发</span><span>约 10 分钟 · 按 → 逐层剥开</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>前提：函数是一等公民</h2>
+    <p class="rise">在 Python 里，函数和数字、字符串一样，是可以传来传去的「值」：</p>
+    <pre class="rise"><code><span class="k">def</span> <span class="f">hello</span>():
+    <span class="f">print</span>(<span class="s">"你好"</span>)
+
+a = hello            <span class="c"># ① 赋值给变量（注意：没加括号，没调用）</span>
+<span class="k">def</span> <span class="f">call</span>(f): f()    <span class="c"># ② 当参数传给另一个函数</span>
+<span class="k">def</span> <span class="f">maker</span>(): <span class="k">return</span> hello   <span class="c"># ③ 当返回值还回来</span></code></pre>
+    <ul>
+      <li class="frag">把 ①②③ 组合起来：<b>接进来一个函数，包一层新功能，还回去一个新函数</b>——这就是装饰器的全部</li>
+      <li class="frag">AI 工程里到处都是它：注册路由、加日志、做重试、算耗时……都是「包一层」</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>包裹洋葱：一层一层穿上</h2>
+    <div class="ext-onion">
+      <div class="ext-stage rise"><span class="ext-lab">原始函数</span>
+        <div class="layer core">hello()</div>
+      </div>
+      <span class="arrow frag">→</span>
+      <div class="ext-stage frag"><span class="ext-lab">+ log 层（记日志）</span>
+        <div class="layer l1"><span class="lab2">log</span><div class="layer core">hello()</div></div>
+      </div>
+      <span class="arrow frag">→</span>
+      <div class="ext-stage frag"><span class="ext-lab">+ timer 层（算耗时）</span>
+        <div class="layer l2"><span class="lab2">timer</span><div class="layer l1"><span class="lab2">log</span><div class="layer core">hello()</div></div></div>
+      </div>
+    </div>
+    <p class="frag">调用顺序：timer 开始计时 → log 记「开始」→ 真正的 hello() → log 记「结束」→ timer 结算。<b>外层包内层，先进后出。</b></p>
+    <pre class="frag"><code><span class="k">@timer</span>
+<span class="k">@log</span>
+<span class="k">def</span> <span class="f">hello</span>(): ...
+
+<span class="c"># 完全等价于（@ 只是「重新赋值」的语法糖）：</span>
+hello = <span class="f">timer</span>(<span class="f">log</span>(hello))</code></pre>
+  </section>
+
+  <section class="slide">
+    <h2>两个工程细节</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">functools.wraps：保住名字</b>
+        <pre style="font-size:14.5px;margin:8px 0 0;"><code><span class="k">from</span> functools <span class="k">import</span> wraps
+
+<span class="k">def</span> <span class="f">log</span>(fn):
+    <span class="k">@wraps</span>(fn)          <span class="c"># ← 没有它，</span>
+    <span class="k">def</span> <span class="f">wrapper</span>(*a, **kw):   <span class="c"># hello.__name__</span>
+        <span class="k">return</span> <span class="f">fn</span>(*a, **kw)  <span class="c"># 会变成 "wrapper"</span>
+    <span class="k">return</span> wrapper</code></pre>
+        <span class="small frag" style="display:block;margin-top:8px;">不加 wraps，被装饰的函数会「丢名字」——调试栈和自动文档全乱套。</span>
+      </div>
+      <div class="scard rise"><b class="tt">带参装饰器：三层结构</b>
+        <pre style="font-size:14.5px;margin:8px 0 0;"><code><span class="k">@repeat</span>(<span class="n">3</span>)          <span class="c"># 先调 repeat(3)</span>
+<span class="k">def</span> <span class="f">job</span>(): ...      <span class="c"># 拿到装饰器再包 job</span>
+
+<span class="c"># 等价于：</span>
+deco = <span class="f">repeat</span>(<span class="n">3</span>)   <span class="c"># ① 工厂：参数→装饰器</span>
+job = <span class="f">deco</span>(job)     <span class="c"># ② 装饰器包函数</span></code></pre>
+        <span class="small frag" style="display:block;margin-top:8px;">带参数比无参多一层「工厂」——<code>@app.post("/chat")</code> 就是这种。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>你早就见过它：路由就是装饰器</h2>
+    <pre class="rise"><code><span class="k">@app.post</span>(<span class="s">"/chat"</span>)        <span class="c"># W13 正课的写法</span>
+<span class="k">async def</span> <span class="f">chat</span>(req): ...</code></pre>
+    <ul>
+      <li class="frag">它做的事：<b>包一层「收 HTTP 请求 → 校验参数 → 调你的函数 → 返回 JSON」</b>，再把新函数登记进路由表</li>
+      <li class="frag">Flask 的 <code>@app.route</code>、FastAPI 的 <code>@app.post</code>——同一招的两种写法，W13 会天天用</li>
+    </ul>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b class="tt">深挖指引</b>
+      <ul style="font-size:15.5px;">
+        <li>官方文档：<a href="https://docs.python.org/zh-cn/3/library/functools.html">functools（wraps / lru_cache）</a> · <a href="https://peps.python.org/pep-0318/">PEP 318</a>（@ 语法的出生证明）</li>
+        <li><a href="https://realpython.com/primer-on-python-decorators/">Real Python: Primer on Decorators</a>——从闭包一路讲到带参装饰器</li>
+        <li>经典笔记 <a href="../notes/12.5-Web开发-装饰器与Flask路由/">12.5 装饰器与 Flask 路由</a></li>
+      </ul>
+    </div>
+  </section>
+
 </div>
 
 <script src="../../../javascripts/pyv2-loader.js"></script>

@@ -1,0 +1,240 @@
+/* ============================================================
+   场景 06 · 把方法用回去（三个课堂案例 · 共用一条判断流程）
+   作用域：.sc-practice   根节点不改 display
+   ============================================================ */
+
+.sc-practice { gap: 0; }
+
+/* —— 头部 —— */
+.sc-practice .pr-head { flex: 0 0 auto; margin: 0 0 14px; }
+.sc-practice .pr-h1 { font-size: 31px; line-height: 1.16; margin: 6px 0 7px; letter-spacing: -.01em; }
+.sc-practice .pr-lede { font-size: 14px; line-height: 1.7; max-width: 96ch; }
+.sc-practice .pr-law {
+  display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  margin: 9px 0 0; font-size: 12px; line-height: 1.6; color: var(--text-3);
+}
+.sc-practice .pr-law b { color: var(--text-2); font-weight: 650; }
+.sc-practice .pr-law-2 { margin-top: 5px; }
+
+/* —— 案例选择 —— */
+.sc-practice .pr-tabs {
+  flex: 0 0 auto;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px; margin: 0 0 12px;
+}
+.sc-practice .pr-tab {
+  position: relative;
+  display: grid; grid-template-columns: 26px minmax(0, 1fr); grid-template-rows: auto auto;
+  gap: 1px 10px; align-items: center; text-align: left; cursor: pointer;
+  padding: 9px 14px 10px; border: 1px solid var(--line-2); border-radius: 2px;
+  background: transparent; transition: .18s var(--ease);
+}
+.sc-practice .pr-tab:hover { border-color: var(--line); background: var(--line-3); }
+.sc-practice .pr-tab.is-on {
+  border-color: var(--accent); background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-soft);
+}
+.sc-practice .pr-tab-n {
+  grid-row: 1 / span 2; font: 600 17px/1 var(--mono);
+  color: var(--text-3); letter-spacing: .02em;
+}
+.sc-practice .pr-tab.is-on .pr-tab-n { color: var(--accent); }
+.sc-practice .pr-tab-t { font-size: 13.5px; font-weight: 650; color: var(--text-2); line-height: 1.35; }
+.sc-practice .pr-tab.is-on .pr-tab-t { color: var(--text); }
+.sc-practice .pr-tab-s { font: 400 10.5px/1.4 var(--mono); color: var(--text-3); letter-spacing: .01em; }
+.sc-practice .pr-tab-dot {
+  position: absolute; right: 11px; top: 11px;
+  width: 7px; height: 7px; border: 1px solid var(--line-2); border-radius: 50%;
+}
+.sc-practice .pr-tab.is-done .pr-tab-dot { background: var(--lime); border-color: var(--lime); }
+
+/* —— 共用流程：三格 + 箭头 —— */
+.sc-practice .pr-flow {
+  flex: 1 1 auto; min-height: 470px; max-height: 640px;
+  display: grid; grid-template-columns: 1.02fr 30px 1fr 30px 1.12fr;
+  align-items: stretch;
+}
+.sc-practice .pr-stage {
+  display: flex; flex-direction: column; min-width: 0;
+  padding: 14px 16px 15px;
+  border: 1px solid var(--line-2); border-top: 2px solid var(--line);
+  background: color-mix(in srgb, var(--bg-deep) 45%, transparent);
+}
+.sc-practice .pr-st1 { border-top-color: var(--accent); }
+.sc-practice .pr-st2 { border-top-color: var(--amber); }
+.sc-practice .pr-st3 { border-top-color: var(--lime); }
+
+.sc-practice .pr-st-hd {
+  display: flex; align-items: center; gap: 10px; flex: 0 0 auto;
+  padding-bottom: 10px; margin-bottom: 12px;
+  border-bottom: 1px dashed var(--line-3);
+}
+.sc-practice .pr-st-n {
+  flex: none; font: 600 10px/1 var(--mono); letter-spacing: .16em;
+  color: var(--text-3); border: 1px solid var(--line-2); padding: 3px 6px;
+}
+.sc-practice .pr-st1 .pr-st-n { color: var(--accent); border-color: var(--accent-dim); }
+.sc-practice .pr-st2 .pr-st-n { color: var(--amber); border-color: var(--amber); }
+.sc-practice .pr-st3 .pr-st-n { color: var(--lime); border-color: var(--lime); }
+.sc-practice .pr-st-t { font-size: 15px; font-weight: 650; color: var(--text); }
+.sc-practice .pr-st-h {
+  margin-left: auto; font: 400 10.5px/1.4 var(--mono);
+  color: var(--text-3); white-space: nowrap;
+}
+
+/* 01 证据 */
+.sc-practice .pr-ev {
+  flex: 1 1 auto; display: flex; flex-direction: column;
+  justify-content: flex-start; gap: 20px;
+}
+.sc-practice .pr-ev-row {
+  padding-left: 11px; border-left: 2px solid var(--accent-dim);
+}
+.sc-practice .pr-ev-k {
+  display: block; margin-bottom: 3px;
+  font: 600 10px/1.4 var(--mono); letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent);
+}
+.sc-practice .pr-ev-v { margin: 0; font-size: 13.5px; line-height: 1.66; color: var(--text-2); }
+.sc-practice .pr-ev-v code {
+  font-family: var(--mono); font-size: 12px; color: var(--blue);
+  background: var(--bg-deep); padding: 1px 4px;
+}
+.sc-practice .pr-st-foot {
+  margin: auto 0 0; padding-top: 10px; border-top: 1px dashed var(--line-3);
+  font: 400 10.5px/1.6 var(--mono); color: var(--text-3);
+}
+
+/* 02 路线 */
+.sc-practice .pr-choice {
+  flex: 1 1 auto; display: flex; flex-direction: column;
+  justify-content: flex-start; gap: 11px;
+}
+.sc-practice .pr-opt {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 9px;
+  align-items: start; text-align: left; cursor: pointer;
+  padding: 14px 13px; border: 1px solid var(--line-2); border-radius: 2px;
+  background: transparent; color: var(--text-2);
+  font: 400 13.5px/1.5 var(--sans);
+  transition: .16s var(--ease);
+}
+.sc-practice .pr-opt:hover { border-color: var(--line); background: var(--line-3); color: var(--text); }
+.sc-practice .pr-opt i {
+  font: 600 10px/1.7 var(--mono); font-style: normal;
+  color: var(--text-3); letter-spacing: .04em;
+}
+.sc-practice .pr-opt.is-ok { border-color: var(--lime); background: var(--lime-soft); color: var(--text); }
+.sc-practice .pr-opt.is-ok i { color: var(--lime); }
+.sc-practice .pr-opt.is-bad { border-color: var(--red); background: var(--red-soft); }
+.sc-practice .pr-opt.is-bad i { color: var(--red); }
+.sc-practice .pr-opt.is-done { cursor: default; }
+
+/* 02 路径模式（案例 C：按顺序点亮） */
+.sc-practice .pr-path { display: flex; flex-direction: column; gap: 6px; }
+.sc-practice .pr-node {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 9px 12px; border: 1px dashed var(--line-2); border-radius: 2px;
+  background: transparent; color: var(--text-3);
+  font: 400 13px/1.4 var(--sans); text-align: left;
+  transition: .16s var(--ease);
+}
+.sc-practice .pr-node:hover { border-color: var(--line); color: var(--text-2); }
+.sc-practice .pr-node .pr-node-k {
+  font: 600 10px/1 var(--mono); letter-spacing: .12em; color: var(--text-3);
+}
+.sc-practice .pr-node.is-done {
+  border-style: solid; border-color: var(--lime);
+  background: var(--lime-soft); color: var(--text);
+}
+.sc-practice .pr-node.is-done .pr-node-k { color: var(--lime); }
+.sc-practice .pr-node.is-bad { border-color: var(--red); background: var(--red-soft); }
+.sc-practice .pr-node.is-done { cursor: default; }
+
+/* 反馈行 */
+.sc-practice .pr-fb {
+  margin: auto 0 0; padding-top: 10px; min-height: 34px;
+  border-top: 1px dashed var(--line-3);
+  font-size: 12.5px; line-height: 1.6; color: var(--text-3);
+}
+.sc-practice .pr-fb b { font-weight: 650; margin-right: 6px; }
+.sc-practice .pr-fb.is-ok { color: var(--text-2); }
+.sc-practice .pr-fb.is-ok b { color: var(--lime); }
+.sc-practice .pr-fb.is-bad { color: var(--text-2); }
+.sc-practice .pr-fb.is-bad b { color: var(--red); }
+
+/* 03 结果 */
+.sc-practice .pr-res { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-start; gap: 11px; min-height: 0; }
+.sc-practice .pr-lock {
+  margin: 0; padding: 18px 14px; text-align: center;
+  border: 1px dashed var(--line-2); background: transparent;
+  font: 400 12px/1.7 var(--mono); color: var(--text-3);
+}
+.sc-practice .pr-ok {
+  display: flex; align-items: center; gap: 10px;
+  font: 400 11px/1.4 var(--mono); color: var(--text-3);
+}
+.sc-practice .pr-ok .tag { height: 20px; }
+.sc-practice .pr-code {
+  margin: 0; font-size: 11.5px; line-height: 1.8;
+  padding: 10px 12px; max-height: 320px;
+}
+.sc-practice .pr-note {
+  margin: 0; padding-top: 7px; border-top: 1px dashed var(--line-3);
+  font: 400 10.5px/1.6 var(--mono); color: var(--text-3); letter-spacing: .01em;
+}
+.sc-practice .pr-stat {
+  margin: auto 0 0; padding-top: 10px; border-top: 1px dashed var(--line-3);
+  font: 400 11.5px/1.5 var(--mono); color: var(--lime); letter-spacing: .01em;
+}
+
+/* —— 箭头 —— */
+.sc-practice .pr-arrow { position: relative; }
+.sc-practice .pr-arrow::before {
+  content: ""; position: absolute; left: 5px; right: 11px; top: 50%;
+  height: 1px; background: var(--line-2);
+}
+.sc-practice .pr-arrow::after {
+  content: ""; position: absolute; right: 5px; top: calc(50% - 5px);
+  width: 0; height: 0;
+  border-left: 6px solid var(--line);
+  border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+}
+.sc-practice .pr-arrow.is-live::before { background: var(--amber); }
+.sc-practice .pr-arrow.is-live::after { border-left-color: var(--amber); }
+.sc-practice .pr-arrow[data-arrow="2"].is-live::before { background: var(--lime); }
+.sc-practice .pr-arrow[data-arrow="2"].is-live::after { border-left-color: var(--lime); }
+
+/* —— 讲师原话 —— */
+.sc-practice .pr-foot {
+  flex: 0 0 auto; margin-top: auto;
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 11px 16px;
+  border: 1px solid var(--line-2); border-left: 2px solid var(--amber);
+  background: var(--amber-soft);
+}
+.sc-practice .pr-foot .lab {
+  flex: none; font: 600 10px/1.7 var(--mono);
+  letter-spacing: .2em; color: var(--amber); white-space: nowrap;
+}
+.sc-practice .pr-quote { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.sc-practice .pr-quote blockquote {
+  margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--text);
+}
+.sc-practice .pr-quote-src {
+  font: 400 10.5px/1.5 var(--mono); color: var(--text-3); letter-spacing: .02em;
+}
+
+/* —— 兜底 —— */
+@media (max-width: 1240px) {
+  .sc-practice .pr-h1 { font-size: 24px; }
+  .sc-practice .pr-flow { grid-template-columns: 1fr 24px 1fr 24px 1fr; min-height: 400px; }
+  .sc-practice .pr-st-h { display: none; }
+  .sc-practice .pr-code { font-size: 10.5px; }
+}
+@media (max-width: 980px) {
+  .sc-practice .pr-tabs { grid-template-columns: 1fr; }
+  .sc-practice .pr-flow { grid-template-columns: 1fr; gap: 10px; }
+  .sc-practice .pr-arrow { height: 16px; }
+  .sc-practice .pr-arrow::before { left: 50%; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+  .sc-practice .pr-arrow::after { display: none; }
+}

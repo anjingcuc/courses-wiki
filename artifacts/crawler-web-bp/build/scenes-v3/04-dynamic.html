@@ -1,0 +1,390 @@
+<section class="scene sc-dynamic" id="sc-dynamic"
+         data-nav="两条路"
+         data-kicker="SCENE 04 · 首屏是空壳时：执行 JS 或直接取 JSON">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <!-- ============================================================
+       首屏：一句话 + 一张主流程图（1920×1080 完整可见）
+       ============================================================ -->
+  <header class="dyn-head">
+    <div class="dyn-headl">
+      <div class="kicker">SCENE 04 · 同一个 URL，两种拿法</div>
+      <h1 class="h1 dyn-title">首屏是空壳时，沿图分两条路：<span class="accent">执行 JS</span> 或 <span class="lime">直接取 JSON</span></h1>
+      <p class="dyn-lede">
+        <span class="mono">requests.get()</span> 只拿回 <b>114 字节</b>的空壳，浏览器多一步「执行 JS」才长出 <b>23 个节点</b>。
+        内容产生在浏览器里 —— 所以抓取要么<b class="amber">把浏览器自动化</b>，要么<b class="lime">绕开页面直接要数据</b>。
+      </p>
+    </div>
+    <div class="dyn-headr">
+      <div class="dyn-legend">
+        <span><i class="lg lg-shell"></i>空壳 · 服务器给的</span>
+        <span><i class="lg lg-a"></i>路 A · 执行 JS</span>
+        <span><i class="lg lg-b"></i>路 B · 取 JSON</span>
+      </div>
+      <span class="dyn-hint tiny">点图上的节点 / 分岔 → 下方自动对位</span>
+    </div>
+  </header>
+
+  <div class="dgm" id="dgm">
+
+    <!-- ① 一次请求 -->
+    <div class="dgm-src">
+      <button class="dnode is-url" type="button" data-jump="top" title="回到图上">
+        <span class="dn-ky">ONE GET</span>
+        <b class="mono">GET /students</b>
+        <em>浏览器和 requests 发的是同一个请求</em>
+      </button>
+      <div class="darrow"><i></i><span class="mono">HTTP</span></div>
+      <div class="dnode is-resp">
+        <span class="dn-ky">RESPONSE</span>
+        <b><span class="mono">text/html</span> · 114 B 骨架 + <span class="mono">app.js</span></b>
+        <em>首屏只有骨架，内容还在路上（AJAX）</em>
+      </div>
+      <div class="dnode is-hint ghost">
+        <span class="dn-ky">判据</span>
+        <b>能不能一次请求拿到完整 HTML</b>
+        <em>能 → 静态抓取；不能 → 往下分岔</em>
+      </div>
+    </div>
+
+    <svg class="dgm-wire" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
+      <path class="w-main" d="M50,0 V20" vector-effect="non-scaling-stroke"/>
+    </svg>
+
+    <!-- ② 两个世界 -->
+    <div class="dgm-cmp">
+      <div class="dcmp is-shell" role="button" tabindex="0" data-jump="a">
+        <div class="dcmp-hd">
+          <span class="tag r">resp.text</span>
+          <span class="dcmp-sub mono">requests.get(url).text</span>
+          <span class="dcmp-num"><b>114</b>B<span class="dcmp-flag">示意</span></span>
+        </div>
+        <div class="dcmp-body">
+          <div class="cl"><i>01</i><code>&lt;!DOCTYPE html&gt;</code></div>
+          <div class="cl"><i>02</i><code>&lt;html&gt;&lt;head&gt;&lt;script src=<span class="s">"/static/app.js"</span>&gt;&lt;/script&gt;&lt;/head&gt;</code></div>
+          <div class="cl"><i>03</i><code>&lt;body&gt;&lt;div id=<span class="s">"app"</span>&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</code></div>
+          <div class="cl is-eof"><i>04</i><code>— EOF · 后面没有了 —</code></div>
+          <div class="empty-li">li × 0 —— 本来该有 5 条学生记录（第 1 页）</div>
+        </div>
+        <div class="dcmp-ft">
+          <span class="mono red">3 nodes（示意）</span>
+          <span class="mono">soup.select("li.stu") → <b class="red">[]</b></span>
+        </div>
+      </div>
+
+      <div class="dvs">
+        <i class="dvs-l"></i>
+        <span>同一份<br>首屏</span>
+        <i class="dvs-r"></i>
+      </div>
+
+      <div class="dcmp is-rendered" role="button" tabindex="0" data-jump="a">
+        <div class="dcmp-hd">
+          <span class="tag a">RENDERED DOM</span>
+          <span class="dcmp-sub mono">document.querySelectorAll('*')</span>
+          <span class="dcmp-num"><b>23</b>NODES<span class="dcmp-flag">示意</span></span>
+        </div>
+        <div class="dcmp-body is-list">
+          <div class="stu"><i>01</i><b>张伟</b><span>li.stu</span></div>
+          <div class="stu"><i>02</i><b>李静</b><span>li.stu</span></div>
+          <div class="stu"><i>03</i><b>王磊</b><span>li.stu</span></div>
+          <div class="stu"><i>04</i><b>陈曦</b><span>li.stu</span></div>
+          <div class="stu"><i>05</i><b>刘洋</b><span>li.stu</span></div>
+        </div>
+        <div class="dcmp-ft">
+          <span class="mono accent">ul#students &gt; li.stu × 5</span>
+          <span>执行 JS 之后才存在</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 分岔 -->
+    <div class="dgm-fork">
+      <svg class="dgm-wire is-fork" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+        <path class="w-main" d="M50,0 V18" vector-effect="non-scaling-stroke"/>
+        <path class="w-a" d="M50,18 H25 V40" vector-effect="non-scaling-stroke"/>
+        <path class="w-b" d="M50,18 H75 V40" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <span class="fk-chip mono">分岔 · 内容产生在浏览器里</span>
+    </div>
+
+    <!-- ④ 两条路 -->
+    <div class="dgm-route">
+      <div class="route is-a" data-jump="a" role="button" tabindex="0">
+        <div class="rt-hd">
+          <span class="tag m">A</span>
+          <b>无头浏览器执行 JS</b>
+          <span class="mono rt-api">Selenium</span>
+        </div>
+        <div class="rt-steps">
+          <button class="rstep" type="button" data-step="1"><i>01</i>启动 driver</button>
+          <button class="rstep" type="button" data-step="2"><i>02</i>get(url)</button>
+          <button class="rstep" type="button" data-step="3"><i>03</i>下载资源</button>
+          <button class="rstep" type="button" data-step="4"><i>04</i>执行 JS</button>
+          <button class="rstep" type="button" data-step="5"><i>05</i>等待 li</button>
+          <button class="rstep" type="button" data-step="6"><i>06</i>取 DOM</button>
+          <button class="rstep" type="button" data-step="7"><i>07</i>提取保存</button>
+        </div>
+        <div class="rt-ft">
+          <span class="mono accent">driver.page_source</span>
+          <span>拿到渲染后的 DOM，<b>再解析</b></span>
+        </div>
+        <div class="rt-cost"><i class="c-red">慢 1–2 个数量级</i><i class="c-red">每实例几百 MB</i><i class="c-red">navigator.webdriver</i></div>
+        <div class="rt-ext"><span class="rt-ext-tag">教学扩展</span>讲师课堂演示用的是<b>可见的浏览器窗口</b>，<span class="mono">--headless=new</span> 只是把窗口藏起来；<span class="mono">page_source</span> / 显式等待 / CSV / 指纹检测均为扩展补充，不是讲师原话。</div>
+      </div>
+
+      <div class="route is-b" data-jump="b" role="button" tabindex="0">
+        <div class="rt-hd">
+          <span class="tag g">B</span>
+          <b>F12 发现 XHR → 直接请求 JSON</b>
+          <span class="mono rt-api">requests + json</span>
+        </div>
+        <div class="rt-steps">
+          <button class="rstep" type="button" data-net="doc"><i>01</i>F12 Network</button>
+          <button class="rstep" type="button" data-net="p1"><i>02</i>data?page=1</button>
+          <button class="rstep" type="button" data-net="p2"><i>03</i>data?page=2</button>
+          <button class="rstep" type="button" data-net="json"><i>04</i>json.loads</button>
+        </div>
+        <div class="rt-ft">
+          <span class="mono lime">resp.json()["data"]</span>
+          <span>拿到学生名字，<b>不解析 DOM</b></span>
+        </div>
+        <div class="rt-cost"><i class="c-amb">要花时间分析接口</i><i class="c-amb">多数站点要 token / 签名</i></div>
+      </div>
+    </div>
+
+    <!-- ⑤ 取舍 -->
+    <div class="dgm-verdict">
+      <div class="vd">
+        <i>判断顺序</i>
+        <b>先 Ctrl+U 看源码，再看 Network</b>
+        <span>有内容 → 静态抓；空壳 + 有 XHR → 接口；都没有 → 上浏览器</span>
+      </div>
+      <div class="vd is-a">
+        <i>A · 通用</i>
+        <b>什么页面都能看</b>
+        <span>浏览器看到的它都能看到 —— 但慢、重、有指纹</span>
+      </div>
+      <div class="vd is-b">
+        <i>B · 省事</i>
+        <b>最快、数据最清楚</b>
+        <span>绕开渲染直接拿 JSON —— 但接口要分析、常要 token</span>
+      </div>
+    </div>
+
+    <div class="dgm-note">
+      <b>示意口径</b>·空壳 114 B / 3 节点、渲染后 23 节点、名单「每页 5 条 · 下拉到 10 条」都是<b>教学示意</b>，只为一张图看清。
+      <b>课堂原站先显示前 10 / 20 个</b>，其余靠滚动加载；此处缩成 5 → 10 便于看图。
+    </div>
+  </div>
+
+  <!-- ============================================================
+       下方滚动区 A：七步流水线
+       ============================================================ -->
+  <section class="dyn-blk dyn-a" id="blkA">
+    <div class="blk-hd">
+      <span class="tag m">A</span>
+      <b class="blk-title">七步：把浏览器当函数调用</b>
+      <span class="blk-note">讲师：「BeautifulSoup 并没有提供 JavaScript 的运行环境」 · 点上面的步骤节点也能推进</span>
+      <div class="blk-ctl">
+        <button class="btn mono" type="button" data-a="play"><span class="ico" id="aPlayIco">▸</span><span id="aPlayTxt">播放</span></button>
+        <button class="btn mono" type="button" data-a="step"><span class="ico">⏭</span>单步</button>
+        <button class="btn mono" type="button" data-a="reset"><span class="ico">↺</span>重置</button>
+        <span class="mono blk-step" id="aStepNo">STEP 01 / 07</span>
+      </div>
+    </div>
+
+    <div class="a-grid">
+      <div class="a-flow" id="aFlow">
+        <i class="a-rail"><i id="aRailFill"></i></i>
+        <button class="a-step" type="button" data-step="1"><span class="as-dot"></span><b>启动 driver</b><em class="mono">--headless=new</em></button>
+        <button class="a-step" type="button" data-step="2"><span class="as-dot"></span><b>导航 get(url)</b><em class="mono">和 requests 同一个请求</em></button>
+        <button class="a-step" type="button" data-step="3"><span class="as-dot"></span><b>下载资源</b><em class="mono">HTML / CSS / JS</em></button>
+        <button class="a-step" type="button" data-step="4"><span class="as-dot"></span><b>执行 JS</b><em class="mono">DOM 在内存里长出来</em></button>
+        <button class="a-step" type="button" data-step="5"><span class="as-dot"></span><b>等待</b><em class="mono">WebDriverWait · networkidle</em></button>
+        <button class="a-step" type="button" data-step="6"><span class="as-dot"></span><b>取 DOM</b><em class="mono">page_source / content()</em></button>
+        <button class="a-step" type="button" data-step="7"><span class="as-dot"></span><b>提取 + 保存</b><em class="mono">find_elements → CSV</em></button>
+        <div class="a-flow-note">第 <b>5</b> 步是唯一的难点：等太久浪费时间，等太短拿不到 —— 显式等待等的是「元素出现」，不是 <span class="mono">sleep</span>。</div>
+      </div>
+
+      <div class="a-dom">
+        <div class="ad-hd">
+          <span class="tag a">此刻 DOM</span>
+          <span class="mono ad-sub">document</span>
+          <span class="ad-count"><b id="aNodes">0</b><i>NODES</i></span>
+        </div>
+        <div class="ad-stage" id="aStage">
+          <div class="adf" data-f="1">
+            <div class="df-hd mono">driver 进程</div>
+            <div class="df-b">
+              <div class="ln cm">$ chrome --headless=new</div>
+              <div class="ln">session <span class="ok">3f8a…</span> · Chrome/121 · 无窗口</div>
+              <div class="ln dim">屏幕是虚构的，渲染照常发生</div>
+            </div>
+          </div>
+          <div class="adf" data-f="2">
+            <div class="df-hd mono">加载文档</div>
+            <div class="df-b">
+              <div class="ln"><span class="k">HTTP/1.1</span> <span class="ok">200 OK</span> · text/html · <span class="hl">114 B</span></div>
+              <div class="ln">&lt;body&gt;&lt;div id=<span class="s">"app"</span>&gt;&lt;/div&gt;&lt;/body&gt;</div>
+              <div class="ln dim">到这一步，和 requests 看到的完全一样</div>
+            </div>
+          </div>
+          <div class="adf" data-f="3">
+            <div class="df-hd mono">资源队列</div>
+            <div class="df-b">
+              <div class="ln"><span class="ok">✔</span> /static/app.js <span class="dim">24.6 kB</span></div>
+              <div class="ln"><span class="ok">✔</span> /static/style.css <span class="dim">11.7 kB</span></div>
+              <div class="ln"><span class="ok">✔</span> /data?page=1 <span class="dim">application/json · 186 B</span></div>
+              <div class="ln dim">这些请求在 Network 里全看得见</div>
+            </div>
+          </div>
+          <div class="adf" data-f="4">
+            <div class="df-hd mono">执行 JS</div>
+            <div class="df-b">
+              <div class="ln"><span class="blip"></span>app.js 执行中… fetch 回调排队</div>
+              <div class="ln">&lt;div id=<span class="s">"app"</span>&gt; <span class="dim">0 childNodes</span></div>
+              <div class="ln dim">源码里没有 li，它正被 JS 造出来</div>
+            </div>
+          </div>
+          <div class="adf" data-f="5">
+            <div class="df-hd mono">等待 li.stu</div>
+            <div class="df-b">
+              <div class="ln cm">EC.presence_of_element_located(("li.stu"))</div>
+              <div class="ln"><span class="wait-i"></span>0.83s / 10s 上限 · 每 0.5s 轮询</div>
+              <div class="skel"><span></span><span></span><span></span></div>
+              <div class="ln dim">等「元素出现」，不是 sleep(3)</div>
+            </div>
+          </div>
+          <div class="adf" data-f="6">
+            <div class="df-hd mono">快照 page_source</div>
+            <div class="df-b">
+              <div class="ln">&lt;div id=<span class="s">"app"</span>&gt;</div>
+              <div class="ln">&nbsp;&nbsp;&lt;ul id=<span class="s">"students"</span>&gt; <span class="ok">5 × li.stu</span></div>
+              <div class="ln">&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class=<span class="s">"stu"</span>&gt;&lt;span&gt;张伟&lt;/span&gt;…&lt;/li&gt;</div>
+              <div class="ln">&nbsp;&nbsp;&lt;/ul&gt; &lt;/div&gt;</div>
+              <div class="ln dim">≈ 2.4 KB · 23 nodes（示意）· 与浏览器一致</div>
+            </div>
+          </div>
+          <div class="adf" data-f="7">
+            <div class="df-hd mono">提取结果</div>
+            <div class="df-b">
+              <div class="ln">["张伟", "李静", "王磊", "陈曦", "刘洋"]</div>
+              <div class="ln">&nbsp;5 条 —— 只有首屏这一页（示意）</div>
+              <div class="ln"><span class="ok">5 rows</span> → students.csv <span class="dim">0.4 kB</span></div>
+              <div class="ln dim">想要第 2 页：要么继续滚动，要么走 B 直接要接口</div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-ft mono"><span id="aFoot">driver 还没启动</span><span class="dim-t">7 STEPS</span></div>
+      </div>
+
+      <div class="a-code">
+        <div class="ac-hd"><span class="mono">SELENIUM</span><span>显式等待 · 一个人等一个元素</span></div>
+        <pre class="ac-body"><span class="cl" data-c="0">from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC</span><span class="cl mt" data-c="1">opts = webdriver.ChromeOptions()
+opts.add_argument("--headless=new")
+driver = webdriver.Chrome(options=opts)</span><span class="cl mt" data-c="2,3">driver.get(url)</span><span class="cl cm" data-c="4"># 引擎执行 app.js —— DOM 在内存里生成</span><span class="cl mt" data-c="5">WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located(
+        (By.CSS_SELECTOR, "li.stu")))</span><span class="cl mt" data-c="6">html = driver.page_source</span><span class="cl mt" data-c="7">rows = driver.find_elements(By.CSS_SELECTOR, "li.stu")
+driver.quit()</span></pre>
+        <div class="ac-note">讲师演示时用的是<b>可见窗口</b>（地址栏提示「正受自动测试软件的控制」）；加 <span class="mono">--headless=new</span> 只是把窗口藏起来。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       下方滚动区 B：Network 认接口 + JSON 下钻
+       ============================================================ -->
+  <section class="dyn-blk dyn-b" id="blkB">
+    <div class="blk-hd">
+      <span class="tag g">B</span>
+      <b class="blk-title">F12 里认出接口 → <span class="mono">json.loads</span> 拿数据</b>
+      <span class="blk-note">页面为了自己渲染，必须先把数据要过来 —— 那条请求就是突破口</span>
+      <div class="blk-ctl">
+        <button class="chip" type="button" data-b="xhr">只看 XHR</button>
+        <button class="chip" type="button" data-b="more">下拉到底 ↓</button>
+      </div>
+    </div>
+
+    <div class="b-grid">
+      <div class="b-net">
+        <div class="bn-hd">
+          <span class="tiny">F12 · Network</span>
+          <span class="tiny" id="bnCount">5 个请求 · 1 个 XHR</span>
+        </div>
+        <div class="bn-table">
+          <div class="bn-row is-head"><span>Name</span><span>Status</span><span>Type</span><span>Size</span></div>
+          <div id="bnRows"></div>
+        </div>
+        <div class="bn-say" id="bnSay">按讲师的口径排除：① 页面本身 → ② 样式表 → ③④⑤ 都是 JS，只剩那条 XHR。</div>
+
+        <div class="bn-view">
+          <div class="bv-hd">
+            <span class="tiny">页面 · 学生名单（示意：每页 5 条）</span>
+            <span class="tiny" id="bvCount">已渲染 5 条</span>
+          </div>
+          <div class="bv-list" id="bvList"></div>
+          <div class="bv-more" id="bvMore" role="button" tabindex="0" data-b="more">
+            下拉到底 → 再发一条 <span class="mono">data?page=2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="b-json">
+        <div class="bj-hd">
+          <span class="mono" id="bjName">/data?page=1</span>
+          <span class="tiny" id="bjMeta">200 · application/json · 186 B</span>
+        </div>
+        <div class="bj-body" id="bjBody"></div>
+        <div class="bj-path">
+          <span class="tiny">当前路径</span>
+          <span class="mono" id="bjPath">resp.json()</span>
+        </div>
+        <pre class="bj-code"><span class="cl" data-j="0">import requests, json</span>
+<span class="cl mt" data-j="1">students = []
+for page in range(1, 5):            <span class="c"># 1..4，第 5 页取不到</span>
+    url = "http://127.0.0.1:5000/data?page=" + str(page)   <span class="c"># :5000 端口示意</span>
+    r = requests.get(url)
+    r.encoding = "utf-8"</span>
+<span class="cl mt" data-j="2">    data = json.loads(r.text)       <span class="c"># 字符串 → 字典（s = string）</span></span>
+<span class="cl mt" data-j="3">    for item in data["data"]:       <span class="c"># 顶层 key 叫 data，值是列表</span>
+        students.append(item.strip())</span></pre>
+        <div class="bj-note">讲师原话：「你观察一下这个结构，它是有一个 key 叫 <span class="mono">data</span>，这个 <span class="mono">data</span> 的 value 呢是一个列表」。URL 里的 <span class="mono">:5000</span> 为<b>端口示意</b>（讲师现场改过端口）。</div>
+      </div>
+    </div>
+
+    <div class="b-cases">
+      <div class="bc is-stock">
+        <div class="bc-hd">
+          <span class="tag m">日常形态 1</span>
+          <b>库存 1000 → 999</b>
+          <span class="tiny">每秒自刷，页面不刷新</span>
+        </div>
+        <div class="bc-body">
+          <div class="stock"><span>库存</span><b id="stockNum">1000</b><span>件</span><em class="mono">setInterval(…, 1000)</em></div>
+          <div class="tiny">JS 拿到新数字，只改这一处文本 —— 用户没按 F5，页面却变了。</div>
+        </div>
+      </div>
+      <div class="bc is-scroll">
+        <div class="bc-hd">
+          <span class="tag g">日常形态 2</span>
+          <b>无限滚动：data?page=1 → page=2</b>
+          <span class="tiny">访问了新的 HTML 页面吗？没有</span>
+        </div>
+        <div class="bc-body">
+          <div class="pages">
+            <button class="pgbtn" type="button" data-b="p1">data?page=1</button>
+            <i>→</i>
+            <button class="pgbtn" type="button" data-b="p2">data?page=2</button>
+            <i>→</i>
+            <span class="mono">li 追加到 ul</span>
+          </div>
+          <div class="tiny">两次都是 XHR；HTML 只下载过一次 —— 这就是为什么「下拉加载」把 requests 卡死。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

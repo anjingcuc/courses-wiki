@@ -1,0 +1,209 @@
+<section class="scene sc-complete" id="sc-complete"
+         data-nav="完整 HTML"
+         data-kicker="SCENE 03 · 静态与后端动态，响应体里都是完整 HTML">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <!-- ============ 抬头 ============ -->
+  <div class="sc-head">
+    <div class="kicker">SCENE 03 · WEB 1.0 → WEB 2.0 — 两条产线，一个出口</div>
+    <h1 class="st-title">只要响应里有<b class="accent">完整 HTML</b>，静态站和后端动态都能直接抓</h1>
+    <p class="lede st-lede">
+      静态站是「把磁盘上的文件发给你」，后端动态是「现场把模板拼一份再发给你」——
+      产出路径不同，<b>到客户端手里的东西是同一种：一整页已经填好数据的 HTML</b>。
+      所以「后端动态」不等于「必须上无头浏览器」；判据只有一条，看响应体。
+    </p>
+    <div class="gtip">点图里任一节点 ↓ 下方就地显示它的代码与响应</div>
+  </div>
+
+  <!-- ============ 因果图（首屏完整） ============ -->
+  <div class="graph" id="graph">
+
+    <div class="gstage gs-src">
+      <div class="gs-label"><span>01</span>内容从哪来</div>
+      <button class="gnode" data-node="disk">
+        <span class="nk">源 01 · 磁盘</span>
+        <b>磁盘上的 index.html</b>
+        <em>上线前写好，手工传上去</em>
+      </button>
+      <button class="gnode" data-node="tpl">
+        <span class="nk">源 02 · 模板 + 数据</span>
+        <b>模板 + username / students</b>
+        <em>占位符 <span class="mono">{{ }}</span> 与 <span class="mono">{% for %}</span></em>
+      </button>
+    </div>
+
+    <div class="gsep two"><i></i><i></i></div>
+
+    <div class="gstage gs-proc">
+      <div class="gs-label"><span>02</span>服务器怎么产出</div>
+      <button class="gnode proc" data-node="srv">
+        <span class="nk">Web server</span>
+        <b>读文件 → 原样返回</b>
+        <em>open / read / write，不解模板</em>
+      </button>
+      <button class="gnode proc" data-node="jinja">
+        <span class="nk">Jinja2 · render_template()</span>
+        <b>填变量 → 拼成字符串</b>
+        <em>把安静 / 小王写进 <span class="mono">&lt;h1&gt;</span></em>
+      </button>
+    </div>
+
+    <div class="gsep merge"><i class="h h1"></i><i class="h h2"></i><i class="v"></i><i class="h h3"></i></div>
+
+    <div class="gstage gs-out">
+      <div class="gs-label"><span>03</span>两条路在这里汇合</div>
+      <button class="gnode out" data-node="html">
+        <span class="nk">响应体</span>
+        <b>同一份完整 HTML</b>
+        <em>变量已填好，<span class="mono">li</span> 里是一个个学生</em>
+        <span class="gout-eq">示意字节数 · 静态 ≈ 动态 ≈ 1.2 KB</span>
+      </button>
+    </div>
+
+    <div class="gsep one"><i></i></div>
+
+    <div class="gstage gs-crawl">
+      <div class="gs-label"><span>04</span>爬虫这一侧照旧</div>
+      <button class="gnode craw" data-node="req"><b>requests.get(url)</b><em>拿到的就是那串 HTML</em></button>
+      <button class="gnode craw" data-node="soup"><b>BeautifulSoup</b><em>soup.select("li") → list</em></button>
+      <button class="gnode craw" data-node="text"><b>li.text</b><em>只要文本，不要标签</em></button>
+    </div>
+  </div>
+
+  <!-- ============ 就地证据面板 ============ -->
+  <div class="insp" id="insp">
+    <div class="insp-hd">
+      <span class="tag" id="inspTag">—</span>
+      <b id="inspTitle">点上面的节点，看它的代码与响应</b>
+      <span class="tiny" id="inspSub">两条产线，一个出口</span>
+    </div>
+    <div class="insp-body">
+      <div class="insp-code code" id="inspCode"></div>
+      <div class="insp-resp">
+        <div class="spread">
+          <span class="tiny" id="inspRespHd">响应 / 输出</span>
+          <span class="tiny" id="inspMeta"></span>
+        </div>
+        <div class="resp-box" id="inspResp"></div>
+      </div>
+    </div>
+    <div class="insp-note" id="inspNote"></div>
+  </div>
+
+  <!-- ============ 详细内容（继续向下滚） ============ -->
+  <div class="deep">
+
+    <div class="dgrid">
+      <section class="dsec">
+        <h3 class="dh"><span class="dn">①</span>静态站实战 · <span class="mono">127.0.0.1:8000</span></h3>
+        <div class="code dcode">
+          <div class="dl"><span class="k">import</span> requests</div>
+          <div class="dl"><span class="k">from</span> bs4 <span class="k">import</span> BeautifulSoup</div>
+          <div class="dl"> </div>
+          <div class="dl">url = <span class="s">"http://127.0.0.1:8000"</span>        <span class="c"># python -m http.server 8000</span></div>
+          <div class="dl">r = requests.get(url)                 <span class="c"># 浏览器发的也是这个 GET</span></div>
+          <div class="dl">r.encoding = <span class="s">"utf-8"</span>                   <span class="c"># 不设 → 标题里的中文乱码</span></div>
+          <div class="dl">soup = BeautifulSoup(r.text, <span class="s">"html.parser"</span>)</div>
+          <div class="dl">li_list = soup.select(<span class="s">"li"</span>)            <span class="c"># 返回 list（示意：30 个）</span></div>
+          <div class="dl"><span class="k">for</span> li <span class="k">in</span> li_list:</div>
+          <div class="dl">    <span class="f">print</span>(li.text)                       <span class="c"># 只要文本，不要标签</span></div>
+        </div>
+        <p class="dp">
+          讲师现场从零重写的就是这十行：先确认 <span class="mono">r.text</span>
+          「是一个完整的页面，跟我们用浏览器看到这个页面是一致的」，再去浏览器里右键检查元素，
+          发现「所有学生的名字的 ID 都存在 <span class="mono">li</span> 这个元素里面」，于是选择器写 <span class="mono">li</span>。
+        </p>
+      </section>
+
+      <section class="dsec">
+        <h3 class="dh"><span class="dn">②</span>同一个模板，换个参数就换个人</h3>
+        <div class="two-req">
+          <div class="req-line"><span class="mono">GET</span> <span class="mono">/?username=安静</span><span class="ar">→</span><em>你好，安静</em></div>
+          <div class="req-line"><span class="mono">GET</span> <span class="mono">/?username=小王</span><span class="ar">→</span><em>你好，小王</em></div>
+        </div>
+        <div class="code dcode">
+          <div class="dl"><span class="c"># 动态站的两次响应，除名字外结构完全相同</span></div>
+          <div class="dl"><span class="p">&lt;h1&gt;</span>你好，<span class="f">安静</span><span class="p">&lt;/h1&gt;</span>          <span class="p">&lt;h1&gt;</span>你好，<span class="f">小王</span><span class="p">&lt;/h1&gt;</span></div>
+          <div class="dl"><span class="p">&lt;ul&gt;</span>                             <span class="p">&lt;ul&gt;</span></div>
+          <div class="dl">  <span class="p">&lt;li&gt;</span>2023001 安静<span class="p">&lt;/li&gt;</span>          <span class="p">&lt;li&gt;</span>2023001 安静<span class="p">&lt;/li&gt;</span></div>
+          <div class="dl"><span class="p">&lt;/ul&gt;</span>                             <span class="p">&lt;/ul&gt;</span></div>
+        </div>
+        <p class="dp">
+          后端动态真正改变的只有「变量填什么」，<b>响应仍然是完整 HTML</b>。
+          对爬虫来说，这类页面就是「参数化的静态页」：遍历 <span class="mono">username</span>
+          与 <span class="mono">page</span> 就够，不用开浏览器。
+        </p>
+      </section>
+    </div>
+
+    <div class="dgrid">
+      <section class="dsec">
+        <h3 class="dh"><span class="dn">③</span>讲师自己踩的坑 · 首页被抓了两次</h3>
+        <p class="dp">
+          讲师自己的爬虫把首页抓了两次：首页是 <span class="mono">index.html</span>，而页面里「1」那个链接又指向
+          <span class="mono">index.html</span> —— <b>字符串不同 → 判重失效 → 重复抓取</b>。
+          字典的 key 唯一没错，错在 key 没先归一化：相对路径、结尾斜杠、默认页、<span class="mono">#fragment</span> 都会让同一个页面变成两个字符串。
+        </p>
+        <div class="code dcode">
+          <div class="dl"><span class="k">from</span> urllib.parse <span class="k">import</span> urljoin, urldefrag</div>
+          <div class="dl"> </div>
+          <div class="dl"><span class="k">def</span> <span class="f">norm</span>(base, href):</div>
+          <div class="dl">    u = urldefrag(urljoin(base, href))[<span class="p">0</span>]   <span class="c"># 补绝对路径 + 去掉 #fragment</span></div>
+          <div class="dl">    path, _, qs = u.partition(<span class="s">"?"</span>)</div>
+          <div class="dl">    path = path.rstrip(<span class="s">"/"</span>) <span class="k">or</span> <span class="s">"/"</span>          <span class="c"># 结尾斜杠去掉（根除外）</span></div>
+          <div class="dl">    <span class="k">return</span> path + (<span class="s">"?"</span> + qs <span class="k">if</span> qs <span class="k">else</span> <span class="s">""</span>)</div>
+          <div class="dl"> </div>
+          <div class="dl">seen = {norm(base, <span class="s">"/"</span>): <span class="p">False</span>}      <span class="c"># key 先归一化，字典才真的能去重</span></div>
+        </div>
+      </section>
+
+      <section class="dsec">
+        <h3 class="dh"><span class="dn">④</span>为什么「后端动态」不等于「必须无头」</h3>
+        <p class="dp">
+          一个页面什么时候才需要无头浏览器，只看一件事：<b>响应体里有没有内容</b>。
+        </p>
+        <ul class="dlist">
+          <li><b class="lime">有完整 HTML</b> → <span class="mono">requests</span> + 选择器就够（静态站、后端渲染的站都属这类）</li>
+          <li><b class="accent">只有空壳 + 页面自己也在要数据</b> → 先按 F12 找 XHR；有可用接口就直接取 JSON</li>
+          <li><b class="amber">接口也拿不到，或必须完整执行页面</b> → 再轮到 Selenium / Playwright（headless 为教学扩展）</li>
+        </ul>
+        <div class="dcallout">
+          判断动作只有一步：<b>Ctrl+U 看源码</b>，或者 <span class="mono">curl</span> 一下看响应体。
+          源码里就有学生名单 → 这站对爬虫是「静态」的，哪怕它是 Flask 现场生成的。
+        </div>
+      </section>
+    </div>
+
+    <section class="dsec wide">
+      <h3 class="dh"><span class="dn">⑤</span>服务器侧怎么把请求交给 Python · 不影响你看到什么，但影响开销、整合度与灵活性<span class="src-tag">Web 开发 · 第十一节 P2</span></h3>
+      <div class="evo">
+        <div class="evo-node">
+          <span class="nk">CGI</span>
+          <b>一个请求起一个进程</b>
+          <em>跑完就退出，下次再来再起。讲师原话：进程起太多「切换不过来了，它挂了」—— 就是常说的 web 服务器被 DoS</em>
+        </div>
+        <div class="evo-ar"><i></i></div>
+        <div class="evo-node">
+          <span class="nk">FastCGI</span>
+          <b>常驻进程 + IPC 复用</b>
+          <em>逻辑不变，只是把「不断起新进程」这一步干掉了，请求靠进程间通信送进去</em>
+        </div>
+        <div class="evo-ar"><i></i></div>
+        <div class="evo-node">
+          <span class="nk">WSGI</span>
+          <b>Python 侧的调用约定</b>
+          <em>server → 中间件（多给一个 callback）→ 应用函数；小作业里 Flask 自带 HTTP 与 WSGI，不必装 Apache / Nginx 这类独立服务器</em>
+        </div>
+      </div>
+      <p class="dp">这三种是「服务器怎么把请求交给 Python 程序」的管道差异：<b>客户端拿到的仍是一整串 HTML</b>，所以静态抓取照样有效；对工程而言它决定的是<b>开销、整合度与部署灵活性</b> —— 能不能换掉 web server、能不能在中间件里加日志与鉴权，都在这一层。<span class="src-inline">以上 CGI / FastCGI / WSGI 三段出自 Web 开发课，非爬虫课原话</span></p>
+    </section>
+
+    <div class="concl">
+      <div class="tiny">本屏结论</div>
+      <p>
+        后端动态 ≠ 必须无头。<b>响应体里有完整 HTML，就能 <span class="mono">requests</span> + <span class="mono">BeautifulSoup</span> 直接抓</b>；
+        真正需要浏览器的是「内容由 JS 在客户端画出来」的那种页面。
+      </p>
+    </div>
+  </div>
+</section>

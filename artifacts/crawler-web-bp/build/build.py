@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""把 build/shell.html + build/scenes/* 组装成单文件 index.html（无外链、可离线）。
+"""把同一份场景源分别组装成课堂放映版 index.html 与站内拓展阅读版。
+
+课堂版使用 shell.html；阅读版使用 reader-shell.html，并输出到
+ docs/python/demos/crawler-web-bp.html。两个出口均为无外链、可离线的单文件。
 
 场景文件约定（同一 stem 三件套，按文件名排序决定顺序）：
   scenes/02-flow.html   片段：<section class="scene" id="sc-flow" data-nav="…" data-kicker="…"> … </section>
@@ -16,9 +19,11 @@ ROOT = pathlib.Path(__file__).parent
 PROJ = ROOT.parent
 REPO = PROJ.parent.parent
 SHELL = ROOT / "shell.html"
+READER_SHELL = ROOT / "reader-shell.html"
 SCENE_DIR = ROOT / os.environ.get("BP_SCENE_DIR", "scenes-v3")
 GSAP = REPO / "docs" / "javascripts" / "vendor" / "gsap.min.js"
 OUT = PROJ / "index.html"
+READER_OUT = REPO / "docs" / "python" / "demos" / "crawler-web-bp.html"
 
 
 def fail(msg):
@@ -29,7 +34,10 @@ def fail(msg):
 def main():
     if not SHELL.exists():
         fail("missing shell.html")
+    if not READER_SHELL.exists():
+        fail("missing reader-shell.html")
     shell = SHELL.read_text("utf-8")
+    reader_shell = READER_SHELL.read_text("utf-8")
     if not SCENE_DIR.exists():
         fail("missing scenes/ dir")
 
@@ -93,21 +101,35 @@ def main():
     if "</script" in gsap.lower():
         fail("gsap 源内含 </script")
 
-    out = shell
-    out = out.replace("<!--@SCENE_STYLES-->", "\n".join(styles))
-    out = out.replace("<!--@SCENES-->", "\n\n".join(sections))
-    out = out.replace("<!--@SCENE_SCRIPTS-->", "\n".join(scripts))
-    out = out.replace("<!--@GSAP-->", gsap)
+    def render(template, reader=False):
+        scene_html = "\n\n".join(sections)
+        scene_js = "\n".join(scripts)
+        if reader:
+            # 仿真页面 URL 暂存 data-demo-url，阅读版启动时恢复，避免被当成真实导航。
+            scene_html = re.sub(r'href="(/[^"]*)"', r'data-demo-url="\1"', scene_html)
+            # 同理，JS 模板中的 HTML 属性不是发布页静态链接；运行时仍生成原样 href=。
+            scene_js = scene_js.replace('href="', 'href\\x3d"')
+        rendered = template
+        rendered = rendered.replace("<!--@SCENE_STYLES-->", "\n".join(styles))
+        rendered = rendered.replace("<!--@SCENES-->", scene_html)
+        rendered = rendered.replace("<!--@SCENE_SCRIPTS-->", scene_js)
+        rendered = rendered.replace("<!--@GSAP-->", gsap)
+        for ph in ("@SCENE_STYLES", "@SCENES", "@SCENE_SCRIPTS", "@GSAP"):
+            if "<!--" + ph + "-->" in rendered:
+                fail("placeholder not replaced: " + ph)
+        return rendered
 
-    for ph in ("@SCENE_STYLES", "@SCENES", "@SCENE_SCRIPTS", "@GSAP"):
-        if "<!--" + ph + "-->" in out:
-            fail("placeholder not replaced: " + ph)
-
+    out = render(shell)
+    reader_out = render(reader_shell, reader=True)
     OUT.write_text(out, "utf-8")
+    READER_OUT.parent.mkdir(parents=True, exist_ok=True)
+    READER_OUT.write_text(reader_out, "utf-8")
     kb = len(out.encode("utf-8")) / 1024
+    reader_kb = len(reader_out.encode("utf-8")) / 1024
     print("OK  ->  %s" % OUT)
+    print("OK  ->  %s" % READER_OUT)
     print("    scenes : %d  (%s)" % (len(stems), ", ".join(stems)))
-    print("    size   : %.0f KB" % kb)
+    print("    size   : %.0f KB classroom / %.0f KB reader" % (kb, reader_kb))
     if warns:
         print("\nWARN:")
         for w in warns:

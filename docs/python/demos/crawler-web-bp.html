@@ -1910,7 +1910,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
   width: 100%; height: 100%; cursor: pointer; text-align: left;
   display: flex; flex-direction: column; gap: 4px;
   padding: 10px 11px 11px; border: 1px solid var(--line-2); border-radius: 2px;
-  background: transparent; transition: .18s var(--ease);
+  background: transparent; text-decoration: none; transition: .18s var(--ease);
 }
 .sc-summary .su-stop:hover {
   border-color: var(--accent); background: var(--accent-soft);
@@ -3512,41 +3512,41 @@ for page in range(1, 5):            <span class="c"># 1..4，第 5 页取不到<
     </div>
 
     <ol class="su-path">
-      <li><button class="su-stop" type="button" data-go="1">
+      <li><a class="su-stop" href="#sc-overview" data-go="1">
         <span class="su-n">01</span>
         <span class="su-t">总图</span>
         <span class="su-s">Web 演进 ↔ 爬虫手段</span>
-      </button></li>
-      <li><button class="su-stop" type="button" data-go="2">
+      </a></li>
+      <li><a class="su-stop" href="#sc-flow" data-go="2">
         <span class="su-n">02</span>
         <span class="su-t">一次往返</span>
         <span class="su-s">浏览器 ↔ HTTP ↔ 服务器</span>
-      </button></li>
-      <li><button class="su-stop" type="button" data-go="3">
+      </a></li>
+      <li><a class="su-stop" href="#sc-complete" data-go="3">
         <span class="su-n">03</span>
         <span class="su-t">完整 HTML</span>
         <span class="su-s">响应体里就是整页</span>
-      </button></li>
-      <li><button class="su-stop" type="button" data-go="4">
+      </a></li>
+      <li><a class="su-stop" href="#sc-dynamic" data-go="4">
         <span class="su-n">04</span>
         <span class="su-t">两条路</span>
         <span class="su-s">首屏空壳：跑 JS 或取 JSON</span>
-      </button></li>
-      <li><button class="su-stop" type="button" data-go="5">
+      </a></li>
+      <li><a class="su-stop" href="#sc-selectors" data-go="5">
         <span class="su-n">05</span>
         <span class="su-t">CSS / XPath</span>
         <span class="su-s">同一棵 DOM 的两种问法</span>
-      </button></li>
-      <li><button class="su-stop" type="button" data-go="6">
+      </a></li>
+      <li><a class="su-stop" href="#sc-practice" data-go="6">
         <span class="su-n">06</span>
         <span class="su-t">把方法用回去</span>
         <span class="su-s">三个案例：观察 → 路线 → 验证</span>
-      </button></li>
-      <li><button class="su-stop is-now" type="button" data-go="7">
+      </a></li>
+      <li><a class="su-stop is-now" href="#sc-summary" data-go="7">
         <span class="su-n">07</span>
         <span class="su-t">回到总图</span>
         <span class="su-s">你在这一屏</span>
-      </button></li>
+      </a></li>
     </ol>
 
     <div class="su-crit">
@@ -6682,7 +6682,10 @@ BP.scene("sc-summary", function (root, gsap, api) {
     var stop = closest(e.target, ".su-stop");
     if (stop) {
       var n = stop.getAttribute("data-go");
-      if (n) location.hash = "#/" + n;
+      if (n && !(api && api.reader)) {
+        e.preventDefault();
+        location.hash = "#/" + n;
+      }
       return;
     }
     var b = closest(e.target, ".tr-b");

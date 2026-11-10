@@ -86,7 +86,10 @@ BP.scene("sc-summary", function (root, gsap, api) {
     var stop = closest(e.target, ".su-stop");
     if (stop) {
       var n = stop.getAttribute("data-go");
-      if (n) location.hash = "#/" + n;
+      if (n && !(api && api.reader)) {
+        e.preventDefault();
+        location.hash = "#/" + n;
+      }
       return;
     }
     var b = closest(e.target, ".tr-b");

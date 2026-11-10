@@ -1262,6 +1262,11 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
   .sc-dynamic .dgm-src { grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr); }
   .sc-dynamic .dgm-src .ghost { display: none; }
 }
+@media (max-width: 820px) {
+  .sc-dynamic .bv-more {
+    min-height: 44px; display: flex; align-items: center; justify-content: center;
+  }
+}
 </style>
 <style data-scene="sc-selectors">
 /* ============================================================
@@ -1592,6 +1597,11 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
   .sc-selectors .sel-h1 { font-size: 25px; }
   .sc-selectors .sel-src { display: none; }
   .sc-selectors .map-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+@media (max-width: 820px) {
+  .sc-selectors .chips .chip { min-width: 32px; justify-content: center; }
+  .sc-selectors .sel-tree .tr[data-nid] { height: 44px; min-height: 44px; }
+  .sc-selectors .hits .hit[data-nid] { min-height: 44px; align-items: center; }
 }
 </style>
 <style data-scene="sc-practice">
@@ -6089,7 +6099,10 @@ BP.scene("sc-selectors", function (root, gsap, api) {
       exprByMode[mode] = inputEl.value;
       run(inputEl.value, true);
       syncChips();
-      if (root.scrollTop > 40) root.scrollTo({ top: 0, behavior: "smooth" });
+      var scrollTop = api && api.reader && api.getScrollTop ? api.getScrollTop() : root.scrollTop;
+      if (scrollTop > 40) {
+        root.scrollTo({ top: 0, behavior: api && api.reduced ? "auto" : "smooth" });
+      }
     });
     nodeBody.addEventListener("click", function (e) {
       var row = e.target.closest(".nc-row");

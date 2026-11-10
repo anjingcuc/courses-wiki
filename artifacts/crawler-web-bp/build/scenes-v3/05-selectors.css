@@ -327,4 +327,9 @@
   .sc-selectors .sel-src { display: none; }
   .sc-selectors .map-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
+@media (max-width: 820px) {
+  .sc-selectors .chips .chip { min-width: 32px; justify-content: center; }
+  .sc-selectors .sel-tree .tr[data-nid] { height: 44px; min-height: 44px; }
+  .sc-selectors .hits .hit[data-nid] { min-height: 44px; align-items: center; }
+}
 

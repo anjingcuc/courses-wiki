@@ -773,6 +773,15 @@ kbd{
   .sc-flow .fl-row { grid-template-columns: 1fr; }
   .sc-flow .fl-stage { height: calc(100vh - 210px); }
 }
+
+/* 阅读版窄屏保留原图坐标与文字大小，只在图内横向查看。 */
+@media (max-width: 820px) {
+  .reader-deck .sc-flow.scene .fl-stage { justify-content: flex-start; }
+  .reader-deck .sc-flow.scene .fl-svg { flex: none; width: 1600px; height: 800px; }
+  .reader-deck .sc-flow .fl-schip { height: 44px; }
+  .reader-deck .sc-flow .fl-schip-hit[data-wf="font.woff2"],
+  .reader-deck .sc-flow .fl-schip-hit[data-wf="cover.png"] { transform: translateY(10px); }
+}
 </style>
 <style data-scene="sc-complete">
 /* ===== SCENE 03 · 完整 HTML：静态与后端动态，汇到同一个出口 ===== */
@@ -1048,6 +1057,18 @@ kbd{
   .sc-complete .gnode b { font-size: 13px; }
   .sc-complete .gnode.out b { font-size: 16px; }
   .sc-complete .st-title { font-size: 27px; }
+}
+
+@media (max-width: 820px) {
+  .reader-deck .sc-complete .evo { grid-template-columns: minmax(0, 1fr); }
+  .reader-deck .sc-complete .evo-ar { min-height: 28px; }
+  .reader-deck .sc-complete .evo-ar i {
+    left: 50%; right: auto; top: 4px; bottom: 4px; width: 0; height: auto;
+    border-top: 0; border-left: 1px dashed var(--line-2);
+  }
+  .reader-deck .sc-complete .evo-ar i::after {
+    left: -3.5px; right: auto; top: auto; bottom: -1px; transform: rotate(135deg);
+  }
 }
 </style>
 <style data-scene="sc-dynamic">

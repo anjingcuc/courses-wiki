@@ -217,3 +217,12 @@
   .sc-flow .fl-row { grid-template-columns: 1fr; }
   .sc-flow .fl-stage { height: calc(100vh - 210px); }
 }
+
+/* 阅读版窄屏保留原图坐标与文字大小，只在图内横向查看。 */
+@media (max-width: 820px) {
+  .reader-deck .sc-flow.scene .fl-stage { justify-content: flex-start; }
+  .reader-deck .sc-flow.scene .fl-svg { flex: none; width: 1600px; height: 800px; }
+  .reader-deck .sc-flow .fl-schip { height: 44px; }
+  .reader-deck .sc-flow .fl-schip-hit[data-wf="font.woff2"],
+  .reader-deck .sc-flow .fl-schip-hit[data-wf="cover.png"] { transform: translateY(10px); }
+}

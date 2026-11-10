@@ -923,7 +923,10 @@ BP.scene("sc-selectors", function (root, gsap, api) {
       exprByMode[mode] = inputEl.value;
       run(inputEl.value, true);
       syncChips();
-      if (root.scrollTop > 40) root.scrollTo({ top: 0, behavior: "smooth" });
+      var scrollTop = api && api.reader && api.getScrollTop ? api.getScrollTop() : root.scrollTop;
+      if (scrollTop > 40) {
+        root.scrollTo({ top: 0, behavior: api && api.reduced ? "auto" : "smooth" });
+      }
     });
     nodeBody.addEventListener("click", function (e) {
       var row = e.target.closest(".nc-row");

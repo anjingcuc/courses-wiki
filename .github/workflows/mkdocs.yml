@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --no-dev
 
+      - name: Build teaching innovation deck
+        run: python scripts/build_teaching_deck.py
+
       - name: Replace paths for GitHub Pages
         run: |
           find docs/ -type f -name "*.txt" -print0 | xargs -0 sed -i 's|/img/|/courses-wiki/img/|g'

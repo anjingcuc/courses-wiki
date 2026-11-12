@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>W15 联调、调试日与部署 | Python V2</title>
+<title>W15 联调、独立排查与部署 | Python V2</title>
 <link rel="stylesheet" href="../../../stylesheets/pyv2.css">
 </head>
 <body class="sl-page">
@@ -11,7 +11,7 @@
 <header class="sl-top">
   <div class="where">
     <span class="wk">WEEK 15 / 16</span>
-    <span class="th">综合项目 · 前端联调 / 调试日 / Bug Bash / 部署</span>
+    <span class="th">综合项目 · 前端联调 / 独立排查 / Bug Bash / 部署</span>
   </div>
   <nav>
     <a href="../../#weeks">课件总览</a>
@@ -25,13 +25,13 @@
   </nav>
 </header>
 
-<div class="pyv2-slides" data-title="W15 联调调试与部署">
+<div class="pyv2-slides" data-title="W15 联调、独立排查与部署">
 
   <section class="slide cover">
     <div class="kicker rise">PYTHON 程序设计 · V2 · 第 15 周（100 分钟 · L35–L39）</div>
     <h1 class="rise">让应用变得<br><span class="grad">能用、可靠、可交付</span></h1>
     <p class="sub rise">后端已经跑通——本周给它装上前端、逼出 bug、修到可靠，最后让任何人 clone 后都能一键跑起来。
-    中间有一堂特别的课：<b>AI-free 调试日</b>——关掉所有 AI，只靠自己。</p>
+    中间有一堂特别的课：<b>独立排查日</b>——先形成判断，再用 AI 对照。</p>
     <div class="meta rise">
       <span>所属模块 M6 综合项目</span><span>← → 翻页 · F 全屏</span>
     </div>
@@ -44,13 +44,13 @@
       <tr><td>0–12</td><td><b>联调三坑精讲</b></td><td>CORS 中间件 / 字段核对 / 流式 SSE——每个坑一个排查口诀</td></tr>
       <tr><td>12–28</td><td><b>前端开发</b></td><td>最小可用界面先跑通；UX 三要素（加载/错误/空状态）</td></tr>
       <tr><td>28–40</td><td><b>前端走查</b></td><td>随机抽两组投影走查——用户视角全班一起评</td></tr>
-      <tr><td>40–52</td><td><b>AI-free 规则宣布</b></td><td>关闭所有 AI；四件武器：读报错/print 二分/断点/最小复现</td></tr>
+      <tr><td>40–52</td><td><b>独立排查规则</b></td><td>先判断再用 AI 对照；四件武器：读报错 / print 二分 / 断点 / 最小复现</td></tr>
       <tr><td>52–70</td><td><b>调试实战</b></td><td>按边界清单折腾自己的应用→记 Bug 清单→逐个修；教师只教方法不给答案</td></tr>
       <tr><td>70–82</td><td><b>Bug Bash</b></td><td>两批互测 15 分钟一轮；规范提交：复现+预期+实际</td></tr>
       <tr><td>82–92</td><td><b>修复冲刺</b></td><td>按优先级修 issue；关键 bug 写回归 assert</td></tr>
       <tr><td>92–100</td><td><b>部署就绪</b></td><td>.env.example + requirements + README；换人 clone 能跑=底线</td></tr>
     </table>
-    <p class="small">AI-free 调试日课后解禁——把卡住的问题变成问 AI 的好问题。</p>
+    <p class="small">排查完成后与 AI 对照——把自己的判断和 AI 的思路对齐，把卡住的问题变成问 AI 的好问题。</p>
   </section>
 
 
@@ -66,19 +66,19 @@
   </section>
 
   <section class="slide">
-    <h2>AI-free 调试日：规则宣布</h2>
+    <h2>独立排查日：规则宣布</h2>
     <div class="scard rise" style="border-left:5px solid #dc2626; font-size:22px;">
-      <b>从现在起关闭所有 AI 工具。</b>只允许用 print / 日志 / 断点 / 读报错，修自己项目里的 bug。
+      <b>先独立判断，再与 AI 对照。</b>建议先用 print / 日志 / 断点 / 读报错形成假设，修自己项目里的 bug；卡住时再让 AI 参与。
     </div>
-    <p class="rise" style="margin-top:16px;">为什么？——建立「没有 AI 时我能做什么」的能力底座。工具越强，越要知道自己值多少。</p>
+    <p class="rise" style="margin-top:16px;">为什么？——先形成自己的判断，才看得懂 AI 给的答案。工具越强，越要知道自己能否解释。</p>
     <div class="frag scard" style="border-left:5px solid #047857;">
-      <b>课后解禁的学习姿势：</b>把今天卡住的问题拿去问 AI——不是让它修，而是让它
-      <b>讲透原理、出变式题自测</b>。调试经历转化为问题，才是把 AI 用成老师。
+      <b>与 AI 对照的学习姿势：</b>带着自己的排查记录去问 AI——不是让它直接修，而是让它
+      <b>讲透原理、出变式题自测</b>。排查经历转化为问题，才是把 AI 用成老师。
     </div>
   </section>
 
   <section class="slide">
-    <h2>没有 AI 时的四件武器</h2>
+    <h2>形成判断的四件武器</h2>
     <div class="cols2">
       <div class="scard rise"><span class="tag">武器一</span><b class="tt">读报错</b>
         <span class="small">Traceback <b>从最后一行往前读</b>——最后一行是错误类型，往上找到你自己代码的那一帧。</span></div>
@@ -127,7 +127,7 @@
     <div class="pyv2-quiz">
       <script type="application/json" class="quiz-data">
       {
-        "title": "W15 联调与调试 · 自查",
+        "title": "W15 联调与独立排查 · 自查",
         "questions": [
           {
             "q": "print 二分定位的思路是？",

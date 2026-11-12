@@ -15,12 +15,13 @@ hide:
           <span class="badge">2026 秋季</span>
         </div>
         <h1>Python 程序设计<br><span class="grad">面向 AI 时代的修订版</span></h1>
-        <p class="sub">AI 已经能写出可运行的代码，编程课还教什么？本课程的回答：<b style="color:#0f172a">读代码、调试、系统设计</b>。
+        <p class="sub">AI 已经能写出可运行的代码，编程课还教什么？本课程的回答：<b style="color:#0f172a">提出需求、发现问题、设计品味</b>。
         48 课时从第一行代码走到独立交付一个包含前端、后端与 AI 能力的完整应用——全程与 AI 结对开发，
-        并在期末答辩中说明每一行代码的作用。</p>
+        并在期末答辩中说明每个需求、判断与设计取舍的理由。</p>
         <div class="cta-row">
           <a class="pyv2-btn primary" href="v2/m0/">从 M0 开始学习 →</a>
           <a class="pyv2-btn ghost" href="#_2">查看课程地图</a>
+          <a class="pyv2-btn ghost" href="/courses-wiki/teaching-innovation/">教学创新汇报 →</a>
         </div>
       </div>
       <div>
@@ -323,8 +324,8 @@ hide:
           <span class="wk-lessons">L35–L39</span>
           <span class="wk-badge">全新内容</span>
         </div>
-        <b class="wk-title">联调、调试日与部署</b>
-        <p class="wk-summary">联调三坑 · AI-free 调试日 · Bug Bash · 部署就绪</p>
+        <b class="wk-title">联调、独立排查与部署</b>
+        <p class="wk-summary">联调三坑 · 独立排查日 · Bug Bash · 部署就绪</p>
         <div class="wk-links">
           <a class="wk-go" href="v2/slides/w15.html">周课件 →</a>
         </div>

@@ -1,0 +1,257 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 系统维护
+
+---
+
+## 路径与文件
+
+--
+
+### 概述
+
+Windows 中大体可以分为 `驱动器` / `目录` / `文件` 三个层级来组织管理系统及用户的文件。目录 (directory) 也可以称为文件夹，本课统一称之为目录。目录可以嵌套，文件可以直接放在驱动器根目录中，或者是任意子目录中，每一个目录或文件通过路径 (path) 来进行定位和访问。
+
+--
+
+### 绝对路径
+
+又称完整路径，完整的唯一的定位某目录或文件的路径，必须包含驱动器根目录。绝对路径由驱动器根目录开始，逐级包含各层目录，最终指向某个文件或目录。
+
+![绝对路径](/courses-wiki/img/path.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 相对路径
+
+以当前目录为基点，利用 `.` 和 `..` 两个特殊目录为途径访问其他文件或目录的方法。文件或目录的相对路径随着当前目录变化而变化，并不唯一，但优势在于能够适用于程序在不同计算机上访问的情况。
+
+![相对路径](/courses-wiki/img/relation_path.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 路径切换
+
+在 cmd 或者 powershell 终端中可以使用 `cd` 命令加上目录的路径来切换当前目录：
+
+```bat
+:: 切换到 C:\Windows 目录
+cd C:\Windows
+
+:: 切换到当前驱动器根目录
+cd \
+
+:: 切换到上一级目录
+cd ..\
+```
+
+---
+
+## 磁盘管理
+
+--
+
+### 驱动器
+
+Windows 下将磁盘划分为不同区域进行管理，并为每个分区分配驱动器号，常说的“C 盘”实际上是驱动器号为 "C:" 的分区。在安装系统或者笔记本出厂时，会设置一些用于系统恢复的数据分区，不分配驱动器号，避免用户误操作破坏数据。
+
+<!-- .element style="font-size: 70%;"-->
+
+![驱动器](/courses-wiki/img/drive.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 分区大小调整
+
+在磁盘管理工具中，可以捅过扩展卷或者压缩卷的功能来对卷（分区）大小进行调整。
+
+![调整分区大小](/courses-wiki/img/adjust_partitions.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 格式化
+
+在磁盘工具或者文件资源管理器中，还可以对分区进行格式化。
+
+![格式化](/courses-wiki/img/format.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 文件系统
+
+--
+
+### 二进制与文件
+
+计算机存储、运算都采用二进制，文件保存在硬盘上也是以二进制数据的形式存在的。
+
+![十六进制查看文件](/courses-wiki/img/binary_png_file.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### NTFS 文件系统
+
+Windows 操作系统在单个磁盘分区上默认采用 NTFS (New Technology File System) 文件系统来组织管理文件。对于部分版本较老的机器还可能采用 FAT32 文件系统来管理文件。
+
+--
+
+### NTFS 元文件
+
+NTFS 文件系统在格式化时会自动产生以下元文件来记录本分区的内容。
+
+| 序号 | 文件名    | 作用                   |
+| ---- | --------- | ---------------------- |
+| 0    | \$MFT     | 主文件表               |
+| 1    | \$MFTMirr | 文件表镜像             |
+| 2    | \$LogFile | 日志文件               |
+| 3    | \$Volumn  | 卷文件，记录卷标信息   |
+| 4    | \$AttrDef | 属性定义文件           |
+| 5    | \$Root    | 根目录文件，管理根目录 |
+| 6    | \$Bitmap  | 位图记录簇的使用情况   |
+| 7    | \$Boot    | 引导文件，分区引导信息 |
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 文件记录
+
+保存在 \$MFT 中，每条文件记录以 `FILE` 开头，以 `FFFFFFFF` 结束。
+
+![文件记录](/courses-wiki/img/file_record.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 文件记录结构
+
+文件记录是按一定结构进行组织的，包含了文件名、文件大小、创建时间等绝大部分信息。<b style="color:red;">文件记录头和各属性字段分析详见课件下方网页。</b>
+
+| 序号 | 名称       | 作用                   |
+| ---- | ---------- | ---------------------- |
+| 0    | 文件记录头 | 文件记录本身的相关信息 |
+| 1    | 属性记录 1 | 文件的属性信息         |
+| 2    | 属性记录 2 | 文件的属性信息         |
+| ...  | ...        | ...                    |
+| n    | 属性记录 n | 文件的属性信息         |
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 文件恢复
+
+默认情况下，Windows 在删除文件时，只是简单的将该文件对应的文件记录中的文件是否删除标记进行了修改，并没有抹掉文件内容和文件记录，可以通过 Winhex 等工具进行恢复。
+
+---
+
+## 网络维护
+
+--
+
+### IP 地址
+
+Internet Protocol Address, 用于标识发送与接受数据的设备的一串数字。IP 地址分为 IPv4 和 IPv6 两大类，目前还默认指代 IPv4 地址。IPv4 地址往往由 32 位二进制组成，为了便于记忆和使用，常常划分为 4 组取值 0-255 之间的十进制数字并用`.`隔开，称之为点分十进制，如 `202.205.16.4`。
+
+扩展阅读: [IP 地址-维基百科](https://zh.wikipedia.org/wiki/IP%E5%9C%B0%E5%9D%80)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### NAT - 网络地址转换
+
+Network Address Translation, 一种为了缓解 IPv4 地址枯竭问题而广泛使用的技术。常见路由器上都搭载了 NAT 技术来实现地址转换。
+
+![NAT](/courses-wiki/img/NAT.png)<!-- .element: style="width:110%;" -->
+
+<!-- .element style="text-align:center"-->
+
+扩展阅读: [网络地址转换-维基百科](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### 子网
+
+为了便于管理，将整个 IP 网络划分为无数小的子网，IP 地址由两个部分组成：网络前缀(network prefix)和剩余字段(rest field)，日常中也可以叫做网络部分和主机部分。为了明确一个 IPv4 地址的网络前缀和剩余字段，可采用以下两种写法：
+
+- 子网掩码，比如 IPv4 地址为 `10.66.4.122` ，其中前 24 位是网络前缀，子网掩码就是 `255.255.255.0`。
+- 无类别域间路由 (CIDR, Classless Inter-Domain Routing)，上面的地址和子网用 CIDR 表示为 `10.66.4.122/24`。
+
+<!-- .element style="font-size: 70%;"-->
+
+扩展阅读: [子网-维基百科](https://zh.wikipedia.org/wiki/%E5%AD%90%E7%BD%91)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### 网关
+
+如果两台主机处于不同的子网，那么他们不能直接通信，需要经过各自的网关进行数据的转发才能通信。日常生活中，路由器往往就是我们的网关设备，因此网关地址就是路由器在内网上的 IP 地址。
+
+扩展阅读: [网关-维基百科](https://zh.wikipedia.org/wiki/%E7%BD%91%E5%85%B3) / [路由器-维基百科](https://zh.wikipedia.org/wiki/%E8%B7%AF%E7%94%B1%E5%99%A8)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### DNS
+
+Domain Name System, 域名系统能够将域名与 IP 地址进行对应，域名是一些方便记忆的字符串比如 `cuc.edu.cn`。计算机通过域名访问各种服务时，需要先通过域名服务器也就是 DNS 服务器来查询目标域名对应的 IP，再通过 IP 进行访问，这一过程称为域名解析。
+
+扩展阅读: [域名系统-维基百科](https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### DHCP 与手动配置
+
+一般情况下，电脑会自动访问路由器内置动态主机设置协议(DHCP, Dynamic Host Configuration Protocol)服务器完成网络配置。在特殊情况下还可以在“设置”->“网络连接”->“以太网”或“WLAN”中手动设置网络相关配置。
+
+<!-- .element style="font-size: 70%;"-->
+
+![手动设置](/courses-wiki/img/manual_ip_setting.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+扩展阅读: [动态主机设置协议-维基百科](https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE)
+
+<!-- .element style="font-size: 50%;font-style: italic;"-->
+
+--
+
+### 网络连接诊断与修复
+
+发现联网失败时，可以从多个角度判断连接问题，尽力修复连接。
+
+---
+
+## Q & A

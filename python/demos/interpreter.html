@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>编译 vs 解释 · 代码如何变成运行 | Python V2</title>
+<link rel="stylesheet" href="../../stylesheets/pyv2.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f8fafc;
+  color: var(--pyv2-text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 90% -5%, rgba(2,132,199,.06), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 105%, rgba(124,58,237,.05), transparent);
+}
+.top { display: flex; justify-content: space-between; align-items: center; padding: 14px 26px; border-bottom: 1px solid var(--pyv2-border); }
+.top .crumb { font-size: 13px; color: var(--pyv2-muted); }
+.top .crumb a { color: var(--pyv2-sky); text-decoration: none; }
+.top h1 { font-size: 17px; }
+.top h1 .grad { background: var(--pyv2-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 22px 26px 60px; }
+
+.caption {
+  min-height: 64px; background: var(--pyv2-surface); border: 1px solid var(--pyv2-border);
+  border-radius: 12px; padding: 12px 18px; font-size: 14px; line-height: 1.7; color: var(--pyv2-muted);
+  margin-bottom: 16px;
+}
+.caption b { color: var(--pyv2-sky); }
+.caption .idx { font-family: var(--pyv2-font-mono); font-size: 11.5px; color: var(--pyv2-muted-2); display: block; margin-bottom: 2px; }
+
+.lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 980px) { .lanes { grid-template-columns: 1fr; } }
+.lane {
+  background: var(--pyv2-bg-soft); border: 1px solid var(--pyv2-border); border-radius: 14px;
+  padding: 16px 18px; position: relative; min-height: 300px;
+}
+.lane h2 { font-size: 15px; margin-bottom: 4px; }
+.lane .sub { font-size: 12px; color: var(--pyv2-muted-2); margin-bottom: 14px; font-family: var(--pyv2-font-mono); }
+.lane.c h2 { color: #dc2626; }
+.lane.py h2 { color: #0284c7; }
+
+.track { position: relative; height: 190px; }
+.stages { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.stage {
+  flex: 1; text-align: center; position: relative; z-index: 2;
+}
+.stage .box {
+  width: 74px; height: 74px; margin: 0 auto; border-radius: 14px;
+  background: var(--pyv2-surface-2); border: 1.5px solid var(--pyv2-border-2);
+  display: flex; align-items: center; justify-content: center; font-size: 26px;
+  transition: border-color .3s, box-shadow .3s, background .3s;
+}
+.stage.on .box { border-color: var(--pyv2-sky); box-shadow: 0 0 26px rgba(2,132,199,.18); background: rgba(2,132,199,.06); }
+.lane.c .stage.on .box { border-color: #dc2626; box-shadow: 0 0 26px rgba(220,38,38,.12); background: rgba(220,38,38,.05); }
+.stage .lb { margin-top: 7px; font-size: 12px; color: var(--pyv2-muted); line-height: 1.35; }
+.stage .lb b { color: var(--pyv2-text); font-size: 12.5px; display: block; }
+.arrowline { position: absolute; left: 4%; right: 4%; top: 37px; height: 2px; background: linear-gradient(90deg, rgba(100,116,139,.2), rgba(100,116,139,.4), rgba(100,116,139,.2)); z-index: 1; }
+
+.token {
+  position: absolute; top: 22px; left: 2%; z-index: 5;
+  background: #ffffff; border: 1.5px solid var(--pyv2-sky); color: #075985;
+  font-family: var(--pyv2-font-mono); font-size: 12.5px; font-weight: 700;
+  padding: 8px 13px; border-radius: 9px; box-shadow: 0 6px 18px rgba(2,132,199,.2);
+  white-space: nowrap; opacity: 0;
+}
+.lane.c .token { border-color: #dc2626; color: #b91c1c; box-shadow: 0 6px 18px rgba(220,38,38,.15); }
+
+.console {
+  margin-top: 12px; background: #f8fafc; border: 1px solid var(--pyv2-border); border-radius: 10px;
+  font-family: var(--pyv2-font-mono); font-size: 12.5px; padding: 10px 14px; min-height: 96px;
+  line-height: 1.7; white-space: pre-wrap;
+}
+.console .g { color: var(--pyv2-green); } .console .d { color: var(--pyv2-muted-2); }
+.console .y { color: var(--pyv2-amber); } .console .s { color: var(--pyv2-sky); }
+
+.ctrl { display: flex; align-items: center; gap: 10px; margin: 18px 0 6px; flex-wrap: wrap; }
+.ctrl button {
+  font-size: 13.5px; font-weight: 600; padding: 9px 18px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--pyv2-border-2); background: var(--pyv2-surface-2); color: var(--pyv2-text);
+  transition: all .15s;
+}
+.ctrl button:hover { border-color: var(--pyv2-sky); color: var(--pyv2-sky); }
+.ctrl button.primary { background: var(--pyv2-grad); color: #071018; border-color: transparent; }
+.prog { flex: 1; min-width: 160px; height: 6px; border-radius: 3px; background: var(--pyv2-surface-2); overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0%; background: var(--pyv2-grad); }
+.stepno { font-family: var(--pyv2-font-mono); font-size: 12px; color: var(--pyv2-muted-2); }
+
+.takeaway { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 980px) { .takeaway { grid-template-columns: 1fr; } }
+.tk { background: var(--pyv2-surface); border: 1px solid var(--pyv2-border); border-radius: 12px; padding: 13px 16px; font-size: 13px; color: var(--pyv2-muted); line-height: 1.65; }
+.tk b { color: var(--pyv2-text); display: block; margin-bottom: 3px; }
+</style>
+</head>
+<body>
+<div class="top">
+  <h1><span class="grad">交互演示</span> · 编译 vs 解释</h1>
+  <div class="crumb"><a href="../../">← Python 程序设计 V2</a></div>
+</div>
+<div class="wrap">
+  <div class="caption" id="caption"><span class="idx">STEP 0 / 8</span>点击<b>「播放」</b>或逐步执行，观察同一段程序在两种执行方式下的处理过程。</div>
+
+  <div class="lanes">
+    <div class="lane c">
+      <h2>C · 编译型语言</h2>
+      <div class="sub">hello.c → 一次编译成机器码 → CPU 直接执行</div>
+      <div class="track">
+        <div class="arrowline"></div>
+        <div class="stages">
+          <div class="stage" data-s="1"><div class="box">📄</div><div class="lb"><b>源代码</b>hello.c</div></div>
+          <div class="stage" data-s="2"><div class="box">🔧</div><div class="lb"><b>预处理器</b>#include 展开</div></div>
+          <div class="stage" data-s="3"><div class="box">🧱</div><div class="lb"><b>编译器</b>→ 汇编代码</div></div>
+          <div class="stage" data-s="4"><div class="box">⚙️</div><div class="lb"><b>汇编器</b>→ 目标文件 .o</div></div>
+          <div class="stage" data-s="5"><div class="box">🔗</div><div class="lb"><b>链接器</b>→ hello.exe</div></div>
+          <div class="stage" data-s="6"><div class="box">⚡</div><div class="lb"><b>CPU</b>机器码全速执行</div></div>
+        </div>
+        <div class="token" id="tokC">hello.c</div>
+      </div>
+      <div class="console" id="conC"><span class="d">$ gcc hello.c -o hello</span></div>
+    </div>
+
+    <div class="lane py">
+      <h2>Python · 解释型语言</h2>
+      <div class="sub">hello.py → 字节码 → PVM 逐条解释执行</div>
+      <div class="track">
+        <div class="arrowline"></div>
+        <div class="stages">
+          <div class="stage" data-s="1"><div class="box">📄</div><div class="lb"><b>源代码</b>hello.py</div></div>
+          <div class="stage" data-s="2"><div class="box">🧊</div><div class="lb"><b>编译为字节码</b>.pyc 缓存</div></div>
+          <div class="stage" data-s="3"><div class="box">🌀</div><div class="lb"><b>PVM</b>虚拟机逐条取指</div></div>
+          <div class="stage" data-s="4"><div class="box">🔁</div><div class="lb"><b>解释执行</b>字节码 → 系统调用</div></div>
+          <div class="stage" data-s="5"><div class="box">⏱️</div><div class="lb"><b>运行时</b>动态类型检查</div></div>
+          <div class="stage" data-s="6"><div class="box">✅</div><div class="lb"><b>输出</b>跨平台同样结果</div></div>
+        </div>
+        <div class="token" id="tokP">hello.py</div>
+      </div>
+      <div class="console" id="conP"><span class="d">$ python hello.py</span></div>
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <button class="primary" id="btnPlay">▶ 播放</button>
+    <button id="btnPrev">← 上一步</button>
+    <button id="btnNext">下一步 →</button>
+    <button id="btnReset">↺ 重置</button>
+    <div class="prog"><i id="progBar"></i></div>
+    <span class="stepno" id="stepNo">0 / 8</span>
+  </div>
+
+  <div class="takeaway">
+    <div class="tk"><b>⚡ 速度</b>编译型一次翻译、反复执行，同等计算通常快 1–2 个数量级；解释型每次运行都要 PVM 现场翻译字节码。</div>
+    <div class="tk"><b>🌍 跨平台</b>C 的产物绑定操作系统与指令集（.exe 换台机器未必能跑）；Python 只要有对应虚拟机，字节码处处一致。</div>
+    <div class="tk"><b>🔄 灵活性</b>解释执行带来动态类型、REPL 即时反馈、运行时修改的能力，适合快速迭代的开发方式。</div>
+  </div>
+</div>
+
+<script src="../../javascripts/vendor/gsap.min.js"></script>
+<script>
+(function () {
+  var steps = [
+    { t: "两条路线的起点都是<b>人能读懂的源代码</b>。左侧 hello.c 与右侧 hello.py 都只有一行：向世界问好。差别从「谁来翻译」开始。",
+      c: "", p: "" },
+    { t: "C 语言先过<b>预处理器</b>：#include 的头文件被原样展开成上千行声明；Python 则把源码一次性<b>编译成字节码</b>（.pyc 只是缓存，下次可跳过这步）。",
+      c: "展开 stdio.h → 1200+ 行", p: "生成字节码 6 条指令" },
+    { t: "C 编译器把预处理结果翻译成<b>汇编</b>，再由汇编器压成二进制目标文件；Python 的字节码此刻已生成，等待 <b>PVM（Python 虚拟机）</b>执行。",
+      c: "hello.s → hello.o", p: "LOAD_NAME  print\nLOAD_CONST  'world'\nCALL_FUNCTION 1" },
+    { t: "C 的链接器把目标文件与标准库链接为<b>完整的 hello.exe——翻译到此结束</b>；Python 的 PVM 才刚开始<b>逐条取指令</b>。",
+      c: "ld → hello.exe ✓", p: "PVM: 取指 → 译码 → 执行" },
+    { t: "执行阶段差距显现：CPU 全速吞吐机器码；PVM 每条字节码都要<b>经过一层软件翻译</b>再落到系统调用。",
+      c: "CPU: call printf", p: "PVM → C API → printf" },
+    { t: "运行中 Python 还要做<b>动态类型检查</b>（对象的类型存在对象头上，而不是指令里），这是灵活性的代价。",
+      c: "", p: "type(str) ✓  refcount++" },
+    { t: "两边都输出结果。注意：改一行 C 代码要<b>重新编译链接</b>；改一行 Python <b>保存即生效</b>——这正是交互模式能够即时反馈的根本原因。",
+      c: "Hello, world!\n[耗时 0.4ms]", p: "Hello, world!\n[耗时 3.1ms]" },
+    { t: "<b>总结</b>：编译型 = 先整体翻译再执行（快、平台绑定）；解释型 = 边翻译边执行（慢一点、处处能跑、改起来快）。AI 时代「迭代速度 > 极致性能」，Python 成了首选。",
+      c: "", p: "" }
+  ];
+
+  var tl = gsap.timeline({ paused: true, onUpdate: updateBar });
+  var capEl = document.getElementById("caption");
+  var conC = document.getElementById("conC");
+  var conP = document.getElementById("conP");
+  var tokC = document.getElementById("tokC");
+  var tokP = document.getElementById("tokP");
+  var cur = 0;
+  var labels = [];
+  // 每个阶段完成后文件的形态（token 文字随流程变化）
+  var TOK_C = { 1: "hello.c", 2: "hello.i", 3: "hello.s", 4: "hello.o", 5: "hello.exe", 6: "hello.exe", 7: "hello.exe" };
+  var TOK_P = { 1: "hello.py", 2: "hello.pyc", 3: "字节码", 4: "字节码", 5: "字节码", 6: "字节码", 7: "字节码" };
+
+  function popTok(el) {
+    gsap.fromTo(el, { scale: 0.8 }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" });
+  }
+
+  function setCaption(i) {
+    capEl.innerHTML = '<span class="idx">STEP ' + i + " / " + (steps.length - 1) + "</span>" + steps[i].t;
+    document.getElementById("stepNo").textContent = i + " / " + (steps.length - 1);
+  }
+  function append(el, cls, text) {
+    var s = document.createElement("span");
+    s.className = cls;
+    s.textContent = text + "\n";
+    el.appendChild(s);
+  }
+
+  steps.forEach(function (st, i) {
+    labels.push("s" + i);
+    tl.addLabel("s" + i);
+    tl.call(function () {
+      cur = i;
+      setCaption(i);
+      document.querySelectorAll(".lane .stage").forEach(function (el) {
+        el.classList.toggle("on", i > 0 && parseInt(el.dataset.s) <= i);
+      });
+      if (st.c) append(conC, "y", st.c);
+      if (st.p) append(conP, "s", st.p);
+      if (TOK_C[i] && tokC.textContent !== TOK_C[i]) { tokC.textContent = TOK_C[i]; popTok(tokC); }
+      if (TOK_P[i] && tokP.textContent !== TOK_P[i]) { tokP.textContent = TOK_P[i]; popTok(tokP); }
+    });
+
+    // token 移动到当前激活 stage 位置
+    var stageIdx = Math.min(i, 6);
+    if (i > 0) {
+      [[tokC, ".lane.c"], [tokP, ".lane.py"]].forEach(function (pair) {
+        var laneEl = document.querySelector(pair[1]);
+        var stage = laneEl.querySelector('.stage[data-s="' + stageIdx + '"]');
+        if (stage) {
+          var lr = laneEl.getBoundingClientRect();
+          var sr = stage.getBoundingClientRect();
+          var x = sr.left - lr.left + sr.width / 2 - 40;
+          tl.to(pair[0], { left: x, top: -14, opacity: 1, duration: 0.7, ease: "power2.inOut" }, "s" + i);
+        }
+      });
+    } else {
+      tl.to([tokC, tokP], { opacity: 1, duration: 0.4 }, "s0");
+    }
+    tl.to({}, { duration: 0.9 }); // 停顿
+  });
+
+  var btnPlay = document.getElementById("btnPlay");
+  btnPlay.addEventListener("click", function () {
+    if (tl.isActive()) { tl.pause(); btnPlay.textContent = "▶ 播放"; }
+    else {
+      if (tl.progress() >= 1) tl.pause(0);
+      tl.play();
+      btnPlay.textContent = "⏸ 暂停";
+    }
+  });
+  tl.eventCallback("onComplete", function () { btnPlay.textContent = "▶ 重播"; });
+
+  document.getElementById("btnPrev").addEventListener("click", function () {
+    var target = Math.max(0, cur - 1);
+    tl.tweenTo(labels[target], { duration: 0.5 });
+    cur = target;
+  });
+  document.getElementById("btnNext").addEventListener("click", function () {
+    var target = Math.min(steps.length - 1, cur + 1);
+    tl.tweenTo(labels[target], { duration: 0.6 });
+    cur = target;
+  });
+  document.getElementById("btnReset").addEventListener("click", function () {
+    tl.pause(0);
+    btnPlay.textContent = "▶ 播放";
+    conC.innerHTML = '<span class="d">$ gcc hello.c -o hello</span>';
+    conP.innerHTML = '<span class="d">$ python hello.py</span>';
+    tokC.textContent = "hello.c";
+    tokP.textContent = "hello.py";
+    document.querySelectorAll(".stage").forEach(function (el) { el.classList.remove("on"); });
+    setCaption(0);
+    cur = 0;
+  });
+
+  function updateBar() {
+    document.getElementById("progBar").style.width = (tl.progress() * 100) + "%";
+  }
+
+  window.addEventListener("resize", function () {
+    tl.pause(0);
+    cur = 0; setCaption(0);
+    tokC.textContent = "hello.c";
+    tokP.textContent = "hello.py";
+  });
+  setCaption(0);
+})();
+</script>
+</body>
+</html>

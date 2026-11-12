@@ -1,0 +1,232 @@
+<style type="text/css">
+  .reveal p {
+    text-align: justify;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# Windows 基础
+
+---
+
+## 计算机组成与操作系统
+
+--
+
+### 台式机硬件
+
+![计算机组成](/courses-wiki/img/main_devices.png)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
+
+硬件组成基本如图，来源: [BV1jE411e7hw](https://www.bilibili.com/video/BV1jE411e7hw):
+
+<!-- .element style="font-size: 50%"-->
+
+--
+
+### 笔记本硬件
+
+![计算机组成](/courses-wiki/img/notebook_devices.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+硬件组成基本如图，来源: [BV1Tt411Q7z7](https://www.bilibili.com/video/BV1Tt411Q7z7):
+
+<!-- .element style="font-size: 50%"-->
+
+--
+
+### 硬件与操作系统
+
+操作系统通过硬件虚拟化层配合操作系统内核中的驱动程序，将硬件提供给上层应用程序使用。
+
+| 硬件 | 功能                                                         | 影响                   | 一般描述                         |
+| ---- | ------------------------------------------------------------ | ---------------------- | -------------------------------- |
+| 硬盘 | 持久化存储，存放文件，读写速度 400-600MB/s                   | 文件读写速度及存储空间 | 256GB / 1TB                      |
+| 内存 | CPU 与硬盘的桥梁，临时存储 CPU 计算中间结果，读写速度 20GB/s | 计算机运行速度         | 8GB / 16GB                       |
+| CPU  | 中央处理器，负责执行各种指令实现数据处理                     | 计算机运行速度         | i5 / i7 / 2.80GHz                |
+| 显卡 | 驱动显示器显示，还常用于并行计算                             | 游戏或并行计算性能     | 集成显卡 / 独立显卡 / GPU / 显存 |
+
+<!-- .element style="font-size: 60%"-->
+
+视频：[走出这个视频时，你也可以【懂一点电脑】](https://www.bilibili.com/video/BV1vp4y1L7Yb)
+
+<!-- .element style="font-size: 50%"-->
+
+--
+
+### 操作系统查看硬件信息
+
+以上硬件信息可以在 Windows 中使用`任务栏管理器`的`性能`标签页进行查看。
+
+![硬件信息](/courses-wiki/img/devices_info.png)<!-- .element: style="width:60%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 专业相关硬件参数
+
+对于不同专业方向的用途，硬件选购时侧重的参数不太一样:
+
+- 信息安全专业，常用虚拟机等各种内存占用大户软件，内存一定要大，推荐 16GB，可以不考虑独立显卡；
+- 如果涉及人工智能相关的兴趣，那可能需要用到 GPU 来实现并行，一般推荐采购 NVIDIA 的独立显卡；
+- 对于媒体编辑，vLog 爱好者，需要进行视频剪辑等操作，则同样需要采购 NVIDIA 的独立显卡，但侧重显存大小。
+
+<!-- .element style="font-size: 70%"-->
+
+---
+
+## Windows 操作系统历史
+
+--
+
+### Windows 年表
+
+![Windows 年表](/courses-wiki/img/windows-history.png)<!-- .element: style="width:90%;border:none;" -->
+
+<!-- .element style="text-align:center"-->
+
+参考：[Windows 年表](https://zh.wikipedia.org/wiki/Microsoft_Windows) / [Windows 3.1 在线试用](https://archive.org/details/win3_stock) / [Windows 95 在线试用](https://archive.org/details/win3_W95DEMO)
+
+<!-- .element style="font-size: 50%;"-->
+
+--
+
+### 市场占有情况
+
+Windows XP 之前为旧版本，该表格引自[维基百科](https://zh.wikipedia.org/wiki/Microsoft_Windows)。
+
+| 操作系统                             | StatCounter |
+| ------------------------------------ | ----------- |
+| 旧版本                               | 0.01%       |
+| <b style="color:red;">Windows XP</b> | 0.42%       |
+| Windows Vista                        | 0.16%       |
+| <b style="color:red;">Windows 7</b>  | 11.36%      |
+| Windows 8                            | 0.91%       |
+| Windows 8.1                          | 2.53%       |
+| <b style="color:red;">Windows 10</b> | 57.57%      |
+| **所有版本**                         | **72.98%**  |
+
+<!-- .element style="font-size: 70%;"-->
+
+--
+
+### 现状总结
+
+Windows XP 已停止支持于 2014/4/8 但仍有少部分用户，Windows 7 已停止支持于 2020/1/14 但和 Windows 10 分庭抗礼，微软号称 Windows 10 为`最后一代` Windows，却在 2021 年推出了 Windows 11。
+
+--
+
+### Windows 10 版本号
+
+| 版号 | 官方代号    | 市场代号             | Build | 发行日期   |
+| ---- | ----------- | -------------------- | ----- | ---------- |
+| 1507 | Threshold 1 | 不适用               | 10240 | 2015/07/29 |
+| 1511 | Threshold 2 | November Update      | 10586 | 2015/11/10 |
+| 1607 | Redstone 1  | Anniversary Update   | 14393 | 2016/08/02 |
+| 1703 | Redstone 2  | Creators Update      | 15063 | 2017/04/05 |
+| 1709 | Redstone 3  | Fall Creators Update | 16299 | 2017/10/17 |
+| 1803 | Redstone 4  | April 2018 Update    | 17134 | 2018/04/30 |
+| 1809 | Redstone 5  | October 2018 Update  | 17763 | 2018/11/13 |
+| 1903 | 19H1        | May 2019 Update      | 18362 | 2019/05/21 |
+| 1909 | 19H2        | November 2019 Update | 18363 | 2019/11/12 |
+| 2004 | 20H1        | May 2020 Update      | 19041 | 2020/05/27 |
+| 20H2 | 20H2        | October 2020 Update      | 19042 | 2020/10/20 |
+| 21H1 | 21H1        | May 2021 Update	      | 19043 | 2021/05/18 |
+| 21H2 | 21H2        | 待定      | 19044 | 待定 |
+
+<!-- .element style="font-size: 60%;"-->
+
+注：该表格引自[维基百科](https://zh.wikipedia.org/wiki/Windows_10%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2)
+
+<!-- .element style="font-size: 50%;"-->
+
+--
+
+### Windows 10 版本划分
+
+针对不同市场和用户类型，划分了商业版本(Business Editions)/消费者版本(Consumer Editions)两大类，用户版本又根据不同用户需求划分为 `家庭版` / `家庭版单语言版` / `教育版` / `专业版` / `专业教育版` / `专业工作站版` 。由于 `家庭版` 中<b style="color:red;">虚拟化</b>、<b style="color:red;">远程桌面</b>、<b style="color:red;">组策略</b>等功能缺失或未开启，<b style="color:red;">推荐安装专业版</b>。
+
+<!-- .element style="font-size: 60%;"-->
+
+![Window消费者版本选择](/courses-wiki/img/Windows_Consumer_Editions.png)<!-- .element: style="width:65%;border:none;margin:0px;-->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## Windows 10 常见组件
+
+--
+
+### 总体布局
+
+Windows 启动后进入资源管理器程序，俗称“桌面”。桌面包含了多个组成部分，提供一些常见功能。
+
+![总体布局](/courses-wiki/img/windows_layout.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 任务栏
+
+默认情况下任务栏从左至右包含`开始菜单按钮`，`搜索`，`Cortana`，`任务视图`，`任务栏快捷图标`，`任务栏`，`托盘区`，`时间日期`，`通知`，`显示桌面按钮`这些区域。在任务栏上点击鼠标右键，可以打开任务栏配置菜单对任务栏进行配置。
+
+--
+
+### 任务管理器
+
+任务管理器主要提供 Windows 当前运行状态和相关硬件情况，此外还能够提供启动、服务等信息，是非常重要的日常维护组件。
+
+![任务管理器](/courses-wiki/img/task_manager.png)<!-- .element: style="width:70%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 文件资源管理器
+
+文件资源管理器主要用于管理用户的文件，还能通过查看标签页来**显示隐藏文件**和**文件扩展名**。
+
+![文件资源管理器](/courses-wiki/img/file_manager.png)
+
+--
+
+### 开始菜单
+
+开始菜单按钮是访问程序，访问高级配置的入口；左键任务栏上最左侧的按钮即可打开开始菜单，查看或访问应用程序，右键该按钮则可以访问 Windows 部分高级配置。
+
+![开始菜单](/courses-wiki/img/startup.png)
+
+---
+
+## 日常及专业软件
+
+推荐一些日常及专业软件:
+
+| 软件类型   | 软件名称              | 推荐理由                 |
+| ---------- | --------------------- | ------------------------ |
+| 浏览器     | 新版 Edge / Chrome    | 开发者工具神器，扩展丰富 |
+| 压缩软件   | 7-Zip                 | 开源免费，无任何干扰     |
+| 编辑器     | VSCode                | 日常使用方便，扩展多样   |
+| 搜索       | 自带搜索 / everything | 找文件快人一步           |
+| 杀毒       | MSE / 火绒            | 简洁有效                 |
+| 终端       | Windows Terminal      | 现代化终端软件           |
+| 源代码管理 | git for Windows       | 源代码管理软件命令行版本 |
+| 源代码管理 | Tortoisegit           | 源代码管理软件界面版     |
+| 软件管理   | Chocolatey / winget   | Windows 下软件包管理工具 |
+
+<!-- .element style="font-size: 70%;"-->
+
+---
+
+## Q & A

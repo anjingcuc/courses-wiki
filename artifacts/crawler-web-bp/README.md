@@ -56,27 +56,46 @@
 
 ```
 crawler-web-bp/
-  index.html                  ← 交付物（单文件，可单独拷走）
+  index.html                  ← 课堂放映版（单文件，可单独拷走）
   build/
-    shell.html                ← courses-wiki 色板 + 场景引擎 + 导航
-    build.py                  ← 默认组装 scenes-v3/*
+    shell.html                ← 课堂外壳：courses-wiki 色板 + 场景引擎 + 导航
+    reader-shell.html         ← 阅读外壳：正常文档流 + 语义锚点 + 目录
+    build.py                  ← 双出口组装：默认读 scenes-v3/*，
+                                 产出 index.html 与阅读版双出口
     CONTRACT.md               ← 场景开发契约
     scenes-v3/                ← 当前 7 组「html + css + js」
     scenes/                   ← 旧版归档，不参与默认构建
   _qa/
-    audit_v3.py               ← 30 项布局与交互回归
-    shot.py                   ← Playwright 双主题截图
+    qa_common.py              ← 测试共享脚手架：子路径服务器 + 场景清单单一来源
+    audit_v3.py               ← 课堂版 30 项布局与交互回归
+    audit_reader.py           ← 阅读版站点级验收（入口/锚点/交互/视口/动效）
+    test_reader_build.py      ← 双出口构建契约测试
+    test_reader.py            ← 阅读版浏览器测试（文档流/锚点/交互/离线）
+    test_reader_scenes_core.py        ← 场景 01–03 阅读行为
+    test_reader_scenes_04_05.py       ← 场景 04–05 阅读行为
+    test_reader_scenes_summary.py     ← 场景 06–07 阅读行为 + 课堂回归
+    interact.py / shot.py     ← Playwright 交互探针与双主题截图
 ```
+
+阅读版出口：`build.py` 同时生成 **课堂版 `index.html`** 与
+**阅读版 `docs/python/demos/crawler-web-bp.html`**（挂到 W06 课件、M3 模块页
+与拓展自学长廊三个入口）。阅读版测试与 `audit_reader.py` 验收的是
+`uv run mkdocs build` 之后 `site/` 里的发布页，不是源文件。
 
 ## 重建与验证
 
 ```bash
 cd build
-python build.py
+python build.py                        # 双出口：index.html + docs/python/demos/crawler-web-bp.html
 cd ../_qa
-python audit_v3.py
-python shot.py --theme paper --width 1920 --height 1080
-python shot.py --theme blueprint --width 1920 --height 1080
+python audit_v3.py                     # 课堂版 30 项回归
+node --check ../build/scenes-v3/01-overview.js   # 单个场景 JS 语法自检（按需）
+cd ../../..
+uv run mkdocs build                    # 阅读版测试与验收先构建站点
+python artifacts/crawler-web-bp/_qa/audit_reader.py
+python -m unittest discover -s artifacts/crawler-web-bp/_qa -p "test_reader*.py"
+python artifacts/crawler-web-bp/_qa/shot.py --theme paper --width 1920 --height 1080
+python artifacts/crawler-web-bp/_qa/shot.py --theme blueprint --width 1920 --height 1080
 ```
 
 ## 关联产物

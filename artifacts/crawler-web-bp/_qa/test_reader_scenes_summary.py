@@ -1,32 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """#20 场景 06–07：从构建后发布页验证阅读行为与课堂回归。"""
-import functools
-import http.server
-import pathlib
-import threading
 import unittest
 
 from playwright.sync_api import sync_playwright
 
-HERE = pathlib.Path(__file__).parent
-REPO = HERE.parent.parent.parent
-SITE = REPO / "site"
+from qa_common import (
+    REPO, SCENE_IDS, SITE, start_reader_server, stop_reader_server,
+)
+
 SITE_PAGE = SITE / "python" / "demos" / "crawler-web-bp.html"
-SCENE_IDS = [
-    "sc-overview", "sc-flow", "sc-complete", "sc-dynamic",
-    "sc-selectors", "sc-practice", "sc-summary",
-]
-
-
-class SiteHandler(http.server.SimpleHTTPRequestHandler):
-    def translate_path(self, path):
-        if path.startswith("/courses-wiki/"):
-            path = path[len("/courses-wiki"):]
-        return super().translate_path(path)
-
-    def log_message(self, *args):
-        pass
 
 
 class ReaderScenesSummaryTest(unittest.TestCase):
@@ -34,11 +17,7 @@ class ReaderScenesSummaryTest(unittest.TestCase):
     def setUpClass(cls):
         if not SITE_PAGE.is_file():
             raise RuntimeError("缺少构建后阅读页；先运行场景构建与 uv run mkdocs build")
-        handler = functools.partial(SiteHandler, directory=str(SITE))
-        cls.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
-        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
-        cls.thread.start()
-        cls.url = "http://127.0.0.1:%d/courses-wiki/python/demos/crawler-web-bp.html" % cls.server.server_port
+        cls.server, cls.thread, cls.url = start_reader_server()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(channel="chrome", headless=True)
 
@@ -46,9 +25,7 @@ class ReaderScenesSummaryTest(unittest.TestCase):
     def tearDownClass(cls):
         cls.browser.close()
         cls.playwright.stop()
-        cls.server.shutdown()
-        cls.server.server_close()
-        cls.thread.join(timeout=2)
+        stop_reader_server(cls.server, cls.thread)
 
     def open_reader(self, viewport=None, reduced=False):
         context = self.browser.new_context(

@@ -2112,6 +2112,8 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
 .reader-wide-hint{display:none;margin:0 0 8px;color:var(--text-3);font:500 11px/1.6 var(--mono)}
 .reader-wide{scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
 .reader-wide:focus-visible{outline-offset:1px}
+/* 固定栅格工程图在任何视口都不撑破页面：容器收窄为 100%，栅格原样横向局部滚动。 */
+.reader-deck .sc-complete .graph{overflow-x:auto;max-width:100%}
 @media (max-width:1180px){
   .reader-toc nav{grid-template-columns:repeat(4,minmax(0,1fr))}
   .reader-deck .scene{padding:30px 28px}
@@ -2165,7 +2167,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
   .reader-wide-hint{display:block}
   .reader-deck .sc-flow .fl-stage{height:auto;min-height:0;overflow-x:auto;padding:12px}
   .reader-deck .sc-flow .fl-svg{width:720px;max-width:none;height:450px}
-  .reader-deck .sc-complete .graph{overflow-x:auto;grid-template-columns:250px 30px 250px 38px 250px 30px 250px;max-width:100%}
+  .reader-deck .sc-complete .graph{grid-template-columns:250px 30px 250px 38px 250px 30px 250px}
   .reader-deck .sc-complete .dgrid,.reader-deck .sc-complete .insp-body{grid-template-columns:minmax(0,1fr)}
   .reader-deck .sc-complete .two-req{overflow-x:auto}
   .reader-deck .sc-flow .fl-drawer-body{grid-template-columns:1fr}
@@ -2680,7 +2682,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px
 
 <!-- ==== 03-complete (sc-complete) ==== -->
 <section class="scene sc-complete" id="sc-complete"
-         data-nav="完整 HTML"
+         data-nav="完整HTML"
          data-kicker="SCENE 03 · 静态与后端动态，响应体里都是完整 HTML">
   <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
 
@@ -3283,7 +3285,7 @@ for page in range(1, 5):            <span class="c"># 1..4，第 5 页取不到<
 
 <!-- ==== 05-selectors (sc-selectors) ==== -->
 <section class="scene sc-selectors" id="sc-selectors"
-         data-nav="CSS / XPath"
+         data-nav="选择器"
          data-kicker="SCENE 05 · 同一棵 DOM 树的两种问法">
   <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
 
@@ -3524,7 +3526,7 @@ for page in range(1, 5):            <span class="c"># 1..4，第 5 页取不到<
       </a></li>
       <li><a class="su-stop" href="#sc-complete" data-go="3">
         <span class="su-n">03</span>
-        <span class="su-t">完整 HTML</span>
+        <span class="su-t">完整HTML</span>
         <span class="su-s">响应体里就是整页</span>
       </a></li>
       <li><a class="su-stop" href="#sc-dynamic" data-go="4">
@@ -3534,7 +3536,7 @@ for page in range(1, 5):            <span class="c"># 1..4，第 5 页取不到<
       </a></li>
       <li><a class="su-stop" href="#sc-selectors" data-go="5">
         <span class="su-n">05</span>
-        <span class="su-t">CSS / XPath</span>
+        <span class="su-t">选择器</span>
         <span class="su-s">同一棵 DOM 的两种问法</span>
       </a></li>
       <li><a class="su-stop" href="#sc-practice" data-go="6">

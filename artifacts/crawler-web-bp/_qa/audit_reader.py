@@ -9,7 +9,7 @@
   ① W06 / M3 / 拓展长廊三入口实际点击进入并返回，记录 HTTP 状态；
   ② 连续滚动、语义锚点、无全局翻场快捷键；
   ③ 核心图内交互与滚动后状态保持（页面承诺"滚动不会重置练习状态"）；
-  ④ 390 / 768 / 1920 无整页横向溢出；
+  ④ 390 / 768 / 860 / 1000 / 1180 / 1920 无整页横向溢出（1100 / 1280 同规则覆盖）；
   ⑤ reduced-motion 下循环动画停止；
   ⑥ 每个会话无外部请求 / 意外导航 / console error / pageerror；
   ⓪ 探测器自检：横溢与 console 探测器先在合成违规上证明能报警（防恒真）。
@@ -24,7 +24,6 @@ MkDocs Material 的站点级既有外部行为（主题字体 + GitHub 仓库挂
 """
 import argparse
 import functools
-import http.server
 import json
 import os
 import pathlib
@@ -33,19 +32,19 @@ import threading
 import traceback
 from urllib.parse import urlsplit
 
+import qa_common
+from qa_common import QuietServer, SiteHandler
+
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent.parent
-SITE = REPO / "site"
+SITE = qa_common.SITE
 SOURCE_READER = REPO / "docs" / "python" / "demos" / "crawler-web-bp.html"
 SITE_READER = SITE / "python" / "demos" / "crawler-web-bp.html"
-PREFIX = "/courses-wiki/"
-READER_PATH = PREFIX + "python/demos/crawler-web-bp.html"
+PREFIX = qa_common.PREFIX
+READER_PATH = qa_common.READER_PATH
 READER_LINK = "Web 演进 × 爬虫技术"
 TOC_NAV = 'nav[aria-label="阅读章节"] a[href="#%s"]'
-SCENES = [
-    "sc-overview", "sc-flow", "sc-complete", "sc-dynamic",
-    "sc-selectors", "sc-practice", "sc-summary",
-]
+SCENES = qa_common.SCENE_IDS
 # 入口/返回页（MkDocs Material 页面）的站点级既有外部行为，基线 74a9671 已存在，
 # 非本票据引入：主题字体（mkdocs.yml ``font:``）与 GitHub 仓库挂件（``repo_url`` 驱动
 # vendored 主题包 docs/assets/javascripts/application.c648116f.js 请求 api.github.com）。
@@ -84,38 +83,6 @@ def check(name, ok, detail=""):
 def require(condition, message):
     if not condition:
         raise AssertionError(message)
-
-
-class QuietServer(http.server.ThreadingHTTPServer):
-    """浏览器关页中断传输属正常现象，不向审计输出倾倒堆栈。"""
-
-    def handle_error(self, request, client_address):
-        exc = sys.exc_info()[1]
-        if isinstance(exc, (ConnectionAbortedError, ConnectionResetError, BrokenPipeError)):
-            return
-        super().handle_error(request, client_address)
-
-
-class SiteHandler(http.server.SimpleHTTPRequestHandler):
-    """把 GitHub Pages 子路径映射到 MkDocs 的 site 根目录。"""
-
-    def do_GET(self):
-        # 真实发布源带 favicon；本地静态源补一个 204，避免把环境伪影记成站点 console error。
-        if urlsplit(self.path).path == "/favicon.ico":
-            self.send_response(204)
-            self.end_headers()
-            return
-        super().do_GET()
-
-    def translate_path(self, path):
-        published_path = urlsplit(path).path
-        if not published_path.startswith(PREFIX):
-            return str(SITE / "__outside_courses_wiki__")
-        path = published_path[len(PREFIX) - 1:]
-        return super().translate_path(path)
-
-    def log_message(self, *args):
-        pass
 
 
 class PageHealth:
@@ -397,10 +364,13 @@ class ReaderAudit:
         self.scenario("图内交互与滚动后状态保持", run)
 
     def viewport_overflow(self):
-        """④ 390 / 768 / 1920 无整页横向溢出。"""
+        """④ 390 / 768 / 860 / 1000 / 1180 / 1920 无整页横向溢出。"""
 
         def run():
-            for width, height, label in ((390, 844, "390"), (768, 1024, "768"), (1920, 1080, "1920")):
+            for width, height, label in (
+                (390, 844, "390"), (768, 1024, "768"), (860, 900, "860"),
+                (1000, 900, "1000"), (1180, 900, "1180"), (1920, 1080, "1920"),
+            ):
                 context, page, health = self.open_page(viewport={"width": width, "height": height})
                 try:
                     page.goto(self.reader_url, wait_until="load")
@@ -413,7 +383,7 @@ class ReaderAudit:
                 finally:
                     context.close()
 
-        self.scenario("390/768/1920 视口横溢", run)
+        self.scenario("390/768/860/1000/1180/1920 视口横溢", run)
 
     def reduced_motion(self):
         """⑤ reduced-motion 下循环动画停止。"""

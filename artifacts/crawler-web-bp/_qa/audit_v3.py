@@ -6,9 +6,10 @@ import shutil
 import sys
 import os
 
+from qa_common import SCENE_IDS as EXPECTED
+
 HERE = pathlib.Path(__file__).parent
 HTML = HERE.parent / "index.html"
-EXPECTED = ["sc-overview", "sc-flow", "sc-complete", "sc-dynamic", "sc-selectors", "sc-practice", "sc-summary"]
 KEY = {
     "sc-overview": "#ovMap",
     "sc-flow": "#flStage",

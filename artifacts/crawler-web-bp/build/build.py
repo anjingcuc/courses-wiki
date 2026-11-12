@@ -6,9 +6,9 @@
  docs/python/demos/crawler-web-bp.html。两个出口均为无外链、可离线的单文件。
 
 场景文件约定（同一 stem 三件套，按文件名排序决定顺序）：
-  scenes/02-flow.html   片段：<section class="scene" id="sc-flow" data-nav="…" data-kicker="…"> … </section>
-  scenes/02-flow.css    样式：必须以 #sc-flow 或 .sc-flow 作用域开头
-  scenes/02-flow.js     JS：BP.scene('sc-flow', function(root, gsap, api){ … return {replay(), onKey()} })
+  scenes-v3/02-flow.html   片段：<section class="scene" id="sc-flow" data-nav="…" data-kicker="…"> … </section>
+  scenes-v3/02-flow.css    样式：必须以 #sc-flow 或 .sc-flow 作用域开头
+  scenes-v3/02-flow.js     JS：BP.scene('sc-flow', function(root, gsap, api){ … return {replay(), onKey()} })
 """
 import pathlib
 import re
@@ -84,6 +84,19 @@ def main():
                 fail("%s: JS 中含 </script，请改用 '<\\/script'" % jp.name)
             if ("BP.scene(" + repr(sid)) not in js and ('BP.scene("%s"' % sid) not in js:
                 warns.append("%s: 未注册 BP.scene('%s', …)，动效不会被触发" % (jp.name, sid))
+            # 阅读版只把精确形态 href=" 转义为 href\x3d"（隐藏进 linkcheck 视野，运行时等价）。
+            # 其它「href= + 引号」的属性写法不会被转义：出现即警示，防盲替换静默漏网。
+            uncovered = []
+            for hit in re.finditer(r'(?i)href\s*=\s*[\'"]', js):
+                if js.startswith('href="', hit.start()):
+                    continue  # 唯一被转义的形态
+                if len(uncovered) < 3:
+                    uncovered.append(js[hit.start():hit.start() + 16])
+            if uncovered:
+                warns.append(
+                    '%s: JS 含非 href=" 精确形态的链接写法（阅读版转义不覆盖，请确认运行时语义）: %s'
+                    % (jp.name, " | ".join(uncovered))
+                )
             dp = SCENE_DIR / (stem + ".data.js")
             prefix = ""
             if dp.exists():

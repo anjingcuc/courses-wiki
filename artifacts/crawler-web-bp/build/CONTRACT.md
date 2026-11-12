@@ -11,7 +11,9 @@
 ```
 build/
   shell.html        ← Lead 维护，勿改。设计 tokens + 场景引擎 + 左侧导航
-  build.py          ← Lead 维护，勿改。把 shell + scenes/* 组装成单文件 index.html
+  reader-shell.html ← Lead 维护，勿改。阅读版外壳（正常文档流 + 语义锚点）
+  build.py          ← Lead 维护，勿改。把 shell + scenes-v3/* 组装成课堂版 index.html
+                       与阅读版 docs/python/demos/crawler-web-bp.html 双出口
   CONTRACT.md       ← 本文件
   scenes-v3/
     01-overview.html / .css / .js   ← 当前 7 屏总分版本
@@ -21,7 +23,7 @@ build/
 - 一个场景 = **同 stem 三件套**：`NN-name.html`（片段）、`NN-name.css`、`NN-name.js`。
 - 顺序由文件名数字决定，已分配好编号，**不要改别人的编号**。
 - 自检：`cd build; python build.py` → 输出 `OK -> …/index.html`（默认读取 `scenes-v3/`）。
-- JS 语法自检：`node --check build/scenes/NN-name.js`。
+- JS 语法自检：`node --check build/scenes-v3/NN-name.js`。
 
 ## 2. HTML 片段格式
 
@@ -107,7 +109,7 @@ BP.scene("sc-flow", function (root, gsap, api) {
 
 ## 7. 完成自检
 
-1. `node --check build/scenes/NN-name.js`
-2. `python build.py` 通过、无 WARN
+1. `node --check build/scenes-v3/NN-name.js`
+2. `cd build; python build.py` 通过、无 WARN
 3. 浏览器打开 `index.html`，翻到自己场景：动效播完、重播正常、交互可点、切「纸面」主题后文字仍可读
 4. `send_message` 给 lead：场景编号 + 一句话说明 + 有哪些交互点 + 遗留风险

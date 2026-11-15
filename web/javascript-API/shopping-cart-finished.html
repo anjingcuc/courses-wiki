@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>购物车</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>购物车</h1>
+
+    <div>
+      <label for="item">输入你想买的物品:</label>
+      <input type="text" name="item" id="item">
+      <button>添加</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      const list = document.querySelector('ul');
+      const input = document.querySelector('input');
+      const button = document.querySelector('button');
+
+      button.onclick = function() {
+        let myItem = input.value;
+        input.value = '';
+
+        const listItem = document.createElement('li');
+        const listText = document.createElement('span');
+        const listBtn = document.createElement('button');
+
+        listItem.appendChild(listText);
+        listText.textContent = myItem;
+        listItem.appendChild(listBtn);
+        listBtn.textContent = '删除';
+        list.appendChild(listItem);
+
+        listBtn.onclick = function(e) {
+          list.removeChild(listItem);
+        }
+
+        input.focus();
+      }
+    </script>
+  </body>
+</html>

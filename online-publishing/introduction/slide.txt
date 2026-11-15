@@ -1,0 +1,78 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 课程概述
+
+---
+
+## 自我介绍
+
+---
+
+## 课程安排
+
+--
+
+### 内容安排
+
+课程共计 8 周，将展开讲授以下内容：
+
+- 课程简介与基本概念
+- Web 基本原理与常见服务
+- markdown 与 github 使用
+- gitbook 介绍
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 考核安排
+
+| 项目     | 内容 |
+| -------- | ---- |
+| 出勤表现 | 40%  |
+| 课后作业 | 60%  |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 网络出版
+
+--
+
+### 概念
+
+网络出版是一个新兴领域，并没有权威的学术定义。维基百科中在 Publishing 词条下的 Publishing tools 里面提到了 Electronic publishing , 即电子出版，我们可以把它作为网络出版的一种叫法。中国新闻出版总署颁布的《互联网出版管理暂行规定》，互联网出版是指互联网信息服务提供者将自己创作或他人创作的作品经过选择和编辑加工，登载在互联网上或者通过互联网发送到用户端，供公众浏览、阅读、使用或者下载的在线传播行为。
+
+来源: [英文维基 Publishing](https://en.wikipedia.org/wiki/Publishing) / [互联网出版管理暂行规定](http://svncung.com/xxgk/project/P0201606/P020160622/P020160622580366874056.pdf) / [网络出版服务管理规定](http://www.cac.gov.cn/2016-02/15/c_1118048596.htm) / [网络出版服务单位查询列表](http://www.nppa.gov.cn/nppa/publishing/serviceSearchListpublish.shtml)
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### 例子
+
+![原神](/courses-wiki/img/genshin-impact.png)<!-- .element: style="width:90%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 课程覆盖
+
+本课中主要涉及通过 Web 在线提供的图文类文章或者可供下载的电子书等电子出版物，课程侧重于介绍技术和工具的用法，不侧重于概念和法律法规。
+
+---
+
+# Q & A

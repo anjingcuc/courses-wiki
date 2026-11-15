@@ -1,0 +1,124 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# AI-WPS<br/>辅助办公
+
+---
+
+## 环境配置
+
+--
+
+### 下载 WPS
+
+信息化处购买了 WPS 教育版，大家可以先下载好 WPS，然后机构登录。可以选择下载教育版：https://www.wps.cn/ 或者官方版: https://software.cuc.edu.cn/product.html?id=502 。
+
+<!-- .element: style="font-size:60%;" -->
+
+![下载 WPS](/courses-wiki/img/wps-download.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 登录机构账号
+
+SSO 登录学校账号。
+
+![登录CUC账号](/courses-wiki/img/wps-login.png)
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## WPS 智能文档处理
+
+--
+
+### 灵犀文章写作
+
+利用灵犀实现教案生成、编辑、更新并利用 drawio 解决文档图片的痛点。
+
+![灵犀起草教案](/courses-wiki/img/write-with-lingxi.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+注 1：[drawio](https://app.diagrams.net/)
+
+<!-- .element: style="font-size:60%;" -->
+
+注 2：[模板](https://www.drawio.com/example-diagrams)
+
+<!-- .element: style="font-size:60%;" -->
+
+--
+
+### 灵犀文档内修改
+
+实现文档润色修改。
+
+![灵犀文档内修改](/courses-wiki/img/modify-with-lingxi.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## WPS 表格与数据分析
+
+--
+
+## 智能工具箱
+
+利用智能工具箱操作表格。
+
+![智能工具箱](/courses-wiki/img/ai-toolbox.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+## WPS AI
+
+利用WPS AI操作表格。
+
+![WPS AI](/courses-wiki/img/wps-ai.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## 混合操作
+
+--
+
+### 邮件合并批量生成通知
+
+利用邮件合并功能批量生成通知。
+
+![批量生成文档](/courses-wiki/img/wps-ai-template.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### Trae 自动编码
+
+自动根据文件生成网页或图片海报。
+
+![生成网页](/courses-wiki/img/trae-web.png)<!-- .element: style="width:80%;" -->
+
+<!-- .element style="text-align:center"-->
+
+---
+
+## Q & A

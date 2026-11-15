@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W13 FastAPI 前后端与方法论 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+</head>
+<body class="sl-page">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 13 / 16</span>
+    <span class="th">AI 应用 · FastAPI / 对话记忆 / 方法论</span>
+  </div>
+  <nav>
+    <a href="../../#weeks">课件总览</a>
+    <!-- WEEKMAP:BEGIN button -->
+    <a class="legacy" href="../../web/slideshow.html">旧版对照</a>
+    <!-- WEEKMAP:END button -->
+    <a href="../m5/">M5 模块页</a>
+    <a href="../../">课程主页</a>
+    <a href="w12.html">← 上周</a>
+    <a class="cur" href="w13.html">本周</a>
+    <a href="w14.html">项目实战 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W13 FastAPI 前后端与方法论">
+
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 13 周（100 分钟 · L27–L30）</div>
+    <h1 class="rise">把 AI 能力<br><span class="grad">变成别人能用的网页</span></h1>
+    <p class="sub rise">命令行里的程序怎么分享？发一个 .py 让人 python main.py？——
+    Web 服务把你的代码变成一个 URL。本周：FastAPI 后端 → 前端聊天页 → 对话记忆 → AI 结对开发方法论。M5 收官。</p>
+    <div class="meta rise">
+      <span>所属模块 M5（收官）</span><span>← → 翻页 · F 全屏</span>
+    </div>
+  </section>
+  <!-- 课表 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <table>
+      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
+      <tr><td>0–10</td><td><b>FastAPI 六行</b></td><td>路由=URL 与函数绑定；Pydantic 模型自动校验；/docs 自动文档</td></tr>
+      <tr><td>10–22</td><td><b>三种参数</b></td><td>路径/查询/请求体；async def——等 LLM 不阻塞</td></tr>
+      <tr><td>22–34</td><td><b>封装 /chat</b></td><td>把 llm_chat 包成 POST 服务；health 检查端点</td></tr>
+      <tr><td>34–46</td><td><b>前端最小集</b></td><td>HTML 三件套 + fetch + async/await；DOM 渲染回复</td></tr>
+      <tr><td>46–58</td><td><b>联调三坑</b></td><td>CORS / 字段名 / 类型转换——各给排查口诀</td></tr>
+      <tr><td>58–70</td><td><b>动手练习</b></td><td>运行场：SessionManager 会话隔离 + 超限摘要 + clear</td></tr>
+      <tr><td>70–80</td><td><b>对话记忆</b></td><td>API 无状态——记忆是你传的 messages；Token 预算与摘要压缩</td></tr>
+      <tr><td>80–92</td><td><b>五步方法论</b></td><td>需求拆解→架构→增量生成→每步验证→调试；四条结对原则；协作日志</td></tr>
+      <tr><td>92–100</td><td><b>M5 收官</b></td><td>零件集齐；下周项目启动</td></tr>
+    </table>
+    <p class="small">M5 收官：llm_chat + /chat + 前端页 + 记忆 = 完整 AI 应用的全部零件。</p>
+  </section>
+
+
+  <section class="slide">
+    <h2>FastAPI：六行代码一个服务</h2>
+    <pre class="rise"><code><span class="k">from</span> fastapi <span class="k">import</span> FastAPI
+<span class="k">from</span> pydantic <span class="k">import</span> BaseModel
+
+app = <span class="f">FastAPI</span>()
+
+<span class="k">class</span> <span class="f">ChatRequest</span>(BaseModel):        <span class="c"># 请求体结构（自动校验）</span>
+    message: <span class="f">str</span>
+
+<span class="k">@app.post</span>(<span class="s">"/chat"</span>)                    <span class="c"># 路由 = URL 与函数的绑定</span>
+<span class="k">async def</span> <span class="f">chat</span>(req: ChatRequest):
+    <span class="k">return</span> {<span class="s">"reply"</span>: <span class="k">await</span> <span class="f">call_llm</span>(req.message)}
+
+<span class="c"># 启动：uvicorn main:app --reload   然后打开 /docs 看自动文档</span></code></pre>
+    <ul>
+      <li class="frag">核心概念：<b>路由</b>（@app.post）+ <b>Pydantic 模型</b>（类型标注自动生成文档）</li>
+      <li class="frag">三种参数：路径参数 <code>/chat/{id}</code>、查询参数 <code>?model=x</code>、请求体（POST JSON）</li>
+      <li class="frag"><code>async def</code>：等 LLM 响应时不阻塞，单进程也能服务多个请求</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>前端最小集：HTML 三件套 + fetch</h2>
+    <pre class="rise"><code><span class="c">&lt;div id="msgs"&gt;&lt;/div&gt;  &lt;input id="inp"&gt;  &lt;button onclick="send()"&gt;发送&lt;/button&gt;</span>
+
+<span class="k">async function</span> <span class="f">send</span>() {                 <span class="c">// 和 Python 的 async/await 概念相同</span>
+  <span class="k">const</span> r = <span class="k">await</span> <span class="f">fetch</span>(<span class="s">"/chat"</span>, {
+    method: <span class="s">"POST"</span>,
+    headers: {<span class="s">"Content-Type"</span>: <span class="s">"application/json"</span>},
+    body: JSON.stringify({message: inp.value})
+  });
+  <span class="k">const</span> data = <span class="k">await</span> r.<span class="f">json</span>();
+  msgs.innerHTML += <span class="s">`&lt;p&gt;AI: ${data.reply}&lt;/p&gt;`</span>;  <span class="c">// DOM 操作显示回复</span>
+}</code></pre>
+    <ul>
+      <li class="frag">HTML 搭骨架、CSS 穿衣服、JS 做交互——<b>前端 UI 是 AI 最擅长的领域</b>，给接口定义就能生成</li>
+      <li class="frag">前后端数据流：前端发请求 → 后端调 LLM → 返回 JSON → 前端渲染</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>前后端联调三大坑</h2>
+    <div class="scard rise" style="border-left:5px solid #dc2626;"><b>① CORS 报错</b>
+      <span class="frag" style="display:block;margin-top:4px;">浏览器跨域安全机制——在后端加 CORSMiddleware 明确 allow_origins，不是绕开机制。</span></div>
+    <div class="scard frag" style="border-left:5px solid #b45309;"><b>② 字段不匹配</b>
+      <span style="display:block;margin-top:4px;">后端返回 <code>reply</code>，前端读 <code>answer</code> → undefined。对着接口文档逐字核对。</span></div>
+    <div class="scard frag" style="border-left:5px solid #7c3aed;"><b>③ 类型转换</b>
+      <span style="display:block;margin-top:4px;">JSON 里的数字到了前端是 string——该 Number() 的地方别偷懒。</span></div>
+  </section>
+
+  <section class="slide">
+    <h2>对话记忆：AI 为什么「失忆」</h2>
+    <div class="flowline">
+      <div class="node">「我叫张三」</div><span class="arrow">→</span>
+      <div class="node">AI：<span class="small">（记不住）</span></div><span class="arrow">→</span>
+      <div class="node">「我叫什么？」</div><span class="arrow">→</span>
+      <div class="node hot">「我不知道」</div>
+    </div>
+    <div class="frag scard">
+      <b>因为大模型 API 是无状态的</b>——每次调用互相独立。
+      「记忆」是<b>你</b>在 messages 列表里维护的：每次请求把历史一起传过去。
+    </div>
+    <ul>
+      <li class="frag">会话隔离：不同用户各自独立的 messages（按 session_id 存字典）</li>
+      <li class="frag">Token 预算：历史超限会报错——把旧消息<b>摘要压缩</b>成一条 system 消息</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>动手：会话管理器（记忆 + 清空）</h2>
+    <span class="lab">交互 · 浏览器内运行（L29 课堂主线简化版）</span>
+    <div class="py-playground" data-py-title="SessionManager：让 AI「记住」你">
+      <textarea>class SessionManager:
+    def __init__(self, max_turns=5):
+        self.sessions = {}          # session_id -> messages
+        self.max_turns = max_turns
+
+    def remember(self, sid, role, content):
+        msgs = self.sessions.setdefault(sid, [])
+        msgs.append({"role": role, "content": content})
+        if len(msgs) > self.max_turns * 2:          # 超预算 → 摘要压缩
+            old = " ".join(m["content"] for m in msgs[:-4])
+            msgs[:] = [{"role": "system", "content": f"此前对话摘要：{old[:40]}..."}] + msgs[-4:]
+
+    def history(self, sid):
+        return self.sessions.get(sid, [])
+
+    def clear(self, sid):
+        self.sessions.pop(sid, None)
+
+sm = SessionManager()
+sm.remember("u1", "user", "我叫张三")
+sm.remember("u1", "assistant", "你好，张三！")
+sm.remember("u2", "user", "我叫李四")
+print("u1 的记忆:", [m["content"] for m in sm.history("u1")])
+print("u2 的记忆:", [m["content"] for m in sm.history("u2")])
+sm.clear("u1")
+print("清空后 u1:", sm.history("u1"), "｜ u2 不受影响:", len(sm.history("u2")))
+</textarea>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>vibe coding 五步开发流程（L30）</h2>
+    <div class="flowline">
+      <div class="node">①需求拆解<br><span class="small">做什么</span></div><span class="arrow">→</span>
+      <div class="node">②架构设计<br><span class="small">怎么拆</span></div><span class="arrow">→</span>
+      <div class="node hot">③增量生成<br><span class="small">一步步做</span></div><span class="arrow">→</span>
+      <div class="node">④每步验证<br><span class="small">能跑再往下</span></div><span class="arrow">→</span>
+      <div class="node">⑤调试修复</div>
+    </div>
+    <div class="cols2" style="margin-top:14px;">
+      <div class="scard rise"><b class="tt">四条结对原则</b>
+        <ul style="font-size:15px;">
+          <li class="frag">Prompt 拆解：一次一个模块，不甩整个项目</li>
+          <li class="frag">大改前先 commit</li>
+          <li class="frag">每步验证：写完马上跑</li>
+          <li class="frag">不懂的代码不放过</li>
+        </ul>
+      </div>
+      <div class="scard rise"><b class="tt">AI 协作日志</b>
+        <span class="small">记录：关键 prompt、AI 输出的问题、人工修改及原因——期末项目的强制交付物，也是你自己最好的复盘材料。</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>随堂小测（3 题）</h2>
+    <span class="lab">交互 · 点击选项作答</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W13 Web 与记忆 · 概念检查",
+        "questions": [
+          {
+            "q": "FastAPI 端点写成 async def 的主要目的是？",
+            "opts": ["代码更短", "等待 LLM/IO 时不阻塞，并发能力更高", "必须这样才能运行", "自动生成文档"],
+            "a": 1,
+            "explain": "LLM 调用是典型的高延迟 IO；async/await 让单进程在等待时处理其他请求。"
+          },
+          {
+            "q": "大模型「没有记忆」的根本原因是？",
+            "opts": ["模型太小", "API 是无状态的——记忆要靠你把历史消息随每次请求传入", "网络不稳定", "temperature 太高"],
+            "a": 1,
+            "explain": "每次调用互相独立；你在 messages 里维护历史，模型才「记得」。"
+          },
+          {
+            "q": "前后端联调报 CORS 错误，第一步应该？",
+            "opts": ["删掉报错的代码", "前后端合并成一个文件", "理解它是浏览器的跨域安全机制，在后端正确配置允许的来源", "换台电脑"],
+            "a": 2,
+            "explain": "CORSMiddleware 明确 allow_origins——是正确配置机制，不是绕开机制。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>课后与项目周预告</h2>
+    <div class="scard rise"><b class="tt">本周课后</b>
+      <ul style="font-size:16.5px;">
+        
+        <li class="frag">练习：把 llm_chat() 包成 POST /chat，配一个能聊天的前端页</li>
+      </ul>
+    </div>
+    <div class="scard frag" style="border-left:5px solid #dc2626;">
+      <b class="tt">下周：W14 期末项目启动</b>
+      分组选题 → 需求与 MVP → 架构设计 → 冲刺一（后端 + AI 核心）。
+      你已经集齐了全部零件——去组装自己的应用。
+      <span class="small" style="display:block;margin-top:8px;"><a href="w14.html">提前看项目周课件 →</a></span>
+    </div>
+    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m5/">M5 模块页</a> · <a href="../notes/Python-2023-10-Web开发之fastapi实战/">FastAPI 实战</a> · <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">实战续</a></p>
+  </section>
+
+  <!-- ===== 拓展自学：async 事件循环（课堂不讲，课后自翻） ===== -->
+  <section class="slide cover">
+    <span class="ext-badge rise">拓展自学 · 课堂不讲，课后自翻</span>
+    <h1 class="rise">async 事件循环<br><span class="grad">协程是怎么被调度的</span></h1>
+    <p class="sub rise">正课的端点为什么写 async def？await 到底「等」的是什么？
+    这 4 页用餐厅点餐和调度时间轴讲清事件循环——FastAPI 快的真正原因。</p>
+    <div class="meta rise">
+      <span>对应正课 W13 · M5 AI 应用开发</span><span>约 10 分钟 · 按 → 逐条展开</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>同步 vs 异步：餐厅点餐</h2>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt">同步：一根筋服务员</b>
+        <span class="small">给 A 桌点完单，杵在厨房门口死等，B、C 两桌干瞪眼。</span>
+        <div class="ext-gantt">
+          <div class="row"><span class="who">A 桌</span><div class="tl"><i class="b1" style="left:2%;width:32%">点单→死等→上菜</i></div></div>
+          <div class="row"><span class="who">B 桌</span><div class="tl"><i class="b1" style="left:36%;width:32%">终于轮到</i></div></div>
+          <div class="row"><span class="who">C 桌</span><div class="tl"><i class="b1" style="left:70%;width:28%">排队到打烊</i></div></div>
+        </div>
+        <span class="small frag">总耗时 = 三桌串行相加——服务员大量时间在「等」。</span>
+      </div>
+      <div class="scard rise"><b class="tt">异步：机灵服务员</b>
+        <span class="small">给 A 下单后立刻去 B、C；谁的菜好了就端给谁。</span>
+        <div class="ext-gantt">
+          <div class="row"><span class="who">A 桌</span><div class="tl"><i class="b2" style="left:2%;width:10%">下单</i><i class="b3" style="left:26%;width:10%">上菜</i></div></div>
+          <div class="row"><span class="who">B 桌</span><div class="tl"><i class="b2" style="left:13%;width:10%">下单</i><i class="b3" style="left:37%;width:10%">上菜</i></div></div>
+          <div class="row"><span class="who">C 桌</span><div class="tl"><i class="b2" style="left:24%;width:10%">下单</i><i class="b3" style="left:48%;width:10%">上菜</i></div></div>
+        </div>
+        <span class="small frag">厨房（IO）忙的时候服务员（CPU）从不空等——一半时间就服务完三桌。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>事件循环时间轴：谁让出，谁顶上</h2>
+    <div class="ext-gantt rise">
+      <div class="row"><span class="who">协程 A</span><div class="tl"><i class="b2" style="left:2%;width:12%">计算</i><i class="b0" style="left:15%;width:33%">await 等 LLM（让出）</i><i class="b3" style="left:49%;width:12%">恢复</i></div></div>
+      <div class="row"><span class="who">协程 B</span><div class="tl"><i class="b0" style="left:2%;width:12%">排队</i><i class="b2" style="left:15%;width:16%">计算</i><i class="b0" style="left:32%;width:16%">await（让出）</i><i class="b3" style="left:62%;width:10%">恢复</i></div></div>
+      <div class="row"><span class="who">CPU</span><div class="tl"><i class="b3" style="left:2%;width:70%">永不空转：A → B → 别人的请求 → A → …</i></div></div>
+    </div>
+    <ul>
+      <li class="frag"><b>await = 主动让出</b>：「我要等网络/磁盘了，控制权还给事件循环」</li>
+      <li class="frag"><b>事件循环 = 调度员</b>：登记每个协程在等什么，谁的结果到了就喊谁从断点继续</li>
+      <li class="frag">注意：这是<b>单线程内的接力</b>——不是多线程，没有锁和竞态</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>async / await 与事件循环的对应</h2>
+    <pre class="rise"><code><span class="k">async def</span> <span class="f">chat</span>(msg):            <span class="c"># 定义协程——光调用不执行，只拿到「计划」</span>
+    r = <span class="k">await</span> <span class="f">call_llm</span>(msg)    <span class="c"># ① await：挂起点，控制权还给事件循环</span>
+    <span class="k">return</span> r                    <span class="c"># ② 响应到达后，从这里原地恢复</span>
+
+<span class="k">await</span> asyncio.<span class="f">gather</span>(<span class="f">chat</span>(a), <span class="f">chat</span>(b), <span class="f">chat</span>(c))   <span class="c"># 三个并发跑</span></code></pre>
+    <ul>
+      <li class="frag"><code>async def</code> 定义的是「可暂停的函数」；<code>await</code> 标出<b>让出点</b>——其余语法和你写过的一样</li>
+      <li class="frag"><code>gather</code> 把多个协程一起交给事件循环——总耗时 ≈ 最慢的那个，而不是相加</li>
+      <li class="frag">坑：在协程里调<b>同步阻塞</b>函数（如 time.sleep、requests.get）会把整个事件循环卡死——要用对应的异步库</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>FastAPI 为什么快</h2>
+    <ul>
+      <li class="frag">等 LLM 的 3–8 秒里，单进程转身去服务别人的请求——<b>一台机器顶过去一排</b></li>
+      <li class="frag">AI 应用是典型的 IO 密集场景：网络调用占 95% 时间——async 收益最大</li>
+      <li class="frag">边界：CPU 密集任务（图像处理、大矩阵运算）async 帮不上忙——那是多进程的事</li>
+    </ul>
+    <div class="scard frag" style="border-left:5px solid #047857;"><b class="tt">深挖指引</b>
+      <ul style="font-size:15.5px;">
+        <li>官方文档：<a href="https://docs.python.org/zh-cn/3/library/asyncio.html">asyncio——异步 I/O 库</a>（event loop / coroutine / task 三个概念）</li>
+        <li><a href="https://fastapi.tiangolo.com/async/">FastAPI: Concurrency and async/await</a>——官方「并发与并行」一章写得极好</li>
+        <li>经典笔记 <a href="../notes/Python-2023-11-Web开发之fastapi实战续/">FastAPI 实战续（异步/CORS）</a></li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

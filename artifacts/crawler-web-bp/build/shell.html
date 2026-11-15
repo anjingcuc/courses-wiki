@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web 演进 × 爬虫技术 · 交互蓝图</title>
+<style>
+/* ============================================================
+   0. TOKENS — 场景作者只允许使用语义变量（--text / --line / --accent…）
+   ============================================================ */
+:root{
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+
+  /* 深色蓝图：与 courses-wiki 共用 slate / sky / violet 色相 */
+  --bg:#0f172a; --bg-deep:#0b1220;
+  --sheet:#162238; --sheet-2:#1e293b; --sheet-3:#26364e;
+  --text:#f1f5f9; --text-2:#cbd5e1; --text-3:#94a3b8;
+  --line:rgba(125,211,252,.58); --line-2:rgba(148,163,184,.28); --line-3:rgba(148,163,184,.14);
+  --grid:rgba(56,189,248,.07); --grid-2:rgba(124,58,237,.10);
+  --accent:#38bdf8; --accent-soft:rgba(56,189,248,.12); --accent-dim:rgba(56,189,248,.42);
+  --violet:#a78bfa; --violet-soft:rgba(167,139,250,.12);
+  --amber:#fbbf24; --amber-soft:rgba(251,191,36,.12);
+  --lime:#34d399; --lime-soft:rgba(52,211,153,.12);
+  --red:#f87171; --red-soft:rgba(248,113,113,.12);
+  --blue:#93c5fd; --blue-soft:rgba(147,197,253,.12);
+  --rail-w:202px;
+  --shadow:0 24px 64px rgba(2,6,23,.42);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+[data-theme="paper"]{
+  /* 直接对齐 docs/stylesheets/pyv2.css，便于迁回课件站 */
+  --bg:#f8fafc; --bg-deep:#f1f5f9;
+  --sheet:#ffffff; --sheet-2:#f8fafc; --sheet-3:#f1f5f9;
+  --text:#0f172a; --text-2:#334155; --text-3:#64748b;
+  --line:rgba(2,132,199,.55); --line-2:#cbd5e1; --line-3:#e2e8f0;
+  --grid:rgba(100,116,139,.075); --grid-2:rgba(2,132,199,.11);
+  /* 小字使用 sky/amber 的深阶，保证浅色纸面 AA 对比度 */
+  --accent:#0369a1; --accent-soft:rgba(2,132,199,.08); --accent-dim:rgba(2,132,199,.38);
+  --violet:#7c3aed; --violet-soft:rgba(124,58,237,.08);
+  --amber:#b45309; --amber-soft:rgba(217,119,6,.09);
+  --lime:#047857; --lime-soft:rgba(5,150,105,.09);
+  --red:#dc2626; --red-soft:rgba(220,38,38,.08);
+  --blue:#0369a1; --blue-soft:rgba(3,105,161,.08);
+  --shadow:0 18px 46px rgba(15,23,42,.12);
+}
+
+/* ============================================================
+   1. RESET + 纸面
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  display:grid;grid-template-columns:var(--rail-w) 1fr;overflow:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::before{ /* 细网格 */
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+body::after{ /* 粗网格 + 暗角 */
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid-2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
+  background-size:140px 140px;
+  mask-image:radial-gradient(120% 100% at 50% 40%,#000 55%,transparent 100%);
+  -webkit-mask-image:radial-gradient(120% 100% at 50% 40%,#000 55%,transparent 100%);
+}
+[data-theme="paper"] body::after{mask-image:none;-webkit-mask-image:none;opacity:.6}
+
+/* ============================================================
+   2. 左侧绘图栏
+   ============================================================ */
+.rail{
+  position:relative;z-index:6;height:100vh;display:flex;flex-direction:column;
+  border-right:1px solid var(--line-2);
+  background:linear-gradient(180deg,var(--sheet) 0%,var(--bg) 100%);
+  padding:18px 14px 12px;overflow:hidden;
+}
+.rail-brand{display:flex;flex-direction:column;gap:6px;padding:0 4px 14px;border-bottom:1px solid var(--line-3)}
+.rail-brand .b-top{display:flex;align-items:center;gap:8px}
+.rail-brand .glyph{width:22px;height:22px;border:1px solid var(--line);position:relative;flex:none}
+.rail-brand .glyph::before,.rail-brand .glyph::after{content:"";position:absolute;background:var(--accent)}
+.rail-brand .glyph::before{left:4px;right:4px;top:50%;height:1px}
+.rail-brand .glyph::after{top:4px;bottom:4px;left:50%;width:1px}
+.rail-brand .name{font:600 11px/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.rail-brand .sub{font:400 10.5px/1.5 var(--mono);letter-spacing:.1em;color:var(--text-3);text-transform:uppercase}
+.rail-list{flex:1;overflow:auto;padding:12px 0 8px;margin:0;list-style:none;scrollbar-width:thin}
+.rail-item{
+  display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:start;
+  padding:7px 8px 7px 6px;border-left:2px solid transparent;cursor:pointer;
+  transition:background .22s var(--ease),border-color .22s var(--ease),color .22s;
+  color:var(--text-3);font-size:12.6px;line-height:1.35;
+}
+.rail-item .n{font:400 10px/1.5 var(--mono);color:var(--text-3);letter-spacing:.04em;padding-top:1px}
+.rail-item .t{color:var(--text-2)}
+.rail-item:hover{background:var(--line-3);color:var(--text)}
+.rail-item.is-active{border-left-color:var(--accent);background:var(--accent-soft)}
+.rail-item.is-active .n,.rail-item.is-active .t{color:var(--text)}
+.rail-item.is-active .n{color:var(--accent)}
+.rail-foot{border-top:1px solid var(--line-3);padding:10px 4px 0;display:flex;flex-direction:column;gap:6px}
+.rail-foot .kbdrow{display:flex;flex-wrap:wrap;gap:4px}
+.rail-foot .muted{font:400 10px/1.5 var(--mono);color:var(--text-3);letter-spacing:.06em}
+.rail-progress{height:2px;background:var(--line-3);position:relative;margin:0 4px 8px}
+.rail-progress i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);transition:width .4s var(--ease)}
+
+/* ============================================================
+   3. 舞台
+   ============================================================ */
+.deck{position:relative;z-index:1;height:100vh;overflow:hidden}
+.scene{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  padding:30px 44px 28px;overflow:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+/* 引擎管控：禁止场景 CSS 在根节点上改 display，否则会叠屏 */
+.scene{display:none !important}
+.scene.is-active{display:flex !important}
+.scene:focus{outline:none}
+.scene::-webkit-scrollbar{width:8px}
+.scene::-webkit-scrollbar-thumb{background:var(--line-2)}
+
+/* 整屏蓝图框 + 四角刻度 */
+.sheet-ticks{position:absolute;inset:14px;pointer-events:none;z-index:0}
+.sheet-ticks span{position:absolute;width:14px;height:14px;border:1px solid var(--line-2)}
+.sheet-ticks span:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}
+.sheet-ticks span:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}
+.sheet-ticks span:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}
+.sheet-ticks span:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
+
+/* ============================================================
+   4. 工具栏 / 目录 / 提示
+   ============================================================ */
+.tools{position:fixed;right:16px;top:12px;z-index:20;display:flex;gap:6px;align-items:center}
+.tool-btn{
+  display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;
+  font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--text-2);
+  background:var(--sheet);border:1px solid var(--line-2);border-radius:2px;cursor:pointer;
+  transition:.2s var(--ease);
+}
+.tool-btn:hover{color:var(--text);border-color:var(--line);background:var(--sheet-2)}
+.tool-btn.on{color:var(--accent);border-color:var(--accent-dim)}
+.tool-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.4}
+
+.toc{
+  position:fixed;inset:0;z-index:30;display:none;background:rgba(15,23,42,.88);
+  backdrop-filter:blur(6px);padding:54px 60px;overflow:auto;
+}
+[data-theme="paper"] .toc{background:rgba(248,250,252,.94)}
+.toc.is-open{display:block}
+.toc h3{font:500 11px/1 var(--mono);letter-spacing:.24em;color:var(--accent);text-transform:uppercase;margin:0 0 18px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;max-width:1180px}
+.toc-card{
+  border:1px solid var(--line-2);background:var(--sheet);padding:12px 14px;cursor:pointer;
+  display:flex;flex-direction:column;gap:5px;transition:.2s var(--ease);
+}
+.toc-card:hover{border-color:var(--accent-dim);transform:translateY(-2px);box-shadow:var(--shadow)}
+.toc-card .n{font:400 10px/1 var(--mono);color:var(--accent);letter-spacing:.1em}
+.toc-card .t{font-size:13.5px;font-weight:600;line-height:1.35}
+.toc-card .d{font:400 11px/1.45 var(--mono);color:var(--text-3)}
+
+/* 底部提示已并入左栏，此处保留占位以便场景内自显示 */
+.hint{display:none}
+
+/* 翻张条（嵌在左栏底部，不遮挡图纸内容） + 滚动提示（底部居中） */
+.rail-nav{display:flex;align-items:center;justify-content:space-between;gap:3px;margin:2px 0 7px}
+.dn-btn{
+  width:30px;height:26px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  font:500 13px/1 var(--mono);color:var(--text-2);background:var(--sheet-2);
+  border:1px solid var(--line-2);border-radius:2px;transition:.16s var(--ease);
+}
+.dn-btn:hover:not(:disabled){color:var(--accent);border-color:var(--accent-dim);background:var(--accent-soft)}
+.dn-btn:disabled{opacity:.26;cursor:default}
+.dn-count{font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--text-3);white-space:nowrap}
+.scroll-cue{
+  position:fixed;left:calc(var(--rail-w) + (100vw - var(--rail-w)) / 2);transform:translateX(-50%);
+  bottom:12px;z-index:20;
+  font:400 11px/1 var(--mono);letter-spacing:.05em;color:var(--text-2);
+  background:color-mix(in srgb,var(--bg) 84%,transparent);border:1px solid var(--line-3);
+  padding:6px 11px;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;
+}
+.scroll-cue.on{opacity:.92}
+
+/* ============================================================
+   5. 场景排版工具（所有场景共享）
+   ============================================================ */
+.scene > *{position:relative;z-index:1}
+.sc-head{margin:0 0 18px;flex:none}
+.kicker{
+  font:600 11.2px/1.4 var(--mono);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:9px;
+}
+.kicker::after{content:"";height:1px;flex:1;max-width:180px;background:linear-gradient(90deg,var(--accent-dim),transparent)}
+.h1{font-size:clamp(25px,2.7vw,40px);line-height:1.16;margin:9px 0 8px;font-weight:700;letter-spacing:-.012em}
+.h2{font-size:19.5px;line-height:1.3;margin:0 0 8px;font-weight:650;letter-spacing:.01em}
+.lede{font-size:15.6px;line-height:1.75;color:var(--text-2);max-width:76ch;margin:0}
+.lede b,.lede strong{color:var(--text);font-weight:650}
+.small{font-size:13.4px;line-height:1.65;color:var(--text-2)}
+.tiny{font:400 11.4px/1.6 var(--mono);color:var(--text-3);letter-spacing:.03em}
+.mono{font-family:var(--mono)}
+.accent{color:var(--accent)} .amber{color:var(--amber)} .lime{color:var(--lime)} .red{color:var(--red)} .blue{color:var(--blue)} .violet{color:var(--violet)}
+.body-scroll{flex:1;min-height:0}
+
+/* 面板 */
+.panel{
+  position:relative;border:1px solid var(--line-2);background:linear-gradient(180deg,var(--sheet) 0%,color-mix(in srgb,var(--sheet) 70%,transparent) 100%);
+  padding:14px 16px;
+}
+.panel::before,.panel::after{content:"";position:absolute;width:9px;height:9px;border:1px solid var(--accent-dim);opacity:.85}
+.panel::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.panel::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.panel.flat{background:var(--bg-deep)}
+.panel.hi{border-color:var(--accent-dim);box-shadow:inset 0 0 0 1px var(--accent-soft)}
+
+.tag{
+  display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px;
+  font:500 10.8px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line-2);color:var(--text-2);border-radius:2px;white-space:nowrap;
+}
+.tag.a{border-color:var(--accent-dim);color:var(--accent);background:var(--accent-soft)}
+.tag.v{border-color:var(--violet);color:var(--violet);background:var(--violet-soft)}
+.tag.m{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.tag.g{border-color:var(--lime);color:var(--lime);background:var(--lime-soft)}
+.tag.r{border-color:var(--red);color:var(--red);background:var(--red-soft)}
+
+.code{
+  font:400 13px/1.72 var(--mono);background:var(--bg-deep);border:1px solid var(--line-3);
+  padding:11px 13px;overflow:auto;color:var(--text-2);white-space:pre;tab-size:2;
+  scrollbar-width:thin;
+}
+.code .k{color:var(--amber)} .code .s{color:var(--lime)} .code .c{color:var(--text-3);font-style:italic}
+.code .f{color:var(--accent)} .code .p{color:var(--blue)}
+.code .hl{background:var(--accent-soft);box-shadow:inset 2px 0 0 var(--accent);display:inline-block;width:100%}
+
+kbd{
+  display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;
+  font:500 10px/1 var(--mono);color:var(--text-2);background:var(--sheet-2);
+  border:1px solid var(--line-2);border-bottom-width:2px;border-radius:3px;
+}
+
+/* 按钮 / 芯片 */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;cursor:pointer;
+  font:500 12.8px/1 var(--sans);color:var(--text);background:var(--sheet-2);
+  border:1px solid var(--line-2);border-radius:2px;transition:.18s var(--ease);
+}
+.btn:hover{border-color:var(--accent-dim);background:var(--accent-soft);color:var(--text)}
+.btn:active{transform:translateY(1px)}
+.btn.is-on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.btn.mono{font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+.btn .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8}
+.chip{
+  display:inline-flex;align-items:center;height:26px;padding:0 10px;cursor:pointer;
+  font:400 12.3px/1 var(--mono);color:var(--text-2);border:1px solid var(--line-2);
+  background:transparent;border-radius:2px;transition:.16s var(--ease);
+}
+.chip:hover{color:var(--text);border-color:var(--line);background:var(--line-3)}
+.chip.is-on{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+
+/* 尺寸标注 */
+.dim{display:flex;align-items:center;gap:0;color:var(--text-3);font:400 10px/1 var(--mono);letter-spacing:.08em}
+.dim .l{flex:1;height:1px;background:var(--line-2);position:relative}
+.dim .l::before,.dim .l::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--line-2)}
+.dim .l::before{left:0} .dim .l::after{right:0}
+.dim .t{padding:0 8px;white-space:nowrap}
+
+/* 节点 / 连线（蓝图图示通用） */
+.bp-node{
+  border:1px solid var(--line);background:var(--sheet);padding:9px 12px;
+  font:400 12px/1.4 var(--sans);color:var(--text);position:relative;
+  display:flex;flex-direction:column;gap:3px;
+}
+.bp-node .ky{font:400 9.5px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.bp-node .vv{font-size:12.5px;font-weight:600}
+.bp-node.acc{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-soft),0 0 22px -6px var(--accent-dim)}
+.bp-node.amb{border-color:var(--amber)}
+.bp-node.ghost{border-style:dashed;border-color:var(--line-2);background:transparent;color:var(--text-2)}
+
+/* 网格布局 */
+.row{display:flex;gap:14px} .col{display:flex;flex-direction:column;gap:12px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.fill{flex:1;min-height:0}
+
+/* 图例 */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font:400 10.5px/1.4 var(--mono);color:var(--text-3);letter-spacing:.05em}
+.legend i{display:inline-block;width:16px;height:0;border-top:1px solid var(--line);vertical-align:middle;margin-right:6px}
+.legend i.solid{border-top-style:solid;border-color:var(--accent)}
+.legend i.dash{border-top-style:dashed}
+.legend i.dotted{border-top-style:dotted}
+
+/* 打印/录屏时隐藏装饰 */
+@media (max-width:1240px){
+  :root{--rail-w:64px}
+  .rail-brand .name,.rail-brand .sub,.rail-item .t,.rail-foot .kbdrow,.rail-foot .muted{display:none}
+  .rail-item{grid-template-columns:1fr;justify-items:center;padding:8px 2px}
+  .scene{padding:22px 26px}
+}
+@media (max-width:820px){
+  body{grid-template-columns:1fr}
+  .rail{display:none}
+  .hint{left:18px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+}
+@media print{
+  .rail,.tools,.hint,.toc{display:none}
+  body{display:block;overflow:visible}
+  .scene{position:relative;display:flex!important;page-break-after:always;height:auto;min-height:90vh}
+}
+</style>
+<!--@SCENE_STYLES-->
+</head>
+<body>
+<aside class="rail">
+  <div class="rail-brand">
+    <div class="b-top"><div class="glyph"></div><div class="name">Courses-Wiki / Web × Crawler</div></div>
+    <div class="sub">交互蓝图 · 总览 → 细节 → 实战</div>
+  </div>
+  <ul class="rail-list" id="railList"></ul>
+  <div class="rail-foot">
+    <div class="rail-nav">
+      <button class="dn-btn" id="dnPrev" title="上一张（←）">←</button>
+      <span class="dn-count" id="dnCount">01 / 01</span>
+      <button class="dn-btn" id="dnNext" title="下一张（→）">→</button>
+    </div>
+    <div class="rail-progress"><i id="railBar"></i></div>
+    <div class="kbdrow">
+      <kbd>←</kbd><kbd>→</kbd><span class="muted">翻张</span>
+      <kbd>O</kbd><span class="muted">目录</span>
+      <kbd>T</kbd><span class="muted">纸面</span>
+    </div>
+  </div>
+</aside>
+
+<main class="deck" id="deck">
+<!--@SCENES-->
+</main>
+
+<div class="tools">
+  <button class="tool-btn" id="btnReplay" title="重播当前场景动效">
+    <svg viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 1 1 1.9 4.2"/><path d="M2 12.6V9h3.6"/></svg><span>重播</span>
+  </button>
+  <button class="tool-btn" id="btnAuto" title="自动放映（每张 14 秒）">
+    <svg viewBox="0 0 16 16"><path d="M5 3.2v9.6L12.5 8z"/></svg><span>放映</span>
+  </button>
+  <button class="tool-btn" id="btnTheme" title="蓝图 / 纸面">
+    <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="3.4"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.2 3.2l1.4 1.4M11.4 11.4l1.4 1.4M12.8 3.2l-1.4 1.4M4.6 11.4l-1.4 1.4"/></svg><span id="themeLabel">蓝图</span>
+  </button>
+  <button class="tool-btn" id="btnToc" title="目录 (O)">
+    <svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h8"/></svg><span>目录</span>
+  </button>
+  <button class="tool-btn" id="btnFull" title="全屏 (F)">
+    <svg viewBox="0 0 16 16"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg>
+  </button>
+</div>
+
+<div class="scroll-cue" id="scrollCue">↕ 本页还有内容 · 滚轮 / 空格继续</div>
+
+<div class="toc" id="toc">
+  <h3>图纸目录 · Contents</h3>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div class="hint" id="hint"></div>
+
+<script>
+/* ==== GSAP (inlined) ==== */
+<!--@GSAP-->
+</script>
+<script>
+(function(){
+"use strict";
+var $  = function(s,r){return (r||document).querySelector(s)};
+var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var BP = window.BP = {
+  _fns:{}, _state:{}, scenes:[], idx:0,
+  gsap: window.gsap || null,
+  scene:function(id, fn){ this._fns[id] = fn; },
+  /* 工具函数给场景用 */
+  q:$, qa:$$,
+  fmt:function(n){ return String(n).padStart(2,'0'); },
+  sleep:function(ms){ return new Promise(function(r){setTimeout(r,ms)}); },
+  /* 元素进/出场的统一时长 */
+  dur:{ fast:.28, base:.55, slow:.9 }
+};
+
+/* ============ 舞台初始化 ============ */
+function boot(){
+  BP.scenes = $$('.scene');
+  var rail = $('#railList'), tocGrid = $('#tocGrid');
+  BP.scenes.forEach(function(sc, i){
+    var nav  = sc.getAttribute('data-nav')  || ('场景 ' + (i+1));
+    var kick = sc.getAttribute('data-kicker') || '';
+    var li = document.createElement('li');
+    li.className = 'rail-item';
+    li.innerHTML = '<span class="n">' + BP.fmt(i+1) + '</span><span class="t">' + nav + '</span>';
+    li.addEventListener('click', function(){ go(i); });
+    rail.appendChild(li);
+
+    var card = document.createElement('div');
+    card.className = 'toc-card';
+    card.innerHTML = '<span class="n">' + BP.fmt(i+1) + '</span><span class="t">' + nav + '</span><span class="d">' + kick + '</span>';
+    card.addEventListener('click', function(){ go(i); });
+    tocGrid.appendChild(card);
+  });
+  go(initialIdx(), true, true);
+}
+
+function initialIdx(){
+  var m = /#\/(\d+)/.exec(location.hash || '');
+  var n = m ? parseInt(m[1], 10) - 1 : 0;
+  if (!BP.scenes.length) return 0;
+  return Math.max(0, Math.min(BP.scenes.length - 1, n));
+}
+
+/* ============ 场景切换 ============ */
+function go(i, instant, force){
+  i = Math.max(0, Math.min(BP.scenes.length - 1, i));
+  if (i === BP.idx && !force) { return; }
+  var prev = BP.scenes[BP.idx];
+  if (prev && prev !== BP.scenes[i]) { prev.classList.remove('is-active'); }
+
+  BP.idx = i;
+  var sc = BP.scenes[i];
+  sc.classList.add('is-active');
+  sc.scrollTop = 0;
+
+  /* 首次进入执行 init，之后 replay */
+  var id = sc.id, st = BP._state[id];
+  if (!st) {
+    var fn = BP._fns[id];
+    try {
+      st = (typeof fn === 'function') ? (fn(sc, window.gsap, apiFor(id)) || {}) : {};
+    } catch (err) {
+      console.error('[scene init] ' + id, err);
+      st = {};
+    }
+    BP._state[id] = st;
+  } else if (!instant && typeof st.replay === 'function') {
+    try { st.replay(); } catch (e) { console.error(e); }
+  }
+
+  /* 通用出场：data-rv / data-draw */
+  autoReveal(sc, !!reduced);
+  paintRail(i);
+  updateNav();
+  setTimeout(updateScrollCue, 260);
+  setTimeout(updateScrollCue, 1400);
+  location.hash = '#/' + (i + 1);
+  markHint();
+}
+
+function apiFor(id){
+  return {
+    id:id,
+    gsap:window.gsap,
+    replay:function(){ var st = BP._state[id]; if (st && st.replay) st.replay(); },
+    /* 手写时间轴时可整体暂停/播放 */
+    reduced:reduced
+  };
+}
+
+function autoReveal(sc, skip){
+  if (!window.gsap) return;
+  var els = $$('[data-rv]', sc);
+  if (!els.length) return;
+  if (skip || reduced) { window.gsap.set(els, {clearProps:'all'}); }
+  else {
+    window.gsap.fromTo(els, {opacity:0, y:16, filter:'blur(5px)'},
+      {opacity:1, y:0, filter:'blur(0px)', duration:.62, ease:'power3.out',
+       stagger:.055, delay:.04, clearProps:'filter,transform'});
+  }
+  var draws = $$('[data-draw]', sc);
+  draws.forEach(function(p){
+    var len = 0;
+    try { len = p.getTotalLength ? p.getTotalLength() : 0; } catch(e){}
+    if (!len) return;
+    window.gsap.set(p, {strokeDasharray:len, strokeDashoffset:skip?0:len});
+    if (!skip) window.gsap.to(p, {strokeDashoffset:0, duration:1.1, ease:'power2.inOut', delay:.15});
+  });
+}
+
+function paintRail(i){
+  $$('.rail-item').forEach(function(el, k){ el.classList.toggle('is-active', k === i); });
+  var bar = $('#railBar');
+  if (bar) bar.style.width = (BP.scenes.length > 1 ? (i/(BP.scenes.length-1))*100 : 100) + '%';
+  $$('.toc-card').forEach(function(el,k){ el.style.borderColor = k===i ? 'var(--accent)' : ''; });
+}
+
+/* ============ 交互 ============ */
+function next(){ go(BP.idx + 1); }
+function prev(){ go(BP.idx - 1); }
+
+document.addEventListener('keydown', function(e){
+  if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  var st = BP._state[BP.scenes[BP.idx] && BP.scenes[BP.idx].id];
+  if (st && typeof st.onKey === 'function') {
+    try { if (st.onKey(e)) { e.preventDefault(); return; } } catch(err){ console.error(err); }
+  }
+  var k = e.key;
+  if (k === 'ArrowRight') { e.preventDefault(); next(); }
+  else if (k === 'ArrowLeft') { e.preventDefault(); prev(); }
+  else if (k === 'ArrowDown' || k === ' ' || k === 'PageDown') { e.preventDefault(); if (!scrollInner(1)) next(); }
+  else if (k === 'ArrowUp' || k === 'PageUp') { e.preventDefault(); if (!scrollInner(-1)) prev(); }
+  else if (k === 'Home') { e.preventDefault(); go(0); }
+  else if (k === 'End') { e.preventDefault(); go(BP.scenes.length - 1); }
+  else if (k === 'o' || k === 'O') { e.preventDefault(); toggleToc(); }
+  else if (k === 't' || k === 'T') { e.preventDefault(); toggleTheme(); }
+  else if (k === 'f' || k === 'F') { e.preventDefault(); toggleFull(); }
+  else if (k === 'r' || k === 'R') { e.preventDefault(); replay(); }
+  else if (k === 'Escape') { $('#toc').classList.remove('is-open'); }
+});
+
+/* 滚轮只负责页内滚动，绝不翻张（翻张交给 ← →、导航条、右下角按钮）。
+   若某个场景高度不足一屏，滚轮自然什么也不做，避免"想往下看却翻页"。 */
+
+/* 页内滚动：返回 true 表示这次按键已被滚动消费 */
+function scrollInner(dir){
+  var sc = BP.scenes[BP.idx];
+  if (!sc) return false;
+  var max = sc.scrollHeight - sc.clientHeight;
+  if (max <= 10) return false;
+  var step = Math.max(180, Math.round(sc.clientHeight * 0.82));
+  if (dir > 0) {
+    if (sc.scrollTop >= max - 4) return false;
+    sc.scrollTo({ top: Math.min(max, sc.scrollTop + step), behavior: 'smooth' });
+  } else {
+    if (sc.scrollTop <= 4) return false;
+    sc.scrollTo({ top: Math.max(0, sc.scrollTop - step), behavior: 'smooth' });
+  }
+  setTimeout(updateScrollCue, 420);
+  return true;
+}
+
+function updateNav(){
+  var n = BP.scenes.length;
+  var c = $('#dnCount');
+  if (c) c.textContent = BP.fmt(BP.idx + 1) + ' / ' + BP.fmt(n);
+  var p = $('#dnPrev'), q = $('#dnNext');
+  if (p) p.disabled = BP.idx === 0;
+  if (q) q.disabled = BP.idx === n - 1;
+}
+
+function updateScrollCue(){
+  var sc = BP.scenes[BP.idx], cue = $('#scrollCue');
+  if (!sc || !cue) return;
+  var max = sc.scrollHeight - sc.clientHeight;
+  if (max <= 10) { cue.classList.remove('on'); return; }
+  var atBottom = sc.scrollTop >= max - 10;
+  cue.textContent = atBottom ? '↓ 到底了 · 按 → 下一张' : '↕ 本页还有内容 · 滚轮 / 空格继续';
+  cue.classList.add('on');
+}
+document.addEventListener('scroll', function(){ updateScrollCue(); }, true);
+window.addEventListener('resize', function(){ updateScrollCue(); });
+
+var tStart = null, tX = 0, tY = 0;
+document.addEventListener('touchstart', function(e){
+  if (e.touches.length !== 1) return;
+  tStart = Date.now(); tX = e.touches[0].clientX; tY = e.touches[0].clientY;
+}, {passive:true});
+document.addEventListener('touchend', function(e){
+  if (!tStart || Date.now() - tStart > 700) { tStart = null; return; }
+  var d = e.changedTouches[0], dx = d.clientX - tX, dy = d.clientY - tY;
+  if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prev(); }
+  tStart = null;
+}, {passive:true});
+
+function replay(){ var sc = BP.scenes[BP.idx]; if (sc) go(BP.idx, false, true); }
+function toggleToc(){ $('#toc').classList.toggle('is-open'); }
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var nxt = cur === 'paper' ? 'blueprint' : 'paper';
+  document.documentElement.setAttribute('data-theme', nxt);
+  $('#themeLabel').textContent = nxt === 'paper' ? '蓝图' : '纸面';
+  try { localStorage.setItem('bp-theme', nxt); } catch(e){}
+}
+function toggleFull(){
+  if (!document.fullscreenElement) { (document.documentElement.requestFullscreen || function(){}).call(document.documentElement); }
+  else { document.exitFullscreen && document.exitFullscreen(); }
+}
+
+function markHint(){ var h = $('#hint'); if (h && BP.idx > 0) h.classList.add('dim'); }
+
+/* 自动放映 */
+var autoTimer = null;
+function toggleAuto(){
+  var b = $('#btnAuto');
+  if (autoTimer) { clearInterval(autoTimer); autoTimer = null; b.classList.remove('on'); return; }
+  b.classList.add('on');
+  autoTimer = setInterval(function(){
+    if (BP.idx >= BP.scenes.length - 1) { toggleAuto(); return; }
+    next();
+  }, 14000);
+}
+
+$('#btnToc').addEventListener('click', toggleToc);
+$('#btnTheme').addEventListener('click', toggleTheme);
+$('#btnFull').addEventListener('click', toggleFull);
+$('#btnReplay').addEventListener('click', replay);
+$('#btnAuto').addEventListener('click', toggleAuto);
+$('#dnPrev').addEventListener('click', prev);
+$('#dnNext').addEventListener('click', next);
+$('#toc').addEventListener('click', function(e){ if (e.target.id === 'toc') toggleToc(); });
+
+/* 主题记忆 */
+try {
+  var saved = localStorage.getItem('bp-theme');
+  if (saved) { document.documentElement.setAttribute('data-theme', saved); $('#themeLabel').textContent = saved === 'paper' ? '蓝图' : '纸面'; }
+} catch(e){}
+
+/* 启动 + 深链 */
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+window.addEventListener('hashchange', function(){
+  var i = initialIdx();
+  if (i !== BP.idx) go(i);
+});
+})();
+</script>
+<!--@SCENE_SCRIPTS-->
+</body>
+</html>

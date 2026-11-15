@@ -1,0 +1,125 @@
+<section class="scene sc-selectors" id="sc-selectors"
+         data-nav="选择器"
+         data-kicker="SCENE 05 · 同一棵 DOM 树的两种问法">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <div class="sc-head sel-head">
+    <div class="sel-kickrow">
+      <div class="kicker">SCENE 05 · 同一棵 DOM 树的两种问法</div>
+      <div class="sel-src">
+        <span><b>CSS</b> 讲师第十二节主讲</span>
+        <span><b>XPath</b> 教学扩展 · 非讲师原话</span>
+      </div>
+    </div>
+    <div class="sel-titlerow">
+      <h1 class="sel-h1">CSS 与 XPath：同一棵 DOM 树的两种问法</h1>
+      <p class="sel-lede">同一份 B 站风首页：CSS 按 id / class / 标签这些<b>样式特征</b>问，XPath 按层级、位置、属性这些<b>结构关系</b>问——输入任一种，三处同时亮，点节点给两种写法。</p>
+    </div>
+  </div>
+
+  <div class="sel-main">
+    <!-- ① 渲染页 + 源码 -->
+    <div class="sel-col1">
+      <div class="panel sel-render">
+        <div class="pg-head">
+          <span class="pg-tag">页面预览</span><span class="tiny">按讲师 F12 现场重绘（教学示意）</span>
+        </div>
+        <div class="rb">
+          <div class="rb-bar"><i></i><i></i><i></i><span class="rb-url">www.bilibili.com</span></div>
+          <div class="rb-view">
+            <div class="pg">
+              <div id="app" class="page">
+                <header class="nav">
+                  <a class="logo" tabindex="-1" href="/">bilibili</a>
+                  <a class="nav-a" tabindex="-1" href="/ranking">排行榜</a>
+                  <a class="nav-a" tabindex="-1" href="/dynamic">动态</a>
+                </header>
+                <main class="feed">
+                  <div class="card" data-id="BV1A">
+                    <a class="cover" tabindex="-1" href="/video/BV1A">封面</a>
+                    <h3 class="title">我的双脚不受自己控制</h3>
+                    <p class="meta">安老师 · 12.3 万播放</p>
+                  </div>
+                  <div class="card" data-id="BV2B">
+                    <a class="cover" tabindex="-1" href="/video/BV2B">封面</a>
+                    <h3 class="title">爬虫为什么抓不到数据</h3>
+                    <p class="meta">安老师 · 8.7 万播放</p>
+                  </div>
+                  <div class="card" data-id="BV3C">
+                    <a class="cover" tabindex="-1" href="/video/BV3C">封面</a>
+                    <h3 class="title">一张图看懂 Web 演进</h3>
+                    <p class="meta">安老师 · 5.1 万播放</p>
+                  </div>
+                </main>
+                <p class="foot">共 3 个视频</p>
+              </div>
+            </div>
+            <div class="hit-layer" id="selHits"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel flat sel-source">
+        <div class="pg-head"><span class="pg-tag">源码</span><span class="tiny">requests 拿到的就是这段 HTML</span></div>
+        <div class="src-code" id="selSrc"></div>
+      </div>
+    </div>
+
+    <!-- ② 同一棵 DOM 树 -->
+    <div class="panel sel-tree">
+      <div class="pg-head">
+        <span class="pg-tag">同一棵 DOM 树</span><span class="tiny">点任一节点 → 两种写法</span>
+        <button class="mini-btn" id="selFold" type="button">全收起</button>
+      </div>
+      <div class="tr-list" id="selTree"></div>
+      <div class="tr-leg">
+        <span class="lg-tg">tag</span><span class="lg-at">#id / .class</span>
+        <span class="lg-dt">[data-*]</span><span class="lg-tx">"#text"</span>
+      </div>
+    </div>
+
+    <!-- ③ 表达式工作台 -->
+    <div class="panel hi sel-console">
+      <div class="pg-head"><span class="pg-tag">表达式</span><span class="tiny" id="selApi">soup.select( )</span></div>
+
+      <div class="mode" id="selMode">
+        <button class="mb is-on" type="button" data-mode="css">CSS</button>
+        <button class="mb" type="button" data-mode="xpath">XPath</button>
+        <span class="mode-hint" id="selModeHint">按 id / class / 标签找元素</span>
+      </div>
+
+      <div class="cmd" id="selCmd">
+        <span class="cmd-p">›</span>
+        <input id="selInput" type="text" spellcheck="false" autocomplete="off"
+               autocapitalize="off" value=".title" />
+        <span class="cmd-k" id="selCmdK">CSS</span>
+      </div>
+
+      <div class="chips" id="selChips"></div>
+
+      <div class="sel-res">
+        <div class="sel-badge" id="selBadge"><b id="selN">0</b><span>命中</span></div>
+        <p class="sel-say" id="selSay"></p>
+      </div>
+
+      <div class="node" id="selNode">
+        <div class="sec-h">节点卡 <span class="tiny" id="selNodeHint">点中间 DOM 树任一节点</span></div>
+        <div class="node-body" id="selNodeBody"></div>
+      </div>
+
+      <div class="eq">
+        <div class="sec-h">等价代码 <span class="tiny" id="selEqHint">同一表达式，库里两行</span></div>
+        <div class="code" id="selCode"></div>
+      </div>
+
+      <div class="hits-h">命中节点 <span class="tiny">text() / href 预览 · 点一行即定位</span></div>
+      <div class="hits" id="selHitsList"></div>
+    </div>
+  </div>
+
+  <div class="panel flat sel-map">
+    <div class="cc-h">CSS ↔ XPath 对照 <span class="tiny">同一批节点，两种写法 · 点任一侧即用该语法执行</span></div>
+    <div class="map-grid" id="selMap"></div>
+    <div class="map-note"><b>出处与边界</b>：CSS 基础——id / class / <code>a</code> / <code>div,p</code> 并集 / 用 F12 定位标题——来自讲师第十二节《Web 分析与爬虫》P2 的课堂演示；对照表里的后代（空格）、子代（<code>&gt;</code>）、<code>nth-of-type</code>、属性选择器这些，讲师课堂没有展开，属教学扩展。XPath 的完整语法（轴、谓词、函数、取属性 / 取文本）同样是教学扩展，只用于和 CSS 对照，不冒充讲师原话。</div>
+  </div>
+</section>

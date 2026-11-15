@@ -1,0 +1,207 @@
+<section class="scene sc-overview" id="sc-overview"
+         data-nav="总图"
+         data-kicker="SCENE 01 · 先建立一张总图：Web 演进如何改变爬虫">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <!-- ==================== 首屏 ==================== -->
+  <div class="ov-s1">
+    <header class="sc-head ov-head">
+      <div class="kicker">SCENE 01 · 总图 · WEB × CRAWLER</div>
+      <h1 class="h1">先建立一张总图：<span class="ov-hl">Web 演进如何改变爬虫</span></h1>
+      <p class="lede">同一个网址，内容可以在<b>三个地方</b>被造出来——磁盘上、服务器上、浏览器里；还有第四种形态：干脆不造 HTML，直接把数据给你。
+        这四种是<b>供给形态</b>，不是一条时间轴上的四个年代：④ 与 ③ 同期，只是换了条更省事的通道。</p>
+    </header>
+
+    <div class="panel ov-map" id="ovMap">
+      <div class="ov-map-hd">
+        <span class="tiny">对抗地图 · 四种供给形态 × 爬虫手段</span>
+        <span class="tiny ov-map-tip">点任意阶段节点 → 下方三栏同步</span>
+      </div>
+
+      <div class="ov-stages" id="ovStages">
+        <!-- ① 静态文件 -->
+        <div class="ov-stage is-on" data-stage="0" role="button" tabindex="0" aria-pressed="true">
+          <div class="ov-st-hd">
+            <div class="ov-st-top"><span class="ov-st-no">01</span><span class="ov-st-era">构建时生成</span></div>
+            <h2 class="ov-st-name">静态文件</h2>
+            <p class="ov-st-sub">web server 直接读磁盘</p>
+          </div>
+          <div class="ov-st-body">
+            <div class="ov-blk web">
+              <span class="ov-ky">WEB · HTML 从哪来</span>
+              <p class="ov-p">磁盘上的 <span class="mono">.html</span>，构建时已生成</p>
+              <div class="code ov-code">&lt;h1&gt;课程资料站&lt;/h1&gt;
+&lt;ul&gt;&lt;li&gt;模块 0&lt;/li&gt;…</div>
+            </div>
+            <div class="ov-link"><i></i><span>返回完整 HTML</span></div>
+            <div class="ov-blk craw">
+              <span class="ov-ky">CRAWLER · 怎么抓</span>
+              <p class="ov-p"><b>requests + BS4</b></p>
+              <div class="code ov-code">soup.select("ul li")</div>
+            </div>
+          </div>
+          <div class="ov-st-ft"><span class="tag g">✓✓ 一次 GET 就够</span><span class="ov-cost">~100 ms</span></div>
+          <i class="ov-next"><b>→</b><em>要能变</em></i>
+        </div>
+
+        <!-- ② 后端模板 -->
+        <div class="ov-stage" data-stage="1" role="button" tabindex="0" aria-pressed="false">
+          <div class="ov-st-hd">
+            <div class="ov-st-top"><span class="ov-st-no">02</span><span class="ov-st-era">每次请求现渲染</span></div>
+            <h2 class="ov-st-name">后端模板</h2>
+            <p class="ov-st-sub">服务器现场拼 HTML（细节见 03）</p>
+          </div>
+          <div class="ov-st-body">
+            <div class="ov-blk web">
+              <span class="ov-ky">WEB · HTML 从哪来</span>
+              <p class="ov-p">服务器上现渲染，<b>按人不同</b></p>
+              <div class="code ov-code">&lt;h1&gt;你好，安静&lt;/h1&gt;
+&lt;p&gt;上次登录 22:41&lt;/p&gt;</div>
+            </div>
+            <div class="ov-link"><i></i><span>返回完整 HTML</span></div>
+            <div class="ov-blk craw">
+              <span class="ov-ky">CRAWLER · 怎么抓</span>
+              <p class="ov-p"><b>requests + BS4</b></p>
+              <div class="code ov-code">get(url, params={"username":"安静"})</div>
+            </div>
+          </div>
+          <div class="ov-st-ft"><span class="tag g">✓✓ 拼对参数就行</span><span class="ov-cost">~100 ms</span></div>
+          <i class="ov-next"><b>→</b><em>要局部刷新</em></i>
+        </div>
+
+        <!-- ③ AJAX / 前端框架 -->
+        <div class="ov-stage" data-stage="2" role="button" tabindex="0" aria-pressed="false">
+          <div class="ov-st-hd">
+            <div class="ov-st-top"><span class="ov-st-no">03</span><span class="ov-st-era">局部更新</span></div>
+            <h2 class="ov-st-name">AJAX / 前端框架</h2>
+            <p class="ov-st-sub">浏览器里用 JS 改 DOM</p>
+          </div>
+          <div class="ov-st-body">
+            <div class="ov-blk web">
+              <span class="ov-ky">WEB · HTML 从哪来</span>
+              <p class="ov-p"><b>首屏 HTML 已有内容</b>，JS 只做局部更新（SPA 才是空壳）</p>
+              <div class="code ov-code">&lt;p id="stock"&gt;1000&lt;/p&gt;
+&lt;script&gt;setInterval(update, 1000)&lt;/script&gt;</div>
+            </div>
+            <div class="ov-link warn"><i></i><span>首屏有内容，之后 XHR 更新</span></div>
+            <div class="ov-blk craw">
+              <span class="ov-ky">CRAWLER · 怎么抓</span>
+              <p class="ov-p">首屏 <b>requests</b> 能拿；实时值抓 XHR。<b>SPA</b> 才 headless</p>
+              <div class="code ov-code">/api/stock?id=1001</div>
+            </div>
+          </div>
+          <div class="ov-st-ft"><span class="tag m">⚠ 首屏可拿，实时值要接口</span><span class="ov-cost">XHR / 1–3 s</span></div>
+          <i class="ov-next"><b>→</b><em>要原始数据</em></i>
+        </div>
+
+        <!-- ④ 数据接口 -->
+        <div class="ov-stage" data-stage="3" role="button" tabindex="0" aria-pressed="false">
+          <div class="ov-st-hd">
+            <div class="ov-st-top"><span class="ov-st-no">04</span><span class="ov-st-era">与 AJAX 同期</span></div>
+            <h2 class="ov-st-name">数据接口</h2>
+            <p class="ov-st-sub">③ 的另一面：AJAX 背后的数据通道</p>
+          </div>
+          <div class="ov-st-body">
+            <div class="ov-blk web">
+              <span class="ov-ky">WEB · HTML 从哪来</span>
+              <p class="ov-p">没有 HTML，接口直接吐数据</p>
+              <div class="code ov-code">{"items":[…],
+ "next":"/data?page=2"}</div>
+            </div>
+            <div class="ov-link ok"><i></i><span>返回 JSON</span></div>
+            <div class="ov-blk craw">
+              <span class="ov-ky">CRAWLER · 怎么抓</span>
+              <p class="ov-p"><b>直接打接口</b>（最优）</p>
+              <div class="code ov-code">get("/data?page=1").json()</div>
+            </div>
+          </div>
+          <div class="ov-st-ft"><span class="tag g">✓✓ 零解析</span><span class="ov-cost">~100 ms</span></div>
+        </div>
+      </div>
+
+      <!-- 图下缘：三栏读数 -->
+      <div class="ov-readout" id="ovReadout">
+        <div class="ov-ro-cell">
+          <span class="ov-ro-ky">HTML 在哪生成</span>
+          <b id="ovRoA">磁盘上（构建时）</b>
+          <em id="ovRoAd">静态站生成器预渲染成 .html</em>
+        </div>
+        <div class="ov-ro-cell">
+          <span class="ov-ro-ky">响应里有什么</span>
+          <b id="ovRoB">完整 HTML</b>
+          <em id="ovRoBd">数据已经在标签里</em>
+        </div>
+        <div class="ov-ro-cell">
+          <span class="ov-ro-ky">爬虫怎么办</span>
+          <b id="ovRoC">requests + BeautifulSoup</b>
+          <em id="ovRoCd">一次 GET 就能直接解析</em>
+        </div>
+        <div class="ov-verdict">
+          <span class="ov-vk">一句话</span>
+          <p id="ovRoV">同一条 <span class="mono">requests.get()</span>，在 ①② 能拿到完整数据；到整站前端渲染（③ 的极端）才只剩空壳。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 滚动区 ==================== -->
+  <div class="ov-s2">
+    <div class="ov-s2-hd">
+      <span class="tiny">同一张图，换成矩阵 · MATRIX VIEW</span>
+      <span class="tiny">✓✓ 推荐　✓ 能用　✗ 走不通</span>
+    </div>
+    <div class="ov-mx" id="ovMx">
+      <div class="ov-mx-corner"></div>
+      <div class="ov-mx-chd" data-col="0">requests + 解析</div>
+      <div class="ov-mx-chd" data-col="1">headless 浏览器</div>
+      <div class="ov-mx-chd" data-col="2">抓包直取 API</div>
+
+      <div class="ov-mx-rhd" data-row="0">静态文件</div>
+      <div class="ov-mx-c" data-row="0" data-col="0"><b class="g">✓✓</b><span>直接拿 HTML</span></div>
+      <div class="ov-mx-c" data-row="0" data-col="1"><b class="o">✓</b><span>能跑，但纯浪费</span></div>
+      <div class="ov-mx-c" data-row="0" data-col="2"><b class="r">✗</b><span>没有接口</span></div>
+
+      <div class="ov-mx-rhd" data-row="1">后端模板</div>
+      <div class="ov-mx-c" data-row="1" data-col="0"><b class="g">✓✓</b><span>模板渲染完才发</span></div>
+      <div class="ov-mx-c" data-row="1" data-col="1"><b class="o">✓</b><span>没必要，还更慢</span></div>
+      <div class="ov-mx-c" data-row="1" data-col="2"><b class="r">✗</b><span>客户端没接口</span></div>
+
+      <div class="ov-mx-rhd" data-row="2">AJAX / 前端框架</div>
+      <div class="ov-mx-c" data-row="2" data-col="0"><b class="o">✓</b><span>首屏有内容就够；SPA 则空壳</span></div>
+      <div class="ov-mx-c" data-row="2" data-col="1"><b class="g">✓✓</b><span>等 network idle</span></div>
+      <div class="ov-mx-c" data-row="2" data-col="2"><b class="g">✓✓</b><span>Network 里就是接口</span></div>
+
+      <div class="ov-mx-rhd" data-row="3">数据接口</div>
+      <div class="ov-mx-c" data-row="3" data-col="0"><b class="o">✓</b><span>要拼参数 / 签名</span></div>
+      <div class="ov-mx-c" data-row="3" data-col="1"><b class="r">✗</b><span>浏览器打开 JSON 没意义</span></div>
+      <div class="ov-mx-c" data-row="3" data-col="2"><b class="g">✓✓</b><span>零渲染零解析</span></div>
+    </div>
+
+    <div class="ov-cases-hd">
+      <span class="tiny">案例导览 · 讲师现场举的例子</span>
+      <span class="ov-cases-note">案例来自两节口播；页面中的字节 / 耗时为教学示意</span>
+    </div>
+    <div class="ov-cases">
+      <article class="ov-case">
+        <div class="ov-case-hd"><span class="tag a">① 静态</span><b>课程站 · MkDocs</b></div>
+        <p>讲师这个课程站就是 MkDocs 生成的：Markdown 在构建时预渲染成一堆 HTML，<b>web server（讲师举例 Apache）直接读磁盘</b>返回。查看源码，内容一字不差。</p>
+        <div class="ov-case-ft"><span class="mono">requests.get(url)</span><span class="tag g">→ BS4 直接解析</span></div>
+      </article>
+      <article class="ov-case">
+        <div class="ov-case-hd"><span class="tag a">② 后端模板</span><b>B 站首页 · 按人拼的首页</b></div>
+        <p>模板 + 数据按用户拼出不同 HTML。讲师用 <span class="mono">?username=安静 / 小王</span> 演示变量替换，又用 B 站首页说明登录后的个性化推荐——二者都是<b>服务端生成</b>；第十二节再拿 B 站首页讲页面分析。</p>
+        <div class="ov-case-ft"><span class="mono">GET /home?username=安静</span><span class="tag g">→ BS4 直接解析</span></div>
+      </article>
+      <article class="ov-case">
+        <div class="ov-case-hd"><span class="tag m">③ 前端渲染</span><b>库存 1000 → 999 每秒自刷</b></div>
+        <p>首屏 HTML 里<b>已经有 1000</b>（<span class="mono">&lt;p id="stock"&gt;1000&lt;/p&gt;</span>），JS 每秒把局部改成 999，用户不用按 F5。要拿「此刻的值」，得抓它背后的 XHR 接口。</p>
+        <div class="ov-case-ft"><span class="mono">F12 → Network → XHR</span><span class="tag m">→ 抓接口 / headless</span></div>
+      </article>
+      <article class="ov-case">
+        <div class="ov-case-hd"><span class="tag g">④ 数据接口</span><b>/data?page=N</b></div>
+        <p>④ 不是更晚的世代，而是 <b>③ 的另一面</b>：AJAX 调的就是这种接口。分页写进 URL，返回纯 JSON——没有 HTML 可解析，也不需要浏览器。</p>
+        <div class="ov-case-ft"><span class="mono">requests.get("/data?page=2").json()</span><span class="tag g">→ 零解析</span></div>
+      </article>
+    </div>
+  </div>
+</section>

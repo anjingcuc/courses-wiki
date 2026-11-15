@@ -1,0 +1,286 @@
+/* ===== SCENE 03 · 完整 HTML：静态与后端动态，汇到同一个出口 ===== */
+/* 注意：根节点只设 gap / padding，绝不改 display / visibility / opacity */
+
+.sc-complete { gap: 14px; padding-bottom: 28px; }
+
+.sc-complete .sc-head { flex: none; }
+.sc-complete .st-title {
+  font-size: 32px; line-height: 1.2; margin: 9px 0 10px; font-weight: 700; letter-spacing: -.012em;
+  max-width: 52ch;
+}
+.sc-complete .st-lede { font-size: 15.5px; line-height: 1.72; margin: 0; max-width: 112ch; }
+
+/* ================= 因果图 ================= */
+.sc-complete .graph {
+  flex: none; position: relative;
+  display: grid;
+  grid-template-columns: 296px 34px 300px 48px minmax(260px, 1fr) 34px 302px;
+  align-items: stretch;
+  border: 1px solid var(--line-2);
+  padding: 12px 14px 14px;
+  background: color-mix(in srgb, var(--sheet) 52%, transparent);
+}
+.sc-complete .gstage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.sc-complete .gs-label {
+  display: flex; align-items: center; gap: 7px; flex: none;
+  font: 500 10px/1.2 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--text-3);
+}
+.sc-complete .gs-label span { color: var(--accent); }
+
+/* 可点提示 */
+.sc-complete .gtip {
+  margin: 6px 0 0; text-align: right;
+  font: 500 11px/1.4 var(--mono); letter-spacing: .06em; color: var(--text-3);
+}
+.sc-complete .gtip::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px;
+  border-radius: 50%; background: var(--accent); vertical-align: 1px;
+  animation: scBlink 2.6s ease-in-out infinite;
+}
+@keyframes scBlink { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+
+/* 节点 */
+.sc-complete .gnode {
+  position: relative; display: flex; flex-direction: column; gap: 3px; text-align: left; cursor: pointer;
+  border: 1px solid var(--line); border-left: 2px solid var(--line); background: var(--bg-deep);
+  padding: 9px 11px; font-family: var(--sans); color: var(--text-2); border-radius: 0;
+  transition: border-color .18s var(--ease), background .18s var(--ease), transform .18s var(--ease);
+}
+.sc-complete .gnode:hover { background: var(--line-3); transform: translateX(1px); }
+.sc-complete .gnode b { font: 650 14.5px/1.3 var(--sans); color: var(--text); }
+.sc-complete .gnode em { font: 400 11.5px/1.42 var(--mono); color: var(--text-3); font-style: normal; }
+.sc-complete .gnode .nk {
+  font: 500 10px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-3);
+}
+.sc-complete .gnode.is-on {
+  border-color: var(--accent); background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-soft), 0 0 24px -10px var(--accent-dim);
+}
+.sc-complete .gnode.lit { border-color: var(--accent-dim); }
+
+/* 源节点：蓝 */
+.sc-complete .gnode[data-node="disk"],
+.sc-complete .gnode[data-node="tpl"] { border-left-color: var(--blue); }
+.sc-complete .gnode[data-node="disk"] .nk,
+.sc-complete .gnode[data-node="tpl"] .nk { color: var(--blue); }
+
+/* 生产节点：青 */
+.sc-complete .gnode.proc { border-left-color: var(--accent); }
+.sc-complete .gnode.proc .nk { color: var(--accent); }
+
+/* 汇合节点：绿 */
+.sc-complete .gnode.out {
+  flex: 1; justify-content: center; gap: 5px;
+  border-color: var(--lime); border-left-color: var(--lime);
+  background: var(--lime-soft); padding: 14px 14px;
+}
+.sc-complete .gnode.out b { font-size: 18px; line-height: 1.25; }
+.sc-complete .gnode.out em { font-size: 11.5px; color: var(--text-2); }
+.sc-complete .gnode.out .nk { color: var(--lime); }
+.sc-complete .gout-eq {
+  margin-top: 4px; font: 500 10.5px/1.4 var(--mono); letter-spacing: .05em; color: var(--lime);
+  border-top: 1px dotted var(--line-2); padding-top: 5px;
+}
+
+/* 抓取节点：琥珀 */
+.sc-complete .gnode.craw {
+  border: 1px solid var(--line); border-left: 2px solid var(--amber);
+  padding: 9px 11px;
+}
+.sc-complete .gnode.craw b { font-size: 13px; }
+.sc-complete .gnode.craw em { font-size: 10.5px; }
+
+/* 连接线 */
+.sc-complete .gsep { position: relative; }
+.sc-complete .gsep i { position: absolute; height: 0; border-top: 1px dashed var(--line-2); }
+.sc-complete .gsep.two i { left: 5px; right: 8px; }
+.sc-complete .gsep.two i:nth-child(1) { top: 36%; }
+.sc-complete .gsep.two i:nth-child(2) { top: 72%; }
+.sc-complete .gsep.one i { left: 8px; right: 8px; top: 50%; }
+.sc-complete .gsep.two i::after,
+.sc-complete .gsep.one i::after,
+.sc-complete .gsep.merge .h3::after {
+  content: ""; position: absolute; right: -1px; top: -3.5px; width: 6px; height: 6px;
+  border-top: 1px solid var(--line); border-right: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.sc-complete .gsep.merge i { border-top: 1px dashed var(--line-2); }
+.sc-complete .gsep.merge .h1 { left: 4px; width: 46%; top: 36%; }
+.sc-complete .gsep.merge .h2 { left: 4px; width: 46%; top: 72%; }
+.sc-complete .gsep.merge .v {
+  left: 50%; top: 36%; height: 36%; width: 0; border-top: 0; border-left: 1px dashed var(--line-2);
+}
+.sc-complete .gsep.merge .h3 { left: 50%; right: 5px; top: 54%; }
+
+/* 传输小包（环境动效，很慢，不抢注意力） */
+@keyframes scFlow {
+  0%   { left: 2px; opacity: 0; }
+  18%  { opacity: 1; }
+  82%  { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
+}
+.sc-complete .gsep.two i::before,
+.sc-complete .gsep.one i::before {
+  content: ""; position: absolute; top: -3px; left: 2px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); animation: scFlow 2.8s linear infinite;
+}
+.sc-complete .gsep.two i:nth-child(2)::before { animation-delay: .9s; }
+.sc-complete .gsep.merge .h3::before {
+  content: ""; position: absolute; top: -3px; left: 2px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--lime); animation: scFlow 2.4s linear infinite;
+}
+
+/* 传输小包 */
+.sc-complete .gpk {
+  position: absolute; top: calc(50% - 3px); left: 6px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); opacity: 0; pointer-events: none;
+}
+
+/* ================= 证据面板 ================= */
+.sc-complete .insp {
+  flex: none; display: flex; flex-direction: column; gap: 9px;
+  border: 1px solid var(--line-2); border-top-color: var(--line); padding: 11px 14px 13px;
+  background: color-mix(in srgb, var(--bg-deep) 60%, transparent);
+}
+.sc-complete .insp-hd { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.sc-complete .insp-hd b { font: 600 15px/1.3 var(--sans); color: var(--text); }
+.sc-complete .insp-hd .tiny { margin-left: auto; color: var(--text-3); }
+.sc-complete .insp-body { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 14px; }
+.sc-complete .insp-code {
+  font: 400 13px/1.7 var(--mono); background: var(--bg-deep); border: 1px solid var(--line-3);
+  padding: 10px 12px; white-space: pre; overflow: auto; color: var(--text-2); min-height: 108px;
+}
+.sc-complete .insp-resp { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sc-complete .insp-resp > .spread { flex: none; }
+.sc-complete .resp-box {
+  border: 1px solid var(--line-3); background: var(--bg-deep); padding: 10px 12px;
+  font: 400 12.5px/1.72 var(--mono); color: var(--text-2); white-space: pre-wrap; overflow-wrap: break-word;
+  min-height: 108px;
+}
+.sc-complete .resp-box .rl2 { display: block; }
+.sc-complete .resp-box .hk { color: var(--accent); }
+.sc-complete .resp-box .hv { color: var(--lime); }
+.sc-complete .resp-box .hd { color: var(--text-3); }
+.sc-complete .resp-box .em2 { color: var(--amber); }
+.sc-complete .insp-note {
+  font: 400 12.5px/1.65 var(--sans); color: var(--text-2);
+  border-left: 2px solid var(--accent-dim); padding-left: 11px;
+}
+.sc-complete .insp-note b { color: var(--text); }
+
+/* 参数切换小按钮（tpl 节点用） */
+.sc-complete .pchips { display: flex; gap: 6px; margin: 2px 0 4px; }
+.sc-complete .pchip {
+  height: 24px; padding: 0 10px; cursor: pointer;
+  font: 400 11.5px/1 var(--mono); color: var(--text-2);
+  border: 1px solid var(--line-2); background: transparent; border-radius: 0;
+  transition: .16s var(--ease);
+}
+.sc-complete .pchip:hover { color: var(--text); border-color: var(--line); }
+.sc-complete .pchip.is-on { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+/* 出处标记 */
+.sc-complete .src-tag {
+  align-self: center; margin-left: 10px; padding: 2px 7px; white-space: nowrap;
+  border: 1px solid var(--line-2); font: 500 10px/1.4 var(--mono); letter-spacing: .06em;
+  color: var(--text-3);
+}
+.sc-complete .src-inline {
+  display: inline-block; margin-left: 10px; color: var(--text-3);
+  font: 400 11px/1.4 var(--mono); letter-spacing: .03em;
+}
+
+/* ================= 下方详细区（滚动） ================= */
+.sc-complete .deep { flex: none; display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+.sc-complete .dgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+
+.sc-complete .dsec {
+  display: flex; flex-direction: column; gap: 9px;
+  border: 1px solid var(--line-2); padding: 13px 15px 15px;
+  background: color-mix(in srgb, var(--sheet) 42%, transparent);
+}
+.sc-complete .dh {
+  margin: 0; display: flex; align-items: baseline; gap: 8px;
+  font: 600 15.5px/1.35 var(--sans); color: var(--text);
+}
+.sc-complete .dh .dn {
+  flex: none; font: 600 11px/1 var(--mono); letter-spacing: .08em; color: var(--accent);
+}
+.sc-complete .dcode {
+  font: 400 12.5px/1.72 var(--mono); background: var(--bg-deep); border: 1px solid var(--line-3);
+  padding: 10px 12px; overflow-x: auto;
+  white-space: normal;   /* 行由 .dl 自己控制，容器不能再保留源码换行 */
+}
+.sc-complete .dcode .dl { white-space: pre; color: var(--text-2); }
+.sc-complete .dcode .c { color: var(--text-3); font-style: italic; }
+.sc-complete .dp { margin: 0; font: 400 13.6px/1.72 var(--sans); color: var(--text-2); }
+.sc-complete .dp b { color: var(--text); font-weight: 650; }
+.sc-complete .dlist { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.sc-complete .dlist li { font: 400 13.6px/1.68 var(--sans); color: var(--text-2); }
+.sc-complete .dlist li b { font-weight: 650; }
+.sc-complete .dcallout {
+  border: 1px dashed var(--amber); background: var(--amber-soft);
+  padding: 9px 11px; font: 400 12.5px/1.65 var(--sans); color: var(--text-2);
+}
+.sc-complete .dcallout b { color: var(--amber); }
+
+/* 两次请求对照 */
+.sc-complete .two-req { display: flex; flex-direction: column; gap: 6px; }
+.sc-complete .req-line {
+  display: flex; align-items: center; gap: 9px;
+  border: 1px solid var(--line-3); background: var(--bg-deep); padding: 7px 10px;
+  font: 400 12px/1.3 var(--mono); color: var(--text-3);
+}
+.sc-complete .req-line .ar { color: var(--line); }
+.sc-complete .req-line em { font-style: normal; color: var(--accent); }
+
+/* 演进带 */
+.sc-complete .evo {
+  display: grid; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr) 34px minmax(0, 1fr);
+  align-items: stretch;
+}
+.sc-complete .evo-node {
+  display: flex; flex-direction: column; gap: 3px;
+  border: 1px solid var(--line-2); border-top: 2px solid var(--amber);
+  background: var(--bg-deep); padding: 10px 12px;
+}
+.sc-complete .evo-node .nk {
+  font: 500 10px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--amber);
+}
+.sc-complete .evo-node b { font: 650 13.5px/1.35 var(--sans); color: var(--text); }
+.sc-complete .evo-node em { font: 400 11.5px/1.55 var(--sans); color: var(--text-3); font-style: normal; }
+.sc-complete .evo-ar { position: relative; }
+.sc-complete .evo-ar i { position: absolute; left: 6px; right: 8px; top: 50%; height: 0; border-top: 1px dashed var(--line-2); }
+.sc-complete .evo-ar i::after {
+  content: ""; position: absolute; right: -1px; top: -3.5px; width: 6px; height: 6px;
+  border-top: 1px solid var(--line); border-right: 1px solid var(--line); transform: rotate(45deg);
+}
+
+/* 结论条 */
+.sc-complete .concl {
+  display: flex; gap: 14px; align-items: baseline;
+  border: 1px solid var(--accent-dim); border-left: 3px solid var(--accent);
+  background: var(--accent-soft); padding: 13px 16px;
+}
+.sc-complete .concl .tiny { flex: none; color: var(--accent); letter-spacing: .22em; }
+.sc-complete .concl p { margin: 0; font: 400 14px/1.66 var(--sans); color: var(--text-2); }
+.sc-complete .concl b { color: var(--text); }
+
+@media (max-width: 1560px) {
+  .sc-complete .graph { grid-template-columns: 268px 28px 274px 40px minmax(230px, 1fr) 28px 276px; }
+  .sc-complete .gnode b { font-size: 13px; }
+  .sc-complete .gnode.out b { font-size: 16px; }
+  .sc-complete .st-title { font-size: 27px; }
+}
+
+@media (max-width: 820px) {
+  .reader-deck .sc-complete .evo { grid-template-columns: minmax(0, 1fr); }
+  .reader-deck .sc-complete .evo-ar { min-height: 28px; }
+  .reader-deck .sc-complete .evo-ar i {
+    left: 50%; right: auto; top: 4px; bottom: 4px; width: 0; height: auto;
+    border-top: 0; border-left: 1px dashed var(--line-2);
+  }
+  .reader-deck .sc-complete .evo-ar i::after {
+    left: -3.5px; right: auto; top: auto; bottom: -1px; transform: rotate(135deg);
+  }
+}

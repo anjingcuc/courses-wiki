@@ -1,0 +1,225 @@
+<section class="scene sc-summary" id="sc-summary"
+         data-nav="回到总图"
+         data-kicker="SCENE 07 · 七屏路径 + 决策树 + 三题自测">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <header class="su-head">
+    <div class="kicker">SCENE 07 · 回到总图</div>
+    <h1 class="h1 su-h1">七屏走完，把判断留在手上</h1>
+    <p class="lede su-lede">上面这七屏各讲了一层；这一屏只做三件事：把路径摆出来、把判据收成三条、再用三道题验一遍。</p>
+  </header>
+
+  <!-- ==================== 一、七屏路径 + 三条判据 ==================== -->
+  <section class="su-block" data-block="map">
+    <div class="su-hd">
+      <span class="su-no">FIG.07-A</span>
+      <h2 class="su-t">七屏路径</h2>
+      <span class="su-d">点任一屏可以直接跳过去</span>
+    </div>
+
+    <ol class="su-path">
+      <li><a class="su-stop" href="#sc-overview" data-go="1">
+        <span class="su-n">01</span>
+        <span class="su-t">总图</span>
+        <span class="su-s">Web 演进 ↔ 爬虫手段</span>
+      </a></li>
+      <li><a class="su-stop" href="#sc-flow" data-go="2">
+        <span class="su-n">02</span>
+        <span class="su-t">一次往返</span>
+        <span class="su-s">浏览器 ↔ HTTP ↔ 服务器</span>
+      </a></li>
+      <li><a class="su-stop" href="#sc-complete" data-go="3">
+        <span class="su-n">03</span>
+        <span class="su-t">完整HTML</span>
+        <span class="su-s">响应体里就是整页</span>
+      </a></li>
+      <li><a class="su-stop" href="#sc-dynamic" data-go="4">
+        <span class="su-n">04</span>
+        <span class="su-t">两条路</span>
+        <span class="su-s">首屏空壳：跑 JS 或取 JSON</span>
+      </a></li>
+      <li><a class="su-stop" href="#sc-selectors" data-go="5">
+        <span class="su-n">05</span>
+        <span class="su-t">选择器</span>
+        <span class="su-s">同一棵 DOM 的两种问法</span>
+      </a></li>
+      <li><a class="su-stop" href="#sc-practice" data-go="6">
+        <span class="su-n">06</span>
+        <span class="su-t">把方法用回去</span>
+        <span class="su-s">三个案例：观察 → 路线 → 验证</span>
+      </a></li>
+      <li><a class="su-stop is-now" href="#sc-summary" data-go="7">
+        <span class="su-n">07</span>
+        <span class="su-t">回到总图</span>
+        <span class="su-s">你在这一屏</span>
+      </a></li>
+    </ol>
+
+    <div class="su-crit">
+      <div class="su-crit-c su-c1">
+        <span class="su-crit-k">判据 ①</span>
+        <b>源码里就有数据</b>
+        <p>右键查看源代码能搜到目标文本 —— 那就是服务器渲染好的，requests + bs4 直接取。</p>
+        <span class="su-crit-code">requests.get → soup.select("li")</span>
+      </div>
+      <div class="su-crit-c su-c2">
+        <span class="su-crit-k">判据 ②</span>
+        <b>源码只剩空壳</b>
+        <p>只有 <span class="mono">&lt;div id="app"&gt;</span> —— 先去 Network 找 XHR 接口；接口也拿不到，才上 headless。</p>
+        <span class="su-crit-code">json.loads(r.text) → data["data"]</span>
+      </div>
+      <div class="su-crit-c su-c3">
+        <span class="su-crit-k">判据 ③</span>
+        <b>页面在局部变</b>
+        <p>数字、列表自己变、地址栏不动 —— 盯 Network 的 XHR，别盯着 DOM 里的那串文字。</p>
+        <span class="su-crit-code">F12 → Network → Fetch/XHR</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 二、决策树 ==================== -->
+  <section class="su-block" data-block="tree">
+    <div class="su-hd">
+      <span class="su-no">FIG.07-B</span>
+      <h2 class="su-t">决策树</h2>
+      <span class="su-d">点分支切换：代价 / 代码骨架 / 坑（默认已展开 ①）</span>
+    </div>
+
+    <div class="tr-grid">
+      <div class="tr-left">
+        <p class="tr-q">拿到一个 URL 先做什么？</p>
+        <div class="tr-branches">
+          <button class="tr-b is-on" type="button" data-b="1" aria-expanded="true">
+            <span class="tr-b-n">①</span>
+            <span class="tr-b-c">F12 → Network 里有 <code>XHR</code> / JSON？</span>
+            <span class="tr-b-r">有 → 直接请求接口（最快，降维）</span>
+          </button>
+          <button class="tr-b" type="button" data-b="2" aria-expanded="false">
+            <span class="tr-b-n">②</span>
+            <span class="tr-b-c">右键查看网页源代码 → 有目标数据？</span>
+            <span class="tr-b-r">有 → requests + BeautifulSoup <em class="tr-tag">XPath · 选读</em></span>
+          </button>
+          <button class="tr-b" type="button" data-b="3" aria-expanded="false">
+            <span class="tr-b-n">③</span>
+            <span class="tr-b-c">源码只有 <code>&lt;div id="app"&gt;</code>？</span>
+            <span class="tr-b-r">是 → Selenium <em class="tr-tag">Playwright / 显式等待 · 补充</em></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tr-detail">
+        <p class="tr-idle">← 点左边任一分支，展开它的「代价 / 代码骨架 / 坑」</p>
+
+        <div class="tr-pane is-on" data-b="1">
+          <div class="tr-row">
+            <span class="tr-k">代价</span>
+            <div class="tr-v">最低。一次 <code>requests.get</code> 拿到结构化数据，不渲染、不解析 DOM；前置成本只是「找到接口」。</div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">骨架</span>
+            <div class="tr-v"><pre class="code">api = "https://site.com/api/comments?page=1"
+r = requests.get(api, headers=HDR, timeout=10)
+items = r.json()["data"]["list"]</pre></div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">坑</span>
+            <div class="tr-v">接口常校验 <code>Referer</code> / <code>Cookie</code> / 签名；响应可能是 JSONP，先剥回调壳；分页参数顺着 Network 里的请求一个个翻。</div>
+          </div>
+        </div>
+
+        <div class="tr-pane" data-b="2">
+          <div class="tr-row">
+            <span class="tr-k">代价</span>
+            <div class="tr-v">低。整页 HTML 已经就绪，写选择器即可；页面改版时选择器要跟着改，这是主要维护成本。</div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">骨架</span>
+            <div class="tr-v"><pre class="code">import requests
+from bs4 import BeautifulSoup
+
+r = requests.get(url)
+r.encoding = "utf-8"                       # 不指定编码，中文会乱码
+soup = BeautifulSoup(r.text, "html.parser")
+for li in soup.select("li"):               # li 选出来是一整个 list
+    print(li.text)                         # .text 只要元素里的文本</pre></div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">坑</span>
+            <div class="tr-v">不写 <code>r.encoding = "utf-8"</code> 中文就乱码；<code>&lt;a href&gt;</code> 是相对链接，要拼上前缀才是完整 URL；<code>select</code> 返回 list，要逐个 <code>.text</code> 取文本。</div>
+          </div>
+        </div>
+
+        <div class="tr-pane" data-b="3">
+          <div class="tr-row">
+            <span class="tr-k">代价</span>
+            <div class="tr-v">最高。启浏览器、占内存、每页数秒；部署还要装 driver 与浏览器，能不用就不用。</div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">骨架</span>
+            <div class="tr-v"><pre class="code">driver.get(url)
+WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, ".comment-item")))
+html = driver.page_source</pre></div>
+          </div>
+          <div class="tr-row">
+            <span class="tr-k">坑</span>
+            <div class="tr-v">用显式等待，别用 <code>time.sleep</code>；等 <code>networkidle</code> 或滚动触发懒加载；关图片、禁视频能明显提速。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 三、自测 ==================== -->
+  <section class="su-block" data-block="quiz">
+    <div class="su-hd">
+      <span class="su-no">FIG.07-C</span>
+      <h2 class="su-t">自测 · 3 题</h2>
+      <span class="su-d">都是 06 那三个案例的情境</span>
+      <span class="qz-score">0 / 3</span>
+      <button class="chip qz-reset" type="button">重做</button>
+    </div>
+
+    <article class="qz-card" data-ans="B">
+      <div class="qz-top">
+        <span class="qz-n">01</span>
+        <p class="qz-stem">【案例 A】抓静态学生名单，最后对账发现首页被抓了两次。最先该改哪一处？</p>
+      </div>
+      <div class="qz-opts">
+        <button class="qz-opt" type="button" data-k="A"><i>A</i><span>把 time.sleep 调大，抓慢点</span></button>
+        <button class="qz-opt" type="button" data-k="B"><i>B</i><span>先做 URL 归一化再判重</span></button>
+        <button class="qz-opt" type="button" data-k="C"><i>C</i><span>换成 headless 再抓一遍</span></button>
+        <button class="qz-opt" type="button" data-k="D"><i>D</i><span>只抓第一页就收工</span></button>
+      </div>
+      <p class="qz-exp"><b>答案 B</b><code>index.html</code> 和「1」指向同一页，但字符串不同 —— 字典按字符串比对，判重就失效了。先去锚点、去尾斜杠，再拿归一化后的结果当 key。</p>
+    </article>
+
+    <article class="qz-card" data-ans="B">
+      <div class="qz-top">
+        <span class="qz-n">02</span>
+        <p class="qz-stem">【案例 B】首屏只有 20 条，Network 里滚出一条 <code>data?page=2</code> 且返回 JSON。最优做法是？</p>
+      </div>
+      <div class="qz-opts">
+        <button class="qz-opt" type="button" data-k="A"><i>A</i><span>requests.get 页面 + 正则扫 HTML</span></button>
+        <button class="qz-opt" type="button" data-k="B"><i>B</i><span>打 data?page=N，json.loads 解析</span></button>
+        <button class="qz-opt" type="button" data-k="C"><i>C</i><span>上 headless 模拟滚动到底</span></button>
+        <button class="qz-opt" type="button" data-k="D"><i>D</i><span>手动多滚几次再复制</span></button>
+      </div>
+      <p class="qz-exp"><b>答案 B</b>接口已经暴露在 Network 里、又不用鉴权，每页一次请求就拿完；headless 能拿到，但要等渲染，留作接口抓不到时的兜底。</p>
+    </article>
+
+    <article class="qz-card" data-ans="B">
+      <div class="qz-top">
+        <span class="qz-n">03</span>
+        <p class="qz-stem">【案例 C · 来自 Web 开发课】库存 1000→999，页面没跳、Doc 只请求了 1 次。这说明发生了什么？</p>
+      </div>
+      <div class="qz-opts">
+        <button class="qz-opt" type="button" data-k="A"><i>A</i><span>服务器重新渲染了整页</span></button>
+        <button class="qz-opt" type="button" data-k="B"><i>B</i><span>JS 发 XHR 拿数据后改了 DOM</span></button>
+        <button class="qz-opt" type="button" data-k="C"><i>C</i><span>是 CSS 动画在变数字</span></button>
+        <button class="qz-opt" type="button" data-k="D"><i>D</i><span>浏览器缓存了旧页面</span></button>
+      </div>
+      <p class="qz-exp"><b>答案 B</b>整页只请求 1 次、页面没跳，却只有那个数字变了 —— 数字来自 XHR 响应。只要这一个数，就优先打接口，别去解析 DOM。</p>
+    </article>
+  </section>
+</section>

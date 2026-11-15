@@ -1,0 +1,81 @@
+<section class="scene sc-practice" id="sc-practice"
+         data-nav="把方法用回去"
+         data-kicker="SCENE 06 · 三个课堂案例 · 观察 → 选路线 → 验证">
+  <div class="sheet-ticks"><span></span><span></span><span></span><span></span></div>
+
+  <header class="pr-head">
+    <div class="kicker">SCENE 06 · 把方法用回去</div>
+    <h1 class="h1 pr-h1">三个课堂案例，同一条判断流程</h1>
+    <p class="lede pr-lede">不重复知识点，只练一件事：先在页面上找证据，再选一条路线，最后用代码验证它跑得通。换案例只换证据与结果，流程不变。</p>
+    <p class="pr-law">
+      <span class="tag m">合规</span>
+      <span>三个案例都跑在讲师自己搭的本地站点（<b class="mono">127.0.0.1:8000</b> / <b class="mono">:5000</b>，端口为示意）——
+        <b>自己开发网站自己爬，左右互搏</b>，不碰任何线上站点。</span>
+    </p>
+    <p class="pr-law pr-law-2">
+      <span class="tag">演示数据</span>
+      <span>页面里的条数、耗时都是<b>教学演示数据</b>，只用来说明量级差异，<b>不是讲师实测值</b>，也不是本机复现结果。</span>
+    </p>
+  </header>
+
+  <div class="pr-tabs" role="tablist" aria-label="三个课堂案例">
+    <button class="pr-tab is-on" type="button" role="tab" data-case="A" aria-selected="true">
+      <span class="pr-tab-n">A</span>
+      <span class="pr-tab-t">静态学生名单</span>
+      <span class="pr-tab-s">requests + bs4 · 首页抓了两遍</span>
+      <i class="pr-tab-dot" aria-hidden="true"></i>
+    </button>
+    <button class="pr-tab" type="button" role="tab" data-case="B" aria-selected="false">
+      <span class="pr-tab-n">B</span>
+      <span class="pr-tab-t">无限滚动名单</span>
+      <span class="pr-tab-s">AJAX · 首屏只有 20 条</span>
+      <i class="pr-tab-dot" aria-hidden="true"></i>
+    </button>
+    <button class="pr-tab" type="button" role="tab" data-case="C" aria-selected="false">
+      <span class="pr-tab-n">C</span>
+      <span class="pr-tab-t">库存 1000 → 999</span>
+      <span class="pr-tab-s">局部刷新 · 页面没跳</span>
+      <i class="pr-tab-dot" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="pr-flow">
+    <section class="pr-stage pr-st1">
+      <div class="pr-st-hd">
+        <span class="pr-st-n">01</span>
+        <span class="pr-st-t">观察证据</span>
+        <span class="pr-st-h">在页面上先看三件事</span>
+      </div>
+      <div class="pr-ev"></div>
+      <p class="pr-st-foot"></p>
+    </section>
+
+    <div class="pr-arrow" data-arrow="1" aria-hidden="true"></div>
+
+    <section class="pr-stage pr-st2">
+      <div class="pr-st-hd">
+        <span class="pr-st-n">02</span>
+        <span class="pr-st-t">选择路线</span>
+        <span class="pr-st-h pr-st2h">点一个你认为对的</span>
+      </div>
+      <div class="pr-choice"></div>
+      <p class="pr-fb" role="status"></p>
+      <p class="pr-note">代价从低到高：接口 &lt; 静态解析 &lt; 浏览器 —— 能走上面的，就别走下面的。</p>
+    </section>
+
+    <div class="pr-arrow" data-arrow="2" aria-hidden="true"></div>
+
+    <section class="pr-stage pr-st3">
+      <div class="pr-st-hd">
+        <span class="pr-st-n">03</span>
+        <span class="pr-st-t">验证结果</span>
+      </div>
+      <div class="pr-res"></div>
+    </section>
+  </div>
+
+  <div class="pr-foot">
+    <span class="lab">讲师原话</span>
+    <div class="pr-quote"></div>
+  </div>
+</section>

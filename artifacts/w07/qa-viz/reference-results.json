@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "python": "3.12.14",
+  "pandas": "3.0.1",
+  "raw_shape": [
+    9,
+    3
+  ],
+  "clean_shape": [
+    8,
+    3
+  ],
+  "hot_rows": 4,
+  "city_mean": {
+    "广州": 32.0,
+    "北京": 29.0,
+    "上海": 27.3
+  },
+  "matplotlib_execution": "not run: Matplotlib is absent from the available runtime; syntax and save/show order checked, no mock used"
+}

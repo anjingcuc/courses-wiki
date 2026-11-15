@@ -1,0 +1,1763 @@
+{
+  "passed": 325,
+  "failed": 0,
+  "total": 325,
+  "results": [
+    {
+      "name": "deck has 18 slides",
+      "passed": true,
+      "detail": "found=18"
+    },
+    {
+      "name": "cover identifies W07-B L16 and A link",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schedule is shared 100 minutes with B 58–100 highlighted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no WEEKMAP marker or second primary legacy mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "final page primary next is W08",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "L16 is explicitly regular instruction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: conflict",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: conflict",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: principles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: principles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: ecosystem",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: ecosystem",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: practice",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: practice",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: diagnostics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: diagnostics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B quiz has four questions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required commands and conceptual boundaries are present",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "lab is self-contained without external assets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab discloses simulation and separates measured excerpts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab exposes all six URL modes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one inline JavaScript block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inline JavaScript passes node --check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no external runtime libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case initial CSV contract is complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case environment node updates inspector",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case global counterexample avoids inevitability claim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case global counterexample synchronizes verdict",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case graph node supports keyboard activation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case reset restores independent CSV view",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "case desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "case mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "case mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "case mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "conflict starts with unsatisfiable measured excerpt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NumPy 2.0.2 shows removed alias and working mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NumPy explanation avoids total-crash exaggeration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "probe command follows selected version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NumPy 1.26.4 shows legacy alias and same mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "conflict reset returns to resolver",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "conflict desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "conflict desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "conflict mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "conflict mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "conflict mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "uv run leaves outer PATH unchanged but selects project interpreter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "uv run package path is project site-packages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "activation prepends PATH and sets VIRTUAL_ENV",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "global interpreter is not venv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fault separates python and pip targets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fault reproduces ModuleNotFoundError preset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "layer inspector explains PATH versus sys.path",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fault fix returns to uv run evidence",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime buttons support Space",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "principles desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "principles desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "principles mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "principles mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "principles mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "ecosystem python/command synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/command has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/toolchain synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/toolchain has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/dependencies synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/dependencies has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/config synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem python/config has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/command synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/command has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/toolchain synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/toolchain has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/dependencies synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/dependencies has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/config synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem node/config has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/command synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/command has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/toolchain synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/toolchain has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/dependencies synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/dependencies has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/config synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem rust/config has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/command synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/command has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/toolchain synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/toolchain has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/dependencies synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/dependencies has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/config synchronizes all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem go/config has tool counterexample and observation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Node dependency view separates NVM and npm",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Go cache view separates GOPATH GOMODCACHE GOROOT",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Rust toolchain view uses rustup not Cargo",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem reset restores Python dependency view",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ecosystem desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "ecosystem desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "ecosystem mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "ecosystem mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "ecosystem mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "practice begins with prompt review and no execution",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice init uses exact bare command",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pin creates python-version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice add synchronizes pyproject lock and venv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice script has data rules Agg and anchored paths",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice run uses locked command and labeled simulated values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice evidence has interpreter prefix and numpy file",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice sync rebuilds environment and keeps lock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice reset returns to prompt review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice playback reaches final sync and stops",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "practice desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "practice mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "practice mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "practice mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "diagnostic missing synchronizes symptom command and remedy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "diagnostic wrong synchronizes symptom command and remedy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "diagnostic fresh synchronizes symptom command and remedy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "diagnostic pip synchronizes symptom command and remedy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "diagnostic reset restores module-missing case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "diagnostics desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "diagnostics desktop visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "diagnostics mobile has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "diagnostics mobile visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "diagnostics mobile document width remains 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab case has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab case has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab case has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab conflict has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab conflict has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab conflict has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab principles has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab principles has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab principles has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab ecosystem has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab ecosystem has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab ecosystem has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab practice has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab practice has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab practice has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab diagnostics has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab diagnostics has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab diagnostics has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "file URL opens mode case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file URL opens mode conflict",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file URL opens mode principles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file URL opens mode ecosystem",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file URL opens mode practice",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file URL opens mode diagnostics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion practice has no active CSS/Web animations",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion autoplay is disabled with accessible explanation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion manual steps reach final static state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion reset remains functional",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "slides.js initializes 18 pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck desktop primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck schedule highlights four B rows and keeps six A rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schedule explicitly states combined 100 minutes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "case iframe works inside deck",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "iframe click does not advance parent deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/v2/slides/w07-venv.html#/3"
+    },
+    {
+      "name": "iframe ArrowRight is isolated from parent deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/v2/slides/w07-venv.html#/8"
+    },
+    {
+      "name": "iframe Space activates lab only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck keyboard navigation still works outside iframe",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/v2/slides/w07-venv.html#/9"
+    },
+    {
+      "name": "ecosystem iframe visible at 1920px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck renders four quiz cards",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "quiz scoring reaches 4/4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "final page primary next is W08",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe case is present on page 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe case loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=case"
+    },
+    {
+      "name": "built deck iframe conflict is present on page 5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe conflict loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=conflict"
+    },
+    {
+      "name": "built deck iframe principles is present on page 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe principles loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=principles"
+    },
+    {
+      "name": "built deck iframe ecosystem is present on page 10",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe ecosystem loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=ecosystem"
+    },
+    {
+      "name": "built deck iframe practice is present on page 13",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe practice loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=practice"
+    },
+    {
+      "name": "built deck iframe diagnostics is present on page 16",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe diagnostics loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/demos/w07-venv-lab.html?mode=diagnostics"
+    },
+    {
+      "name": "practice iframe usable at 390px deck width",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck 390px primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck End reaches final page",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/v2/slides/w07-venv.html#/18"
+    },
+    {
+      "name": "deck Home returns to cover",
+      "passed": true,
+      "detail": "http://127.0.0.1:65252/courses-wiki/python/v2/slides/w07-venv.html#/1"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 14 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 14 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 15 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 15 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 16 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 16 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 17 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 17 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck page 18 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1350, \"client\": 1350}"
+    },
+    {
+      "name": "deck page 18 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1350}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1366px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 768, \"innerHeight\": 768}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 14 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 14 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 15 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 15 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 16 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 16 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 17 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 17 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck page 18 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1904, \"client\": 1904}"
+    },
+    {
+      "name": "deck page 18 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1904}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1920px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 1080, \"innerHeight\": 1080}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 14 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 14 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 15 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 15 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 16 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 16 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 17 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 17 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck page 18 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 374, \"client\": 374}"
+    },
+    {
+      "name": "deck page 18 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 374}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 390px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 123, \"rootTop\": 123, \"rootBottom\": 844, \"innerHeight\": 844}"
+    },
+    {
+      "name": "case-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"case-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "case-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "conflict-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"conflict-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "conflict-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "principles-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"principles-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "principles-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "ecosystem-1920 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"ecosystem-1920\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "ecosystem-1920 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "practice-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"practice-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "practice-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "diagnostics-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"diagnostics-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "diagnostics-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-case has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-case\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-case makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-conflict has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-conflict\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-conflict makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-principles has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-principles\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-principles makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-ecosystem has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-ecosystem\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-ecosystem makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-practice has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-practice\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-practice makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-diagnostics has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-diagnostics\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "matrix-diagnostics makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "file-and-reduced has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"file-and-reduced\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "file-and-reduced makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"deck\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "deck makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "screenshots": [
+    "venv-case-1366.png",
+    "venv-case-390.png",
+    "venv-conflict-202-1366.png",
+    "venv-conflict-390.png",
+    "venv-principles-fault-1366.png",
+    "venv-principles-390.png",
+    "venv-ecosystem-go-1920.png",
+    "venv-ecosystem-390.png",
+    "venv-practice-run-1366.png",
+    "venv-practice-390.png",
+    "venv-diagnostics-pip-1366.png",
+    "venv-diagnostics-390.png",
+    "venv-practice-reduced.png",
+    "venv-deck-cover-1366.png",
+    "venv-deck-schedule-1366.png",
+    "venv-deck-principles-1366.png",
+    "venv-deck-ecosystem-1920.png",
+    "venv-deck-quiz-1366.png",
+    "venv-deck-final-1366.png",
+    "venv-deck-practice-390.png"
+  ],
+  "health": [
+    {
+      "label": "case-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "conflict-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "principles-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "ecosystem-1920",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "practice-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "diagnostics-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-case",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-conflict",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-principles",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-ecosystem",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-practice",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "matrix-diagnostics",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "file-and-reduced",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "deck",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    }
+  ],
+  "scope": [
+    "site\\python\\v2\\slides\\w07-venv.html",
+    "site\\python\\demos\\w07-venv-lab.html"
+  ],
+  "notes": [
+    "Built site/ served at /courses-wiki/; all HTTP browser paths target MkDocs output.",
+    "System Python Playwright with installed Google Chrome; desktop 1366×768 and 1920×1080; mobile 390×844; reduced-motion context.",
+    "All six built-deck iframes are loaded and asserted; all lab terminals are teaching simulations, with measured excerpts separately labeled."
+  ]
+}

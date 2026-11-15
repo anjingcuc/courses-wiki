@@ -1,0 +1,50 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "results": [
+    {
+      "name": "A slides 3/4/5/9 parse as one sequential Python program",
+      "passed": true,
+      "detail": "4 code blocks extracted"
+    },
+    {
+      "name": "A code has no load-before-definition variables",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "A definition chain includes df clean_df city_mean fig ax",
+      "passed": true,
+      "detail": "pd, records, df, clean_df, hot_df, city_mean, city_mean_df, plt, ax, fig"
+    },
+    {
+      "name": "A code has no read_csv call",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "A deck and visualization lab do not read phantom weather.csv",
+      "passed": true,
+      "detail": "weather.csv occurs only in explanatory prose"
+    },
+    {
+      "name": "labs do not fetch CSV over the network",
+      "passed": true,
+      "detail": "B answers.csv remains an explicit W06 input contract, not a lab HTTP dependency"
+    }
+  ],
+  "assigned_order": [
+    "pd",
+    "records",
+    "df",
+    "clean_df",
+    "hot_df",
+    "city_mean",
+    "city_mean_df",
+    "plt",
+    "ax",
+    "fig"
+  ],
+  "undefined": [],
+  "execution_note": "AST sequential validation only; system Python lacks Pandas/Matplotlib and no packages were installed. Browser lab states were tested separately."
+}

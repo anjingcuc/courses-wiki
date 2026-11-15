@@ -1,0 +1,761 @@
+{
+  "passed": 137,
+  "failed": 0,
+  "total": 137,
+  "results": [
+    {
+      "name": "deck has 13 slides",
+      "passed": true,
+      "detail": "found=13"
+    },
+    {
+      "name": "week-level title retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "WEEKMAP marker pair retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical legacy chapter retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "100-minute schedule and A 0–58 boundary",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A/B cover and final primary next link",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no phantom weather.csv read",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser Pandas wording is scoped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: pipeline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: pipeline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: charts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: charts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "visualization quiz has exactly 3 questions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no virtual-environment question remains in A quiz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab is self-contained without external assets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab discloses simulation and no file writes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one inline JavaScript block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inline JavaScript passes node --check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no external chart/runtime libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial raw 9 rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "normal-motion pipeline autoplay remains enabled",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial chart has 8 real bars + missing marker",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial code defines records and df",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline clean synchronizes 8 rows and 8 bars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline clean readout is synchronized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline group has 3 sorted rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline group chart has 3 bars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline final exposes save simulation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save simulation does not claim a real file",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline reset restores step 1 and raw rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline play reaches plot/save and stops",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page hidden event stops normal autoplay state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page hidden clears timer so step cannot advance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "pipeline visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "pipeline 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "pipeline 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts initial comparison/bar is complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "task switch retains readable data while awaiting chart",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong pie choice redraws and explains false whole",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "trend line and reason synchronize",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "proportion pie uses record counts, not temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong proportion line gives teaching feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "charts reset restores comparison/bar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "charts desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "charts desktop controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "charts 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "standalone demo opens via file://",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping has 8 table buttons and 8 SVG keyboard buttons",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table row selects corresponding SVG element",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SVG keyboard selection selects corresponding table row",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table button Space selection works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping has explicit missing-row explanation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping reset selects r01 on both sides",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "mapping desktop controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "mapping 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "mapping 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "reduced-motion disables autoplay with visible explanation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion never advances on a timer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion next step is immediate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion step buttons jump immediately",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion pipeline has no active CSS/Web animations",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "slides.js initializes 13 pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck desktop primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck schedule shows A highlighted and B link",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "iframe pipeline works inside deck",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "iframe click does not advance deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:59378/docs/python/v2/slides/w07.html#/6"
+    },
+    {
+      "name": "iframe ArrowRight does not advance parent deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:59378/docs/python/v2/slides/w07.html#/6"
+    },
+    {
+      "name": "iframe Space activates lab only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck keyboard navigation still works outside iframe",
+      "passed": true,
+      "detail": "http://127.0.0.1:59378/docs/python/v2/slides/w07.html#/7"
+    },
+    {
+      "name": "charts iframe visible on deck page 7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck renders 3 quiz cards",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "quiz scoring reaches 3/3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "final page primary next is W07-B",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping iframe usable at 390px deck width",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck 390px primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck End reaches final page",
+      "passed": true,
+      "detail": "http://127.0.0.1:59378/docs/python/v2/slides/w07.html#/13"
+    },
+    {
+      "name": "deck Home returns to cover",
+      "passed": true,
+      "detail": "http://127.0.0.1:59378/docs/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1366px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 768, \"innerHeight\": 768}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1920px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 1080, \"innerHeight\": 1080}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 390px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 123, \"rootTop\": 123, \"rootBottom\": 844, \"innerHeight\": 844}"
+    },
+    {
+      "name": "pipeline-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"pipeline-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "pipeline-desktop makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"charts-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "charts-desktop makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts-file-url has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"charts-file-url\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "charts-file-url makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "mapping-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"mapping-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "mapping-desktop makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "pipeline-reduced has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"pipeline-reduced\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "pipeline-reduced makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck-1366 has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"deck-1366\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": []}"
+    },
+    {
+      "name": "deck-1366 makes no external requests",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "screenshots": [
+    "pipeline-1366.png",
+    "pipeline-390.png",
+    "charts-1920.png",
+    "charts-390.png",
+    "mapping-1366.png",
+    "mapping-390.png",
+    "pipeline-reduced.png",
+    "deck-cover-1366.png",
+    "deck-schedule-1366.png",
+    "deck-pipeline-1366.png",
+    "deck-charts-1920.png",
+    "deck-quiz-1366.png",
+    "deck-final-1366.png",
+    "deck-mapping-390.png"
+  ],
+  "health": [
+    {
+      "label": "pipeline-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "charts-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "charts-file-url",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "mapping-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "pipeline-reduced",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    },
+    {
+      "label": "deck-1366",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": []
+    }
+  ],
+  "scope": [
+    "docs\\python\\v2\\slides\\w07.html",
+    "docs\\python\\demos\\w07-visualization-lab.html"
+  ],
+  "notes": [
+    "Source-tree temporary HTTP server only; no MkDocs build and no site/ writes.",
+    "Chromium headless; desktop 1366×768 and 1920×1080; mobile 390×844; reduced-motion context.",
+    "w07-venv.html is a sibling deliverable outside this agent's write scope; its content was not executed by this suite."
+  ]
+}

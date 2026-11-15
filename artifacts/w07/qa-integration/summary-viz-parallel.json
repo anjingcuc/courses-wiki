@@ -1,0 +1,1230 @@
+{
+  "passed": 201,
+  "failed": 2,
+  "total": 203,
+  "results": [
+    {
+      "name": "deck has 13 slides",
+      "passed": true,
+      "detail": "found=13"
+    },
+    {
+      "name": "week-level title retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "WEEKMAP marker pair retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical legacy chapter retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "100-minute schedule and A 0–58 boundary",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A/B cover and final primary next link",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no phantom weather.csv read",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser Pandas wording is scoped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: pipeline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: pipeline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: charts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: charts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck iframe contract: mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new-window link: mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "visualization quiz has exactly 3 questions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no virtual-environment question remains in A quiz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab is self-contained without external assets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lab discloses simulation and no file writes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one inline JavaScript block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inline JavaScript passes node --check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no external chart/runtime libraries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial raw 9 rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial chart has 8 real bars + missing marker",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline initial code defines records and df",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline clean synchronizes 8 rows and 8 bars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline clean readout is synchronized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline group has 3 sorted rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline group chart has 3 bars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline final exposes save simulation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save simulation does not claim a real file",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline reset restores step 1 and raw rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline play reaches plot/save and stops",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipeline desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "pipeline visible controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "pipeline 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "pipeline 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts initial comparison/bar is complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "task switch retains readable data while awaiting chart",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong pie choice redraws and explains false whole",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "trend line and reason synchronize",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "proportion pie uses record counts, not temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong proportion line gives teaching feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "charts reset restores comparison/bar",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "charts desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "charts desktop controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "charts 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "standalone demo opens via file://",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping has 8 table buttons and 8 SVG keyboard buttons",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table row selects corresponding SVG element",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SVG keyboard selection selects corresponding table row",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table button Space selection works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping has explicit missing-row explanation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping reset selects r01 on both sides",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mapping desktop has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "mapping desktop controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "mapping 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "mapping 390px controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "lab pipeline has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab pipeline has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab pipeline has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab charts has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab charts has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab charts has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "lab mapping has no full-page horizontal overflow at 1920x1080",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "lab mapping has no full-page horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "lab mapping has no full-page horizontal overflow at 390x844",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "reduced-motion pipeline has no active CSS/Web animations",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion step controls still work",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion play uses static states and remains functional",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "slides.js initializes 13 pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck desktop primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck schedule shows A highlighted and B link",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "iframe pipeline works inside deck",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "iframe click does not advance deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/6"
+    },
+    {
+      "name": "iframe ArrowRight does not advance parent deck",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/6"
+    },
+    {
+      "name": "iframe Space activates lab only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck keyboard navigation still works outside iframe",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/7"
+    },
+    {
+      "name": "charts iframe visible on deck page 7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck renders 3 quiz cards",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "quiz scoring reaches 3/3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "final page primary next is W07-B",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe pipeline is present on page 6",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe pipeline loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/demos/w07-visualization-lab.html?mode=pipeline"
+    },
+    {
+      "name": "built deck iframe charts is present on page 7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe charts loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/demos/w07-visualization-lab.html?mode=charts"
+    },
+    {
+      "name": "built deck iframe mapping is present on page 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "built deck iframe mapping loads deployed lab URL and rendered mode",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/demos/w07-visualization-lab.html?mode=mapping"
+    },
+    {
+      "name": "mapping iframe usable at 390px deck width",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deck 390px has no page-level horizontal overflow",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck 390px primary controls meet 44px targets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck End reaches final page",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/13"
+    },
+    {
+      "name": "deck Home returns to cover",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"scroll\": 1366, \"client\": 1366}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 1366px",
+      "passed": true,
+      "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1366px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 768, \"innerHeight\": 768}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"scroll\": 1920, \"client\": 1920}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 1920px",
+      "passed": true,
+      "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 1920px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 75, \"rootTop\": 75, \"rootBottom\": 1080, \"innerHeight\": 1080}"
+    },
+    {
+      "name": "deck page 1 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 1 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 2 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 2 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 3 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 3 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 4 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 4 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 5 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 5 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 6 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 6 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 7 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 7 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 8 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 8 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 9 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 9 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 10 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 10 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 11 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 11 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 12 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 12 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck page 13 has no active-slide horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"scroll\": 390, \"client\": 390}"
+    },
+    {
+      "name": "deck page 13 has no full-document horizontal overflow at 390px",
+      "passed": true,
+      "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "deck flex shell stays within viewport at 390px",
+      "passed": true,
+      "detail": "{\"headerBottom\": 123, \"rootTop\": 123, \"rootBottom\": 844, \"innerHeight\": 844}"
+    },
+    {
+      "name": "W07-A direct deployed URL initializes",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "A to B top navigation opens deployed W07-B",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07-venv.html#/1"
+    },
+    {
+      "name": "B to A top navigation opens deployed W07-A",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "W07-B direct deployed URL initializes",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07-venv.html#/1"
+    },
+    {
+      "name": "B to W08 top navigation opens deployed next week",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w08.html#/1"
+    },
+    {
+      "name": "M4 primary entry opens deployed W07-B",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07-venv.html#/1"
+    },
+    {
+      "name": "M4 footer entry opens deployed W07-A",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "home W07 week card opens deployed W07-A",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07.html#/1"
+    },
+    {
+      "name": "home cross-module entry opens deployed W07-B",
+      "passed": true,
+      "detail": "http://127.0.0.1:61443/courses-wiki/python/v2/slides/w07-venv.html#/1"
+    },
+    {
+      "name": "pipeline-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"pipeline-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "pipeline-desktop makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"charts-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "charts-desktop makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "charts-file-url has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"charts-file-url\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "charts-file-url makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "mapping-desktop has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"mapping-desktop\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "mapping-desktop makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-pipeline has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-pipeline\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "matrix-pipeline makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-charts has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-charts\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "matrix-charts makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "matrix-mapping has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"matrix-mapping\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "matrix-mapping makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "pipeline-reduced has no console/page/http errors",
+      "passed": true,
+      "detail": "{\"label\": \"pipeline-reduced\", \"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "pipeline-reduced makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "deck-1366 has no console/page/http errors",
+      "passed": false,
+      "detail": "{\"label\": \"deck-1366\", \"console_errors\": [\"Failed to load resource: net::ERR_NO_BUFFER_SPACE @ http://127.0.0.1:61443/favicon.ico\"], \"page_errors\": [], \"http_errors\": [], \"external_requests\": [], \"expected_external_requests\": []}"
+    },
+    {
+      "name": "deck-1366 makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "navigation-built has no console/page/http errors",
+      "passed": false,
+      "detail": "{\"label\": \"navigation-built\", \"console_errors\": [\"Failed to load resource: the server responded with a status of 404 () @ https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest\"], \"page_errors\": [], \"http_errors\": [\"404 https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest\"], \"external_requests\": [], \"expected_external_requests\": [\"https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2\", \"https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2\", \"https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest\", \"https://api.github.com/repos/anjingcuc/courses-wiki\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2\", \"https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback\", \"https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2\", \"https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback\", \"https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.102.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.100.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.89.woff2\", \"https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback\", \"https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.89.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.100.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.102.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2\", \"https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2\"]}"
+    },
+    {
+      "name": "navigation-built makes no unexpected external requests",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "screenshots": [
+    "viz-pipeline-1366.png",
+    "viz-pipeline-390.png",
+    "viz-charts-1920.png",
+    "viz-charts-390.png",
+    "viz-mapping-1366.png",
+    "viz-mapping-390.png",
+    "viz-pipeline-reduced.png",
+    "viz-deck-cover-1366.png",
+    "viz-deck-schedule-1366.png",
+    "viz-deck-pipeline-1366.png",
+    "viz-deck-charts-1920.png",
+    "viz-deck-quiz-1366.png",
+    "viz-deck-final-1366.png",
+    "viz-deck-mapping-390.png",
+    "viz-entry-m4-1366.png",
+    "viz-entry-home-1366.png"
+  ],
+  "health": [
+    {
+      "label": "pipeline-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "charts-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "charts-file-url",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "mapping-desktop",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "matrix-pipeline",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "matrix-charts",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "matrix-mapping",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "pipeline-reduced",
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "deck-1366",
+      "console_errors": [
+        "Failed to load resource: net::ERR_NO_BUFFER_SPACE @ http://127.0.0.1:61443/favicon.ico"
+      ],
+      "page_errors": [],
+      "http_errors": [],
+      "external_requests": [],
+      "expected_external_requests": []
+    },
+    {
+      "label": "navigation-built",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 () @ https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest"
+      ],
+      "page_errors": [],
+      "http_errors": [
+        "404 https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest"
+      ],
+      "external_requests": [],
+      "expected_external_requests": [
+        "https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
+        "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2",
+        "https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest",
+        "https://api.github.com/repos/anjingcuc/courses-wiki",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2",
+        "https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback",
+        "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
+        "https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback",
+        "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.102.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.100.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.89.woff2",
+        "https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback",
+        "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.87.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.89.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.100.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.101.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.102.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.104.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.105.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.106.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.107.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.108.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.109.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.110.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.111.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.112.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.113.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.114.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.115.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.116.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.117.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.118.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2",
+        "https://fonts.gstatic.com/s/notosanssc/v41/k3kXo84MPvpLmixcA63oeALRLoKI.woff2"
+      ]
+    }
+  ],
+  "scope": [
+    "site\\python\\v2\\slides\\w07.html",
+    "site\\python\\demos\\w07-visualization-lab.html"
+  ],
+  "notes": [
+    "Built site/ served at /courses-wiki/; all HTTP browser paths target MkDocs output.",
+    "System Python Playwright with installed Google Chrome; desktop 1366×768 and 1920×1080; mobile 390×844; reduced-motion context.",
+    "Includes direct A/B, actual A↔B and B→W08 clicks, M4/home entries, all three built-deck iframes, quizzes and state transitions."
+  ]
+}

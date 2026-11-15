@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W07-B 虚拟环境实验室 · 教学仿真</title>
+<style>
+  :root {
+    --ink: #172554;
+    --body: #334155;
+    --muted: #5b6b7f;
+    --paper: #f4f7fb;
+    --card: #ffffff;
+    --line: #d5e0ea;
+    --blue: #0369a1;
+    --blue-soft: #e0f2fe;
+    --violet: #6d28d9;
+    --violet-soft: #f3efff;
+    --green: #047857;
+    --green-soft: #ecfdf5;
+    --amber: #92400e;
+    --amber-soft: #fffbeb;
+    --red: #b91c1c;
+    --red-soft: #fef2f2;
+    --mono: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body {
+    margin: 0; min-width: 0; min-height: 100vh; color: var(--body);
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    background-color: var(--paper);
+    background-image: linear-gradient(rgba(109,40,217,.032) 1px, transparent 1px), linear-gradient(90deg, rgba(109,40,217,.032) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; touch-action: manipulation; }
+  a { color: var(--blue); }
+  button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid #1d4ed8; outline-offset: 3px;
+  }
+  [hidden] { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  .skip-link { position: fixed; left: 12px; top: -70px; z-index: 20; background: #fff; padding: 12px; }
+  .skip-link:focus { top: 12px; }
+
+  .lab-header {
+    display: grid; grid-template-columns: minmax(230px,.85fr) minmax(460px,1.6fr) minmax(190px,.65fr);
+    align-items: center; gap: 12px; padding: 7px 14px;
+    background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line);
+  }
+  .brand { min-width: 0; display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    flex: none; width: 44px; height: 44px; display: grid; place-items: center;
+    border: 2px solid var(--violet); border-radius: 12px; color: var(--violet);
+    font: 800 12px/1.05 var(--mono); letter-spacing: -.5px;
+  }
+  .eyebrow { color: var(--violet); font: 700 9px/1.3 var(--mono); letter-spacing: 1.2px; }
+  h1 { margin: 2px 0 0; color: var(--ink); font-size: 18px; line-height: 1.25; }
+  .mode-nav { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; }
+  .mode-link {
+    min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center;
+    padding: 6px 7px; border: 1px solid var(--line); border-radius: 9px;
+    color: var(--body); background: #fff; text-decoration: none; font-size: 11px; font-weight: 700; text-align: center;
+  }
+  .mode-link[aria-current="page"] { color: #fff; background: var(--violet); border-color: var(--violet); }
+  .sim-badge {
+    padding: 6px 9px; border: 1px dashed #b45309; border-radius: 8px;
+    background: var(--amber-soft); color: #78350f; font-size: 10px; line-height: 1.45; font-weight: 700;
+  }
+  main { width: 100%; max-width: 1540px; margin: 0 auto; padding: 9px 14px 18px; }
+  .mode-intro { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 0 7px; }
+  .mode-intro strong { color: var(--ink); font-size: 14px; }
+  .mode-intro span { color: var(--muted); font-size: 11.5px; }
+  .controls { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .btn {
+    min-height: 44px; min-width: 44px; border: 1px solid #b8c8d8; border-radius: 9px;
+    padding: 7px 12px; background: #fff; color: var(--ink); cursor: pointer;
+    font-size: 12px; font-weight: 700; transition: background-color .16s, border-color .16s, transform .16s;
+  }
+  .btn:hover:not(:disabled) { border-color: var(--violet); background: var(--violet-soft); }
+  .btn:active:not(:disabled) { transform: translateY(1px); }
+  .btn:disabled { opacity: .48; cursor: not-allowed; }
+  .btn.primary { background: var(--violet); border-color: var(--violet); color: #fff; }
+  .btn.primary:hover:not(:disabled) { background: #5b21b6; }
+  .btn.danger { color: var(--red); border-color: #fca5a5; background: #fff; }
+  .btn[aria-pressed="true"] { color: #fff; background: var(--ink); border-color: var(--ink); }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .toolbar-note { color: var(--muted); font-size: 10.5px; line-height: 1.5; }
+  .status {
+    margin-top: 8px; min-height: 44px; padding: 8px 11px; border-left: 4px solid var(--violet);
+    border-radius: 0 9px 9px 0; background: #fff; color: var(--body); font-size: 11.5px; line-height: 1.55;
+  }
+  .status strong { color: var(--ink); }
+  .tag {
+    display: inline-flex; align-items: center; min-height: 22px; padding: 2px 7px; border-radius: 6px;
+    background: var(--blue-soft); color: #075985; font-size: 9.5px; line-height: 1.35; font-weight: 800;
+  }
+  .tag.measured { background: var(--green-soft); color: #065f46; border: 1px solid #a7f3d0; }
+  .tag.simulated { background: var(--amber-soft); color: #78350f; border: 1px solid #fde68a; }
+  .tag.counter { background: var(--red-soft); color: #991b1b; border: 1px solid #fecaca; }
+  .pane {
+    min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; box-shadow: 0 3px 12px rgba(23,37,84,.045);
+  }
+  .pane-head {
+    min-height: 34px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+    padding: 5px 9px; border-bottom: 1px solid var(--line); background: #f8fafc;
+  }
+  .pane-head strong { color: var(--ink); font-size: 11.5px; }
+  .pane-head span { color: var(--muted); font: 600 9.5px/1.4 var(--mono); }
+  .pane-body { padding: 10px; }
+  .code-box, .terminal {
+    margin: 0; padding: 10px 11px; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word;
+    color: #dbeafe; background: #172554; font: 10.5px/1.58 var(--mono);
+  }
+  .code-box { min-height: 180px; max-height: 370px; overflow: auto; }
+  .terminal { min-height: 118px; max-height: 290px; overflow: auto; color: #d1fae5; background: #102a43; }
+  .terminal.measured { color: #e0f2fe; background: #17324d; }
+  .note { padding: 8px 10px; color: var(--muted); background: #fbfdff; font-size: 10.5px; line-height: 1.55; border-top: 1px solid var(--line); }
+  .inline-code { color: #075985; font-family: var(--mono); overflow-wrap: anywhere; }
+  .flash { animation: stateIn .24s ease-out; }
+  @keyframes stateIn { from { opacity: .55; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  /* 案例：项目与数据契约 */
+  .case-map { position: relative; display: grid; grid-template-columns: 1fr .72fr 1fr; gap: 12px; align-items: stretch; }
+  .case-project { display: grid; gap: 8px; }
+  .case-node {
+    min-height: 54px; width: 100%; border: 1px solid #b8c8d8; border-radius: 11px; background: #fff;
+    padding: 8px 11px; color: var(--body); text-align: left; cursor: pointer;
+  }
+  .case-node strong { display: block; color: var(--ink); font-size: 13px; }
+  .case-node span { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.45 var(--mono); overflow-wrap: anywhere; }
+  .case-node[aria-pressed="true"] { border: 2px solid var(--violet); background: var(--violet-soft); box-shadow: inset 4px 0 0 var(--violet); }
+  .case-node.env { border-style: dashed; }
+  .case-center { display: grid; align-content: center; gap: 9px; }
+  .case-csv { text-align: center; border-color: #38bdf8; background: #f0f9ff; }
+  .case-arrow { display: grid; place-items: center; gap: 2px; text-align: center; color: var(--blue); font: 800 11px/1.4 var(--mono); }
+  .flow-arrow { display: block; width: 92px; max-width: 100%; height: 18px; }
+  .flow-arrow path { stroke: var(--blue); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .case-global { border-color: #fca5a5; background: #fff7f7; }
+  .case-global[aria-pressed="true"] { border-color: var(--red); background: var(--red-soft); box-shadow: inset 4px 0 0 var(--red); }
+  .case-node.shared { border-color: #fca5a5; background: var(--red-soft); }
+  .case-local-dep { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 24px; color: var(--green); font: 800 10px/1.4 var(--mono); }
+  .case-local-dep svg { width: 20px; height: 24px; }
+  .case-local-dep path { stroke: var(--green); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .case-global-flow { grid-column: 1 / -1; display: grid; justify-items: center; gap: 2px; padding-top: 3px; border-top: 1px dashed #fca5a5; }
+  .case-global-flow > span { color: var(--red); font-size: 10px; font-weight: 800; }
+  .case-global-flow svg { display: block; width: min(100%, 720px); height: 68px; }
+  .case-global-flow > svg > path { stroke: var(--red); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+  .case-global-flow .case-global { width: min(100%, 360px); }
+  .case-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; }
+  .contract-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+  .contract-list li { padding: 6px 8px; border-bottom: 1px solid #e6edf3; font-size: 10.5px; line-height: 1.45; }
+  .contract-list b { color: var(--ink); }
+  .case-inspector h2, .eco-inspector h2, .diag-inspector h2 { margin: 0 0 5px; color: var(--ink); font-size: 16px; }
+  .case-inspector p, .eco-inspector p, .diag-inspector p { margin: 5px 0; font-size: 11px; line-height: 1.55; }
+  .case-verdict { margin-top: 7px; padding: 8px; border-radius: 8px; background: var(--green-soft); color: #065f46; font-size: 11px; line-height: 1.5; }
+  .case-verdict.warn { background: var(--red-soft); color: #991b1b; }
+
+  /* NumPy 安全实验 */
+  .experiment-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 8px; }
+  .experiment-switch .btn[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); }
+  .resolve-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 10px; }
+  .requirements { display: grid; gap: 7px; }
+  .constraint {
+    min-height: 48px; padding: 8px 10px; border: 1px solid #c4b5fd; border-radius: 9px; background: #f5f3ff;
+    color: #5b21b6; font: 800 13px/1.4 var(--mono);
+  }
+  .resolver { text-align: center; padding: 8px; border: 1px dashed #94a3b8; border-radius: 9px; color: var(--muted); font-size: 11px; }
+  .probe-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 10px; }
+  .version-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 8px; }
+  .version-switch .btn[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); }
+  .probe-readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 8px; }
+  .probe-readout { padding: 7px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 10px; line-height: 1.45; }
+  .probe-readout b { display: block; color: var(--ink); }
+
+  /* 路径机制 */
+  .runtime-switch { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; margin-bottom: 8px; }
+  .runtime-switch .btn[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); }
+  .runtime-switch .btn.fault[aria-pressed="true"] { background: var(--red); border-color: var(--red); }
+  .principles-grid { display: grid; grid-template-columns: 1.35fr .85fr; gap: 10px; }
+  .path-stack { display: grid; gap: 6px; }
+  .path-row { display: grid; grid-template-columns: 150px minmax(0,1fr); border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: #fff; }
+  .path-row.is-selected { border: 2px solid var(--violet); }
+  .layer-select {
+    min-height: 48px; border: 0; border-right: 1px solid var(--line); background: #f8fafc;
+    color: var(--ink); padding: 7px 9px; text-align: left; cursor: pointer; font-size: 11px; font-weight: 800;
+  }
+  .layer-select span { display: block; color: var(--violet); font: 800 9px/1.3 var(--mono); }
+  .path-value { min-width: 0; padding: 7px 9px; font: 10px/1.48 var(--mono); overflow-wrap: anywhere; }
+  .path-value small { display: block; color: var(--muted); font: 9.5px/1.4 "Microsoft YaHei", sans-serif; }
+  .principle-side { display: grid; gap: 8px; align-content: start; }
+  .principle-inspector { padding: 10px; border-left: 4px solid var(--violet); background: var(--violet-soft); }
+  .principle-inspector strong { display: block; color: var(--ink); font-size: 13px; }
+  .principle-inspector p { margin: 5px 0 0; font-size: 10.5px; line-height: 1.55; }
+  #principle-fix { width: 100%; }
+
+  /* 跨语言地图 */
+  .eco-selector { display: grid; grid-template-columns: 180px minmax(0,1fr); gap: 10px; margin-bottom: 9px; }
+  .eco-langs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .eco-langs .btn[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); }
+  .eco-layers { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+  .eco-layers .btn { padding-inline: 7px; }
+  .eco-layers .btn span { display: block; color: var(--violet); font: 800 9px/1.2 var(--mono); }
+  .eco-layers .btn[aria-pressed="true"] span { color: #ddd6fe; }
+  .eco-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 10px; }
+  .eco-inspector { padding: 12px; }
+  .eco-tool { display: inline-block; margin: 3px 0 7px; padding: 6px 9px; border-radius: 7px; background: var(--violet-soft); color: #5b21b6; font: 800 12px/1.45 var(--mono); }
+  .eco-counter { padding: 10px; border-left: 4px solid var(--red); background: var(--red-soft); }
+  .eco-counter strong { color: #991b1b; font-size: 12px; }
+  .eco-counter p { margin: 5px 0 0; color: #7f1d1d; font-size: 10.5px; line-height: 1.55; }
+  .eco-observe { padding: 10px; background: #f8fafc; }
+  .eco-observe strong { color: var(--ink); font-size: 11px; }
+  .eco-observe code { display: block; margin-top: 5px; color: #075985; font: 10px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .eco-observe p { margin: 7px 0 0; color: var(--amber); font-size: 10px; line-height: 1.5; }
+  .eco-contract { margin-top: 8px; display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+  .eco-contract div { padding: 7px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 9.5px; line-height: 1.45; }
+  .eco-contract b { display: block; color: var(--ink); }
+
+  /* UV + DSH 实操 */
+  .practice-rail { display: grid; grid-template-columns: repeat(8,1fr); gap: 5px; margin-bottom: 8px; }
+  .practice-step {
+    min-height: 48px; min-width: 44px; padding: 5px 4px; border: 1px solid var(--line); border-radius: 8px;
+    background: #fff; color: var(--body); cursor: pointer; font-size: 10px; font-weight: 800; line-height: 1.3;
+  }
+  .practice-step .no { display: block; color: var(--violet); font: 800 9px/1.2 var(--mono); }
+  .practice-step[aria-current="step"] { border: 2px solid var(--violet); background: var(--violet-soft); color: #4c1d95; }
+  .practice-step.is-done .no::after { content: " ✓"; color: var(--green); }
+  .practice-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 9px; }
+  .practice-side { min-width: 0; display: grid; grid-template-rows: auto auto; gap: 9px; }
+  .practice-code { min-height: 268px; max-height: 360px; }
+  .practice-terminal { min-height: 134px; max-height: 205px; }
+  .practice-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .step-readout { color: var(--muted); font: 800 10px/1.4 var(--mono); }
+  .file-tree { margin: 0; padding: 7px 9px; list-style: none; display: grid; gap: 3px; max-height: 180px; overflow: auto; }
+  .file-tree li { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 3px 5px; border-radius: 5px; font: 9.5px/1.4 var(--mono); }
+  .file-tree li span:last-child { color: var(--muted); font: 8.5px/1.4 "Microsoft YaHei", sans-serif; }
+  .file-tree li.commit { background: var(--green-soft); }
+  .file-tree li.rebuild { background: var(--blue-soft); }
+  .file-tree li.data { background: var(--violet-soft); }
+  .practice-explain { padding: 8px 10px; border-left: 4px solid var(--violet); background: #fff; font-size: 10.5px; line-height: 1.55; }
+  .practice-explain strong { color: var(--ink); }
+
+  /* 故障门诊 */
+  .diag-layout { display: grid; grid-template-columns: 280px minmax(0,1fr); gap: 10px; }
+  .diag-list { display: grid; gap: 7px; align-content: start; }
+  .diag-card { min-height: 58px; text-align: left; display: grid; grid-template-columns: 30px 1fr; align-items: center; gap: 5px; }
+  .diag-card .no { color: var(--violet); font: 800 12px/1 var(--mono); }
+  .diag-card small { display: block; margin-top: 3px; color: var(--muted); font-size: 9.5px; font-weight: 500; }
+  .diag-card[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); }
+  .diag-card[aria-pressed="true"] small, .diag-card[aria-pressed="true"] .no { color: #ede9fe; }
+  .diag-inspector { padding: 11px; }
+  .diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .diag-command, .diag-fix { padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: #f8fafc; }
+  .diag-command strong, .diag-fix strong { display: block; color: var(--ink); font-size: 11px; margin-bottom: 5px; }
+  .diag-command code { color: #075985; font: 10px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .diag-fix { background: var(--green-soft); }
+  .diag-fix p { margin: 0; color: #065f46; font-size: 10.5px; line-height: 1.55; }
+  .diag-output { margin-top: 8px; }
+  .diag-symptom { margin-bottom: 8px; padding: 8px 10px; border-left: 4px solid var(--red); background: var(--red-soft); color: #7f1d1d; font-size: 11px; line-height: 1.5; }
+  .lab-foot { margin-top: 8px; color: var(--muted); font-size: 9.5px; line-height: 1.5; text-align: right; }
+
+  @media (max-width: 1180px) {
+    .lab-header { grid-template-columns: 1fr auto; }
+    .mode-nav { grid-column: 1 / -1; grid-row: 2; }
+    .sim-badge { max-width: 310px; }
+    .case-layout, .principles-grid, .eco-grid { grid-template-columns: 1fr; }
+    .practice-layout { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 820px) {
+    .resolve-grid, .probe-grid, .practice-layout, .diag-layout { grid-template-columns: 1fr; }
+    .practice-rail { grid-template-columns: repeat(4,1fr); }
+    .eco-selector { grid-template-columns: 1fr; }
+    .eco-langs { grid-template-columns: repeat(4,1fr); }
+    .diag-list { grid-template-columns: 1fr 1fr; }
+    .eco-contract { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .lab-header { display: flex; flex-wrap: wrap; padding: 8px 10px; gap: 7px; }
+    .brand { width: 100%; }
+    .mode-nav { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); order: 3; }
+    .sim-badge { width: 100%; max-width: none; }
+    main { padding: 9px 9px 16px; }
+    .case-map, .case-layout, .diag-grid { grid-template-columns: 1fr; }
+    .case-arrow { min-height: 28px; }
+    .case-arrow .flow-arrow { transform: rotate(90deg); }
+    .runtime-switch { grid-template-columns: 1fr 1fr; }
+    .path-row { grid-template-columns: 1fr; }
+    .layer-select { border-right: 0; border-bottom: 1px solid var(--line); }
+    .eco-layers { grid-template-columns: 1fr 1fr; }
+    .eco-langs { grid-template-columns: 1fr 1fr; }
+    .practice-rail { grid-template-columns: repeat(2,1fr); }
+    .practice-side { grid-template-rows: auto auto; }
+    .practice-controls { align-items: flex-start; flex-direction: column; }
+    .practice-controls .controls { width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .practice-controls .btn { padding-inline: 5px; }
+    .diag-list { grid-template-columns: 1fr; }
+    .probe-readouts { grid-template-columns: 1fr; }
+  }
+  @media (max-height: 850px) and (min-width: 621px) {
+    .lab-header { padding-block: 5px; }
+    main { padding-top: 7px; }
+    .mode-intro { margin-bottom: 5px; }
+    .code-box { font-size: 10px; }
+    .practice-code { min-height: 240px; max-height: 310px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lab-main">跳到实验内容</a>
+<header class="lab-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">W07<br>B</span>
+    <div><div class="eyebrow">ENVIRONMENT EVIDENCE LAB</div><h1 id="lab-title">项目与数据契约</h1></div>
+  </div>
+  <nav class="mode-nav" aria-label="实验模式">
+    <a class="mode-link" data-mode-link="case" href="?mode=case">案例</a>
+    <a class="mode-link" data-mode-link="conflict" href="?mode=conflict">版本实验</a>
+    <a class="mode-link" data-mode-link="principles" href="?mode=principles">路径原理</a>
+    <a class="mode-link" data-mode-link="ecosystem" href="?mode=ecosystem">跨语言</a>
+    <a class="mode-link" data-mode-link="practice" href="?mode=practice">UV + DSH</a>
+    <a class="mode-link" data-mode-link="diagnostics" href="?mode=diagnostics">故障门诊</a>
+  </nav>
+  <div class="sim-badge">教学仿真 · 无真实 shell / 网络 / 依赖库 · 不写本机环境</div>
+</header>
+
+<main id="lab-main">
+  <!-- CASE -->
+  <section id="mode-case" class="mode-panel" aria-labelledby="case-heading">
+    <div class="mode-intro"><strong id="case-heading">W06 合规 CSV → W07 可视化作业</strong><span>图内项目、CSV、环境均可点；默认就是完整可用的独立环境方案。</span></div>
+    <div class="toolbar">
+      <div class="controls" aria-label="项目环境方案">
+        <button type="button" class="btn primary" data-case-layout="independent" aria-pressed="true">独立 .venv（推荐）</button>
+        <button type="button" class="btn danger" data-case-layout="global" aria-pressed="false">共用全局环境（反例）</button>
+        <button type="button" class="btn" id="case-reset">重置</button>
+      </div>
+      <span class="toolbar-note">数据产物穿过边界；包版本与锁定文件不跟着搬。</span>
+    </div>
+    <div class="case-layout">
+      <section class="pane" aria-label="项目和环境交互图">
+        <div class="pane-head"><strong>项目边界图</strong><span>CLICK / TAB + ENTER</span></div>
+        <div class="pane-body case-map" id="case-map" data-layout="independent">
+          <div class="case-project">
+            <button type="button" class="case-node" data-case-node="crawler" aria-pressed="false"><strong>crawler/ · W06 爬虫项目</strong><span>生产 answers.csv；声明自己的依赖</span></button>
+            <div class="case-local-dep" data-case-local-flow aria-hidden="true"><span>依赖解析</span><svg viewBox="0 0 20 24" focusable="false"><path d="M10 2 V20 M4 14 L10 21 L16 14"/></svg></div>
+            <button type="button" class="case-node env" data-case-node="crawler-env" aria-pressed="false"><strong>crawler/.venv</strong><span>requests / bs4 / …<br>pyproject.toml + uv.lock</span></button>
+          </div>
+          <div class="case-center">
+            <div class="case-arrow" aria-hidden="true"><span>导出</span><svg class="flow-arrow" viewBox="0 0 100 20" focusable="false"><path d="M4 10 H90 M84 4 L91 10 L84 16"/></svg></div>
+            <button type="button" class="case-node case-csv" data-case-node="csv" aria-pressed="true"><strong>answers.csv</strong><span>唯一穿过项目边界的数据产物</span></button>
+            <div class="case-arrow" aria-hidden="true"><span>读取</span><svg class="flow-arrow" viewBox="0 0 100 20" focusable="false"><path d="M4 10 H90 M84 4 L91 10 L84 16"/></svg></div>
+          </div>
+          <div class="case-project">
+            <button type="button" class="case-node" data-case-node="viz" aria-pressed="false"><strong>crawler-viz/ · W07 可视化</strong><span>读取 CSV；输出统计表与 PNG</span></button>
+            <div class="case-local-dep" data-case-local-flow aria-hidden="true"><span>依赖解析</span><svg viewBox="0 0 20 24" focusable="false"><path d="M10 2 V20 M4 14 L10 21 L16 14"/></svg></div>
+            <button type="button" class="case-node env" data-case-node="viz-env" aria-pressed="false"><strong>crawler-viz/.venv</strong><span>numpy / pandas / matplotlib<br>自己的 pyproject.toml + uv.lock</span></button>
+          </div>
+          <div class="case-global-flow" id="case-global-flow" hidden>
+            <span>两条依赖流汇入同一处（红色）；CSV 数据流仍独立保留</span>
+            <svg viewBox="0 0 720 82" aria-hidden="true" focusable="false">
+              <defs><marker id="case-global-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b91c1c" stroke="none"/></marker></defs>
+              <path data-case-shared-flow="crawler" d="M100 4 C100 40 270 38 352 72" marker-end="url(#case-global-arrow)"/>
+              <path data-case-shared-flow="viz" d="M620 4 C620 40 450 38 368 72" marker-end="url(#case-global-arrow)"/>
+            </svg>
+            <button type="button" class="case-node case-global" data-case-node="global" aria-pressed="false"><strong>全局 site-packages · 唯一依赖汇入点</strong><span>反例：两项目随意升降级同一处；两个独立 .venv 节点已退出此拓扑</span></button>
+          </div>
+        </div>
+        <div class="note" id="case-flow-note">绿色向下连线分别进入两套 .venv；蓝色横向箭头只是 CSV 数据流，不是“依赖继承”。</div>
+      </section>
+      <section class="pane case-inspector" aria-label="当前节点解释">
+        <div class="pane-head"><strong>节点检查器</strong><span class="tag simulated">机制模拟</span></div>
+        <div class="pane-body">
+          <h2 id="case-inspector-title">answers.csv · 数据契约</h2>
+          <p id="case-inspector-text">它不是随便复制的一个文件，而是两个项目之间可审查的接口。</p>
+          <ul class="contract-list" id="case-facts">
+            <li><b>文件与编码：</b>data/answers.csv；UTF-8</li>
+            <li><b>列与类型：</b>author_name 文本；voteup_count 数值</li>
+            <li><b>缺失规则：</b>点赞缺失不参与本任务求和</li>
+            <li><b>匿名规则：</b>“知乎用户”是合集，不是唯一作者</li>
+            <li><b>来源边界：</b>W06 合规取得；授权与隐私允许才提交</li>
+          </ul>
+          <div class="case-verdict" id="case-verdict">推荐：两个项目各自声明、锁定和验证依赖，CSV 是唯一共享输入。</div>
+        </div>
+      </section>
+    </div>
+    <div class="status" id="case-status" role="status" aria-live="polite"><strong>当前：</strong>共享数据契约；两个 .venv 各自解析依赖。点击任一节点查看职责。</div>
+  </section>
+
+  <!-- CONFLICT -->
+  <section id="mode-conflict" class="mode-panel" aria-labelledby="conflict-heading" hidden>
+    <div class="mode-intro"><strong id="conflict-heading">NumPy 安全实验：约束无解 ≠ 整个库必崩</strong><span>实测摘录来自 Windows + uv 0.12.5；本页没有执行这些命令。</span></div>
+    <div class="experiment-switch" aria-label="安全实验选择">
+      <button type="button" class="btn" data-conflict-view="resolve" aria-pressed="true">① 两个精确版本：约束求解</button>
+      <button type="button" class="btn" data-conflict-view="probe" aria-pressed="false">② 两个临时环境：API 探针</button>
+    </div>
+    <div id="conflict-resolve">
+      <div class="resolve-grid">
+        <section class="pane">
+          <div class="pane-head"><strong>conflict-requirements.txt</strong><span class="tag simulated">教学构造约束</span></div>
+          <div class="pane-body requirements">
+            <div class="constraint">numpy==1.26.4</div>
+            <div class="constraint">numpy==2.0.2</div>
+            <div class="resolver">同一项目的顶层 <b>numpy</b><br>↓ 交给 UV 求解器，不强装</div>
+            <pre class="code-box" style="min-height:0;">uv pip compile --python 3.12 conflict-requirements.txt</pre>
+          </div>
+          <div class="note">compile 只解析并尝试输出锁定结果，不要求虚拟环境，不向全局 Python 安装；仍可能读取索引与缓存。</div>
+        </section>
+        <section class="pane">
+          <div class="pane-head"><strong>研究环境真实输出</strong><span class="tag measured">实测摘录 · 非本页执行</span></div>
+          <pre class="terminal measured" id="compile-output">× No solution found when resolving dependencies:
+╰─▶ Because you require numpy==1.26.4 and numpy==2.0.2, we can conclude that
+    your requirements are unsatisfiable.
+
+[研究环境退出码 1：这是预期的教学结果]</pre>
+          <div class="note"><b>现象：</b>同一顶层包不能同时解析成两个精确版本。<br><b>解释：</b>不是“自动装两份”，也不是“随机选一版”。把它们分给两个独立项目，才是另一道各自可解的问题。</div>
+        </section>
+      </div>
+    </div>
+    <div id="conflict-probe" hidden>
+      <div class="version-switch" aria-label="NumPy 历史版本探针">
+        <button type="button" class="btn" data-numpy="1.26.4" aria-pressed="true">NumPy 1.26.4</button>
+        <button type="button" class="btn" data-numpy="2.0.2" aria-pressed="false">NumPy 2.0.2</button>
+      </div>
+      <div class="probe-grid">
+        <section class="pane">
+          <div class="pane-head"><strong>隔离临时环境命令</strong><span class="tag simulated">不要装进全局</span></div>
+          <pre class="code-box" id="probe-command" style="min-height:0;">uv run --no-project --python 3.12 --with numpy==1.26.4 python numpy_probe.py</pre>
+          <pre class="code-box" style="min-height:0;margin-top:8px;">import numpy as np
+print(f"NumPy {np.__version__}")
+try:
+    legacy_alias = np.float_
+except AttributeError as exc:
+    print(f"LEGACY_API_UNAVAILABLE: {exc}")
+else:
+    print(f"LEGACY_API_OK: np.float_ -> {legacy_alias.__name__}")
+print(f"MEAN_OK: {np.mean([1, 2, 3])}")
+print(f"PORTABLE_FIX_OK: {np.dtype(np.float64).name}")</pre>
+        </section>
+        <section class="pane">
+          <div class="pane-head"><strong id="numpy-output-label">NumPy 1.26.4 · 研究环境输出</strong><span class="tag measured">实测摘录 · 非本页执行</span></div>
+          <pre class="terminal measured" id="numpy-output">NumPy 1.26.4
+LEGACY_API_OK: np.float_ -> float64
+MEAN_OK: 2.0
+PORTABLE_FIX_OK: float64</pre>
+          <div class="probe-readouts">
+            <div class="probe-readout"><b id="numpy-legacy-state">np.float_：可用 → float64</b>旧别名在这个历史版本仍存在。</div>
+            <div class="probe-readout"><b id="numpy-mean-state">np.mean：仍为 2.0</b>一个 API 的存在与否，不能推成整个库的状态。</div>
+          </div>
+          <div class="note" id="numpy-explanation"><b>可移植修复：</b>np.float64 在两版都可用。新作业不依赖这两个历史版本；这里只复现 API 差异。</div>
+        </section>
+      </div>
+    </div>
+    <div class="toolbar" style="margin-top:8px;">
+      <span class="toolbar-note">临时环境不改项目 pyproject 或全局 site-packages；UV 仍可能写用户级缓存、下载受管 Python / wheel。</span>
+      <button type="button" class="btn" id="conflict-reset">重置实验</button>
+    </div>
+    <div class="status" id="conflict-status" role="status" aria-live="polite"><strong>当前现象：</strong>两个 NumPy 精确约束无解；没有向全局环境安装任何包。</div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="mode-principles" class="mode-panel" aria-labelledby="principles-heading" hidden>
+    <div class="mode-intro"><strong id="principles-heading">命令查找与实际模块解析是两条链</strong><span>切换运行方式；再点左侧层名查看该层职责。所有路径都是教学示例。</span></div>
+    <div class="runtime-switch" aria-label="运行方式">
+      <button type="button" class="btn" data-runtime="global" aria-pressed="false">全局 Python</button>
+      <button type="button" class="btn" data-runtime="activated" aria-pressed="false">人工激活 .venv</button>
+      <button type="button" class="btn" data-runtime="uv" aria-pressed="true">uv run（推荐）</button>
+      <button type="button" class="btn fault" data-runtime="fault" aria-pressed="false">python / pip 错位</button>
+    </div>
+    <div class="principles-grid">
+      <section class="pane">
+        <div class="pane-head"><strong>四层路径读数</strong><span class="tag simulated">机制模拟 · 非本机路径</span></div>
+        <div class="pane-body path-stack">
+          <div class="path-row" data-layer-row="path">
+            <button type="button" class="layer-select" data-principle-layer="path" aria-pressed="false"><span>01 · COMMAND</span>PATH 命令查找</button>
+            <div class="path-value" id="path-value"></div>
+          </div>
+          <div class="path-row" data-layer-row="interpreter">
+            <button type="button" class="layer-select" data-principle-layer="interpreter" aria-pressed="false"><span>02 · RUNTIME</span>实际解释器</button>
+            <div class="path-value" id="exe-value"></div>
+          </div>
+          <div class="path-row" data-layer-row="module">
+            <button type="button" class="layer-select" data-principle-layer="module" aria-pressed="false"><span>03 · IMPORT</span>sys.path / 包路径</button>
+            <div class="path-value" id="syspath-value"></div>
+          </div>
+          <div class="path-row" data-layer-row="config">
+            <button type="button" class="layer-select" data-principle-layer="config" aria-pressed="false"><span>04 · PROCESS</span>变量与提示符</button>
+            <div class="path-value" id="config-value"></div>
+          </div>
+        </div>
+        <div class="note" id="package-value"></div>
+      </section>
+      <div class="principle-side">
+        <section class="pane">
+          <div class="pane-head"><strong>模拟终端</strong><span class="tag simulated">模拟输出</span></div>
+          <pre class="terminal" id="principle-terminal"></pre>
+        </section>
+        <div class="principle-inspector">
+          <strong id="principle-inspector-title">uv run：命令环境不必先激活</strong>
+          <p id="principle-inspector-text">UV 直接为这次进程选择项目环境；shell 的外层 PATH 与提示符可以保持不变。</p>
+        </div>
+        <button type="button" class="btn primary" id="principle-fix" hidden>改用 uv run 复验</button>
+        <button type="button" class="btn" id="principle-reset">重置为 uv run</button>
+      </div>
+    </div>
+    <div class="status" id="principle-status" role="status" aria-live="polite"><strong>当前：</strong>uv run 选择项目解释器；PATH 不等于 sys.path。</div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section id="mode-ecosystem" class="mode-panel" aria-labelledby="ecosystem-heading" hidden>
+    <div class="mode-intro"><strong id="ecosystem-heading">语言 × 任务层：选工具，不背一套万能 activate</strong><span>先点语言，再点任务层；观察 / 验证可能同步、写缓存或构建，本页不会运行。</span></div>
+    <div class="eco-selector">
+      <div class="eco-langs" aria-label="语言生态">
+        <button type="button" class="btn" data-lang="python" aria-pressed="true">Python</button>
+        <button type="button" class="btn" data-lang="node" aria-pressed="false">Node</button>
+        <button type="button" class="btn" data-lang="rust" aria-pressed="false">Rust</button>
+        <button type="button" class="btn" data-lang="go" aria-pressed="false">Go</button>
+      </div>
+      <div class="eco-layers" aria-label="任务层">
+        <button type="button" class="btn" data-layer="command" aria-pressed="false"><span>01</span>命令查找</button>
+        <button type="button" class="btn" data-layer="toolchain" aria-pressed="false"><span>02</span>工具链</button>
+        <button type="button" class="btn" data-layer="dependencies" aria-pressed="true"><span>03</span>依赖解析</button>
+        <button type="button" class="btn" data-layer="config" aria-pressed="false"><span>04</span>配置与缓存</button>
+      </div>
+    </div>
+    <div class="eco-grid">
+      <section class="pane eco-inspector">
+        <div class="pane-head"><strong>正确职责</strong><span class="tag simulated">工具地图</span></div>
+        <div class="pane-body">
+          <h2 id="eco-title">Python · 依赖解析</h2>
+          <div class="eco-tool" id="eco-tool">UV · venv · conda</div>
+          <p id="eco-detail">UV 用 pyproject.toml / uv.lock 声明并锁定，项目 .venv 提供 site-packages；venv 常见 pip / requirements 工作流；conda 按所选环境文件与包工作流复现。</p>
+          <p><b>模块命中证据：</b><span class="inline-code" id="eco-evidence">sys.executable、sys.path、numpy.__file__</span></p>
+        </div>
+      </section>
+      <div class="principle-side">
+        <div class="eco-counter"><strong>反例纠错</strong><p id="eco-counter">不要把 PATH 当作 sys.path，也不要用 PYTHONPATH 手工拼一个“虚拟环境”。</p></div>
+        <div class="eco-observe"><strong>观察 / 验证命令（示例）</strong><code id="eco-observe">uv tree
+uv run --no-sync --locked python -c "import sys; print(sys.executable)"</code><p id="eco-side-effect">普通 uv run 可能同步项目环境并写缓存；--no-sync 只用于已建且依赖齐全、锁与声明一致的环境。</p></div>
+        <button type="button" class="btn" id="eco-reset">重置地图</button>
+      </div>
+    </div>
+    <div class="eco-contract">
+      <div><b>命令查找</b>PATH / proxies / symlink 先找到哪个程序。</div>
+      <div><b>工具链</b>解释器或编译工具链由谁选择。</div>
+      <div><b>项目依赖</b>声明、锁定、模块解析与构建列表。</div>
+      <div><b>配置缓存</b>共享存储可复用，但不替项目决定版本。</div>
+    </div>
+    <div class="status" id="eco-status" role="status" aria-live="polite"><strong>当前：</strong>Python 依赖解析；UV、venv、conda 各有工作流，不能都简化成 activate。</div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="mode-practice" class="mode-panel" aria-labelledby="practice-heading" hidden>
+    <div class="mode-intro"><strong id="practice-heading">UV + DeepSeek Harness：先审查，后执行，再留证据</strong><span>8 个步骤可点；代码、模拟终端与文件树使用同一状态。</span></div>
+    <div class="practice-rail" aria-label="UV 与 DSH 实操步骤">
+      <button type="button" class="practice-step" data-practice-step="0" aria-current="step"><span class="no">01</span>审查提示词</button>
+      <button type="button" class="practice-step" data-practice-step="1"><span class="no">02</span>UV init</button>
+      <button type="button" class="practice-step" data-practice-step="2"><span class="no">03</span>Python pin</button>
+      <button type="button" class="practice-step" data-practice-step="3"><span class="no">04</span>UV add</button>
+      <button type="button" class="practice-step" data-practice-step="4"><span class="no">05</span>编写脚本</button>
+      <button type="button" class="practice-step" data-practice-step="5"><span class="no">06</span>锁定运行</button>
+      <button type="button" class="practice-step" data-practice-step="6"><span class="no">07</span>环境证据</button>
+      <button type="button" class="practice-step" data-practice-step="7"><span class="no">08</span>sync 重建</button>
+    </div>
+    <div class="practice-layout">
+      <section class="pane">
+        <div class="pane-head"><strong id="practice-code-label">Agent 提示词 · 先审查</strong><span id="practice-code-file">crawler-viz/</span></div>
+        <pre class="code-box practice-code" id="practice-code"></pre>
+      </section>
+      <div class="practice-side">
+        <section class="pane">
+          <div class="pane-head"><strong id="practice-terminal-label">模拟终端 · 尚未执行</strong><span class="tag simulated">模拟输出</span></div>
+          <pre class="terminal practice-terminal" id="practice-terminal"></pre>
+        </section>
+        <section class="pane">
+          <div class="pane-head"><strong>项目文件树</strong><span>提交 / 重建 / 数据</span></div>
+          <ul class="file-tree" id="practice-tree" aria-label="当前步骤项目文件"></ul>
+        </section>
+      </div>
+    </div>
+    <div class="practice-explain" style="margin-top:8px;"><strong id="practice-step-title">01 · 先审查，不让 Agent 碰全局</strong><br><span id="practice-step-desc">核对工作区边界、W06 数据输入、精确依赖、输出物与验证命令；需要审批的操作先说明范围。</span></div>
+    <div class="practice-controls">
+      <span class="step-readout" id="practice-step-no">STEP 01 / 08</span>
+      <div class="controls">
+        <button type="button" class="btn primary" id="practice-play" aria-pressed="false">▶ 播放</button>
+        <button type="button" class="btn" id="practice-next">单步 →</button>
+        <button type="button" class="btn" id="practice-reset">重置</button>
+      </div>
+    </div>
+    <div class="status" id="practice-status" role="status" aria-live="polite">当前未执行命令。先确认：只在 crawler-viz 工作区写文件，不向系统 Python / Miniconda 安装。</div>
+  </section>
+
+  <!-- DIAGNOSTICS -->
+  <section id="mode-diagnostics" class="mode-panel" aria-labelledby="diagnostics-heading" hidden>
+    <div class="mode-intro"><strong id="diagnostics-heading">备用 / 课后 · 故障门诊：先证据，后修复</strong><span>不占课内分钟；症状卡就是按钮。命令与输出均为教学示例，本页不执行，也不笼统承诺只读。</span></div>
+    <div class="diag-layout">
+      <div class="diag-list" aria-label="故障症状">
+        <button type="button" class="btn diag-card" data-diagnostic="missing" aria-pressed="true"><span class="no">01</span><span>ModuleNotFoundError: pandas<small>先确认项目根目录和实际解释器</small></span></button>
+        <button type="button" class="btn diag-card" data-diagnostic="wrong" aria-pressed="false"><span class="no">02</span><span>python 指向另一个环境<small>PATH 与 sys.path 分开检查</small></span></button>
+        <button type="button" class="btn diag-card" data-diagnostic="fresh" aria-pressed="false"><span class="no">03</span><span>DSH 下次调用“激活丢失”<small>fresh shell 不保留状态</small></span></button>
+        <button type="button" class="btn diag-card" data-diagnostic="pip" aria-pressed="false"><span class="no">04</span><span>UV 环境 No module named pip<small>默认项目环境不保证有 pip</small></span></button>
+      </div>
+      <section class="pane diag-inspector">
+        <div class="pane-head"><strong id="diag-title">症状 01 · 找不到 pandas</strong><span class="tag simulated">教学仿真</span></div>
+        <div class="diag-symptom" id="diag-symptom">在 crawler-viz 中运行脚本，出现 ModuleNotFoundError: No module named 'pandas'。先不要全局 pip install。</div>
+        <div class="diag-grid">
+          <div class="diag-command"><strong>先取证：观察 / 验证（注明前提）</strong><code id="diag-command"># 已建环境仅观察：依赖齐全、锁与声明一致
+uv run --no-sync --locked python -c "import sys; print(sys.executable)"
+# 同时确认当前目录存在 pyproject.toml 与 uv.lock</code></div>
+          <div class="diag-fix"><strong>证据指向后的最短处置</strong><p id="diag-fix">在项目根目录执行 uv sync --locked，再用 uv run --locked python visualize.py；若 pyproject 从未声明 pandas，先审查后 uv add pandas。</p></div>
+        </div>
+        <div class="diag-output">
+          <span class="tag simulated">模拟输出</span>
+          <pre class="terminal" id="diag-output">executable = D:/course/crawler-viz/.venv/Scripts/python.exe
+pandas 未在项目环境解析到；下一步先查声明与同步状态。</pre>
+        </div>
+        <div class="note" id="diag-boundary">修复文件路径或依赖声明，不靠修改 PYTHONPATH 掩盖问题。</div>
+      </section>
+    </div>
+    <div class="toolbar" style="margin-top:8px;"><span class="toolbar-note">先证据后修复：普通 uv run 可能同步/写缓存；cargo build 会写 target/；npm ci 会重建 node_modules。完整报错、执行策略、中文字体与网络/证书问题都不能靠“重装一切”统一处理。</span><button type="button" class="btn" id="diag-reset">重置门诊</button></div>
+    <div class="status" id="diag-status" role="status" aria-live="polite"><strong>当前：</strong>模块缺失；先定位解释器与项目声明，不向全局环境安装。</div>
+  </section>
+
+  <div class="lab-foot">W07-B · L16 正课配套实验｜原生 HTML / CSS / JS + SVG 语汇｜无外部资源、无真实执行副作用</div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var q = function (selector) { return document.querySelector(selector); };
+  var qa = function (selector) { return Array.prototype.slice.call(document.querySelectorAll(selector)); };
+  var reducedQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var reduced = !!reducedQuery.matches;
+  var validModes = ["case", "conflict", "principles", "ecosystem", "practice", "diagnostics"];
+  var requested = new URLSearchParams(window.location.search).get("mode") || "case";
+  var mode = validModes.indexOf(requested) >= 0 ? requested : "case";
+  var titles = {
+    case: "项目与数据契约",
+    conflict: "NumPy 安全版本实验",
+    principles: "PATH 与模块解析",
+    ecosystem: "跨语言工具地图",
+    practice: "UV + DSH 实操",
+    diagnostics: "虚拟环境故障门诊"
+  };
+
+  qa(".mode-panel").forEach(function (panel) { panel.hidden = panel.id !== "mode-" + mode; });
+  qa("[data-mode-link]").forEach(function (link) {
+    if (link.getAttribute("data-mode-link") === mode) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  q("#lab-title").textContent = titles[mode];
+  document.title = "W07-B " + titles[mode] + " · 教学仿真";
+
+  function flash(elements) {
+    if (reduced) return;
+    elements.forEach(function (el) {
+      if (!el) return;
+      el.classList.remove("flash");
+      void el.offsetWidth;
+      el.classList.add("flash");
+    });
+  }
+
+  /* ==================== CASE ==================== */
+  var caseState = { layout: "independent", node: "csv" };
+  var caseNodes = {
+    crawler: {
+      title: "crawler/ · 数据生产项目",
+      text: "W06 已负责合规获取与字段解析。它自己的 requests / BeautifulSoup 等依赖只在 crawler 项目中声明。",
+      facts: ["输入：被允许访问的数据来源", "输出：answers.csv 与来源说明", "依赖：按爬虫代码实际 import 声明", "边界：不要求可视化项目安装 Selenium"]
+    },
+    "crawler-env": {
+      title: "crawler/.venv · 爬虫自己的运行环境",
+      text: "它保留爬虫项目的解释器与包解析路径；可视化项目不会继承这里的包。",
+      facts: ["pyproject.toml：爬虫直接依赖", "uv.lock：爬虫项目的精确解析", ".venv：可删除重建，不提交", "验证： crawler 环境的解释器与包 __file__"]
+    },
+    csv: {
+      title: "answers.csv · 数据契约",
+      text: "它不是随便复制的一个文件，而是两个项目之间可审查的接口。",
+      facts: ["文件与编码：data/answers.csv；UTF-8", "列与类型：author_name 文本；voteup_count 数值", "缺失规则：点赞缺失不参与本任务求和", "匿名规则：“知乎用户”是合集，不是唯一作者", "来源边界：W06 合规取得；授权与隐私允许才提交"]
+    },
+    viz: {
+      title: "crawler-viz/ · 数据消费项目",
+      text: "它读取契约明确的 CSV，完成清洗、汇总、绘图和一句不越界的结论。",
+      facts: ["输入：data/answers.csv", "代码：visualize.py", "输出：统计表 + output/top_authors.png", "验证：uv run --locked 与环境探针"]
+    },
+    "viz-env": {
+      title: "crawler-viz/.venv · 可视化自己的环境",
+      text: "NumPy / Pandas / Matplotlib 在可视化项目独立声明与锁定，避免和爬虫或其他项目的版本约束叠加。",
+      facts: ["pyproject.toml：可视化直接依赖", "uv.lock：精确解析，不手改", ".python-version：默认 Python 请求", ".venv：运行结果，可重建，不是部署包"]
+    },
+    global: {
+      title: "全局 site-packages · 反例，不等于必崩",
+      text: "两个项目向同一处随意安装/升降级，会让约束叠加。求解器可能提前拒绝；强行覆盖后也可能只在某些 API 或执行路径出现差异。",
+      facts: ["可能：约束无解", "可能：旧 API 被移除，如新代码路径报错", "也可能：当前脚本碰巧仍能运行", "结论：用独立声明与路径证据消除歧义，而不是制造全局事故"]
+    }
+  };
+
+  function renderCase(animate) {
+    qa("[data-case-layout]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-case-layout") === caseState.layout ? "true" : "false");
+    });
+    qa("[data-case-node]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-case-node") === caseState.node ? "true" : "false");
+    });
+    var data = caseNodes[caseState.node];
+    q("#case-inspector-title").textContent = data.title;
+    q("#case-inspector-text").textContent = data.text;
+    q("#case-facts").innerHTML = "";
+    data.facts.forEach(function (fact) {
+      var li = document.createElement("li");
+      var parts = fact.split("：");
+      if (parts.length > 1) {
+        var b = document.createElement("b"); b.textContent = parts.shift() + "：";
+        li.appendChild(b); li.appendChild(document.createTextNode(parts.join("：")));
+      } else li.textContent = fact;
+      q("#case-facts").appendChild(li);
+    });
+    var global = caseState.layout === "global";
+    q("#case-map").setAttribute("data-layout", caseState.layout);
+    qa(".case-node.env").forEach(function (node) { node.hidden = global; });
+    qa("[data-case-local-flow]").forEach(function (flow) { flow.hidden = global; });
+    q("#case-global-flow").hidden = !global;
+    qa('[data-case-node="crawler"], [data-case-node="viz"]').forEach(function (node) { node.classList.toggle("shared", global); });
+    q("#case-flow-note").textContent = global
+      ? "拓扑已改变：两套 .venv 与绿色局部连线退出，两条红色依赖流汇入同一个全局 site-packages；蓝色 CSV 数据流仍保留。"
+      : "绿色向下连线分别进入两套 .venv；蓝色横向箭头只是 CSV 数据流，不是“依赖继承”。同仓库也可建不同 UV 项目。";
+    q("#case-verdict").classList.toggle("warn", global);
+    q("#case-verdict").textContent = global
+      ? "反例：共享全局不保证立刻出错，但约束与覆盖顺序变得难解释；本课不在教师机这样实验。"
+      : "推荐：两个项目各自声明、锁定和验证依赖，CSV 是唯一共享输入。";
+    q("#case-status").textContent = global
+      ? "当前反例拓扑：两套 .venv 已退出，两条依赖连线汇入同一全局 site-packages；风险不等于必崩。"
+      : "当前推荐拓扑：共享 CSV 数据契约；两条依赖连线分别进入 crawler 与 crawler-viz 的独立 .venv。";
+    if (animate) flash([q(".case-inspector .pane-body"), q("#case-status")]);
+  }
+
+  qa("[data-case-layout]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      caseState.layout = btn.getAttribute("data-case-layout");
+      if (caseState.layout === "global") caseState.node = "global";
+      else if (caseState.node === "global") caseState.node = "viz-env";
+      renderCase(true);
+    });
+  });
+  qa("[data-case-node]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      caseState.node = btn.getAttribute("data-case-node");
+      if (caseState.node === "global") caseState.layout = "global";
+      else if (caseState.node === "crawler-env" || caseState.node === "viz-env") caseState.layout = "independent";
+      renderCase(true);
+    });
+  });
+  q("#case-reset").addEventListener("click", function () { caseState = { layout: "independent", node: "csv" }; renderCase(true); });
+
+  /* ==================== CONFLICT ==================== */
+  var conflictState = { view: "resolve", version: "1.26.4" };
+  var numpyResults = {
+    "1.26.4": {
+      output: "NumPy 1.26.4\nLEGACY_API_OK: np.float_ -> float64\nMEAN_OK: 2.0\nPORTABLE_FIX_OK: float64",
+      legacy: "np.float_：可用 → float64",
+      legacyText: "旧别名在这个历史版本仍存在。",
+      mean: "np.mean：返回 2.0",
+      explanation: "可移植修复：np.float64 在两版都可用。1.26.4 只用于复现历史行为，不是新作业指定版本。",
+      status: "NumPy 1.26.4：np.float_ 可用，mean 为 2.0；不能把旧版可用推成所有 API 永远稳定。"
+    },
+    "2.0.2": {
+      output: "NumPy 2.0.2\nLEGACY_API_UNAVAILABLE: `np.float_` was removed in the NumPy 2.0 release. Use `np.float64` instead.\nMEAN_OK: 2.0\nPORTABLE_FIX_OK: float64",
+      legacy: "np.float_：2.0 已移除 → 用 np.float64",
+      legacyText: "这是官方迁移指南中的特定 API 变化。",
+      mean: "np.mean：仍为 2.0",
+      explanation: "一个旧 API 被移除，不等于 NumPy 整体必崩。能维护代码就迁移；旧项目可用独立环境控制升级节奏。",
+      status: "NumPy 2.0.2：np.float_ 不可用并提示 np.float64；mean 仍为 2.0，脚本捕获异常后正常结束。"
+    }
+  };
+
+  function renderConflict(animate) {
+    qa("[data-conflict-view]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-conflict-view") === conflictState.view ? "true" : "false");
+    });
+    q("#conflict-resolve").hidden = conflictState.view !== "resolve";
+    q("#conflict-probe").hidden = conflictState.view !== "probe";
+    qa("[data-numpy]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-numpy") === conflictState.version ? "true" : "false");
+    });
+    var data = numpyResults[conflictState.version];
+    q("#probe-command").textContent = "uv run --no-project --python 3.12 --with numpy==" + conflictState.version + " python numpy_probe.py";
+    q("#numpy-output-label").textContent = "NumPy " + conflictState.version + " · 研究环境输出";
+    q("#numpy-output").textContent = data.output;
+    q("#numpy-legacy-state").textContent = data.legacy;
+    q("#numpy-legacy-state").nextSibling.textContent = data.legacyText;
+    q("#numpy-mean-state").textContent = data.mean;
+    q("#numpy-explanation").textContent = data.explanation;
+    q("#conflict-status").textContent = conflictState.view === "resolve"
+      ? "当前现象：两个 NumPy 精确约束无解；uv pip compile 返回退出码 1，没有向全局环境安装包。"
+      : data.status;
+    if (animate) flash([q("#conflict-" + conflictState.view), q("#conflict-status")]);
+  }
+
+  qa("[data-conflict-view]").forEach(function (btn) {
+    btn.addEventListener("click", function () { conflictState.view = btn.getAttribute("data-conflict-view"); renderConflict(true); });
+  });
+  qa("[data-numpy]").forEach(function (btn) {
+    btn.addEventListener("click", function () { conflictState.version = btn.getAttribute("data-numpy"); conflictState.view = "probe"; renderConflict(true); });
+  });
+  q("#conflict-reset").addEventListener("click", function () { conflictState = { view: "resolve", version: "1.26.4" }; renderConflict(true); });
+
+  /* ==================== PRINCIPLES ==================== */
+  var principleState = { runtime: "uv", layer: "interpreter" };
+  var G = "C:/Miniconda3";
+  var V = "D:/course/crawler-viz/.venv";
+  var B = "D:/course/project-b/.venv";
+  var runtimes = {
+    global: {
+      path: G + "; C:/Windows/System32; …\n未前置项目 .venv/Scripts",
+      exe: G + "/python.exe\nsys.prefix == sys.base_prefix",
+      sys: G + "/Lib/site-packages\n由当前全局解释器解析",
+      config: "VIRTUAL_ENV：未设置\n提示符：没有 (.venv)",
+      pack: "numpy.__file__ → " + G + "/Lib/site-packages/numpy/__init__.py（教学示例）",
+      terminal: "> (Get-Command python).Source\n" + G + "/python.exe\n> python -c \"import sys; print(sys.prefix != sys.base_prefix)\"\nFalse",
+      title: "全局 Python：命令与包路径都指向 base",
+      text: "这不是“错误环境”，只是不适合让多个项目随意共享升降级。先用路径读数确认，而不是猜测。",
+      status: "全局状态：python 与 NumPy 都来自 base；sys.prefix 与 base_prefix 相同。"
+    },
+    activated: {
+      path: V + "/Scripts; " + G + "; …\n激活把项目 Scripts 前置到当前 shell",
+      exe: V + "/Scripts/python.exe\nsys.prefix != sys.base_prefix",
+      sys: V + "/Lib/site-packages\n由这个项目解释器解析",
+      config: "VIRTUAL_ENV=" + V + "\n提示符：(.venv) — 只是证据之一",
+      pack: "numpy.__file__ → " + V + "/Lib/site-packages/numpy/__init__.py（教学示例）",
+      terminal: "> .\\.venv\\Scripts\\Activate.ps1\n> (Get-Command python).Source\n" + V + "/Scripts/python.exe\n> python -c \"import sys; print(sys.prefix != sys.base_prefix)\"\nTrue\n> deactivate  # 恢复当前 shell 原状态",
+      title: "人工激活：只修改当前 shell 的命令环境",
+      text: "PATH 前置、VIRTUAL_ENV 与提示符改变；真正 import 时仍由实际解释器及其 sys.path 决定。conda 还可能运行包激活脚本。",
+      status: "激活状态：当前 shell 的 PATH 已前置 .venv/Scripts；解释器与包路径一致。"
+    },
+    uv: {
+      path: G + "; C:/Windows/System32; …\n外层 shell PATH 未被前置修改",
+      exe: V + "/Scripts/python.exe\nUV 为这次进程选择项目解释器",
+      sys: V + "/Lib/site-packages\n项目环境解析；PATH 不等于 sys.path",
+      config: "VIRTUAL_ENV：不要求设置\n提示符：可以不变；看进程路径证据",
+      pack: "numpy.__file__ → " + V + "/Lib/site-packages/numpy/__init__.py（教学示例）",
+      terminal: "> uv run --no-sync --locked python -c \"import sys,numpy; print(sys.executable); print(numpy.__file__)\"\n" + V + "/Scripts/python.exe\n" + V + "/Lib/site-packages/numpy/__init__.py\n[模拟输出：已建环境仅观察；uv.lock 未被改写]",
+      title: "uv run：命令环境不必先激活",
+      text: "UV 直接为这次进程选择项目环境；shell 的外层 PATH 与提示符可以保持不变。这里 --no-sync --locked 仅观察已成功 sync、依赖齐全且锁与声明一致的已建环境；普通 uv run --locked 仍可能同步并写缓存。",
+      status: "uv run：外层 PATH 未改，但实际解释器与 NumPy 都来自项目 .venv。"
+    },
+    fault: {
+      path: "python → " + B + "/Scripts/python.exe\npip → " + G + "/Scripts/pip.exe\n两个命令命中不同环境",
+      exe: B + "/Scripts/python.exe\n项目 B 当前没有 pandas",
+      sys: B + "/Lib/site-packages\npip 安装到全局并不会进入这里",
+      config: "故障预设：安装命令与运行解释器错位\n不是用 PYTHONPATH 掩盖的理由",
+      pack: "pip show 的目标：全局；python import 的目标：项目 B → ModuleNotFoundError（此预设）",
+      terminal: "> pip install pandas\n[模拟：装入 " + G + "/Lib/site-packages]\n> python -c \"import pandas\"\nModuleNotFoundError: No module named 'pandas'\n> pip -V\npip … from " + G + "/Lib/site-packages/pip\n[模拟输出：安装与运行路径不一致]",
+      title: "错位故障：pip 装了，但另一个 python 看不见",
+      text: "先比较 Get-Command python、pip -V、sys.executable 与包 __file__。UV 项目推荐 uv add + uv run，不靠全局 pip 修复。",
+      status: "错位故障：pip 装入全局，项目 B 的 python 仍找不到 pandas；路径证据已定位。"
+    }
+  };
+  var layerInfo = {
+    path: ["PATH · 只负责命令查找", "它决定 shell 输入 python / pip 时先命中哪个可执行文件。PATH 不是 import 的模块搜索路径。"],
+    interpreter: ["实际解释器 · 连接两条链", "sys.executable 证明真正运行谁；sys.prefix != sys.base_prefix 是运行中判断 venv 的官方证据。"],
+    module: ["sys.path / site-packages · 负责 import", "实际解释器按模块搜索路径找到包。PYTHONPATH 只是额外搜索路径，不是 venv 的同义词。"],
+    config: ["环境变量与提示符 · 辅助证据", "VIRTUAL_ENV 与 (.venv) 提供线索，但不能替代路径验证。激活仅影响当前 shell；conda 可能更复杂。"]
+  };
+
+  function renderPrinciples(animate) {
+    var data = runtimes[principleState.runtime];
+    qa("[data-runtime]").forEach(function (btn) { btn.setAttribute("aria-pressed", btn.getAttribute("data-runtime") === principleState.runtime ? "true" : "false"); });
+    q("#path-value").textContent = data.path;
+    q("#exe-value").textContent = data.exe;
+    q("#syspath-value").textContent = data.sys;
+    q("#config-value").textContent = data.config;
+    q("#package-value").textContent = data.pack;
+    q("#principle-terminal").textContent = data.terminal;
+    q("#principle-inspector-title").textContent = data.title;
+    q("#principle-inspector-text").textContent = data.text;
+    q("#principle-fix").hidden = principleState.runtime !== "fault";
+    q("#principle-status").textContent = data.status;
+    qa("[data-principle-layer]").forEach(function (btn) {
+      var selected = btn.getAttribute("data-principle-layer") === principleState.layer;
+      btn.setAttribute("aria-pressed", selected ? "true" : "false");
+      q('[data-layer-row="' + btn.getAttribute("data-principle-layer") + '"]').classList.toggle("is-selected", selected);
+    });
+    if (principleState.layer) {
+      q("#principle-inspector-title").textContent = layerInfo[principleState.layer][0] + "｜" + data.title;
+      q("#principle-inspector-text").textContent = layerInfo[principleState.layer][1] + " " + data.text;
+    }
+    if (animate) flash([q(".path-stack"), q("#principle-terminal"), q(".principle-inspector")]);
+  }
+
+  qa("[data-runtime]").forEach(function (btn) { btn.addEventListener("click", function () { principleState.runtime = btn.getAttribute("data-runtime"); renderPrinciples(true); }); });
+  qa("[data-principle-layer]").forEach(function (btn) { btn.addEventListener("click", function () { principleState.layer = btn.getAttribute("data-principle-layer"); renderPrinciples(true); }); });
+  q("#principle-fix").addEventListener("click", function () { principleState.runtime = "uv"; principleState.layer = "interpreter"; renderPrinciples(true); });
+  q("#principle-reset").addEventListener("click", function () { principleState = { runtime: "uv", layer: "interpreter" }; renderPrinciples(true); });
+
+  /* ==================== ECOSYSTEM ==================== */
+  var ecoState = { lang: "python", layer: "dependencies" };
+  var layerNames = { command: "命令查找", toolchain: "工具链", dependencies: "依赖解析", config: "配置与缓存" };
+  var ecoData = {
+    python: {
+      command: ["PATH / 直接路径 / uv run", "venv 激活把 .venv/Scripts 前置；UV 可直接 uv run；conda activate 改 PATH 并可能运行包脚本。", "(Get-Command python).Source", "不要把所有 Python 工作流都理解成 source activate；uv run 不要求先激活。", "(Get-Command python).Source\nuv run --no-sync --locked python -c \"import sys; print(sys.executable)\""],
+      toolchain: ["UV / 创建 venv 的 base Python / conda", "UV 可发现并下载受管 Python，用 .python-version 固定项目请求；venv 使用创建它的既有 Python；conda 可创建含指定 Python 与其他包的环境。", ".python-version、requires-python、conda 环境声明", "venv 不会凭 pyvenv.cfg 一句话，把创建时的 3.11 变成 3.12。", "uv python list --only-installed\npython --version"],
+      dependencies: ["UV · venv · conda", "UV 用 pyproject.toml / uv.lock 声明并锁定，项目 .venv 提供 site-packages；venv 常见 pip / requirements 工作流；conda 按所选环境文件与包工作流复现。", "sys.executable、sys.path、numpy.__file__", "不要把 PATH 当作 sys.path，也不要用 PYTHONPATH 手工拼一个“虚拟环境”。", "uv tree\nuv run --no-sync --locked python -c \"import sys; print(sys.executable)\""],
+      config: ["VIRTUAL_ENV / PYTHONPATH / UV cache / conda 脚本", "VIRTUAL_ENV 与提示符是辅助证据；PYTHONPATH 是额外模块路径；UV cache 可复用下载；conda 激活还可能设置原生库相关路径。", "sys.prefix、sys.base_prefix、包实际文件路径", "共享 UV 缓存不等于所有项目共用一套依赖；虚拟环境也不是安全沙箱。", "python -c \"import sys; print(sys.prefix, sys.base_prefix)\""]
+    },
+    node: {
+      command: ["PATH / NVM_BIN / nvm-windows symlink", "nvm-sh 在 POSIX shell 中调整 PATH；nvm-windows 是独立项目，常用 symlink 切换 Node。npm 与 node 的版本也要分别看。", "process.execPath、node -v、npm -v", "不要把 nvm-sh 与 nvm-windows 的平台细节混写成同一实现。", "node -v\nnpm -v\nnode -p \"process.execPath\""],
+      toolchain: ["nvm / nvm-windows / .nvmrc", "NVM 选择 Node 运行时；.nvmrc 声明项目期望版本。它不管项目 node_modules 的安装。", ".nvmrc、process.execPath", "执行 nvm use 不会让已声明的 lodash 自动出现在项目里。", "nvm current\nnode -p \"process.execPath\""],
+      dependencies: ["npm / package.json / package-lock / node_modules", "npm 默认装到项目本地 node_modules；Node 从当前模块目录向祖先查找 node_modules。已有 lockfile 时 npm ci 干净安装。", "require.resolve('包名')、npm ls --depth=0", "NVM 选 Node，npm 管项目依赖；也不要把 Python 的一个顶层 NumPy 模型机械套到 Node 的嵌套解析。", "npm ls --depth=0\nnode -p \"require.resolve('此处换成已安装包名')\""],
+      config: ["npm cache / NODE_PATH（较少需要）", "npm cache 可共享下载结果；NODE_PATH 是历史/额外查找机制，不是本周项目隔离的首选。", "真实模块解析路径与项目目录", "npm ci 会移除并重建 node_modules；在未审查目录里不能盲跑。", "npm config get cache\nnpm ls --depth=0"]
+    },
+    rust: {
+      command: ["PATH → ~/.cargo/bin proxies", "rustup 的 rustc / cargo proxies 先接收命令，再委托给所选实际工具链。", "rustup show active-toolchain", "命令名叫 cargo，不代表 Cargo 与 rustup 是同一个职责。", "rustup show active-toolchain\nrustup toolchain list"],
+      toolchain: ["rustup default / override / rust-toolchain.toml / cargo +stable", "rustup 是 toolchain multiplexer；cargo +stable 可显式选择 stable 进行本次构建。", "rustup show active-toolchain", "不要靠反复编辑 PATH 猜 stable / nightly；先用 rustup 读当前选择。", "rustup show active-toolchain\ncargo +stable --version"],
+      dependencies: ["Cargo / Cargo.toml / Cargo.lock", "Cargo 读取 Cargo.toml 解析依赖、生成或使用 Cargo.lock 并调用 rustc 构建；cargo build --locked 不允许锁文件被改写。", "cargo tree、Cargo.lock", "Cargo 是依赖与构建工具，rustup 管工具链；二者不能互相替代。", "cargo tree\ncargo +stable build --locked"],
+      config: ["RUSTUP_HOME / CARGO_HOME / target", "CARGO_HOME 默认 ~/.cargo，含注册表、源码缓存与 bin；项目构建产物默认 target/。共享缓存不是 Python 式 site-packages。", "当前工具链与项目 target 分开看", "多个项目共用 Cargo 下载缓存是正常复用，不等于共享一个虚拟环境。", "rustup show active-toolchain\ncargo metadata --no-deps --format-version 1"]
+    },
+    go: {
+      command: ["PATH → go 命令", "shell 先找到 go；go 命令再按主模块、工作区和工具链策略执行。", "go version、go env GOROOT", "不要把 GOROOT（工具链位置）与 GOPATH（工作/缓存位置）混为一谈。", "go version\ngo env GOROOT GOPATH"],
+      toolchain: ["GOTOOLCHAIN / go 行 / toolchain 行", "Go 1.21+ 的 GOTOOLCHAIN 控制选择策略；默认 auto 时可按 go.mod / go.work 选择或下载所需工具链，不是 NVM 式手工激活。", "go env GOTOOLCHAIN、go.mod", "go 行是最低 Go 版本，toolchain 行是建议工具链；不要把它们当依赖版本清单。", "go version\ngo env GOTOOLCHAIN"],
+      dependencies: ["go.mod / go.sum / 模块构建列表", "go.mod 声明模块路径、Go 版本与依赖；go.sum 校验模块内容；Go 的模块选择算法决定构建列表。", "go env GOMOD、go list -m all、go mod verify", "go.sum 是内容校验，不是另一份依赖声明；不需要 activate Go 环境。", "go env GOMOD\ngo list -m all\ngo mod verify"],
+      config: ["GOPATH / GOMODCACHE / GOPROXY / 构建缓存 / GOROOT", "GOPATH 下 pkg/mod 是可共享、只读的模块下载缓存；GOMODCACHE 可单独查看；GOROOT 是当前工具链位置。", "go env GOPATH GOMODCACHE GOROOT", "把 GOPATH 改成项目目录并不会完成版本隔离；共享同一版本模块缓存不等于冲突。", "go env GOPATH GOMODCACHE GOPROXY GOROOT"]
+    }
+  };
+  var ecoEffects = {
+    python: "普通 uv run 可能同步项目环境并写缓存；--no-sync --locked 只用于已成功 sync、依赖齐全且锁与声明一致的已建环境，未满足前提先修复。",
+    node: "npm ls / require.resolve 用于观察；若选择 npm ci 安装，它会重建 node_modules，并可能写缓存、访问网络，不能称为只读。",
+    rust: "rustup show 用于观察；cargo +stable build --locked 是构建验证，会写 target/，--locked 只限制改锁，也可能使用缓存或网络。",
+    go: "go env / go version 用于观察；go list、构建或工具链自动选择可能下载模块/工具链并写缓存，须按实际命令判断。"
+  };
+
+  function renderEco(animate) {
+    qa("[data-lang]").forEach(function (btn) { btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === ecoState.lang ? "true" : "false"); });
+    qa("[data-layer]").forEach(function (btn) { btn.setAttribute("aria-pressed", btn.getAttribute("data-layer") === ecoState.layer ? "true" : "false"); });
+    var langName = { python: "Python", node: "Node", rust: "Rust", go: "Go" }[ecoState.lang];
+    var data = ecoData[ecoState.lang][ecoState.layer];
+    q("#eco-title").textContent = langName + " · " + layerNames[ecoState.layer];
+    q("#eco-tool").textContent = data[0];
+    q("#eco-detail").textContent = data[1];
+    q("#eco-evidence").textContent = data[2];
+    q("#eco-counter").textContent = data[3];
+    q("#eco-observe").textContent = data[4];
+    q("#eco-side-effect").textContent = ecoEffects[ecoState.lang];
+    q("#eco-status").textContent = "当前：" + langName + "的" + layerNames[ecoState.layer] + "层。正确工具：" + data[0] + "。反例已同步更新。";
+    if (animate) flash([q(".eco-inspector .pane-body"), q(".eco-counter"), q(".eco-observe")]);
+  }
+  qa("[data-lang]").forEach(function (btn) { btn.addEventListener("click", function () { ecoState.lang = btn.getAttribute("data-lang"); renderEco(true); }); });
+  qa("[data-layer]").forEach(function (btn) { btn.addEventListener("click", function () { ecoState.layer = btn.getAttribute("data-layer"); renderEco(true); }); });
+  q("#eco-reset").addEventListener("click", function () { ecoState = { lang: "python", layer: "dependencies" }; renderEco(true); });
+
+  /* ==================== PRACTICE ==================== */
+  var practiceState = { step: 0, playing: false, timer: null };
+  var practicePrompt = `当前工作区是 crawler-viz。只在当前工作区内编写项目文件，
+不要修改全局 Python、其他项目或父目录。允许 UV 使用自己的
+用户级缓存和受管 Python，但不要向系统 Python / Miniconda 安装。
+
+1. uv init --bare --python 3.12 .，再 uv python pin 3.12。
+2. 添加 numpy==2.2.6、pandas==2.2.3、matplotlib==3.10.3。
+3. 保留 data/answers.csv；按研究中的实测脚本编写 visualize.py：
+   用 Path(__file__) 定位输入/输出、Agg 后端、中文字体候选与负号设置；
+   排除匿名合集和点赞缺失行，按作者汇总 Top 5，保存 output/top_authors.png。
+4. 编写 README.md 与 .gitignore：README 说明 answers.csv 是教学合成数据；
+   若替换数据，写来源/授权、字段规则、缺失与匿名规则、输出和结论限制；
+   写清 uv sync --locked 与 uv run --locked python visualize.py。
+   .gitignore 至少忽略 .venv/、__pycache__/、output/。
+5. 打印原始/有效行数、汇总表、NumPy 版本与图片路径；实际运行后
+   再打印 sys.executable 与 numpy.__file__。
+6. 不提交 .venv，不调用全局 pip。先列命令；需审批先说明范围。
+完成后报告实际命令、关键输出和生成文件，不要只给代码。`;
+  var visualizeCode = `from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")  # 无桌面/远程终端也保存图片，不弹窗
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / "data" / "answers.csv"
+OUTPUT = ROOT / "output" / "top_authors.png"
+
+
+def load_and_summarize(path: Path) -> tuple[pd.DataFrame, int, int]:
+    """读取爬虫 CSV，清洗并汇总每位实名作者的总点赞数。"""
+    df = pd.read_csv(path)
+    raw_count = len(df)
+
+    # 匿名合集不是唯一作者；点赞缺失的行不能参与求和。
+    clean = df.loc[df["author_name"].ne("知乎用户")].dropna(
+        subset=["author_name", "voteup_count"]
+    )
+    clean = clean.assign(voteup_count=pd.to_numeric(clean["voteup_count"]))
+
+    top = (
+        clean.groupby("author_name", as_index=False)["voteup_count"]
+        .sum()
+        .nlargest(5, "voteup_count")
+        .sort_values("voteup_count")  # barh 中最大值最后绘制，位于最上方
+    )
+    return top, raw_count, len(clean)
+
+
+def draw_chart(top: pd.DataFrame, output: Path) -> None:
+    """画横向柱状图并保存，长作者名比竖排柱更容易阅读。"""
+    plt.rcParams["font.sans-serif"] = [
+        "Microsoft YaHei",
+        "SimHei",
+        "Noto Sans CJK SC",
+        "Arial Unicode MS",
+        "DejaVu Sans",
+    ]
+    plt.rcParams["axes.unicode_minus"] = False
+
+    fig, ax = plt.subplots(figsize=(8, 4.5), layout="constrained")
+    ax.barh(top["author_name"], top["voteup_count"], color="#0f7f9c")
+    ax.set_title("爬虫回答：实名作者总点赞 Top 5")
+    ax.set_xlabel("总点赞数")
+    ax.set_ylabel("作者")
+    ax.grid(axis="x", alpha=0.2)
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output, dpi=150)
+    plt.close(fig)
+
+
+def main() -> None:
+    top, raw_count, clean_count = load_and_summarize(DATA)
+    print(f"原始 {raw_count} 行；用于统计 {clean_count} 行（已排除匿名合集与缺失值）")
+    print(top.to_string(index=False))
+
+    # NumPy 也来自本项目的锁定环境；版本检查不使用全局包。
+    print(f"NumPy {np.__version__}: 平均总点赞 = {np.mean(top['voteup_count']):.1f}")
+
+    draw_chart(top, OUTPUT)
+    print(f"图表已保存：{OUTPUT}")
+
+
+if __name__ == "__main__":
+    main()`;
+  var baseTree = [
+    ["crawler-viz/", "工作区", "data"],
+    ["├─ data/answers.csv", "教学合成数据 · 提交", "data"]
+  ];
+  function makePracticeTree(step) {
+    var tree = baseTree.slice();
+    if (step >= 1) tree.push(["├─ pyproject.toml", step >= 7 ? "提交：重建依据" : "提交：项目元数据", "commit"]);
+    if (step >= 2) tree.push(["├─ .python-version", "提交：3.12", "commit"]);
+    if (step >= 3) {
+      tree.push(["├─ uv.lock", step >= 5 ? "提交：精确解析 · 未改写" : "提交：精确解析", "commit"]);
+      tree.push(["├─ .venv/", step >= 7 ? "可重建：不提交（已重建）" : "可重建：不提交", "rebuild"]);
+    }
+    if (step >= 4) {
+      tree.push(["├─ visualize.py", "提交：完整实测脚本", "commit"]);
+      tree.push(["├─ README.md", "提交：数据来源与运行说明", "commit"]);
+      tree.push(["├─ .gitignore", "提交：忽略环境/输出", "commit"]);
+    }
+    if (step >= 5) tree.push(["└─ output/top_authors.png", step >= 7 ? "已再生成（模拟）" : "可再生成：不提交", "rebuild"]);
+    return tree;
+  }
+  var practiceSteps = [
+    {
+      short: "审查提示词", codeLabel: "Agent 提示词 · 先审查", file: "crawler-viz/", code: practicePrompt,
+      terminalLabel: "模拟终端 · 尚未执行", terminal: "[未执行任何命令]\n先确认工作区根目录：D:/course/crawler-viz\n审查：边界 / 输入 / 依赖 / 输出 / 验证\n审批：不绕过；全局安装：禁止",
+      tree: makePracticeTree(0),
+      title: "01 · 先审查，不让 Agent 碰全局",
+      desc: "核对工作区边界、W06 数据输入、精确依赖、输出物与验证命令；需要审批的操作先说明范围。",
+      status: "当前未执行命令。只在 crawler-viz 工作区写文件，不向系统 Python / Miniconda 安装。"
+    },
+    {
+      short: "UV init", codeLabel: "命令 + pyproject 结果", file: "pyproject.toml", code: "> uv init --bare --python 3.12 .\n\n[project]\nname = \"crawler-viz\"\nversion = \"0.1.0\"\nrequires-python = \">=3.12\"\ndependencies = []",
+      terminalLabel: "模拟终端 · init", terminal: "> uv init --bare --python 3.12 .\n[模拟输出] Initialized project crawler-viz\n[模拟输出] requires-python = \">=3.12\"\n[没有向全局 Python 安装包]",
+      tree: makePracticeTree(1),
+      title: "02 · bare 初始化：当前空目录就是项目根",
+      desc: "命令末尾的点表示当前目录。--python 3.12 写解释器要求；UV 可在缺少请求版本时使用受管 Python。",
+      status: "init 完成（模拟）：生成 pyproject.toml，工作区与 requires-python 已明确。"
+    },
+    {
+      short: "Python pin", codeLabel: "固定项目默认小版本", file: ".python-version", code: "> uv python pin 3.12\n\n# .python-version\n3.12\n\n# pyproject.toml 仍保留\nrequires-python = \">=3.12\"",
+      terminalLabel: "模拟终端 · pin", terminal: "> uv python pin 3.12\n[模拟输出] 写入 .python-version：3.12\n[项目默认解释器请求更明确；不是创建 requirements.txt]",
+      tree: makePracticeTree(2),
+      title: "03 · pin：解释器请求与依赖声明分开",
+      desc: "requires-python 是兼容范围；.python-version 指明项目默认小版本。两者都不是第三方包锁文件。",
+      status: "pin 完成（模拟）：.python-version 应提交；工具链选择与依赖解析是两个层。"
+    },
+    {
+      short: "UV add", codeLabel: "声明、锁定并同步依赖", file: "pyproject.toml + uv.lock", code: "> uv add numpy==2.2.6 pandas==2.2.3 matplotlib==3.10.3\n\ndependencies = [\n    \"matplotlib==3.10.3\",\n    \"numpy==2.2.6\",\n    \"pandas==2.2.3\",\n]\n\n# uv add 同时维护 pyproject.toml、uv.lock 与项目 .venv",
+      terminalLabel: "模拟终端 · add", terminal: "> uv add numpy==2.2.6 pandas==2.2.3 matplotlib==3.10.3\n[模拟输出] Resolved 依赖并写入 uv.lock\n[模拟输出] 创建/同步 crawler-viz/.venv\n[未调用全局 pip；UV 可使用自己的缓存]",
+      tree: makePracticeTree(3),
+      title: "04 · add：包管理落在项目，不落在全局",
+      desc: "精确版本是本课经过整体验证的示例组合，不宣称永远最新。uv.lock 由 UV 管理，不手改。",
+      status: "add 完成（模拟）：pyproject、uv.lock 与 .venv 同步出现；全局环境未改。"
+    },
+    {
+      short: "编写脚本", codeLabel: "Agent 编辑 · 审查代码与路径", file: "visualize.py", code: visualizeCode,
+      terminalLabel: "模拟终端 · 尚未运行", terminal: "[代码与说明文件已写入，尚未执行]\n审查点：\n✓ Path(__file__) 定位数据与输出，不依赖 fresh shell 当前目录\n✓ Agg 后端；中文字体候选与 axes.unicode_minus=False\n✓ 排除匿名合集与点赞缺失；不改原始 CSV\n✓ groupby + sum + nlargest + sort_values\n✓ README 写明教学合成数据来源与 locked 运行；.gitignore 不遗漏\n✓ 保存后关闭 fig",
+      tree: makePracticeTree(4),
+      title: "05 · 代码审查：脚本、README 与 .gitignore 一起交付",
+      desc: "本步是 Agent 编辑文件，不是 uv add 的副作用。脚本采用研究目录实测版本；真实运行后仍须打开 PNG 检查中文字体与排版。",
+      status: "visualize.py 已编写（模拟）：路径从 __file__ 计算，下一步才实际运行。"
+    },
+    {
+      short: "锁定运行", codeLabel: "推荐路线 · 无需先激活", file: "PowerShell / DSH", code: "> uv run --locked python visualize.py\n\n# --locked：uv.lock 与项目元数据必须一致，且不得改写\n# 不需要先执行 Activate.ps1\n# DSH 每次工具调用都是 fresh shell，此命令每次都完整有效",
+      terminalLabel: "模拟终端 · run", terminal: "> uv run --locked python visualize.py\n[模拟输出] 原始 10 行；用于统计 8 行（已排除匿名合集与缺失值）\nauthor_name  voteup_count\n         小周          25.0\n         阿岚          31.0\n         小林          35.0\nNumPy 2.2.6: 平均总点赞 = 30.3\n图表已保存：D:/course/crawler-viz/output/top_authors.png\n[以上为教学模拟；不是本页真实运行日志]",
+      tree: makePracticeTree(5),
+      title: "06 · run：输出图只是产物，解释器证据还要继续查",
+      desc: "模拟数值对应研究环境的 10→8、25/31/35、30.3 实测样例；本页终端仍明确标为模拟，不冒充真实执行。",
+      status: "run 完成（模拟）：显示统计表、NumPy 版本与输出路径；uv.lock 保持不变。"
+    },
+    {
+      short: "环境证据", codeLabel: "环境探针 · 已建环境仅观察", file: "python -c", code: "# 上一步已成功运行，环境已建、依赖齐全、锁与声明一致\n> uv run --no-sync --locked python -c \"import sys,numpy; print(sys.executable); print(sys.prefix != sys.base_prefix); print(sys.prefix); print(numpy.__version__); print(numpy.__file__)\"\n\n# --no-sync：这次只观察，不再同步项目环境\n# 普通 uv run --locked 仍可能同步/写缓存，不笼统称为只读\n# 三类证据：实际解释器 / venv prefix 关系 / NumPy 真实模块文件",
+      terminalLabel: "模拟终端 · 教学路径", terminal: "[模拟输出 · 不是本机路径]\nD:/course/crawler-viz/.venv/Scripts/python.exe\nTrue\nD:/course/crawler-viz/.venv\n2.2.6\nD:/course/crawler-viz/.venv/Lib/site-packages/numpy/__init__.py\n\n研究环境的真实样例见 W07-B 第 9 页；那里明确标为实测摘录。",
+      tree: makePracticeTree(6),
+      title: "07 · 证据：sys.executable / sys.prefix / numpy.__file__",
+      desc: "VIRTUAL_ENV 与 (.venv) 提示符只是线索。PATH 与 sys.path 不混用，PYTHONPATH 也不是 venv 的同义词。",
+      status: "证据齐全（模拟路径）：解释器与 NumPy 都来自项目 .venv，is_venv=True。"
+    },
+    {
+      short: "sync 重建", codeLabel: "换机 / 新项目副本", file: "pyproject + lock → .venv", code: "# 教学预设：.venv 已被删除；本页没有执行删除\n> uv sync --locked\n> uv run --locked python visualize.py\n> uv lock --check\n\n# requirements.txt：可作兼容/交换清单\n# 但不锁定解释器、OS 与全部系统条件，不能替代本周主锁定链",
+      terminalLabel: "模拟终端 · sync", terminal: "[教学预设：源码与三个声明文件还在，.venv 不在]\n> uv sync --locked\n[模拟输出] 按 pyproject.toml + uv.lock 重建项目 .venv\n> uv run --locked python visualize.py\n[模拟输出] 统计表与 output/top_authors.png 重新生成\n> uv lock --check\n[模拟输出] lockfile 与项目元数据一致",
+      tree: makePracticeTree(7),
+      title: "08 · sync：删环境不删项目，声明与锁文件可重建",
+      desc: "uv sync 默认精确同步项目 .venv，不是全局清理；它会移除项目环境中未选定的额外包，所以别把 .venv 当杂物箱。",
+      status: "重建完成（模拟）：提交声明与锁文件，不提交 .venv；requirements.txt 仅作兼容/交换。"
+    }
+  ];
+
+  function stopPractice() {
+    practiceState.playing = false;
+    if (practiceState.timer) { clearTimeout(practiceState.timer); practiceState.timer = null; }
+    var play = q("#practice-play");
+    play.setAttribute("aria-pressed", "false");
+    play.disabled = reduced;
+    play.textContent = reduced ? "减少动态 · 请单步" : (practiceState.step >= practiceSteps.length - 1 ? "↻ 重播" : "▶ 播放");
+    play.title = reduced ? "已按减少动态设置禁用自动播放；用步骤按钮或即时单步逐步学习，不会跳到末尾。" : "自动逐步播放；页面隐藏时暂停。";
+    var next = q("#practice-next");
+    next.textContent = reduced ? "即时单步 →" : "单步 →";
+    next.title = reduced ? "立即前进一步，无动画、无定时器、不跳到末尾。" : "前进一步并暂停自动播放。";
+  }
+
+  function renderPractice(animate) {
+    var i = practiceState.step;
+    var data = practiceSteps[i];
+    qa("[data-practice-step]").forEach(function (btn) {
+      var n = Number(btn.getAttribute("data-practice-step"));
+      if (n === i) btn.setAttribute("aria-current", "step"); else btn.removeAttribute("aria-current");
+      btn.classList.toggle("is-done", n < i);
+    });
+    q("#practice-code-label").textContent = data.codeLabel;
+    q("#practice-code-file").textContent = data.file;
+    q("#practice-code").textContent = data.code;
+    q("#practice-terminal-label").textContent = data.terminalLabel;
+    q("#practice-terminal").textContent = data.terminal;
+    q("#practice-tree").innerHTML = "";
+    data.tree.forEach(function (item) {
+      var li = document.createElement("li"); li.className = item[2];
+      var name = document.createElement("span"); name.textContent = item[0];
+      var tag = document.createElement("span"); tag.textContent = item[1];
+      li.appendChild(name); li.appendChild(tag); q("#practice-tree").appendChild(li);
+    });
+    q("#practice-step-title").textContent = data.title;
+    q("#practice-step-desc").textContent = data.desc;
+    q("#practice-step-no").textContent = "STEP " + String(i + 1).padStart(2, "0") + " / 08";
+    q("#practice-next").disabled = i >= practiceSteps.length - 1;
+    q("#practice-status").textContent = (reduced ? "减少动态：自动播放已禁用；步骤按钮与即时单步可用，不会跳到末尾。" : "") + data.status;
+    stopPractice();
+    if (animate) flash([q("#practice-code"), q("#practice-terminal"), q("#practice-tree"), q(".practice-explain")]);
+  }
+
+  function schedulePractice() {
+    if (!practiceState.playing || reduced || document.hidden) { stopPractice(); return; }
+    practiceState.timer = setTimeout(function () {
+      practiceState.timer = null;
+      if (!practiceState.playing || reduced || document.hidden) { stopPractice(); return; }
+      if (practiceState.step >= practiceSteps.length - 1) { stopPractice(); return; }
+      practiceState.step += 1;
+      renderPractice(true);
+      if (practiceState.step >= practiceSteps.length - 1) { stopPractice(); return; }
+      practiceState.playing = true;
+      q("#practice-play").setAttribute("aria-pressed", "true");
+      q("#practice-play").textContent = "⏸ 暂停";
+      schedulePractice();
+    }, 1500);
+  }
+
+  qa("[data-practice-step]").forEach(function (btn) {
+    btn.addEventListener("click", function () { practiceState.step = Number(btn.getAttribute("data-practice-step")); renderPractice(true); });
+  });
+  q("#practice-next").addEventListener("click", function () {
+    if (practiceState.step < practiceSteps.length - 1) practiceState.step += 1;
+    renderPractice(true);
+  });
+  q("#practice-play").addEventListener("click", function () {
+    if (practiceState.playing) { stopPractice(); return; }
+    if (reduced || document.hidden) { stopPractice(); return; }
+    if (practiceState.step >= practiceSteps.length - 1) practiceState.step = 0;
+    renderPractice(false);
+    practiceState.playing = true;
+    q("#practice-play").setAttribute("aria-pressed", "true");
+    q("#practice-play").textContent = "⏸ 暂停";
+    schedulePractice();
+  });
+  q("#practice-reset").addEventListener("click", function () { practiceState.step = 0; renderPractice(true); });
+
+  /* ==================== DIAGNOSTICS ==================== */
+  var diagState = "missing";
+  var diagData = {
+    missing: {
+      title: "症状 01 · 找不到 pandas",
+      symptom: "在 crawler-viz 中运行脚本，出现 ModuleNotFoundError: No module named 'pandas'。先不要全局 pip install。",
+      command: "# 已建环境仅观察：依赖齐全、锁与声明一致\nuv run --no-sync --locked python -c \"import sys; print(sys.executable)\"\n# 同时确认当前目录存在 pyproject.toml 与 uv.lock\n# 普通 uv run 可能同步项目环境并写缓存；未满足前提先修复",
+      fix: "在项目根目录执行 uv sync --locked，再用 uv run --locked python visualize.py；若 pyproject 从未声明 pandas，先审查后 uv add pandas。",
+      output: "executable = D:/course/crawler-viz/.venv/Scripts/python.exe\npandas 未在项目环境解析到；下一步先查声明与同步状态。",
+      boundary: "修复文件路径或依赖声明，不靠修改 PYTHONPATH 掩盖问题。",
+      status: "模块缺失：先定位解释器与项目声明，不向全局环境安装。"
+    },
+    wrong: {
+      title: "症状 02 · python 指向另一个环境",
+      symptom: "教师机提示符显示 (.venv)，脚本却读到了全局 NumPy；提示符与实际运行路径不一致。",
+      command: "(Get-Command python).Source\npython -c \"import sys,numpy; print(sys.executable); print(sys.prefix,sys.base_prefix); print(numpy.__file__)\"",
+      fix: "直接使用 uv run --locked 或项目解释器绝对路径；人工终端则检查当前 shell 的 PATH 并正确激活。不要只看提示符。",
+      output: "[模拟错位读数]\npython = C:/Miniconda3/python.exe\nnumpy  = C:/Miniconda3/Lib/site-packages/numpy/__init__.py\nVIRTUAL_ENV 的字符串不能推翻这两个实际路径。",
+      boundary: "PATH 管命令查找；实际解释器与 sys.path 管 import。PYTHONPATH 不是修复一切的开關。",
+      status: "解释器错位：用 Get-Command、sys.executable 与包 __file__ 交叉验证。"
+    },
+    fresh: {
+      title: "症状 03 · DSH 下一次调用没有激活状态",
+      symptom: "Agent 第一次工具调用只运行 Activate.ps1，第二次调用 python 时又回到外层解释器。",
+      command: "# 每次工具调用都是新的非交互 shell\n# 比较两次调用的 sys.executable，不假设状态保留",
+      fix: "首选每次 uv run --locked python visualize.py。必须演示激活时，同一次调用执行：& .\\.venv\\Scripts\\Activate.ps1; python visualize.py。",
+      output: "调用 1：Activate.ps1 只影响该次新 shell；调用结束，状态随之消失。\n调用 2：fresh shell，不继承上次 PATH / VIRTUAL_ENV。",
+      boundary: "uv run 与激活是两条路线；不需要先激活再 uv run。",
+      status: "fresh shell：激活不跨工具调用；每次 uv run 最明确。"
+    },
+    pip: {
+      title: "症状 04 · UV 项目环境没有 pip",
+      symptom: "已建项目环境中，uv run --no-sync --locked python -m pip --version 返回 No module named pip。不要因此向系统 Python 安装 pip 或项目包。",
+      command: "# 前提：环境已建且锁定一致，只确认现象、不再同步\nuv run --no-sync --locked python -m pip --version\n# 不把 pip 当成 UV 项目的前置条件；普通 uv run 仍可能同步/写缓存",
+      fix: "项目依赖用 uv add；低级兼容操作用 uv pip。新建传统 UV venv 且确需 pip 时，可了解 uv venv --seed；本课项目无需追加 pip。",
+      output: "[研究环境已观察到的现象]\nNo module named pip\n[此处为模拟展示，不是本页执行输出]",
+      boundary: "“虚拟环境必有 pip”不是 UV 默认项目工作流的可靠假设。",
+      status: "pip 缺失：UV 项目用 uv add / uv pip，不改全局 Python。"
+    }
+  };
+
+  function renderDiag(animate) {
+    var data = diagData[diagState];
+    qa("[data-diagnostic]").forEach(function (btn) { btn.setAttribute("aria-pressed", btn.getAttribute("data-diagnostic") === diagState ? "true" : "false"); });
+    q("#diag-title").textContent = data.title;
+    q("#diag-symptom").textContent = data.symptom;
+    q("#diag-command").textContent = data.command;
+    q("#diag-fix").textContent = data.fix;
+    q("#diag-output").textContent = data.output;
+    q("#diag-boundary").textContent = data.boundary;
+    q("#diag-status").textContent = data.status;
+    if (animate) flash([q(".diag-inspector"), q("#diag-status")]);
+  }
+  qa("[data-diagnostic]").forEach(function (btn) { btn.addEventListener("click", function () { diagState = btn.getAttribute("data-diagnostic"); renderDiag(true); }); });
+  q("#diag-reset").addEventListener("click", function () { diagState = "missing"; renderDiag(true); });
+
+  /* 初始状态：所有核心内容立即可用，不等待动画。 */
+  renderCase(false);
+  renderConflict(false);
+  renderPrinciples(false);
+  renderEco(false);
+  renderPractice(false);
+  renderDiag(false);
+
+  if (reducedQuery.addEventListener) {
+    reducedQuery.addEventListener("change", function (event) {
+      reduced = event.matches;
+      stopPractice();
+      renderPractice(false);
+      qa(".flash").forEach(function (el) { el.classList.remove("flash"); });
+    });
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) return;
+    var wasPlaying = practiceState.playing || practiceState.timer !== null;
+    stopPractice();
+    if (wasPlaying) q("#practice-status").textContent = "页面已隐藏：自动播放与计时器已停止；返回后可从当前步骤继续，也可使用单步。";
+  });
+  window.addEventListener("pagehide", function () { stopPractice(); });
+})();
+</script>
+</body>
+</html>

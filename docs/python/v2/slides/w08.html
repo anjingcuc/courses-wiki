@@ -134,7 +134,9 @@ print("全部测试通过 ✓")
       <pre class="frag"><code>my_ai_app/
 ├── .env               <span class="c"># API Key（不进仓库）</span>
 ├── .gitignore
-├── requirements.txt
+├── pyproject.toml     <span class="c"># 项目与直接依赖声明</span>
+├── uv.lock            <span class="c"># UV 管理的精确解析结果</span>
+├── .python-version    <span class="c"># 默认 Python 版本请求</span>
 └── app/
     ├── config.py      <span class="c"># 读环境变量</span>
     ├── client.py      <span class="c"># LLM 调用封装</span>
@@ -168,7 +170,8 @@ MAX_TOKENS = <span class="n">2048</span></code></pre>
       <div class="scard rise"><b class="tt">W7 已完成</b>
         <ul style="font-size:15.5px;">
           <li class="frag">虚拟环境与依赖锁定</li>
-          <li class="frag">requirements.txt 复现</li>
+          <li class="frag">pyproject.toml + uv.lock；uv sync / run --locked 重建与验证</li>
+          <li class="frag">requirements.txt 可作为其他工具的兼容交换格式</li>
         </ul>
       </div>
       <div class="scard rise"><b class="tt">本周完成</b>

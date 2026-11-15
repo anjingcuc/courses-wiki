@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10272e" />
+  <link rel="icon" href="favicon.ico" />
+  <title>Python 程序设计｜AI 原生化教学创新汇报</title>
+  <script>
+    if (new URLSearchParams(location.search).get("mode") === "audience") {
+      document.title = "Python 教学创新汇报 — Audience";
+    }
+  </script>
+  <script src="vendor/hyperframes-player.global.js"></script>
+  <script src="vendor/hyperframes-slideshow.global.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;overflow:hidden;background:#10272e}
+    hyperframes-slideshow{display:block;position:relative;width:100vw;height:100vh;outline:none}
+    hyperframes-player{position:absolute;inset:0}
+    .boot{position:fixed;inset:0;display:grid;place-items:center;color:#f3f0e8;font:28px/1.5 "Microsoft YaHei UI",sans-serif;pointer-events:none}
+    hyperframes-player{display:block;position:absolute;inset:0;z-index:2}
+    .hf-hotspot-pill{font-family:"Microsoft YaHei UI",sans-serif!important;font-size:28px!important;line-height:1.25!important;padding:12px 20px!important;border:2px solid #087a75!important;border-radius:0!important;background:#f3f0e8!important;color:#075e5b!important;box-shadow:8px 8px 0 rgba(20,42,50,.2)!important;animation:none!important}
+    .hf-hotspot-pill span{font-size:28px!important}
+  </style>
+</head>
+<body>
+  <hyperframes-slideshow tabindex="0" notes-storage-key="cuc-python-ai-native-2026">
+    <hyperframes-player interactive src="composition/index.html?shell=standalone"></hyperframes-player>
+    <script type="application/hyperframes-slideshow+json">
+    {
+      "slides": [
+        {"sceneId":"cover","notes":"【0:00–0:25】开场只讲一句：AI 降低代码生成成本后，课堂的价值必须向生成之后移动。说明课程、赛道与汇报人，不念履历。"},
+        {"sceneId":"hook","notes":"【0:25–1:00】先问评委：学生十秒得到一份可运行代码，学习是否已经发生？点击页面中央的判断开关，落到“可运行≠可解释≠可负责”。"},
+        {"sceneId":"problem","notes":"【1:00–1:50】三次右移依次呈现三类真实问题：内容结构、审查能力、任务规格。强调来自旧版大纲、作业与答辩观察，不是泛泛谈技术趋势。","fragments":[4.2,4.4,4.6]},
+        {"sceneId":"goals","notes":"【1:50–2:35】点击提出需求、发现问题、设计品味三个页签。重点读一条行为化目标：条件＋行为＋质量标准；发现问题页的密钥硬编码是必过项。"},
+        {"sceneId":"content","notes":"【2:35–3:35】对照教学大纲先讲整门课而非单节课。点击 M3、M5、M6：工具性内容做减法，AI 应用与项目实践做加法，48 学时总盘不变。"},
+        {"sceneId":"method","notes":"【3:35–4:25】沿五步循环说明 AI 承担写、人保留定义、发现与设计。点三种工作形态，强调课程目标不是全程依赖 AI，而是让学生保留定义、发现与设计权。"},
+        {"sceneId":"lesson","notes":"【4:25–5:25】用两学时教案证明改革如何落地。依次点 base_url、model、messages，拖动 Token 滑块。说明这是离线模拟，真实课堂先看请求响应再讲概念。"},
+        {"sceneId":"review","notes":"【5:25–6:20】邀请评委现场找缺陷。点击代码行即可核验；至少找出密钥硬编码、缺超时、输入边界、异常处理等问题。三口令：能发现、说后果、会修改。"},
+        {"sceneId":"environment","notes":"【6:20–6:55】点击三个环境页签。课程网站既是学习环境，也是改革产物与过程证据：16 周课件、88 篇笔记、交互运行场与任务说明公开可核验；资源公开不等于学习成效。"},
+        {"sceneId":"assessment","notes":"【6:55–7:40】从结果评价转向过程证据。讲四项协作日志、分支时间序列与期末随机抽行答辩；40/20/20/20 是第二学时作业量规示例。"},
+        {"sceneId":"ethics","notes":"【7:40–8:15】点击任意两张卡片。课程思政不另加说教，而是在数据流向、密钥、爬虫与检索依据这些专业决策中讨论责任。"},
+        {"sceneId":"evidence","notes":"【8:15–8:55】先展示课程网站这一“改革产物与过程证据”，再讲两次阶段作业与小测反馈；主动说清边界：教学行为与任务规格已改变，但三项能力提升仍需三次等值测量，不能把过程证据包装成终结性成效。右下可进入测量方案备查。","hotspots":[{"id":"to-measure","label":"三项能力测量方案","target":"measure","region":{"x":76,"y":87,"w":20,"h":7}}]},
+        {"sceneId":"transfer","notes":"【8:55–9:20】推广分三层：资源公开、实际采用、采用后效果。当前只到校内跨课程试用，外部效果不越界承诺。点四项可移植做法。"},
+        {"sceneId":"close","notes":"【9:20–9:30】收束：提出可验证的需求，发现真实的问题，做出有理由的设计。AI 可以生成代码，教育必须生成判断力。停顿，致谢。右下进入材料来源与评分对齐备查。","hotspots":[{"id":"to-sources","label":"材料来源与备查","target":"sources","region":{"x":78,"y":84,"w":17,"h":9}}]}
+      ],
+      "slideSequences": [
+        {"id":"measure","label":"三项能力测量方案","slides":[{"sceneId":"measure","notes":"答问备查：单组重复测量，不是已完成的成效数据。学期初、学期中、答辩前三次；等值任务、统一量规、抽样双评。"}]},
+        {"id":"sources","label":"材料来源与证据口径","slides":[{"sceneId":"sources","notes":"答问备查：所有数字与结论均可回到通知、成果报告、申报书、教案和课程仓库。","hotspots":[{"id":"to-rubric","label":"评分对齐","target":"rubric","region":{"x":62,"y":87,"w":15,"h":8}},{"id":"to-measure","label":"能力测量","target":"measure","region":{"x":80,"y":87,"w":15,"h":8}}]}]},
+        {"id":"rubric","label":"现场评分维度对齐","slides":[{"sceneId":"rubric","notes":"答问备查：附件2未给分值或权重，本页只展示覆盖关系，不能解释为官方配分。"}]}
+      ]
+    }
+    </script>
+  </hyperframes-slideshow>
+  <noscript><div class="boot">请启用 JavaScript 以播放教学创新汇报。</div></noscript>
+</body>
+</html>

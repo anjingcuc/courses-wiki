@@ -47,7 +47,7 @@
       <tr><td>0–10</td><td><b>开场寒暄</b></td><td>认识一下 · 感叹现在开发有多方便</td></tr>
       <tr><td>10–25</td><td><b>现场演示</b></td><td>上周下班后我做的一个小工具：让 AI 帮我找开源项目、改 bug、移植、起名、传 GitHub</td></tr>
       <tr><td>25–40</td><td><b>核心问题</b></td><td>AI 都能写代码了，这门课还有必要上吗？</td></tr>
-      <tr><td>40–55</td><td><b>课程回答</b></td><td>三种能力：读代码、调试、系统设计</td></tr>
+      <tr><td>40–55</td><td><b>课程回答</b></td><td>三种能力：提出需求、发现问题、设计品味</td></tr>
       <tr><td>55–70</td><td><b>课程怎么学</b></td><td>线上课看什么、不看什么；线下课主要留给我们多交流</td></tr>
       <tr><td>70–85</td><td><b>动手</b></td><td>浏览器里跑你的第一行 Python（不用装任何东西）</td></tr>
       <tr><td>85–95</td><td><b>怎么向 AI 提问</b></td><td>好问题 vs 坏问题，三要素框架</td></tr>
@@ -91,12 +91,12 @@
   <!-- 5 三种能力 -->
   <section class="slide">
     <h2>这门课的回答：三种能力</h2>
-    <div class="scard rise"><span class="tag">能力一</span><b class="tt">读代码</b>
-      AI 生成的代码，你要看得懂、能审查、能发现隐患——命名混乱、超出课程范围的语法、边界条件缺失。</div>
-    <div class="scard frag"><span class="tag v">能力二</span><b class="tt">调试</b>
-      AI 不会一次写对。程序报错或行为异常时，定位并修复问题的能力无法由 AI 代替——<b>读报错是本课的基本功。</b></div>
-    <div class="scard frag"><span class="tag g">能力三</span><b class="tt">系统设计</b>
-      做什么、分几个模块、数据如何流动——这些决策由人完成。期末项目将全面检验这一能力。</div>
+    <div class="scard rise"><span class="tag">能力一</span><b class="tt">提出需求</b>
+      把模糊任务变成可验证的规格：用户、场景、输入输出、边界、失败路径与验收标准。</div>
+    <div class="scard frag"><span class="tag v">能力二</span><b class="tt">发现问题</b>
+      面对 AI 生成的代码与方案，定位缺陷、识别遗漏与风险，说明后果和优先级——<b>先判断，再与 AI 对照。</b></div>
+    <div class="scard frag"><span class="tag g">能力三</span><b class="tt">设计品味</b>
+      在多个「能跑」的方案间比较结构、接口、维护、安全与成本，做出有理由的取舍。</div>
   </section>
 
   <!-- 6 类比 -->
@@ -214,9 +214,9 @@ print("你好，Python！")
         "questions": [
           {
             "q": "课程对「AI 会写代码，人学什么」的回答是？",
-            "opts": ["背更多语法细节", "读代码、调试、系统设计三种能力", "学会手写更快的代码", "专心学数学理论"],
+            "opts": ["背更多语法细节", "提出需求、发现问题、设计品味三项能力", "学会手写更快的代码", "专心学数学理论"],
             "a": 1,
-            "explain": "AI 降低了「写」的成本，但审查 AI 代码（读）、定位修复问题（调试）、决定做什么与怎么做（系统设计）仍是人的核心价值。"
+            "explain": "AI 降低了「写」的成本，但定义可验证的需求、发现真实问题、做出有理由的设计仍是人的核心价值。"
           },
           {
             "q": "自动驾驶类比中，「关键时刻接管」对应的是？",
@@ -241,7 +241,7 @@ print("你好，Python！")
     <h2>课后与下周预告</h2>
     <div class="scard rise"><b class="tt">本周课后</b>
       <ul style="font-size:16.5px;">
-        <li class="frag">回顾这节课的三种能力——读代码、调试、系统设计</li>
+        <li class="frag">回顾这节课的三种能力——提出需求、发现问题、设计品味</li>
         <li class="frag">环境可以先不配——下周我们当堂一起装</li>
         <li class="frag">注册一个大模型账号，试着用三要素问一个好问题</li>
       </ul>

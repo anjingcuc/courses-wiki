@@ -50,6 +50,7 @@ nav:
           - 12-爬虫: python/crawler.md
           - 13-数据处理与可视化: python/data-process-and-visualization.md
           - 14-数据处理与可视化实例: python/data-process-and-visualization-example.md
+  - 教学创新设计汇报: teaching-innovation.md
   - 网页设计与制作: web.md
   - 在线出版: online-publishing.md
   - AI-WPS 辅助办公: wps/introduction.md

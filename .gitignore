@@ -10,3 +10,5 @@ ENV/
 
 # MkDocs build output
 site/
+# Generated from teaching-innovation-deck/ during local/CI builds
+docs/innovation-report/

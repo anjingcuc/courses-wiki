@@ -146,10 +146,10 @@
     },
     {
       "week": "w15",
-      "title": "联调、调试日与部署",
+      "title": "联调、独立排查与部署",
       "lessons": "L35–L39",
       "modules": ["m6"],
-      "summary": "联调三坑 · AI-free 调试日 · Bug Bash · 部署就绪",
+      "summary": "联调三坑 · 独立排查日 · Bug Bash · 部署就绪",
       "primary": null,
       "secondary": []
     },

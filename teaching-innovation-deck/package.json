@@ -1,0 +1,11 @@
+{
+  "name": "python-ai-teaching-deck",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.200 present composition",
+    "present": "npx --yes hyperframes@0.8.200 present composition",
+    "check": "npx --yes hyperframes@0.8.200 check composition",
+    "snapshot": "npx --yes hyperframes@0.8.200 snapshot composition"
+  }
+}

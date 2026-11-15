@@ -123,6 +123,7 @@
     <div class="w07-actions rise">
       <a class="w07-action primary" href="w07.html">← 返回 W07-A 数据处理与可视化</a>
       <a class="w07-action" href="../../demos/w07-venv-lab.html?mode=practice" target="_blank" rel="noopener">打开 UV + DSH 实操实验室 ↗</a>
+      <a class="w07-action" href="../../demos/w07-case.zip" download>下载完整案例包（含 CSV + 锁文件） ↓</a>
     </div>
     <div class="meta rise"><span>L16 正课副课件 · 不是拓展阅读</span><span>A + B 合计 100 分钟</span><span>← → 翻页 · F 全屏</span></div>
   </section>
@@ -467,6 +468,10 @@ uv lock --check</code></pre>
           <li>脚本从 <code>__file__</code> 定位 CSV，用 Agg 保存一张回答明确问题的图，并打印统计表和一句不越界的结论。</li>
           <li>在新项目副本或重建环境中执行 <code>uv sync --locked</code> 与 <code>uv run --locked python visualize.py</code>，附上解释器与 <code>numpy.__file__</code> 探针结果。</li>
         </ol>
+        <div class="w07-actions" style="margin-top:12px;">
+          <a class="w07-action primary" href="../../demos/w07-case.zip" download>下载完整案例包：代码 + 数据 + 锁文件 ↓</a>
+          <a class="w07-action" href="../../demos/w07-case/">先看运行说明 ↗</a>
+        </div>
       </div>
       <div>
         <div class="scard w07-warn rise"><span class="tag r">验收边界</span><b class="tt" style="font-size:18px;">不靠全局包，不交环境杂物</b>

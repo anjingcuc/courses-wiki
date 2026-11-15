@@ -1,7 +1,7 @@
 {
-  "passed": 255,
+  "passed": 269,
   "failed": 0,
-  "total": 255,
+  "total": 269,
   "results": [
     {
       "name": "deck has 18 slides",
@@ -134,6 +134,11 @@
       "detail": ""
     },
     {
+      "name": "lab header and practice expose the complete case ZIP",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "lab discloses simulation and separates measured excerpts",
       "passed": true,
       "detail": ""
@@ -234,6 +239,11 @@
       "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
     },
     {
+      "name": "case desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "case desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -242,6 +252,11 @@
       "name": "case mobile has no page-level horizontal overflow",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "case mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "case mobile visible controls meet 44px targets",
@@ -289,6 +304,11 @@
       "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
     },
     {
+      "name": "conflict desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "conflict desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -297,6 +317,11 @@
       "name": "conflict mobile has no page-level horizontal overflow",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "conflict mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "conflict mobile visible controls meet 44px targets",
@@ -359,6 +384,11 @@
       "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
     },
     {
+      "name": "principles desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "principles desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -367,6 +397,11 @@
       "name": "principles mobile has no page-level horizontal overflow",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "principles mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "principles mobile visible controls meet 44px targets",
@@ -574,6 +609,11 @@
       "detail": "{\"inner\": 1920, \"doc\": 1920, \"body\": 1920}"
     },
     {
+      "name": "ecosystem desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "ecosystem desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -584,6 +624,11 @@
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
     },
     {
+      "name": "ecosystem mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "ecosystem mobile visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -592,6 +637,11 @@
       "name": "ecosystem mobile document width remains 390px",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "practice shows a second direct ZIP download",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "practice begins with prompt review and no execution",
@@ -651,7 +701,7 @@
     {
       "name": "practice final tree contains complete cumulative delivery",
       "passed": true,
-      "detail": "crawler-viz/\n工作区\n├─ data/answers.csv\n教学合成数据 · 提交\n├─ pyproject.toml\n提交：重建依据\n├─ .python-version\n提交：3.12\n├─ uv.lock\n提交：精确解析 · 未改写\n├─ .venv/\n可重建：不提交（已重建）\n├─ visualize.py\n提交：完整实测脚本\n├─ README.md\n提交：数据来源与运行说明\n├─ .gitignore\n提交：忽略环境/输出\n└─ output/top_authors.png\n已再生成（模拟）"
+      "detail": "crawler-viz/\n工作区\n├─ data/answers.csv\n教学合成数据 · 提交\n├─ pyproject.toml\n提交：重建依据\n├─ .python-version\n提交：3.12\n├─ uv.lock\n提交：精确版本 · 未改写\n├─ .venv/\n可重建：不提交（已重建）\n├─ visualize.py\n提交：完整实测脚本\n├─ README.md\n提交：数据来源与运行说明\n├─ .gitignore\n提交：忽略环境/输出\n└─ output/top_authors.png\n已再生成（模拟）"
     },
     {
       "name": "practice reset returns to prompt review",
@@ -679,6 +729,11 @@
       "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
     },
     {
+      "name": "practice desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "practice desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -687,6 +742,11 @@
       "name": "practice mobile has no page-level horizontal overflow",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "practice mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "practice mobile visible controls meet 44px targets",
@@ -719,7 +779,7 @@
       "detail": ""
     },
     {
-      "name": "diagnostics is evidence-first backup with no blanket read-only claim",
+      "name": "diagnostics is check-first backup with no blanket read-only claim",
       "passed": true,
       "detail": ""
     },
@@ -739,6 +799,11 @@
       "detail": "{\"inner\": 1366, \"doc\": 1366, \"body\": 1366}"
     },
     {
+      "name": "diagnostics desktop keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "diagnostics desktop visible controls meet 44px targets",
       "passed": true,
       "detail": "[]"
@@ -747,6 +812,11 @@
       "name": "diagnostics mobile has no page-level horizontal overflow",
       "passed": true,
       "detail": "{\"inner\": 390, \"doc\": 390, \"body\": 390}"
+    },
+    {
+      "name": "diagnostics mobile keeps the header ZIP download visible",
+      "passed": true,
+      "detail": ""
     },
     {
       "name": "diagnostics mobile visible controls meet 44px targets",
@@ -841,7 +911,7 @@
     {
       "name": "practice downloads stay inside 1366 slide viewport",
       "passed": true,
-      "detail": "{\"slideTop\": 83, \"slideBottom\": 776, \"cardBottom\": 571.2859497070312, \"links\": [{\"href\": \"../../demos/w07-case.zip\", \"top\": 502.28594970703125, \"bottom\": 560.2859497070312}, {\"href\": \"../../demos/w07-case/\", \"top\": 502.28594970703125, \"bottom\": 560.2859497070312}]}"
+      "detail": "{\"slideTop\": 83, \"slideBottom\": 776, \"cardBottom\": 571.2877197265625, \"links\": [{\"href\": \"../../demos/w07-case.zip\", \"top\": 502.2876892089844, \"bottom\": 560.2877197265625}, {\"href\": \"../../demos/w07-case/\", \"top\": 502.2876892089844, \"bottom\": 560.2877197265625}]}"
     },
     {
       "name": "case iframe works inside deck",
@@ -851,12 +921,12 @@
     {
       "name": "iframe click does not advance parent deck",
       "passed": true,
-      "detail": "http://127.0.0.1:55078/docs/python/v2/slides/w07-venv.html#/3"
+      "detail": "http://127.0.0.1:52078/docs/python/v2/slides/w07-venv.html#/3"
     },
     {
       "name": "iframe ArrowRight is isolated from parent deck",
       "passed": true,
-      "detail": "http://127.0.0.1:55078/docs/python/v2/slides/w07-venv.html#/8"
+      "detail": "http://127.0.0.1:52078/docs/python/v2/slides/w07-venv.html#/8"
     },
     {
       "name": "iframe Space activates lab only",
@@ -866,7 +936,7 @@
     {
       "name": "deck keyboard navigation still works outside iframe",
       "passed": true,
-      "detail": "http://127.0.0.1:55078/docs/python/v2/slides/w07-venv.html#/9"
+      "detail": "http://127.0.0.1:52078/docs/python/v2/slides/w07-venv.html#/9"
     },
     {
       "name": "ecosystem iframe visible at 1920px",
@@ -906,12 +976,12 @@
     {
       "name": "deck End reaches final page",
       "passed": true,
-      "detail": "http://127.0.0.1:55078/docs/python/v2/slides/w07-venv.html#/18"
+      "detail": "http://127.0.0.1:52078/docs/python/v2/slides/w07-venv.html#/18"
     },
     {
       "name": "deck Home returns to cover",
       "passed": true,
-      "detail": "http://127.0.0.1:55078/docs/python/v2/slides/w07-venv.html#/1"
+      "detail": "http://127.0.0.1:52078/docs/python/v2/slides/w07-venv.html#/1"
     },
     {
       "name": "deck page 1 has no active-slide horizontal overflow at 1366px",

@@ -71,7 +71,7 @@ def overflow_detail(page) -> str:
 
 
 def target_sizes(page) -> list[dict]:
-    return page.evaluate("""() => Array.from(document.querySelectorAll('button, .mode-link'))
+    return page.evaluate("""() => Array.from(document.querySelectorAll('button, .mode-link, .lab-download'))
       .filter(el => !el.closest('[hidden]') && !el.classList.contains('skip-link'))
       .filter(el => { const s=getComputedStyle(el), r=el.getBoundingClientRect(); return s.display!=='none' && s.visibility!=='hidden' && r.width>0 && r.height>0; })
       .map(el => ({name:el.textContent.trim().slice(0,36), w:Math.round(el.getBoundingClientRect().width), h:Math.round(el.getBoundingClientRect().height)}))
@@ -118,6 +118,9 @@ def static_checks() -> None:
     ]
     expect("required commands and conceptual boundaries are present", all(token in deck for token in required_deck), json.dumps([x for x in required_deck if x not in deck], ensure_ascii=False))
     expect("lab is self-contained without external assets", "<script src=" not in lab and "<link " not in lab and "https://" not in lab and "http://" not in lab)
+    header_download = re.search(r'<header class="lab-header">.*?<a class="lab-download" href="w07-case\.zip" download>下载完整案例包（含数据和锁文件）</a>.*?</header>', lab, re.S)
+    practice_download = re.search(r'<section id="mode-practice".*?<a class="lab-download" href="w07-case\.zip" download>下载完整案例包（含数据和锁文件）</a>', lab, re.S)
+    expect("lab header and practice expose the complete case ZIP", header_download is not None and practice_download is not None and lab.count('class="lab-download" href="w07-case.zip" download') == 2)
     expect("lab discloses simulation and separates measured excerpts", "教学仿真" in lab and "实测摘录 · 非本页执行" in lab and "模拟输出" in lab)
     script_tokens = ["plt.rcParams[\"font.sans-serif\"]", "Microsoft YaHei", "SimHei", "Noto Sans CJK SC", "Arial Unicode MS", "DejaVu Sans", "plt.rcParams[\"axes.unicode_minus\"] = False", "matplotlib.use(\"Agg\")", "Path(__file__).resolve().parent", "def load_and_summarize", "def draw_chart", "def main()"]
     expect("practice embeds the measured visualization script essentials", all(token in lab for token in script_tokens), json.dumps([x for x in script_tokens if x not in lab], ensure_ascii=False))
@@ -146,6 +149,7 @@ def open_mode(browser, port: int, mode: str, width: int = 1366, height: int = 76
 
 def check_lab_layout(page, label: str, mobile: bool = False) -> None:
     expect(f"{label} has no page-level horizontal overflow", page.evaluate("document.documentElement.scrollWidth <= innerWidth"), overflow_detail(page))
+    expect(f"{label} keeps the header ZIP download visible", page.locator(".lab-header .lab-download").is_visible())
     expect(f"{label} visible controls meet 44px targets", not target_sizes(page), json.dumps(target_sizes(page), ensure_ascii=False))
     if mobile:
         expect(f"{label} document width remains 390px", page.evaluate("document.documentElement.scrollWidth") == 390, overflow_detail(page))
@@ -160,7 +164,7 @@ def test_case(browser, port: int) -> None:
     shot(page, "case-1366.png")
     page.locator('[data-case-layout="global"]').click()
     expect("case global switch really converges dependency topology", page.locator("#case-map").get_attribute("data-layout") == "global" and page.locator(".case-node.env:visible").count() == 0 and page.locator("[data-case-local-flow]:visible").count() == 0 and page.locator("#case-global-flow").is_visible() and page.locator("[data-case-shared-flow]:visible").count() == 2)
-    expect("case global switch changes project node states and flow explanation", page.locator('[data-case-node="crawler"].shared').count() == 1 and page.locator('[data-case-node="viz"].shared').count() == 1 and "拓扑已改变" in page.locator("#case-flow-note").inner_text())
+    expect("case global switch changes project node states and flow explanation", page.locator('[data-case-node="crawler"].shared').count() == 1 and page.locator('[data-case-node="viz"].shared').count() == 1 and "现在两个项目都装到同一个全局 site-packages" in page.locator("#case-flow-note").inner_text())
     expect("case global counterexample avoids inevitability claim", "不一定" in page.locator("#case-inspector-text").inner_text() or "可能" in page.locator("#case-inspector-text").inner_text())
     expect("case global counterexample synchronizes verdict", "不保证立刻出错" in page.locator("#case-verdict").inner_text())
     shot(page, "case-global-1366.png")
@@ -182,7 +186,7 @@ def test_conflict(browser, port: int) -> None:
     page.locator('[data-numpy="2.0.2"]').click()
     output = page.locator("#numpy-output").inner_text()
     expect("NumPy 2.0.2 shows removed alias and working mean", "removed" in output and "MEAN_OK: 2.0" in output and "PORTABLE_FIX_OK: float64" in output)
-    expect("NumPy explanation avoids total-crash exaggeration", "不等于 NumPy 整体必崩" in page.locator("#numpy-explanation").inner_text())
+    expect("NumPy explanation avoids total-crash exaggeration", "不代表整个 NumPy 都不能用" in page.locator("#numpy-explanation").inner_text() and "MEAN_OK: 2.0" in output)
     expect("probe command follows selected version", "--with numpy==2.0.2 python" in page.locator("#probe-command").inner_text())
     shot(page, "conflict-202-1366.png")
     page.locator('[data-numpy="1.26.4"]').click()
@@ -237,7 +241,7 @@ def test_ecosystem(browser, port: int) -> None:
     page.locator('[data-lang="python"]').click(); page.locator('[data-layer="dependencies"]').click()
     expect("Python observation uses no-sync with explicit preconditions", "uv run --no-sync --locked python -c" in page.locator("#eco-observe").inner_text() and "普通 uv run 可能同步" in page.locator("#eco-side-effect").inner_text() and "依赖齐全" in page.locator("#eco-side-effect").inner_text())
     page.locator('[data-lang="node"]').click(); page.locator('[data-layer="dependencies"]').click()
-    expect("Node dependency view separates NVM and npm", "NVM 选 Node，npm 管项目依赖" in page.locator("#eco-counter").inner_text() and "require.resolve" in page.locator("#eco-observe").inner_text())
+    expect("Node dependency view separates NVM and npm", "NVM 只管 Node 版本，npm 管项目依赖" in page.locator("#eco-counter").inner_text() and "require.resolve" in page.locator("#eco-observe").inner_text())
     page.locator('[data-lang="go"]').click(); page.locator('[data-layer="config"]').click()
     expect("Go cache view separates GOPATH GOMODCACHE GOROOT", all(x in page.locator("#eco-tool").inner_text() for x in ("GOPATH", "GOMODCACHE", "GOROOT")) and "不会完成版本隔离" in page.locator("#eco-counter").inner_text())
     shot(page, "ecosystem-go-1920.png")
@@ -256,6 +260,8 @@ def test_ecosystem(browser, port: int) -> None:
 
 def test_practice(browser, port: int) -> None:
     context, page = open_mode(browser, port, "practice")
+    practice_download = page.locator("#mode-practice .lab-download")
+    expect("practice shows a second direct ZIP download", practice_download.is_visible() and practice_download.get_attribute("href") == "w07-case.zip" and practice_download.get_attribute("download") is not None)
     expect("practice begins with prompt review and no execution", "不要修改全局 Python" in page.locator("#practice-code").inner_text() and "未执行任何命令" in page.locator("#practice-terminal").inner_text())
     page.locator('[data-practice-step="1"]').click()
     expect("practice init uses exact bare command", "uv init --bare --python 3.12 ." in page.locator("#practice-code").inner_text() and "pyproject.toml" in page.locator("#practice-tree").inner_text())
@@ -313,7 +319,7 @@ def test_diagnostics(browser, port: int) -> None:
         page.locator(f'[data-diagnostic="{key}"]').click()
         combined = page.locator(".diag-inspector").inner_text()
         expect(f"diagnostic {key} synchronizes symptom command and remedy", token in combined and len(page.locator("#diag-fix").inner_text()) > 20)
-    expect("diagnostics is evidence-first backup with no blanket read-only claim", "备用 / 课后" in page.locator("#diagnostics-heading").inner_text() and "先证据，后修复" in page.locator("#diagnostics-heading").inner_text() and "不笼统承诺只读" in page.locator("#mode-diagnostics .mode-intro").inner_text())
+    expect("diagnostics is check-first backup with no blanket read-only claim", "备用 / 课后" in page.locator("#diagnostics-heading").inner_text() and "出错了先别急着重装，先查这几项" in page.locator("#diagnostics-heading").inner_text() and "不笼统承诺只读" in page.locator("#mode-diagnostics .mode-intro").inner_text())
     expect("pip observation uses no-sync with preconditions and side-effect note", "uv run --no-sync --locked python -m pip --version" in page.locator("#diag-command").inner_text() and "前提" in page.locator("#diag-command").inner_text() and "普通 uv run 仍可能同步/写缓存" in page.locator("#diag-command").inner_text())
     shot(page, "diagnostics-pip-1366.png")
     page.locator("#diag-reset").click()

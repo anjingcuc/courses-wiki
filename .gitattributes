@@ -1,4 +1,7 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
+# W07 可运行案例包仅 36KB，作为普通 git 对象提交：
+# Pages CI 的 checkout 不拉取 LFS，走 LFS 会让线上只部署 130 字节指针。
+docs/python/demos/w07-case.zip filter= diff= merge= -text
 *.exe filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.whl filter=lfs diff=lfs merge=lfs -text

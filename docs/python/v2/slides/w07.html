@@ -5,176 +5,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>W7 数据可视化与虚拟环境 | Python V2</title>
 <link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+<style>
+  /* W07-A 私有样式：不修改共享设计系统。 */
+  body.w07a { height: 100vh; margin: 0; display: flex; flex-direction: column; }
+  .w07a .sl-top { flex: none; }
+  .w07a .sl-top nav { align-items: center; }
+  .w07a .sl-top nav a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .w07a .pyv2-slides { flex: 1; min-height: 0; height: auto; }
+  .w07a .pyv2-slides:fullscreen { height: 100vh; }
+  .w07a .w07-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .w07a .w07-action {
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    padding: 9px 17px; border: 1px solid #cbd5e1; border-radius: 10px;
+    background: #fff; color: #0369a1; text-decoration: none; font-size: 14px; font-weight: 700;
+  }
+  .w07a .w07-action.primary { background: #0369a1; border-color: #0369a1; color: #fff; }
+  .w07a .w07-action:hover { border-color: #0284c7; box-shadow: 0 5px 16px rgba(2,132,199,.14); }
+  .w07a .demo-open { min-height: 44px; display: inline-flex; align-items: center; padding: 4px 10px; margin-left: 6px; white-space: nowrap; }
+  .w07a .w07-schedule .seg-a td { background: #e0f2fe; }
+  .w07a .w07-schedule .seg-a td:first-child { border-left: 4px solid #0284c7; color: #075985; font-weight: 800; }
+  .w07a .w07-schedule .seg-b td { color: #64748b; }
+  .w07a .w07-schedule .seg-b td:first-child { border-left: 4px solid #c4b5fd; }
+  .w07a .w07-schedule .seg-a, .w07a .w07-schedule .seg-b { scroll-margin-top: 10px; }
+  .w07a .w07-data-table { font-size: 12px; line-height: 1.35; margin: 6px 0; }
+  .w07a .w07-data-table th, .w07a .w07-data-table td { padding: 4px 8px; }
+  .w07a .w07-data-table td:first-child { font-size: 11px; }
+  .w07a .w07-compact { font-size: 14px; line-height: 1.55; padding: 15px 18px; }
+  .w07a .w07-mini { font-size: 13px; line-height: 1.55; padding: 12px 15px; }
+  .w07a .w07-kpi { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .w07a .w07-kpi span { padding: 5px 11px; border: 1px solid #bae6fd; border-radius: 999px; background: #f0f9ff; color: #075985; font: 700 12px/1.4 var(--pyv2-font-mono); }
+  .w07a .w07-warn { border-left: 5px solid #b45309; }
+  .w07a .w07-good { border-left: 5px solid #047857; }
+  .w07a .slide.w07-demo { padding-top: 24px; }
+  .w07a .slide.w07-demo h2 { margin-bottom: 8px; }
+  .w07a .slide.w07-demo .demo-frame { margin: 8px 0; }
+  .w07a .slide .demo-frame { box-sizing: border-box; }
+  .w07a .slide .cols2 > * { min-width: 0; }
+  .w07a .slide pre { max-width: 100%; }
+  .w07a .slide .pyv2-quiz .opt { min-height: 44px; }
+  .w07a .sl-bar .sl-btn { width: 44px; height: 44px; }
+  .w07a .w07-axis-figure { margin: 0; background: #fff; border: 1px solid #dbe4ec; border-radius: 14px; overflow: hidden; }
+  .w07a .w07-axis-figure svg { display: block; width: 100%; height: auto; }
+  .w07a .w07-axis-figure figcaption { padding: 9px 13px; color: #475569; background: #f8fafc; font-size: 13px; line-height: 1.55; }
+  .w07a .w07-next { border: 2px solid #0284c7; background: #f0f9ff; }
+  @media (max-width: 900px) {
+    .w07a .slide .cols2.wide-l, .w07a .slide .cols2.wide-r { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .w07a .sl-top { padding: 7px 10px; gap: 7px; }
+    .w07a .sl-top nav { gap: 4px; }
+    .w07a .sl-top nav a { font-size: 11px; padding: 3px 8px; }
+    .w07a .sl-top nav a.nav-optional { display: none; }
+    .w07a .sl-top .wk { font-size: 10px; padding: 3px 7px; }
+    .w07a .w07-compact { font-size: 12px; }
+    .w07a .w07-schedule { table-layout: fixed; }
+    .w07a .w07-schedule th, .w07a .w07-schedule td { overflow-wrap: anywhere; }
+    .w07a .w07-schedule th { white-space: normal; }
+    .w07a .w07-schedule th:first-child { width: 56px; }
+    .w07a .demo-open { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .w07a .slide.active .rise, .w07a .slide.active .flowline .node { animation: none !important; }
+    .w07a .pyv2-slides .frag, .w07a .slide .scard, .w07a .sl-prog i { transition: none !important; }
+  }
+</style>
 </head>
-<body class="sl-page">
+<body class="sl-page w07a">
 
 <header class="sl-top">
   <div class="where">
     <span class="wk">WEEK 07 / 16</span>
-    <span class="th">数据处理与可视化 · 虚拟环境</span>
+    <span class="th">W07-A 数据处理与可视化 · 本周另有 B：虚拟环境</span>
   </div>
   <nav>
     <a href="../../#weeks">课件总览</a>
     <!-- WEEKMAP:BEGIN button -->
     <a class="legacy" href="../../data-process-and-visualization/slideshow.html">旧版对照</a>
     <!-- WEEKMAP:END button -->
-    <a href="../m3/">M3</a> <a href="../m4/">M4</a>
-    <a href="../../">课程主页</a>
-    <a href="w06.html">← 上周</a>
-    <a class="cur" href="w07.html">本周</a>
-    <a href="w08.html">下周 →</a>
+    <a href="../m3/">M3</a>
+    <a class="nav-optional" href="../m4/">M4</a>
+    <a href="w07-venv.html">B：虚拟环境 →</a>
+    <a class="nav-optional" href="w06.html">← 上周</a>
+    <a class="cur" href="w07.html">A：可视化</a>
+    <a class="nav-optional" href="w08.html">W08 →</a>
   </nav>
 </header>
 
 <div class="pyv2-slides" data-title="W7 数据可视化与虚拟环境">
 
+  <!-- 1 · 规范主入口 / A 段封面 -->
   <section class="slide cover">
-    <div class="kicker rise">PYTHON 程序设计 · V2 · 第 7 周（100 分钟 · L15–L16）</div>
-    <h1 class="rise">让数据说话<br><span class="grad">再让项目互相不打架</span></h1>
-    <p class="sub rise">前两周拿回来的数据还是「一堆数字」——本周用 Pandas 清洗统计、Matplotlib 画图，
-    走完从原始数据到可视化结论的完整链路；然后解决 AI 项目最痛的问题：依赖冲突。</p>
-    <div class="meta rise">
-      <span>M3 收官 + M4 开篇</span><span>← → 翻页 · F 全屏</span>
+    <div class="kicker rise">PYTHON 程序设计 · V2 · W07-A · L15 · 0–58 分钟</div>
+    <h1 class="rise">从爬虫结果<br><span class="grad">到一张能解释的图</span></h1>
+    <p class="sub rise">本周明确分 <b>A / B</b> 两份课件：<b>A 段</b>用同一份天气爬虫结果走完
+      DataFrame → 检查清洗 → 筛选聚合 → Matplotlib → 保存与结论；<b>B 段</b>再解决虚拟环境与依赖管理。</p>
+    <div class="w07-actions rise">
+      <a class="w07-action primary" href="w07-venv.html">继续 W07-B：虚拟环境（58–100 分钟） →</a>
+      <a class="w07-action" href="../../demos/w07-visualization-lab.html?mode=pipeline" target="_blank" rel="noopener">打开 A 段数据实验室 ↗</a>
     </div>
+    <div class="meta rise"><span>M3 收官</span><span>整周共 100 分钟 · A/B 共用课表</span><span>← → 翻页 · F 全屏</span></div>
   </section>
-  <!-- 课表 -->
+
+  <!-- 2 · 整周课表：A 只承担 0–58 -->
   <section class="slide">
     <h2>今日课表（100 分钟）</h2>
-    <table>
-      <tr><th>时间</th><th>环节</th><th>要点</th></tr>
-      <tr><td>0–10</td><td><b>Pandas 模型</b></td><td>DataFrame=代码里的 Excel；read_csv/head/info/describe</td></tr>
-      <tr><td>10–22</td><td><b>筛选与统计</b></td><td>df[df[列]>值]；groupby+mean；sort_values——每步打印看变化</td></tr>
-      <tr><td>22–34</td><td><b>动手练习</b></td><td>运行场：清洗→统计→ASCII 柱状图（Pandas 思维先行版）</td></tr>
-      <tr><td>34–46</td><td><b>Matplotlib</b></td><td>bar 对比 / plot 趋势；标题轴标保存；图表是为了让数据说话</td></tr>
-      <tr><td>46–58</td><td><b>全链路演示</b></td><td>天气 CSV → groupby 均温 → 柱状图 + 一周趋势折线</td></tr>
-      <tr><td>58–70</td><td><b>依赖灾难现场</b></td><td>全局环境装 requests==2.20 再装 >=2.28——当场冲突报错</td></tr>
-      <tr><td>70–85</td><td><b>虚拟环境</b></td><td>venv 创建/激活/独立安装；requirements.txt 锁定与还原</td></tr>
-      <tr><td>85–95</td><td><b>镜像与生态</b></td><td>清华源 -i 加速；pipenv/conda 知道有得选</td></tr>
-      <tr><td>95–100</td><td><b>小测</b></td><td>随堂小测 3 题</td></tr>
+    <p class="small" style="margin-top:-10px;"><b>当前是 W07-A，只承担蓝色高亮的 0–58 分钟。</b>下表仍是整周总计 100 分钟，不是 A 段独占 100 分钟。</p>
+    <table class="w07-schedule">
+      <thead><tr><th>时间</th><th>课件 / 环节</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr class="seg-a"><td>0–8</td><td><b>A · 爬虫结果 → DataFrame</b></td><td>同一组 records；9 行 × 3 列；DataFrame 是代码里的表</td></tr>
+        <tr class="seg-a"><td>8–18</td><td><b>A · 检查与缺失处理</b></td><td>head / info / describe / isna；to_numeric + dropna；9 → 8 行</td></tr>
+        <tr class="seg-a"><td>18–30</td><td><b>A · 筛选、分组与排序</b></td><td>条件筛选；groupby + mean；sort_values；8 条有效记录 → 3 行均值</td></tr>
+        <tr class="seg-a"><td>30–40</td><td><b>A · 图型与表图映射</b></td><td>比较 / 趋势 / 占比；一行记录如何变成一根柱</td></tr>
+        <tr class="seg-a"><td>40–52</td><td><b>A · Matplotlib 与保存</b></td><td>fig / ax；零基线；中文标签；savefig 与 show 的分工</td></tr>
+        <tr class="seg-a"><td>52–58</td><td><b>A · 小测与任务布置</b></td><td>3 题可视化 Quiz；课后完成一条可复查的数据链</td></tr>
+        <tr class="seg-b"><td>58–70</td><td><b>B · 案例与安全版本实验</b></td><td>CSV 数据契约；独立环境；NumPy 约束无解与 1.26.4 / 2.0.2 探针</td></tr>
+        <tr class="seg-b"><td>70–86</td><td><b>B · 机制与统一工具模型</b></td><td><a href="w07-venv.html">进入 W07-B</a>：PATH / 解释器 / sys.path；Python、Node、Rust、Go</td></tr>
+        <tr class="seg-b"><td>86–94</td><td><b>B · UV + DSH 实操与恢复</b></td><td>审查提示词；init / pin / add / run / sync；pyproject.toml 与 uv.lock</td></tr>
+        <tr class="seg-b"><td>94–100</td><td><b>整周 · 小测与作业</b></td><td>4 题 Quiz；独立可视化项目交付；进入 W08</td></tr>
+      </tbody>
     </table>
-    <p class="small">依赖灾难演示一定要现场复现——比讲十遍概念都有效。</p>
+    <p class="small">A 段课堂操作都在 iframe 实验室内完成；若投影空间不足，请用每页“新窗口打开”。</p>
   </section>
 
-
+  <!-- 3 · 同一数据源 -->
   <section class="slide">
-    <h2>Pandas：代码里的 Excel</h2>
-    <div class="flowline">
-      <div class="node">读取<br><span class="small">read_csv</span></div><span class="arrow">→</span>
-      <div class="node">了解<br><span class="small">head / info / describe</span></div><span class="arrow">→</span>
-      <div class="node hot">筛选统计<br><span class="small">条件 / groupby</span></div><span class="arrow">→</span>
-      <div class="node">可视化<br><span class="small">Matplotlib</span></div>
-    </div>
-    <pre class="rise"><code><span class="k">import</span> pandas <span class="k">as</span> pd
-df = pd.<span class="f">read_csv</span>(<span class="s">"weather.csv"</span>)          <span class="c"># DataFrame ≈ 一张表</span>
+    <h2>爬虫结果 → DataFrame：先把数据放在桌上</h2>
+    <div class="w07-kpi"><span>records: list[dict]</span><span>df.shape = (9, 3)</span><span>1 个缺失温度</span></div>
+    <div class="cols2 wide-l">
+      <pre class="w07-compact rise"><code><span class="k">import</span> pandas <span class="k">as</span> pd
 
-df[df[<span class="s">"temperature"</span>] &gt; <span class="n">30</span>]               <span class="c"># 条件筛选：高温天</span>
-df.<span class="f">groupby</span>(<span class="s">"city"</span>)[<span class="s">"temperature"</span>].<span class="f">mean</span>()    <span class="c"># 分组统计：各城市均温</span>
-df.<span class="f">sort_values</span>(<span class="s">"temperature"</span>, ascending=<span class="k">False</span>) <span class="c"># 排序</span></code></pre>
-    <p class="small frag">方法极多不用背——<b>能描述要什么、能看懂 AI 生成的链式调用</b>即可。</p>
+records = [
+    {<span class="s">"city"</span>: <span class="s">"北京"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-01"</span>, <span class="s">"temperature"</span>: <span class="n">28</span>},
+    {<span class="s">"city"</span>: <span class="s">"北京"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-02"</span>, <span class="s">"temperature"</span>: <span class="n">30</span>},
+    {<span class="s">"city"</span>: <span class="s">"北京"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-03"</span>, <span class="s">"temperature"</span>: <span class="k">None</span>},
+    {<span class="s">"city"</span>: <span class="s">"上海"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-01"</span>, <span class="s">"temperature"</span>: <span class="n">26</span>},
+    {<span class="s">"city"</span>: <span class="s">"上海"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-02"</span>, <span class="s">"temperature"</span>: <span class="n">27</span>},
+    {<span class="s">"city"</span>: <span class="s">"上海"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-03"</span>, <span class="s">"temperature"</span>: <span class="n">29</span>},
+    {<span class="s">"city"</span>: <span class="s">"广州"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-01"</span>, <span class="s">"temperature"</span>: <span class="n">31</span>},
+    {<span class="s">"city"</span>: <span class="s">"广州"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-02"</span>, <span class="s">"temperature"</span>: <span class="n">32</span>},
+    {<span class="s">"city"</span>: <span class="s">"广州"</span>, <span class="s">"date"</span>: <span class="s">"2026-06-03"</span>, <span class="s">"temperature"</span>: <span class="n">33</span>}
+]
+df = pd.<span class="f">DataFrame</span>(records)
+<span class="f">print</span>(df.shape)  <span class="c"># (9, 3)</span></code></pre>
+      <section class="scard rise" aria-label="天气样例原始数据表">
+        <b class="tt" style="font-size:17px;">同一份固定课堂样例</b>
+        <table class="w07-data-table">
+          <thead><tr><th>行</th><th>城市</th><th>日期</th><th>温度℃</th></tr></thead>
+          <tbody>
+            <tr><td>r01</td><td>北京</td><td>06-01</td><td>28</td></tr>
+            <tr><td>r02</td><td>北京</td><td>06-02</td><td>30</td></tr>
+            <tr><td>r03</td><td>北京</td><td>06-03</td><td><b>None → NaN</b></td></tr>
+            <tr><td>r04</td><td>上海</td><td>06-01</td><td>26</td></tr>
+            <tr><td>r05</td><td>上海</td><td>06-02</td><td>27</td></tr>
+            <tr><td>r06</td><td>上海</td><td>06-03</td><td>29</td></tr>
+            <tr><td>r07</td><td>广州</td><td>06-01</td><td>31</td></tr>
+            <tr><td>r08</td><td>广州</td><td>06-02</td><td>32</td></tr>
+            <tr><td>r09</td><td>广州</td><td>06-03</td><td>33</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <p class="small">真实项目中，<code>records</code> 可以来自 W06 爬虫的解析结果；这里直接写出 9 条字典，<b>不联网、不依赖不存在的 weather.csv</b>。</p>
   </section>
 
+  <!-- 4 · 检查与清洗 -->
   <section class="slide">
-    <h2>动手：数据全链路（纯 Python 版）</h2>
-    <span class="lab">交互 · 浏览器内运行（Pandas 思维的先行版）</span>
-    <p class="rise">浏览器运行场装不了 Pandas，但「清洗 → 统计 → 结论」的思路先跑通：</p>
-    <div class="py-playground" data-py-title="清洗 → 统计 → ASCII 可视化">
-      <textarea>import json
+    <h2>先检查，再清洗：缺失不是 0℃</h2>
+    <div class="cols2 wide-l">
+      <pre class="w07-compact rise"><code><span class="c"># df 已由上一页完整定义</span>
+<span class="f">print</span>(df.<span class="f">head</span>(<span class="n">3</span>))                 <span class="c"># 先看前几行长什么样</span>
+df.<span class="f">info</span>()                         <span class="c"># 列、非空数量、dtype</span>
+<span class="f">print</span>(df[<span class="s">"temperature"</span>].<span class="f">describe</span>()) <span class="c"># 数值分布</span>
+<span class="f">print</span>(df.<span class="f">isna</span>().<span class="f">sum</span>())             <span class="c"># 每列缺失数</span>
 
-movies = json.loads('''
-[{"title": "流浪地球2", "score": 8.3}, {"title": "满江红", "score": 7.0},
- {"title": "奥本海默", "score": 8.9}, {"title": "数据缺失", "score": null},
- {"title": "封神", "score": 7.8}, {"title": "消失的她", "score": 6.4}]
-''')
-
-# 1) 清洗（Pandas 里叫 dropna）
-clean = [m for m in movies if m["score"] is not None]
-
-# 2) 统计：平均分 + 分级计数（Pandas 里叫 groupby）
-avg = sum(m["score"] for m in clean) / len(clean)
-buckets = {"佳作(>=8)": 0, "良好(7-8)": 0, "一般(<7)": 0}
-for m in clean:
-    if m["score"] >= 8: buckets["佳作(>=8)"] += 1
-    elif m["score"] >= 7: buckets["良好(7-8)"] += 1
-    else: buckets["一般(<7)"] += 1
-
-print(f"有效 {len(clean)} 部，平均分 {avg:.1f}")
-for name, n in buckets.items():
-    print(f"  {name:　<8} {'█' * (n * 3)}")
-</textarea>
+df[<span class="s">"temperature"</span>] = pd.<span class="f">to_numeric</span>(
+    df[<span class="s">"temperature"</span>], errors=<span class="s">"coerce"</span>
+)
+clean_df = df.<span class="f">dropna</span>(subset=[<span class="s">"temperature"</span>]).<span class="f">copy</span>()
+<span class="f">print</span>(clean_df.shape)              <span class="c"># (8, 3)</span></code></pre>
+      <div>
+        <div class="scard rise"><span class="tag">检查顺序</span><b class="tt" style="font-size:18px;">看样品 → 看结构 → 看分布 → 找缺失</b>
+          <span class="small"><code>head</code> 不代替 <code>info</code>；<code>describe</code> 也不告诉你缺失在哪一行。几种检查互相补充。</span>
+        </div>
+        <div class="scard w07-warn rise"><span class="tag r">本例清洗决策</span><b class="tt" style="font-size:18px;">删除 r03，保留“9 → 8”的记录</b>
+          <span class="small">问题是“比较已观测温度的均值”，r03 没有温度，不能当作 0℃，也不凭空补值。其他问题可能适合 <code>fillna</code>，但必须有业务依据。</span>
+        </div>
+      </div>
     </div>
+    <p class="small"><b>运行边界：</b>以上代码在安装了 Pandas 的本地 Python / Notebook 中执行；本课程当前浏览器 Python 运行场尚未加载 Pandas，<b>这不是“Pandas 装不了”</b>。下方 SVG 实验室是明确标注的教学仿真。</p>
   </section>
 
+  <!-- 5 · 筛选 / 聚合 / 排序 -->
   <section class="slide">
-    <h2>Matplotlib：一图胜千数</h2>
-    <pre class="rise"><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
+    <h2>筛选、groupby、排序：每次变形都看输出</h2>
+    <div class="cols2 wide-l">
+      <div>
+        <pre class="w07-compact rise"><code><span class="c"># clean_df 已由上一页定义</span>
+hot_df = clean_df[clean_df[<span class="s">"temperature"</span>] &gt;= <span class="n">30</span>]
 
-fig, ax = plt.<span class="f">subplots</span>(figsize=(<span class="n">8</span>, <span class="n">4</span>))
-ax.<span class="f">bar</span>(cities, avg_temps)             <span class="c"># 柱状图：对比</span>
-ax.<span class="f">plot</span>(dates, temps)                <span class="c"># 折线图：趋势</span>
-ax.<span class="f">set_title</span>(<span class="s">"各城市平均温度"</span>)
-ax.<span class="f">set_ylabel</span>(<span class="s">"℃"</span>)
-fig.<span class="f">savefig</span>(<span class="s">"temp.png"</span>, dpi=<span class="n">150</span>)   <span class="c"># 保存图片</span></code></pre>
-    <ul>
-      <li class="frag">选择：柱状图看<b>对比</b>、折线图看<b>趋势</b>、饼图看<b>占比</b></li>
-      <li class="frag">课堂演示：天气 CSV → groupby 均温 → 柱状图 + 一周趋势折线图</li>
-    </ul>
+city_mean = (
+    clean_df.<span class="f">groupby</span>(<span class="s">"city"</span>)[<span class="s">"temperature"</span>]
+    .<span class="f">mean</span>()
+    .<span class="f">round</span>(<span class="n">1</span>)
+    .<span class="f">sort_values</span>(ascending=<span class="k">False</span>)
+)
+city_mean_df = city_mean.<span class="f">rename</span>(<span class="s">"avg_temperature"</span>).<span class="f">reset_index</span>()
+
+<span class="f">print</span>(hot_df)        <span class="c"># 4 行：仍是一批观测记录</span>
+<span class="f">print</span>(city_mean_df)  <span class="c"># 3 行：每行是一个城市</span></code></pre>
+        <p class="small">筛选保留“符合条件的行”；<code>groupby</code> 改变汇总粒度；<code>sort_values</code> 只改变顺序。<b>若对 hot_df 分组，回答的就变成“高温记录均值”，不是本页全量均值。</b></p>
+      </div>
+      <div class="scard rise">
+        <span class="tag">输入 8 行有效记录</span><b class="tt" style="font-size:18px;">city_mean · 降序结果</b>
+        <table class="w07-data-table">
+          <thead><tr><th>城市</th><th>平均温度℃</th><th>有效记录数</th></tr></thead>
+          <tbody><tr><td>广州</td><td>32.0</td><td>3</td></tr><tr><td>北京</td><td>29.0</td><td>2</td></tr><tr><td>上海</td><td>27.3</td><td>3</td></tr></tbody>
+        </table>
+        <span class="small">北京的均值只用 28、30 两条有效记录计算；缺失行没有变成 0。</span>
+        <hr style="border:0;border-top:1px dashed #cbd5e1;">
+        <b style="font-size:15px;">hot_df · 4 行</b>
+        <p class="small">北京 06-02 / 30℃；广州 06-01 / 31℃、06-02 / 32℃、06-03 / 33℃。</p>
+      </div>
+    </div>
   </section>
 
+  <!-- 6 · Pipeline lab -->
+  <section class="slide w07-demo">
+    <h2>交互① 数据变形器：read → clean → group → plot/save</h2>
+    <span class="lab">教学仿真 · 单步 / 播放 / 重置 · 无真实 Pandas 伪装</span>
+    <div class="demo-frame">
+      <span class="frame-tag">代码 / 表 / 图 / 读数同步</span>
+      <iframe src="../../demos/w07-visualization-lab.html?mode=pipeline" loading="lazy" title="W07-A 数据处理管线教学仿真：读取、清洗、分组、绘图与保存"></iframe>
+    </div>
+    <p class="small">课堂任务：哪一步从 9 行变 8 行？哪一步从 8 行变 3 行？最后点“模拟保存 PNG”，区分保存动作与真实文件副作用。<a class="demo-open" href="../../demos/w07-visualization-lab.html?mode=pipeline" target="_blank" rel="noopener">新窗口打开 pipeline ↗</a></p>
+  </section>
+
+  <!-- 7 · Charts lab -->
+  <section class="slide w07-demo">
+    <h2>交互② 选图：由问题与数据形状决定</h2>
+    <span class="lab">比较 / 趋势 / 占比 · 错误选择也真实重绘</span>
+    <div class="demo-frame">
+      <span class="frame-tag">不是图型美化菜单</span>
+      <iframe src="../../demos/w07-visualization-lab.html?mode=charts" loading="lazy" title="W07-A 图型选择实验：比较、趋势、占比任务与教学反馈"></iframe>
+    </div>
+    <p class="small">课堂任务：先选“趋势”，故意试一次饼图，再改折线；说明饼图额外制造了什么样的“整体”。<a class="demo-open" href="../../demos/w07-visualization-lab.html?mode=charts" target="_blank" rel="noopener">新窗口打开 charts ↗</a></p>
+  </section>
+
+  <!-- 8 · Mapping lab -->
+  <section class="slide w07-demo">
+    <h2>交互③ 表图映射：一行记录 ↔ 一个图形元素</h2>
+    <span class="lab">双向点击 · Tab 聚焦 · Enter / Space 高亮</span>
+    <div class="demo-frame">
+      <span class="frame-tag">8 行有效记录 → 8 根柱</span>
+      <iframe src="../../demos/w07-visualization-lab.html?mode=mapping" loading="lazy" title="W07-A 表图映射实验：表格行与 SVG 柱形双向高亮"></iframe>
+    </div>
+    <p class="small">课堂任务：从表格选 r05，再从图里选 r02；解释 r03 为什么没有对应柱形。图表旁始终保留数据表文本等价。<a class="demo-open" href="../../demos/w07-visualization-lab.html?mode=mapping" target="_blank" rel="noopener">新窗口打开 mapping ↗</a></p>
+  </section>
+
+  <!-- 9 · Matplotlib 实码 -->
   <section class="slide">
-    <h2>现场制造一次「依赖灾难」</h2>
-    <p class="rise">演示：全局环境里装 <code>requests==2.20</code>，再装一个要求 <code>requests>=2.28</code> 的库——</p>
-    <pre class="rise"><code>ERROR: pip's dependency resolver... requests 2.20 has requirement...,
-but you'll have requests 2.31 which is incompatible.</code></pre>
-    <div class="frag scard" style="border-left:5px solid #dc2626;">
-      <b>为什么会这样？</b>所有项目共用一个全局环境——A 项目要 torch 2.1，B 项目要 torch 2.5，
-      装在一起必有一个崩。AI 时代更严重：<b>每次问 AI 安装命令，它推荐的版本还可能不一样。</b>
-    </div>
-    <div class="frag scard" style="border-left:5px solid #047857;">
-      <b>解法：虚拟环境</b>——每个项目一间独立实验室，各有各的试剂柜。
+    <h2>Matplotlib：用 fig / ax 把汇总表画出来</h2>
+    <div class="cols2 wide-l">
+      <pre class="w07-compact rise"><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
+
+plt.rcParams[<span class="s">"font.sans-serif"</span>] = [
+    <span class="s">"Microsoft YaHei"</span>, <span class="s">"SimHei"</span>, <span class="s">"Noto Sans CJK SC"</span>
+]
+plt.rcParams[<span class="s">"axes.unicode_minus"</span>] = <span class="k">False</span>
+
+<span class="c"># city_mean 已由第 5 页定义：索引是城市，值是均温</span>
+fig, ax = plt.<span class="f">subplots</span>(figsize=(<span class="n">7</span>, <span class="n">4</span>))
+ax.<span class="f">bar</span>(city_mean.index, city_mean.values, color=<span class="s">"#0284c7"</span>)
+ax.<span class="f">set_title</span>(<span class="s">"各城市平均温度（3 日）"</span>)
+ax.<span class="f">set_xlabel</span>(<span class="s">"城市"</span>)
+ax.<span class="f">set_ylabel</span>(<span class="s">"平均温度（℃）"</span>)
+ax.<span class="f">set_ylim</span>(<span class="n">0</span>, <span class="n">35</span>)
+ax.<span class="f">bar_label</span>(ax.containers[<span class="n">0</span>], fmt=<span class="s">"%.1f"</span>)
+fig.<span class="f">tight_layout</span>()
+fig.<span class="f">savefig</span>(<span class="s">"city_mean.png"</span>, dpi=<span class="n">150</span>, bbox_inches=<span class="s">"tight"</span>)
+plt.<span class="f">show</span>()</code></pre>
+      <div>
+        <div class="scard rise"><span class="tag">一张图，两个对象</span><b class="tt" style="font-size:18px;">fig 是整张画布，ax 是一套坐标系</b>
+          <span class="small">柱形、标题与轴标落在 <code>ax</code>；整图布局与保存落在 <code>fig</code>。不要再把比较柱形与趋势折线混画在同一标题下。</span>
+        </div>
+        <div class="scard w07-good rise"><span class="tag g">预期读数</span><b class="tt" style="font-size:18px;">广州 32.0 · 北京 29.0 · 上海 27.3℃</b>
+          <span class="small">三根柱共享 0–35℃ 的 Y 轴；柱顶标数值，图旁保留汇总表。代码在本地运行后才生成 <code>city_mean.png</code>，仓库不伪造这张输出。</span>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- 10 · 实用陷阱 -->
   <section class="slide">
-    <h2>虚拟环境标准流程</h2>
-    <div class="flowline">
-      <div class="node">python -m venv venv<br><span class="small">创建</span></div><span class="arrow">→</span>
-      <div class="node hot">venv\Scripts\activate<br><span class="small">激活（Windows）</span></div><span class="arrow">→</span>
-      <div class="node">pip install ...<br><span class="small">独立安装</span></div><span class="arrow">→</span>
-      <div class="node">pip freeze &gt; requirements.txt<br><span class="small">导出锁定</span></div>
+    <h2>读图与交付：坐标、中文、保存三个陷阱</h2>
+    <div class="cols2 wide-r">
+      <div>
+        <figure class="w07-axis-figure rise">
+          <svg viewBox="0 0 700 260" role="img" aria-labelledby="axis-title axis-desc">
+            <title id="axis-title">同一组城市均温在截断坐标和零基线坐标中的不同视觉效果</title>
+            <desc id="axis-desc">左图 Y 轴从 26 开始，把北京与上海的小差异放大；右图从 0 开始，柱长与温度成比例。两图数值完全相同。</desc>
+            <rect width="700" height="260" fill="#ffffff"/>
+            <text x="175" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#991b1b">误导风险：Y = 26–33℃</text>
+            <text x="525" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#065f46">更诚实：Y = 0–35℃</text>
+            <line x1="48" y1="205" x2="312" y2="205" stroke="#64748b"/><line x1="388" y1="205" x2="652" y2="205" stroke="#64748b"/>
+            <text x="50" y="50" font-size="11" fill="#64748b">33</text><text x="50" y="208" font-size="11" fill="#64748b">26</text>
+            <text x="390" y="50" font-size="11" fill="#64748b">35</text><text x="390" y="208" font-size="11" fill="#64748b">0</text>
+            <rect x="78" y="80" width="48" height="125" rx="4" fill="#059669"/><rect x="157" y="145" width="48" height="60" rx="4" fill="#0284c7"/><rect x="236" y="179" width="48" height="26" rx="4" fill="#7c3aed"/>
+            <rect x="418" y="77" width="48" height="128" rx="4" fill="#059669"/><rect x="497" y="89" width="48" height="116" rx="4" fill="#0284c7"/><rect x="576" y="96" width="48" height="109" rx="4" fill="#7c3aed"/>
+            <g font-size="12" fill="#0f172a" text-anchor="middle">
+              <text x="102" y="225">广州 32.0</text><text x="181" y="225">北京 29.0</text><text x="260" y="225">上海 27.3</text>
+              <text x="442" y="225">广州 32.0</text><text x="521" y="225">北京 29.0</text><text x="600" y="225">上海 27.3</text>
+            </g>
+            <text x="350" y="249" text-anchor="middle" font-size="12" fill="#64748b">数值没变，柱长比例变了；比较柱状图通常从零基线开始。</text>
+          </svg>
+          <figcaption>柱状图靠柱长编码数值，截断 Y 轴会破坏比例。折线图为了看小幅变化可以截断，但必须清楚标示，不能假装两种读法等价。</figcaption>
+        </figure>
+      </div>
+      <div>
+        <div class="scard rise"><span class="tag">① 中文标签与负号</span>
+          <pre class="w07-mini"><code>plt.rcParams[<span class="s">"font.sans-serif"</span>] = [
+    <span class="s">"Microsoft YaHei"</span>, <span class="s">"SimHei"</span>, <span class="s">"Noto Sans CJK SC"</span>
+]
+plt.rcParams[<span class="s">"axes.unicode_minus"</span>] = <span class="k">False</span></code></pre>
+          <span class="small">候选字体也要机器上实际安装；若仍报缺字形，先查可用字体，而不是删中文标题。</span>
+        </div>
+        <div class="scard rise"><span class="tag v">② savefig ≠ show</span>
+          <span class="small"><code>fig.savefig(...)</code> 写图片文件；<code>plt.show()</code> 显示图形窗口。脚本中通常<b>先保存再 show</b>，避免部分后端在 show 后清空当前图。Notebook 自动显示也不等于已经保存。</span>
+        </div>
+        <div class="scard rise"><span class="tag g">③ 交付可读</span>
+          <span class="small"><code>dpi=150</code> 控制位图分辨率，<code>bbox_inches="tight"</code> 收紧空白；标题、单位、数据表与一句结论一起交付。</span>
+        </div>
+      </div>
     </div>
-    <ul>
-      <li class="frag">换机 / 协作：队友 clone 后 <code>pip install -r requirements.txt</code>，依赖原样到位</li>
-      <li class="frag"><code>.gitignore</code> 要忽略 <code>venv/</code> 文件夹本身</li>
-      <li class="frag">国内加速：<code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名</code></li>
-      <li class="frag">工具生态：pipenv（Pipfile.lock 锁定哈希）、conda（数据科学向）——<b>先掌握 venv，知道有别的选</b></li>
-    </ul>
   </section>
 
+  <!-- 11 · 3 题可视化 Quiz -->
   <section class="slide">
     <h2>随堂小测（3 题）</h2>
-    <span class="lab">交互 · 点击选项作答</span>
+    <span class="lab">W07-A · 图型 / 坐标 / 保存</span>
     <div class="pyv2-quiz">
       <script type="application/json" class="quiz-data">
       {
-        "title": "W7 可视化与虚拟环境 · 概念检查",
+        "title": "W07-A 数据可视化 · 概念检查",
         "questions": [
           {
-            "q": "Pandas 中「按年份统计平均评分」，最贴切的一行是？",
-            "opts": ["df.sort_values('year')", "df.groupby('year')['score'].mean()", "df['year'].count()", "df.merge(df)"],
-            "a": 1,
-            "explain": "groupby(分组键)[值列].聚合() 是最常用的统计句式；sort_values 只排序不汇总。"
-          },
-          {
-            "q": "requirements.txt 的价值是？",
-            "opts": ["让代码跑得更快", "换机/协作时一键还原依赖", "自动修 bug", "替代虚拟环境"],
-            "a": 1,
-            "explain": "锁定依赖清单，pip install -r requirements.txt 即可复现「我电脑上能跑」的环境。"
-          },
-          {
-            "q": "看到各城市温度对比，最合适的图表是？",
-            "opts": ["折线图", "饼图", "柱状图", "散点图"],
+            "q": "要观察上海 06-01 至 06-03 的温度变化，最贴切的图型是？",
+            "opts": ["柱状图", "饼图", "折线图", "散点图"],
             "a": 2,
-            "explain": "对比用柱状图；趋势用折线图；占比用饼图。图表是为了让数据说话，不是为了好看。"
+            "explain": "日期有自然顺序，任务是看变化方向，折线最直观。柱状图能比较三次数值，但不以趋势为重点。"
+          },
+          {
+            "q": "比较城市均温的柱状图把 Y 轴从 26℃ 开始，主要风险是什么？",
+            "opts": ["柱长比例失真，小差异被视觉放大", "中文一定会变成方框", "Pandas 会自动删除缺失行", "图片无法保存为 PNG"],
+            "a": 0,
+            "explain": "柱状图用长度编码数值。截断零基线后，柱长不再与温度成比例，同样的数据会呈现夸大的差异。"
+          },
+          {
+            "q": "本地脚本既要保存 city_mean.png，又要显示图形，较稳妥的写法是？",
+            "opts": ["只写 plt.show()", "fig.savefig('city_mean.png')，然后 plt.show()", "plt.show() 就会同时保存", "只写 print(fig)"],
+            "a": 1,
+            "explain": "savefig 负责写文件，show 负责显示。脚本中通常先保存再显示；Notebook 中自动显示也不代表图片已经写入磁盘。"
           }
         ]
       }
@@ -182,19 +373,50 @@ but you'll have requests 2.31 which is incompatible.</code></pre>
     </div>
   </section>
 
+  <!-- 12 · 课后作业 -->
   <section class="slide">
-    <h2>课后与下周预告</h2>
-    <div class="scard rise"><b class="tt">本周课后</b>
-      <ul style="font-size:16.5px;">
-        
-        <li class="frag">练习：给项目建 venv，装 requests + openai，导出 requirements.txt</li>
-      </ul>
+    <h2>课后作业：交一条能复查的数据链</h2>
+    <div class="cols2">
+      <div class="scard rise"><span class="tag">必做链路</span><b class="tt">从数据到结论，而不是只交一张图</b>
+        <ol style="font-size:16px;">
+          <li>沿用本课 9 条 <code>records</code>，或换成你上周实际爬取并整理的数据；附上可读取的数据样例。</li>
+          <li>在 <code>analysis.py</code> 中定义数据变量，打印 shape 与缺失检查，说明清洗规则，再完成一次筛选、<code>groupby</code> 和排序。</li>
+          <li>先写一句问题，再选匹配图型；补中文标题、轴名、单位与合理坐标，保存 PNG 后显示。</li>
+          <li>在 <code>README.md</code> 写清：数据从几行变几行、为什么这样清洗、图中能读出的两条结论。</li>
+        </ol>
+      </div>
+      <div>
+        <div class="scard rise"><span class="tag g">交付文件</span><b class="tt" style="font-size:18px;">analysis.py + 数据样例 + 图表 PNG + README.md</b>
+          <span class="small">若使用 <code>read_csv</code>，CSV 必须随作业提供且路径一致；若使用 <code>DataFrame(records)</code>，records 要在代码里完整定义。</span>
+        </div>
+        <div class="scard w07-warn rise"><span class="tag r">复查三问</span><b class="tt" style="font-size:18px;">缺失怎么处理？图型回答什么？结果能否重跑？</b>
+          <span class="small">不要把缺失默当成 0，不要把温度均值硬凑成占比，也不要让代码依赖只存在你电脑上的文件。</span>
+        </div>
+        <div class="w07-actions" style="margin-top:12px;">
+          <a class="w07-action" href="../../demos/w07-visualization-lab.html?mode=charts" target="_blank" rel="noopener">复查图型选择 ↗</a>
+          <a class="w07-action" href="../../demos/w07-visualization-lab.html?mode=pipeline" target="_blank" rel="noopener">重走数据管线 ↗</a>
+        </div>
+      </div>
     </div>
-    <div class="scard frag"><b class="tt">下周：W8 代码质量与模块化</b>
-      AI 生成的代码为什么不能直接用——五类常见问题与审查方法；把单文件巨石拆成专业项目结构。
-      <span class="small" style="display:block;margin-top:8px;"><a href="w08.html">提前看下周课件 →</a></span>
+  </section>
+
+  <!-- 13 · A 收束，主下一步到 B -->
+  <section class="slide">
+    <h2>A 段收束：图不是终点，解释才是</h2>
+    <div class="flowline" aria-label="本周 A 段数据链路">
+      <div class="node">爬虫结果<br><span class="small">records</span></div><span class="arrow">→</span>
+      <div class="node">DataFrame<br><span class="small">检查 / 清洗</span></div><span class="arrow">→</span>
+      <div class="node hot">筛选与聚合<br><span class="small">groupby / 排序</span></div><span class="arrow">→</span>
+      <div class="node">图与结论<br><span class="small">Matplotlib / PNG</span></div>
     </div>
-    <p class="small rise" style="margin-top:16px;">深入阅读：<a href="../m3/">M3</a> · <a href="../m4/">M4 模块页</a> · <a href="../notes/15.2-数据处理与可视化-Pandas数据处理/">经典笔记 15.2 Pandas</a> · <a href="../notes/10.5-第三方库与虚拟环境-虚拟环境管理/">10.5 虚拟环境</a></p>
+    <div class="scard w07-next rise">
+      <span class="tag">主下一步 · 58–100 分钟</span><b class="tt">W07-B：虚拟环境与依赖管理</b>
+      <p>图已经能重跑，下一步让项目换台机器也有明确的依赖边界：用 UV 创建并验证 <code>.venv</code>，以 <code>pyproject.toml</code> 声明依赖、<code>uv.lock</code> 锁定解析结果，再用 <code>uv sync --locked</code> 与 <code>uv run --locked</code> 重建和运行。</p>
+      <div class="w07-actions" style="margin-top:12px;"><a class="w07-action primary" href="w07-venv.html">进入 W07-B 虚拟环境 →</a></div>
+    </div>
+    <div class="scard rise"><b class="tt" style="font-size:17px;">延伸阅读与后续</b>
+      <span class="small"><a href="../m3/">M3 模块页</a> · <a href="../notes/15.2-数据处理与可视化-Pandas数据处理/">经典笔记 15.2 Pandas</a> · <a href="../notes/15.3-数据处理与可视化-可视化/">15.3 可视化</a> · <a href="../notes/15.4-数据处理与可视化-实例讲解/">15.4 实例讲解</a> · 完成 B 后进入 <a href="w08.html">W08</a></span>
+    </div>
   </section>
 
 </div>

@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "docs/python/v2/slides/w07.html",
+      "bytes": 30907,
+      "sha256": "30463ba29c3288b3133e04a0f06dd3889b04145bdff3a4ce6afedb5181042dc0"
+    },
+    {
+      "path": "docs/python/demos/w07-visualization-lab.html",
+      "bytes": 45950,
+      "sha256": "7cfadbc2ffa1310c4833a751ae85146e9eb915d8bd579724a46029de566e5c46"
+    },
+    {
+      "path": "artifacts/w07/qa-viz/summary.json",
+      "bytes": 21794,
+      "sha256": "96729e0023066510dae75847f8291f1428fa721f68685622b5e43152c22e4481"
+    },
+    {
+      "path": "artifacts/w07/qa-viz/report.md",
+      "bytes": 5451,
+      "sha256": "ae93842f6b6df77004fabc843badd6a9f950769477418f66512ba2ea6dad006f"
+    }
+  ]
+}

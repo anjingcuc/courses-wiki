@@ -220,7 +220,7 @@ hide:
       </div>
       <!-- WEEKMAP:END cards:m4 -->
     </div>
-    <p class="act-cross">W07「数据可视化与虚拟环境」跨 M3 / M4 两幕，周卡片见 <a href="#act-m3">M3 幕</a>。</p>
+    <p class="act-cross">W07「数据可视化与虚拟环境」跨 M3 / M4 两幕，周卡片见 <a href="#act-m3">M3 幕</a>；也可直接进入 <a href="v2/slides/w07-venv.html">W07-B 虚拟环境交互课件</a>。</p>
   </section>
 
   <section class="pyv2-act" id="act-m5">

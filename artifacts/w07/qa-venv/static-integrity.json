@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "file": "docs\\python\\v2\\slides\\w07-venv.html",
+      "duplicate_ids": [],
+      "buttons_missing_type": [],
+      "bad_iframes": [],
+      "blank_links_missing_rel": [],
+      "broken_local_targets": [],
+      "external_assets": [],
+      "local_links_checked": 24,
+      "passed": true
+    },
+    {
+      "file": "docs\\python\\demos\\w07-venv-lab.html",
+      "duplicate_ids": [],
+      "buttons_missing_type": [],
+      "bad_iframes": [],
+      "blank_links_missing_rel": [],
+      "broken_local_targets": [],
+      "external_assets": [],
+      "local_links_checked": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

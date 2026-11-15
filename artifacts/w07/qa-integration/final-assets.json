@@ -1,0 +1,125 @@
+{
+  "passed": 19,
+  "failed": 0,
+  "total": 19,
+  "results": [
+    {
+      "name": "built w07-case file exists: answers.csv",
+      "passed": true,
+      "detail": "bytes=304"
+    },
+    {
+      "name": "built w07-case file exists: data/answers.csv",
+      "passed": true,
+      "detail": "bytes=304"
+    },
+    {
+      "name": "built w07-case file exists: visualize.py",
+      "passed": true,
+      "detail": "bytes=2329"
+    },
+    {
+      "name": "built w07-case file exists: numpy_probe.py",
+      "passed": true,
+      "detail": "bytes=329"
+    },
+    {
+      "name": "built w07-case file exists: conflict-requirements.txt",
+      "passed": true,
+      "detail": "bytes=27"
+    },
+    {
+      "name": "built w07-case file exists: pyproject.toml",
+      "passed": true,
+      "detail": "bytes=166"
+    },
+    {
+      "name": "built w07-case file exists: uv.lock",
+      "passed": true,
+      "detail": "bytes=102672"
+    },
+    {
+      "name": "built w07-case file exists: index.html",
+      "passed": true,
+      "detail": "bytes=26102"
+    },
+    {
+      "name": "A/B schedules have identical segment classes and time ranges",
+      "passed": true,
+      "detail": "{\"A\": [[\"seg-a\", \"0–8\"], [\"seg-a\", \"8–18\"], [\"seg-a\", \"18–30\"], [\"seg-a\", \"30–40\"], [\"seg-a\", \"40–52\"], [\"seg-a\", \"52–58\"], [\"seg-b\", \"58–70\"], [\"seg-b\", \"70–86\"], [\"seg-b\", \"86–94\"], [\"seg-b\", \"94–100\"]], \"B\": [[\"seg-a\", \"0–8\"], [\"seg-a\", \"8–18\"], [\"seg-a\", \"18–30\"], [\"seg-a\", \"30–40\"], [\"seg-a\", \"40–52\"], [\"seg-a\", \"52–58\"], [\"seg-b\", \"58–70\"], [\"seg-b\", \"70–86\"], [\"seg-b\", \"86–94\"], [\"seg-b\", \"94–100\"]]}"
+    },
+    {
+      "name": "A/B schedule times are the expected ten rows",
+      "passed": true,
+      "detail": "{\"A\": [[\"seg-a\", \"0–8\"], [\"seg-a\", \"8–18\"], [\"seg-a\", \"18–30\"], [\"seg-a\", \"30–40\"], [\"seg-a\", \"40–52\"], [\"seg-a\", \"52–58\"], [\"seg-b\", \"58–70\"], [\"seg-b\", \"70–86\"], [\"seg-b\", \"86–94\"], [\"seg-b\", \"94–100\"]], \"B\": [[\"seg-a\", \"0–8\"], [\"seg-a\", \"8–18\"], [\"seg-a\", \"18–30\"], [\"seg-a\", \"30–40\"], [\"seg-a\", \"40–52\"], [\"seg-a\", \"52–58\"], [\"seg-b\", \"58–70\"], [\"seg-b\", \"70–86\"], [\"seg-b\", \"86–94\"], [\"seg-b\", \"94–100\"]]}"
+    },
+    {
+      "name": "schedule is contiguous 0–100 with six A and four B rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B slide 12 exposes the single complete-archive download link",
+      "passed": true,
+      "detail": "found=1"
+    },
+    {
+      "name": "B download label is the complete UV archive",
+      "passed": true,
+      "detail": "{\"下载完整 UV 案例包 (.zip) ↓\": \"http://127.0.0.1:56563/courses-wiki/python/demos/w07-case.zip\"}"
+    },
+    {
+      "name": "B case guide link has no download attribute",
+      "passed": true,
+      "detail": "found=1"
+    },
+    {
+      "name": "B download HTTP 200: 下载完整 UV 案例包 (.zip) ↓",
+      "passed": true,
+      "detail": "{\"name\": \"下载完整 UV 案例包 (.zip) ↓\", \"url\": \"http://127.0.0.1:56563/courses-wiki/python/demos/w07-case.zip\", \"status\": 200, \"bytes\": 36909, \"content_type\": \"application/x-zip-compressed\"}"
+    },
+    {
+      "name": "B archive contains the complete runnable UV project",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "B case guide directory URL is HTTP 200",
+      "passed": true,
+      "detail": "{\"url\": \"http://127.0.0.1:56563/courses-wiki/python/demos/w07-case/\", \"status\": 200, \"bytes\": 26102}"
+    },
+    {
+      "name": "site serves w07-case.zip",
+      "passed": true,
+      "detail": "{\"status\": 200, \"bytes\": 36909}"
+    },
+    {
+      "name": "B download/deck page has no console/pageerror/HTTP/unexpected-network errors",
+      "passed": true,
+      "detail": "{\"console_errors\": [], \"page_errors\": [], \"http_errors\": [], \"unexpected_external_requests\": []}"
+    }
+  ],
+  "downloads": [
+    {
+      "name": "下载完整 UV 案例包 (.zip) ↓",
+      "url": "http://127.0.0.1:56563/courses-wiki/python/demos/w07-case.zip",
+      "status": 200,
+      "bytes": 36909,
+      "content_type": "application/x-zip-compressed"
+    }
+  ],
+  "health": {
+    "console_errors": [],
+    "page_errors": [],
+    "http_errors": [],
+    "unexpected_external_requests": []
+  },
+  "screenshots": [
+    "venv-deck-downloads-1366.png"
+  ],
+  "hidden_metadata_in_site": {
+    ".python-version": false,
+    ".gitignore": false
+  },
+  "readme_note": "MkDocs renders README.md to w07-case/index.html; B links to the /w07-case/ guide directory and serves the complete project as w07-case.zip."
+}

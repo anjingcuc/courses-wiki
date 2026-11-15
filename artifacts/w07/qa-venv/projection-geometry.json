@@ -1,0 +1,1208 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "target": "lab/case",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 16,
+      "buttonCount": 8,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/conflict",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/principles",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 9,
+      "minButtonFont": 11
+    },
+    {
+      "target": "lab/ecosystem",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 12,
+      "buttonCount": 9,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/practice",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 11,
+      "minButtonFont": 10
+    },
+    {
+      "target": "lab/diagnostics",
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10.5,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/case",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 16,
+      "buttonCount": 8,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/conflict",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10.5,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/principles",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 9,
+      "minButtonFont": 11
+    },
+    {
+      "target": "lab/ecosystem",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 12,
+      "buttonCount": 9,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/practice",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 11,
+      "minButtonFont": 10
+    },
+    {
+      "target": "lab/diagnostics",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10.5,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/case",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 16,
+      "buttonCount": 8,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/conflict",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10.5,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/principles",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 9,
+      "minButtonFont": 11
+    },
+    {
+      "target": "lab/ecosystem",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 12,
+      "buttonCount": 9,
+      "minButtonFont": 12
+    },
+    {
+      "target": "lab/practice",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10,
+      "buttonCount": 11,
+      "minButtonFont": 10
+    },
+    {
+      "target": "lab/diagnostics",
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "overlaps": [],
+      "clipped": [],
+      "minCoreFont": 10.5,
+      "buttonCount": 5,
+      "minButtonFont": 12
+    },
+    {
+      "target": "deck/slide-1",
+      "title": "从天气微样例，到 answers.csv 综合作业",
+      "titleFont": 50,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-2",
+      "title": "今日课表（100 分钟）",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-3",
+      "title": "交互① 案例：共享数据契约，不共享依赖",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-4",
+      "title": "项目边界：CSV 穿过，依赖不跟着穿",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-5",
+      "title": "交互② 安全实验：先让求解器说话，再比较 API",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-6",
+      "title": "两个现象，两个结论：都不要用全局环境制造事故",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 559,
+          "cw": 559,
+          "sh": 100,
+          "ch": 100
+        },
+        {
+          "sw": 1230,
+          "cw": 1230,
+          "sh": 73,
+          "ch": 45
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-7",
+      "title": "统一模型：先问任务在哪一层，不先问“activate 什么”",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-8",
+      "title": "交互③ 路径透视：全局 / 激活 / uv run / 错位故障",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-9",
+      "title": "激活不是魔法：提示符只是线索，路径才是证据",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 706,
+          "cw": 706,
+          "sh": 204,
+          "ch": 204
+        },
+        {
+          "sw": 504,
+          "cw": 504,
+          "sh": 157,
+          "ch": 157
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-10",
+      "title": "交互④ 跨语言地图：同一四层，不同工具分工",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-11",
+      "title": "换语言不换问题：工具链、依赖声明、缓存各就各位",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-12",
+      "title": "实操前先审查 Agent：工作区、输入、命令、验证",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 706,
+          "cw": 706,
+          "sh": 413,
+          "ch": 413
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-13",
+      "title": "交互⑤ UV + DSH：从提示词到证据，再到换机重建",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-14",
+      "title": "两条运行路线：DSH 推荐 uv run；人工终端可以激活",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 557,
+          "cw": 557,
+          "sh": 52,
+          "ch": 52
+        },
+        {
+          "sw": 561,
+          "cw": 561,
+          "sh": 117,
+          "ch": 117
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-15",
+      "title": "交付的是可重建的声明，不是搬运 .venv",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 706,
+          "cw": 706,
+          "sh": 117,
+          "ch": 117
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-16",
+      "title": "备用交互 · 故障门诊：先证据，后修复",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-17",
+      "title": "随堂小测（4 题）",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-18",
+      "title": "课后作业：交付一个能换机重跑的可视化项目",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 776,
+      "innerHeight": 768,
+      "viewport": [
+        1366,
+        768
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-1",
+      "title": "从天气微样例，到 answers.csv 综合作业",
+      "titleFont": 50,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-2",
+      "title": "今日课表（100 分钟）",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-3",
+      "title": "交互① 案例：共享数据契约，不共享依赖",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-4",
+      "title": "项目边界：CSV 穿过，依赖不跟着穿",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-5",
+      "title": "交互② 安全实验：先让求解器说话，再比较 API",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-6",
+      "title": "两个现象，两个结论：都不要用全局环境制造事故",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 836,
+          "cw": 836,
+          "sh": 100,
+          "ch": 100
+        },
+        {
+          "sw": 1784,
+          "cw": 1784,
+          "sh": 73,
+          "ch": 73
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-7",
+      "title": "统一模型：先问任务在哪一层，不先问“activate 什么”",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-8",
+      "title": "交互③ 路径透视：全局 / 激活 / uv run / 错位故障",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-9",
+      "title": "激活不是魔法：提示符只是线索，路径才是证据",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 1029,
+          "cw": 1029,
+          "sh": 204,
+          "ch": 204
+        },
+        {
+          "sw": 735,
+          "cw": 735,
+          "sh": 157,
+          "ch": 157
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-10",
+      "title": "交互④ 跨语言地图：同一四层，不同工具分工",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-11",
+      "title": "换语言不换问题：工具链、依赖声明、缓存各就各位",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-12",
+      "title": "实操前先审查 Agent：工作区、输入、命令、验证",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 1029,
+          "cw": 1029,
+          "sh": 396,
+          "ch": 396
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-13",
+      "title": "交互⑤ UV + DSH：从提示词到证据，再到换机重建",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-14",
+      "title": "两条运行路线：DSH 推荐 uv run；人工终端可以激活",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 834,
+          "cw": 834,
+          "sh": 52,
+          "ch": 52
+        },
+        {
+          "sw": 838,
+          "cw": 838,
+          "sh": 117,
+          "ch": 117
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-15",
+      "title": "交付的是可重建的声明，不是搬运 .venv",
+      "titleFont": 30,
+      "pre": [
+        {
+          "sw": 1029,
+          "cw": 1029,
+          "sh": 117,
+          "ch": 117
+        }
+      ],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-16",
+      "title": "备用交互 · 故障门诊：先证据，后修复",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-17",
+      "title": "随堂小测（4 题）",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-18",
+      "title": "课后作业：交付一个能换机重跑的可视化项目",
+      "titleFont": 30,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 83,
+      "slideBottom": 1088,
+      "innerHeight": 1080,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-1",
+      "title": "从天气微样例，到 answers.csv 综合作业",
+      "titleFont": 36,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-2",
+      "title": "今日课表（100 分钟）",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-3",
+      "title": "交互① 案例：共享数据契约，不共享依赖",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-4",
+      "title": "项目边界：CSV 穿过，依赖不跟着穿",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-5",
+      "title": "交互② 安全实验：先让求解器说话，再比较 API",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-6",
+      "title": "两个现象，两个结论：都不要用全局环境制造事故",
+      "titleFont": 26,
+      "pre": [
+        {
+          "sw": 426,
+          "cw": 284,
+          "sh": 100,
+          "ch": 100
+        },
+        {
+          "sw": 570,
+          "cw": 330,
+          "sh": 67,
+          "ch": 30
+        }
+      ],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-7",
+      "title": "统一模型：先问任务在哪一层，不先问“activate 什么”",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-8",
+      "title": "交互③ 路径透视：全局 / 激活 / uv run / 错位故障",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-9",
+      "title": "激活不是魔法：提示符只是线索，路径才是证据",
+      "titleFont": 26,
+      "pre": [
+        {
+          "sw": 458,
+          "cw": 330,
+          "sh": 179,
+          "ch": 179
+        },
+        {
+          "sw": 433,
+          "cw": 330,
+          "sh": 157,
+          "ch": 157
+        }
+      ],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-10",
+      "title": "交互④ 跨语言地图：同一四层，不同工具分工",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-11",
+      "title": "换语言不换问题：工具链、依赖声明、缓存各就各位",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-12",
+      "title": "实操前先审查 Agent：工作区、输入、命令、验证",
+      "titleFont": 26,
+      "pre": [
+        {
+          "sw": 478,
+          "cw": 330,
+          "sh": 298,
+          "ch": 298
+        }
+      ],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-13",
+      "title": "交互⑤ UV + DSH：从提示词到证据，再到换机重建",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-14",
+      "title": "两条运行路线：DSH 推荐 uv run；人工终端可以激活",
+      "titleFont": 26,
+      "pre": [
+        {
+          "sw": 282,
+          "cw": 280,
+          "sh": 49,
+          "ch": 49
+        },
+        {
+          "sw": 284,
+          "cw": 284,
+          "sh": 104,
+          "ch": 104
+        }
+      ],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-15",
+      "title": "交付的是可重建的声明，不是搬运 .venv",
+      "titleFont": 26,
+      "pre": [
+        {
+          "sw": 330,
+          "cw": 330,
+          "sh": 104,
+          "ch": 104
+        }
+      ],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-16",
+      "title": "备用交互 · 故障门诊：先证据，后修复",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-17",
+      "title": "随堂小测（4 题）",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    },
+    {
+      "target": "deck/slide-18",
+      "title": "课后作业：交付一个能换机重跑的可视化项目",
+      "titleFont": 26,
+      "pre": [],
+      "offenders": [],
+      "slideTop": 131,
+      "slideBottom": 852,
+      "innerHeight": 844,
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true
+    }
+  ]
+}

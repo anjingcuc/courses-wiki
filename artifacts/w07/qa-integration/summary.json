@@ -1,0 +1,54 @@
+{
+  "baseline": "final repaired current worktree; final MkDocs build includes the w07-case guide-directory link fix",
+  "overall": "PASS",
+  "passed": 554,
+  "failed": 0,
+  "total": 554,
+  "suites": {
+    "w07a_built_site": {"passed": 204, "failed": 0, "total": 204, "summary": "summary-viz.json", "log": "playwright-viz.txt", "exit_code": 0, "build": "final"},
+    "w07b_built_site": {"passed": 325, "failed": 0, "total": 325, "summary": "summary-venv.json", "log": "playwright-venv.txt", "exit_code": 0, "build": "same final content before the guide-only link change; guide and final navigation were retested on the final build"},
+    "final_assets_downloads_schedules": {"passed": 19, "failed": 0, "total": 19, "summary": "final-assets.json", "log": "final-assets.txt", "exit_code": 0, "build": "final"},
+    "code_and_csv_static": {"passed": 6, "failed": 0, "total": 6, "summary": "code-chain.json", "log": "code-chain.txt", "exit_code": 0, "build": "final"}
+  },
+  "commands": [
+    {"command": "uv run mkdocs build", "exit_code": 0, "output": "Final rebuild: Documentation built in 4.50 seconds", "log": "mkdocs-build.txt"},
+    {"command": "uv run python sync-week-map.py --check", "exit_code": 0, "output": "OK: 4 类消费点与 week-map.json 一致，无漂移", "log": "week-map-check.txt"},
+    {"command": "uv run python linkcheck.py", "exit_code": 0, "output": "checked 4754 link refs, unique broken: 2; both known reveal notes-server false positives", "log": "linkcheck.txt"},
+    {"command": "python artifacts/w07/qa-integration/test_built_viz.py", "exit_code": 0, "output": "SUMMARY: 204/204 passed; failed=0; screenshots=16", "log": "playwright-viz.txt"},
+    {"command": "python artifacts/w07/qa-integration/test_built_venv.py", "exit_code": 0, "output": "SUMMARY: 325/325 passed; failed=0; screenshots=20", "log": "playwright-venv.txt"},
+    {"command": "python artifacts/w07/qa-integration/test_final_assets.py", "exit_code": 0, "output": "SUMMARY: 19/19 passed; failed=0; screenshots=1", "log": "final-assets.txt"},
+    {"command": "python artifacts/w07/qa-integration/check_code_chain.py", "exit_code": 0, "output": "SUMMARY: 6/6 passed; failed=0", "log": "code-chain.txt"}
+  ],
+  "passed_coverage": [
+    "W07-A/W07-B direct deployed URLs; actual A↔B and B→W08 clicks",
+    "M4 primary/footer and home week-card/cross-module entries",
+    "All 3 A and 6 B demo iframes load from built site and render their selected modes",
+    "Parent keyboard navigation and iframe ArrowRight/Space/click isolation",
+    "A quiz 3/3 and B quiz 4/4",
+    "All 3 visualization and 6 venv lab modes, state transitions, reset and playback",
+    "Reduced-motion disables autoplay with accessible explanations; manual steps reach complete final states without animations",
+    "Every slide and every lab mode at 1920×1080, 1366×768 and 390×844 without full-page horizontal overflow",
+    "No unexpected console errors, page errors, HTTP errors or external requests in W07 decks/labs/navigation",
+    "Eight public w07-case runtime/guide artifacts exist in site, including data/answers.csv, pyproject.toml and uv.lock",
+    "answers.csv, visualize.py and numpy_probe.py downloads are HTTP 200; /python/demos/w07-case/ guide is HTTP 200",
+    "A/B schedules have identical six A + four B rows and contiguous 0–100 time ranges",
+    "A code has no load-before-definition variables and no weather.csv/read_csv dependency; labs do not fetch CSV"
+  ],
+  "known_host_baseline": {
+    "url": "https://api.github.com/repos/anjingcuc/courses-wiki/releases/latest",
+    "status": 404,
+    "classification": "Known pre-existing host entry-page request, recorded separately as requested; not counted as a W07 failure",
+    "evidence": "summary-viz.json health.navigation-built.baseline_console_errors and baseline_http_errors",
+    "other_navigation_errors": []
+  },
+  "environment": {
+    "server": "Temporary ThreadingHTTPServer rooted at site/, mapped to /courses-wiki/",
+    "python": "C:/Users/anjing/Miniconda3/python.exe 3.13.11",
+    "browser": "Installed Google Chrome via system Python Playwright",
+    "viewports": ["1920x1080", "1366x768", "390x844"],
+    "harness_note": "Chrome's implicit origin /favicon.ico request receives a harness-only 204 response; content and built assets are unchanged."
+  },
+  "screenshots": {"suite_count": 37, "directory": "artifacts/w07/qa-integration", "missing": []},
+  "constraints": ["crawler build.py not run", "no git operations", "no content source or shared CSS/JS edits"],
+  "code_execution_note": "Variable/CSV checks use sequential AST validation, not a real Pandas/Matplotlib execution; system Python lacks those packages and none were installed. Browser simulations were exercised separately."
+}

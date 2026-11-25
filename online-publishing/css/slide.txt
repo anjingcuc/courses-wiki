@@ -1,0 +1,758 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 样式
+
+---
+
+## CSS - <b style='color:red'>C</b>ascading <b style='color:red'>S</b>tyle <b style='color:red'>S</b>heets
+
+CSS 介绍：
+
+- 脱胎于 HTML 4 引入的 style 属性。
+- 使得内容和表现形式能够分离，模块化。
+- 外部样式表一般是一个 CSS 文件。
+- 样式层层叠加定义元素最终的样式。
+
+<!-- .element style="font-size: 70%"-->
+
+---
+
+## CSS 语法
+
+CSS 通过一系列的语法规则来定义网页的外观、布局等样式。
+
+```CSS
+h1 {
+    color: red;
+    font-size: 5em;
+}
+```
+
+---
+
+## CSS 选择器
+
+CSS 选择器是一条 CSS 规则中首先出现的部分，它表示这条规则将被应用到哪些/哪个 HTML 元素上，也就是这条规则**选择**了哪些/哪个 HTML 元素。选择器可以有多个：
+
+```CSS
+/* 选择器为标签选择器 h1 */
+h1 {
+  color: red;
+}
+
+/* 选择器为多个标签选择器 h1 h2 h3*/
+h1,h2,h3 {
+  color: red;
+}
+```
+
+---
+
+## CSS 选择器类型
+
+--
+
+### 标签/class/id
+
+三种主要的选择器：
+
+```CSS
+/* 元素选择器，选中页面中的所有 h1 元素 */
+h1 {}
+/*
+类选择器或者class选择器，
+选中页面中的属性 class 的值为 box 的元素
+*/
+.box {}
+/* id 选择器，选中页面中的属性 id 的值为 unique 的元素 */
+#unique {}
+```
+
+--
+
+### 属性
+
+还可以元素结合属性来实现选择：
+
+```CSS
+/* 选中具有 title 属性的所有 a 元素 */
+a[title] {}
+/*
+选中具有 href 属性
+且值为 "hobbies.html" 的
+所有 a 元素
+*/
+a[href="hobbies.html"] {}
+```
+
+--
+
+### 组合
+
+多个选择器可以进行组合：
+
+```CSS
+/* 选中 article 元素下一级的所有 p 元素 */
+article > p {}
+```
+
+---
+
+## CSS 冲突规则
+
+--
+
+### 层叠
+
+新的样式会覆盖旧的样式：
+
+```CSS
+h1 {
+    color: red;
+}
+
+h1 {
+    color: blue;
+}
+```
+
+--
+
+### 专一性
+
+越具体的规则会覆盖通用性的规则：
+
+```CSS
+.main-heading {
+    color: red;
+}
+
+h1 {
+    color: blue;
+}
+```
+
+--
+
+### 继承
+
+子元素中的节点会继承祖先元素的规则：
+
+```CSS
+body {
+    color: blue;
+}
+
+span {
+    color: black;
+}
+```
+
+---
+
+## 实践部分
+
+学习以下规则，灵活地美化你的网页：
+
+- [font-family](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-family), 字体
+- [color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color), 文字颜色
+- [border-bottom](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom), 底部边框
+- [font-weight](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-weight), 字体粗细
+- [font-size](https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-size), 字体大小
+- [text-decoration](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-decoration), 文字方向
+
+<!-- .element style="font-size: 70%"-->
+
+参考: https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference
+
+<!-- .element style="font-size: 50%"-->
+
+---
+
+## 文本样式
+
+分为四个方面介绍文本样式:
+
+1. 基本样式
+2. 列表样式
+3. 链接样式
+
+<!-- .element style="font-size: 70%"-->
+
+---
+
+## 文本样式-基本样式
+
+元素中的文本是布置在元素的内容框中，以内容区域的左上角作为起点，一直延续到行的结束部分，然后自动换行，直到所有内容都放入了盒子中。强制换行的话，可以使用 `<br>` 元素。
+
+- 字体样式
+- 文本布局
+
+<!-- .element style="font-size: 70%"-->
+
+--
+
+### 字体样式-颜色
+
+字体颜色，可以采用英文单词 red / 颜色代码 #FF0000 / RGB 值 rgb(255,0,0) 。
+
+```CSS
+p {
+  color: red;
+}
+```
+
+--
+
+### 字体样式-字体 (1/3)
+
+`font-family` 修改页面显示的字体，包括 serif / sans-serif / monospace 等。
+
+| 名称       | 定义                                                                      | 示例                                                         |
+| ---------- | ------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| serif      | 有衬线的字体 （衬线一词是指字体笔画尾端的小装饰，存在于某些印刷体字体中） | <span style="font-family:'Times New Roman';">elephant</span> |
+| sans-serif | 没有衬线的字体。                                                          | <span style="font-family:Arial;">elephant</span>             |
+| monospace  | 每个字符具有相同宽度的字体，通常用于代码列表。                            | <span style="font-family:'Courier New';">elephant</span>     |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-字体 (2/3)
+
+网页安全字体，大部分系统和浏览器都能够正确显示的字体。
+
+| 字体名称        | 泛型       | 注意                                                                                                                          |
+| --------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Arial           | sans-serif | 通常认为最佳做法还是添加 Helvetica 作为 Arial 的替代品，Helvetica 被认为具有更好的形状，即使 Arial 使用更加广泛。             |
+| Courier New     | monospace  | 某些操作系统有一个 Courier New 字体的替代版本叫 Courier。使用 Courier New 作为 Courier 的首选替代方案，被认为是最佳做法。     |
+| Times New Roman | serif      | 某些操作系统有一个 Times New Roman 字体的替代版本叫 Times。使用 Times 作为 Times New Roman 的首选替代方案，被认为是最佳做法。 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-字体栈 (3/3)
+
+在 `font-family` 中写多个字体，浏览器会按照先后顺序使用。
+
+```CSS
+p {
+  font-family: Helvetica, Arial, sans-serif;
+}
+```
+
+--
+
+### 字体样式-大小
+
+`font-size` 改变文本大小。
+
+| 单位 | 示例                                                                                                          |
+| ---- | ------------------------------------------------------------------------------------------------------------- |
+| px   | 将像素的值赋予给你的文本。这是一个绝对单位， 它导致了在任何情况下，页面上的文本所计算出来的像素值都是一样的。 |
+| em   | 1em 等于当前元素的父元素上设置的字体大小                                                                      |
+| rem  | 类似 em ，但 1rem 等于根元素 html 设置的字体大小。                                                            |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-斜体
+
+`font-style` 使得字体斜体。
+
+| 值      | 作用                               |
+| ------- | ---------------------------------- |
+| normal  | 将文本设置为普通字体               |
+| italic  | 将文本设置为当前字体的斜体版本     |
+| oblique | 如当前字体没有斜体版本，则模拟斜体 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-粗细
+
+`font-weight` 设置字体粗细。
+
+| 值      | 作用           |
+| ------- | -------------- |
+| normal  | 字体的普通粗细 |
+| bold    | 加粗的字体     |
+| lighter | 更细的字体     |
+| bolder  | 更粗的字体     |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-转换
+
+`text-transform` 设置文本转换。
+
+| 值         | 作用                     |
+| ---------- | ------------------------ |
+| none       | 防止任何转换             |
+| uppercase  | 全部转换为大写           |
+| lowercase  | 全部转换为小写           |
+| capitalize | 首字母大写               |
+| full-width | 转换为全角，类似等宽字体 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 字体样式-装饰
+
+`text-decoration` 设置文本装饰。
+
+| 值           | 作用                       |
+| ------------ | -------------------------- |
+| none         | 取消已经存在的任何文本装饰 |
+| underline    | 文本下划线                 |
+| overline     | 文本上划线                 |
+| line-through | 文本中间划线               |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 文本布局-对齐
+
+`text-align` 设置文本对齐方式。
+
+| 值      | 作用             |
+| ------- | ---------------- |
+| left    | 左对齐           |
+| right   | 右对齐           |
+| center  | 居中对齐         |
+| justify | 展开文本两端对齐 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 文本对齐-行高
+
+`line-height` 设置行高。
+
+```CSS
+line-height: 1.5
+```
+
+---
+
+## 文本样式-列表样式
+
+`<ul>` / `<ol>` 元素设置 `margin` 的顶部/底部为: `16px(1em)` / `0`; 和 `padding-left: 40px(2.5em);`（在这里注意的是浏览器默认字体大小为 16px）。
+<br> `<li>` 默认是没有设置间距的。
+
+--
+
+### 列表特定样式-符号样式
+
+`list-style-type` 属性设置项目符号点的类型。
+
+| 值                   | 作用                    |
+| -------------------- | ----------------------- |
+| decimal              | `<ol>` 默认十进制       |
+| decimal-leading-zero | `<ol>` 十进制且前面补 0 |
+| upper-roman          | `<ol>` 使用大写罗马数字 |
+| lower-roman          | `<ol>` 使用小写罗马数字 |
+| disc                 | `<ul>` 默认实心圆点     |
+| circle               | `<ul>` 空心圆点         |
+| square               | `<ul>` 实心方块         |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 列表特定样式-符号位置
+
+`list-style-position` 属性设置符号是在盒外还是盒内。
+
+| 值      | 作用                     |
+| ------- | ------------------------ |
+| outside | 默认值，在内容区域之外。 |
+| inside  | 在内容区域之内。         |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 文本样式-链接样式
+
+--
+
+### 链接样式-伪类
+
+修改链接样式需要用到`伪类`来实现。
+
+| 伪类      | 作用                        |
+| --------- | --------------------------- |
+| a:link    | 未访问过链接样式。          |
+| a:visited | 访问过的链接样式。          |
+| a:hover   | 鼠标悬停时的链接样式        |
+| a:focus   | 键盘 `Tab` 选中时的链接样式 |
+| a:active  | 被激活/点击时的链接样式     |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 链接样式-顺序
+
+修改链接样式按照上面列表的顺序来定义，如果顺序不对，可能显示不正确。
+
+```CSS
+a {
+
+}
+
+
+a:link {
+
+}
+
+a:visited {
+
+}
+
+a:focus {
+
+}
+
+a:hover {
+
+}
+
+a:active {
+
+}
+```
+
+---
+
+## 盒子样式
+
+盒子样式分为四个部分进行介绍：
+
+- 基本样式
+- 背景边界
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 基本样式
+
+对于一个块状盒子来说，包括以下组成部分。
+
+| 部分 | 作用                               | CSS          |
+| ---- | ---------------------------------- | ------------ |
+| 内容 | 显示盒子包含的内容，主要显示区域。 | width/height |
+| 填充 | 内容部分和边框部分之间填充的空白。 | padding      |
+| 边框 | 盒子的边框。                       | border       |
+| 空白 | 最外层，和其他盒子之间的空白。     | margin       |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 基本样式-外边距
+
+| CSS                            | 作用                           |
+| ------------------------------ | ------------------------------ |
+| margin: value;                 | 四周同样大小的空白。           |
+| margin: vertical horizontal;   | 分别定义纵向，横向的空白。     |
+| margin: top horizontal bottom; | 定义上面，横向，下面的空白。   |
+| margin: top right bottom left; | 分别定义上、右、下、左的空白。 |
+
+<!-- .element: style="font-size:70%;" -->
+
+```CSS
+.box {
+  margin-top: -40px;
+  margin-right: 30px;
+  margin-bottom: 40px;
+  margin-left: 4em;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<div class="container">
+  <div class="box">Change my margin.</div>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+--
+
+### 基本样式-外边距塌陷
+
+如果你有两个外边距相接的元素，这些外边距将合并为一个外边距，即最大的单个外边距的大小。
+
+```CSS
+.one {
+  margin-bottom: 50px;
+}
+
+.two {
+  margin-top: 30px;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```html
+<div class="container">
+  <p class="one">I am paragraph one.</p>
+  <p class="two">I am paragraph two.</p>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 基本样式-边框
+
+边框与 margin 类似，也可以对四周分别进行定义，同时，边框除了宽度以外还可以定义样式和颜色。
+
+```CSS
+.container {
+  border-top: 5px dotted green;
+  border-right: 1px solid black;
+  border-bottom: 20px double rgb(23,45,145);
+}
+
+.box {
+  border: 1px solid #333333;
+  border-top-style: dotted;
+  border-right-width: 20px;
+  border-bottom-color: hotpink;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+```html
+<div class="container">
+  <div class="box">Change my borders.</div>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:420px;display:flex;align-items:center;" -->
+
+--
+
+### 基本样式-填充
+
+| CSS                             | 作用                           |
+| ------------------------------- | ------------------------------ |
+| padding: value;                 | 四周同样大小的填充。           |
+| padding: vertical horizontal;   | 分别定义纵向，横向的填充。     |
+| padding: top horizontal bottom; | 定义上面，横向，下面的填充。   |
+| padding: top right bottom left; | 分别定义上、右、下、左的填充。 |
+
+<!-- .element: style="font-size:70%;" -->
+
+```CSS
+.box {
+  padding-top: 0;
+  padding-right: 30px;
+  padding-bottom: 40px;
+  padding-left: 4em;
+}
+
+.container {
+  padding: 20px;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<div class="container">
+  <div class="box">Change my padding.</div>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+--
+
+### 基本样式-内联盒子
+
+以上样式都可以应用于块状盒子，但是对于内联盒子，`width/height` 是无效的，`margin/border/padding` 虽然有效，但不会推开其他元素。
+
+```CSS
+span {
+  margin: 20px;
+  padding: 20px;
+  width: 80px;
+  height: 50px;
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<p>
+  I am a paragraph and this is a <span>span</span> inside that paragraph. A span
+  is an inline element and so does not respect width and height.
+</p>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+---
+
+## 盒子样式-背景边框
+
+--
+
+### 背景边框-背景颜色
+
+通过 `background-color` 可以改变盒子的背景颜色，值和字体的颜色值一样，可以采用多种形式。
+
+```CSS
+.box {
+  background-color: #567895;
+}
+
+h2 {
+  background-color: black;
+  color: white;
+}
+span {
+  background-color: rgba(255,255,255,.5);
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<div class="box">
+  <h2>Background Colors</h2>
+  <p>Try changing the background <span>colors</span>.</p>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+--
+
+### 背景边框-背景图片
+
+通过 `background-image` 可以指定背景图片，图片大小不一定与盒子大小一致。
+
+```CSS
+.a {
+  background-image: url(https://mdn.github.io/css-examples/learn/backgrounds-borders/balloons.jpg);
+}
+
+.b {
+  background-image: url(https://mdn.github.io/css-examples/learn/backgrounds-borders/star.png);
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<div class="wrapper">
+  <div class="a"></div>
+  <div class="b"></div>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+--
+
+### 背景边框-图片重复
+
+通过 `background-repeat` 可以指定背景图片是否重复以及重复方向。
+
+| CSS                          | 作用                 |
+| ---------------------------- | -------------------- |
+| background-repeat: no-repeat | 图片不会重复         |
+| background-repeat: repeat-x  | 图片横向重复         |
+| background-repeat: repeat-y  | 图片纵向重复         |
+| background-repeat: repeat    | 默认，图片纵横向重复 |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 背景边框-图片大小
+
+通过 `background-size` 可以指定背景图片大小。
+
+| CSS                            | 作用                                     |
+| ------------------------------ | ---------------------------------------- |
+| background-size: cover;        | 图片保持原比例并确保占满盒子内容空间。   |
+| background-size: contain;      | 图片拉伸以适应盒子内容空间，不保证比例。 |
+| background-size: width height; | 指定图片的 width 和 height。             |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 背景边框-图片位置
+
+通过 `background-position` 可以指定背景图片相对于左上角 (0,0) 的位置，以下方式可以自由组合。
+
+| CSS                                      | 作用                                                  |
+| ---------------------------------------- | ----------------------------------------------------- |
+| background-position: top;                | 指定图片贴着某一边，比如 top / bottom / left / right. |
+| background-position: bottom 20px;        | 图片贴着底部，并离左侧 20px。                         |
+| background-position: top 20px right 10%; | 图片离顶部 20px 离右侧 10% 宽度。                     |
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+## 背景边框-边框
+
+圆角矩形 `border-radius`。
+
+```CSS
+.box {
+  border: 10px solid rebeccapurple;
+  border-radius: 1em;
+  border-top-right-radius: 10% 30%;
+}
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+```html
+<div class="box">
+  <h2>Borders</h2>
+  <p>Try changing the borders.</p>
+</div>
+```
+
+<!-- .element: style="float:left;width:48%;padding:1%;height:300px;display:flex;align-items:center;" -->
+
+---
+
+## Q & A

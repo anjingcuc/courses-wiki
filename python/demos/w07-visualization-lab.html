@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W07-A 数据可视化实验室 · 教学仿真</title>
+<style>
+  :root {
+    --ink: #14213d;
+    --body: #334155;
+    --muted: #5b6b7f;
+    --paper: #f4f7fb;
+    --card: #ffffff;
+    --line: #d5e0ea;
+    --blue: #0369a1;
+    --blue-soft: #e0f2fe;
+    --green: #047857;
+    --green-soft: #ecfdf5;
+    --amber: #92400e;
+    --amber-soft: #fffbeb;
+    --red: #b91c1c;
+    --red-soft: #fef2f2;
+    --violet: #6d28d9;
+    --mono: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body {
+    margin: 0; min-width: 0; min-height: 100vh; color: var(--body);
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    background-color: var(--paper);
+    background-image: linear-gradient(rgba(3,105,161,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(3,105,161,.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; touch-action: manipulation; }
+  a { color: var(--blue); }
+  button:focus-visible, a:focus-visible, [tabindex]:focus-visible, tr:focus-within {
+    outline: 3px solid #1d4ed8; outline-offset: 3px;
+  }
+  [hidden] { display: none !important; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+  .skip-link { position: fixed; left: 12px; top: -70px; z-index: 20; background: #fff; padding: 12px; }
+  .skip-link:focus { top: 12px; }
+
+  .lab-header {
+    display: grid; grid-template-columns: minmax(230px,1fr) auto auto; align-items: center; gap: 14px;
+    padding: 10px 18px; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line);
+  }
+  .brand { min-width: 0; display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    flex: none; width: 44px; height: 44px; display: grid; place-items: center;
+    border: 2px solid var(--blue); border-radius: 50%; color: var(--blue);
+    font: 800 12px/1 var(--mono); letter-spacing: -.5px;
+  }
+  .eyebrow { color: var(--blue); font: 700 10px/1.3 var(--mono); letter-spacing: 1.5px; }
+  h1 { margin: 2px 0 0; color: var(--ink); font-size: 20px; line-height: 1.25; }
+  .mode-nav { display: flex; gap: 6px; }
+  .mode-link {
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    padding: 8px 13px; border: 1px solid var(--line); border-radius: 10px;
+    color: var(--body); background: #fff; text-decoration: none; font-size: 13px; font-weight: 700;
+  }
+  .mode-link[aria-current="page"] { color: #fff; background: var(--blue); border-color: var(--blue); }
+  .sim-badge {
+    max-width: 210px; padding: 7px 10px; border: 1px dashed #b45309; border-radius: 8px;
+    background: var(--amber-soft); color: #78350f; font-size: 11px; line-height: 1.45; font-weight: 700;
+  }
+  main { width: 100%; max-width: 1500px; margin: 0 auto; padding: 12px 16px 22px; }
+  .mode-intro { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 0 9px; }
+  .mode-intro strong { color: var(--ink); font-size: 14px; }
+  .mode-intro span { color: var(--muted); font-size: 12px; }
+
+  .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    min-height: 44px; min-width: 44px; border: 1px solid #b8c8d8; border-radius: 9px;
+    padding: 8px 14px; background: #fff; color: var(--ink); cursor: pointer;
+    font-size: 13px; font-weight: 700; transition: background-color .16s, border-color .16s, transform .16s;
+  }
+  .btn:hover:not(:disabled) { border-color: var(--blue); background: var(--blue-soft); }
+  .btn:active:not(:disabled) { transform: translateY(1px); }
+  .btn:disabled { opacity: .48; cursor: not-allowed; }
+  .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .btn.primary:hover:not(:disabled) { background: #075985; }
+  .btn.small { padding-inline: 11px; font-size: 12px; }
+  .step-rail { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; margin-bottom: 10px; }
+  .step-btn {
+    min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--body);
+    padding: 7px 10px; cursor: pointer; font-size: 12px; font-weight: 700;
+  }
+  .step-btn .no { color: var(--muted); font: 700 11px/1 var(--mono); }
+  .step-btn[aria-current="step"] { border: 2px solid var(--blue); background: var(--blue-soft); color: #075985; }
+  .step-btn.is-done .no::after { content: " ✓"; color: var(--green); }
+
+  .workspace { display: grid; grid-template-columns: .95fr .9fr 1.15fr; gap: 10px; align-items: stretch; }
+  .pane {
+    min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 13px;
+    overflow: hidden; box-shadow: 0 3px 12px rgba(20,33,61,.045);
+  }
+  .pane-head {
+    min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 7px 11px; border-bottom: 1px solid var(--line); background: #f8fafc;
+  }
+  .pane-head strong { color: var(--ink); font-size: 12px; }
+  .pane-head span { color: var(--muted); font: 600 10px/1.4 var(--mono); text-align: right; }
+  .code-box { margin: 0; padding: 12px; min-height: 244px; white-space: pre-wrap; overflow-wrap: anywhere; color: #dbeafe; background: #14213d; font: 11.5px/1.6 var(--mono); }
+  .code-note { padding: 8px 11px; color: var(--muted); background: #f8fafc; font-size: 10.5px; line-height: 1.55; border-top: 1px solid var(--line); }
+  .data-wrap { max-height: 284px; overflow: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; line-height: 1.35; }
+  th, td { padding: 6px 8px; border-bottom: 1px solid #e6edf3; text-align: left; vertical-align: middle; }
+  th { position: sticky; top: 0; z-index: 1; color: #075985; background: #eff6ff; font-weight: 700; white-space: nowrap; }
+  td.num { text-align: right; font-family: var(--mono); }
+  .missing { color: var(--red); font-weight: 800; }
+  .table-note { padding: 7px 10px; color: var(--muted); background: #fbfdff; font-size: 10.5px; line-height: 1.5; }
+  .chart-scroll { min-width: 0; overflow-x: auto; background: #fff; }
+  .chart-scroll:focus-visible { outline-offset: -3px; }
+  svg { display: block; width: 100%; height: auto; }
+  svg text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; fill: var(--ink); }
+  svg .axis-label { font-size: 11px; fill: #475569; }
+  svg .chart-title { font-size: 14px; font-weight: 800; }
+  svg .tick { font-size: 10px; fill: #64748b; }
+  svg .value-label { font: 700 10px/1 var(--mono); }
+  .pipeline-chart svg { min-width: 360px; }
+  .chart-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 9px; border-top: 1px solid var(--line); }
+  .chart-actions span { color: var(--muted); font-size: 10px; line-height: 1.4; }
+  .readout {
+    margin-top: 9px; padding: 9px 12px; min-height: 44px; border-left: 4px solid var(--blue);
+    border-radius: 0 9px 9px 0; background: #fff; color: var(--body); font-size: 12px; line-height: 1.55;
+  }
+  .readout strong { color: var(--ink); }
+  .pipeline-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 9px; }
+  .step-readout { color: var(--muted); font: 700 11px/1.4 var(--mono); }
+
+  /* 图表选择 */
+  .charts-layout { display: grid; grid-template-columns: 285px minmax(0,1fr); gap: 10px; }
+  .choice-pane { padding: 12px; }
+  .choice-label { display: block; margin: 0 0 7px; color: var(--ink); font-size: 12px; font-weight: 800; }
+  .task-list { display: grid; gap: 6px; margin-bottom: 13px; }
+  .task-btn { text-align: left; display: grid; grid-template-columns: 28px 1fr; align-items: center; }
+  .task-btn .task-no { font: 800 12px/1 var(--mono); color: var(--blue); }
+  .task-btn[aria-pressed="true"] { background: var(--blue-soft); border: 2px solid var(--blue); }
+  .chart-types { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .chart-type[aria-pressed="true"] { color: #fff; background: var(--ink); border-color: var(--ink); }
+  .feedback { margin-top: 12px; padding: 10px; border-radius: 9px; background: #f8fafc; font-size: 11.5px; line-height: 1.6; }
+  .feedback.good { color: #065f46; background: var(--green-soft); border-left: 4px solid var(--green); }
+  .feedback.try { color: #78350f; background: var(--amber-soft); border-left: 4px solid #b45309; }
+  .feedback strong { display: block; color: inherit; margin-bottom: 2px; }
+  .charts-result { display: grid; grid-template-rows: auto auto; min-width: 0; }
+  .charts-chart svg { min-width: 450px; }
+  .chart-summary { padding: 8px 12px; border-top: 1px solid var(--line); color: var(--body); background: #fbfdff; font-size: 11.5px; line-height: 1.55; }
+  .shape-note { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 10.5px; line-height: 1.55; }
+
+  /* 行 ↔ 图形映射 */
+  .mapping-layout { display: grid; grid-template-columns: minmax(330px,.9fr) minmax(0,1.25fr); gap: 10px; }
+  .mapping-table .data-wrap { max-height: 344px; }
+  .mapping-table td { padding: 0 7px; }
+  .mapping-table td:not(:first-child) { font-size: 11px; }
+  .row-select {
+    width: 100%; min-height: 44px; padding: 5px 6px; border: 0; border-radius: 6px;
+    background: transparent; color: var(--blue); text-align: left; cursor: pointer;
+    font: 800 11px/1.3 var(--mono);
+  }
+  .map-row.is-selected { background: var(--blue-soft); box-shadow: inset 4px 0 0 var(--blue); }
+  .row-select[aria-pressed="true"] { color: var(--ink); }
+  .mapping-chart svg { min-width: 680px; }
+  .map-bar { cursor: pointer; }
+  .map-bar .bar-shape { stroke: transparent; stroke-width: 2; transition: stroke .18s, opacity .18s; }
+  .map-bar:hover .bar-shape, .map-bar.is-selected .bar-shape { stroke: #14213d; stroke-width: 3; }
+  .map-bar:focus-visible { outline: none; }
+  .map-bar:focus-visible .hit-area { stroke: #1d4ed8; stroke-width: 3; stroke-dasharray: 4 3; }
+  .map-bar.is-selected .hit-area { stroke: #14213d; stroke-width: 1.5; }
+  .hit-area { fill: transparent; stroke: transparent; pointer-events: all; }
+  .mapping-inspector { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+  .mapping-inspector code { color: #075985; font: 700 11px/1.5 var(--mono); overflow-wrap: anywhere; }
+  .map-equation { color: var(--blue); font: 800 12px/1.4 var(--mono); white-space: nowrap; }
+  .lab-foot { margin-top: 10px; color: var(--muted); font-size: 10px; line-height: 1.5; text-align: right; }
+
+  @media (max-width: 1050px) {
+    .lab-header { grid-template-columns: 1fr auto; }
+    .sim-badge { grid-column: 1 / -1; max-width: none; padding: 4px 9px; }
+    .workspace { grid-template-columns: 1fr 1fr; }
+    .workspace .code-pane { grid-column: 1 / -1; }
+    .code-box { min-height: 0; }
+  }
+  @media (max-width: 720px) {
+    .lab-header { display: flex; flex-wrap: wrap; padding: 9px 12px; gap: 8px; }
+    .brand { width: 100%; }
+    .mode-nav { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); }
+    .mode-link { padding-inline: 5px; font-size: 11px; }
+    .sim-badge { width: 100%; }
+    main { padding: 10px; }
+    .workspace, .charts-layout, .mapping-layout { grid-template-columns: 1fr; }
+    .step-rail { grid-template-columns: 1fr 1fr; }
+    .pipeline-footer { align-items: flex-start; flex-direction: column; }
+    .pipeline-footer .controls { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+    .pipeline-footer .btn { width: 100%; }
+    .mapping-inspector { grid-template-columns: 1fr; }
+    .map-equation { white-space: normal; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lab-main">跳到实验内容</a>
+<header class="lab-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">W07<br>A</span>
+    <div><div class="eyebrow">DATA VISUALIZATION LAB</div><h1 id="lab-title">数据变形器</h1></div>
+  </div>
+  <nav class="mode-nav" aria-label="实验模式">
+    <a class="mode-link" data-mode-link="pipeline" href="?mode=pipeline">数据处理管线</a>
+    <a class="mode-link" data-mode-link="charts" href="?mode=charts">图型选择</a>
+    <a class="mode-link" data-mode-link="mapping" href="?mode=mapping">表图映射</a>
+  </nav>
+  <div class="sim-badge">教学仿真 · 不执行真实 Pandas / Matplotlib，不写本地文件</div>
+</header>
+
+<main id="lab-main">
+  <section id="mode-pipeline" class="mode-panel" aria-labelledby="pipeline-heading">
+    <div class="mode-intro"><strong id="pipeline-heading">同一份数据，四次变形</strong><span>点步骤或单步播放；代码、数据表、SVG 图与读数始终同步。</span></div>
+    <div class="step-rail" aria-label="数据处理步骤">
+      <button type="button" class="step-btn" data-pipe-step="0" aria-current="step"><span class="no">01</span>读取 DataFrame</button>
+      <button type="button" class="step-btn" data-pipe-step="1"><span class="no">02</span>检查与清洗</button>
+      <button type="button" class="step-btn" data-pipe-step="2"><span class="no">03</span>分组与排序</button>
+      <button type="button" class="step-btn" data-pipe-step="3"><span class="no">04</span>绘图与保存</button>
+    </div>
+    <div class="workspace">
+      <section class="pane code-pane" aria-label="当前 Python 代码">
+        <div class="pane-head"><strong>Python · 当前步骤</strong><span id="pipe-code-file">weather_analysis.py</span></div>
+        <pre class="code-box" id="pipe-code"></pre>
+        <div class="code-note">顺序执行时变量均由前一步定义。实验页展示确定性结果，不冒充浏览器已运行这些库。</div>
+      </section>
+      <section class="pane" aria-label="当前数据表">
+        <div class="pane-head"><strong id="pipe-table-title">原始记录</strong><span id="pipe-table-count"></span></div>
+        <div class="data-wrap" id="pipe-table-wrap" tabindex="0" role="region" aria-label="当前步骤数据表，可滚动"><div id="pipe-table"></div></div>
+        <div class="table-note" id="pipe-table-note"></div>
+      </section>
+      <section class="pane pipeline-chart" aria-label="当前数据图">
+        <div class="pane-head"><strong>SVG · 数据形状</strong><span>Y 轴 0–35℃</span></div>
+        <div class="chart-scroll" tabindex="0" role="region" aria-label="当前步骤图表，可横向滚动"><svg id="pipe-svg" role="img" viewBox="0 0 720 300"></svg></div>
+        <div class="chart-actions"><span id="pipe-save-state">先完成到第 04 步</span><button type="button" class="btn small" id="pipe-save" hidden>模拟保存 PNG</button></div>
+      </section>
+    </div>
+    <div class="readout" id="pipe-readout" role="status" aria-live="polite"></div>
+    <div class="pipeline-footer">
+      <div class="controls" aria-label="管线播放控制">
+        <button type="button" class="btn" id="pipe-prev">← 上一步</button>
+        <button type="button" class="btn primary" id="pipe-play" aria-pressed="false">▶ 播放</button>
+        <button type="button" class="btn" id="pipe-next">下一步 →</button>
+        <button type="button" class="btn" id="pipe-reset">↺ 重置</button>
+      </div>
+      <div class="step-readout" id="pipe-step-no">STEP 01 / 04</div>
+    </div>
+    <div class="step-readout" id="pipe-motion-note" role="status" style="margin-top:8px;" hidden></div>
+  </section>
+
+  <section id="mode-charts" class="mode-panel" aria-labelledby="charts-heading" hidden>
+    <div class="mode-intro"><strong id="charts-heading">不是选“好看”，而是选“能回答问题”</strong><span>先选任务，再选图型；不合适的图也会画出，并解释它混淆了什么。</span></div>
+    <div class="charts-layout">
+      <section class="pane choice-pane" aria-label="图型选择控制">
+        <span class="choice-label">01 · 我的问题</span>
+        <div class="task-list">
+          <button type="button" class="btn task-btn" data-task="comparison" aria-pressed="true"><span class="task-no">A</span><span>比较三个城市的平均温度</span></button>
+          <button type="button" class="btn task-btn" data-task="trend" aria-pressed="false"><span class="task-no">B</span><span>观察上海三天温度变化</span></button>
+          <button type="button" class="btn task-btn" data-task="proportion" aria-pressed="false"><span class="task-no">C</span><span>看有效记录数的城市占比</span></button>
+        </div>
+        <span class="choice-label">02 · 我选的图型</span>
+        <div class="chart-types">
+          <button type="button" class="btn chart-type" data-chart="bar" aria-pressed="true">柱状图</button>
+          <button type="button" class="btn chart-type" data-chart="line" aria-pressed="false">折线图</button>
+          <button type="button" class="btn chart-type" data-chart="pie" aria-pressed="false">饼图</button>
+          <button type="button" class="btn chart-type" data-chart="scatter" aria-pressed="false">散点图</button>
+        </div>
+        <div class="shape-note" id="chart-shape"></div>
+        <div class="feedback" id="chart-feedback" role="status" aria-live="polite"></div>
+        <button type="button" class="btn" id="chart-reset" style="width:100%;margin-top:9px">↺ 重置选择与反馈</button>
+      </section>
+      <section class="pane charts-result" aria-label="图型选择结果">
+        <div>
+          <div class="pane-head"><strong id="chart-view-title">比较 · 柱状图</strong><span>同一数据 · 即时重绘</span></div>
+          <div class="chart-scroll charts-chart" tabindex="0" role="region" aria-label="所选图型，可横向滚动"><svg id="chart-svg" role="img" viewBox="0 0 720 300"></svg></div>
+          <div class="chart-summary" id="chart-summary"></div>
+        </div>
+        <div>
+          <div class="pane-head"><strong>图表等价数据表</strong><span id="chart-data-count"></span></div>
+          <div id="chart-table"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section id="mode-mapping" class="mode-panel" aria-labelledby="mapping-heading" hidden>
+    <div class="mode-intro"><strong id="mapping-heading">一行记录，如何成为一根柱？</strong><span>点击表格行或 SVG 柱形；也可用 Tab 聚焦、Enter / Space 选择，双向同步高亮。</span></div>
+    <div class="mapping-layout">
+      <section class="pane mapping-table" aria-label="清洗后的天气记录">
+        <div class="pane-head"><strong>clean_df · 8 行有效记录</strong><span>点击任一行</span></div>
+        <div class="data-wrap" tabindex="0" role="region" aria-label="清洗后数据表，可滚动"><div id="mapping-table"></div></div>
+        <div class="table-note">r03（北京 · 06-03）温度缺失，已在前一步移除，因此这里不再对应柱形。</div>
+      </section>
+      <section class="pane mapping-chart" aria-label="可操作的逐记录柱状图">
+        <div class="pane-head"><strong>ax.bar(...) · 8 个图形元素</strong><span>点击任一根柱</span></div>
+        <div class="chart-scroll" tabindex="0" role="region" aria-label="逐记录柱状图，可横向滚动"><svg id="mapping-svg" role="group" aria-label="八条天气记录对应的八根可点击柱形" viewBox="0 0 720 300"></svg></div>
+        <div class="chart-summary">颜色区分城市，粗黑框表示当前映射；所有数值也可在左侧表格中读取。</div>
+      </section>
+    </div>
+    <div class="readout mapping-inspector" role="status" aria-live="polite">
+      <div><strong id="map-record"></strong><br><code>ax.bar(clean_df["city"] + " " + clean_df["date"], clean_df["temperature"])</code></div>
+      <div class="map-equation" id="map-equation"></div>
+    </div>
+    <div class="controls" style="margin-top:9px"><button type="button" class="btn" id="map-reset">↺ 回到第一条记录</button></div>
+  </section>
+
+  <div class="lab-foot">固定课堂样例 · 单一数据源派生所有视图 · 无网络请求 · 无图表库</div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* 唯一数据源：上周爬虫已整理的 list[dict] 等价样例。 */
+  var RAW_ROWS = [
+    { id: "r01", city: "北京", date: "2026-06-01", temperature: 28 },
+    { id: "r02", city: "北京", date: "2026-06-02", temperature: 30 },
+    { id: "r03", city: "北京", date: "2026-06-03", temperature: null },
+    { id: "r04", city: "上海", date: "2026-06-01", temperature: 26 },
+    { id: "r05", city: "上海", date: "2026-06-02", temperature: 27 },
+    { id: "r06", city: "上海", date: "2026-06-03", temperature: 29 },
+    { id: "r07", city: "广州", date: "2026-06-01", temperature: 31 },
+    { id: "r08", city: "广州", date: "2026-06-02", temperature: 32 },
+    { id: "r09", city: "广州", date: "2026-06-03", temperature: 33 }
+  ];
+  var CITY_COLORS = { "北京": "#0284c7", "上海": "#7c3aed", "广州": "#059669" };
+  var CHART_NAMES = { bar: "柱状图", line: "折线图", pie: "饼图", scatter: "散点图" };
+  var reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  function $(id) { return document.getElementById(id); }
+  function esc(value) {
+    return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function fmt(value) { return value === null ? "NaN" : String(Math.round(value * 10) / 10); }
+  function cleanRows() { return RAW_ROWS.filter(function (r) { return r.temperature !== null; }); }
+  function groupedRows() {
+    var sums = {}, counts = {};
+    cleanRows().forEach(function (r) {
+      sums[r.city] = (sums[r.city] || 0) + r.temperature;
+      counts[r.city] = (counts[r.city] || 0) + 1;
+    });
+    return Object.keys(sums).map(function (city) {
+      return { city: city, avg: Math.round(sums[city] / counts[city] * 10) / 10, count: counts[city] };
+    }).sort(function (a,b) { return b.avg - a.avg; });
+  }
+
+  /* -------------------- SVG 基础图元 -------------------- */
+  function splitLabel(text) { return String(text).split("|"); }
+  function labelText(x,y,text,cls) {
+    var parts = splitLabel(text);
+    var out = '<text x="'+x+'" y="'+y+'" text-anchor="middle" class="'+(cls || "axis-label")+'">';
+    parts.forEach(function (part,i) { out += '<tspan x="'+x+'" dy="'+(i ? 13 : 0)+'">'+esc(part)+'</tspan>'; });
+    return out + '</text>';
+  }
+  function axes(width,height,margin,max,title,ylabel) {
+    var left=margin.left, right=width-margin.right, top=margin.top, bottom=height-margin.bottom;
+    var out = '<title>'+esc(title)+'</title><desc>Y 轴从 0 到 '+max+'，数值同时标注在图上，等价数据见页面表格。</desc>';
+    out += '<text x="'+left+'" y="22" class="chart-title">'+esc(title)+'</text>';
+    var ticks=max===35?[0,10,20,30,35]:[0,1,2,3,4].filter(function(t){return t<=max;});
+    ticks.forEach(function(t) {
+      var y = bottom - (t/max)*(bottom-top);
+      out += '<line x1="'+left+'" y1="'+y+'" x2="'+right+'" y2="'+y+'" stroke="#dbe4ec" stroke-width="1"/>';
+      out += '<text x="'+(left-8)+'" y="'+(y+3)+'" text-anchor="end" class="tick">'+t+'</text>';
+    });
+    out += '<line x1="'+left+'" y1="'+bottom+'" x2="'+right+'" y2="'+bottom+'" stroke="#64748b"/>';
+    out += '<text x="14" y="'+top+'" class="axis-label">'+esc(ylabel || "温度（℃）")+'</text>';
+    return out;
+  }
+  function barChart(rows,options) {
+    options=options||{};
+    var width=720,height=300,m={left:48,right:16,top:48,bottom:64},max=options.max||35;
+    var title=options.title||"逐记录温度", plotW=width-m.left-m.right, plotH=height-m.top-m.bottom;
+    var slot=plotW/rows.length, barW=Math.min(48,slot*.62), bottom=height-m.bottom;
+    var out=axes(width,height,m,max,title,options.ylabel||"温度（℃）");
+    rows.forEach(function(r,i) {
+      var x=m.left+slot*i+slot/2, value=r.value;
+      var interactive=!!options.interactive;
+      var selected=options.selected===r.id;
+      if (interactive) out+='<g class="map-bar'+(selected?' is-selected':'')+'" data-row-id="'+r.id+'" role="button" tabindex="0" aria-pressed="'+(selected?'true':'false')+'" aria-label="'+esc(r.aria||r.label+' '+fmt(value))+'">';
+      if (interactive) out+='<rect class="hit-area" x="'+(x-slot/2+2)+'" y="'+m.top+'" width="'+(slot-4)+'" height="'+plotH+'" rx="5"/>';
+      if (value===null) {
+        out+='<rect x="'+(x-barW/2)+'" y="'+(bottom-22)+'" width="'+barW+'" height="22" rx="4" fill="#fef2f2" stroke="#b91c1c" stroke-dasharray="4 3"/>';
+        out+='<text x="'+x+'" y="'+(bottom-29)+'" text-anchor="middle" class="tick" style="fill:#b91c1c">缺失</text>';
+      } else {
+        var h=(value/max)*plotH, y=bottom-h;
+        out+='<rect class="bar-shape" x="'+(x-barW/2)+'" y="'+y+'" width="'+barW+'" height="'+h+'" rx="5" fill="'+(r.color||'#0284c7')+'"/>';
+        out+='<text x="'+x+'" y="'+(y-7)+'" text-anchor="middle" class="value-label">'+esc(r.display!==undefined?r.display:fmt(value))+'</text>';
+      }
+      out+=labelText(x,bottom+19,r.label,"axis-label");
+      if (interactive) out+='</g>';
+    });
+    return out;
+  }
+  function lineChart(rows,options,connect) {
+    options=options||{};
+    var width=720,height=300,m={left:48,right:24,top:48,bottom:64},max=options.max||35;
+    var title=options.title||"变化图", bottom=height-m.bottom, plotW=width-m.left-m.right, plotH=height-m.top-m.bottom;
+    var out=axes(width,height,m,max,title,options.ylabel||"温度（℃）");
+    var pts=rows.map(function(r,i) {
+      return { x:m.left+(rows.length===1?plotW/2:i*plotW/(rows.length-1)), y:bottom-(r.value/max)*plotH, row:r };
+    });
+    if (connect) out+='<polyline points="'+pts.map(function(p){return p.x+','+p.y;}).join(' ')+'" fill="none" stroke="#0369a1" stroke-width="3"/>';
+    pts.forEach(function(p) {
+      out+='<circle cx="'+p.x+'" cy="'+p.y+'" r="7" fill="'+(p.row.color||'#0284c7')+'" stroke="#fff" stroke-width="2"/>';
+      out+='<text x="'+p.x+'" y="'+(p.y-14)+'" text-anchor="middle" class="value-label">'+esc(p.row.display!==undefined?p.row.display:fmt(p.row.value))+'</text>';
+      out+=labelText(p.x,bottom+19,p.row.label,"axis-label");
+    });
+    return out;
+  }
+  function pieChart(rows,options) {
+    options=options||{};
+    var total=rows.reduce(function(s,r){return s+r.value;},0), cx=230,cy=162,r=105,angle=-Math.PI/2;
+    var out='<title>'+esc(options.title||"占比图")+'</title><desc>各项数值与百分比同时见右侧标签和页面数据表。</desc>';
+    out+='<text x="42" y="24" class="chart-title">'+esc(options.title||"占比图")+'</text>';
+    rows.forEach(function(row,i) {
+      var frac=row.value/total, next=angle+frac*Math.PI*2;
+      var x1=cx+r*Math.cos(angle),y1=cy+r*Math.sin(angle),x2=cx+r*Math.cos(next),y2=cy+r*Math.sin(next);
+      var large=frac>.5?1:0;
+      out+='<path d="M '+cx+' '+cy+' L '+x1+' '+y1+' A '+r+' '+r+' 0 '+large+' 1 '+x2+' '+y2+' Z" fill="'+(row.color||'#0284c7')+'" stroke="#fff" stroke-width="3"/>';
+      var mid=(angle+next)/2,lx=cx+(r+30)*Math.cos(mid),ly=cy+(r+30)*Math.sin(mid);
+      out+='<text x="'+lx+'" y="'+ly+'" text-anchor="middle" class="value-label">'+Math.round(frac*1000)/10+'%</text>';
+      out+='<rect x="440" y="'+(76+i*46)+'" width="18" height="18" rx="3" fill="'+(row.color||'#0284c7')+'"/>';
+      out+='<text x="468" y="'+(90+i*46)+'" class="axis-label">'+esc(row.label)+' · '+esc(row.display!==undefined?row.display:fmt(row.value))+esc(options.unit||"℃")+'</text>';
+      angle=next;
+    });
+    return out;
+  }
+  function emptyChart(message) {
+    return '<title>等待选择图型</title><rect x="80" y="65" width="560" height="160" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="7 5"/><text x="360" y="135" text-anchor="middle" class="chart-title">先选择一种图型</text><text x="360" y="168" text-anchor="middle" class="axis-label">'+esc(message)+'</text>';
+  }
+
+  /* -------------------- Pipeline -------------------- */
+  var PIPE_CODES = [
+    'import pandas as pd\n\nrecords = [\n  {"city":"北京", "date":"2026-06-01", "temperature":28},\n  {"city":"北京", "date":"2026-06-02", "temperature":30},\n  {"city":"北京", "date":"2026-06-03", "temperature":None},\n  {"city":"上海", "date":"2026-06-01", "temperature":26},\n  {"city":"上海", "date":"2026-06-02", "temperature":27},\n  {"city":"上海", "date":"2026-06-03", "temperature":29},\n  {"city":"广州", "date":"2026-06-01", "temperature":31},\n  {"city":"广州", "date":"2026-06-02", "temperature":32},\n  {"city":"广州", "date":"2026-06-03", "temperature":33}\n]\ndf = pd.DataFrame(records)  # (9, 3)',
+    '# df 已由第 01 步定义\ndf["temperature"] = pd.to_numeric(\n    df["temperature"], errors="coerce"\n)\nprint(df.isna().sum())       # temperature: 1\nclean_df = df.dropna(subset=["temperature"]).copy()\nprint(clean_df.shape)        # (8, 3)',
+    '# clean_df 已由第 02 步定义\nhot_df = clean_df[clean_df["temperature"] >= 30]\ncity_mean = (\n    clean_df.groupby("city")["temperature"]\n    .mean().round(1)\n    .sort_values(ascending=False)\n)\nprint(city_mean)',
+    'import matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(7, 4))\nax.bar(city_mean.index, city_mean.values, color="#0284c7")\nax.set_title("各城市平均温度（3 日）")\nax.set_xlabel("城市")\nax.set_ylabel("平均温度（℃）")\nax.set_ylim(0, 35)\nfig.tight_layout()\nfig.savefig("city_mean.png", dpi=150, bbox_inches="tight")\nplt.show()'
+  ];
+  var PIPE_READOUTS = [
+    '读取：9 行 × 3 列。每个字典成为一行；r03 的温度为 None，进入 DataFrame 后是 NaN。',
+    '清洗：先检查，再删除 temperature 缺失的 1 行；剩余 8 行。缺失不是 0℃，不能把柱高画成 0。',
+    '变形：按 city 聚合 mean，再按均值降序。9 行原始记录最终变成 3 行汇总：广州 32.0、北京 29.0、上海 27.3。',
+    '绘图：3 个类别对应 3 根柱，Y 轴从 0 开始。savefig 负责保存文件，show 负责显示；二者都不是对方。'
+  ];
+  var pipeStep=0, pipeSaved=false, pipePlaying=false, pipeTimer=null;
+  function pipeTable(rows,kind) {
+    var html='<table><caption class="sr-only">'+esc(kind)+'</caption><thead><tr>';
+    if (kind==='summary') html+='<th>城市</th><th>平均温度（℃）</th><th>有效记录数</th>';
+    else html+='<th>ID</th><th>城市</th><th>日期</th><th>温度（℃）</th>';
+    html+='</tr></thead><tbody>';
+    rows.forEach(function(r) {
+      if (kind==='summary') html+='<tr><td>'+esc(r.city)+'</td><td class="num">'+r.avg.toFixed(1)+'</td><td class="num">'+r.count+'</td></tr>';
+      else html+='<tr><td>'+r.id+'</td><td>'+esc(r.city)+'</td><td>'+r.date.slice(5)+'</td><td class="num"><span class="'+(r.temperature===null?'missing':'')+'">'+fmt(r.temperature)+'</span></td></tr>';
+    });
+    return html+'</tbody></table>';
+  }
+  function renderPipeline() {
+    var isSummary=pipeStep>=2, rows=isSummary?groupedRows():(pipeStep===1?cleanRows():RAW_ROWS);
+    document.querySelectorAll('[data-pipe-step]').forEach(function(btn) {
+      var n=Number(btn.getAttribute('data-pipe-step'));
+      if(n===pipeStep) btn.setAttribute('aria-current','step'); else btn.removeAttribute('aria-current');
+      btn.classList.toggle('is-done',n<pipeStep);
+    });
+    $('pipe-code').textContent=PIPE_CODES[pipeStep];
+    $('pipe-table').innerHTML=pipeTable(rows,isSummary?'summary':'raw');
+    $('pipe-table-title').textContent=isSummary?'city_mean · 汇总表':(pipeStep===1?'clean_df · 清洗后':'df · 原始记录');
+    $('pipe-table-count').textContent=rows.length+' 行';
+    $('pipe-table-note').textContent=isSummary?'groupby 改变数据形状：8 条有效记录 → 3 个城市均值；排序只改变顺序。':(pipeStep===1?'已移除 r03。剩余记录保持原顺序；清洗规则应服务问题，而非见空就删。':'None / NaN 是“没有观测到”，不是数值 0。');
+    var svgRows;
+    if(isSummary) svgRows=groupedRows().map(function(r){return {id:r.city,label:r.city,value:r.avg,display:r.avg.toFixed(1),color:CITY_COLORS[r.city]};});
+    else svgRows=rows.map(function(r){return {id:r.id,label:r.city+'|'+r.date.slice(5),value:r.temperature,color:CITY_COLORS[r.city]};});
+    $('pipe-svg').innerHTML=barChart(svgRows,{title:pipeStep===0?'原始记录：缺失不是 0':(pipeStep===1?'清洗后：8 条有效记录':(pipeStep===2?'各城市平均温度 · 聚合预览':'各城市平均温度（3 日）')),ylabel:isSummary?'平均温度（℃）':'温度（℃）'});
+    $('pipe-readout').textContent=PIPE_READOUTS[pipeStep];
+    $('pipe-step-no').textContent='STEP 0'+(pipeStep+1)+' / 04';
+    $('pipe-prev').disabled=pipeStep===0;
+    $('pipe-next').disabled=pipeStep===3;
+    $('pipe-save').hidden=pipeStep!==3;
+    $('pipe-save-state').textContent=pipeStep!==3?'先完成到第 04 步':(pipeSaved?'仿真已记录：city_mean.png · 150 dpi（未写文件）':'待保存：city_mean.png · 点击右侧体验保存动作');
+    updatePipePlay();
+  }
+  function updatePipePlay() {
+    var play=$('pipe-play');
+    play.disabled=reduced;
+    if(reduced) {
+      play.textContent='自动播放已停用';
+      play.setAttribute('aria-pressed','false');
+      play.setAttribute('aria-describedby','pipe-motion-note');
+      play.title='减少动态效果：自动播放已停用；请用上一步、下一步或步骤按钮即时切换';
+    } else {
+      play.textContent=pipePlaying?'❚❚ 暂停':(pipeStep===3?'▶ 重播':'▶ 播放');
+      play.setAttribute('aria-pressed',pipePlaying?'true':'false');
+      play.removeAttribute('aria-describedby');
+      play.removeAttribute('title');
+    }
+  }
+  function stopPipe() { pipePlaying=false; clearTimeout(pipeTimer); pipeTimer=null; updatePipePlay(); }
+  function setPipeStep(n,stop) {
+    if(stop!==false) stopPipe();
+    pipeStep=Math.max(0,Math.min(3,n));
+    if(pipeStep!==3) pipeSaved=false;
+    renderPipeline();
+  }
+  function schedulePipe() {
+    clearTimeout(pipeTimer);
+    pipeTimer=null;
+    if(reduced || document.hidden) { stopPipe(); return; }
+    if(!pipePlaying) return;
+    pipeTimer=setTimeout(function() {
+      if(pipeStep<3) { pipeStep++; renderPipeline(); schedulePipe(); }
+      else stopPipe();
+    },950);
+  }
+  document.querySelectorAll('[data-pipe-step]').forEach(function(btn){btn.addEventListener('click',function(){setPipeStep(Number(btn.getAttribute('data-pipe-step')));});});
+  $('pipe-prev').addEventListener('click',function(){setPipeStep(pipeStep-1);});
+  $('pipe-next').addEventListener('click',function(){setPipeStep(pipeStep+1);});
+  $('pipe-reset').addEventListener('click',function(){pipeSaved=false;setPipeStep(0);});
+  $('pipe-play').addEventListener('click',function(){
+    if(reduced){stopPipe();return;}
+    if(pipePlaying){stopPipe();return;}
+    if(pipeStep===3){pipeStep=0;pipeSaved=false;}
+    pipePlaying=true;renderPipeline();schedulePipe();
+  });
+  $('pipe-save').addEventListener('click',function(){pipeSaved=true;renderPipeline();$('pipe-save-state').textContent='教学仿真：已记录 savefig → plt.show 顺序；未生成本地文件或窗口。';});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stopPipe();});
+
+  /* -------------------- 图表选择 -------------------- */
+  var TASKS={
+    comparison:{
+      title:'比较三个城市的平均温度',short:'比较',correct:'bar',shape:'数据形状：3 个城市类别 × 1 个平均温度。类别之间没有必须连接的连续顺序。',
+      rows:groupedRows().map(function(r){return {label:r.city,value:r.avg,display:r.avg.toFixed(1),color:CITY_COLORS[r.city],note:r.count+' 条有效记录'};}),unit:'℃',max:35,
+      summary:'读数：广州 32.0℃ ＞ 北京 29.0℃ ＞ 上海 27.3℃。柱长让类别高低一眼可比。'
+    },
+    trend:{
+      title:'观察上海三天温度变化',short:'趋势',correct:'line',shape:'数据形状：上海 × 3 个有序日期 × 温度。日期有先后，重点是变化方向。',
+      rows:cleanRows().filter(function(r){return r.city==='上海';}).map(function(r){return {label:r.date.slice(5),value:r.temperature,color:CITY_COLORS[r.city],note:r.city+' '+r.date};}),unit:'℃',max:35,
+      summary:'读数：26℃ → 27℃ → 29℃，连续上升；折线把有序日期连成变化路径。'
+    },
+    proportion:{
+      title:'看有效记录数的城市占比',short:'占比',correct:'pie',shape:'数据形状：8 条有效记录按城市计数。整体明确为 8，部分相加等于整体。',
+      rows:groupedRows().map(function(r){return {label:r.city,value:r.count,color:CITY_COLORS[r.city],note:'占 8 条有效记录的 '+Math.round(r.count/8*1000)/10+'%'};}),unit:' 条',max:4,
+      summary:'读数：北京 2/8 = 25%，上海与广州各 3/8 = 37.5%。注意：是记录数占比，不是温度占比。'
+    }
+  };
+  var chartTask='comparison',chartType='bar';
+  function feedbackFor(task,type) {
+    var correct=TASKS[task].correct;
+    if(type===correct) {
+      var good={bar:'柱长共享同一条零基线，最适合比较离散类别的数值大小。',line:'日期有自然顺序；连线强调“从这里到那里”的变化，而不是三次孤立比较。',pie:'部分相加等于 8 条有效记录，饼图直接表达各部分占整体的比例。'};
+      return {kind:'good',title:'✓ 推荐：'+CHART_NAMES[type],text:good[type]};
+    }
+    var messages={
+      comparison:{line:'城市只是离散类别；连线会暗示中间存在连续变化或额外城市。',pie:'三个温度均值并不构成天然整体，凑成 100% 后的百分比没有实际含义。',scatter:'散点能标出位置，但两根变量轴并未表达两个连续变量的关系；比较高低不如柱长直接。'},
+      trend:{bar:'三根柱能比较三次高低，但“随日期的连续变化”不如折线直接；不是读不出，而是任务匹配较弱。',pie:'三天温度不是整体的三个组成部分；温度相加没有可解释的分母。',scatter:'点能显示每次观测，却弱化日期之间的走向；本任务用线连接更有助读趋势。'},
+      proportion:{bar:'柱状图适合比较 2、3、3 的数量高低，但不直接呈现每项占 8 条整体的比例。',line:'城市类别没有连续顺序，把记录数连线会制造“从一种城市变化到另一种”的错觉。',scatter:'散点没有表达部分—整体关系；占比的分母与百分比仍需要读者另算。'}
+    };
+    return {kind:'try',title:'再想想：'+CHART_NAMES[type]+'画出来了，但…',text:messages[task][type]};
+  }
+  function renderCharts() {
+    var task=TASKS[chartTask],rows=task.rows;
+    document.querySelectorAll('[data-task]').forEach(function(btn){btn.setAttribute('aria-pressed',btn.getAttribute('data-task')===chartTask?'true':'false');});
+    document.querySelectorAll('[data-chart]').forEach(function(btn){btn.setAttribute('aria-pressed',btn.getAttribute('data-chart')===chartType?'true':'false');});
+    $('chart-shape').textContent=task.shape;
+    $('chart-view-title').textContent=task.short+' · '+(chartType?CHART_NAMES[chartType]:'待选择');
+    if(chartType==='bar') $('chart-svg').innerHTML=barChart(rows,{title:task.title,ylabel:chartTask==='proportion'?'有效记录数（条）':'温度（℃）',max:task.max});
+    else if(chartType==='line') $('chart-svg').innerHTML=lineChart(rows,{title:task.title,ylabel:chartTask==='proportion'?'有效记录数（条）':'温度（℃）',max:task.max},true);
+    else if(chartType==='scatter') $('chart-svg').innerHTML=lineChart(rows,{title:task.title+' · 散点呈现',ylabel:chartTask==='proportion'?'有效记录数（条）':'温度（℃）',max:task.max},false);
+    else if(chartType==='pie') $('chart-svg').innerHTML=pieChart(rows,{title:task.title,unit:task.unit});
+    else $('chart-svg').innerHTML=emptyChart('右侧数据表已经可读，选图后这里同步重绘。');
+    var html='<table><caption class="sr-only">'+esc(task.title)+'的数据</caption><thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead><tbody>';
+    rows.forEach(function(r){html+='<tr><td>'+esc(r.label)+'</td><td class="num">'+esc(r.display!==undefined?r.display:fmt(r.value))+esc(task.unit)+'</td><td>'+esc(r.note)+'</td></tr>';});
+    $('chart-table').innerHTML=html+'</tbody></table>';
+    $('chart-data-count').textContent=rows.length+' 行';
+    $('chart-summary').textContent=chartType?task.summary:'数据已就绪。先读上方“数据形状”，再选择图型。';
+    if(chartType) {
+      var fb=feedbackFor(chartTask,chartType);
+      $('chart-feedback').className='feedback '+fb.kind;
+      $('chart-feedback').innerHTML='<strong>'+esc(fb.title)+'</strong>'+esc(fb.text);
+    } else {
+      $('chart-feedback').className='feedback';
+      $('chart-feedback').innerHTML='<strong>先判断任务与数据形状</strong>选错不会卡住：图会照常出现，反馈会指出它额外暗示了什么。';
+    }
+  }
+  document.querySelectorAll('[data-task]').forEach(function(btn){btn.addEventListener('click',function(){chartTask=btn.getAttribute('data-task');chartType=null;renderCharts();});});
+  document.querySelectorAll('[data-chart]').forEach(function(btn){btn.addEventListener('click',function(){chartType=btn.getAttribute('data-chart');renderCharts();});});
+  $('chart-reset').addEventListener('click',function(){chartTask='comparison';chartType='bar';renderCharts();});
+
+  /* -------------------- 表行 ↔ SVG 映射 -------------------- */
+  var mapSelected='r01';
+  function buildMapping() {
+    var rows=cleanRows();
+    var html='<table><caption class="sr-only">清洗后的八条天气记录，点击行可高亮对应柱形</caption><thead><tr><th>选择 / ID</th><th>城市</th><th>日期</th><th>温度（℃）</th></tr></thead><tbody>';
+    rows.forEach(function(r){html+='<tr class="map-row" data-row-id="'+r.id+'"><td><button type="button" class="row-select" data-map-row="'+r.id+'" aria-pressed="false" aria-label="高亮 '+r.id+' '+r.city+' '+r.date+' '+r.temperature+' 摄氏度">'+r.id+' → 柱</button></td><td>'+r.city+'</td><td>'+r.date.slice(5)+'</td><td class="num">'+r.temperature+'</td></tr>';});
+    $('mapping-table').innerHTML=html+'</tbody></table>';
+    $('mapping-svg').innerHTML=barChart(rows.map(function(r){return {id:r.id,label:r.city+'|'+r.date.slice(5),value:r.temperature,color:CITY_COLORS[r.city],aria:r.id+' '+r.city+' '+r.date+' '+r.temperature+' 摄氏度'};}),{title:'每条有效记录 → 一根柱',interactive:true,selected:mapSelected});
+    selectMapping(mapSelected);
+  }
+  function selectMapping(id) {
+    var r=cleanRows().find(function(row){return row.id===id;});
+    if(!r)return;
+    mapSelected=id;
+    document.querySelectorAll('[data-row-id]').forEach(function(el){
+      if(!el.closest('#mode-mapping'))return;
+      el.classList.toggle(el.tagName.toLowerCase()==='tr'?'map-row':'map-bar',true);
+      el.classList.toggle('is-selected',el.getAttribute('data-row-id')===id);
+    });
+    document.querySelectorAll('[data-map-row]').forEach(function(btn){btn.setAttribute('aria-pressed',btn.getAttribute('data-map-row')===id?'true':'false');});
+    document.querySelectorAll('#mapping-svg [data-row-id]').forEach(function(g){g.setAttribute('aria-pressed',g.getAttribute('data-row-id')===id?'true':'false');});
+    $('map-record').textContent=r.id+' · '+r.city+' · '+r.date+' · '+r.temperature+'℃ → 同色柱形';
+    $('map-equation').textContent='1 行 → 1 柱 · 高度 = '+r.temperature+' / 35 × 绘图区';
+  }
+  $('mapping-table').addEventListener('click',function(e){var tr=e.target.closest('tr[data-row-id]');if(tr)selectMapping(tr.getAttribute('data-row-id'));});
+  $('mapping-table').addEventListener('focusin',function(e){var btn=e.target.closest('[data-map-row]');if(btn)selectMapping(btn.getAttribute('data-map-row'));});
+  $('mapping-svg').addEventListener('click',function(e){var g=e.target.closest('[data-row-id]');if(g)selectMapping(g.getAttribute('data-row-id'));});
+  $('mapping-svg').addEventListener('focusin',function(e){var g=e.target.closest('[data-row-id]');if(g)selectMapping(g.getAttribute('data-row-id'));});
+  $('mapping-svg').addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var g=e.target.closest('[data-row-id]');if(!g)return;
+    e.preventDefault();selectMapping(g.getAttribute('data-row-id'));
+  });
+  $('map-reset').addEventListener('click',function(){selectMapping('r01');});
+
+  /* -------------------- 模式入口 -------------------- */
+  var mode=new URLSearchParams(window.location.search).get('mode')||'pipeline';
+  if(['pipeline','charts','mapping'].indexOf(mode)<0)mode='pipeline';
+  var titles={pipeline:'数据变形器',charts:'任务驱动选图',mapping:'表行与图形映射'};
+  $('lab-title').textContent=titles[mode];
+  document.title='W07-A '+titles[mode]+' · 教学仿真';
+  document.querySelectorAll('.mode-panel').forEach(function(panel){panel.hidden=panel.id!=='mode-'+mode;});
+  document.querySelectorAll('[data-mode-link]').forEach(function(link){if(link.getAttribute('data-mode-link')===mode)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
+  if(reduced) {
+    $('pipe-motion-note').hidden=false;
+    $('pipe-motion-note').textContent='减少动态效果：自动播放已停用；上一步、下一步与步骤按钮仍会即时切换完整状态。';
+  }
+  renderPipeline();
+  renderCharts();
+  buildMapping();
+})();
+</script>
+</body>
+</html>

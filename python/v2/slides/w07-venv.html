@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W07-B 虚拟环境与依赖管理 | Python V2</title>
+<link rel="stylesheet" href="../../../stylesheets/pyv2.css">
+<style>
+  /* W07-B 私有样式：复用 slides.js 与共享设计系统，不改公共文件。 */
+  body.w07b { height: 100vh; display: flex; flex-direction: column; }
+  .w07b .sl-top { flex: none; }
+  .w07b .sl-top nav { align-items: center; }
+  .w07b .sl-top nav a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .w07b .pyv2-slides { flex: 1; min-height: 0; height: auto; }
+  .w07b .pyv2-slides:fullscreen { height: 100vh; }
+  .w07b .w07-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .w07b .w07-action {
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    padding: 9px 17px; border: 1px solid #cbd5e1; border-radius: 10px;
+    background: #fff; color: #0369a1; text-decoration: none; font-size: 14px; font-weight: 700;
+  }
+  .w07b .w07-action.primary { background: #0369a1; border-color: #0369a1; color: #fff; }
+  .w07b .w07-action:hover { border-color: #0284c7; box-shadow: 0 5px 16px rgba(2,132,199,.14); }
+  .w07b .demo-open { min-height: 44px; display: inline-flex; align-items: center; padding: 4px 10px; margin-left: 6px; white-space: nowrap; }
+  .w07b .w07-schedule .seg-a td { color: #64748b; }
+  .w07b .w07-schedule .seg-a td:first-child { border-left: 4px solid #bae6fd; }
+  .w07b .w07-schedule .seg-b td { background: #ede9fe; color: #4c1d95; }
+  .w07b .w07-schedule .seg-b td:first-child { border-left: 4px solid #7c3aed; color: #5b21b6; font-weight: 800; }
+  .w07b .w07-schedule .seg-b:nth-child(even) td { background: #f3efff; }
+  .w07b .w07-compact { font-size: 14px; line-height: 1.55; padding: 15px 18px; }
+  .w07b .w07-mini { font-size: 12.5px; line-height: 1.52; padding: 12px 15px; }
+  .w07b .w07-kpi { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .w07b .w07-kpi span { padding: 5px 11px; border: 1px solid #ddd6fe; border-radius: 999px; background: #f5f3ff; color: #5b21b6; font: 700 12px/1.4 var(--pyv2-font-mono); }
+  .w07b .w07-warn { border-left: 5px solid #b45309; }
+  .w07b .w07-good { border-left: 5px solid #047857; }
+  .w07b .w07-boundary { border-left: 5px solid #6d28d9; }
+  .w07b .slide.w07-demo { padding-top: 24px; }
+  .w07b .slide.w07-demo h2 { margin-bottom: 8px; }
+  .w07b .slide.w07-demo .demo-frame { margin: 8px 0; box-sizing: border-box; }
+  .w07b .slide.active .rise { animation-duration: .45s; }
+  .w07b .slide .cols2 > *, .w07b .slide .route > *, .w07b .slide .contract-grid > * { min-width: 0; }
+  .w07b .slide pre { max-width: 100%; }
+  .w07b .slide p, .w07b .slide li, .w07b .slide td, .w07b .slide code { overflow-wrap: anywhere; }
+  .w07b .slide .pyv2-quiz .opt { min-height: 44px; }
+  .w07b .sl-bar .sl-btn { width: 44px; height: 44px; }
+  .w07b .contract-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+  .w07b .contract-arrow { color: #6d28d9; text-align: center; font-weight: 800; font-size: 14px; }
+  .w07b .contract-arrow strong { display: block; font-size: 28px; line-height: 1.1; }
+  .w07b .file-list { margin: 8px 0 0; padding: 0; list-style: none; font: 13px/1.8 var(--pyv2-font-mono); }
+  .w07b .file-list li { margin: 0; overflow-wrap: anywhere; }
+  .w07b .evidence-table td:not(:first-child) { font-family: var(--pyv2-font-mono); font-size: 12.5px; overflow-wrap: anywhere; }
+  .w07b .layer-strip { display: grid; grid-template-columns: 145px 1fr; gap: 0; margin: 10px 0; border: 1px solid #dbe4ec; border-radius: 13px; overflow: hidden; background: #fff; }
+  .w07b .layer-strip > b { padding: 11px 14px; background: #eef2ff; color: #4338ca; font-size: 14px; }
+  .w07b .layer-strip > span { padding: 11px 14px; border-left: 1px solid #dbe4ec; font-size: 14px; line-height: 1.55; }
+  .w07b .route { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .w07b .route .scard { margin: 0; }
+  .w07b .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .w07b .pill { border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 10px; background: #fff; font: 700 12px/1.4 var(--pyv2-font-mono); }
+  .w07b .pill.commit { color: #065f46; border-color: #6ee7b7; background: #ecfdf5; }
+  .w07b .pill.rebuild { color: #075985; border-color: #7dd3fc; background: #f0f9ff; }
+  .w07b .pill.secret { color: #991b1b; border-color: #fca5a5; background: #fef2f2; }
+  .w07b .footnote { font-size: 13px; color: #64748b; line-height: 1.55; }
+  .w07b .next-card { border: 2px solid #7c3aed; background: #f5f3ff; }
+  .w07b .w07-prepare .scard { margin: 7px 0; padding: 10px 14px; }
+  .w07b .w07-prepare .scard .small { font-size: 12px; line-height: 1.45; }
+  .w07b .w07-prepare .w07-mini { font-size: 12px; line-height: 1.45; padding: 10px 13px; }
+  .w07b .w07-prepare .w07-actions { gap: 6px; margin-top: 7px; }
+  .w07b .w07-prepare .w07-action { padding: 6px 10px; font-size: 12px; }
+  @media (max-width: 900px) {
+    .w07b .slide .cols2, .w07b .slide .cols2.wide-l, .w07b .slide .cols2.wide-r { grid-template-columns: 1fr; }
+    .w07b .route { grid-template-columns: 1fr; }
+    .w07b .contract-grid { grid-template-columns: 1fr; }
+    .w07b .contract-arrow strong { transform: rotate(90deg); }
+  }
+  @media (max-width: 760px) {
+    .w07b .sl-top { padding: 7px 10px; gap: 7px; }
+    .w07b .sl-top nav { gap: 4px; }
+    .w07b .sl-top nav a { font-size: 11px; padding: 3px 8px; }
+    .w07b .sl-top nav a.nav-optional { display: none; }
+    .w07b .sl-top .wk { font-size: 10px; padding: 3px 7px; }
+    .w07b .w07-compact { font-size: 12px; }
+    .w07b .demo-open { margin-left: 0; }
+    .w07b .layer-strip { grid-template-columns: 1fr; }
+    .w07b .layer-strip > span { border-left: 0; border-top: 1px solid #dbe4ec; }
+    .w07b .slide table { font-size: 12.5px; table-layout: fixed; }
+    .w07b .slide table th, .w07b .slide table td { white-space: normal; overflow-wrap: anywhere; padding: 6px; }
+    .w07b .slide table th:first-child { width: 68px; }
+    .w07b .pill { max-width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .w07b .slide.active .rise, .w07b .slide.active .flowline .node { animation: none !important; }
+    .w07b .pyv2-slides .frag, .w07b .slide .scard, .w07b .sl-prog i { transition: none !important; }
+  }
+  @media print {
+    .w07b .pyv2-slides .frag { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body class="sl-page w07b">
+
+<header class="sl-top">
+  <div class="where">
+    <span class="wk">WEEK 07 / 16 · B</span>
+    <span class="th">W07-B 虚拟环境与依赖管理 · L16 正课</span>
+  </div>
+  <nav>
+    <a href="../../#weeks">课件总览</a>
+    <a href="../m4/">M4 工程化</a>
+    <a href="w07.html">← A：可视化</a>
+    <a class="nav-optional" href="../../demos/w07-venv-lab.html?mode=case" target="_blank" rel="noopener">独立实验室 ↗</a>
+    <a class="cur" href="w07-venv.html">B：虚拟环境</a>
+    <a href="w08.html">W08 →</a>
+  </nav>
+</header>
+
+<div class="pyv2-slides" data-title="W07-B 虚拟环境与依赖管理">
+
+  <!-- 1 · B 段封面 -->
+  <section class="slide cover">
+    <div class="kicker rise">PYTHON 程序设计 · V2 · W07-B · L16 · 58–100 分钟</div>
+    <h1 class="rise">从天气微样例，<br><span class="grad">到 answers.csv 综合作业</span></h1>
+    <p class="sub rise"><b>A 用 9 行天气 records 微样例学习机制；B 用 10 行 answers.csv 教学合成数据完成综合作业，两份课件的数据并不相同。</b>B 承接 W06 合规取得数据的契约意识：爬虫项目与可视化项目可以交换 CSV，却不必共享依赖；本段用 UV 独立 <code>.venv</code>、路径证据与锁定文件，让 DSH 的“运行成功”可以被验证。</p>
+    <div class="w07-actions rise">
+      <a class="w07-action primary" href="w07.html">← 返回 W07-A 数据处理与可视化</a>
+      <a class="w07-action" href="../../demos/w07-venv-lab.html?mode=practice" target="_blank" rel="noopener">打开 UV + DSH 实操实验室 ↗</a>
+      <a class="w07-action" href="../../demos/w07-case.zip" download>下载完整案例包（含 CSV + 锁文件） ↓</a>
+    </div>
+    <div class="meta rise"><span>L16 正课副课件 · 不是拓展阅读</span><span>A + B 合计 100 分钟</span><span>← → 翻页 · F 全屏</span></div>
+  </section>
+
+  <!-- 2 · 整周 100 分钟，B 高亮 -->
+  <section class="slide">
+    <h2>今日课表（100 分钟）</h2>
+    <p class="small" style="margin-top:-10px;"><b>当前是 W07-B，承担紫色高亮的 58–100 分钟。</b>下表是两份课件合计 100 分钟，<b>不是 B 段单独 100 分钟</b>；A 段入口仍保留，便于回看数据来源。</p>
+    <table class="w07-schedule">
+      <thead><tr><th>时间</th><th>课件 / 环节</th><th>要点与可观察产物</th></tr></thead>
+      <tbody>
+        <tr class="seg-a"><td>0–8</td><td>A · 爬虫结果 → DataFrame</td><td>同一组 records；9 行 × 3 列；DataFrame 是代码里的表</td></tr>
+        <tr class="seg-a"><td>8–18</td><td>A · 检查与缺失处理</td><td>head / info / describe / isna；to_numeric + dropna；9 → 8 行</td></tr>
+        <tr class="seg-a"><td>18–30</td><td>A · 筛选、分组与排序</td><td>条件筛选；groupby + mean；sort_values；聚合后的 3 行均值</td></tr>
+        <tr class="seg-a"><td>30–40</td><td>A · 图型与表图映射</td><td>比较 / 趋势 / 占比；一行记录如何变成一根柱</td></tr>
+        <tr class="seg-a"><td>40–52</td><td>A · Matplotlib 与保存</td><td>fig / ax；零基线；中文标签；savefig 与 show 的分工</td></tr>
+        <tr class="seg-a"><td>52–58</td><td>A · 小测与任务布置</td><td>3 题可视化 Quiz；一条可复查的数据链</td></tr>
+        <tr class="seg-b"><td>58–70</td><td><b>B · 案例与安全版本实验</b></td><td>case 58–63；conflict 63–70；静态页只在各自段内快速回收</td></tr>
+        <tr class="seg-b"><td>70–86</td><td><b>B · 机制与跨语言</b></td><td>统一模型 70–73；principles 73–79；ecosystem 79–86</td></tr>
+        <tr class="seg-b"><td>86–94</td><td><b>B · UV + DSH</b></td><td>提示词审查 86–88；practice 88–94；运行与提交页快速回收</td></tr>
+        <tr class="seg-b"><td>94–100</td><td><b>B · 收束</b></td><td>94–98 四题 Quiz；98–100 作业说明与 W08 衔接</td></tr>
+      </tbody>
+    </table>
+    <p class="small">B 共 <b>42 分钟</b>，课内只推进 case、conflict、principles、ecosystem、practice 五个核心互动；静态总结页均在对应时段内快速回收，<b>不另增分钟</b>。diagnostics 仅作备用/课后，不占课内分钟。若 iframe 在投影上过小，请点“新窗口打开”；实验室全部标注教学仿真。</p>
+  </section>
+
+  <!-- 3 · Case lab -->
+  <section class="slide w07-demo">
+    <h2>交互① 案例：共享数据契约，不共享依赖</h2>
+    <span class="lab">58–63 分钟 · 核心互动 case（含下页快速回收）</span>
+    <div class="demo-frame">
+      <span class="frame-tag">W06 CSV → W07 图</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=case" loading="lazy" title="W07-B 项目与数据契约教学仿真：爬虫项目、可视化项目和独立 UV 环境"></iframe>
+    </div>
+    <p class="small">课堂任务：点 <code>answers.csv</code> 说出五项契约，再点“共用全局环境（反例）”解释为什么“不一定崩”也仍需边界。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=case" target="_blank" rel="noopener">新窗口打开 case ↗</a></p>
+  </section>
+
+  <!-- 4 · 契约与环境边界 -->
+  <section class="slide">
+    <h2>项目边界：CSV 穿过，依赖不跟着穿</h2>
+    <span class="lab">58–63 分钟内快速回收 · 不另增分钟</span>
+    <div class="contract-grid">
+      <section class="scard rise"><span class="tag">W06 · crawler/</span><b class="tt" style="font-size:19px;">生产数据的项目</b>
+        <ul class="file-list"><li>pyproject.toml + uv.lock</li><li>.venv/ · requests / bs4 / …</li><li>export → answers.csv</li></ul>
+        <p class="small">负责合法获取、字段解析与来源说明；可视化项目不因为“上周装过”就继承 Selenium。</p>
+      </section>
+      <div class="contract-arrow rise"><strong>→</strong>answers.csv<br>数据契约</div>
+      <section class="scard w07-boundary rise"><span class="tag v">W07 · crawler-viz/</span><b class="tt" style="font-size:19px;">消费数据的项目</b>
+        <ul class="file-list"><li>pyproject.toml + uv.lock</li><li>.venv/ · numpy / pandas / matplotlib</li><li>data/answers.csv → output/*.png</li></ul>
+        <p class="small">自己的直接依赖、精确锁定和解释器证据；UV 可使用受管 Python 与用户级缓存。</p>
+      </section>
+    </div>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt" style="font-size:18px;">数据契约至少写清</b><p class="small">文件名与编码 · 列名与类型 · 缺失值规则 · “知乎用户”是匿名合集而非唯一作者 · 来源与授权。清洗在统计副本上进行，不改原始证据。</p></div>
+      <div class="scard w07-warn rise"><b class="tt" style="font-size:18px;">独立 ≠ 隔离一切</b><p class="small">独立 <code>.venv</code> 主要隔离 Python 包与运行路径，<b>不是安全沙箱、虚拟机或容器</b>；不自动隔离文件、网络、密钥和全部系统库。两项目也可同仓库、不同 UV 项目。</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · Conflict lab -->
+  <section class="slide w07-demo">
+    <h2>交互② 安全实验：先让求解器说话，再比较 API</h2>
+    <span class="lab">63–70 分钟 · 核心互动 conflict（含下页快速回收）</span>
+    <div class="demo-frame">
+      <span class="frame-tag">实测摘录 ≠ 本页执行</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=conflict" loading="lazy" title="W07-B NumPy 安全版本实验：无解约束与两个历史版本 API 探针"></iframe>
+    </div>
+    <p class="small">先预测 <code>np.mean</code> 是否也失败，再切换版本。解释为何“一个 API 被移除”不能夸大成“整个 NumPy 必崩”。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=conflict" target="_blank" rel="noopener">新窗口打开 conflict ↗</a></p>
+  </section>
+
+  <!-- 6 · 实测与解释 -->
+  <section class="slide">
+    <h2>两个现象，两个结论：都不要用全局环境制造事故</h2>
+    <span class="lab">63–70 分钟内快速回收 · 不另增分钟</span>
+    <div class="cols2">
+      <section class="scard rise"><span class="tag r">实验一 · uv pip compile</span><b class="tt" style="font-size:18px;">同一顶层 numpy 的两个精确约束无解</b>
+        <pre class="w07-mini"><code>numpy==1.26.4
+numpy==2.0.2
+
+uv pip compile --python 3.12 conflict-requirements.txt</code></pre>
+        <p class="small"><b>研究环境实测：</b>退出码 1，<code>requirements are unsatisfiable</code>。compile 只解析并尝试输出锁定结果，不要求 venv，也不向全局 Python 安装；可能读取索引与缓存。</p>
+      </section>
+      <section class="scard rise"><span class="tag g">实验二 · 隔离临时环境</span><b class="tt" style="font-size:18px;">API 差异是局部的、可观察的</b>
+        <table class="evidence-table"><thead><tr><th>探针</th><th>1.26.4</th><th>2.0.2</th></tr></thead><tbody>
+          <tr><td><code>np.float_</code></td><td>→ float64</td><td>已移除；建议 np.float64</td></tr>
+          <tr><td><code>np.mean([1,2,3])</code></td><td>2.0</td><td><b>仍为 2.0</b></td></tr>
+          <tr><td><code>np.dtype(np.float64)</code></td><td>float64</td><td>float64</td></tr>
+        </tbody></table>
+        <p class="small">以上为 Windows + uv 0.12.5 的实测结果；脚本捕获 AttributeError，两次正常退出。历史版本只用于复现差异，不是新作业推荐版本。</p>
+      </section>
+    </div>
+    <pre class="w07-compact rise"><code>uv run --no-project --python 3.12 --with numpy==1.26.4 python numpy_probe.py
+uv run --no-project --python 3.12 --with numpy==2.0.2 python numpy_probe.py</code></pre>
+    <p class="small"><b>安全边界：</b><code>--no-project + --with</code> 使用隔离临时依赖环境，不改项目声明或全局 site-packages；UV 仍可能写用户级缓存、下载受管 Python / wheel。能维护代码就迁移到 <code>np.float64</code>；旧项目暂不能升级时，用独立环境明确保留约束并安排迁移。</p>
+  </section>
+
+  <!-- 7 · 四层统一模型 -->
+  <section class="slide">
+    <h2>统一模型：先问任务在哪一层，不先问“activate 什么”</h2>
+    <span class="lab">70–73 分钟 · 机制过渡与四层定位</span>
+    <div class="layer-strip rise"><b>① 命令查找</b><span>shell 输入 <code>python</code> / <code>node</code> / <code>cargo</code> / <code>go</code> 时，PATH、代理或 symlink 先找到哪个程序？</span></div>
+    <div class="layer-strip rise"><b>② 工具链选择</b><span>Python 解释器、Node 运行时、Rust 编译工具链、Go 工具链分别由谁选择？UV / venv / conda、NVM、rustup、GOTOOLCHAIN 不可互相替换。</span></div>
+    <div class="layer-strip rise"><b>③ 依赖解析</b><span>代码或模块从哪里解析？Python 看实际解释器的 <code>sys.path</code> 与 site-packages；Node 查找 node_modules；Cargo / Go 读取各自模块声明与锁定/校验信息。</span></div>
+    <div class="layer-strip rise"><b>④ 配置与缓存</b><span><code>VIRTUAL_ENV</code>、PYTHONPATH、UV / npm / Cargo / Go 模块缓存会影响什么？<b>共享缓存不等于共享项目依赖版本。</b></span></div>
+    <div class="scard w07-good rise"><b class="tt" style="font-size:18px;">Python 内也不是只有一种环境工具</b>
+      <p class="small"><b>UV：</b>可发现/下载受管 Python，<code>uv add</code> 维护 pyproject 与 uv.lock，<code>uv run</code> 在项目环境执行。<b>venv：</b>用创建它的既有 Python，隔离第三方包，不负责下载任意 Python 版本。<b>conda：</b>可管理 Python 与其他软件包；激活还可能运行包脚本、设置原生库路径，比简化 venv 模型更复杂。</p>
+    </div>
+  </section>
+
+  <!-- 8 · Principles lab -->
+  <section class="slide w07-demo">
+    <h2>交互③ 路径透视：全局 / 激活 / uv run / 错位故障</h2>
+    <span class="lab">73–79 分钟 · 核心互动 principles（含下页快速回收）</span>
+    <div class="demo-frame">
+      <span class="frame-tag">PATH ≠ sys.path</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=principles" loading="lazy" title="W07-B 路径机制教学仿真：全局、激活、uv run 与 python pip 错位故障"></iframe>
+    </div>
+    <p class="small">课堂任务：在 <code>uv run</code> 状态找出“shell PATH 未改，但项目解释器与 NumPy 路径已正确”的证据；再注入错位故障并修复。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=principles" target="_blank" rel="noopener">新窗口打开 principles ↗</a></p>
+  </section>
+
+  <!-- 9 · 机制拆解与探针 -->
+  <section class="slide">
+    <h2>激活不是魔法：提示符只是线索，路径才是证据</h2>
+    <span class="lab">73–79 分钟内快速回收 · 不另增分钟</span>
+    <div class="cols2 wide-l">
+      <div>
+        <pre class="w07-compact rise"><code><span class="c"># 人工交互式 PowerShell</span>
+uv sync --locked
+(Get-Command python).Source
+.\.venv\Scripts\Activate.ps1
+$env:VIRTUAL_ENV
+($env:Path -split <span class="s">';'</span>)[<span class="n">0</span>]
+python -c <span class="s">"import sys; print(sys.prefix != sys.base_prefix)"</span>
+deactivate</code></pre>
+        <div class="scard rise"><b class="tt" style="font-size:17px;">四条边界</b>
+          <p class="small">① PATH 决定命令先找到谁；② 实际解释器决定模块解析上下文；③ <code>VIRTUAL_ENV</code> 与 <code>(.venv)</code> 提示符只是证据之一；④ 激活只影响当前 shell，conda 还可能执行包激活脚本。</p>
+        </div>
+      </div>
+      <div>
+        <pre class="w07-mini rise"><code><span class="c"># 仅观察已建环境：已 sync、依赖齐全、lock 与 pyproject 一致</span>
+uv run --no-sync --locked python -c "import sys, numpy;
+print('executable=', sys.executable);
+print('is_venv=', sys.prefix != sys.base_prefix);
+print('prefix=', sys.prefix);
+print('numpy=', numpy.__version__);
+print('numpy_file=', numpy.__file__)"</code></pre>
+        <div class="scard w07-good rise"><span class="tag g">研究环境实测摘录</span><b class="tt" style="font-size:17px;">三类独立证据</b>
+          <ul class="file-list"><li>executable= …\lab\.venv\Scripts\python.exe</li><li>is_venv= True</li><li>numpy_file= …\lab\.venv\Lib\site-packages\numpy\__init__.py</li></ul>
+        </div>
+        <div class="scard w07-warn rise"><b class="tt" style="font-size:17px;">PATH ≠ sys.path；观察也不冒称只读</b><p class="small">PYTHONPATH ≠ venv。普通 <code>uv run --locked</code> 可能同步项目环境并写缓存；这里只为观察已建环境，才用 <code>--no-sync --locked</code>，前提是已成功 <code>uv sync --locked</code>、依赖齐全且锁与声明一致。未满足前提时先修复，不用 no-sync 掩盖问题。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Ecosystem lab -->
+  <section class="slide w07-demo">
+    <h2>交互④ 跨语言地图：同一四层，不同工具分工</h2>
+    <span class="lab">79–86 分钟 · 核心互动 ecosystem（含下页快速回收）</span>
+    <div class="demo-frame">
+      <span class="frame-tag">不是所有语言都 activate</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=ecosystem" loading="lazy" title="W07-B 跨语言工具地图：Python、Node、Rust、Go 的命令、工具链、依赖与缓存"></iframe>
+    </div>
+    <p class="small">课堂任务：解释“NVM 切版本为什么不等于安装项目依赖”“共享 GOPATH 模块缓存为什么不是版本冲突”。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=ecosystem" target="_blank" rel="noopener">新窗口打开 ecosystem ↗</a></p>
+  </section>
+
+  <!-- 11 · 跨语言职责 -->
+  <section class="slide">
+    <h2>换语言不换问题：工具链、依赖声明、缓存各就各位</h2>
+    <span class="lab">79–86 分钟内快速回收 · 不另增分钟</span>
+    <table>
+      <thead><tr><th>生态</th><th>工具链 / 运行时</th><th>项目依赖与复现</th><th>配置 / 缓存边界与观察命令</th></tr></thead>
+      <tbody>
+        <tr><td>Python UV<br>venv / conda</td><td><code>uv python pin 3.12</code>；venv 沿用创建时 Python；conda 可含 Python 与其他包</td><td>UV：pyproject + uv.lock；venv 常见 pip / requirements；conda 按环境文件工作流</td><td>PATH、VIRTUAL_ENV、PYTHONPATH、UV cache；<code>sys.executable</code> 与包的 <code>__file__</code></td></tr>
+        <tr><td>Node</td><td>nvm-sh（POSIX）或独立的 nvm-windows；<code>.nvmrc</code> 声明期望 Node</td><td>npm + package.json / package-lock；本地或祖先 node_modules；已有 lock 时 <code>npm ci</code></td><td>npm cache 可共享；<code>node -p "process.execPath"</code>、<code>require.resolve(...)</code>。NVM 不安装项目包</td></tr>
+        <tr><td>Rust</td><td>rustup proxies、override、<code>rust-toolchain.toml</code>、<code>+stable</code></td><td>Cargo.toml / Cargo.lock；<code>cargo +stable build --locked</code>；Cargo 调 rustc 构建</td><td>CARGO_HOME 缓存可共享；<code>cargo build --locked</code> 是构建验证，会写 <code>target/</code>，--locked 只限制改锁，也可能读缓存/网络；<code>rustup show active-toolchain</code> 用于观察</td></tr>
+        <tr><td>Go</td><td><code>GOTOOLCHAIN</code> 与 go.mod 的 go / toolchain 行；不是手工 activate</td><td>go.mod 声明模块与依赖，go.sum 校验模块内容；<code>go list -m all</code></td><td>GOPATH / GOMODCACHE 共享只读模块缓存；GOROOT 是当前工具链位置。<code>go env GOMOD GOTOOLCHAIN GOPATH GOMODCACHE GOROOT</code></td></tr>
+      </tbody>
+    </table>
+    <div class="cols2">
+      <div class="scard rise"><b class="tt" style="font-size:17px;">Node 反例</b><p class="small">lodash 已声明但 <code>nvm use</code> 后仍找不到：先核对项目目录与 lockfile，再 <code>npm ci</code> / <code>npm ls</code>；若从未声明，应先 <code>npm install lodash</code>。npm ci 会重建 node_modules，执行前必须审查目录。</p></div>
+      <div class="scard rise"><b class="tt" style="font-size:17px;">Go 反例</b><p class="small">把 GOPATH 改成项目目录并不会“完成依赖隔离”。项目版本由模块声明与选择算法决定；共享同一版本缓存是正常复用，go.sum 也不是另一份版本声明。</p></div>
+    </div>
+  </section>
+
+  <!-- 12 · DSH 提示词与命令审查 -->
+  <section class="slide w07-prepare">
+    <h2>实操前先审查 Agent：工作区、输入、命令、验证</h2>
+    <span class="lab">86–88 分钟 · 审查提示词与实跑素材</span>
+    <div class="cols2 wide-l">
+      <pre class="w07-mini rise"><code>当前工作区是 crawler-viz。只在当前工作区内编写项目文件，
+不要修改全局 Python、其他项目或父目录。允许 UV 使用自己的
+用户级缓存和受管 Python，但不要向系统 Python / Miniconda 安装。
+
+1. uv init --bare --python 3.12 .，再 uv python pin 3.12。
+2. 执行 uv add numpy==2.2.6 pandas==2.2.3 matplotlib==3.10.3。
+3. 保留 data/answers.csv；按实测脚本编写 visualize.py：排除匿名合集和
+   点赞缺失行，按作者汇总 Top 5，用 Agg 保存 output/top_authors.png；
+   用 Path(__file__) 定位路径，并设置中文字体候选与负号。
+4. 编写 README.md 与 .gitignore：README 说明教学合成数据或替换
+   数据的来源/授权、字段规则、运行命令、输出与限制；忽略 .venv/、
+   __pycache__/、output/，并写清 uv sync --locked 与锁定运行命令。
+5. 打印统计与图片路径；用 uv run --locked python visualize.py
+   实际运行，再打印 sys.executable 与 numpy.__file__。
+6. 不提交 .venv，不调用全局 pip。先列命令；需审批先说明范围。
+完成后报告实际命令、关键输出和生成文件，不要只给代码。</code></pre>
+      <div>
+        <div class="scard rise"><span class="tag">五要素审查</span><b class="tt" style="font-size:18px;">边界 · 输入 · 依赖 · 输出 · 验证</b>
+          <p class="small">先在 DSH 选择项目根目录为工作区；W06 数据须合规且允许使用。Agent 可提议命令与 diff，但学生要审查路径、安装目标和文件影响，不绕过审批。</p>
+        </div>
+        <div class="scard w07-good rise w07-downloads"><b class="tt" style="font-size:17px;">实跑素材 · 教学合成数据</b>
+          <p class="small">下载完整 UV 项目并解压，目录、数据与锁文件已就绪；按案例说明执行 <code>uv sync --locked</code> 和 <code>uv run --locked python visualize.py</code>。</p>
+          <div class="w07-actions">
+            <a class="w07-action primary" href="../../demos/w07-case.zip" download>下载完整 UV 案例包 (.zip) ↓</a>
+            <a class="w07-action" href="../../demos/w07-case/">在线查看文件与运行说明 ↗</a>
+          </div>
+        </div>
+        <div class="scard w07-warn rise"><b class="tt" style="font-size:17px;">--locked 是防线</b><p class="small">要求现有 uv.lock 与项目元数据一致且不得被改写；不一致就报错，不因新包发布而悄悄升级。脚本用 <code>Path(__file__)</code> 定位数据与输出，Matplotlib 用 <code>Agg</code>，避免依赖当前目录或桌面弹窗。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · Practice lab -->
+  <section class="slide w07-demo">
+    <h2>交互⑤ UV + DSH：从提示词到证据，再到换机重建</h2>
+    <span class="lab">88–94 分钟 · 核心互动 practice（静态路线与交付页快速回收）</span>
+    <div class="demo-frame">
+      <span class="frame-tag">代码 · 模拟终端 · 文件树同步</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=practice" loading="lazy" title="W07-B UV 与 DeepSeek Harness 实操教学仿真：审查、初始化、添加依赖、运行、探针和同步"></iframe>
+    </div>
+    <p class="small">课堂任务：第 1 步先指出提示词五要素；证据步核对解释器和 NumPy 文件；最后说明为什么删 <code>.venv</code> 不等于删项目。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=practice" target="_blank" rel="noopener">新窗口打开 practice ↗</a></p>
+  </section>
+
+  <!-- 14 · 两条运行路线 -->
+  <section class="slide">
+    <h2>两条运行路线：DSH 推荐 uv run；人工终端可以激活</h2>
+    <span class="lab">88–94 分钟内快速回收 · 不另增分钟</span>
+    <div class="route">
+      <section class="scard w07-good rise"><span class="tag g">路线 A · 推荐 / DSH</span><b class="tt" style="font-size:19px;">每次调用都明确项目环境</b>
+        <pre class="w07-compact"><code>uv run --locked python visualize.py</code></pre>
+        <p class="small">UV 创建/同步项目环境并在其中执行；不是“先替你 source activate”的同义词，不要求 shell 先激活，也不需要先激活再 <code>uv run</code>。</p>
+      </section>
+      <section class="scard rise"><span class="tag v">路线 B · 人工 PowerShell</span><b class="tt" style="font-size:19px;">同一交互式 shell 内完成</b>
+        <pre class="w07-compact"><code>uv sync --locked
+.\.venv\Scripts\Activate.ps1
+python visualize.py
+deactivate</code></pre>
+        <p class="small">适合观察 PATH、VIRTUAL_ENV 和提示符的变化。若 PowerShell 阻止脚本，先读执行策略与错误；优先 uv run，不教 <code>Unrestricted</code>。</p>
+      </section>
+    </div>
+    <div class="scard w07-warn rise"><span class="tag r">DSH fresh shell 边界</span><b class="tt" style="font-size:18px;">上一次 Activate.ps1，不会激活下一次工具调用</b>
+      <p class="small">当前 DSH 的 PowerShell / Bash 工具每次都是新的非交互 shell，状态不跨调用保留。必须演示激活时，在<b>同一次</b>调用执行：<code>&amp; .\.venv\Scripts\Activate.ps1; python visualize.py</code>。平时优先每次 <code>uv run</code>。</p>
+    </div>
+    <p class="small">两条路线最后都用同一份探针验收：<code>sys.executable</code>、<code>sys.prefix != sys.base_prefix</code>、<code>numpy.__file__</code>。不要只看提示符前的括号，也不要假设 UV 项目环境必然自带 pip；项目依赖用 <code>uv add</code>。</p>
+  </section>
+
+  <!-- 15 · 提交、重建与兼容交换 -->
+  <section class="slide">
+    <h2>交付的是可重建的声明，不是搬运 .venv</h2>
+    <span class="lab">88–94 分钟内快速回收 · 不另增分钟</span>
+    <div class="cols2 wide-l">
+      <div>
+        <div class="pill-row rise" aria-label="建议提交的项目文件">
+          <span class="pill commit">pyproject.toml</span><span class="pill commit">uv.lock</span><span class="pill commit">.python-version</span><span class="pill commit">visualize.py</span><span class="pill commit">README.md</span><span class="pill commit">.gitignore</span><span class="pill commit">授权允许的 data/answers.csv</span>
+        </div>
+        <div class="pill-row rise" aria-label="可重新生成的文件"><span class="pill rebuild">.venv/ · 删除后重建</span><span class="pill rebuild">output/*.png · 运行后再生成</span><span class="pill rebuild">__pycache__/</span></div>
+        <div class="pill-row rise" aria-label="绝不提交的秘密"><span class="pill secret">API Key / 凭据 · 绝不提交</span><span class="pill secret">无权分发的数据</span></div>
+        <pre class="w07-compact rise"><code><span class="c"># 新的项目副本 / 换机</span>
+uv sync --locked
+uv run --locked python visualize.py
+uv lock --check</code></pre>
+      </div>
+      <div>
+        <div class="scard rise"><b class="tt" style="font-size:18px;">三个文件各自回答什么？</b>
+          <p class="small"><code>pyproject.toml</code>：直接依赖与项目元数据；<code>uv.lock</code>：精确解析结果，由 UV 管理，不手改；<code>.python-version</code>：项目默认 Python 版本请求。</p>
+        </div>
+        <div class="scard w07-good rise"><b class="tt" style="font-size:18px;">requirements.txt 的正确位置</b>
+          <p class="small">可记录并帮助还原 Python 依赖，适合兼容或交换；但它不锁定解释器、操作系统和全部系统条件，<b>不是万能环境，也不是本周锁文件的替代品</b>。</p>
+        </div>
+        <div class="scard w07-warn rise"><b class="tt" style="font-size:18px;">sync 也不是“全局清理”</b><p class="small"><code>uv sync</code> 默认精确同步项目环境，会移除未选定的额外包；范围是项目 <code>.venv</code>，不是系统 Python。环境不可当作跨机器部署包直接拷贝。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · Diagnostics lab -->
+  <section class="slide w07-demo">
+    <h2>备用交互 · 故障门诊：先证据，后修复</h2>
+    <span class="lab">备用 / 课后，不占课内分钟 · 点症状卡，核对证据与副作用后再处置</span>
+    <div class="demo-frame">
+      <span class="frame-tag">不是见报错就重装</span>
+      <iframe src="../../demos/w07-venv-lab.html?mode=diagnostics" loading="lazy" title="W07-B 虚拟环境故障门诊：模块缺失、解释器错位、fresh shell 与 pip 缺失"></iframe>
+    </div>
+    <p class="small">备用/课后任务：先记录完整报错、项目目录与路径证据，说明观察命令是否可能同步、写缓存或构建，再揭示最短修复；不笼统承诺“全部只读”。<a class="demo-open" href="../../demos/w07-venv-lab.html?mode=diagnostics" target="_blank" rel="noopener">新窗口打开备用 diagnostics ↗</a></p>
+  </section>
+
+  <!-- 17 · 4 题 Quiz -->
+  <section class="slide">
+    <h2>随堂小测（4 题）</h2>
+    <span class="lab">94–98 分钟 · 4 题 Quiz：版本差异 / 路径 / 跨语言 / DSH</span>
+    <div class="pyv2-quiz">
+      <script type="application/json" class="quiz-data">
+      {
+        "title": "W07-B 虚拟环境与依赖管理 · 概念检查",
+        "questions": [
+          {
+            "q": "NumPy 2.0.2 探针显示 np.float_ 不可用，但 np.mean 仍返回 2.0。最准确的结论是？",
+            "opts": ["NumPy 2 全部坏掉", "所有项目都会崩", "这是一个已移除 API，可迁移到 np.float64，也可用独立环境控制升级节奏", "只能永久停留旧版"],
+            "a": 2,
+            "explain": "版本升级可能带来局部、可观察的 API 差异，不等于整个库必崩。两个精确版本的约束是否可共存，应另用 uv pip compile 让求解器判断。"
+          },
+          {
+            "q": "python 来自项目 B，pip 却把包装到了全局环境。哪组证据最能定位错位？",
+            "opts": ["只看提示符颜色", "比较 Get-Command python、pip -V、sys.executable 和实际包 __file__ 路径", "把 PATH 当作 sys.path", "设置 PYTHONPATH 就等于创建 venv"],
+            "a": 1,
+            "explain": "PATH 管命令查找，实际解释器与其 sys.path 管模块解析。安装命令与运行解释器要分别核实，PYTHONPATH 不是 venv 的同义词。"
+          },
+          {
+            "q": "关于 Node 与 Go，哪句正确？",
+            "opts": ["NVM 负责安装项目 node_modules", "GOPATH 就是 go.mod", "NVM 选 Node，npm 管项目依赖；GOPATH 模块缓存可共享，Go 项目版本仍由模块机制决定", "所有语言都必须 activate 虚拟环境"],
+            "a": 2,
+            "explain": "工具链选择、项目依赖和缓存是不同层。Rust 也要区分 rustup 与 Cargo；Go 还要区分 GOTOOLCHAIN、go.mod/go.sum 与 GOPATH/GOMODCACHE。"
+          },
+          {
+            "q": "为什么 DSH 中优先 uv run，而不是两次工具调用分别激活和运行？",
+            "opts": ["uv run 一定更快", "每次 shell 工具调用是新进程，激活状态不跨调用保留", "激活会删除代码", "DSH 不能运行 Python"],
+            "a": 1,
+            "explain": "fresh shell 不继承上次激活。首选 uv run；必须演示激活时，应在同一次调用中执行 Activate.ps1 和 python。"
+          }
+        ]
+      }
+      </script>
+    </div>
+  </section>
+
+  <!-- 18 · 课后作业与 W08 -->
+  <section class="slide">
+    <h2>课后作业：交付一个能换机重跑的可视化项目</h2>
+    <span class="lab">98–100 分钟 · 作业说明、离堂条与 W08 衔接</span>
+    <div class="cols2 wide-l">
+      <div class="scard rise"><span class="tag">W06 CSV → W07 图表</span><b class="tt" style="font-size:19px;">独立 UV 项目 + 数据证据 + 运行证据</b>
+        <ol style="font-size:15.5px;">
+          <li>使用 W06 合规取得且允许使用的数据，或教师离线样本；在 README 写来源、授权、字段契约、缺失与匿名规则。本周不现场爬真实网站。</li>
+          <li>提交 <code>pyproject.toml</code>、<code>.python-version</code>、<code>uv.lock</code>、<code>visualize.py</code>、README、.gitignore；数据能否提交取决于授权与隐私。</li>
+          <li>脚本从 <code>__file__</code> 定位 CSV，用 Agg 保存一张回答明确问题的图，并打印统计表和一句不越界的结论。</li>
+          <li>在新项目副本或重建环境中执行 <code>uv sync --locked</code> 与 <code>uv run --locked python visualize.py</code>，附上解释器与 <code>numpy.__file__</code> 探针结果。</li>
+        </ol>
+        <div class="w07-actions" style="margin-top:12px;">
+          <a class="w07-action primary" href="../../demos/w07-case.zip" download>下载完整案例包：代码 + 数据 + 锁文件 ↓</a>
+          <a class="w07-action" href="../../demos/w07-case/">先看运行说明 ↗</a>
+        </div>
+      </div>
+      <div>
+        <div class="scard w07-warn rise"><span class="tag r">验收边界</span><b class="tt" style="font-size:18px;">不靠全局包，不交环境杂物</b>
+          <p class="small">不提交 <code>.venv</code>、API Key、无关个人信息或无权分发的数据；不把“AI 说成功”当证据。requirements.txt 仅作兼容/交换时可补充，不能替代本周锁定链。</p>
+        </div>
+        <div class="scard next-card rise"><span class="tag v">主下一步</span><b class="tt" style="font-size:20px;">W08：让项目组织与协作继续工程化</b>
+          <p class="small">离堂条：我当前项目的运行时由 ____ 选择，依赖由 ____ 声明/锁定；我用 ____ 命令验证。带着这张证据卡进入 W08。</p>
+          <div class="w07-actions" style="margin-top:12px;">
+            <a class="w07-action primary" href="w08.html">进入 W08 →</a>
+            <a class="w07-action" href="w07.html">回看 W07-A</a>
+          </div>
+        </div>
+        <p class="footnote rise">延伸阅读：<a href="../m4/">M4 工程化</a> · <a href="../notes/10.5-第三方库与虚拟环境-虚拟环境管理/">经典笔记 10.5 虚拟环境管理</a> · <a href="../notes/2023-08-虚拟环境工作流演示/">2023-08 工作流演示</a> · <a href="../notes/2023-09-包管理器补充/">2023-09 工具演进</a></p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="../../../javascripts/pyv2-loader.js"></script>
+</body>
+</html>

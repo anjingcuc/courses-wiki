@@ -1,0 +1,179 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# 模块与包
+
+---
+
+## 模块
+
+Python 中可以将函数、变量以及类等放在一个文件中，并在另一个文件中进行引用。这样的文件称之为 `模块`，模块的名字就是文件名。
+
+![模块](/courses-wiki/img/module.png)
+
+--
+
+### 模块导入的 N 种写法
+
+在 `main.py` 中，第一种会将 `calc` 作为`main.py`的全局变量，且通过`module.itemname` 类似的语法来访问其中的函数和变量；第二种方式类似于第一种，但此时将使用 `cc` 作为模块名字；第三种方式则会直接将模块中的函数或者变量导入 `main.py` 中，而不导入 `calc` ，此时在 `main.py` 中访问 `calc` 会报错，但可以直接使用 `sum` 等函数，而不用加 `calc.` ；第四种方式和第三种类似，但会导入所有内容，不推荐。
+
+```python
+import calc           # 导入名为 calc 的模块
+
+import calc as cc     # 导入 calc 模块并命名为 cc
+
+from calc import sum  # 从 calc 模块中单独导入 sum
+
+from calc import *    # 导入所有符号，可以不用 modname. 直接使用
+```
+
+--
+
+### 模块的符号表
+
+一个模块可以包含直接执行的语句以及函数定义，还可以包含一些变量，用于初始化这个模块。这些内容在第一次 `import` 被执行。 开发者可以通过 `dir(modname)` 来得到一个模块的符号列表，然后可以通过 `modname.itemname` 来访问这个符号（函数或者变量）。
+
+```python
+import calc
+
+print(dir(calc))
+
+print(calc.sum(1, 2))
+```
+
+--
+
+### `__name__` 变量
+
+Python 将文件名不包含后缀的部分（也就是去掉`.py`）作为模块的名字，如上个示例中，就是用了 `calc` 这个模块。模块名可以通过模块内部的一个内置全局变量 `__name__` 来访问。而在模块被别的文件调用时，可以通过 `module.__name__` 的形式来访问。
+
+```python
+import calc
+
+calc.__name__ # calc
+```
+
+--
+
+### 脚本方式执行
+
+在命令行中，可以脚本方式运行某一文件/模块，这种场景下，全局变量 `__name__` 的值为 `__main__`，因此在 Python 中常常通过判断 `__name__` 的值来编写测试用例。如要运行上例中的 `calc.py`，则进入该文件所在目录后输入 `python calc.py [arguments]` 。
+
+```python
+# calc.py
+# 省略函数定义...
+if __name__ == '__main__':
+  import sys           # 导入模块可以不在最开始
+  a = int(sys.argv[1]) # 访问第一个参数
+  b = int(sys.argv[2]) # 访问第二个参数
+  print(sum(a, b))
+```
+
+_注：sys 标准库参考文档 https://docs.python.org/zh-cn/3/library/sys.html_
+
+<!-- .element: style="font-size:50%;" -->
+
+--
+
+### sys 标准库
+
+Python 系统相关参数和函数。
+
+| 属性          | 描述                                           |
+| ------------- | ---------------------------------------------- |
+| sys.version   | 字符串，包含 Python 版本信息                   |
+| sys.platform  | 字符串，包含操作系统信息                       |
+| sys.path      | 列表，包含元素为字符串，存储了模块搜索路径     |
+| sys.byteorder | 字符串，包含当前字节序，'little' / 'big'       |
+| sys.argv      | 列表，包含元素为字符串，存储了被空格分割的参数 |
+
+<!-- .element: style="font-size:70%;" -->
+
+---
+
+## 模块的路径
+
+在导入模块的过程中，Python 内置了一个搜索规则来查找所需的模块：
+
+1. 内置模块
+2. sys.path
+   1. 包含输入脚本的目录（或者未指定文件时的当前目录）。
+   2. PYTHONPATH （一个包含目录名称的列表，它和 shell 变量 PATH 有一样的语法）。
+   3. 取决于安装的默认设置。
+
+<!-- .element: style="font-size:70%;" -->
+
+--
+
+### 模块"编译"
+
+Python 会自动对每个模块进行编译来提升加载速度，编译好的模块名称规则为 `module.version.pyc` 被统一放在 `__pycache__` 目录中。比如，在 Python 3.8 版本下的 `calc.py` 编译后结果为 `calc.cpython-38.pyc` 。
+
+_注：一般打包源码或者提交到源代码管理工具时，请先删除或者忽略 `__pycache__` 目录。_
+
+<!-- .element: style="font-size:50%;" -->
+
+---
+
+## 包
+
+将多个文件/模块组织在一起，形成一个集合（文件夹）并向其他开发者提供，这个集合就称之为 `包` 。文件夹的最顶级子目录必须包含一个 `__init__.py` 来告诉 Python 解释器这个文件夹要当成一个包来处理，其内容可以做一些初始化操作也可以为空。
+
+```txt
+sound/                      # Top-level package
+  __init__.py               # Initialize the sound package
+  formats/                  # Subpackage for file format conversions
+    __init__.py
+    wavread.py
+    wavwrite.py
+  effects/                  # Subpackage for sound effects
+    __init__.py
+    echo.py
+```
+
+--
+
+### 包的 N 种导入方式
+
+```python
+import sound
+
+import sound.formats
+
+import sound.formats.wavread
+
+from sound.formats import wavread
+
+from sound.formats.wavread import read
+```
+
+--
+
+### 子包中使用相对路径相互导入
+
+```python
+# wavread.py
+
+from . import wavwrite
+from ..effects import echo
+```
+
+--
+
+### 包的导入所有库 \*
+
+无法使用 `from sound.formats import *` 这类于法导入包中的所有模块。如果开发者在 `__init__.py` 中定义了列表变量 `__all__` ，并且其中包含了要导入的模块名字，那么在用 \* 号导入时就会导入列表中的模块，否则仅仅导入包并执行其 `__init__.py` 。
+
+---
+
+## Q & A

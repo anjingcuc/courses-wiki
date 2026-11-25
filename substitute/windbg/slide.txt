@@ -1,0 +1,123 @@
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+</style>
+
+# WinDBG
+
+---
+
+## WinDBG 简介
+
+WinDBG 是一个独立的调试工具，能够对 Windows 下用户态或者内核态程序进行调试，常用于逆向工程以及内核驱动、服务的开发。我们主要学习在逆向工程或者说软件分析的时候如何使用 WinDBG。
+
+--
+
+### WinDBG 获取
+
+WinDBG 早年是一个单独的工具，后来被包含到了 Windows SDK 中并且不再提供单独下载，根据官方文档你需要下载 Windows SDK 的 ISO 镜像并选择仅安装 WinDBG。但是我们通过检索发现微博上的 tk 大神提供了单独的下载链接，且域名是微软旗下的理论上可以放心下载。
+
+- [X64 Debuggers And Tools-x64_en-us.msi](https://download.microsoft.com/download/4/2/2/42245968-6A79-4DA7-A5FB-08C0AD0AE661/windowssdk/Installers/X64%20Debuggers%20And%20Tools-x64_en-us.msi)
+- [X86 Debuggers And Tools-x86_en-us.msi](https://download.microsoft.com/download/4/2/2/42245968-6A79-4DA7-A5FB-08C0AD0AE661/windowssdk/Installers/X86%20Debuggers%20And%20Tools-x86_en-us.msi)
+
+--
+
+### WinDBG 基本布局介绍
+
+![WinDBG](/courses-wiki/img/windbg.jpg)
+
+---
+
+## WinDBG 调试
+
+WinDBG 的调试方式和调试对象多种多样，可以通过网络、USB、串口等接口调试远程主机，也可以调试虚拟机，当然也可以调试本地的用户态程序。
+
+![调试远程目标](/courses-wiki/img/targethost.png)<!-- .element style="width:100%;" -->
+
+<!-- .element style="text-align:center"-->
+
+--
+
+### 操作实例-自定义程序调试
+
+C 语言编写一个 Hello, world. 程序，并将其放入没有开发环境的主机中，利用 WinDBG 进行调试。
+
+--
+
+### 操作实例-系统计算器调试
+
+安装 Windows 符号文件后，用 WinDBG 观察计算器的行为。
+
+--
+
+### 指令集
+
+| 指令     | 作用                                       |
+| -------- | ------------------------------------------ |
+| .symfix  | 指定本地缓存目录                           |
+| .sympath | 设置符号路径，包括本地缓存和远程符号服务器 |
+| .reload  | 重新加载模板                               |
+| x        | 查看模块符号                               |
+| bu       | 下断点                                     |
+| bl       | 列出断点                                   |
+| g        | 继续执行程序                               |
+| k        | 查看调用堆栈                               |
+| lm       | 列出当前进程加载的模块                     |
+
+<!-- .element style="text-align:center;font-size:0.6em;"-->
+
+---
+
+## 符号文件
+
+在上面我们进行演示调试的过程中，我们都用到了 .pdb 符号文件，符号文件是在编译器为了方便程序员进行调试生成的信息文件，其中包含了全局变量、本地变量、函数名称及入口地址甚至源代码行号等等关键信息。Windows 甚至为开发者提供了各个版本的 Windows 自带模块的符号文件。
+
+--
+
+### 符号路径
+
+符号路径和环境变量一样，都可以包含多个，它们之间用分号 `;` 分隔。我们要学会使用 `.sympath` 来指定符号路径。
+
+--
+
+### 符号服务器
+
+历史上，Windows 系统的符号文件是可以直接下载的，奈何现在他们也拥抱云服务了。他们开发了一套符号服务器的机制来帮助用户动态的获取所需的符号文件（网不好别调试了！）。
+
+--
+
+### 本地缓存符号
+
+如果你要反复使用一些模块的符号，你可以指定缓存到本地，使用 `cache*;\\server` 或者 `cache*localpath;\\server` 来指定缓存，前者会从 `\\server` 获取符号文件并缓存到默认符号缓存目录；后者则会从 `\\server` 获取符号文件并缓存到 `localpath` 中。
+
+```dbgcmd
+.sympath cache*;\\server
+
+.sympath cache*C:\symbols;\\server
+```
+
+--
+
+### 从符号服务器中获取
+
+如果你网速奇快，你可以不使用本地缓存来直接在调试过程实时从网上获取符号文件。
+
+```dbgcmd
+.sympath srv*
+
+.sympath srv*https://msdl.microsoft.com/download/symbols
+
+.sympath srv*C:\MyServerSymbols*https://msdl.microsoft.com/download/symbols
+```
+
+---
+
+## Q & A

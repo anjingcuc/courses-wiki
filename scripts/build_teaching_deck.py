@@ -61,8 +61,8 @@ def validate() -> None:
     if 'data-composition-id="root"' not in composition:
         raise SystemExit("Composition root is missing")
     scene_count = len(re.findall(r'class="scene-frame[^"]*"', composition))
-    if scene_count != 17:
-        raise SystemExit(f"Expected 17 scenes, found {scene_count}")
+    if scene_count != 14:
+        raise SystemExit(f"Expected 14 scenes, found {scene_count}")
 
     remote_assets = re.findall(
         r'(?:src|href)=["\'](https?://[^"\']+\.(?:js|css))(?:[?"\'])', html + composition

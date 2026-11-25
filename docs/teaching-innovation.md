@@ -82,8 +82,8 @@ description: 《Python 程序设计》整门课程的教学创新设计、过程
 >
 > —— 本科生院〔2026〕63号
 
-在线汇报为 **14 页主线 + 3 页答问备查**，主讲约 **9 分 30 秒**。主线沿着“为什么改 — 改成什么 — 怎么实施 —
-证据到哪一步”展开，备查页提供三项能力测量设计、材料来源与评分维度覆盖关系。
+在线汇报为 **11 页主线 + 3 页答问备查**，主讲约 **9 分钟**。主线沿着“为什么改 — 改成什么 — 怎么实施 —
+公开与试用”展开，备查页提供三项能力测量设计、材料来源与评分维度覆盖关系。
 
 ## 三项能力
 
@@ -144,4 +144,4 @@ description: 《Python 程序设计》整门课程的教学创新设计、过程
 - 发布流程：push 到 `master` → GitHub Actions 构建课件到 `docs/innovation-report/` → MkDocs 发布到 GitHub Pages
 - 交互式汇报直达：[https://anjingcuc.github.io/courses-wiki/innovation-report/](https://anjingcuc.github.io/courses-wiki/innovation-report/)
 
-<p class="ti-note">课件中的 API 请求与代码审查为离线教学模拟，不调用真实服务，也不伪装成学生真实作答数据。</p>
+<p class="ti-note">课件中的代码审查为离线教学模拟，不调用真实服务，也不伪装成学生真实作答数据。</p>

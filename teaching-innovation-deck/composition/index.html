@@ -11,32 +11,131 @@
 </head>
 <body>
   <script type="application/hyperframes-slideshow+json">
-  {
-    "slides": [
-      {"sceneId":"cover","notes":"【0:00–0:25】开场只讲一句：AI 降低代码生成成本后，课堂的价值必须向生成之后移动。说明课程、赛道与汇报人，不念履历。"},
-      {"sceneId":"hook","notes":"【0:25–1:00】先问评委：学生十秒得到一份可运行代码，学习是否已经发生？点击页面中央的判断开关，落到“可运行≠可解释≠可负责”。"},
-      {"sceneId":"problem","notes":"【1:00–1:50】三次右移依次呈现三类真实问题：内容结构、审查能力、任务规格。强调来自旧版大纲、作业与答辩观察，不是泛泛谈技术趋势。","fragments":[4.2,4.4,4.6]},
-      {"sceneId":"goals","notes":"【1:50–2:35】点击提出需求、发现问题、设计品味三个页签。重点读一条行为化目标：条件＋行为＋质量标准；发现问题页的密钥硬编码是必过项。"},
-      {"sceneId":"content","notes":"【2:35–3:35】对照教学大纲先讲整门课而非单节课。点击 M3、M5、M6：工具性内容做减法，AI 应用与项目实践做加法，48 学时总盘不变。"},
-      {"sceneId":"method","notes":"【3:35–4:25】沿五步循环说明 AI 承担写、人保留定义、发现与设计。点三种工作形态，强调课程目标不是全程依赖 AI，而是让学生保留定义、发现与设计权。"},
-      {"sceneId":"lesson","notes":"【4:25–5:25】用两学时教案证明改革如何落地。依次点 base_url、model、messages，拖动 Token 滑块。说明这是离线模拟，真实课堂先看请求响应再讲概念。"},
-      {"sceneId":"review","notes":"【5:25–6:20】邀请评委现场找缺陷。点击代码行即可核验；至少找出密钥硬编码、缺超时、输入边界、异常处理等问题。三口令：能发现、说后果、会修改。"},
-      {"sceneId":"environment","notes":"【6:20–6:55】点击三个环境页签。课程网站既是学习环境，也是改革产物与过程证据：16 周课件、88 篇笔记、交互运行场与任务说明公开可核验；资源公开不等于学习成效。"},
-      {"sceneId":"assessment","notes":"【6:55–7:40】从结果评价转向过程证据。讲四项协作日志、分支时间序列与期末随机抽行答辩；40/20/20/20 是第二学时作业量规示例。"},
-      {"sceneId":"ethics","notes":"【7:40–8:15】点击任意两张卡片。课程思政不另加说教，而是在数据流向、密钥、爬虫与检索依据这些专业决策中讨论责任。"},
-      {"sceneId":"evidence","notes":"【8:15–8:55】先展示课程网站这一“改革产物与过程证据”，再讲两次阶段作业与小测反馈；主动说清边界：教学行为与任务规格已改变，但三项能力提升仍需三次等值测量，不能把过程证据包装成终结性成效。右下可进入测量方案备查。","hotspots":[{"id":"to-measure","label":"三项能力测量方案","target":"measure","region":{"x":76,"y":87,"w":20,"h":7}}]},
-      {"sceneId":"transfer","notes":"【8:55–9:20】推广分三层：资源公开、实际采用、采用后效果。当前只到校内跨课程试用，外部效果不越界承诺。点四项可移植做法。"},
-      {"sceneId":"close","notes":"【9:20–9:30】收束：提出可验证的需求，发现真实的问题，做出有理由的设计。AI 可以生成代码，教育必须生成判断力。停顿，致谢。右下进入材料来源与评分对齐备查。","hotspots":[{"id":"to-sources","label":"材料来源与备查","target":"sources","region":{"x":78,"y":84,"w":17,"h":9}}]}
-    ],
-    "slideSequences": [
-      {"id":"measure","label":"三项能力测量方案","slides":[{"sceneId":"measure","notes":"答问备查：单组重复测量，不是已完成的成效数据。学期初、学期中、答辩前三次；等值任务、统一量规、抽样双评。"}]},
-      {"id":"sources","label":"材料来源与证据口径","slides":[{"sceneId":"sources","notes":"答问备查：所有数字与结论均可回到通知、成果报告、申报书、教案和课程仓库。","hotspots":[{"id":"to-rubric","label":"评分对齐","target":"rubric","region":{"x":62,"y":87,"w":15,"h":8}},{"id":"to-measure","label":"能力测量","target":"measure","region":{"x":80,"y":87,"w":15,"h":8}}]}]},
-      {"id":"rubric","label":"现场评分维度对齐","slides":[{"sceneId":"rubric","notes":"答问备查：附件2未给分值或权重，本页只展示覆盖关系，不能解释为官方配分。"}]}
-    ]
-  }
+{
+  "slides": [
+    {
+      "sceneId": "cover",
+      "notes": "【0:00–0:20】开场只讲一句：AI 降低代码生成成本后，课堂价值必须向生成之后移动。说明课程、赛道与汇报人，不念履历。"
+    },
+    {
+      "sceneId": "problem",
+      "notes": "【0:20–1:25】把“时代之问”与“问题诊断”合并：AI 能生成代码，课程若仍以教会写为目标，学习会停在生成；落到“可运行≠可解释≠可负责”。三次右移呈现内容结构、能力错位、任务规格三处断点。",
+      "fragments": [
+        2.2,
+        2.4,
+        2.6
+      ]
+    },
+    {
+      "sceneId": "goals",
+      "notes": "【1:25–2:10】点击提出需求、发现问题、设计品味三个页签。重点读一条行为化目标：条件＋行为＋质量标准；发现问题页的密钥硬编码是必过项。"
+    },
+    {
+      "sceneId": "content",
+      "notes": "【2:10–3:10】对照教学大纲先讲整门课而非单节课。点击 M3、M5、M6：工具性内容做减法，AI 应用与项目实践做加法，48 学时总盘不变。"
+    },
+    {
+      "sceneId": "method",
+      "notes": "【3:10–4:00】沿五步循环说明 AI 承担写、人保留定义、发现与设计。点三种工作形态，强调课程目标不是全程依赖 AI，而是让学生保留定义、发现与设计权。"
+    },
+    {
+      "sceneId": "review",
+      "notes": "【4:00–5:50】仅保留教学实战：邀请评委现场找代码缺陷。点击代码行即可核验；至少找出密钥硬编码、缺超时、输入边界、异常处理等问题。三口令：能发现、说后果、会修改。"
+    },
+    {
+      "sceneId": "environment",
+      "notes": "【5:50–6:30】课程网站既是学习环境，也是改革产物与过程证据：16 周课件、88 篇笔记、交互运行场与任务说明公开可核验；资源公开不等于学习成效。"
+    },
+    {
+      "sceneId": "assessment",
+      "notes": "【6:30–7:15】从结果评价转向过程证据。讲四项协作日志、分支时间序列与期末随机抽行答辩；40/20/20/20 是第二学时作业量规示例。"
+    },
+    {
+      "sceneId": "ethics",
+      "notes": "【7:15–7:45】点击任意两张卡片。课程思政不另加说教，而是在数据流向、密钥、爬虫与检索依据这些专业决策中讨论责任。"
+    },
+    {
+      "sceneId": "transfer",
+      "notes": "【7:45–8:40】只陈述两项已发生事实：课程网站与公开资源上线；同一套 AI 使用规范进入《智能系统安全运维与实践》。不推断尚未验证的学习成效。"
+    },
+    {
+      "sceneId": "close",
+      "notes": "【8:40–9:00】收束：提出可验证的需求，发现真实的问题，做出有理由的设计。AI 可以生成代码，教育必须生成判断力。停顿，致谢。右下进入材料来源与评分对齐备查。",
+      "hotspots": [
+        {
+          "id": "to-sources",
+          "label": "材料来源与备查",
+          "target": "sources",
+          "region": {
+            "x": 78,
+            "y": 84,
+            "w": 17,
+            "h": 9
+          }
+        }
+      ]
+    }
+  ],
+  "slideSequences": [
+    {
+      "id": "measure",
+      "label": "三项能力测量方案",
+      "slides": [
+        {
+          "sceneId": "measure",
+          "notes": "答问备查：单组重复测量，不是已完成的成效数据。学期初、学期中、答辩前三次；等值任务、统一量规、抽样双评。"
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "label": "材料来源与证据口径",
+      "slides": [
+        {
+          "sceneId": "sources",
+          "notes": "答问备查：所有数字与结论均可回到通知、成果报告、申报书、教案和课程仓库。",
+          "hotspots": [
+            {
+              "id": "to-rubric",
+              "label": "评分对齐",
+              "target": "rubric",
+              "region": {
+                "x": 62,
+                "y": 87,
+                "w": 15,
+                "h": 8
+              }
+            },
+            {
+              "id": "to-measure",
+              "label": "能力测量",
+              "target": "measure",
+              "region": {
+                "x": 80,
+                "y": 87,
+                "w": 15,
+                "h": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rubric",
+      "label": "现场评分维度对齐",
+      "slides": [
+        {
+          "sceneId": "rubric",
+          "notes": "答问备查：附件2未给分值或权重，本页只展示覆盖关系，不能解释为官方配分。"
+        }
+      ]
+    }
+  ]
+}
   </script>
 
-  <main id="root" data-composition-id="root" data-start="0" data-duration="34" data-width="1920" data-height="1080">
+  <main id="root" data-composition-id="root" data-start="0" data-duration="28" data-width="1920" data-height="1080">
     <!-- 01 COVER -->
     <section id="scene-cover" class="scene-frame clip scene scene-dark cover" data-composition-id="cover" data-label="封面" data-start="0" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
       <div class="cover-grid" data-layout-ignore></div>
@@ -70,41 +169,12 @@
       </footer>
     </section>
 
-    <!-- 02 HOOK -->
-    <section id="scene-hook" class="scene-frame clip scene hook" data-composition-id="hook" data-label="时代之问" data-start="2" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">01 / 时代之问</div>
-      <div class="hook-layout">
-        <div class="hook-heading" data-anim>
-          <p class="eyebrow">THE QUESTION AFTER GENERATION</p>
-          <h2>当 AI 十秒给出<br/>一份“能跑”的代码，<br/><em>学习发生了吗？</em></h2>
-        </div>
-        <button id="hook-switch" class="hook-switch" type="button" data-action="hook" data-anim aria-pressed="false">
-          <span class="switch-label">点击切换观察视角</span>
-          <span class="hook-state state-before">
-            <small>看见的是</small>
-            <strong>代码生成</strong>
-            <span>语法 · 脚本 · 运行结果</span>
-          </span>
-          <span class="hook-state state-after">
-            <small>更应该看见</small>
-            <strong>三种能力</strong>
-            <span>提出需求 · 发现问题 · 设计品味</span>
-          </span>
-          <span class="switch-arrow">→</span>
-        </button>
-      </div>
-      <div class="hook-equation" data-anim>
-        <span>可运行</span><b>≠</b><span>可解释</span><b>≠</b><span>可负责</span>
-      </div>
-      <p class="hook-answer" id="hook-answer">课程的价值，必须向“生成之后”移动。</p>
-    </section>
-
-    <!-- 03 PROBLEM -->
-    <section id="scene-problem" class="scene-frame clip scene" data-composition-id="problem" data-label="真实问题" data-start="4" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">02 / 问题诊断</div>
+    <!-- 02 CHALLENGE -->
+    <section id="scene-problem" class="scene-frame clip scene" data-composition-id="problem" data-label="课程挑战" data-start="2" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">01 / 课程挑战</div>
       <header class="section-head" data-anim>
-        <div><p class="eyebrow">DIAGNOSIS BEFORE DESIGN</p><h2>不是“AI 来了要加内容”，<br/>而是旧课程出现了三处断点</h2></div>
-        <p class="head-note">依据：旧版课程结构、历届作业与答辩观察</p>
+        <div><p class="eyebrow">WHY THE COURSE MUST CHANGE</p><h2>AI 能生成代码，<br/>课程却还停在“教会写”</h2></div>
+        <p class="head-note challenge-note">AI 十秒给出可运行代码<br/><b>可运行 ≠ 可解释 ≠ 可负责</b><br/><small>依据：旧版大纲、作业与答辩</small></p>
       </header>
       <div class="problem-grid">
         <button class="problem-card active" id="p1" type="button" data-problem="content" data-fragment="p1">
@@ -132,8 +202,8 @@
     </section>
 
     <!-- 04 GOALS -->
-    <section id="scene-goals" class="scene-frame clip scene" data-composition-id="goals" data-label="目标重构" data-start="6" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">03 / 理念与目标</div>
+    <section id="scene-goals" class="scene-frame clip scene" data-composition-id="goals" data-label="目标重构" data-start="4" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">02 / 理念与目标</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">FROM SYNTAX TO JUDGMENT</p><h2>把课程目标重写为三种可观察的能力</h2></div>
         <p class="head-note">定义 · 诊断 · 创造</p>
@@ -159,8 +229,8 @@
     </section>
 
     <!-- 05 CONTENT -->
-    <section id="scene-content" class="scene-frame clip scene" data-composition-id="content" data-label="内容重构" data-start="8" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">04 / 内容重构</div>
+    <section id="scene-content" class="scene-frame clip scene" data-composition-id="content" data-label="内容重构" data-start="6" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">03 / 内容重构</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">SYLLABUS · 48 HOURS · 8 MODULES</p><h2>总学时不变，重新分配“值得课堂完成”的学习</h2></div>
         <div class="head-metrics"><span><b>12</b> AI 应用学时</span><span><b>14</b> 项目实战学时</span></div>
@@ -190,8 +260,8 @@
     </section>
 
     <!-- 06 METHOD -->
-    <section id="scene-method" class="scene-frame clip scene" data-composition-id="method" data-label="方法创新" data-start="10" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">05 / 过程与方法</div>
+    <section id="scene-method" class="scene-frame clip scene" data-composition-id="method" data-label="方法创新" data-start="8" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">04 / 过程与方法</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">HUMAN–AI PAIR PROGRAMMING</p><h2>AI 承担“写”，人保留定义、发现与设计</h2></div>
         <p class="head-note">一条主线 · 三种工作形态</p>
@@ -212,49 +282,9 @@
       <div class="review-triad" data-anim><span>全课程同一套能力口径</span><b>① 需求可验证</b><b>② 问题可说明</b><b>③ 设计有取舍</b></div>
     </section>
 
-    <!-- 07 LESSON -->
-    <section id="scene-lesson" class="scene-frame clip scene" data-composition-id="lesson" data-label="教案实证：API" data-start="12" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">06 / 教案实证 · 第 1 学时</div>
-      <header class="section-head compact" data-anim>
-        <div><p class="eyebrow">大模型 API 初体验 · 45 分钟</p><h2>先看见一次真实调用，再回头理解概念</h2></div>
-        <span class="demo-badge">离线交互模拟</span>
-      </header>
-      <div class="api-workbench" data-anim>
-        <div class="request-panel">
-          <div class="panel-title"><span>REQUEST / 请求</span><b>POST /chat/completions</b></div>
-          <button class="api-field active" type="button" data-api="client"><span>client</span><b>连接从哪里来？</b><i>01</i></button>
-          <button class="api-field" type="button" data-api="base"><span>base_url</span><b>请求发到哪里去？</b><i>02</i></button>
-          <button class="api-field" type="button" data-api="model"><span>model</span><b>由哪个模型处理？</b><i>03</i></button>
-          <button class="api-field" type="button" data-api="messages"><span>messages</span><b>角色与任务是什么？</b><i>04</i></button>
-        </div>
-        <div class="api-flow" data-layout-ignore><span></span><b>JSON →</b><span></span></div>
-        <div class="response-panel">
-          <div class="panel-title"><span>RESPONSE / 响应</span><b id="api-status">200 OK</b></div>
-          <div class="response-code" id="api-response"><span>{</span><br/>&nbsp; "choices": [{ "message": {<br/>&nbsp;&nbsp;&nbsp; "role": "assistant", "content": "你好，Python！"<br/>&nbsp; }}],<br/>&nbsp; "usage": { "total_tokens": <b id="token-inline">342</b> }<br/><span>}</span></div>
-          <div class="api-explain" id="api-explain"><b>client</b><span>客户端只是发请求的入口；真正决定数据去向、模型能力与对话边界的是后续参数。</span></div>
-        </div>
-      </div>
-      <div class="lesson-bottom" data-anim>
-        <div class="token-lab">
-          <label for="token-range"><span>TOKEN 与成本意识</span><b><output id="token-value">342</output> tokens</b></label>
-          <input id="token-range" type="range" min="50" max="1000" step="1" value="342" />
-          <p>成本 = Token 数 × 服务商当期单价 <span>不是“字数”，也不是“免费”</span></p>
-        </div>
-        <div class="lesson-timeline" aria-label="45分钟教学流程">
-          <button type="button" data-lesson="0"><b>5′</b><span>提问</span></button>
-          <button type="button" data-lesson="1"><b>8′</b><span>实测</span></button>
-          <button type="button" data-lesson="2" class="active"><b>10′</b><span>拆要素</span></button>
-          <button type="button" data-lesson="3"><b>12′</b><span>比角色</span></button>
-          <button type="button" data-lesson="4"><b>8′</b><span>算成本</span></button>
-          <button type="button" data-lesson="5"><b>2′</b><span>回看</span></button>
-        </div>
-      </div>
-      <div class="lesson-note" id="lesson-note">改一处、跑一次：把“和 AI 说话”翻译成“程序发出 HTTP 请求”。</div>
-    </section>
-
     <!-- 08 REVIEW -->
-    <section id="scene-review" class="scene-frame clip scene" data-composition-id="review" data-label="教案实证：代码审查" data-start="14" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">07 / 教案实证 · 第 2 学时</div>
+    <section id="scene-review" class="scene-frame clip scene" data-composition-id="review" data-label="教学实战：代码审查" data-start="10" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">05 / 教学实战</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">AI 生成代码审查 · 等值任务</p><h2>现在，请您当一名学生：找出 5 处缺陷</h2></div>
         <div class="review-score"><span>已发现</span><b id="review-count">0 / 5</b></div>
@@ -292,8 +322,8 @@
     </section>
 
     <!-- 09 ENVIRONMENT -->
-    <section id="scene-environment" class="scene-frame clip scene" data-composition-id="environment" data-label="教学环境" data-start="16" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">08 / 教学环境</div>
+    <section id="scene-environment" class="scene-frame clip scene" data-composition-id="environment" data-label="课程网站" data-start="12" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">06 / 课程网站</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">TECHNOLOGY AS EVIDENCE</p><h2>课程网站不是展示橱窗，而是改革现场</h2></div>
         <a class="course-link" href="https://anjingcuc.github.io/courses-wiki" target="_blank" rel="noreferrer">anjingcuc.github.io/courses-wiki ↗</a>
@@ -316,8 +346,8 @@
     </section>
 
     <!-- 10 ASSESSMENT -->
-    <section id="scene-assessment" class="scene-frame clip scene" data-composition-id="assessment" data-label="评价改革" data-start="18" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">09 / 考评与反馈</div>
+    <section id="scene-assessment" class="scene-frame clip scene" data-composition-id="assessment" data-label="评价改革" data-start="14" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">07 / 考评与反馈</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">ASSESS THE PROCESS, NOT ONLY THE PRODUCT</p><h2>从“交了什么”，转向“如何定义、判断与设计”</h2></div>
         <p class="head-note">过程性评价 × 终结性评价</p>
@@ -349,8 +379,8 @@
     </section>
 
     <!-- 11 ETHICS -->
-    <section id="scene-ethics" class="scene-frame clip scene" data-composition-id="ethics" data-label="课程思政" data-start="20" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">10 / 课程思政</div>
+    <section id="scene-ethics" class="scene-frame clip scene" data-composition-id="ethics" data-label="课程思政" data-start="16" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">08 / 课程思政</div>
       <header class="section-head compact" data-anim>
         <div><p class="eyebrow">RESPONSIBILITY INSIDE THE CODE</p><h2>价值塑造，进入每一个真实的技术决策</h2></div>
         <p class="head-note">点击卡片 · 查看教学落点</p>
@@ -364,54 +394,33 @@
       <div class="ethics-thesis" data-anim><span>不另占课时</span><p>把价值判断嵌入代码、数据与系统设计，让“负责任”成为可观察的专业行为。</p></div>
     </section>
 
-    <!-- 12 EVIDENCE -->
-    <section id="scene-evidence" class="scene-frame clip scene" data-composition-id="evidence" data-label="阶段证据" data-start="22" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">11 / 成效与证据边界</div>
+    <!-- 10 OPEN RESOURCES & TRIAL -->
+    <section id="scene-transfer" class="scene-frame clip scene" data-composition-id="transfer" data-label="公开与试用" data-start="18" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+      <div class="section-index">09 / 公开与试用</div>
       <header class="section-head compact" data-anim>
-        <div><p class="eyebrow">EVIDENCE, WITH ITS LIMITS</p><h2>只报告已经发生的，不把改革设计写成学习成效</h2></div>
-        <span class="status-badge">课程仍在实施中</span>
+        <div><p class="eyebrow">OPEN RESOURCES · CROSS-COURSE TRIAL</p><h2>先公开课程网站，再把规范带进另一门课</h2></div>
+        <p class="head-note">已公开 · 已试用</p>
       </header>
-      <div class="evidence-columns" data-anim>
-        <div class="evidence-col happened">
-          <div class="evidence-title"><span>已发生</span><b>课程设计与实施证据</b></div>
-          <button type="button" class="evidence-item active" data-evidence="site"><i>01</i><div><b>课程网站与公开资源</b><p>16 周课件、88 篇笔记、交互运行场与任务说明均已上线。</p></div><span>设计证据</span></button>
-          <button type="button" class="evidence-item" data-evidence="branch"><i>02</i><div><b>前两次阶段作业</b><p>已按分支提交并逐份批注；往返记录可回查。</p></div><span>过程记录</span></button>
-          <button type="button" class="evidence-item" data-evidence="quiz"><i>03</i><div><b>课堂小测反馈</b><p>正确率当堂统计；错误集中题目当堂重讲。</p></div><span>即时反馈</span></button>
-        </div>
-        <div class="evidence-col pending">
-          <div class="evidence-title"><span>尚待验证</span><b>能力提升与外部效果</b></div>
-          <div class="pending-item"><i>?</i><div><b>三项能力是否提升</b><p>等待学期初、中、答辩前三次等值测量。</p></div></div>
-          <div class="pending-item"><i>?</i><div><b>终结性项目表现</b><p>期末项目与答辩尚未完成。</p></div></div>
-          <div class="pending-item"><i>?</i><div><b>外部采用后的效果</b><p>目前暂无证据，不作推广成效承诺。</p></div></div>
-        </div>
+      <div class="public-trial" data-anim>
+        <section class="public-card opened">
+          <span>01 / 公开资源</span>
+          <h3>课程网站与教学材料已公开</h3>
+          <p>16 周课件、88 篇笔记、4 个交互演示与任务说明均已上线；网站结构本身是课程改革的一部分。</p>
+          <div class="public-metrics"><span><b>16</b>周课件</span><span><b>88</b>篇笔记</span><span><b>4</b>个演示</span></div>
+          <a class="public-link" href="https://anjingcuc.github.io/courses-wiki" target="_blank" rel="noreferrer">anjingcuc.github.io/courses-wiki ↗</a>
+        </section>
+        <section class="public-card trial">
+          <span>02 / 跨课程试用</span>
+          <h3>同一套规范进入另一门课</h3>
+          <p>需求定义、问题发现与设计取舍的课堂口径，已随课程网站与 AI 使用规范用于《智能系统安全运维与实践》。</p>
+          <div class="trial-flow"><b>Python 程序设计</b><i>→</i><b>智能系统安全运维与实践</b></div>
+          <a class="public-link" href="https://anjingcuc.github.io/courses-wiki/aissop/" target="_blank" rel="noreferrer">查看跨课程页面 ↗</a>
+        </section>
       </div>
-      <div class="spec-change" data-anim><span>任务规格已改变</span><p><b>2 件</b> 源码＋实验报告</p><i>→</i><p><b>6 件</b> 提案·架构·应用·README·日志·答辩</p><em>单文件脚本 → 完整应用</em></div>
-      <button class="branch-link measure-link" type="button" data-branch-target="measure" aria-label="进入三项能力测量方案备查">备查：能力测量方案 ↗</button>
-    </section>
-
-    <!-- 13 TRANSFER -->
-    <section id="scene-transfer" class="scene-frame clip scene" data-composition-id="transfer" data-label="推广与反思" data-start="24" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
-      <div class="section-index">12 / 推广与反思</div>
-      <header class="section-head compact" data-anim>
-        <div><p class="eyebrow">TRANSFER WITHOUT OVERCLAIMING</p><h2>可推广的是方法，不是未经验证的结论</h2></div>
-        <p class="head-note">外部试用后，再判断普适性</p>
-      </header>
-      <div class="transfer-ladder" data-anim>
-        <div class="ladder-step done"><span>01 / 资源公开</span><b>课程网站已公开</b><p>课件、微课、笔记与演示可直接访问。</p></div>
-        <div class="ladder-step trial"><span>02 / 实际采用</span><b>校内跨课程试用</b><p>同一套 AI 使用规范已用于<br/>《智能系统安全运维与实践》。</p></div>
-        <div class="ladder-step unknown"><span>03 / 采用后效果</span><b>证据暂缺</b><p>独立采用证据与采用后效果仍需持续跟踪。</p></div>
-      </div>
-      <div class="transfer-practices" data-anim>
-        <button type="button" class="active" data-transfer="content"><span>01</span><b>内容取舍尺度</b><p>可检索的交出去，需判断的留下来</p></button>
-        <button type="button" data-transfer="method"><span>02</span><b>五步循环＋发现三步</b><p>与具体编程语言解耦</p></button>
-        <button type="button" data-transfer="runtime"><span>03</span><b>浏览器运行场</b><p>静态页面也能即时验证</p></button>
-        <button type="button" data-transfer="assessment"><span>04</span><b>过程留痕评价</b><p>分支·日志·批注·答辩</p></button>
-      </div>
-      <div class="transfer-note" id="transfer-note" data-anim><span>迁移条件</span><p>可尝试迁移至 Java、SQL 等课程；适用性仍需外部教学实践检验。</p></div>
     </section>
 
     <!-- 14 CLOSE -->
-    <section id="scene-close" class="scene-frame clip scene scene-dark close" data-composition-id="close" data-label="结语" data-start="26" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+    <section id="scene-close" class="scene-frame clip scene scene-dark close" data-composition-id="close" data-label="结语" data-start="20" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
       <div class="close-grid" data-layout-ignore></div>
       <div class="close-top" data-anim><span>PYTHON 程序设计 · AI 原生化教学创新</span><b>新工科赛道</b></div>
       <div class="close-main">
@@ -428,7 +437,7 @@
     </section>
 
     <!-- BACKUP 01 MEASURE -->
-    <section id="scene-measure" class="scene-frame clip scene" data-composition-id="measure" data-label="备查：能力测量" data-start="28" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+    <section id="scene-measure" class="scene-frame clip scene" data-composition-id="measure" data-label="备查：能力测量" data-start="22" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
       <div class="section-index">备查 01 / 能力证据的观测设计</div>
       <header class="section-head compact" data-anim><div><p class="eyebrow">SINGLE-GROUP REPEATED MEASURES</p><h2>三项能力，用等值任务与统一量规持续观测</h2></div><span class="status-badge">方案设计 · 非既有结果</span></header>
       <div class="measure-times" data-anim><div><span>T1</span><b>学期初</b><p>建立起点</p></div><i>→</i><div><span>T2</span><b>学期中</b><p>观察变化</p></div><i>→</i><div><span>T3</span><b>答辩前</b><p>前后比较</p></div></div>
@@ -441,7 +450,7 @@
     </section>
 
     <!-- BACKUP 02 SOURCES -->
-    <section id="scene-sources" class="scene-frame clip scene" data-composition-id="sources" data-label="备查：材料来源" data-start="30" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+    <section id="scene-sources" class="scene-frame clip scene" data-composition-id="sources" data-label="备查：材料来源" data-start="24" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
       <div class="section-index">备查 02 / 材料来源</div>
       <header class="section-head compact" data-anim><div><p class="eyebrow">TRACEABLE CLAIMS</p><h2>每一项关键表述，都能回到原始材料</h2></div><p class="head-note">核对日期 · 2026-11-12</p></header>
       <div class="source-list" data-anim>
@@ -456,7 +465,7 @@
     </section>
 
     <!-- BACKUP 03 RUBRIC -->
-    <section id="scene-rubric" class="scene-frame clip scene" data-composition-id="rubric" data-label="备查：评分对齐" data-start="32" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
+    <section id="scene-rubric" class="scene-frame clip scene" data-composition-id="rubric" data-label="备查：评分对齐" data-start="26" data-duration="2" data-width="1920" data-height="1080" data-no-timeline data-hold>
       <div class="section-index">备查 03 / 新工科现场评分维度</div>
       <header class="section-head compact" data-anim><div><p class="eyebrow">ALIGNMENT, NOT WEIGHTING</p><h2>让评审维度在汇报中都有可定位的证据</h2></div><span class="status-badge">附件 2 未给分值或权重</span></header>
       <div class="rubric-matrix" data-anim>

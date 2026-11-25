@@ -3,30 +3,27 @@
   window.__timelines = window.__timelines || {};
   if (new URLSearchParams(window.location.search).get("shell") === "standalone") document.documentElement.classList.add("hf-embedded");
 
-  var TOTAL_SECONDS = 34;
+  var TOTAL_SECONDS = 28;
   var scenes = [
     { id: "scene-cover", start: 0, end: 2 },
-    { id: "scene-hook", start: 2, end: 4 },
-    { id: "scene-problem", start: 4, end: 6 },
-    { id: "scene-goals", start: 6, end: 8 },
-    { id: "scene-content", start: 8, end: 10 },
-    { id: "scene-method", start: 10, end: 12 },
-    { id: "scene-lesson", start: 12, end: 14 },
-    { id: "scene-review", start: 14, end: 16 },
-    { id: "scene-environment", start: 16, end: 18 },
-    { id: "scene-assessment", start: 18, end: 20 },
-    { id: "scene-ethics", start: 20, end: 22 },
-    { id: "scene-evidence", start: 22, end: 24 },
-    { id: "scene-transfer", start: 24, end: 26 },
-    { id: "scene-close", start: 26, end: 28 },
-    { id: "scene-measure", start: 28, end: 30 },
-    { id: "scene-sources", start: 30, end: 32 },
-    { id: "scene-rubric", start: 32, end: 34 }
+    { id: "scene-problem", start: 2, end: 4 },
+    { id: "scene-goals", start: 4, end: 6 },
+    { id: "scene-content", start: 6, end: 8 },
+    { id: "scene-method", start: 8, end: 10 },
+    { id: "scene-review", start: 10, end: 12 },
+    { id: "scene-environment", start: 12, end: 14 },
+    { id: "scene-assessment", start: 14, end: 16 },
+    { id: "scene-ethics", start: 16, end: 18 },
+    { id: "scene-transfer", start: 18, end: 20 },
+    { id: "scene-close", start: 20, end: 22 },
+    { id: "scene-measure", start: 22, end: 24 },
+    { id: "scene-sources", start: 24, end: 26 },
+    { id: "scene-rubric", start: 26, end: 28 }
   ];
   var fragmentDefs = [
-    { time: 4.2, id: "p1" },
-    { time: 4.4, id: "p2" },
-    { time: 4.6, id: "p3" }
+    { time: 2.2, id: "p1" },
+    { time: 2.4, id: "p2" },
+    { time: 2.6, id: "p3" }
   ];
   var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -52,7 +49,7 @@
     fragmentDefs.forEach(function (fragment) {
       var el = byId(fragment.id);
       if (!el) return;
-      var visible = t >= fragment.time && t < 6;
+      var visible = t >= fragment.time && t < 4;
       el.style.opacity = visible ? "1" : "0";
       el.style.visibility = visible ? "visible" : "hidden";
       el.style.pointerEvents = visible ? "auto" : "none";
@@ -80,7 +77,7 @@
     // already be fully visible, otherwise the third card can be skipped while its
     // fade-in is still at opacity 0.
     rootTimeline.set(el, { opacity: 1, x: 0, visibility: "visible", pointerEvents: "auto" }, fragment.time);
-    rootTimeline.set(el, { opacity: 0, visibility: "hidden", pointerEvents: "none" }, 6);
+    rootTimeline.set(el, { opacity: 0, visibility: "hidden", pointerEvents: "none" }, 4);
   });
   window.__hfSetTime = function (t) {
     rootTimeline.seek(t);
@@ -216,66 +213,6 @@
   var modeButtons = all("[data-mode]");
   modeButtons.forEach(function (button) { button.addEventListener("click", function () { activate(modeButtons, button); }); });
 
-  // API workbench
-  var apiData = {
-    client: {
-      status: "200 OK",
-      explain: "<b>client</b><span>客户端只是发请求的入口；真正决定数据去向、模型能力与对话边界的是后续参数。</span>",
-      response: '<span>{</span><br/>&nbsp; "choices": [{ "message": {<br/>&nbsp;&nbsp;&nbsp; "role": "assistant", "content": "你好，Python！"<br/>&nbsp; }}],<br/>&nbsp; "usage": { "total_tokens": <b id="token-inline">342</b> }<br/><span>}</span>'
-    },
-    base: {
-      status: "数据去向",
-      explain: "<b>base_url</b><span>去哪家“店”：请求发到哪里，数据就到哪里。课堂由此进入数据流向与责任归属。</span>",
-      response: '<span>{</span><br/>&nbsp; "request": {<br/>&nbsp;&nbsp;&nbsp; "base_url": "https://api.example.edu/v1",<br/>&nbsp;&nbsp;&nbsp; "data_flow": "local → model service"<br/>&nbsp; }<br/><span>}</span>'
-    },
-    model: {
-      status: "模型选择",
-      explain: "<b>model</b><span>点哪道“菜”：不同模型对应不同能力、速度与价格，选择必须服务任务而不是追逐参数。</span>",
-      response: '<span>{</span><br/>&nbsp; "model": "course-demo-model",<br/>&nbsp; "task": "security-log-classification",<br/>&nbsp; "selection_reason": "fit_for_task"<br/><span>}</span>'
-    },
-    messages: {
-      status: "角色边界",
-      explain: "<b>messages</b><span>system 设定边界，user 提出任务，assistant 返回回答；比较写与不写 system 的两次输出。</span>",
-      response: '<span>[</span><br/>&nbsp; { "role": "system", "content": "只依据资料；无依据说不知道" },<br/>&nbsp; { "role": "user", "content": "解释这条安全告警" },<br/>&nbsp; { "role": "assistant", "content": "……" }<br/><span>]</span>'
-    }
-  };
-  var currentTokens = 342;
-  var apiButtons = all("[data-api]");
-  function updateTokens(value) {
-    currentTokens = Number(value);
-    byId("token-value").textContent = String(currentTokens);
-    var inline = byId("token-inline");
-    if (inline) inline.textContent = String(currentTokens);
-  }
-  apiButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      activate(apiButtons, button);
-      var data = apiData[button.dataset.api];
-      byId("api-status").textContent = data.status;
-      byId("api-explain").innerHTML = data.explain;
-      byId("api-response").innerHTML = data.response;
-      updateTokens(currentTokens);
-    });
-  });
-  var tokenRange = byId("token-range");
-  if (tokenRange) tokenRange.addEventListener("input", function (event) { updateTokens(event.target.value); });
-
-  var lessonNotes = [
-    "导入：AI 是怎么把话说出来的？先收起答案，课末再回看并修正。",
-    "实测：观察真实请求的方法、状态码与响应体，先见实物再讲概念。",
-    "改一处、跑一次：把“和 AI 说话”翻译成“程序发出 HTTP 请求”。",
-    "对比写与不写 system 的回答，理解角色如何改变语气与边界。",
-    "读取 usage，按服务商当期单价计算一次调用成本，建立 Token 意识。",
-    "回看开课答案：哪些理解需要修正？课后完成第一次 API 观察记录。"
-  ];
-  var lessonButtons = all("[data-lesson]");
-  lessonButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      activate(lessonButtons, button);
-      byId("lesson-note").textContent = lessonNotes[Number(button.dataset.lesson)];
-    });
-  });
-
   // Code-review equivalent task
   var bugData = {
     key: "密钥硬编码：应移入环境变量；泄露后需吊销、更换并核查账单。",
@@ -373,20 +310,4 @@
     });
   });
 
-  // Evidence and transfer selections
-  var evidenceButtons = all("[data-evidence]");
-  evidenceButtons.forEach(function (button) { button.addEventListener("click", function () { activate(evidenceButtons, button); }); });
-  var transferData = {
-    content: "可尝试迁移至 Java、SQL 等课程；适用性仍需外部教学实践检验。",
-    method: "与具体语言无关的五步循环与发现问题三步法，可形成跨课程共同口径；效果仍待外部采用验证。",
-    runtime: "静态页面配合 Pyodide，无需自建后端即可提供即时验证；复杂工程内容仍需本地环境。",
-    assessment: "分支提交、逐份批注、协作日志与随机抽行答辩可复用；留痕不等于作者身份认证。"
-  };
-  var transferButtons = all("[data-transfer]");
-  transferButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      activate(transferButtons, button);
-      byId("transfer-note").querySelector("p").textContent = transferData[button.dataset.transfer];
-    });
-  });
 })();
